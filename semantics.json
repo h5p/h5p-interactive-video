@@ -1,0 +1,72 @@
+[
+  {
+    "name": "interactiveVideo",
+    "type": "group",
+    "widget": "wizard",
+    "fields": [
+      {
+        "name": "video",
+        "type": "video",
+        "label": "Upload video",
+        "description": "Select the video you wish to use in your eLecture."
+      },
+      {
+        "name": "interactions",
+        "type": "list",
+        "label": "Add interactions",
+        "widget": "interactiveVideo",
+        "video": "video",
+        "field": {
+          "name": "interaction",
+          "type": "group",
+          "fields": [
+            {
+              "name": "action",
+              "type": "library",
+              "options": [
+                "H5P.Text 1.0",
+                "H5P.Table 1.0",
+                "H5P.Image 1.0",
+                "H5P.Multichoice 1.0"
+              ]
+            },
+            {
+              "name": "x",
+              "type": "number"
+            },
+            {
+              "name": "y",
+              "type": "number"
+            },
+            {
+              "name": "ctc",
+              "type": "boolean"
+            },
+            {
+              "name": "pause",
+              "type": "boolean"
+            },
+            {
+              "name": "from",
+              "type": "number"
+            },
+            {
+              "name": "to",
+              "type": "number"
+            }
+          ]
+        }
+      },
+      {
+        "name": "summary",
+        "type": "library",
+        "label": "Summary task",
+        "options": ["H5P.Summary 1.0"],
+        "default": {
+          "library": "H5P.Summary 1.0",
+          "params": []
+        }
+      }
+    ]
+  }
+]
