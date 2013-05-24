@@ -1,0 +1,49 @@
+{
+  "title": "H5P.InteractiveVideo",
+  "contentType": "H5P.InteractiveVideo",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "machineName": "H5P.InteractiveVideo",
+  "author": "Frode Petterson",
+  "preloadedJs": [
+    {
+      "path": "scripts/interactive-video.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/interactive-video.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "jQuery.ui",
+      "majorVersion": 1,
+      "minorVersion": 10
+    },
+    {
+      "machineName": "H5P.Video",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5P.Text",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.Wizard",
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    {
+      "machineName": "H5PEditor.InteractiveVideo",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}
