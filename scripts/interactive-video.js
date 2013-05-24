@@ -102,7 +102,7 @@ H5P.InteractiveVideo = (function ($) {
     };
 
     this.video.attach($wrapper);
-    this.$overlay = $('<div class="h5p-overlay h5p-amendor"></div>').appendTo($wrapper);
+    this.$overlay = $('<div class="h5p-overlay"></div>').appendTo($wrapper);
   };
 
   /**
@@ -198,8 +198,6 @@ H5P.InteractiveVideo = (function ($) {
       start: function () {
         if (that.playing === undefined) {
           if (that.controls.$slider.slider('option', 'max') !== 0) {
-            // Remove amendor logo.
-            that.$overlay.removeClass('h5p-amendor');
             that.playing = false;
           }
         }
@@ -299,10 +297,6 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
 
     if (seeking === undefined) {
-      if (this.playing === undefined) {
-        // Remove amendor logo.
-        this.$overlay.removeClass('h5p-amendor');
-      }
       this.playing = true;
 
       if (this.hasEnded !== undefined && this.hasEnded) {
