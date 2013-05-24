@@ -75,6 +75,8 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
 
+    this.params.video = [{path: 'http://content.bitsontherun.com/videos/q1fx20VZ-52qL9xLP.mp4', mime:'video/mp4'}];
+
     this.video = new H5P.Video({
       files: this.params.video,
       controls: false,
@@ -97,8 +99,17 @@ H5P.InteractiveVideo = (function ($) {
       that.resize();
 
       var duration = that.video.getDuration();
-      that.controls.$totalTime.html(C.humanizeTime(duration));
+      var time = C.humanizeTime(duration);
+      that.controls.$totalTime.html(time);
       that.controls.$slider.slider('option', 'max', duration);
+
+      that.controls.$currentTime.html(time);
+      // Set correct margins for timeline
+      that.controls.$slider.parent().css({
+        marginLeft: that.$controls.children('.h5p-controls-left').width(),
+        marginRight: that.$controls.children('.h5p-controls-right').width()
+      });
+      that.controls.$currentTime.html(C.humanizeTime(0));
     };
 
     this.video.attach($wrapper);
@@ -225,9 +236,11 @@ H5P.InteractiveVideo = (function ($) {
 
     // Set correct margins for timeline
     $slider.css({
-      marginLeft: $wrapper.children('.h5p-controls-left').width(),
-      marginRight: $wrapper.children('.h5p-controls-right').width()
+      marginLeft: that.$controls.children('.h5p-controls-left').width(),
+      marginRight: that.$controls.children('.h5p-controls-right').width()
     });
+
+    this.controls.$buffered = $('<canvas class="h5p-buffered" width="100" height="8"></canvas>').prependTo(this.controls.$slider);
   };
 
   /**
@@ -238,6 +251,8 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.resize = function (fullScreen) {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
+
+    this.controls.$buffered.attr('width', this.controls.$slider.width());
 
     this.$videoWrapper.css({
       marginTop: '',
@@ -318,7 +333,7 @@ H5P.InteractiveVideo = (function ($) {
       that.controls.$slider.slider('option', 'value', time);
 
       var second = Math.floor(time);
-      if (lastSecond !== second) {
+      if (Math.floor(lastSecond) !== second) {
         that.toggleInteractions(second);
 
         if (that.editor !== undefined && that.editor.dnb.dnd.$coordinates !== undefined) {
@@ -330,6 +345,23 @@ H5P.InteractiveVideo = (function ($) {
         // Update timer
         that.controls.$currentTime.html(C.humanizeTime(second));
       }
+
+      // Update buffer bar
+      if (that.video.video !== undefined) {
+        var canvas = that.controls.$buffered[0].getContext('2d');
+        var width = parseFloat(that.controls.$buffered.attr('width'));
+        var buffered = that.video.video.buffered;
+        var duration = that.video.video.duration;
+
+        canvas.fillStyle = '#5f5f5f';
+        for (var i = 0; i < buffered.length; i++) {
+          var from = buffered.start(i) / duration * width;
+          var to = (buffered.end(i) / duration * width) - from;
+
+          canvas.fillRect(from, 0, to, 8);
+        }
+      }
+
       lastSecond = second;
     }, 40); // 25 FPS
   };

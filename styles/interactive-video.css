@@ -211,6 +211,13 @@
   outline: none;
 }
 
+.h5p-interactive-video .h5p-buffered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+}
+
 .h5p-interactive-video .h5p-dialog-wrapper {
   display: none;
   position: absolute;
