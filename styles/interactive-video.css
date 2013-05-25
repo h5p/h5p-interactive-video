@@ -148,26 +148,26 @@
 
 .h5p-interactive-video .h5p-play {
   width: 60px;
-  background: url('../Images/pause.png') no-repeat 50% 50%;
+  background: url('../images/pause.png') no-repeat 50% 50%;
   background-size: 60px 36px;
 }
 .h5p-interactive-video .h5p-pause {
-  background-image: url(../Images/play.png);
+  background-image: url(../images/play.png);
 }
 
 .h5p-interactive-video .h5p-fullscreen, .h5p-interactive-video .h5p-volume {
   width: 60px;
-  background: url(../Images/fullscreen.png) no-repeat 50% 50%;
+  background: url(../images/fullscreen.png) no-repeat 50% 50%;
   background-size: 60px 36px;
 }
 .h5p-interactive-video .h5p-exit {
-  background-image: url(../Images/exit-fullscreen.png);
+  background-image: url(../images/exit-fullscreen.png);
 }
 .h5p-interactive-video .h5p-volume {
-  background-image: url(../Images/volume.png);
+  background-image: url(../images/volume.png);
 }
 .h5p-interactive-video .h5p-muted {
-  background-image: url(../Images/muted.png);
+  background-image: url(../images/muted.png);
 }
 
 .h5p-interactive-video .h5p-time {
@@ -205,7 +205,7 @@
   width: 18px;
   height: 18px;
   border: 0;
-  background: transparent url(../Images/slider.png) no-repeat 50% 50%;
+  background: transparent url(../images/slider.png) no-repeat 50% 50%;
   background-size: 18px 18px;
   border-radius: 0;
   outline: none;
