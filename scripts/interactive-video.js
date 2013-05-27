@@ -148,30 +148,35 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     // Fullscreen button
-    this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').click(function () {
-      if (that.controls.$fullscreen.hasClass('h5p-exit')) {
-        that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
-        if (H5P.fullScreenBrowserPrefix === undefined) {
-          that.$container.children('.h5p-disable-fullscreen').click();
-        }
-        else {
-          if (H5P.fullScreenBrowserPrefix === '') {
-            document.exitFullScreen();
+    if (this.editor === undefined) {
+      this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').click(function () {
+        if (that.controls.$fullscreen.hasClass('h5p-exit')) {
+          that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
+          if (H5P.fullScreenBrowserPrefix === undefined) {
+            that.$container.children('.h5p-disable-fullscreen').click();
           }
           else {
-            document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+            if (H5P.fullScreenBrowserPrefix === '') {
+              document.exitFullScreen();
+            }
+            else {
+              document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+            }
           }
         }
-      }
-      else {
-        that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
-        H5P.fullScreen(that.$container, that);
-        if (H5P.fullScreenBrowserPrefix === undefined) {
-          that.$container.children('.h5p-disable-fullscreen').hide();
+        else {
+          that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
+          H5P.fullScreen(that.$container, that);
+          if (H5P.fullScreenBrowserPrefix === undefined) {
+            that.$container.children('.h5p-disable-fullscreen').hide();
+          }
         }
-      }
-      return false;
-    });
+        return false;
+      });
+    }
+    else {
+      $wrapper.find('.h5p-fullscreen').remove();
+    }
 
     // Volume/mute button
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
@@ -264,7 +269,7 @@ H5P.InteractiveVideo = (function ($) {
     this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
 
     if (!fullscreenOn) {
-      if (this.controls.$fullscreen.hasClass('h5p-exit')) {
+      if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
         // Update icon if we some how got out of fullscreen.
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
@@ -407,6 +412,10 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     var interaction = this.params.interactions[i];
 
+    if (second === undefined) {
+      second = Math.floor(this.video.getTime());
+    }
+
     if (second < interaction.from || second > interaction.to) {
       // Remove interaction
       if (this.visibleInteractions[i] !== undefined) {
@@ -461,22 +470,23 @@ H5P.InteractiveVideo = (function ($) {
       this.pause(true);
     }
 
-    var $dialog = this.$dialog.children('.h5p-dialog-interaction').html('hello').attr('class', 'h5p-dialog-interaction');
+    if (interaction !== undefined) {
+      var $dialog = this.$dialog.children('.h5p-dialog-interaction').html('').attr('class', 'h5p-dialog-interaction');
 
-    var lib = interaction.action.library.split(' ')[0];
-    var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
-    interactionInstance.attach($dialog);
+      var lib = interaction.action.library.split(' ')[0];
+      var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
+      interactionInstance.attach($dialog);
 
-    this.$dialogWrapper.show();
-
-    if (lib === 'H5P.Image') {
-      // Make sure images dosn't strech.
-      $dialog.children('img').css('height', 'auto').load(function () {
-        // Reposition after image has loaded.
-        that.positionDialog(interaction, $button);
-      });
+      if (lib === 'H5P.Image') {
+        // Make sure images dosn't strech.
+        $dialog.children('img').css('height', 'auto').load(function () {
+          // Reposition after image has loaded.
+          that.positionDialog(interaction, $button);
+        });
+      }
     }
 
+    this.$dialogWrapper.show();
     this.positionDialog(interaction, $button);
 
     setTimeout(function () {
@@ -492,7 +502,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.positionDialog = function (interaction, $button) {
-    if (interaction.bigDialog !== undefined && interaction.bigDialog) {
+    if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
       this.$dialog.addClass('h5p-big').css({
         left: '',
         top: ''
@@ -532,7 +542,12 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.hideDialog = function () {
     var that = this;
 
+    if (this.editor !== undefined && !this.editor.validateDialog()) {
+      return;
+    }
+
     this.$dialogWrapper.addClass('h5p-hidden');
+
     setTimeout(function () {
       that.$dialogWrapper.hide();
     }, 201);
@@ -540,8 +555,6 @@ H5P.InteractiveVideo = (function ($) {
     if (this.playing) {
       this.play(true);
     }
-
-    return false;
   };
 
   /**

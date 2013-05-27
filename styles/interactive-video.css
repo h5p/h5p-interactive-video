@@ -251,22 +251,23 @@
   position: absolute;
   width: 46%;
   max-height: 84.5%;
-  margin: 1em;
-  padding: 0.5em;
+  margin: 1.33em;
+  padding: 0.67em;
   background: #fff;
-  box-shadow: 0 0 2em 0 #191919;
+  box-shadow: 0 0 2.67em 0 #191919;
+  font-size: 0.75em;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big {
-  width: 37em;
+  width: 49.33em;
   height: 84.5%;
 }
 .h5p-interactive-video .h5p-dialog-interaction {
-  width: 16.75em;
+  width: 22.9em;
   height: 100%;
   overflow: auto;
 }
 .h5p-interactive-video .h5p-big > .h5p-dialog-interaction {
-  width: 35.25em;
+  width: 47.7em;
 }
 .h5p-interactive-video .h5p-dialog-interaction::-webkit-scrollbar {
   width: 0.5em;
@@ -282,7 +283,7 @@
   font-size: 2em;
   position: absolute;
   right: 0;
-  top: 0.25em;
+  top: 0.2em;
   width: 1em;
   height: 1em;
   z-index: 52;

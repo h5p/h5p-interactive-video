@@ -32,26 +32,28 @@
             },
             {
               "name": "x",
-              "type": "number"
+              "type": "number",
+              "widget": "none"
             },
             {
               "name": "y",
-              "type": "number"
-            },
-            {
-              "name": "ctc",
-              "type": "boolean"
+              "type": "number",
+              "widget": "none"
             },
             {
               "name": "pause",
+              "label": "Pause",
+              "description": "Set playback on pause when this interaction is reached.",
               "type": "boolean"
             },
             {
               "name": "from",
+              "label": "Display from time (in seconds)",
               "type": "number"
             },
             {
               "name": "to",
+              "label": "Stop display time (in seconds)",
               "type": "number"
             }
           ]
