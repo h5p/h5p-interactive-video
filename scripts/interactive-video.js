@@ -28,8 +28,6 @@ H5P.InteractiveVideo = (function ($) {
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen'
     };
-
-    this.fontSize = 16; // How large the interactions should be in px.
   };
 
   /**
@@ -42,7 +40,11 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     this.$container = $container;
 
-    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-hidden"><div class="h5p-dialog"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div>');
+    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper h5p-ie-transparent-background"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-interaction"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
+
+    this.fontSize = parseInt($container.css('fontSize')); // How large the interactions should be in px.
+    this.width = parseInt($container.css('width'));
+    $container.css('width', '100%');
 
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
@@ -53,16 +55,14 @@ H5P.InteractiveVideo = (function ($) {
     this.attachControls(this.$controls);
 
     // Dialog
-    this.$dialogWrapper = $container.children('.h5p-dialog-wrapper');
-    this.$dialog = this.$dialogWrapper.children('.h5p-dialog');
-    this.$dialogWrapper.children('.h5p-dialog-hide').click(function () {
-      that.$dialogWrapper.addClass('h5p-hidden');
-      setTimeout(function () {
-        that.$dialogWrapper.hide();
-      }, 201);
-      if (that.playing) {
-        that.play(true);
-      }
+    this.$dialogWrapper = $container.children('.h5p-dialog-wrapper').click(function () {
+      that.hideDialog();
+    });
+    this.$dialog = this.$dialogWrapper.children('.h5p-dialog').click(function (event) {
+      event.stopPropagation();
+    });
+    this.$dialog.children('.h5p-dialog-hide').click(function () {
+      that.hideDialog();
       return false;
     });
   };
@@ -74,8 +74,6 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
-
-    this.params.video = [{path: 'http://content.bitsontherun.com/videos/q1fx20VZ-52qL9xLP.mp4', mime:'video/mp4'}];
 
     this.video = new H5P.Video({
       files: this.params.video,
@@ -262,16 +260,8 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.video.resize();
 
-    if (this.videoHeight === undefined) {
-      // Set default height
-      var videoHeight = this.videoHeight = this.$videoWrapper.height();
-    }
-    else {
-      var videoHeight = this.$videoWrapper.height();
-
-      // Calculate new font size.
-      this.$container.css('fontSize', (this.fontSize * (videoHeight / this.videoHeight)) + 'px');
-    }
+    var width = this.$container.width();
+    this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
 
     if (!fullscreenOn) {
       if (this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -281,6 +271,7 @@ H5P.InteractiveVideo = (function ($) {
       return;
     }
 
+    var videoHeight = this.$videoWrapper.height();
     var controlsHeight = this.$controls.height();
     var containerHeight = this.$container.height();
 
@@ -434,7 +425,7 @@ H5P.InteractiveVideo = (function ($) {
 
     var $interaction = this.visibleInteractions[i] = $('<a href="#" class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"></a>').appendTo(this.$overlay).click(function () {
       if (that.editor === undefined) {
-        that.showDialog(interaction);
+        that.showDialog(interaction, $interaction);
       }
       return false;
     });
@@ -460,24 +451,97 @@ H5P.InteractiveVideo = (function ($) {
    * Display interaction dialog.
    *
    * @param {Object} interaction
+   * @param {jQuery} $button
    * @returns {undefined}
    */
-  C.prototype.showDialog = function (interaction) {
+  C.prototype.showDialog = function (interaction, $button) {
     var that = this;
 
     if (this.playing) {
       this.pause(true);
     }
 
-    this.$dialog.html('<div class="h5p-dialog-interaction"></div>');
+    var $dialog = this.$dialog.children('.h5p-dialog-interaction').html('hello').attr('class', 'h5p-dialog-interaction');
 
-    var interactionInstance = new (H5P.classFromName(interaction.action.library.split(' ')[0]))(interaction.action.params, this.contentPath);
-    interactionInstance.attach(this.$dialog.children());
+    var lib = interaction.action.library.split(' ')[0];
+    var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
+    interactionInstance.attach($dialog);
 
     this.$dialogWrapper.show();
+
+    if (lib === 'H5P.Image') {
+      // Make sure images dosn't strech.
+      $dialog.children('img').css('height', 'auto').load(function () {
+        // Reposition after image has loaded.
+        that.positionDialog(interaction, $button);
+      });
+    }
+
+    this.positionDialog(interaction, $button);
+
     setTimeout(function () {
       that.$dialogWrapper.removeClass('h5p-hidden');
     }, 1);
+  };
+
+  /**
+   * Position current dialog.
+   *
+   * @param {object} interaction
+   * @param {jQuery} $button
+   * @returns {undefined}
+   */
+  C.prototype.positionDialog = function (interaction, $button) {
+    if (interaction.bigDialog !== undefined && interaction.bigDialog) {
+      this.$dialog.addClass('h5p-big').css({
+        left: '',
+        top: ''
+      });
+    }
+    else {
+      // Position dialog horizontally
+      var buttonWidth = $button.outerWidth(true);
+      var containerWidth = this.$container.width();
+      var buttonPosition = $button.position();
+      var left = buttonPosition.left;
+      if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
+        // Show on left
+        left -= this.$dialog.outerWidth(true) - buttonWidth;
+      }
+
+      // Position dialog vertically
+      var top = buttonPosition.top;
+      var containerHeight = this.$container.height();
+      var totalHeight = buttonPosition.top + this.$dialog.outerHeight(true);
+      if (totalHeight > containerHeight) {
+        top -= totalHeight - containerHeight;
+      }
+
+      this.$dialog.removeClass('h5p-big').css({
+        top: (top / (containerHeight / 100)) + '%',
+        left: (left / (containerWidth / 100)) + '%'
+      });
+    }
+  };
+
+  /**
+   * Hide current dialog.
+   *
+   * @returns {Boolean}
+   */
+  C.prototype.hideDialog = function () {
+    var that = this;
+
+    this.$dialogWrapper.addClass('h5p-hidden');
+    setTimeout(function () {
+      that.$dialogWrapper.hide();
+    }, 201);
+
+    if (this.playing) {
+      this.play(true);
+    }
+
+    return false;
   };
 
   /**
