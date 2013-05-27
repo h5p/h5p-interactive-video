@@ -64,7 +64,7 @@
         "options": ["H5P.Summary 1.0"],
         "default": {
           "library": "H5P.Summary 1.0",
-          "params": []
+          "params": {}
         }
       }
     ]
