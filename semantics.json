@@ -27,7 +27,7 @@
                 "H5P.Text 1.0",
                 "H5P.Table 1.0",
                 "H5P.Image 1.0",
-                "H5P.Multichoice 1.0"
+                "H5P.MultiChoice 1.0"
               ]
             },
             {
@@ -47,14 +47,20 @@
               "type": "boolean"
             },
             {
-              "name": "from",
-              "label": "Display from time (in seconds)",
-              "type": "number"
-            },
-            {
-              "name": "to",
-              "label": "Stop display time (in seconds)",
-              "type": "number"
+              "name": "duration",
+              "type": "group",
+              "widget": "duration",
+              "label": "Display time",
+              "fields": [
+                {
+                  "name": "from",
+                  "type": "number"
+                },
+                {
+                  "name": "to",
+                  "type": "number"
+                }
+              ]
             }
           ]
         }
@@ -63,7 +69,9 @@
         "name": "summary",
         "type": "library",
         "label": "Summary task",
-        "options": ["H5P.Summary 1.0"],
+        "options": [
+          "H5P.Summary 1.0"
+        ],
         "default": {
           "library": "H5P.Summary 1.0",
           "params": {}

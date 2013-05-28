@@ -88,28 +88,7 @@ H5P.InteractiveVideo = (function ($) {
       that.ended();
     };
     this.video.loadedCallback = function () {
-      if (that.video.flowplayer !== undefined) {
-        that.video.flowplayer.getPlugin('play').hide();
-      }
-
-      that.resizeEvent = function() {
-        that.resize();
-      };
-      H5P.$window.resize(that.resizeEvent);
-      that.resize();
-
-      var duration = that.video.getDuration();
-      var time = C.humanizeTime(duration);
-      that.controls.$totalTime.html(time);
-      that.controls.$slider.slider('option', 'max', duration);
-
-      that.controls.$currentTime.html(time);
-      // Set correct margins for timeline
-      that.controls.$slider.parent().css({
-        marginLeft: that.$controls.children('.h5p-controls-left').width(),
-        marginRight: that.$controls.children('.h5p-controls-right').width()
-      });
-      that.controls.$currentTime.html(C.humanizeTime(0));
+      that.loaded();
     };
 
     this.video.attach($wrapper);
@@ -124,6 +103,44 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.remove = function () {
     if (this.resizeEvent !== undefined) {
       H5P.$window.unbind('resize', this.resizeEvent);
+    }
+  };
+
+  /**
+   * Unbind event listeners.
+   *
+   * @returns {undefined}
+   */
+  C.prototype.loaded = function () {
+    var that = this;
+
+    if (this.video.flowplayer !== undefined) {
+      this.video.flowplayer.getPlugin('play').hide();
+    }
+
+    this.resizeEvent = function() {
+      that.resize();
+    };
+    H5P.$window.resize(this.resizeEvent);
+    this.resize();
+
+    var duration = this.video.getDuration();
+    var time = C.humanizeTime(duration);
+    this.controls.$totalTime.html(time);
+    this.controls.$slider.slider('option', 'max', duration);
+
+    this.controls.$currentTime.html(time);
+    // Set correct margins for timeline
+    this.controls.$slider.parent().css({
+      marginLeft: this.$controls.children('.h5p-controls-left').width(),
+      marginRight: this.$controls.children('.h5p-controls-right').width()
+    });
+    this.controls.$currentTime.html(C.humanizeTime(0));
+
+    if (this.editor !== undefined) {
+      var durationFields = this.editor.field.field.fields[4].fields;
+      durationFields[0].max = durationFields[1].max = Math.floor(duration);
+      durationFields[0].min = durationFields[1].min = 0;
     }
   };
 
@@ -423,7 +440,7 @@ H5P.InteractiveVideo = (function ($) {
       second = Math.floor(this.video.getTime());
     }
 
-    if (second < interaction.from || second > interaction.to) {
+    if (second < interaction.duration.from || second > interaction.duration.to) {
       // Remove interaction
       if (this.visibleInteractions[i] !== undefined) {
         this.visibleInteractions[i].remove();
