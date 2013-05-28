@@ -305,4 +305,6 @@
 }
 .h5p-interactive-video .h5p-image {
   display: block;
+  height: auto;
+  max-height: 96.5%;
 }

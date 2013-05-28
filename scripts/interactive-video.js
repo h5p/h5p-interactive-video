@@ -56,7 +56,9 @@ H5P.InteractiveVideo = (function ($) {
 
     // Dialog
     this.$dialogWrapper = $container.children('.h5p-dialog-wrapper').click(function () {
-      that.hideDialog();
+      if (that.editor === undefined) {
+        that.hideDialog();
+      }
     });
     this.$dialog = this.$dialogWrapper.children('.h5p-dialog').click(function (event) {
       event.stopPropagation();
@@ -254,6 +256,11 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.resize = function (fullScreen) {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
+
+    if (fullScreen === false && !this.$dialogWrapper.hasClass('.h5p-hidden')) {
+      // Remove any open dialogs when exiting fullscreen.
+      this.hideDialog();
+    }
 
     this.controls.$buffered.attr('width', this.controls.$slider.width());
 
@@ -479,7 +486,7 @@ H5P.InteractiveVideo = (function ($) {
 
       if (lib === 'H5P.Image') {
         // Make sure images dosn't strech.
-        $dialog.children('img').css('height', 'auto').load(function () {
+        $dialog.children('img').load(function () {
           // Reposition after image has loaded.
           that.positionDialog(interaction, $button);
         });
@@ -541,10 +548,6 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.hideDialog = function () {
     var that = this;
-
-    if (this.editor !== undefined && !this.editor.validateDialog()) {
-      return;
-    }
 
     this.$dialogWrapper.addClass('h5p-hidden');
 
