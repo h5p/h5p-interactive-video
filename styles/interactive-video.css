@@ -117,6 +117,48 @@
   content: "\f046";
 }
 
+@keyframes blinking
+{
+  0%, 100% {
+    background: rgba(59, 98, 177, 0.8);
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+@-webkit-keyframes blinking
+{
+  0%, 100% {
+    background: rgba(59, 98, 177, 0.8);
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-summary {
+  font-family: Verdana;
+  background: #3b62b1;
+  background: rgba(59, 98, 177, 0.8);
+  top: auto !important;
+  left: auto !important;
+  bottom: 0.5em;
+  right: 0.75em;
+  border-radius: 0.25em;
+  border: 0;
+  animation: blinking 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  -webkit-animation: blinking 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+}
+.h5p-interactive-video .h5p-interaction.h5p-summary:before {
+  font-family: 'H5PInteractiveVideoFontAwesome';
+  content: "\f0ca";
+  margin-right: 0.5em;
+}
+
 .h5p-interactive-video .h5p-controls {
   font-size: 16px;
   height: 36px;
@@ -261,19 +303,19 @@
   width: 49.33em;
   height: 84.5%;
 }
-.h5p-interactive-video .h5p-dialog-interaction {
+.h5p-interactive-video .h5p-dialog-inner {
   width: 22.9em;
   height: 100%;
   overflow: auto;
 }
-.h5p-interactive-video .h5p-big > .h5p-dialog-interaction {
+.h5p-interactive-video .h5p-big > .h5p-dialog-inner {
   width: 47.7em;
 }
-.h5p-interactive-video .h5p-dialog-interaction::-webkit-scrollbar {
+.h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar {
   width: 0.5em;
   background: #fff;
 }
-.h5p-interactive-video .h5p-dialog-interaction::-webkit-scrollbar-thumb {
+.h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb {
   border-radius: 0.25em;
   background: #191919;
 }

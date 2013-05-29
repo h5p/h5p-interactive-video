@@ -26,7 +26,8 @@ H5P.InteractiveVideo = (function ($) {
       mute: 'Mute',
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
-      exitFullscreen: 'Exit fullscreen'
+      exitFullscreen: 'Exit fullscreen',
+      summary: 'Summary'
     };
   };
 
@@ -40,7 +41,7 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     this.$container = $container;
 
-    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper h5p-ie-transparent-background"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-interaction"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
+    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
 
     this.fontSize = parseInt($container.css('fontSize')); // How large the interactions should be in px.
     this.width = parseInt($container.css('width'));
@@ -92,7 +93,7 @@ H5P.InteractiveVideo = (function ($) {
     };
 
     this.video.attach($wrapper);
-    this.$overlay = $('<div class="h5p-overlay"></div>').appendTo($wrapper);
+    this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
   };
 
   /**
@@ -137,10 +138,28 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
+    duration = Math.floor(duration);
+
+    // Set max/min for editor duration fields
     if (this.editor !== undefined) {
       var durationFields = this.editor.field.field.fields[4].fields;
-      durationFields[0].max = durationFields[1].max = Math.floor(duration);
+      durationFields[0].max = durationFields[1].max = duration;
       durationFields[0].min = durationFields[1].min = 0;
+    }
+
+    // Add summary interaction to last second
+    if (this.params.summary !== undefined) {
+      this.params.interactions.push({
+        action: this.params.summary,
+        x: 80,
+        y: 80,
+        duration: {
+          from: duration,
+          to: duration
+        },
+        bigDialog: true,
+        label: this.l10n.summary
+      });
     }
   };
 
@@ -455,8 +474,11 @@ H5P.InteractiveVideo = (function ($) {
 
     // Add interaction
     var className = interaction.action.library.split(' ')[0].replace('.', '-').toLowerCase();
+    if (interaction.label === undefined) {
+      interaction.label = '';
+    }
 
-    var $interaction = this.visibleInteractions[i] = $('<a href="#" class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"></a>').appendTo(this.$overlay).click(function () {
+    var $interaction = this.visibleInteractions[i] = $('<a href="#" class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%">' + interaction.label + '</a>').appendTo(this.$overlay).click(function () {
       if (that.editor === undefined) {
         that.showDialog(interaction, $interaction);
       }
@@ -495,7 +517,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     if (interaction !== undefined) {
-      var $dialog = this.$dialog.children('.h5p-dialog-interaction').html('').attr('class', 'h5p-dialog-interaction');
+      var $dialog = this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction"></div>').children();
 
       var lib = interaction.action.library.split(' ')[0];
       var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
@@ -529,7 +551,8 @@ H5P.InteractiveVideo = (function ($) {
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
       this.$dialog.addClass('h5p-big').css({
         left: '',
-        top: ''
+        top: '',
+        height: ''
       });
     }
     else {
@@ -553,7 +576,8 @@ H5P.InteractiveVideo = (function ($) {
 
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%'
+        left: (left / (containerWidth / 100)) + '%',
+        height: (this.$dialog.height() / (containerHeight / 100)) + '%'
       });
     }
   };

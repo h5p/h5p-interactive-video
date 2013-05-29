@@ -3,6 +3,7 @@
     "name": "interactiveVideo",
     "type": "group",
     "widget": "wizard",
+    "label": "Interactive Video Editor",
     "fields": [
       {
         "name": "video",
