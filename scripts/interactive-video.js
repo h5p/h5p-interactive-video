@@ -79,7 +79,7 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
 
     this.video = new H5P.Video({
-      files: this.params.video,
+      files: this.params.video.files,
       controls: false,
       autoplay: false,
       fitToWrapper: false

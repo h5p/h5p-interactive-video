@@ -7,16 +7,42 @@
     "fields": [
       {
         "name": "video",
-        "type": "video",
+        "type": "group",
         "label": "Upload video",
-        "description": "Select the video you wish to use in your eLecture."
+        "fields": [
+          {
+            "name": "files",
+            "type": "video",
+            "label": "Video files",
+            "description": "Select the video files you wish to use in your interactive video."
+          },
+          {
+            "name": "copyright",
+            "type": "html",
+            "label": "Video copyright information",
+            "description": "Information regarding copyright of the video and elements used in the video.",
+            "tags": [
+              "strong",
+              "em",
+              "del",
+              "a",
+              "ul",
+              "ol",
+              "table",
+              "h2",
+              "h3",
+              "hr",
+              "word"
+            ]
+          }
+        ]
       },
       {
         "name": "interactions",
         "type": "list",
         "label": "Add interactions",
         "widget": "interactiveVideo",
-        "video": "video",
+        "video": "video/files",
         "field": {
           "name": "interaction",
           "type": "group",
