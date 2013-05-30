@@ -20,19 +20,13 @@
             "name": "copyright",
             "type": "html",
             "label": "Video copyright information",
+            "optional": true,
             "description": "Information regarding copyright of the video and elements used in the video.",
             "tags": [
               "strong",
               "em",
               "del",
-              "a",
-              "ul",
-              "ol",
-              "table",
-              "h2",
-              "h3",
-              "hr",
-              "word"
+              "a"
             ]
           }
         ]
