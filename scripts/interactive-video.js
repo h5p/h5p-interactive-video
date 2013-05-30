@@ -526,6 +526,9 @@ H5P.InteractiveVideo = (function ($) {
       if (lib === 'H5P.Image') {
         // Make sure images dosn't strech.
         $dialog.children('img').load(function () {
+          that.$dialog.css({
+            height: ''
+          });
           // Reposition after image has loaded.
           that.positionDialog(interaction, $button);
         });
