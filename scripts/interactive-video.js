@@ -27,7 +27,25 @@ H5P.InteractiveVideo = (function ($) {
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
-      summary: 'Summary'
+      summary: 'Summary',
+      copyright: 'View copyright information',
+      contentType: 'Content type',
+      title: 'Title',
+      author: 'Author',
+      source: 'Source',
+      license: 'Lisens',
+      time: 'Time',
+      "U": "Undisclosed",
+      "CC BY": "Attribution",
+      "CC BY-SA": "Attribution-ShareAlike",
+      "CC BY-ND": "Attribution-NoDerivs",
+      "CC BY-NC": "Attribution-NonCommercial",
+      "CC BY-NC-SA": "Attribution-NonCommercial-ShareAlike",
+      "CC BY-NC-ND": "Attribution-NonCommercial-NoDerivs",
+      "PD": "Public Domain",
+      "ODC PDDL": "Public Domain Dedication and Licence",
+      "CC PDM": "Public Domain Mark",
+      "C": "Copyright"
     };
   };
 
@@ -171,7 +189,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-copyright"  title="' + that.l10n.copyright + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
     this.controls = {};
 
     // Play/pause button
@@ -185,35 +203,24 @@ H5P.InteractiveVideo = (function ($) {
       return false;
     });
 
-    // Fullscreen button
     if (this.editor === undefined) {
+      // Fullscreen button
       this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').click(function () {
-        if (that.controls.$fullscreen.hasClass('h5p-exit')) {
-          that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
-          if (H5P.fullScreenBrowserPrefix === undefined) {
-            that.$container.children('.h5p-disable-fullscreen').click();
-          }
-          else {
-            if (H5P.fullScreenBrowserPrefix === '') {
-              document.exitFullScreen();
-            }
-            else {
-              document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
-            }
-          }
-        }
-        else {
-          that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
-          H5P.fullScreen(that.$container, that);
-          if (H5P.fullScreenBrowserPrefix === undefined) {
-            that.$container.children('.h5p-disable-fullscreen').hide();
-          }
-        }
+        that.toggleFullScreen();
         return false;
       });
+
+      // Copyright button
+       $wrapper.find('.h5p-copyright').click(function () {
+         // Display dialog
+         that.showCopyrightInfo();
+         return false;
+       });
     }
     else {
+      // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
+      $wrapper.find('.h5p-copyright').remove();
     }
 
     // Volume/mute button
@@ -338,6 +345,35 @@ H5P.InteractiveVideo = (function ($) {
         width: width,
         height: height
       });
+    }
+  };
+
+  /**
+   * Enter/exit fullscreen.
+   *
+   * @returns {undefined}
+   */
+  C.prototype.toggleFullScreen = function () {
+    if (this.controls.$fullscreen.hasClass('h5p-exit')) {
+      this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
+      if (H5P.fullScreenBrowserPrefix === undefined) {
+        this.$container.children('.h5p-disable-fullscreen').click();
+      }
+      else {
+        if (H5P.fullScreenBrowserPrefix === '') {
+          document.exitFullScreen();
+        }
+        else {
+          document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+        }
+      }
+    }
+    else {
+      this.controls.$fullscreen.addClass('h5p-exit').attr('title', this.l10n.exitFullscreen);
+      H5P.fullScreen(this.$container, this);
+      if (H5P.fullScreenBrowserPrefix === undefined) {
+        this.$container.children('.h5p-disable-fullscreen').hide();
+      }
     }
   };
 
@@ -500,6 +536,42 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     return $interaction;
+  };
+
+  /**
+   * Displays a dialog with copyright information.
+   *
+   * @returns {undefined}
+   */
+  C.prototype.showCopyrightInfo = function () {
+    var info = this.params.video.copyright;
+
+    for (var i = 0; i < this.params.interactions.length; i++) {
+      var interaction = this.params.interactions[i];
+      var params = interaction.action.params;
+
+      if (params.copyright === undefined) {
+        continue;
+      }
+
+      info += '<dl class="h5p-copyinfo"><dt>' + this.l10n.contentType + '</dt><dd>' + params.contentName + '</dd>';
+      if (params.copyright.title !== undefined) {
+        info += '<dt>' + this.l10n.title + '</dt><dd>' + params.copyright.title + '</dd>';
+      }
+      if (params.copyright.author !== undefined) {
+        info += '<dt>' + this.l10n.author + '</dt><dd>' + params.copyright.author + '</dd>';
+      }
+      if (params.copyright.license !== undefined) {
+        info += '<dt>' + this.l10n.license + '</dt><dd>' + this.l10n[params.copyright.license] + ' (' + params.copyright.license + ')</dd>';
+      }
+      if (params.copyright.source !== undefined) {
+        info += '<dt>' + this.l10n.source + '</dt><dd>' + params.copyright.source + '</dd>';
+      }
+      info += '<dt>' + this.l10n.time + '</dt><dd>' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to) + '</dd></dl>';
+    }
+
+    this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction">' + info + '</div>');
+    this.showDialog();
   };
 
   /**
