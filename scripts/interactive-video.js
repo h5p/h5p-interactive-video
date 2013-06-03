@@ -33,8 +33,9 @@ H5P.InteractiveVideo = (function ($) {
       title: 'Title',
       author: 'Author',
       source: 'Source',
-      license: 'Lisens',
+      license: 'License',
       time: 'Time',
+      interactionsCopyright: 'Copyright information regarding interactions used in this interactive video',
       "U": "Undisclosed",
       "CC BY": "Attribution",
       "CC BY-SA": "Attribution-ShareAlike",
@@ -546,6 +547,10 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.showCopyrightInfo = function () {
     var info = this.params.video.copyright;
 
+    if (this.params.interactions.length) {
+      info += '<h2 class="h5p-interactions-copyright">' + this.l10n.interactionsCopyright + '</h2>';
+    }
+
     for (var i = 0; i < this.params.interactions.length; i++) {
       var interaction = this.params.interactions[i];
       var params = interaction.action.params;
@@ -565,7 +570,7 @@ H5P.InteractiveVideo = (function ($) {
         info += '<dt>' + this.l10n.license + '</dt><dd>' + this.l10n[params.copyright.license] + ' (' + params.copyright.license + ')</dd>';
       }
       if (params.copyright.source !== undefined) {
-        info += '<dt>' + this.l10n.source + '</dt><dd>' + params.copyright.source + '</dd>';
+        info += '<dt>' + this.l10n.source + '</dt><dd><a target="_blank" href="' + params.copyright.source + '">' + params.copyright.source + '</a></dd>';
       }
       info += '<dt>' + this.l10n.time + '</dt><dd>' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to) + '</dd></dl>';
     }
