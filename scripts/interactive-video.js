@@ -316,37 +316,37 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.video.resize();
 
-    var width = this.$container.width();
-    this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
+    if (fullscreenOn) {
+      var videoHeight = this.$videoWrapper.height();
+      var controlsHeight = this.$controls.height();
+      var containerHeight = this.$container.height();
 
-    if (!fullscreenOn) {
+      if (videoHeight + controlsHeight <= containerHeight) {
+        this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
+      }
+      else {
+        var $video = this.$videoWrapper.find('.h5p-video, .h5p-video-flash > object');
+        var ratio = this.$videoWrapper.width() / videoHeight;
+
+        var height = containerHeight - controlsHeight;
+        var width = height * ratio;
+        $video.css('height', height);
+        this.$videoWrapper.css({
+          marginLeft: (this.$container.width() - width) / 2,
+          width: width,
+          height: height
+        });
+      }
+    }
+    else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
         // Update icon if we some how got out of fullscreen.
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
-      return;
+      var width = this.$container.width();
     }
 
-    var videoHeight = this.$videoWrapper.height();
-    var controlsHeight = this.$controls.height();
-    var containerHeight = this.$container.height();
-
-    if (videoHeight + controlsHeight <= containerHeight) {
-      this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
-    }
-    else {
-      var $video = this.$videoWrapper.find('.h5p-video, .h5p-video-flash > object');
-      var ratio = this.$videoWrapper.width() / videoHeight;
-
-      var height = containerHeight - controlsHeight;
-      var width = height * ratio;
-      $video.css('height', height);
-      this.$videoWrapper.css({
-        marginLeft: (this.$container.width() - width) / 2,
-        width: width,
-        height: height
-      });
-    }
+    this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
   };
 
   /**
@@ -628,12 +628,13 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.positionDialog = function (interaction, $button) {
-    if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
-      this.$dialog.addClass('h5p-big').css({
+    this.$dialog.css({
         left: '',
         top: '',
         height: ''
       });
+    if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
+      this.$dialog.addClass('h5p-big');
     }
     else {
       // Position dialog horizontally
@@ -657,7 +658,7 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
         left: (left / (containerWidth / 100)) + '%',
-        height: (this.$dialog.height() / (containerHeight / 100)) + '%'
+        height: Math.ceil(this.$dialog.height() / (containerHeight / 100)) + '%'
       });
     }
   };
