@@ -167,7 +167,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add summary interaction to last second
-    if (this.params.summary.params.summaries.length) {
+    if (this.params.summary !== undefined && this.params.summary.params.summaries.length) {
       this.params.interactions.push({
         action: this.params.summary,
         x: 80,
