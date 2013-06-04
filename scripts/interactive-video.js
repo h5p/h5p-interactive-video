@@ -614,6 +614,9 @@ H5P.InteractiveVideo = (function ($) {
           that.positionDialog(interaction, $button);
         });
       }
+      else if (lib === 'H5P.Summary') {
+        interaction.bigDialog = true;
+      }
     }
 
     this.$dialogWrapper.show();
