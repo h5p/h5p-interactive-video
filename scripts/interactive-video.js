@@ -510,12 +510,16 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add interaction
-    var className = interaction.action.library.split(' ')[0].replace('.', '-').toLowerCase();
+    var nameParts = interaction.action.library.split(' ')[0].toLowerCase().split('.');
+    var className = nameParts[0];
     if (interaction.label === undefined) {
-      interaction.label = '';
+      className += '-' + nameParts[1];
+    }
+    else {
+      className += '-end-' + nameParts[1];
     }
 
-    var $interaction = this.visibleInteractions[i] = $('<a href="#" class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%">' + interaction.label + '</a>').appendTo(this.$overlay).click(function () {
+    var $interaction = this.visibleInteractions[i] = $('<a href="#" class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%">' + (interaction.label === undefined ? '' : interaction.label) + '</a>').appendTo(this.$overlay).click(function () {
       if (that.editor === undefined) {
         that.showDialog(interaction, $interaction);
       }
@@ -628,7 +632,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.positionDialog = function (interaction, $button) {
-    this.$dialog.css({
+    this.$dialog.removeClass('h5p-big').css({
         left: '',
         top: '',
         height: ''

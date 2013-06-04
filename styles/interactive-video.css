@@ -105,13 +105,16 @@
 .h5p-interactive-video .h5p-interaction.h5p-image:before {
   content: "\f03e";
 }
-.h5p-interactive-video .h5p-interaction.h5p-questionset, .h5p-interactive-video .h5p-interaction.h5p-multichoice, .h5p-interactive-video .h5p-interaction.h5p-blanks {
+.h5p-interactive-video .h5p-interaction.h5p-summary, .h5p-interactive-video .h5p-interaction.h5p-multichoice, .h5p-interactive-video .h5p-interaction.h5p-blanks {
   background: #8818ad;
   background-image: -webkit-linear-gradient(top, #951abd, #76159a);
   background-image: -moz-linear-gradient(top, #951abd, #76159a);
   background-image: -o-linear-gradient(top, #951abd, #76159a);
   background-image: -ms-linear-gradient(top, #951abd, #76159a);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#951abd', endColorstr='#76159a',GradientType=0);
+}
+.h5p-interactive-video .h5p-interaction.h5p-summary:before {
+  content: "\f0ca";
 }
 .h5p-interactive-video .h5p-interaction.h5p-multichoice:before {
   content: "\f046";
@@ -139,7 +142,7 @@
   }
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-summary {
+.h5p-interactive-video .h5p-interaction.h5p-end-summary {
   font-family: Verdana;
   background: #3b62b1;
   background: rgba(59, 98, 177, 0.8);
@@ -156,9 +159,11 @@
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
 }
-.h5p-interactive-video .h5p-interaction.h5p-summary:before {
+.h5p-interactive-video .h5p-interaction.h5p-end-summary:before {
   font-family: 'H5PInteractiveVideoFontAwesome';
   content: "\f0ca";
+}
+.h5p-interactive-video .h5p-interaction.h5p-end-summary:before {
   margin-right: 0.5em;
 }
 
