@@ -167,7 +167,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add summary interaction to last second
-    if (this.params.summary !== undefined) {
+    if (this.params.summary.params.summaries.length) {
       this.params.interactions.push({
         action: this.params.summary,
         x: 80,
@@ -549,11 +549,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.showCopyrightInfo = function () {
-    var info = this.params.video.copyright;
-
-    if (this.params.interactions.length) {
-      info += '<h2 class="h5p-interactions-copyright">' + this.l10n.interactionsCopyright + '</h2>';
-    }
+    var info = '';
 
     for (var i = 0; i < this.params.interactions.length; i++) {
       var interaction = this.params.interactions[i];
@@ -579,7 +575,11 @@ H5P.InteractiveVideo = (function ($) {
       info += '<dt>' + this.l10n.time + '</dt><dd>' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to) + '</dd></dl>';
     }
 
-    this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction">' + info + '</div>');
+    if (info) {
+      info = '<h2 class="h5p-interactions-copyright">' + this.l10n.interactionsCopyright + '</h2>' + info;
+    }
+
+    this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction">' + this.params.video.copyright + info + '</div>');
     this.showDialog();
   };
 
