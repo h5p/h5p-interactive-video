@@ -385,3 +385,8 @@
   font-weight: bold;
   margin: 1.5em 0 0;
 }
+
+.h5p-interactive-video .h5p-video-error {
+  padding: 1em;
+  color: #fff;
+}

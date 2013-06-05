@@ -36,6 +36,7 @@ H5P.InteractiveVideo = (function ($) {
       license: 'License',
       time: 'Time',
       interactionsCopyright: 'Copyright information regarding interactions used in this interactive video',
+      error: 'Sorry, could not load the video.',
       "U": "Undisclosed",
       "CC BY": "Attribution",
       "CC BY-SA": "Attribution-ShareAlike",
@@ -104,6 +105,13 @@ H5P.InteractiveVideo = (function ($) {
       fitToWrapper: false
     }, this.contentPath);
 
+    this.video.errorCallback = function () {
+      that.$container.html('<div class="h5p-video-error">' + that.l10n.error + '</div>');
+      that.remove();
+      if (that.editor !== undefined) {
+        delete that.editor.IV;
+      }
+    };
     this.video.endedCallback = function () {
       that.ended();
     };
