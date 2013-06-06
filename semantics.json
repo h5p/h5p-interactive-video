@@ -42,34 +42,6 @@
           "type": "group",
           "fields": [
             {
-              "name": "action",
-              "type": "library",
-              "options": [
-                "H5P.Text 1.0",
-                "H5P.Table 1.0",
-                "H5P.Image 1.0",
-                "H5P.MultiChoice 1.0",
-                "H5P.Blanks 1.0",
-                "H5P.Summary 1.0"
-              ]
-            },
-            {
-              "name": "x",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "y",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "pause",
-              "label": "Pause",
-              "description": "Set playback on pause when this interaction is reached.",
-              "type": "boolean"
-            },
-            {
               "name": "duration",
               "type": "group",
               "widget": "duration",
@@ -83,6 +55,34 @@
                   "name": "to",
                   "type": "number"
                 }
+              ]
+            },
+            {
+              "name": "pause",
+              "label": "Pause",
+              "description": "Set playback on pause when this interaction is reached.",
+              "type": "boolean"
+            },
+            {
+              "name": "x",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "name": "y",
+              "type": "number",
+              "widget": "none"
+            },
+            {
+              "name": "action",
+              "type": "library",
+              "options": [
+                "H5P.Text 1.0",
+                "H5P.Table 1.0",
+                "H5P.Image 1.0",
+                "H5P.MultiChoice 1.0",
+                "H5P.Blanks 1.0",
+                "H5P.Summary 1.0"
               ]
             }
           ]

@@ -169,7 +169,7 @@ H5P.InteractiveVideo = (function ($) {
 
     // Set max/min for editor duration fields
     if (this.editor !== undefined) {
-      var durationFields = this.editor.field.field.fields[4].fields;
+      var durationFields = this.editor.field.field.fields[0].fields;
       durationFields[0].max = durationFields[1].max = duration;
       durationFields[0].min = durationFields[1].min = 0;
     }
