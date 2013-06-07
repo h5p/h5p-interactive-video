@@ -64,6 +64,13 @@
               "type": "boolean"
             },
             {
+              "name": "label",
+              "type": "text",
+              "label": "Label",
+              "description": "Label displayed next to interaction icon.",
+              "optional": true
+            },
+            {
               "name": "x",
               "type": "number",
               "widget": "none"
