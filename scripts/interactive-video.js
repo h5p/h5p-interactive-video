@@ -121,6 +121,13 @@ H5P.InteractiveVideo = (function ($) {
 
     this.video.attach($wrapper);
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
+
+    if (this.editor === undefined) {
+      this.$splash = $('<div class="h5p-splash"><h2>Interactive Video</h2><p>Press the icons as the video plays for challenges and more information on the topics!</p><div class="h5p-interaction h5p-multichoice-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">Challenges</div></div><div class="h5p-interaction h5p-text-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">More information</div></div></div>').appendTo(this.$overlay);
+      this.$splash.find('.h5p-interaction-button').click(function () {
+        return false;
+      });
+    }
   };
 
   /**
@@ -399,6 +406,11 @@ H5P.InteractiveVideo = (function ($) {
     if (seeking === undefined) {
       this.playing = true;
 
+      if (this.$splash !== undefined) {
+        this.$splash.remove();
+        delete this.$splash;
+      }
+
       if (this.hasEnded !== undefined && this.hasEnded) {
         // Start video over again
         this.video.seek(0);
@@ -659,20 +671,29 @@ H5P.InteractiveVideo = (function ($) {
       var containerWidth = this.$container.width();
       var buttonPosition = $button.position();
       var left = buttonPosition.left;
+
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
         // Show on left
         left -= this.$dialog.outerWidth(true) - buttonWidth;
       }
-      left += parseInt(this.$videoWrapper.css('marginLeft'));
+
+      var marginLeft = parseInt(this.$videoWrapper.css('marginLeft'));
+      if (!isNaN(marginLeft)) {
+        left += marginLeft;
+      }
 
       // Position dialog vertically
       var top = buttonPosition.top;
       var containerHeight = this.$container.height();
       var totalHeight = buttonPosition.top + this.$dialog.outerHeight(true);
+
       if (totalHeight > containerHeight) {
         top -= totalHeight - containerHeight;
       }
-      top += parseInt(this.$videoWrapper.css('marginTop'));
+      var marginTop = parseInt(this.$videoWrapper.css('marginTop'));
+      if (!isNaN(marginTop)) {
+        top += marginTop;
+      }
 
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
