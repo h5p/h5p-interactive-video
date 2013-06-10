@@ -717,7 +717,9 @@ H5P.InteractiveVideo = (function ($) {
       that.$dialogWrapper.hide();
     }, 201);
 
-    this.play(this.playing ? true : undefined);
+    if (this.editor === undefined || this.playing) {
+      this.play(this.playing ? true : undefined);
+    }
   };
 
   /**
