@@ -555,7 +555,7 @@ H5P.InteractiveVideo = (function ($) {
     // Transition in
     setTimeout(function () {
       $interaction.removeClass('h5p-hidden');
-
+      that.positionLabel($interaction);
     }, 1);
 
     if (interaction.pause && this.playing) {
@@ -563,6 +563,21 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     return $interaction;
+  };
+
+  /**
+   *
+   * @param {type} $interaction
+   * @returns {undefined}
+   */
+  C.prototype.positionLabel = function ($interaction) {
+    var $label = $interaction.children('.h5p-interaction-label');
+    if ($label.length) {
+      $label.removeClass('h5p-left-label');
+      if (parseInt($interaction.css('left')) + $label.position().left + $label.outerWidth() > this.$videoWrapper.width()) {
+        $label.addClass('h5p-left-label');
+      }
+    }
   };
 
   /**

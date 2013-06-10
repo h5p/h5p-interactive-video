@@ -88,6 +88,12 @@
   color: #fff;
   z-index: 1;
   width: auto;
+  white-space: nowrap;
+}
+.h5p-interactive-video .h5p-interaction-label.h5p-left-label {
+  left: auto;
+  right: 1.75em;
+  padding: 0.1em 1em 0.1em 0.5em;
 }
 .h5p-interactive-video .h5p-interaction-button {
   position: absolute;
@@ -133,6 +139,9 @@
 }
 .h5p-interactive-video .h5p-hidden > .h5p-interaction-label {
   -webkit-transform: scale(0,0) translateX(-100%);
+  -moz-transform: scale(0,0) translateX(-100%);
+  -ms-transform: scale(0,0) translateX(-100%);
+  transform: scale(0,0) translateX(-100%);
 }
 
 .h5p-interactive-video .h5p-text-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-table-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-image-interaction > .h5p-interaction-button {
