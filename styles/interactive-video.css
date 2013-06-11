@@ -351,21 +351,23 @@
   width: 100%;
   height: 100%;
   z-index: 51;
-  -webkit-transition: -webkit-transform 0.2s;
-  -moz-transition: -moz-transform 0.2s;
-  -ms-transition: -ms-transform 0.2s;
-  -o-transition: -o-transform 0.2s;
-  transition: transform 0.2s;
+  background: rgba(0,0,0,0.4);
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);
 }
-
 .h5p-interactive-video .h5p-dialog-wrapper.h5p-hidden {
+  background: rgba(0,0,0,0);
+}
+.h5p-interactive-video .h5p-dialog-wrapper.h5p-hidden .h5p-dialog {
   -webkit-transform: translateY(100%);
   -moz-transform: translateY(100%);
   -ms-transform: translateY(100%);
   -o-transform: translateY(100%);
   transform: translateY(100%);
 }
-
 .h5p-interactive-video .h5p-dialog {
   position: absolute;
   width: 24.5em;
@@ -375,6 +377,11 @@
   background: #fff;
   box-shadow: 0 0 2.67em 0 #191919;
   font-size: 0.75em;
+  -webkit-transition: -webkit-transform 0.2s;
+  -moz-transition: -moz-transform 0.2s;
+  -ms-transition: -ms-transform 0.2s;
+  -o-transition: -o-transform 0.2s;
+  transition: transform 0.2s;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big {
   width: 94%;
@@ -401,12 +408,12 @@
   color: #191919;
   font-size: 2em;
   position: absolute;
-  right: 0;
+  right: 0.2em;
   top: 0.2em;
   width: 1em;
   height: 1em;
   z-index: 52;
-  text-shadow: 0 0 0.3em #9f9f9f;
+  text-shadow: 0 0 0.5em #ffffff;
   font-family: 'H5PFontAwesome';
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;

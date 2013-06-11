@@ -700,12 +700,27 @@ H5P.InteractiveVideo = (function ($) {
     this.$dialog.removeClass('h5p-big').css({
         left: '',
         top: '',
-        height: ''
-      });
+        height: '',
+        width: ''
+      }).children().css('width', '');
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
       this.$dialog.addClass('h5p-big');
     }
     else {
+      // Determine size
+      var height = this.$dialog.height();
+
+      // Special case for images
+      if (interaction.action.library.split(' ')[0] === 'H5P.Image' && height > 1) {
+        var $img = this.$dialog.find('img');
+        var width = $img.width() * (height / $img.height());
+        $img.css({
+          width: width,
+          height: height
+        });
+        this.$dialog.css('width', width).children().css('width', 'auto');
+      }
+
       // Position dialog horizontally
       var buttonWidth = $button.outerWidth(true);
       var containerWidth = this.$container.width();
@@ -723,22 +738,23 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       // Position dialog vertically
-      var top = buttonPosition.top;
+      var marginTop = parseInt(this.$videoWrapper.css('marginTop'));
+      if (isNaN(marginTop)) {
+        marginTop = 0;
+      }
+
+      var top = buttonPosition.top + marginTop;
       var containerHeight = this.$container.height();
-      var totalHeight = buttonPosition.top + this.$dialog.outerHeight(true);
+      var totalHeight = top + this.$dialog.outerHeight(true);
 
       if (totalHeight > containerHeight) {
         top -= totalHeight - containerHeight;
-      }
-      var marginTop = parseInt(this.$videoWrapper.css('marginTop'));
-      if (!isNaN(marginTop)) {
-        top += marginTop;
       }
 
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
         left: (left / (containerWidth / 100)) + '%',
-        height: Math.ceil(this.$dialog.height() / (containerHeight / 100)) + '%'
+        height: Math.ceil(height / (containerHeight / 100)) + '%'
       });
     }
   };
