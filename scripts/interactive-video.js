@@ -36,7 +36,6 @@ H5P.InteractiveVideo = (function ($) {
       license: 'License',
       time: 'Time',
       interactionsCopyright: 'Copyright information regarding interactions used in this interactive video',
-      error: 'Sorry, could not load the video.',
       "U": "Undisclosed",
       "CC BY": "Attribution",
       "CC BY-SA": "Attribution-ShareAlike",
@@ -105,8 +104,29 @@ H5P.InteractiveVideo = (function ($) {
       fitToWrapper: false
     }, this.contentPath);
 
-    this.video.errorCallback = function () {
-      that.$container.html('<div class="h5p-video-error">' + that.l10n.error + '</div>');
+    this.video.errorCallback = function (errorCode, errorMessage) {
+      if (errorCode instanceof Event) {
+        // Video
+        switch (errorCode.target.error.code) {
+          case MediaError.MEDIA_ERR_ABORTED:
+            errorMessage = 'Media playback has been aborted';
+            break;
+          case MediaError.MEDIA_ERR_NETWORK:
+            errorMessage = 'Network failure';
+            break;
+          case MediaError.MEDIA_ERR_DECODE:
+            errorMessage = 'Unable to decode media';
+            break;
+          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            errorMessage = 'Video format not supported';
+            break;
+          case MediaError.MEDIA_ERR_ENCRYPTED:
+            errorMessage = 'Encrypted';
+            break;
+        }
+      }
+
+      that.$container.html('<div class="h5p-video-error">Error: ' + errorMessage + '.</div>');
       that.remove();
       if (that.editor !== undefined) {
         delete that.editor.IV;
@@ -272,6 +292,11 @@ H5P.InteractiveVideo = (function ($) {
 			range: 'min',
       max: 0,
       start: function () {
+        if (that.$splash !== undefined) {
+          that.$splash.remove();
+          delete that.$splash;
+        }
+
         if (that.playing === undefined) {
           if (that.controls.$slider.slider('option', 'max') !== 0) {
             that.playing = false;

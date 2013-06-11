@@ -89,6 +89,7 @@
   z-index: 1;
   width: auto;
   white-space: nowrap;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
   left: auto;
