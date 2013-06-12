@@ -458,10 +458,9 @@ H5P.InteractiveVideo = (function ($) {
       if (Math.floor(lastSecond) !== second) {
         that.toggleInteractions(second);
 
-        if (that.editor !== undefined && that.editor.dnb.dnd.$coordinates !== undefined) {
+        if (that.editor !== undefined) {
           // Remove coordinates picker while playing
-          that.editor.dnb.dnd.$coordinates.remove();
-          delete that.editor.dnb.dnd.$coordinates;
+          that.editor.removeCoordinatesPicker();
         }
 
         // Update timer
