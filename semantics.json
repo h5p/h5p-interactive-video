@@ -18,7 +18,9 @@
           },
           {
             "name": "copyright",
-            "type": "html",
+            "type": "text",
+            "widget": "html",
+            "enterMode": "p",
             "label": "Video copyright information",
             "optional": true,
             "description": "Information regarding copyright of the video and elements used in the video.",
