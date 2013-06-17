@@ -48,6 +48,8 @@ H5P.InteractiveVideo = (function ($) {
       "CC PDM": "Public Domain Mark",
       "C": "Copyright"
     };
+
+    this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
   };
 
   /**
@@ -69,6 +71,12 @@ H5P.InteractiveVideo = (function ($) {
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
     this.attachVideo(this.$videoWrapper);
+
+    if (this.justVideo) {
+      this.$videoWrapper.find('video').css('minHeight', '200px');
+      $container.children(':not(.h5p-video-wrapper)').remove();
+      return;
+    }
 
     // Controls
     this.$controls = $container.children('.h5p-controls');
@@ -99,10 +107,15 @@ H5P.InteractiveVideo = (function ($) {
 
     this.video = new H5P.Video({
       files: this.params.video.files,
-      controls: false,
+      controls: this.justVideo,
       autoplay: false,
       fitToWrapper: false
     }, this.contentPath);
+
+    if (this.justVideo) {
+      this.video.attach($wrapper);
+      return;
+    }
 
     this.video.errorCallback = function (errorCode, errorMessage) {
       if (errorCode instanceof Event) {
@@ -169,15 +182,15 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.loaded = function () {
     var that = this;
 
-    if (this.video.flowplayer !== undefined) {
-      this.video.flowplayer.getPlugin('play').hide();
-    }
-
     this.resizeEvent = function() {
       that.resize();
     };
     H5P.$window.resize(this.resizeEvent);
     this.resize();
+
+    if (this.video.flowplayer !== undefined) {
+      this.video.flowplayer.getPlugin('play').hide();
+    }
 
     var duration = this.video.getDuration();
     var time = C.humanizeTime(duration);
