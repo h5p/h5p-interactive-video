@@ -680,10 +680,7 @@ H5P.InteractiveVideo = (function ($) {
 
       if (lib === 'H5P.Image') {
         // Make sure images dosn't strech.
-        $dialog.children('img').load(function () {
-          that.$dialog.css({
-            height: ''
-          });
+        $dialog.children('img').one('load', function () {
           // Reposition after image has loaded.
           that.positionDialog(interaction, $button);
         });
@@ -710,12 +707,12 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.positionDialog = function (interaction, $button) {
     this.$dialog.removeClass('h5p-big').css({
-        left: '',
-        top: '',
-        height: '',
-        width: '',
-        fontSize: ''
-      }).children().css('width', '');
+      left: '',
+      top: '',
+      height: '',
+      width: '',
+      fontSize: ''
+    }).children().css('width', '');
 
     // Prevent to small font in dialog
     if (parseInt(this.$dialog.css('fontSize')) < 14) {
@@ -732,12 +729,14 @@ H5P.InteractiveVideo = (function ($) {
       // Special case for images
       if (interaction.action.library.split(' ')[0] === 'H5P.Image' && height > 1) {
         var $img = this.$dialog.find('img');
-        var width = $img.width() * (height / $img.height());
-        $img.css({
-          width: width,
-          height: height
-        });
-        this.$dialog.css('width', width).children('.h5p-dialog-inner').css('width', 'auto');
+        if ($img[0].complete) {
+          var width = $img.width() * (height / $img.height());
+          $img.css({
+            width: width,
+            height: height
+          });
+          this.$dialog.css('width', width).children('.h5p-dialog-inner').css('width', 'auto');
+        }
       }
 
       // Position dialog horizontally
