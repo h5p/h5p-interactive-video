@@ -713,8 +713,15 @@ H5P.InteractiveVideo = (function ($) {
         left: '',
         top: '',
         height: '',
-        width: ''
+        width: '',
+        fontSize: ''
       }).children().css('width', '');
+
+    // Prevent to small font in dialog
+    if (parseInt(this.$dialog.css('fontSize')) < 14) {
+      this.$dialog.css('fontSize', '14px');
+    }
+
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
       this.$dialog.addClass('h5p-big');
     }
@@ -730,7 +737,7 @@ H5P.InteractiveVideo = (function ($) {
           width: width,
           height: height
         });
-        this.$dialog.css('width', width).children().css('width', 'auto');
+        this.$dialog.css('width', width).children('.h5p-dialog-inner').css('width', 'auto');
       }
 
       // Position dialog horizontally

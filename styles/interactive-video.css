@@ -371,7 +371,7 @@
 .h5p-interactive-video .h5p-dialog {
   position: absolute;
   width: 24.5em;
-  max-height: 84.5%;
+  max-height: 81.5%;
   margin: 1.33em;
   padding: 0.67em;
   background: #fff;
@@ -384,8 +384,8 @@
   transition: transform 0.2s;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big {
-  width: 94%;
-  height: 84.5%;
+  width: 91.2%;
+  height: 81.5%;
 }
 .h5p-interactive-video .h5p-dialog-inner {
   width: 22.9em;
@@ -407,10 +407,10 @@
 .h5p-interactive-video .h5p-dialog-hide {
   color: #191919;
   font-size: 2em;
+  line-height: 0.75em;
   position: absolute;
   right: 0.2em;
   top: 0.2em;
-  width: 1em;
   height: 1em;
   z-index: 52;
   text-shadow: 0 0 0.5em #ffffff;
