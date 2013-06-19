@@ -355,11 +355,6 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.resize = function (fullScreen) {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
-    if (fullScreen === false && !this.$dialogWrapper.hasClass('.h5p-hidden')) {
-      // Remove any open dialogs when exiting fullscreen.
-      this.hideDialog();
-    }
-
     this.controls.$buffered.attr('width', this.controls.$slider.width());
 
     this.$videoWrapper.css({
@@ -370,6 +365,7 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.video.resize();
 
+    var width;
     if (fullscreenOn) {
       var videoHeight = this.$videoWrapper.height();
       var controlsHeight = this.$controls.height();
@@ -377,13 +373,14 @@ H5P.InteractiveVideo = (function ($) {
 
       if (videoHeight + controlsHeight <= containerHeight) {
         this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
+        width = this.$videoWrapper.width();
       }
       else {
         var $video = this.$videoWrapper.find('.h5p-video, .h5p-video-flash > object');
         var ratio = this.$videoWrapper.width() / videoHeight;
 
         var height = containerHeight - controlsHeight;
-        var width = height * ratio;
+        width = height * ratio;
         $video.css('height', height);
         this.$videoWrapper.css({
           marginLeft: (this.$container.width() - width) / 2,
@@ -397,7 +394,7 @@ H5P.InteractiveVideo = (function ($) {
         // Update icon if we some how got out of fullscreen.
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
-      var width = this.$container.width();
+      width = this.$container.width();
     }
 
     this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
@@ -715,11 +712,6 @@ H5P.InteractiveVideo = (function ($) {
 
     // How much of the player should the interaction cover?
     var interactionMaxFillRatio = 0.8;
-
-    // Prevent to small font in dialog
-    if (parseInt(this.$dialog.css('fontSize')) < 14) {
-      this.$dialog.css('fontSize', '14px');
-    }
 
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
       this.$dialog.addClass('h5p-big');
