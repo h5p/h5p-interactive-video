@@ -678,14 +678,7 @@ H5P.InteractiveVideo = (function ($) {
       var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
       interactionInstance.attach($dialog);
 
-      if (lib === 'H5P.Image') {
-        // Make sure images dosn't strech.
-        $dialog.children('img').one('load', function () {
-          // Reposition after image has loaded.
-          that.positionDialog(interaction, $button);
-        });
-      }
-      else if (lib === 'H5P.Summary') {
+      if (lib === 'H5P.Summary') {
         interaction.bigDialog = true;
       }
     }
@@ -714,6 +707,15 @@ H5P.InteractiveVideo = (function ($) {
       fontSize: ''
     }).children().css('width', '');
 
+    var buttonWidth = $button.outerWidth(true);
+    var buttonPosition = $button.position();
+    var containerWidth = this.$container.width();
+    var containerHeight = this.$container.height();
+    var that = this;
+
+    // How much of the player should the interaction cover?
+    var interactionMaxFillRatio = 0.8;
+
     // Prevent to small font in dialog
     if (parseInt(this.$dialog.css('fontSize')) < 14) {
       this.$dialog.css('fontSize', '14px');
@@ -729,20 +731,57 @@ H5P.InteractiveVideo = (function ($) {
       // Special case for images
       if (interaction.action.library.split(' ')[0] === 'H5P.Image' && height > 1) {
         var $img = this.$dialog.find('img');
-        if ($img[0].complete) {
-          var width = $img.width() * (height / $img.height());
-          $img.css({
-            width: width,
-            height: height
+        var imgHeight, imgWidth, maxWidth;
+        if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
+          // Space to the left of the button minus margin
+          var maxWidth = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
+        }
+        else {
+          // Space to the right of the button minus margin
+          var maxWidth = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
+        }
+        var maxHeight = containerHeight * interactionMaxFillRatio;
+
+        // Use image size info if it is stored
+        if (interaction.action.params.file.height !== undefined) {
+          imgHeight = interaction.action.params.file.height;
+          imgWidth = interaction.action.params.file.width;
+        }
+        // Image size info is missing. We must find image size
+        else {
+          var img = $img[0]; // Get my img elem
+          var realWidth, realHeight;
+          $("<img/>") // Make in memory copy of image to avoid css issues
+            .attr("src", $img.attr("src"))
+            .load(function() {
+              interaction.action.params.file.width = this.width;   // Note: $(this).width() will not
+              interaction.action.params.file.height = this.height; // work for in memory images.
+              that.positionDialog(interaction, $button);
           });
-          this.$dialog.css('width', width).children('.h5p-dialog-inner').css('width', 'auto');
+        }
+        // Resize image and dialog container
+        if (typeof imgWidth != "undefined") {
+          if (imgHeight > maxHeight) {
+            imgWidth = imgWidth * maxHeight / imgHeight;
+            imgHeight = maxHeight;
+          }
+          if (imgWidth > maxWidth) {
+            imgHeight = imgHeight * maxWidth / imgWidth;
+            imgWidth = maxWidth;
+          }
+          $img.css({
+            width: imgWidth,
+            height: imgHeight
+          });
+          this.$dialog.css({
+            width: imgWidth + 1.5 * this.fontSize,
+            height: imgHeight
+          })
+          .children('.h5p-dialog-inner').css('width', 'auto');
         }
       }
 
       // Position dialog horizontally
-      var buttonWidth = $button.outerWidth(true);
-      var containerWidth = this.$container.width();
-      var buttonPosition = $button.position();
       var left = buttonPosition.left;
 
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
@@ -771,8 +810,7 @@ H5P.InteractiveVideo = (function ($) {
 
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%',
-        height: Math.ceil(height / (containerHeight / 100)) + '%'
+        left: (left / (containerWidth / 100)) + '%'
       });
     }
   };
