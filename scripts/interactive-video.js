@@ -704,6 +704,7 @@ H5P.InteractiveVideo = (function ($) {
       fontSize: ''
     }).children().css('width', '');
 
+    // TODO: Move to where it's acctualy being used, the big dialog doesn't need any of these performance heavy calculations...
     var buttonWidth = $button.outerWidth(true);
     var buttonPosition = $button.position();
     var containerWidth = this.$container.width();
@@ -714,6 +715,7 @@ H5P.InteractiveVideo = (function ($) {
     var interactionMaxFillRatio = 0.8;
 
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
+      // TODO: Use some of the vars declared before this statement or get rid of them!
       this.$dialog.addClass('h5p-big');
     }
     else {
@@ -741,18 +743,22 @@ H5P.InteractiveVideo = (function ($) {
         }
         // Image size info is missing. We must find image size
         else {
+          // TODO: Where are these vars used?
           var img = $img[0]; // Get my img elem
           var realWidth, realHeight;
+
+          // TODO: Note that we allready have an img with the approperiate source attached to the DOM, wouldn't attaching another cause double loading?
           $("<img/>") // Make in memory copy of image to avoid css issues
-            .attr("src", $img.attr("src"))
-            .load(function() {
+            .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
+            .load(function() { // TODO: Is load needed multiple times or would one('load') suffice?
               interaction.action.params.file.width = this.width;   // Note: $(this).width() will not
               interaction.action.params.file.height = this.height; // work for in memory images.
               that.positionDialog(interaction, $button);
           });
+          // TODO: What happens to our in memory img now?
         }
         // Resize image and dialog container
-        if (typeof imgWidth != "undefined") {
+        if (typeof imgWidth != "undefined") { // TODO: imgWidth !== undefined is insanely faster than string comparison...
           if (imgHeight > maxHeight) {
             imgWidth = imgWidth * maxHeight / imgHeight;
             imgHeight = maxHeight;
@@ -766,12 +772,14 @@ H5P.InteractiveVideo = (function ($) {
             height: imgHeight
           });
           this.$dialog.css({
-            width: imgWidth + 1.5 * this.fontSize,
+            width: imgWidth + 1.5 * this.fontSize, // TODO: What is 1.5? Where are the docs?
             height: imgHeight
           })
           .children('.h5p-dialog-inner').css('width', 'auto');
         }
       }
+
+      // TODO: This function is HUGE, could some of it maybe be moved to H5P.Image? Content sizing shouldn't be a part of positioning the dialog, it should happen before. If we're waiting for something to load show a dialog with a throbber or something...
 
       // Position dialog horizontally
       var left = buttonPosition.left;
