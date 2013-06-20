@@ -696,6 +696,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.positionDialog = function (interaction, $button) {
+    // Reset dialog styles
     this.$dialog.removeClass('h5p-big').css({
       left: '',
       top: '',
@@ -704,21 +705,17 @@ H5P.InteractiveVideo = (function ($) {
       fontSize: ''
     }).children().css('width', '');
 
-    // TODO: Move to where it's acctualy being used, the big dialog doesn't need any of these performance heavy calculations...
-    var buttonWidth = $button.outerWidth(true);
-    var buttonPosition = $button.position();
-    var containerWidth = this.$container.width();
-    var containerHeight = this.$container.height();
-    var that = this;
-
-    // How much of the player should the interaction cover?
-    var interactionMaxFillRatio = 0.8;
-
     if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
-      // TODO: Use some of the vars declared before this statement or get rid of them!
       this.$dialog.addClass('h5p-big');
     }
     else {
+      // How much of the player should the interaction cover?
+      var interactionMaxFillRatio = 0.8;
+      var buttonWidth = $button.outerWidth(true);
+      var buttonPosition = $button.position();
+      var containerWidth = this.$container.width();
+      var containerHeight = this.$container.height();
+      var that = this;
       // Determine size
       var height = this.$dialog.height();
 
@@ -751,11 +748,12 @@ H5P.InteractiveVideo = (function ($) {
           $("<img/>") // Make in memory copy of image to avoid css issues
             .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
             .load(function() { // TODO: Is load needed multiple times or would one('load') suffice?
-              interaction.action.params.file.width = this.width;   // Note: $(this).width() will not
-              interaction.action.params.file.height = this.height; // work for in memory images.
+              // Note that we're actually changing the params here if we're in the editor.
+              interaction.action.params.file.width = this.width;   // Note: $(this).width() will not work for in memory images.
+              interaction.action.params.file.height = this.height;
               that.positionDialog(interaction, $button);
           });
-          // TODO: What happens to our in memory img now?
+          // TODO: What happens to our in memory img now? Could we reuse it?
         }
         // Resize image and dialog container
         if (typeof imgWidth != "undefined") { // TODO: imgWidth !== undefined is insanely faster than string comparison...
