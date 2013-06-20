@@ -17,7 +17,6 @@ H5P.InteractiveVideo = (function ($) {
   function C(params, id) {
     this.params = params.interactiveVideo;
     this.contentPath = H5P.getContentPath(id);
-
     this.visibleInteractions = [];
 
     this.l10n = {
@@ -827,7 +826,7 @@ H5P.InteractiveVideo = (function ($) {
       that.$dialogWrapper.hide();
     }, 201);
 
-    if (this.editor === undefined || this.playing) {
+    if ((this.editor === undefined || this.playing) && (this.hasEnded === undefined || this.hasEnded === false)) {
       this.play(this.playing ? true : undefined);
     }
   };
