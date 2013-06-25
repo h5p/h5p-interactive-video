@@ -16,7 +16,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   function C(params, id) {
     this.params = params.interactiveVideo;
-    this.contentPath = H5P.getContentPath(id);
+    this.contentId = id;
     this.visibleInteractions = [];
 
     this.l10n = {
@@ -109,7 +109,7 @@ H5P.InteractiveVideo = (function ($) {
       controls: this.justVideo,
       autoplay: false,
       fitToWrapper: false
-    }, this.contentPath);
+    }, this.contentId);
 
     if (this.justVideo) {
       this.video.attach($wrapper);
@@ -662,6 +662,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.showDialog = function (interaction, $button) {
     var that = this;
+    var interactionInstance;
 
     if (this.playing) {
       this.pause(true);
@@ -671,7 +672,7 @@ H5P.InteractiveVideo = (function ($) {
       var $dialog = this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction"></div>').children();
 
       var lib = interaction.action.library.split(' ')[0];
-      var interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentPath);
+      interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentId);
       interactionInstance.attach($dialog);
 
       if (lib === 'H5P.Summary') {
@@ -680,7 +681,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     this.$dialogWrapper.show();
-    this.positionDialog(interaction, $button);
+    this.positionDialog(interaction, $button, interactionInstance);
 
     setTimeout(function () {
       that.$dialogWrapper.removeClass('h5p-hidden');
@@ -694,7 +695,7 @@ H5P.InteractiveVideo = (function ($) {
    * @param {jQuery} $button
    * @returns {undefined}
    */
-  C.prototype.positionDialog = function (interaction, $button) {
+  C.prototype.positionDialog = function (interaction, $button, interactionInstance) {
     // Reset dialog styles
     this.$dialog.removeClass('h5p-big').css({
       left: '',
@@ -708,6 +709,12 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
+      if (interactionInstance.resize !== undefined) {
+        interactionInstance.resize();
+      }
+
+      // TODO: Just let image implement resize or something? If so make sure in image class that it only runs once.
+
       // How much of the player should the interaction cover?
       var interactionMaxFillRatio = 0.8;
       var buttonWidth = $button.outerWidth(true);

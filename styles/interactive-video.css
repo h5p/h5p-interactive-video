@@ -161,7 +161,7 @@
 .h5p-interactive-video .h5p-image-interaction > .h5p-interaction-button:before {
   content: "\f03e";
 }
-.h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-multichoice-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-blanks-interaction > .h5p-interaction-button {
+.h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-multichoice-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-blanks-interaction > .h5p-interaction-button, .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button {
   background: #981d99;
   background-image: -webkit-linear-gradient(bottom, #981d99 50%, #ce6cd8 50%, #981d99 100%);
   background: -moz-linear-gradient(bottom, #981d99 50%, #ce6cd8 50%, #981d99 100%);
@@ -176,6 +176,9 @@
 }
 .h5p-interactive-video .h5p-blanks-interaction > .h5p-interaction-button:before {
   content: "\f0ae";
+}
+.h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button:before {
+  content: "\f126";
 }
 
 @keyframes blinking
