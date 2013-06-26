@@ -722,11 +722,9 @@ H5P.InteractiveVideo = (function ($) {
       var containerWidth = this.$container.width();
       var containerHeight = this.$container.height();
       var that = this;
-      // Determine size
-      var height = this.$dialog.height();
 
       // Special case for images
-      if (interaction.action.library.split(' ')[0] === 'H5P.Image' && height > 1) {
+      if (interaction.action.library.split(' ')[0] === 'H5P.Image') {
         var $img = this.$dialog.find('img');
         var imgHeight, imgWidth, maxWidth;
         if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
@@ -746,10 +744,6 @@ H5P.InteractiveVideo = (function ($) {
         }
         // Image size info is missing. We must find image size
         else {
-          // TODO: Where are these vars used?
-          var img = $img[0]; // Get my img elem
-          var realWidth, realHeight;
-
           // TODO: Note that we allready have an img with the approperiate source attached to the DOM, wouldn't attaching another cause double loading?
           $("<img/>") // Make in memory copy of image to avoid css issues
             .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
