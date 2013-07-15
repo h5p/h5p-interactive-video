@@ -181,12 +181,6 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.loaded = function () {
     var that = this;
 
-    this.resizeEvent = function() {
-      that.resize();
-    };
-    H5P.$window.resize(this.resizeEvent);
-    this.resize();
-
     if (this.video.flowplayer !== undefined) {
       this.video.flowplayer.getPlugin('play').hide();
     }
@@ -203,6 +197,12 @@ H5P.InteractiveVideo = (function ($) {
       marginRight: this.$controls.children('.h5p-controls-right').width()
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
+
+    this.resizeEvent = function() {
+      that.resize();
+    };
+    H5P.$window.resize(this.resizeEvent);
+    this.resize();
 
     duration = Math.floor(duration);
 
