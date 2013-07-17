@@ -1,0 +1,57 @@
+{
+  "semantics": [
+    {
+      "label": "Interaktiv Video Editor",
+      "fields": [
+        {
+          "label": "Last opp video",
+          "fields": [
+            {
+              "label": "Videofiler",
+              "description": "Velg videofilene du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
+            },
+            {
+              "label": "Opphavsrettsinformasjon",
+              "description": "Informasjon om opphavsrett for videoen og andre elementer brukt i interaksjonene."
+            }
+          ]
+        },
+        {
+          "label": "Legg til interaksjoner",
+          "field": {
+            "fields": [
+              {
+                "label": "Visningstid",
+                "fields": [
+                  {
+                    "name": "fra"
+                  },
+                  {
+                    "name": "til"
+                  }
+                ]
+              },
+              {
+                "label": "Pause",
+                "description": "Sett avspillingen på pause mens denne interaksjonen vises."
+              },
+              {
+                "label": "Ledetekst",
+                "description": "Ledetekst som vises ved siden av interaksjonsikonet."
+              },
+              {
+              },
+              {
+              },
+              {
+              }
+            ]
+          }
+        },
+        {
+          "label": "Oppsummeringsoppgave"
+        }
+      ]
+    }
+  ]
+}
