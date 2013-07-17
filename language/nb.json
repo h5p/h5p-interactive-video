@@ -21,15 +21,7 @@
           "field": {
             "fields": [
               {
-                "label": "Visningstid",
-                "fields": [
-                  {
-                    "name": "fra"
-                  },
-                  {
-                    "name": "til"
-                  }
-                ]
+                "label": "Visningstid"
               },
               {
                 "label": "Pause",
