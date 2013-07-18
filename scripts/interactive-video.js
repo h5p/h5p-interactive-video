@@ -63,7 +63,11 @@ H5P.InteractiveVideo = (function ($) {
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
 
-    this.fontSize = parseInt($container.css('fontSize')); // How large the interactions should be in px.
+    // Font size is now hardcoded, since some browsers (At least Android
+    // native browser) will have scaled down the original CSS font size by the
+    // time this is run. (It turned out to have become 13px) Hard coding it
+    // makes it be consistent with the intended size set in CSS.
+    this.fontSize = 16;
     this.width = parseInt($container.css('width'));
     $container.css('width', '100%');
 
@@ -396,7 +400,8 @@ H5P.InteractiveVideo = (function ($) {
       width = this.$container.width();
     }
 
-    this.$container.css('fontSize', (this.fontSize * (width / this.width)) + 'px');
+    // Set base font size. Don't allow it to fall below original size.
+    this.$container.css('fontSize', (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize + 'px');
   };
 
   /**
