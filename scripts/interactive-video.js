@@ -718,7 +718,8 @@ H5P.InteractiveVideo = (function ($) {
         interactionInstance.resize();
       }
 
-      // TODO: Just let image implement resize or something? If so make sure in image class that it only runs once.
+      // TODO: Just let image implement resize or something? If so make sure
+      // in image class that it only runs once.
 
       // How much of the player should the interaction cover?
       var interactionMaxFillRatio = 0.8;
@@ -749,7 +750,9 @@ H5P.InteractiveVideo = (function ($) {
         }
         // Image size info is missing. We must find image size
         else {
-          // TODO: Note that we allready have an img with the approperiate source attached to the DOM, wouldn't attaching another cause double loading?
+          // TODO: Note that we allready have an img with the approperiate
+          // source attached to the DOM, wouldn't attaching another cause
+          // double loading?
           $("<img/>") // Make in memory copy of image to avoid css issues
             .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
             .load(function() { // TODO: Is load needed multiple times or would one('load') suffice?
@@ -782,14 +785,23 @@ H5P.InteractiveVideo = (function ($) {
         }
       }
 
-      // TODO: This function is HUGE, could some of it maybe be moved to H5P.Image? Content sizing shouldn't be a part of positioning the dialog, it should happen before. If we're waiting for something to load show a dialog with a throbber or something...
+      // TODO: This function is HUGE, could some of it maybe be moved to
+      // H5P.Image? Content sizing shouldn't be a part of positioning the
+      // dialog, it should happen before. If we're waiting for something to
+      // load show a dialog with a throbber or something...
 
       // Position dialog horizontally
       var left = buttonPosition.left;
 
+      var dialogWidth = this.$dialog.outerWidth(true);
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
         // Show on left
-        left -= this.$dialog.outerWidth(true) - buttonWidth;
+        left -= dialogWidth - buttonWidth;
+      }
+
+      // Make sure the dialog is within the video
+      if ((left + dialogWidth) > containerWidth) {
+        left = containerWidth - dialogWidth;
       }
 
       var marginLeft = parseInt(this.$videoWrapper.css('marginLeft'));
@@ -804,7 +816,6 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       var top = buttonPosition.top + marginTop;
-      var containerHeight = this.$container.height();
       var totalHeight = top + this.$dialog.outerHeight(true);
 
       if (totalHeight > containerHeight) {
