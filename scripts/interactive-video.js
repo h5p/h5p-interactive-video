@@ -794,19 +794,31 @@ H5P.InteractiveVideo = (function ($) {
       var left = buttonPosition.left;
 
       var dialogWidth = this.$dialog.outerWidth(true);
+
+      // If dialog is too big to fit within the container, display as h5p-big instead.
+      if (dialogWidth > containerWidth) {
+        this.$dialog.addClass('h5p-big');
+        return;
+      }
+
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
         // Show on left
         left -= dialogWidth - buttonWidth;
       }
 
-      // Make sure the dialog is within the video
+      // Make sure the dialog is within the video on the right.
       if ((left + dialogWidth) > containerWidth) {
         left = containerWidth - dialogWidth;
       }
 
       var marginLeft = parseInt(this.$videoWrapper.css('marginLeft'));
-      if (!isNaN(marginLeft)) {
-        left += marginLeft;
+      if (isNaN(marginLeft)) {
+        marginLeft = 0;
+      }
+
+      // And finally, make sure we're within bounds on the left hand side too...
+      if (left < marginLeft) {
+        left = marginLeft;
       }
 
       // Position dialog vertically
