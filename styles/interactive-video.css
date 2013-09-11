@@ -481,3 +481,12 @@
 .h5p-interactive-video .h5p-table tr:last-child td {
   border-bottom: 0;
 }
+
+.h5p-interactive-video .h5p-nil-interaction > .h5p-interaction-button {
+  display: none;
+}
+.h5p-interactive-video .h5p-nil-interaction > .h5p-interaction-label {
+  top: 0;
+  left: 0;
+  padding: 0.1em 0.5em;
+}
