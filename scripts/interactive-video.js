@@ -598,7 +598,9 @@ H5P.InteractiveVideo = (function ($) {
     // Transition in
     setTimeout(function () {
       $interaction.removeClass('h5p-hidden');
-      that.positionLabel($interaction);
+      if (className !== 'h5p-nil-interaction') {
+        that.positionLabel($interaction);
+      }
     }, 1);
 
     if (interaction.pause && this.playing) {
