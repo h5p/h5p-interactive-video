@@ -18,6 +18,7 @@ H5P.InteractiveVideo = (function ($) {
     this.params = params.interactiveVideo;
     this.contentId = id;
     this.visibleInteractions = [];
+    this.postUserStatistics = (H5P.postUserStatistics === true);
 
     this.l10n = {
       play: 'Play',
@@ -532,6 +533,11 @@ H5P.InteractiveVideo = (function ($) {
 
     this.video.pause();
     clearInterval(this.uiUpdater);
+
+    // Post user score
+    if (this.postUserStatistics === true) {
+      H5P.setFinished(this.contentId, 0, 0);
+    }
   };
 
   /**
