@@ -385,12 +385,9 @@ H5P.InteractiveVideo = (function ($) {
         width = this.$videoWrapper.width();
       }
       else {
-        var $video = this.$videoWrapper.find('.h5p-video, .h5p-video-flash > object');
         var ratio = this.$videoWrapper.width() / videoHeight;
-
         var height = containerHeight - controlsHeight;
         width = height * ratio;
-        $video.css('height', height);
         this.$videoWrapper.css({
           marginLeft: (this.$container.width() - width) / 2,
           width: width,
