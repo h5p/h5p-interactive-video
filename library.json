@@ -4,6 +4,7 @@
   "majorVersion": 1,
   "minorVersion": 0,
   "patchVersion": 9,
+  "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",

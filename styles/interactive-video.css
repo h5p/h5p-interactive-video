@@ -116,6 +116,7 @@
   box-shadow: 0.15em 0.25em 0.25em 0 #191919;
   text-shadow: 0 0 0.3em #191919;
   text-align: center;
+  text-decoration: none;
   border: 0;
   background: #666666;
   background-image: -webkit-linear-gradient(bottom, #666666 50%, #aaaaaa 50%, #666666 100%);
