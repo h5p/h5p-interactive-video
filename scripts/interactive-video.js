@@ -150,6 +150,7 @@ H5P.InteractiveVideo = (function ($) {
       }
     };
     this.video.endedCallback = function () {
+      if (this.controls === undefined) return; // Might fail before we are ready.
       that.ended();
     };
     this.video.loadedCallback = function () {
