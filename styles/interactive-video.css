@@ -286,10 +286,7 @@
 }
 
 .h5p-interactive-video .h5p-control {
-  width: 60px;
-  background-size: 60px 36px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+  width: 50px;
   text-decoration: none;
 }
 .h5p-interactive-video .h5p-control:before {
@@ -302,7 +299,7 @@
 	font-size: 22px;
 	text-transform: none;
   line-height: 37px;
-  width: 62px;
+  width: 50px;
   color: #fbfbfb;
   text-align: center;
   box-sizing: border-box;
