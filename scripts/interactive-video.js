@@ -24,6 +24,7 @@ H5P.InteractiveVideo = (function ($) {
       play: 'Play',
       pause: 'Pause',
       mute: 'Mute',
+      quality: 'Video quality',
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
@@ -276,11 +277,40 @@ H5P.InteractiveVideo = (function ($) {
          that.showCopyrightInfo();
          return false;
        });
+       
+       // Video quality selector
+      var $chooser = $wrapper.find('.h5p-quality-chooser');
+      $wrapper.find('.h5p-quality').click(function () {
+        $chooser.toggleClass('h5p-show');
+        return false;
+      });
+      
+      var qualities = '';
+      for (var level in this.video.qualities) {
+        if (this.video.qualities.hasOwnProperty(level)) {
+          qualities += '<li role="button" tabIndex="1" data-level="' + level + '" class="' + (this.video.qualities[level]['default'] !== undefined ? 'h5p-selected' : '') + '">' + this.video.qualities[level].label + '</li>';
+        }
+      }
+      if (qualities !== '') {
+        $chooser.append('<ul>' + qualities + '</ul>');
+        var $options = $chooser.find('li').click(function () {
+          $options.removeClass('h5p-selected');
+          that.video.setQuality($(this).addClass('h5p-selected').attr('data-level'));
+          
+          // Clear buffered canvas.
+          var canvas = that.controls.$buffered[0];
+          canvas.width = canvas.width;
+        });
+      }
+      else {
+        $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
+      }
     }
     else {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
       $wrapper.find('.h5p-copyright').remove();
+      $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
     // Volume/mute button
@@ -365,7 +395,10 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.resize = function (fullScreen) {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
-    this.controls.$buffered.attr('width', this.controls.$slider.width());
+    var that = this;
+    setTimeout(function () {
+      that.controls.$buffered.attr('width', that.controls.$slider.width());
+    }, 1);
 
     this.$videoWrapper.css({
       marginTop: '',
