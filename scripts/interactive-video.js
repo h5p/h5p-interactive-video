@@ -25,7 +25,6 @@ H5P.InteractiveVideo = (function ($) {
       pause: 'Pause',
       mute: 'Mute',
       unmute: 'Unmute',
-      quality: 'Video quality',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
@@ -250,7 +249,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-quality-chooser h5p-hidden"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-copyright"  title="' + that.l10n.copyright + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-copyright"  title="' + that.l10n.copyright + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
     this.controls = {};
 
     // Play/pause button
@@ -277,40 +276,11 @@ H5P.InteractiveVideo = (function ($) {
          that.showCopyrightInfo();
          return false;
        });
-       
-      // Video quality selector
-      var $chooser = $wrapper.find('.h5p-quality-chooser');
-      $wrapper.find('.h5p-quality').click(function () {
-        $chooser.toggleClass('h5p-show');
-        return false;
-      });
-      
-      var qualities = '';
-      for (var level in this.video.qualities) {
-        if (this.video.qualities.hasOwnProperty(level)) {
-          qualities += '<li role="button" tabIndex="1" data-level="' + level + '" class="' + (this.video.qualities[level]['default'] !== undefined ? 'h5p-selected' : '') + '">' + this.video.qualities[level].label + '</li>';
-        }
-      }
-      if (qualities !== '') {
-        $chooser.append('<ul>' + qualities + '</ul>');
-        var $options = $chooser.find('li').click(function () {
-          $options.removeClass('h5p-selected');
-          that.video.setQuality($(this).addClass('h5p-selected').attr('data-level'));
-          
-          // Clear buffered canvas.
-          var canvas = that.controls.$buffered[0];
-          canvas.width = canvas.width;
-        });
-      }
-      else {
-        $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
-      }
     }
     else {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
       $wrapper.find('.h5p-copyright').remove();
-      $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
     // Volume/mute button
@@ -395,10 +365,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.resize = function (fullScreen) {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
-    var that = this;
-    setTimeout(function () {
-      that.controls.$buffered.attr('width', that.controls.$slider.width());
-    }, 1);
+    this.controls.$buffered.attr('width', this.controls.$slider.width());
 
     this.$videoWrapper.css({
       marginTop: '',
@@ -463,10 +430,13 @@ H5P.InteractiveVideo = (function ($) {
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
-          document.exitFullScreen();
+          parent.document.exitFullScreen();
+        }
+        else if (H5P.fullScreenBrowserPrefix === 'ms') {
+          parent.document.msExitFullscreen();
         }
         else {
-          document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          parent.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
         }
       }
     }
