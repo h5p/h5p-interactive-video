@@ -193,10 +193,6 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.loaded = function () {
     var that = this;
 
-    if (this.video.flowplayer !== undefined) {
-      this.video.flowplayer.getPlugin('play').hide();
-    }
-
     var duration = this.video.getDuration();
     var time = C.humanizeTime(duration);
     this.controls.$totalTime.html(time);
