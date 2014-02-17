@@ -733,7 +733,7 @@ H5P.InteractiveVideo = (function ($) {
       interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentId);
       interactionInstance.attach($dialog);
 
-      if (lib === 'H5P.Summary') {
+      if (lib === 'H5P.Summary' || lib === 'H5P.DragQuestion') {
         interaction.bigDialog = true;
       }
     }
