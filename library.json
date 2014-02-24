@@ -3,11 +3,15 @@
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 17,
+  "patchVersion": 18,
   "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 1
+  },
   "preloadedJs": [
     {
       "path": "scripts/interactive-video.js"
@@ -20,22 +24,12 @@
   ],
   "preloadedDependencies": [
     {
-      "machineName": "FontAwesome",
-      "majorVersion": 3,
-      "minorVersion": 1
-    },
-    {
       "machineName": "jQuery.ui",
       "majorVersion": 1,
       "minorVersion": 10
     },
     {
       "machineName": "H5P.Video",
-      "majorVersion": 1,
-      "minorVersion": 0
-    },
-    {
-      "machineName": "H5P.Text",
       "majorVersion": 1,
       "minorVersion": 0
     }

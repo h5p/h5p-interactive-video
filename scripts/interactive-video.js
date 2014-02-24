@@ -15,6 +15,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {_L2.C}
    */
   function C(params, id) {
+    this.$ = $(this);
     this.params = params.interactiveVideo;
     this.contentId = id;
     this.visibleInteractions = [];
@@ -109,7 +110,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
-
+    
     this.video = new H5P.Video({
       files: this.params.video.files,
       controls: this.justVideo,
@@ -179,17 +180,6 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @returns {undefined}
    */
-  C.prototype.remove = function () {
-    if (this.resizeEvent !== undefined) {
-      H5P.$window.unbind('resize', this.resizeEvent);
-    }
-  };
-
-  /**
-   * Unbind event listeners.
-   *
-   * @returns {undefined}
-   */
   C.prototype.loaded = function () {
     var that = this;
 
@@ -206,11 +196,10 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-    this.resizeEvent = function() {
-      that.resize();
-    };
-    H5P.$window.resize(this.resizeEvent);
-    this.resize();
+    this.$.on('h5pResize', function (event) {
+      that.resize(event.toggleFullscreen);
+    });
+    this.$.trigger('h5pResize');
 
     duration = Math.floor(duration);
 
@@ -720,7 +709,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.showDialog = function (interaction, $button) {
     var that = this;
-    var interactionInstance;
+    var instance;
 
     if (this.playing) {
       this.pause(true);
@@ -728,18 +717,16 @@ H5P.InteractiveVideo = (function ($) {
 
     if (interaction !== undefined) {
       var $dialog = this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction"></div>').children();
+      instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
 
       var lib = interaction.action.library.split(' ')[0];
-      interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentId);
-      interactionInstance.attach($dialog);
-
       if (lib === 'H5P.Summary') {
         interaction.bigDialog = true;
       }
     }
 
     this.$dialogWrapper.show();
-    this.positionDialog(interaction, $button, interactionInstance);
+    this.positionDialog(interaction, $button, instance);
 
     setTimeout(function () {
       that.$dialogWrapper.removeClass('h5p-hidden');
@@ -751,9 +738,10 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @param {object} interaction
    * @param {jQuery} $button
+   * @param {object} instance
    * @returns {undefined}
    */
-  C.prototype.positionDialog = function (interaction, $button, interactionInstance) {
+  C.prototype.positionDialog = function (interaction, $button, instance) {
     // Reset dialog styles
     this.$dialog.removeClass('h5p-big').css({
       left: '',
@@ -767,8 +755,8 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
-      if (interactionInstance.resize !== undefined) {
-        interactionInstance.resize();
+      if (instance.$ !== undefined) {
+        instance.$.trigger('h5pResize');
       }
 
       // TODO: Just let image implement resize or something? If so make sure
