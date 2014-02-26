@@ -424,6 +424,9 @@ H5P.InteractiveVideo = (function ($) {
           height: height
         });
       }
+      
+      // Resize again to fit the new container size.
+      this.video.resize();
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
