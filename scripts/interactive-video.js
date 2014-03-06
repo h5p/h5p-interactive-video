@@ -915,6 +915,42 @@ H5P.InteractiveVideo = (function ($) {
       this.play(this.playing ? true : undefined);
     }
   };
+  
+  /**
+   * Gather copyright information for the current content.
+   *
+   * @returns {Object} Copyright information
+   */
+  C.prototype.getCopyrights = function () {
+    var self = this;
+    var information = {
+      copyrights: [],
+      children: []
+    };
+    var video = self.params.video.files[0];
+    
+    if (video.copyrights !== undefined && video.copyrights.length) {
+      information.copyrights = H5P.getCopyrightList(video.copyrights, self.l10n);
+    }
+    else if (self.params.video.copyright !== undefined) {
+      // Use old copyright info as fallback.
+      information.copyrights = self.params.video.copyright
+    }
+    
+    for (var i = 0; i < self.params.interactions.length; i++) {
+      var interaction = self.params.interactions[i];
+      var instance = H5P.newRunnable(interaction.action, self.contentId);
+      
+      if (instance.getCopyrights !== undefined) {
+        var interactionCopyrights = instance.getCopyrights();
+        interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
+        information.children.push(interactionCopyrights);
+      }
+    }
+    
+    return information;
+  };
+
 
   /**
    * Formats time in H:MM:SS.
