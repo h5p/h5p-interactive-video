@@ -198,7 +198,6 @@ H5P.InteractiveVideo = (function ($) {
     this.controls.$totalTime.html(time);
     this.controls.$slider.slider('option', 'max', duration);
 
-    this.controls.$currentTime.html(time);
     // Set correct margins for timeline
     this.controls.$slider.parent().css({
       marginLeft: this.$controls.children('.h5p-controls-left').width(),
@@ -236,7 +235,26 @@ H5P.InteractiveVideo = (function ($) {
         label: this.l10n.summary
       });
     }
+    
+    this.drawSliderInteractions();
   };
+  
+  /**
+   * Puts the tiny cute balls above the slider / seek bar.
+   */
+  C.prototype.drawSliderInteractions = function () {
+    // Remove old dots
+    this.controls.$slider.children('.h5p-seekbar-interaction').remove();
+  
+    // Detect the beginning of a second on the timeline
+    var oneSecondInPercentage = (100 / this.video.getDuration());
+     
+    for (var i = 0; i < this.params.interactions.length; i++) {
+      var interaction = this.params.interactions[i];
+      // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * oneSecondInPercentage)
+      $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * oneSecondInPercentage) + '%"></div>').appendTo(this.controls.$slider);
+    }
+  }
 
   /**
    * Attach video controls to the given wrapper
@@ -623,15 +641,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add interaction
-    var className;
-    if (interaction.className === undefined) {
-      var nameParts = interaction.action.library.split(' ')[0].toLowerCase().split('.');
-      className = nameParts[0] + '-' + nameParts[1] + '-interaction';
-    }
-    else {
-      className = interaction.className;
-    }
-
+    var className = this.getClassName(interaction);
     var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' + (interaction.label === undefined ? '' : '<div class="h5p-interaction-label">' + interaction.label + '</div>') + '</div>').appendTo(this.$overlay).children('a').click(function () {
       if (that.editor === undefined) {
         that.showDialog(interaction, $interaction);
@@ -658,6 +668,22 @@ H5P.InteractiveVideo = (function ($) {
 
     return $interaction;
   };
+
+  /**
+   * Detect custom html class for interaction.
+   *
+   * @param {Object} interaction
+   * @return {String} HTML class
+   */
+  C.prototype.getClassName = function (interaction) {
+    if (interaction.className === undefined) {
+      var nameParts = interaction.action.library.split(' ')[0].toLowerCase().split('.');
+      return nameParts[0] + '-' + nameParts[1] + '-interaction';
+    }
+    else {
+      return interaction.className;
+    }
+  }
 
   /**
    *

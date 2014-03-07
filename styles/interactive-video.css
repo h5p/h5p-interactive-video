@@ -409,6 +409,7 @@
   width: auto;
   padding: 13px 0 13px 19px;
   margin: 0;
+  height: 10px;
 }
 .h5p-interactive-video .h5p-slider .ui-slider {
   background: #0b0d0c;
@@ -457,6 +458,20 @@
   top: 0;
   left: 0;
   border-radius: 4px;
+}
+
+.h5p-interactive-video .h5p-seekbar-interaction {
+  position: absolute;
+  top: -10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 3px;
+  background: #af3fab;
+  background: rgba(175, 63, 171, 0.7);
+}
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction, .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction {
+  background: #1b5afd;
+  background: rgba(27, 90, 253, 0.7);
 }
 
 .h5p-interactive-video .h5p-dialog-wrapper {
