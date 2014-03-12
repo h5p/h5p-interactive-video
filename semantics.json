@@ -34,70 +34,94 @@
         ]
       },
       {
-        "name": "interactions",
-        "type": "list",
+        "name": "assets",
+        "type": "group",
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
-        "field": {
-          "name": "interaction",
-          "type": "group",
-          "fields": [
-            {
-              "name": "duration",
+        "fields": [
+          {
+            "name": "interactions",
+            "type": "list",
+            "field": {
+              "name": "interaction",
               "type": "group",
-              "widget": "duration",
-              "label": "Display time",
               "fields": [
                 {
-                  "name": "from",
+                  "name": "duration",
+                  "type": "group",
+                  "widget": "duration",
+                  "label": "Display time",
+                  "fields": [
+                    {
+                      "name": "from",
+                      "type": "number"
+                    },
+                    {
+                      "name": "to",
+                      "type": "number"
+                    }
+                  ]
+                },
+                {
+                  "name": "pause",
+                  "label": "Pause",
+                  "description": "Set playback on pause when this interaction is reached.",
+                  "type": "boolean"
+                },
+                {
+                  "name": "label",
+                  "type": "text",
+                  "label": "Label",
+                  "description": "Label displayed next to interaction icon.",
+                  "optional": true
+                },
+                {
+                  "name": "x",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "y",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "action",
+                  "type": "library",
+                  "options": [
+                    "H5P.Nil 1.0",
+                    "H5P.Text 1.0",
+                    "H5P.Table 1.0",
+                    "H5P.Image 1.0",
+                    "H5P.MultiChoice 1.0",
+                    "H5P.Blanks 1.0",
+                    "H5P.DragQuestion 1.0",
+                    "H5P.Summary 1.0"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "bookmarks",
+            "type": "list",
+            "field": {
+              "name": "bookmark",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "time",
                   "type": "number"
                 },
                 {
-                  "name": "to",
-                  "type": "number"
+                  "name": "label",
+                  "type": "text"
                 }
               ]
-            },
-            {
-              "name": "pause",
-              "label": "Pause",
-              "description": "Set playback on pause when this interaction is reached.",
-              "type": "boolean"
-            },
-            {
-              "name": "label",
-              "type": "text",
-              "label": "Label",
-              "description": "Label displayed next to interaction icon.",
-              "optional": true
-            },
-            {
-              "name": "x",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "y",
-              "type": "number",
-              "widget": "none"
-            },
-            {
-              "name": "action",
-              "type": "library",
-              "options": [
-                "H5P.Nil 1.0",
-                "H5P.Text 1.0",
-                "H5P.Table 1.0",
-                "H5P.Image 1.0",
-                "H5P.MultiChoice 1.0",
-                "H5P.Blanks 1.0",
-                "H5P.DragQuestion 1.0",
-                "H5P.Summary 1.0"
-              ]
             }
-          ]
-        }
+          }
+        ]
       },
       {
         "name": "summary",
