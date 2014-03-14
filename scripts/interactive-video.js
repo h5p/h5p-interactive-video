@@ -53,7 +53,7 @@ H5P.InteractiveVideo = (function ($) {
     };
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
-  };
+  }
 
   /**
    * Attach interactive video to DOM element.
@@ -255,7 +255,7 @@ H5P.InteractiveVideo = (function ($) {
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
       $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%"></div>').appendTo(this.controls.$interactionsContainer);
     }
-  }
+  };
   
   /**
    * Puts all the cool narrow lines around the slider / seek bar.
@@ -267,7 +267,7 @@ H5P.InteractiveVideo = (function ($) {
         this.addBookmark(i);
       }
     }
-  }
+  };
   
   /**
    * Puts a single cool narrow line around the slider / seek bar.
@@ -341,7 +341,7 @@ H5P.InteractiveVideo = (function ($) {
     // Tell others we have added a new bookmark.
     self.$.trigger('bookmarkAdded', [$bookmark]);
     return $bookmark;
-  }
+  };
 
   /**
    * Attach video controls to the given wrapper
@@ -691,7 +691,7 @@ H5P.InteractiveVideo = (function ($) {
     self.controls.$currentTime.html(C.humanizeTime(time));
     
     self.toggleInteractions(Math.floor(time));
-  }
+  };
   
   /**
    * Seek the interactive video to the given time.
@@ -708,7 +708,7 @@ H5P.InteractiveVideo = (function ($) {
       // Prevent video from restarting when pressing play
       self.hasEnded = false;
     }
-  }
+  };
 
   /**
    * Pause our interactive video.
@@ -825,7 +825,7 @@ H5P.InteractiveVideo = (function ($) {
     else {
       return interaction.className;
     }
-  }
+  };
 
   /**
    *
@@ -959,11 +959,11 @@ H5P.InteractiveVideo = (function ($) {
         var imgHeight, imgWidth, maxWidth;
         if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
           // Space to the left of the button minus margin
-          var maxWidth = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
+          maxWidth = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
         }
         else {
           // Space to the right of the button minus margin
-          var maxWidth = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
+          maxWidth = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
         }
         var maxHeight = containerHeight * interactionMaxFillRatio;
 
@@ -1102,7 +1102,7 @@ H5P.InteractiveVideo = (function ($) {
     }
     else if (self.params.video.copyright !== undefined) {
       // Use old copyright info as fallback.
-      information.copyrights = self.params.video.copyright
+      information.copyrights = self.params.video.copyright;
     }
     
     for (var i = 0; i < self.params.assets.interactions.length; i++) {
