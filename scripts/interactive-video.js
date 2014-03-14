@@ -969,8 +969,10 @@ H5P.InteractiveVideo = (function ($) {
       
       if (instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
-        interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
-        information.children.push(interactionCopyrights);
+        if (interactionCopyrights !== undefined) {
+          interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
+          information.children.push(interactionCopyrights);
+        }
       }
     }
     
