@@ -22,6 +22,7 @@ H5P.InteractiveVideo = (function ($) {
     this.postUserStatistics = (H5P.postUserStatistics === true);
 
     this.l10n = {
+      interaction: 'Interaction',
       play: 'Play',
       pause: 'Pause',
       mute: 'Mute',
@@ -252,8 +253,9 @@ H5P.InteractiveVideo = (function ($) {
      
     for (var i = 0; i < this.params.assets.interactions.length; i++) {
       var interaction = this.params.assets.interactions[i];
+      var title = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction);
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
-      $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%"></div>').appendTo(this.controls.$interactionsContainer);
+      $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%" title="' + title + '"></div>').appendTo(this.controls.$interactionsContainer);
     }
   };
   
@@ -1112,7 +1114,7 @@ H5P.InteractiveVideo = (function ($) {
       if (instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
         if (interactionCopyrights !== undefined) {
-          interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
+          interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction) + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
           information.children.push(interactionCopyrights);
         }
       }
