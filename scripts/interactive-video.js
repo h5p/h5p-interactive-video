@@ -311,6 +311,9 @@ H5P.InteractiveVideo = (function ($) {
     // Create list element for bookmark  
     var $li = $('<li role="button" tabindex="1">' + bookmark.label + '</li>')
       .click(function () {
+        if (self.playing === undefined || self.playing === false) {
+          $bookmark.mouseover().mouseout();
+        }
         self.controls.$bookmarksChooser.removeClass('h5p-show');
         self.seek(bookmark.time);
       });
@@ -334,7 +337,6 @@ H5P.InteractiveVideo = (function ($) {
       }
       else if (id >= index) {
         // We must update our id.
-        console.log(id + ' -> ' + (id + number));
         id += number;
         $bookmark.data('id', id);
       }
@@ -367,13 +369,19 @@ H5P.InteractiveVideo = (function ($) {
       return false;
     });
     
-    // Video quality selector
-    this.controls.$bookmarksChooser = $wrapper.find('.h5p-chooser.h5p-bookmarks');
-    $wrapper.find('.h5p-control.h5p-bookmarks').click(function () {
-      // TODO: Mark chooser buttons as active when open.
-      that.controls.$bookmarksChooser.toggleClass('h5p-show');
-      return false;
-    });
+    // Bookmark selector  
+    if ((this.params.assets.bookmarks === undefined || this.params.assets.bookmarks.length === 0) && this.editor === undefined) {
+      // No bookmarks and no editor, remove button.
+      $wrapper.find('.h5p-control.h5p-bookmarks').remove();
+    }
+    else {
+      this.controls.$bookmarksChooser = $wrapper.find('.h5p-chooser.h5p-bookmarks');
+      $wrapper.find('.h5p-control.h5p-bookmarks').click(function () {
+        // TODO: Mark chooser buttons as active when open. (missing design)
+        that.controls.$bookmarksChooser.toggleClass('h5p-show');
+        return false;
+      });
+    }
 
     if (this.editor === undefined) {
       // Fullscreen button
