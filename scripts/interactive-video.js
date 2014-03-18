@@ -15,7 +15,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {_L2.C}
    */
   function C(params, id) {
-    this.$ = $(this);
+    this.$ = $(this);
     this.params = params.interactiveVideo;
     this.contentId = id;
     this.visibleInteractions = [];
