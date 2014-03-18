@@ -176,11 +176,6 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-    this.$.on('h5pResize', function (event) {
-      that.resize(event.toggleFullscreen);
-    });
-    this.$.trigger('h5pResize');
-
     duration = Math.floor(duration);
 
     // Set max/min for editor duration fields
@@ -207,6 +202,7 @@ H5P.InteractiveVideo = (function ($) {
     }
     
     this.drawSliderInteractions();
+    this.$.trigger('resize');
   };
   
   /**
@@ -368,7 +364,7 @@ H5P.InteractiveVideo = (function ($) {
    * @param {Boolean} fullScreen
    * @returns {undefined}
    */
-  C.prototype.resize = function (fullScreen) {
+  C.prototype.resize = function () {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
     var that = this;
@@ -428,17 +424,8 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {        
-        // Click button to disable fullscreen
-        var button = $('#' + window.frameElement.id + '-wrapper', parent.document).children('.h5p-disable-fullscreen')[0];
-        if (button.dispatchEvent) {
-          var event = document.createEvent('MouseEvents');
-          event.initEvent('click', true, true);
-          button.dispatchEvent(event);
-        }
-        else if (button.fireEvent) {
-          button.fireEvent('onclick', document.createEventObject());
-        }
+      if (H5P.fullScreenBrowserPrefix === undefined) {
+        $('.h5p-disable-fullscreen').click();
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
@@ -457,7 +444,7 @@ H5P.InteractiveVideo = (function ($) {
       H5P.fullScreen(this.$container, this);
       if (H5P.fullScreenBrowserPrefix === undefined) {
         // Hide disable full screen button. We have our own!
-        $('#' + window.frameElement.id + '-wrapper', parent.document).children('.h5p-disable-fullscreen').hide();
+        $('.h5p-disable-fullscreen').hide();
       }
     }
   };
@@ -718,7 +705,7 @@ H5P.InteractiveVideo = (function ($) {
     }
     else {
       if (instance.$ !== undefined) {
-        instance.$.trigger('h5pResize');
+        instance.$.trigger('resize');
       }
 
       // TODO: Just let image implement resize or something? If so make sure
