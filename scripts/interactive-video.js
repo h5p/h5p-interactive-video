@@ -219,6 +219,10 @@ H5P.InteractiveVideo = (function ($) {
      
     for (var i = 0; i < this.params.assets.interactions.length; i++) {
       var interaction = this.params.assets.interactions[i];
+      if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
+        continue; // Skip "sub titles"
+      }
+      
       var title = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction);
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
       $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%" title="' + title + '"></div>').appendTo(this.controls.$interactionsContainer);
