@@ -59,7 +59,7 @@
   font-weight: bold;
 }
 .h5p-interactive-video .h5p-splash > h2:before {
-  font-family: 'H5PFontAwesome';
+  font-family: H5PFontAwesome4;
   content: "\f0a6";
   margin-right: 0.4em;
 }
@@ -119,7 +119,7 @@
   height: 1.75em;
   background: #00f;
   color: #fff;
-  font-family: 'H5PFontAwesome';
+  font-family: H5PFontAwesome4;
   font-size: 1em;
   border-radius: 50%;
   line-height: 1.875em;
@@ -331,12 +331,6 @@
 }
 .h5p-interactive-video .h5p-muted:before {
   content: "\f026";
-}
-.h5p-interactive-video .h5p-copyright:before {
-	font-family: H5PInteractiveVideo;
-	content: "\e002";
-	font-size: 26px;
-	line-height: 38px;
 }
 
 .h5p-interactive-video .h5p-chooser {
@@ -621,7 +615,7 @@
   height: 1em;
   z-index: 52;
   text-shadow: 0 0 0.5em #ffffff;
-  font-family: 'H5PFontAwesome';
+  font-family: H5PFontAwesome4;
   text-decoration: none;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
@@ -638,27 +632,6 @@
 .h5p-interactive-video .h5p-image {
   display: block;
   height: auto;
-}
-
-.h5p-interactive-video .h5p-copyinfo {
-  line-height: 1.25em;
-  margin: 1em 0;
-}
-.h5p-interactive-video .h5p-copyinfo > dt {
-  float: left;
-  margin: 0 0.75em 0 0;
-}
-.h5p-interactive-video .h5p-copyinfo > dt:after {
-  content: ":";
-}
-.h5p-interactive-video .h5p-copyinfo > dd {
-  margin: 0;
-}
-
-.h5p-interactive-video .h5p-interactions-copyright {
-  font-size: 1.25em;
-  font-weight: bold;
-  margin: 1.5em 0 0;
 }
 
 .h5p-interactive-video .h5p-video-error {

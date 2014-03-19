@@ -15,7 +15,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {_L2.C}
    */
   function C(params, id) {
-    this.$ = $(this);
+    this.$ = $(this);
     this.params = params.interactiveVideo;
     this.contentId = id;
     this.visibleInteractions = [];
@@ -30,27 +30,7 @@ H5P.InteractiveVideo = (function ($) {
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
-      summary: 'Summary',
-      copyright: 'View copyright information',
-      contentType: 'Content type',
-      title: 'Title',
-      author: 'Author',
-      source: 'Source',
-      license: 'License',
-      time: 'Time',
-      interactionsCopyright: 'Copyright information regarding interactions used in this interactive video',
-      bookmarks: 'Bookmarks',
-      "U": "Undisclosed",
-      "CC BY": "Attribution",
-      "CC BY-SA": "Attribution-ShareAlike",
-      "CC BY-ND": "Attribution-NoDerivs",
-      "CC BY-NC": "Attribution-NonCommercial",
-      "CC BY-NC-SA": "Attribution-NonCommercial-ShareAlike",
-      "CC BY-NC-ND": "Attribution-NonCommercial-NoDerivs",
-      "PD": "Public Domain",
-      "ODC PDDL": "Public Domain Dedication and Licence",
-      "CC PDM": "Public Domain Mark",
-      "C": "Copyright"
+      summary: 'Summary'
     };
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
@@ -112,7 +92,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
-
+    
     this.video = new H5P.Video({
       files: this.params.video.files,
       controls: this.justVideo,
@@ -182,17 +162,6 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @returns {undefined}
    */
-  C.prototype.remove = function () {
-    if (this.resizeEvent !== undefined) {
-      H5P.$window.unbind('resize', this.resizeEvent);
-    }
-  };
-
-  /**
-   * Unbind event listeners.
-   *
-   * @returns {undefined}
-   */
   C.prototype.loaded = function () {
     var that = this;
 
@@ -207,12 +176,6 @@ H5P.InteractiveVideo = (function ($) {
       marginRight: this.$controls.children('.h5p-controls-right').width()
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
-
-    this.resizeEvent = function() {
-      that.resize();
-    };
-    H5P.$window.resize(this.resizeEvent);
-    this.resize();
 
     duration = Math.floor(duration);
 
@@ -242,6 +205,8 @@ H5P.InteractiveVideo = (function ($) {
     this.oneSecondInPercentage = (100 / this.video.getDuration());
     this.addSliderInteractions();
     this.addBookmarks();
+
+    this.$.trigger('resize');
   };
   
   /**
@@ -355,7 +320,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-copyright"  title="' + that.l10n.copyright + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
     this.controls = {};
 
     // Play/pause button
@@ -387,13 +352,6 @@ H5P.InteractiveVideo = (function ($) {
       // Fullscreen button
       this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').click(function () {
         that.toggleFullScreen();
-        return false;
-      });
-
-      // Copyright button
-      $wrapper.find('.h5p-copyright').click(function () {
-        // Display dialog
-        that.showCopyrightInfo();
         return false;
       });
        
@@ -428,7 +386,6 @@ H5P.InteractiveVideo = (function ($) {
     else {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
-      $wrapper.find('.h5p-copyright').remove();
       $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
@@ -505,7 +462,7 @@ H5P.InteractiveVideo = (function ($) {
    * @param {Boolean} fullScreen
    * @returns {undefined}
    */
-  C.prototype.resize = function (fullScreen) {
+  C.prototype.resize = function () {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
     var that = this;
@@ -519,7 +476,7 @@ H5P.InteractiveVideo = (function ($) {
       width: '',
       height: ''
     });
-    this.video.resize();
+    this.video.$.trigger('resize');
 
     var width;
     var controlsHeight = this.$controls.height();
@@ -543,7 +500,7 @@ H5P.InteractiveVideo = (function ($) {
       }
       
       // Resize again to fit the new container size.
-      this.video.resize();
+      this.video.$.trigger('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -567,17 +524,8 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {        
-        // Click button to disable fullscreen
-        var button = $('#' + window.frameElement.id + '-wrapper', parent.document).children('.h5p-disable-fullscreen')[0];
-        if (button.dispatchEvent) {
-          var event = document.createEvent('MouseEvents');
-          event.initEvent('click', true, true);
-          button.dispatchEvent(event);
-        }
-        else if (button.fireEvent) {
-          button.fireEvent('onclick', document.createEventObject());
-        }
+      if (H5P.fullScreenBrowserPrefix === undefined) {
+        $('.h5p-disable-fullscreen').click();
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
@@ -596,7 +544,7 @@ H5P.InteractiveVideo = (function ($) {
       H5P.fullScreen(this.$container, this);
       if (H5P.fullScreenBrowserPrefix === undefined) {
         // Hide disable full screen button. We have our own!
-        $('#' + window.frameElement.id + '-wrapper', parent.document).children('.h5p-disable-fullscreen').hide();
+        $('.h5p-disable-fullscreen').hide();
       }
     }
   };
@@ -853,46 +801,6 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   /**
-   * Displays a dialog with copyright information.
-   *
-   * @returns {undefined}
-   */
-  C.prototype.showCopyrightInfo = function () {
-    var info = '';
-
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      var interaction = this.params.assets.interactions[i];
-      var params = interaction.action.params;
-
-      if (params.copyright === undefined) {
-        continue;
-      }
-
-      info += '<dl class="h5p-copyinfo"><dt>' + this.l10n.contentType + '</dt><dd>' + params.contentName + '</dd>';
-      if (params.copyright.title !== undefined) {
-        info += '<dt>' + this.l10n.title + '</dt><dd>' + params.copyright.title + '</dd>';
-      }
-      if (params.copyright.author !== undefined) {
-        info += '<dt>' + this.l10n.author + '</dt><dd>' + params.copyright.author + '</dd>';
-      }
-      if (params.copyright.license !== undefined) {
-        info += '<dt>' + this.l10n.license + '</dt><dd>' + this.l10n[params.copyright.license] + ' (' + params.copyright.license + ')</dd>';
-      }
-      if (params.copyright.source !== undefined) {
-        info += '<dt>' + this.l10n.source + '</dt><dd><a target="_blank" href="' + params.copyright.source + '">' + params.copyright.source + '</a></dd>';
-      }
-      info += '<dt>' + this.l10n.time + '</dt><dd>' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to) + '</dd></dl>';
-    }
-
-    if (info) {
-      info = '<h2 class="h5p-interactions-copyright">' + this.l10n.interactionsCopyright + '</h2>' + info;
-    }
-
-    this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction">' + this.params.video.copyright + info + '</div>');
-    this.showDialog();
-  };
-
-  /**
    * Display interaction dialog.
    *
    * @param {Object} interaction
@@ -901,7 +809,7 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.showDialog = function (interaction, $button) {
     var that = this;
-    var interactionInstance;
+    var instance;
 
     if (this.playing) {
       this.pause(true);
@@ -909,18 +817,16 @@ H5P.InteractiveVideo = (function ($) {
 
     if (interaction !== undefined) {
       var $dialog = this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction"></div>').children();
+      instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
 
       var lib = interaction.action.library.split(' ')[0];
-      interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentId);
-      interactionInstance.attach($dialog);
-
       if (lib === 'H5P.Summary') {
         interaction.bigDialog = true;
       }
     }
 
     this.$dialogWrapper.show();
-    this.positionDialog(interaction, $button, interactionInstance);
+    this.positionDialog(interaction, $button, instance);
 
     setTimeout(function () {
       that.$dialogWrapper.removeClass('h5p-hidden');
@@ -932,9 +838,10 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @param {object} interaction
    * @param {jQuery} $button
+   * @param {object} instance
    * @returns {undefined}
    */
-  C.prototype.positionDialog = function (interaction, $button, interactionInstance) {
+  C.prototype.positionDialog = function (interaction, $button, instance) {
     // Reset dialog styles
     this.$dialog.removeClass('h5p-big').css({
       left: '',
@@ -948,8 +855,8 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
-      if (interactionInstance.resize !== undefined) {
-        interactionInstance.resize();
+      if (instance.$ !== undefined) {
+        instance.$.trigger('resize');
       }
 
       // TODO: Just let image implement resize or something? If so make sure
@@ -1108,7 +1015,7 @@ H5P.InteractiveVideo = (function ($) {
     var video = self.params.video.files[0];
     
     if (video.copyrights !== undefined && video.copyrights.length) {
-      information.copyrights = H5P.getCopyrightList(video.copyrights, self.l10n);
+      information.copyrights = H5P.getCopyrightList(video.copyrights);
     }
     else if (self.params.video.copyright !== undefined) {
       // Use old copyright info as fallback.
