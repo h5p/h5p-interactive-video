@@ -30,7 +30,8 @@ H5P.InteractiveVideo = (function ($) {
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
-      summary: 'Summary'
+      summary: 'Summary',
+      bookmarks: 'Bookmarks'
     };
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
