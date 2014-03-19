@@ -378,7 +378,7 @@ H5P.InteractiveVideo = (function ($) {
       width: '',
       height: ''
     });
-    this.video.resize();
+    this.video.$.trigger('resize');
 
     var width;
     if (fullscreenOn) {
@@ -402,7 +402,7 @@ H5P.InteractiveVideo = (function ($) {
       }
       
       // Resize again to fit the new container size.
-      this.video.resize();
+      this.video.$.trigger('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
