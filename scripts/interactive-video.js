@@ -195,10 +195,7 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-    this.$.on('h5pResize', function (event) {
-      that.resize(event.toggleFullscreen);
-    });
-    this.$.trigger('h5pResize');
+    this.resize(false);
 
     duration = Math.floor(duration);
 
@@ -784,8 +781,8 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
-      if (instance.$ !== undefined) {
-        instance.$.trigger('h5pResize');
+      if (instance.resize !== undefined) {
+        instance.resize();
       }
 
       // TODO: Just let image implement resize or something? If so make sure
