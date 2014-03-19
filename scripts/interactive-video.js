@@ -251,6 +251,10 @@ H5P.InteractiveVideo = (function ($) {
      
     for (var i = 0; i < this.params.interactions.length; i++) {
       var interaction = this.params.interactions[i];
+      if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
+        continue; // Skip "sub titles"
+      }
+      
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * oneSecondInPercentage)
       $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * oneSecondInPercentage) + '%"></div>').appendTo(this.controls.$slider);
     }
