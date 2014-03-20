@@ -766,7 +766,7 @@ H5P.InteractiveVideo = (function ($) {
       interactionInstance = new (H5P.classFromName(lib))(interaction.action.params, this.contentId);
       interactionInstance.attach($dialog);
 
-      if (lib === 'H5P.Summary') {
+      if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
         interaction.bigDialog = true;
       }
     }
@@ -920,13 +920,9 @@ H5P.InteractiveVideo = (function ($) {
         top -= totalHeight - containerHeight;
       }
 
-      // Calculate and set max-height in case dialog content is resizing dynamically
-      var maxHeight = containerHeight - top - 36 /* controls */ - (this.$dialog.outerHeight(true)-this.$dialog.outerHeight(false)) /*margin*/;
-      
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%',
-        'max-height': maxHeight
+        left: (left / (containerWidth / 100)) + '%'
       });
     }
   };
