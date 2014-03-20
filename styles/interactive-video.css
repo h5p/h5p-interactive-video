@@ -198,6 +198,12 @@
 .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button:before {
   content: "\f126";
 }
+.h5p-dialog-interaction.h5p-blanks {
+  font-size: .8em;
+}
+.h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
+  min-height: 5em;
+}
 
 @keyframes blinking
 {

@@ -217,6 +217,10 @@ H5P.InteractiveVideo = (function ($) {
      
     for (var i = 0; i < this.params.interactions.length; i++) {
       var interaction = this.params.interactions[i];
+      if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
+        continue; // Skip "sub titles"
+      }
+      
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * oneSecondInPercentage)
       $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * oneSecondInPercentage) + '%"></div>').appendTo(this.controls.$slider);
     }
@@ -669,7 +673,8 @@ H5P.InteractiveVideo = (function ($) {
       instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
 
       var lib = interaction.action.library.split(' ')[0];
-      if (lib === 'H5P.Summary') {
+
+      if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
         interaction.bigDialog = true;
       }
     }
