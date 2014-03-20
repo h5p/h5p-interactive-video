@@ -825,7 +825,8 @@ H5P.InteractiveVideo = (function ($) {
       instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
 
       var lib = interaction.action.library.split(' ')[0];
-      if (lib === 'H5P.Summary') {
+
+      if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
         interaction.bigDialog = true;
       }
     }
