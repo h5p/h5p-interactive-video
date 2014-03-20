@@ -920,9 +920,13 @@ H5P.InteractiveVideo = (function ($) {
         top -= totalHeight - containerHeight;
       }
 
+      // Calculate and set max-height in case dialog content is resizing dynamically
+      var maxHeight = containerHeight - top - 36 /* controls */ - (this.$dialog.outerHeight(true)-this.$dialog.outerHeight(false)) /*margin*/;
+      
       this.$dialog.removeClass('h5p-big').css({
         top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%'
+        left: (left / (containerWidth / 100)) + '%',
+        'max-height': maxHeight
       });
     }
   };
