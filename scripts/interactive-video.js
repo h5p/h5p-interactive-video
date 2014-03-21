@@ -953,23 +953,22 @@ H5P.InteractiveVideo = (function ($) {
   /**
    * Gather copyright information for the current content.
    *
-   * @returns {Object} Copyright information
+   * @returns {H5P.ContentCopyrights}
    */
   C.prototype.getCopyrights = function () {
     var self = this;
-    var information = {
-      copyrights: [],
-      children: []
-    };
-    var video = self.params.video.files[0];
-    
-    if (video.copyrights !== undefined && video.copyrights.length) {
-      information.copyrights = H5P.getCopyrightList(video.copyrights, self.l10n);
+    var info = new H5P.ContentCopyrights();
+
+    var videoRights, video = self.params.video.files[0];
+    if (video.copyright !== undefined) {
+      videoRights = new H5P.MediaCopyright(video.copyright, self.l10n)
     }
-    else if (self.params.video.copyright !== undefined) {
+
+    if ((videoRights === undefined || videoRights.undisclosed()) && self.params.video.copyright !== undefined) {
       // Use old copyright info as fallback.
-      information.copyrights = self.params.video.copyright
+      videoRights = self.params.video.copyright;
     }
+    info.addMedia(videoRights);
     
     for (var i = 0; i < self.params.interactions.length; i++) {
       var interaction = self.params.interactions[i];
@@ -978,13 +977,13 @@ H5P.InteractiveVideo = (function ($) {
       if (instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
         if (interactionCopyrights !== undefined) {
-          interactionCopyrights.label = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to);
-          information.children.push(interactionCopyrights);
+          interactionCopyrights.setLabel((interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to));
+          info.addContent(interactionCopyrights);
         }
       }
     }
     
-    return information;
+    return info;
   };
 
 
