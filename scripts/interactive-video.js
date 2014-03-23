@@ -127,7 +127,6 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       that.$container.html('<div class="h5p-video-error">Error: ' + errorMessage + '.</div>');
-      that.remove();
       if (that.editor !== undefined) {
         delete that.editor.IV;
       }
