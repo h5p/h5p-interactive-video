@@ -428,18 +428,33 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
-        $('.h5p-disable-fullscreen').click();
+      if (H5P.fullScreenBrowserPrefix === undefined) {        
+        // Click button to disable fullscreen
+        var $disable = $('.h5p-disable-fullscreen');
+        if ($disable.length) {
+          $disable.click();
+        }
+        else {
+          var button = $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen')[0];
+          if (button.dispatchEvent) {
+            var event = document.createEvent('MouseEvents');
+            event.initEvent('click', true, true);
+            button.dispatchEvent(event);
+          }
+          else if (button.fireEvent) {
+            button.fireEvent('onclick', document.createEventObject());
+          }
+        }
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
-          parent.document.exitFullScreen();
+          window.top.document.exitFullScreen();
         }
         else if (H5P.fullScreenBrowserPrefix === 'ms') {
-          parent.document.msExitFullscreen();
+          window.top.document.msExitFullscreen();
         }
         else {
-          parent.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
         }
       }
     }
@@ -448,7 +463,13 @@ H5P.InteractiveVideo = (function ($) {
       H5P.fullScreen(this.$container, this);
       if (H5P.fullScreenBrowserPrefix === undefined) {
         // Hide disable full screen button. We have our own!
-        $('.h5p-disable-fullscreen').hide();
+        var $disable = $('.h5p-disable-fullscreen');
+        if ($disable.length) {
+          $disable.hide();
+        }
+        else {
+          $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen').hide();
+        }
       }
     }
   };
