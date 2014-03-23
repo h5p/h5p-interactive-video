@@ -430,21 +430,7 @@ H5P.InteractiveVideo = (function ($) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       if (H5P.fullScreenBrowserPrefix === undefined) {        
         // Click button to disable fullscreen
-        var $disable = $('.h5p-disable-fullscreen');
-        if ($disable.length) {
-          $disable.click();
-        }
-        else {
-          var button = $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen')[0];
-          if (button.dispatchEvent) {
-            var event = document.createEvent('MouseEvents');
-            event.initEvent('click', true, true);
-            button.dispatchEvent(event);
-          }
-          else if (button.fireEvent) {
-            button.fireEvent('onclick', document.createEventObject());
-          }
-        }
+        $('.h5p-disable-fullscreen').click();
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
@@ -463,13 +449,7 @@ H5P.InteractiveVideo = (function ($) {
       H5P.fullScreen(this.$container, this);
       if (H5P.fullScreenBrowserPrefix === undefined) {
         // Hide disable full screen button. We have our own!
-        var $disable = $('.h5p-disable-fullscreen');
-        if ($disable.length) {
-          $disable.hide();
-        }
-        else {
-          $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen').hide();
-        }
+        $('.h5p-disable-fullscreen').hide();
       }
     }
   };
