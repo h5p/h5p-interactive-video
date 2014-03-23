@@ -529,18 +529,19 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
+      if (H5P.fullScreenBrowserPrefix === undefined) {        
+        // Click button to disable fullscreen
         $('.h5p-disable-fullscreen').click();
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
-          parent.document.exitFullScreen();
+          window.top.document.exitFullScreen();
         }
         else if (H5P.fullScreenBrowserPrefix === 'ms') {
-          parent.document.msExitFullscreen();
+          window.top.document.msExitFullscreen();
         }
         else {
-          parent.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
         }
       }
     }
