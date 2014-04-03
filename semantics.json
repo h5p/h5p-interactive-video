@@ -72,9 +72,14 @@
                 {
                   "name": "label",
                   "type": "text",
+                  "widget": "html",
                   "label": "Label",
                   "description": "Label displayed next to interaction icon.",
-                  "optional": true
+                  "optional": true,
+                  "enterMode": "p",
+                  "tags": [
+                    "p"
+                  ]
                 },
                 {
                   "name": "x",
