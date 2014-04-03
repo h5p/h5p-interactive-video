@@ -108,6 +108,10 @@
   white-space: nowrap;
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
+/* Text in labels should have no margins: */
+.h5p-interactive-video .h5p-interaction-label > p {
+  margin: 0;
+}
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
   left: auto;
   right: 1.75em;
@@ -299,15 +303,16 @@
   position: absolute;
   font-family: H5PFontAwesome4;
   speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	font-size: 22px;
-	text-transform: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 22px;
+  text-transform: none;
   line-height: 37px;
   width: 50px;
   color: #fbfbfb;
   text-align: center;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -389,6 +394,7 @@
   position: absolute;
   font-family: H5PFontAwesome4;
   content: "\f10c";
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
