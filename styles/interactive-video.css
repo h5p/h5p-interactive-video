@@ -59,7 +59,7 @@
   font-weight: bold;
 }
 .h5p-interactive-video .h5p-splash > h2:before {
-  font-family: 'H5PFontAwesome';
+  font-family: 'H5PFontAwesome4';
   content: "\f0a6";
   margin-right: 0.4em;
 }
@@ -108,6 +108,10 @@
   white-space: nowrap;
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
+/* Text in labels should have no margins: */
+.h5p-interactive-video .h5p-interaction-label > p {
+  margin: 0;
+}
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
   left: auto;
   right: 1.75em;
@@ -121,7 +125,7 @@
   height: 1.75em;
   background: #00f;
   color: #fff;
-  font-family: 'H5PFontAwesome';
+  font-family: 'H5PFontAwesome4';
   font-size: 1em;
   border-radius: 50%;
   line-height: 1.875em;
@@ -299,15 +303,16 @@
   position: absolute;
   font-family: H5PFontAwesome4;
   speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	font-size: 22px;
-	text-transform: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  font-size: 22px;
+  text-transform: none;
   line-height: 37px;
   width: 50px;
   color: #fbfbfb;
   text-align: center;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -389,6 +394,7 @@
   position: absolute;
   font-family: H5PFontAwesome4;
   content: "\f10c";
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -551,7 +557,7 @@
   height: 1em;
   z-index: 52;
   text-shadow: 0 0 0.5em #ffffff;
-  font-family: 'H5PFontAwesome';
+  font-family: 'H5PFontAwesome4';
   text-decoration: none;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
