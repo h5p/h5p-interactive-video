@@ -302,7 +302,7 @@
 }
 .h5p-interactive-video .h5p-control:before {
   position: absolute;
-  font-family: H5PFontAwesome4;
+  font-family: H5PFontAwesome;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -404,7 +404,7 @@
 .h5p-interactive-video .h5p-chooser > ol > li:before {
   left: 12px;
   position: absolute;
-  font-family: H5PFontAwesome4;
+  font-family: H5PFontAwesome;
   content: "\f10c";
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -675,4 +675,6 @@
   top: 0;
   left: 0;
   padding: 0.1em 0.5em;
+  min-height: 1.5em;
+  min-width: 1.5em;
 }
