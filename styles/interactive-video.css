@@ -59,7 +59,7 @@
   font-weight: bold;
 }
 .h5p-interactive-video .h5p-splash > h2:before {
-  font-family: 'H5PFontAwesome4';
+  font-family: 'H5PFontAwesome';
   content: "\f0a6";
   margin-right: 0.4em;
 }
@@ -125,7 +125,7 @@
   height: 1.75em;
   background: #00f;
   color: #fff;
-  font-family: 'H5PFontAwesome4';
+  font-family: 'H5PFontAwesome';
   font-size: 1em;
   border-radius: 50%;
   line-height: 1.875em;
@@ -304,7 +304,7 @@
 }
 .h5p-interactive-video .h5p-control:before {
   position: absolute;
-  font-family: H5PFontAwesome4;
+  font-family: H5PFontAwesome;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -395,7 +395,7 @@
 .h5p-interactive-video .h5p-quality-chooser > ul > li:before {
   left: 12px;
   position: absolute;
-  font-family: H5PFontAwesome4;
+  font-family: H5PFontAwesome;
   content: "\f10c";
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -560,7 +560,7 @@
   height: 1em;
   z-index: 52;
   text-shadow: 0 0 0.5em #ffffff;
-  font-family: 'H5PFontAwesome4';
+  font-family: 'H5PFontAwesome';
   text-decoration: none;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
@@ -628,4 +628,6 @@
   top: 0;
   left: 0;
   padding: 0.1em 0.5em;
+  min-height: 1.5em;
+  min-width: 1.5em;
 }
