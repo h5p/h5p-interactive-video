@@ -339,6 +339,8 @@ H5P.InteractiveVideo = (function ($) {
     this.controls.$currentTime = $time.children('.h5p-current');
     this.controls.$totalTime = $time.children('.h5p-total');
 
+    
+    
     // Timeline
     var $slider = $wrapper.find('.h5p-slider');
     this.controls.$slider = $slider.children().slider({
@@ -640,10 +642,12 @@ H5P.InteractiveVideo = (function ($) {
     if (this.visibleInteractions[i] !== undefined) {
       return; // Interaction already exists.
     }
-
+    
     // Add interaction
     var className = this.getClassName(interaction);
-    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' + (interaction.label === undefined ? '' : '<div class="h5p-interaction-label">' + interaction.label + '</div>') + '</div>').appendTo(this.$overlay).children('a').click(function () {
+    var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
+    
+    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' + (showLabel ? '<div class="h5p-interaction-label">' + interaction.label + '</div>' : '') + '</div>').appendTo(this.$overlay).children('a').click(function () {
       if (that.editor === undefined) {
         that.showDialog(interaction, $interaction);
       }
