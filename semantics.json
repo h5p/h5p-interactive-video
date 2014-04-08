@@ -94,6 +94,7 @@
                 "H5P.Nil 1.0",
                 "H5P.Text 1.0",
                 "H5P.Table 1.0",
+                "H5P.Link 1.0",
                 "H5P.Image 1.0",
                 "H5P.MultiChoice 1.0",
                 "H5P.Blanks 1.0",
