@@ -187,7 +187,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add summary interaction to last second
-    if (this.params.summary !== undefined && this.params.summary.params.summaries.length) {
+    if (this.params.summary !== undefined && this.params.summary.params !== undefined) {
       this.params.assets.interactions.push({
         action: this.params.summary,
         x: 80,
@@ -1035,7 +1035,7 @@ H5P.InteractiveVideo = (function ($) {
       var interaction = self.params.assets.interactions[i];
       var instance = H5P.newRunnable(interaction.action, self.contentId);
       
-      if (instance.getCopyrights !== undefined) {
+      if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
         if (interactionCopyrights !== undefined) {
           interactionCopyrights.setLabel((interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to));
