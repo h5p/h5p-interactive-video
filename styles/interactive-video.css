@@ -487,7 +487,9 @@
   background: #af3fab;
   background: rgba(175, 63, 171, 0.7);
 }
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction, .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction {
   background: #1b5afd;
   background: rgba(27, 90, 253, 0.7);
 }
