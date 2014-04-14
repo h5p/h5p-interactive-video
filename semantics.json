@@ -99,7 +99,7 @@
                 "H5P.MultiChoice 1.0",
                 "H5P.Blanks 1.0",
                 "H5P.DragQuestion 1.0",
-                "H5P.Summary 1.1"
+                "H5P.Summary 1.0"
               ]
             }
           ]
@@ -110,10 +110,10 @@
         "type": "library",
         "label": "Summary task",
         "options": [
-          "H5P.Summary 1.1"
+          "H5P.Summary 1.0"
         ],
         "default": {
-          "library": "H5P.Summary 1.1",
+          "library": "H5P.Summary 1.0",
           "params": {}
         }
       }
