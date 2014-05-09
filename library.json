@@ -3,7 +3,7 @@
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
   "minorVersion": 2,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
