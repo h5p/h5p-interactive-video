@@ -208,7 +208,7 @@ H5P.InteractiveVideo = (function ($) {
 
     this.$.trigger('resize');
   };
-  
+
   /**
    * Puts the tiny cute balls above the slider / seek bar.
    */
@@ -416,8 +416,6 @@ H5P.InteractiveVideo = (function ($) {
     this.controls.$currentTime = $time.children('.h5p-current');
     this.controls.$totalTime = $time.children('.h5p-total');
 
-    
-    
     // Timeline
     var $slider = $wrapper.find('.h5p-slider');
     this.controls.$slider = $slider.children(':last').slider({
@@ -474,6 +472,7 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     setTimeout(function () {
       that.controls.$buffered.attr('width', that.controls.$slider.width());
+      that.drawBufferBar();
     }, 1);
 
     this.$videoWrapper.css({
@@ -611,18 +610,7 @@ H5P.InteractiveVideo = (function ($) {
     
     // Update buffer bar
     if (self.video.video !== undefined) {
-      var canvas = self.controls.$buffered[0].getContext('2d');
-      var width = parseFloat(self.controls.$buffered.attr('width'));
-      var buffered = self.video.video.buffered;
-      var duration = self.video.video.duration;
-
-      canvas.fillStyle = '#5f5f5f';
-      for (var i = 0; i < buffered.length; i++) {
-        var from = buffered.start(i) / duration * width;
-        var to = (buffered.end(i) / duration * width) - from;
-
-        canvas.fillRect(from, 0, to, 8);
-      }
+      self.drawBufferBar();
     }
     
     // Some UI elements are updated every 10th of a second.
@@ -672,6 +660,24 @@ H5P.InteractiveVideo = (function ($) {
     if (self.hasEnded !== undefined && self.hasEnded) {
       // Prevent video from restarting when pressing play
       self.hasEnded = false;
+    }
+  };
+  
+  /**
+   * Draw the buffer bar
+   */
+  C.prototype.drawBufferBar = function () {
+    var canvas = this.controls.$buffered[0].getContext('2d');
+    var width = parseFloat(this.controls.$buffered.attr('width'));
+    var buffered = this.video.video.buffered;
+    var duration = this.video.video.duration;
+
+    canvas.fillStyle = '#5f5f5f';
+    for (var i = 0; i < buffered.length; i++) {
+      var from = buffered.start(i) / duration * width;
+      var to = (buffered.end(i) / duration * width) - from;
+
+      canvas.fillRect(from, 0, to, 8);
     }
   };
 
@@ -746,11 +752,11 @@ H5P.InteractiveVideo = (function ($) {
     if (this.visibleInteractions[i] !== undefined) {
       return; // Interaction already exists.
     }
-    
+
     // Add interaction
     var className = this.getClassName(interaction);
     var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
-    
+
     var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' + (showLabel ? '<div class="h5p-interaction-label">' + interaction.label + '</div>' : '') + '</div>').appendTo(this.$overlay).children('a').click(function () {
       if (that.editor === undefined) {
         that.showDialog(interaction, $interaction);
@@ -1010,7 +1016,7 @@ H5P.InteractiveVideo = (function ($) {
       this.play(this.playing ? true : undefined);
     }
   };
-  
+
   /**
    * Gather copyright information for the current content.
    *
