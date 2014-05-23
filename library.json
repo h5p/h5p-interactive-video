@@ -3,7 +3,7 @@
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 27,
+  "patchVersion": 28,
   "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
@@ -21,7 +21,7 @@
   "preloadedDependencies": [
     {
       "machineName": "FontAwesome",
-      "majorVersion": 3,
+      "majorVersion": 4,
       "minorVersion": 1
     },
     {
