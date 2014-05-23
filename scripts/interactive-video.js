@@ -175,11 +175,6 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-<<<<<<< HEAD
-=======
-    that.$.trigger('resize');
-
->>>>>>> api-1.1
     duration = Math.floor(duration);
 
     // Set max/min for editor duration fields

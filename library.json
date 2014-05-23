@@ -3,14 +3,14 @@
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 29,
+  "patchVersion": 30,
   "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 1
+    "minorVersion": 2
   },
   "preloadedJs": [
     {
@@ -23,6 +23,11 @@
     }
   ],
   "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 1
+    },
     {
       "machineName": "jQuery.ui",
       "majorVersion": 1,
