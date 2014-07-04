@@ -16,10 +16,15 @@ H5P.InteractiveVideo = (function ($) {
    */
   function C(params, id) {
     this.$ = $(this);
-    this.params = params.interactiveVideo;
+    this.params = $.extend({
+      video: {}, 
+      assets: {},
+      preventResize: false
+    }, params.interactiveVideo);
     this.contentId = id;
     this.visibleInteractions = [];
     this.postUserStatistics = (H5P.postUserStatistics === true);
+    this.preventResize = this.params.preventResize; // Compatible with older CPs?
 
     this.l10n = {
       interaction: 'Interaction',
@@ -49,13 +54,18 @@ H5P.InteractiveVideo = (function ($) {
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
 
+    if (this.preventResize) {
+      // Simulate fullscreen when places inside a container with static width and height.
+      $container.addClass('h5p-fullscreen');
+    }
+
     // Font size is now hardcoded, since some browsers (At least Android
     // native browser) will have scaled down the original CSS font size by the
     // time this is run. (It turned out to have become 13px) Hard coding it
     // makes it be consistent with the intended size set in CSS.
+    // TODO: For this to be used inside something else, we cannot assume that the font size will be 16.
     this.fontSize = 16;
-    this.width = parseInt($container.css('width'));
-    $container.css('width', '100%');
+    this.width = parseInt($container.css('width')); // Get width in px
 
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
@@ -100,7 +110,17 @@ H5P.InteractiveVideo = (function ($) {
       autoplay: false,
       fitToWrapper: false
     }, this.contentId);
-
+    
+    this.video = H5P.newRunnable({
+      library: 'H5P.Video 1.0',
+      params: {
+        files: this.params.video.files,
+        controls: this.justVideo,
+        autoplay: false,
+        fitToWrapper: false
+      }
+    }, this.contentId); 
+    
     if (this.justVideo) {
       this.video.attach($wrapper);
       return;
@@ -386,6 +406,11 @@ H5P.InteractiveVideo = (function ($) {
       else {
         $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
       }
+      
+      if (this.preventResize) {
+        // No fullscreen when inside CP or others
+        $wrapper.find('.h5p-fullscreen').remove();
+      }
     }
     else {
       // Remove buttons in editor mode.
@@ -467,13 +492,15 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {undefined}
    */
   C.prototype.resize = function () {
-    var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
+    var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
-    var that = this;
-    setTimeout(function () {
-      that.controls.$buffered.attr('width', that.controls.$slider.width());
-      that.drawBufferBar();
-    }, 1);
+    if (this.video.video !== undefined) {
+      var that = this;
+      setTimeout(function () {
+        that.controls.$buffered.attr('width', that.controls.$slider.width());
+        that.drawBufferBar();
+      }, 1);
+    }
 
     this.$videoWrapper.css({
       marginTop: '',
