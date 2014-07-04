@@ -18,13 +18,11 @@ H5P.InteractiveVideo = (function ($) {
     this.$ = $(this);
     this.params = $.extend({
       video: {}, 
-      assets: {},
-      preventResize: false
+      assets: {}
     }, params.interactiveVideo);
     this.contentId = id;
     this.visibleInteractions = [];
     this.postUserStatistics = (H5P.postUserStatistics === true);
-    this.preventResize = this.params.preventResize; // Compatible with older CPs?
 
     this.l10n = {
       interaction: 'Interaction',
@@ -53,11 +51,6 @@ H5P.InteractiveVideo = (function ($) {
     this.$container = $container;
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
-
-    if (this.preventResize) {
-      // Simulate fullscreen when places inside a container with static width and height.
-      $container.addClass('h5p-fullscreen');
-    }
 
     // Font size is now hardcoded, since some browsers (At least Android
     // native browser) will have scaled down the original CSS font size by the
@@ -405,11 +398,6 @@ H5P.InteractiveVideo = (function ($) {
       }
       else {
         $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
-      }
-      
-      if (this.preventResize) {
-        // No fullscreen when inside CP or others
-        $wrapper.find('.h5p-fullscreen').remove();
       }
     }
     else {
