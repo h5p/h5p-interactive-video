@@ -58,7 +58,7 @@ H5P.InteractiveVideo = (function ($) {
     // makes it be consistent with the intended size set in CSS.
     // TODO: For this to be used inside something else, we cannot assume that the font size will be 16.
     this.fontSize = 16;
-    this.width = parseInt($container.css('width')); // Get width in px
+    this.width = 640; // parseInt($container.css('width')); // Get width in px
 
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
@@ -459,12 +459,6 @@ H5P.InteractiveVideo = (function ($) {
       }
     });
 
-    // Set correct margins for timeline
-    $slider.css({
-      marginLeft: that.$controls.children('.h5p-controls-left').width(),
-      marginRight: that.$controls.children('.h5p-controls-right').width()
-    });
-
     // Slider bufferer
     this.controls.$buffered = $('<canvas class="h5p-buffered" width="100" height="8"></canvas>').prependTo(this.controls.$slider);
     
@@ -481,6 +475,21 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.resize = function () {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
+
+    // Resize the controls the first time we're visible
+    if (this.controlsSized === undefined) {
+      var left = this.$controls.children('.h5p-controls-left').width();
+      var right = this.$controls.children('.h5p-controls-right').width();
+      if (left || right) {
+        this.controlsSized = true;
+        
+        // Set correct margins for timeline
+        this.controls.$slider.parent().css({
+          marginLeft: left,
+          marginRight: right
+        });
+      }
+    }
 
     if (this.video.video !== undefined) {
       var that = this;
@@ -886,7 +895,7 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
-      if (instance.$ !== undefined) {
+      if (instance.$ !== undefined) {
         instance.$.trigger('resize');
       }
 

@@ -19,6 +19,7 @@
 .h5p-interactive-video .h5p-video-wrapper {
   position: relative;
   overflow: hidden;
+  min-height: 100px;
 }
 .h5p-interactive-video .h5p-video {
   display: block;
