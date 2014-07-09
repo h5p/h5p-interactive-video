@@ -109,6 +109,7 @@
 /* Text in labels should have smaller margins: */
 .h5p-interactive-video .h5p-interaction-label > p {
   margin: 0.3em 0 0 0;
+  color: #fff;
 }
 .h5p-interactive-video .h5p-interaction-label > p:first-child {
   margin: 0;
