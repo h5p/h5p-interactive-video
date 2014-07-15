@@ -632,8 +632,7 @@ H5P.InteractiveVideo = (function ($) {
       self.toggleInteractions(second);
 
       if (self.editor !== undefined) {
-        // Remove coordinates picker while playing
-        self.editor.removeCoordinatesPicker();
+        self.editor.dnb.blur();
       }
 
       // Update timer
