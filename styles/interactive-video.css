@@ -16,6 +16,16 @@
   line-height: 1.25em;
   font-size: 16px;
 }
+
+/* IV has it's own controller for fullscreen. Can not
+   use display:none, since IV is triggering a click on
+   the disable fullscreen button in semi fullscreen mode */
+.h5p-interactive-video .h5p-content-controls {
+  visibility:hidden;
+  position: absolute;
+  top:0;
+}
+
 .h5p-interactive-video .h5p-video-wrapper {
   position: relative;
   overflow: hidden;
