@@ -114,6 +114,7 @@
   z-index: 1;
   width: auto;
   white-space: nowrap;
+  cursor: pointer;
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
 /* Text in labels should have smaller margins: */
