@@ -200,7 +200,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add summary interaction to last second
-    if (this.params.summary !== undefined && this.params.summary.params !== undefined) {
+    if (this.hasMainSummary()) {
       this.params.assets.interactions.push({
         action: this.params.summary,
         x: 80,
@@ -221,6 +221,25 @@ H5P.InteractiveVideo = (function ($) {
 
     this.$.trigger('resize');
   };
+  
+  /**
+   * Does the interactive video have a main summary?
+   * 
+   * This is the summary created in the summary tab of the editor
+   * 
+   * @returns Boolean
+   *   true if this interactive video has a summary
+   *   false otherwise
+   */
+  C.prototype.hasMainSummary = function() {
+    console.log(this.params.summary.params.summaries);
+    return this.params.summary !== undefined
+      && this.params.summary.params !== undefined
+      && this.params.summary.params.summaries !== undefined
+      && this.params.summary.params.summaries.length > 0
+      && this.params.summary.params.summaries[0].summary !== undefined
+      && this.params.summary.params.summaries[0].summary.length > 0;
+  }
 
   /**
    * Puts the tiny cute balls above the slider / seek bar.
