@@ -642,11 +642,12 @@
 
 .h5p-interactive-video .h5p-dialog-hide {
   color: #191919;
-  font-size: 2em;
+  font-size: 1.3em;
+  padding: 0.3em;
   line-height: 0.75em;
   position: absolute;
-  right: 0.2em;
-  top: 0.2em;
+  right: 0.1em;
+  top: 0.1em;
   height: 1em;
   z-index: 52;
   text-shadow: 0 0 0.5em #ffffff;
