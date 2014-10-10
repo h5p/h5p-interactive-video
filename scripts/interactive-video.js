@@ -17,7 +17,7 @@ H5P.InteractiveVideo = (function ($) {
   function C(params, id) {
     this.$ = $(this);
     this.params = $.extend({
-      video: {}, 
+      video: {},
       assets: {}
     }, params.interactiveVideo);
     this.contentId = id;
@@ -96,14 +96,14 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
-    
+
     this.video = new H5P.Video({
       files: this.params.video.files,
       controls: this.justVideo,
       autoplay: false,
       fitToWrapper: false
     }, this.contentId);
-    
+
     this.video = H5P.newRunnable({
       library: 'H5P.Video 1.0',
       params: {
@@ -112,8 +112,8 @@ H5P.InteractiveVideo = (function ($) {
         autoplay: false,
         fitToWrapper: false
       }
-    }, this.contentId); 
-    
+    }, this.contentId);
+
     if (this.justVideo) {
       this.video.attach($wrapper);
       return;
@@ -200,7 +200,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Add summary interaction to last second
-    if (this.params.summary !== undefined && this.params.summary.params !== undefined) {
+    if (this.hasMainSummary()) {
       this.params.assets.interactions.push({
         action: this.params.summary,
         x: 80,
@@ -214,7 +214,7 @@ H5P.InteractiveVideo = (function ($) {
         label: this.l10n.summary
       });
     }
-    
+
     this.oneSecondInPercentage = (100 / this.video.getDuration());
     this.addSliderInteractions();
     this.addBookmarks();
@@ -223,24 +223,42 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   /**
+   * Does the interactive video have a main summary?
+   *
+   * This is the summary created in the summary tab of the editor
+   *
+   * @returns {Boolean}
+   *   true if this interactive video has a summary
+   *   false otherwise
+   */
+  C.prototype.hasMainSummary = function() {
+    return this.params.summary !== undefined &&
+      this.params.summary.params !== undefined &&
+      this.params.summary.params.summaries !== undefined &&
+      this.params.summary.params.summaries.length > 0 &&
+      this.params.summary.params.summaries[0].summary !== undefined &&
+      this.params.summary.params.summaries[0].summary.length > 0;
+  };
+
+  /**
    * Puts the tiny cute balls above the slider / seek bar.
    */
   C.prototype.addSliderInteractions = function () {
     // Remove old dots
     this.controls.$slider.children('.h5p-seekbar-interaction').remove();
-     
+
     for (var i = 0; i < this.params.assets.interactions.length; i++) {
       var interaction = this.params.assets.interactions[i];
       if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
         continue; // Skip "sub titles"
       }
-      
+
       var title = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction);
       // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
       $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%" title="' + title + '"></div>').appendTo(this.controls.$interactionsContainer);
     }
   };
-  
+
   /**
    * Puts all the cool narrow lines around the slider / seek bar.
    */
@@ -252,19 +270,19 @@ H5P.InteractiveVideo = (function ($) {
       }
     }
   };
-  
+
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    */
   C.prototype.addBookmark = function (id, tenth) {
-    var self = this;  
+    var self = this;
     var bookmark = self.params.assets.bookmarks[id];
-    
+
     // Avoid stacking of bookmarks.
     if (tenth === undefined) {
       tenth = Math.floor(bookmark.time * 10) / 10;
     }
-    
+
     // Create bookmark element for the seek bar.
     var $bookmark = self.bookmarksMap[tenth] = $('<div class="h5p-bookmark" style="left:' + (bookmark.time * self.oneSecondInPercentage) + '%"><div class="h5p-bookmark-label"><div class="h5p-bookmark-text">' + bookmark.label + '</div></div></div>')
       .appendTo(self.controls.$bookmarksContainer)
@@ -280,7 +298,7 @@ H5P.InteractiveVideo = (function ($) {
           $bookmark.removeClass('h5p-show');
         }, 2000);
       });
-    
+
     // Set max size of label to the size of the controls to the right.
     $bookmark.find('.h5p-bookmark-label').css('maxWidth', parseInt(self.controls.$slider.parent().css('marginRight')) - 35);
 
@@ -289,8 +307,8 @@ H5P.InteractiveVideo = (function ($) {
       self.controls.$bookmarksList = $('<ol></ol>')
         .insertAfter(self.controls.$bookmarksChooser.find('h3'));
     }
-  
-    // Create list element for bookmark  
+
+    // Create list element for bookmark
     var $li = $('<li role="button" tabindex="1">' + bookmark.label + '</li>')
       .click(function () {
         if (self.playing === undefined || self.playing === false) {
@@ -299,7 +317,7 @@ H5P.InteractiveVideo = (function ($) {
         self.controls.$bookmarksChooser.removeClass('h5p-show');
         self.seek(bookmark.time);
       });
-      
+
     // Insert bookmark in the correct place.
     var $next = self.controls.$bookmarksList.children(':eq(' + id + ')');
     if ($next.length !== 0) {
@@ -308,7 +326,7 @@ H5P.InteractiveVideo = (function ($) {
     else {
       $li.appendTo(self.controls.$bookmarksList);
     }
-        
+
     // Listen for changes to our id.
     self.$.on('bookmarksChanged', function (event, index, number) {
       if (index === id && number < 0) {
@@ -323,7 +341,7 @@ H5P.InteractiveVideo = (function ($) {
         $bookmark.data('id', id);
       }
     });
-    
+
     // Tell others we have added a new bookmark.
     self.$.trigger('bookmarkAdded', [$bookmark]);
     return $bookmark;
@@ -350,8 +368,8 @@ H5P.InteractiveVideo = (function ($) {
       }
       return false;
     });
-    
-    // Bookmark selector  
+
+    // Bookmark selector
     if ((this.params.assets.bookmarks === undefined || this.params.assets.bookmarks.length === 0) && this.editor === undefined) {
       // No bookmarks and no editor, remove button.
       $wrapper.find('.h5p-control.h5p-bookmarks').remove();
@@ -371,14 +389,14 @@ H5P.InteractiveVideo = (function ($) {
         that.toggleFullScreen();
         return false;
       });
-       
+
       // Video quality selector
       var $chooser = $wrapper.find('.h5p-chooser.h5p-quality');
       $wrapper.find('.h5p-control.h5p-quality').click(function () {
         $chooser.toggleClass('h5p-show');
         return false;
       });
-      
+
       var qualities = '';
       for (var level in this.video.qualities) {
         if (this.video.qualities.hasOwnProperty(level)) {
@@ -390,7 +408,7 @@ H5P.InteractiveVideo = (function ($) {
         var $options = $chooser.find('li').click(function () {
           $options.removeClass('h5p-selected');
           that.video.setQuality($(this).addClass('h5p-selected').attr('data-level'));
-          
+
           // Clear buffered canvas.
           var canvas = that.controls.$buffered[0];
           canvas.width = canvas.width;
@@ -461,7 +479,7 @@ H5P.InteractiveVideo = (function ($) {
 
     // Slider bufferer
     this.controls.$buffered = $('<canvas class="h5p-buffered" width="100" height="8"></canvas>').prependTo(this.controls.$slider);
-    
+
     // Slider containers
     this.controls.$interactionsContainer = $slider.find('.h5p-interactions-container');
     this.controls.$bookmarksContainer = $slider.find('.h5p-bookmarks-container');
@@ -482,7 +500,7 @@ H5P.InteractiveVideo = (function ($) {
       var right = this.$controls.children('.h5p-controls-right').width();
       if (left || right) {
         this.controlsSized = true;
-        
+
         // Set correct margins for timeline
         this.controls.$slider.parent().css({
           marginLeft: left,
@@ -527,7 +545,7 @@ H5P.InteractiveVideo = (function ($) {
           height: height
         });
       }
-      
+
       // Resize again to fit the new container size.
       this.video.$.trigger('resize');
     }
@@ -541,7 +559,7 @@ H5P.InteractiveVideo = (function ($) {
 
     // Set base font size. Don't allow it to fall below original size.
     this.$container.css('fontSize', (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize + 'px');
-    
+
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
   };
 
@@ -553,7 +571,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {        
+      if (H5P.fullScreenBrowserPrefix === undefined) {
         // Click button to disable fullscreen
         $('.h5p-disable-fullscreen').click();
       }
@@ -610,33 +628,33 @@ H5P.InteractiveVideo = (function ($) {
 
     // Set interval that updates our UI as the video clip plays.
     this.uiUpdater = setInterval(function () {
-      that.timeUpdate(that.video.getTime());      
+      that.timeUpdate(that.video.getTime());
     }, 40); // 25 FPS
   };
-  
+
   /**
-   * Called when the time of the video changes. 
+   * Called when the time of the video changes.
    * Makes sure to update all UI elements.
    *
    * @params {Number} time new
    */
   C.prototype.timeUpdate = function (time) {
     var self = this;
-    
+
     if (self.$splash !== undefined) {
       // Remove splash
       self.$splash.remove();
       delete self.$splash;
     }
-    
+
     // Scroll slider
     self.controls.$slider.slider('option', 'value', time);
-    
+
     // Update buffer bar
     if (self.video.video !== undefined) {
       self.drawBufferBar();
     }
-    
+
     // Some UI elements are updated every 10th of a second.
     var tenth = Math.floor(time * 10) / 10;
     if (tenth !== self.lastTenth) {
@@ -663,12 +681,12 @@ H5P.InteractiveVideo = (function ($) {
       self.controls.$currentTime.html(C.humanizeTime(second));
     }
     self.lastSecond = second;
-    
+
     self.controls.$currentTime.html(C.humanizeTime(time));
-    
+
     self.toggleInteractions(Math.floor(time));
   };
-  
+
   /**
    * Seek the interactive video to the given time.
    *
@@ -676,16 +694,16 @@ H5P.InteractiveVideo = (function ($) {
    */
   C.prototype.seek = function (time) {
     var self = this;
-    
+
     self.video.seek(time); // Update video
     self.timeUpdate(time); // Update overlay
-    
+
     if (self.hasEnded !== undefined && self.hasEnded) {
       // Prevent video from restarting when pressing play
       self.hasEnded = false;
     }
   };
-  
+
   /**
    * Draw the buffer bar
    */
@@ -1059,11 +1077,11 @@ H5P.InteractiveVideo = (function ($) {
       videoRights = self.params.video.copyright;
     }
     info.addMedia(videoRights);
-    
+
     for (var i = 0; i < self.params.assets.interactions.length; i++) {
       var interaction = self.params.assets.interactions[i];
       var instance = H5P.newRunnable(interaction.action, self.contentId);
-      
+
       if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
         if (interactionCopyrights !== undefined) {
@@ -1072,7 +1090,7 @@ H5P.InteractiveVideo = (function ($) {
         }
       }
     }
-    
+
     return info;
   };
 
