@@ -22,7 +22,6 @@ H5P.InteractiveVideo = (function ($) {
     }, params.interactiveVideo);
     this.contentId = id;
     this.visibleInteractions = [];
-    this.postUserStatistics = (H5P.postUserStatistics === true);
 
     this.l10n = {
       interaction: 'Interaction',
@@ -219,7 +218,7 @@ H5P.InteractiveVideo = (function ($) {
     this.addSliderInteractions();
     this.addBookmarks();
 
-    this.$.trigger('resize');
+    this.triggerH5PEvent('resize');
   };
 
   /**
@@ -328,7 +327,7 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Listen for changes to our id.
-    self.$.on('bookmarksChanged', function (event, index, number) {
+    self.registerH5PEventListener('bookmarksChanged', function (event, index, number) {
       if (index === id && number < 0) {
         // We are removing this item.
         $li.remove();
@@ -343,7 +342,7 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     // Tell others we have added a new bookmark.
-    self.$.trigger('bookmarkAdded', [$bookmark]);
+    self.triggerH5PEvent('bookmarkAdded', [$bookmark]);
     return $bookmark;
   };
 
@@ -523,7 +522,7 @@ H5P.InteractiveVideo = (function ($) {
       width: '',
       height: ''
     });
-    this.video.$.trigger('resize');
+    this.video.triggerH5PEvent('resize');
 
     var width;
     var controlsHeight = this.$controls.height();
@@ -547,7 +546,7 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       // Resize again to fit the new container size.
-      this.video.$.trigger('resize');
+      this.video.triggerH5PEvent('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -750,9 +749,7 @@ H5P.InteractiveVideo = (function ($) {
     clearInterval(this.uiUpdater);
 
     // Post user score
-    if (this.postUserStatistics === true) {
-      H5P.setFinished(this.contentId, 0, 0);
-    }
+    this.triggerH5PxAPIEvent('completed', H5P.getxAPIScoredResult(0, 0));
   };
 
   /**
@@ -913,7 +910,7 @@ H5P.InteractiveVideo = (function ($) {
     }
     else {
       if (instance.$ !== undefined) {
-        instance.$.trigger('resize');
+        instance.triggerH5PEvent('resize');
       }
 
       // TODO: Just let image implement resize or something? If so make sure
