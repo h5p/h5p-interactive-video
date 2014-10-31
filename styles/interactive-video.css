@@ -348,12 +348,6 @@
 .h5p-interactive-video .h5p-muted:before {
   content: "\f026";
 }
-.h5p-interactive-video .h5p-copyright:before {
-	font-family: H5PInteractiveVideo;
-	content: "\e002";
-	font-size: 26px;
-	line-height: 38px;
-}
 
 .h5p-interactive-video .h5p-quality-chooser {
   position: absolute;
@@ -599,12 +593,6 @@
 }
 .h5p-interactive-video .h5p-copyinfo > dd {
   margin: 0;
-}
-
-.h5p-interactive-video .h5p-interactions-copyright {
-  font-size: 1.25em;
-  font-weight: bold;
-  margin: 1.5em 0 0;
 }
 
 .h5p-interactive-video .h5p-video-error {

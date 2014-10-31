@@ -29,26 +29,7 @@ H5P.InteractiveVideo = (function ($) {
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
-      summary: 'Summary',
-      copyright: 'View copyright information',
-      contentType: 'Content type',
-      title: 'Title',
-      author: 'Author',
-      source: 'Source',
-      license: 'License',
-      time: 'Time',
-      interactionsCopyright: 'Copyright information regarding interactions used in this interactive video',
-      "U": "Undisclosed",
-      "CC BY": "Attribution",
-      "CC BY-SA": "Attribution-ShareAlike",
-      "CC BY-ND": "Attribution-NoDerivs",
-      "CC BY-NC": "Attribution-NonCommercial",
-      "CC BY-NC-SA": "Attribution-NonCommercial-ShareAlike",
-      "CC BY-NC-ND": "Attribution-NonCommercial-NoDerivs",
-      "PD": "Public Domain",
-      "ODC PDDL": "Public Domain Dedication and Licence",
-      "CC PDM": "Public Domain Mark",
-      "C": "Copyright"
+      summary: 'Summary'
     };
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
@@ -194,8 +175,6 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-    that.$.trigger('resize');
-
     duration = Math.floor(duration);
 
     // Set max/min for editor duration fields
@@ -222,6 +201,7 @@ H5P.InteractiveVideo = (function ($) {
     }
     
     this.drawSliderInteractions();
+    this.$.trigger('resize');
   };
 
   /**
@@ -253,7 +233,7 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-quality-chooser h5p-hidden"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-copyright"  title="' + that.l10n.copyright + '"></a><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-quality-chooser h5p-hidden"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div></div></div>');
     this.controls = {};
 
     // Play/pause button
@@ -273,13 +253,6 @@ H5P.InteractiveVideo = (function ($) {
         that.toggleFullScreen();
         return false;
       });
-
-      // Copyright button
-       $wrapper.find('.h5p-copyright').click(function () {
-         // Display dialog
-         that.showCopyrightInfo();
-         return false;
-       });
        
        // Video quality selector
       var $chooser = $wrapper.find('.h5p-quality-chooser');
@@ -312,7 +285,6 @@ H5P.InteractiveVideo = (function ($) {
     else {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
-      $wrapper.find('.h5p-copyright').remove();
       $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
@@ -395,7 +367,7 @@ H5P.InteractiveVideo = (function ($) {
    * @param {Boolean} fullScreen
    * @returns {undefined}
    */
-  C.prototype.resize = function (fullScreen) {
+  C.prototype.resize = function () {
     var fullscreenOn = H5P.$body.hasClass('h5p-fullscreen') || H5P.$body.hasClass('h5p-semi-fullscreen');
 
     var that = this;
@@ -410,7 +382,7 @@ H5P.InteractiveVideo = (function ($) {
       width: '',
       height: ''
     });
-    this.video.resize();
+    this.video.$.trigger('resize');
 
     var width;
     if (fullscreenOn) {
@@ -434,7 +406,7 @@ H5P.InteractiveVideo = (function ($) {
       }
       
       // Resize again to fit the new container size.
-      this.video.resize();
+      this.video.$.trigger('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -458,21 +430,7 @@ H5P.InteractiveVideo = (function ($) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       if (H5P.fullScreenBrowserPrefix === undefined) {        
         // Click button to disable fullscreen
-        var $disable = $('.h5p-disable-fullscreen');
-        if ($disable.length) {
-          $disable.click();
-        }
-        else {
-          var button = $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen')[0];
-        if (button.dispatchEvent) {
-          var event = document.createEvent('MouseEvents');
-          event.initEvent('click', true, true);
-          button.dispatchEvent(event);
-        }
-        else if (button.fireEvent) {
-          button.fireEvent('onclick', document.createEventObject());
-        }
-      }
+        $('.h5p-disable-fullscreen').click();
       }
       else {
         if (H5P.fullScreenBrowserPrefix === '') {
@@ -491,13 +449,7 @@ H5P.InteractiveVideo = (function ($) {
       H5P.fullScreen(this.$container, this);
       if (H5P.fullScreenBrowserPrefix === undefined) {
         // Hide disable full screen button. We have our own!
-        var $disable = $('.h5p-disable-fullscreen');
-        if ($disable.length) {
-          $disable.hide();
-      }
-        else {
-          $('#' + window.frameElement.id + '-wrapper', window.top.document).children('.h5p-disable-fullscreen').hide();
-    }
+        $('.h5p-disable-fullscreen').hide();
       }
     }
   };
@@ -542,8 +494,7 @@ H5P.InteractiveVideo = (function ($) {
         that.toggleInteractions(second);
 
         if (that.editor !== undefined) {
-          // Remove coordinates picker while playing
-          that.editor.removeCoordinatesPicker();
+          that.editor.dnb.blur();
         }
 
         // Update timer
@@ -712,46 +663,6 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   /**
-   * Displays a dialog with copyright information.
-   *
-   * @returns {undefined}
-   */
-  C.prototype.showCopyrightInfo = function () {
-    var info = '';
-
-    for (var i = 0; i < this.params.interactions.length; i++) {
-      var interaction = this.params.interactions[i];
-      var params = interaction.action.params;
-
-      if (params.copyright === undefined) {
-        continue;
-      }
-
-      info += '<dl class="h5p-copyinfo"><dt>' + this.l10n.contentType + '</dt><dd>' + params.contentName + '</dd>';
-      if (params.copyright.title !== undefined) {
-        info += '<dt>' + this.l10n.title + '</dt><dd>' + params.copyright.title + '</dd>';
-      }
-      if (params.copyright.author !== undefined) {
-        info += '<dt>' + this.l10n.author + '</dt><dd>' + params.copyright.author + '</dd>';
-      }
-      if (params.copyright.license !== undefined) {
-        info += '<dt>' + this.l10n.license + '</dt><dd>' + this.l10n[params.copyright.license] + ' (' + params.copyright.license + ')</dd>';
-      }
-      if (params.copyright.source !== undefined) {
-        info += '<dt>' + this.l10n.source + '</dt><dd><a target="_blank" href="' + params.copyright.source + '">' + params.copyright.source + '</a></dd>';
-      }
-      info += '<dt>' + this.l10n.time + '</dt><dd>' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to) + '</dd></dl>';
-    }
-
-    if (info) {
-      info = '<h2 class="h5p-interactions-copyright">' + this.l10n.interactionsCopyright + '</h2>' + info;
-    }
-
-    this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction">' + this.params.video.copyright + info + '</div>');
-    this.showDialog();
-  };
-
-  /**
    * Display interaction dialog.
    *
    * @param {Object} interaction
@@ -807,8 +718,8 @@ H5P.InteractiveVideo = (function ($) {
       this.$dialog.addClass('h5p-big');
     }
     else {
-      if (instance.resize !== undefined) {
-        instance.resize();
+      if (instance.$ !== undefined) {
+        instance.$.trigger('resize');
       }
 
       // TODO: Just let image implement resize or something? If so make sure
@@ -964,7 +875,7 @@ H5P.InteractiveVideo = (function ($) {
 
     var videoRights, video = self.params.video.files[0];
     if (video.copyright !== undefined) {
-      videoRights = new H5P.MediaCopyright(video.copyright, self.l10n)
+      videoRights = new H5P.MediaCopyright(video.copyright, self.l10n);
     }
 
     if ((videoRights === undefined || videoRights.undisclosed()) && self.params.video.copyright !== undefined) {

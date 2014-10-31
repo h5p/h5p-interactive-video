@@ -3,14 +3,14 @@
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 29,
+  "patchVersion": 31,
   "embedTypes" : ["iframe"],
   "runnable": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 1
+    "minorVersion": 2
   },
   "preloadedJs": [
     {
