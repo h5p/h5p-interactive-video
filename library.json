@@ -2,10 +2,11 @@
   "title": "Interactive Video",
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
-  "minorVersion": 1,
-  "patchVersion": 10,
+  "minorVersion": 2,
+  "patchVersion": 12,
   "embedTypes" : ["iframe"],
   "runnable": 1,
+  "fullscreen": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",
   "coreApi": {
@@ -48,7 +49,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 1
+      "minorVersion": 2
     }
   ]
 }
