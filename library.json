@@ -2,12 +2,17 @@
   "title": "Interactive Video",
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
-  "minorVersion": 0,
-  "patchVersion": 28,
+  "minorVersion": 2,
+  "patchVersion": 12,
   "embedTypes" : ["iframe"],
   "runnable": 1,
+  "fullscreen": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Frode Petterson",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 2
+  },
   "preloadedJs": [
     {
       "path": "scripts/interactive-video.js"
@@ -33,11 +38,6 @@
       "machineName": "H5P.Video",
       "majorVersion": 1,
       "minorVersion": 0
-    },
-    {
-      "machineName": "H5P.Text",
-      "majorVersion": 1,
-      "minorVersion": 0
     }
   ],
   "editorDependencies": [
@@ -49,7 +49,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 0
+      "minorVersion": 2
     }
   ]
 }
