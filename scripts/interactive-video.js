@@ -23,6 +23,7 @@ H5P.InteractiveVideo = (function ($) {
     this.contentId = id;
     this.visibleInteractions = [];
     this.postUserStatistics = (H5P.postUserStatistics === true);
+    this.duration = 0;
 
     this.l10n = {
       interaction: 'Interaction',
@@ -178,10 +179,10 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.loaded = function () {
     var that = this;
 
-    var duration = this.video.getDuration();
-    var time = C.humanizeTime(duration);
+    this.duration = this.video.getDuration();
+    var time = C.humanizeTime(this.duration);
     this.controls.$totalTime.html(time);
-    this.controls.$slider.slider('option', 'max', duration);
+    this.controls.$slider.slider('option', 'max', this.duration);
 
     // Set correct margins for timeline
     this.controls.$slider.parent().css({
@@ -190,12 +191,12 @@ H5P.InteractiveVideo = (function ($) {
     });
     this.controls.$currentTime.html(C.humanizeTime(0));
 
-    duration = Math.floor(duration);
+    this.duration = Math.floor(this.duration);
 
     // Set max/min for editor duration fields
     if (this.editor !== undefined) {
       var durationFields = this.editor.field.fields[0].field.fields[0].fields;
-      durationFields[0].max = durationFields[1].max = duration;
+      durationFields[0].max = durationFields[1].max = this.duration;
       durationFields[0].min = durationFields[1].min = 0;
     }
 
@@ -206,8 +207,8 @@ H5P.InteractiveVideo = (function ($) {
         x: 80,
         y: 80,
         duration: {
-          from: duration - 3,
-          to: duration
+          from: this.duration - 3,
+          to: this.duration
         },
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
@@ -641,6 +642,10 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.timeUpdate = function (time) {
     var self = this;
 
+    if(this.duration === 0) {
+      this.loaded();
+    }
+
     if (self.$splash !== undefined) {
       // Remove splash
       self.$splash.remove();
@@ -798,7 +803,7 @@ H5P.InteractiveVideo = (function ($) {
     var className = this.getClassName(interaction);
     var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
 
-    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' 
+    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction '
       + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y
       + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>'
       + (showLabel ? '<div class="h5p-interaction-label">' + interaction.label
