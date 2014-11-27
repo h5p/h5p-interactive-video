@@ -146,30 +146,28 @@
   {
     "name": "override",
     "type": "group",
-    "label": "Override native button options",
+    "label": "Settings for \"Show solution\" and \"Retry\" buttons",
     "description": "These options will let you override when to display \"Show solution\" and \"Retry\" buttons in integrated h5p content.",
-    "common": true,
-    "optional": true,
     "fields": [
       {
         "name": "overrideButtons",
         "type": "boolean",
-        "label": "Override native button settings.",
-        "description": "Enabling this option will let you override display settings for integrated content buttons with the following options.",
+        "label": "Enable override for \"Show solution\" and \"Retry\" settings.",
+        "description": "If this is enabled the questions own settings will be ignored and the below settings will be used instead.",
         "default": false
       },
       {
         "name": "overrideShowSolutionButton",
         "type": "boolean",
-        "label": "Enable \"Show solution\" button for subcontent.",
-        "description": "Enabling this option will override subcontent to show the \"Show solution\" button.",
+        "label": "Enable \"Show solution\" buttons.",
+        "description": "Enabling this option will make questions show the \"Show solution\" button.",
         "default": false
       },
       {
         "name": "overrideRetryButton",
         "type": "boolean",
-        "label": "Enable \"Retry\" button for subcontent.",
-        "description": "Enabling this option will override subcontent to show the \"Retry\" button.",
+        "label": "Enable \"Retry\" buttons.",
+        "description": "Enabling this option will make questions show the \"Retry\" button.",
         "default": false
       }
     ]
