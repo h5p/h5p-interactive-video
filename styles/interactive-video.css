@@ -218,8 +218,11 @@
 .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button:before {
   content: "\f126";
 }
+.h5p-dialog-interaction {
+	font-size: 0.875em; /* 14px */
+}
 .h5p-dialog-interaction.h5p-blanks {
-  font-size: .8em;
+  font-size: 0.8125em; /* 13px */
 }
 .h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
   min-height: 5em;
@@ -473,7 +476,7 @@
   width: 18px;
   height: 18px;
   text-shadow: 0 0 4px #666;
-  outline: none;  
+  outline: none;
   text-decoration: none;
   border:0;
 }
@@ -609,20 +612,26 @@
   position: absolute;
   width: 24.5em;
   max-height: 81.5%;
-  margin: 1.33em;
-  padding: 0.67em;
+  margin: 1.25em;
+  padding: 0.5em;
   background: #fff;
   overflow: auto;
-  box-shadow: 0 0 2.67em 0 #191919;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  box-shadow: 0 0 2.5em 0 #191919;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big {
-  width: 91.2%;
-  height: 81.5%;
+	width: auto;
+	height: auto;
+	max-height: none;
+	left: 1.25em;
+	right: 1.25em;
+	top: 1.25em;
+	bottom: 1.25em;
+	margin: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-dialog-inner {
   width: 22.9em;
@@ -669,6 +678,12 @@
 .h5p-interactive-video .h5p-image {
   display: block;
   height: auto;
+}
+.h5p-interactive-video .h5p-text p:first-child {
+	margin-top: 0;
+}
+.h5p-interactive-video .h5p-text p:last-child {
+	margin-bottom: 0;
 }
 
 .h5p-interactive-video .h5p-video-error {
