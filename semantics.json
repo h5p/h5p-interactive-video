@@ -146,8 +146,9 @@
   {
     "name": "override",
     "type": "group",
-    "label": "Settings for \"Show solution\" and \"Retry\" buttons",
-    "description": "These options will let you override when to display \"Show solution\" and \"Retry\" buttons in integrated h5p content.",
+    "label": "Settings for \"Show solution\" button and \"Retry\".",
+    "description": "These options will let you override when to display \"Show solution\" button and \"Retry\" in integrated h5p content.",
+    "optional": true,
     "fields": [
       {
         "name": "overrideButtons",
@@ -164,10 +165,10 @@
         "default": false
       },
       {
-        "name": "overrideRetryButton",
+        "name": "overrideRetry",
         "type": "boolean",
-        "label": "Enable \"Retry\" buttons.",
-        "description": "Enabling this option will make questions show the \"Retry\" button.",
+        "label": "Enable \"Retry\".",
+        "description": "Enabling this option will make the user able to \"Retry\" .",
         "default": false
       }
     ]
