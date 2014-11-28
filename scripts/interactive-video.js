@@ -563,6 +563,11 @@ H5P.InteractiveVideo = (function ($) {
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
       width = this.$container.width();
+
+      if (isNaN(this.video.getDuration())) {
+        // Make sure video has an aspect ratio of 16/9 when not loaded.
+        this.$videoWrapper.css('height', (width * 0.5625) + 'px');
+      }
     }
 
     // Set base font size. Don't allow it to fall below original size.
@@ -902,9 +907,11 @@ H5P.InteractiveVideo = (function ($) {
           instance.$.on('resize', function () {
             var height = $dialog.height();
             if (lastHeight > height + 10 || lastHeight < height - 10)  {
-               $inner.stop().animate({
-                 scrollTop: height
-               }, 300);
+              setTimeout(function () {
+                $inner.stop().animate({
+                  scrollTop: height
+                }, 300);
+              }, 500);
             }
             lastHeight = height;
           });
