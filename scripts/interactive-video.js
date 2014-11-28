@@ -902,9 +902,11 @@ H5P.InteractiveVideo = (function ($) {
           instance.$.on('resize', function () {
             var height = $dialog.height();
             if (lastHeight > height + 10 || lastHeight < height - 10)  {
-               $inner.stop().animate({
-                 scrollTop: height
-               }, 300);
+              setTimeout(function () {
+                $inner.stop().animate({
+                  scrollTop: height
+                }, 300);
+              }, 500);
             }
             lastHeight = height;
           });
