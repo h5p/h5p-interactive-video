@@ -132,15 +132,28 @@
       },
       {
         "name": "summary",
-        "type": "library",
+        "type": "group",
         "label": "Summary task",
-        "options": [
-          "H5P.Summary 1.1"
-        ],
-        "default": {
-          "library": "H5P.Summary 1.1",
-          "params": {}
-        }
+        "fields": [
+          {
+            "name": "task",
+            "type": "library",
+            "options": [
+              "H5P.Summary 1.1"
+            ],
+            "default": {
+              "library": "H5P.Summary 1.1",
+              "params": {}
+            }
+          },
+          {
+            "name": "displayAt",
+            "type": "number",
+            "label": "Display at",
+            "description": "Number of seconds before the video ends.",
+            "default": 3
+          }
+        ]
       }
     ]
   }
