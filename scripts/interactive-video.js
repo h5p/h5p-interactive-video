@@ -227,8 +227,8 @@ H5P.InteractiveVideo = (function ($) {
         //Extend subcontent parameters
         H5P.jQuery.extend(subcontent.action.params, {
           behaviour: {
-            enableSolutionsButton: this.overrideShowSolutionsButton,
-            enableRetry: this.overrideRetry
+            enableSolutionsButton: that.overrideShowSolutionButton,
+            enableRetry: that.overrideRetry
           }
         });
       });
