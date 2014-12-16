@@ -37,6 +37,12 @@ H5P.InteractiveVideo = (function ($) {
       bookmarks: 'Bookmarks'
     };
 
+    if (params.override !== undefined) {
+      this.overrideButtons = (params.override.overrideButtons === undefined ? false : params.override.overrideButtons);
+      this.overrideShowSolutionButton = (params.override.overrideShowSolutionButton === undefined ? false : params.override.overrideShowSolutionButton);
+      this.overrideRetry = (params.override.overrideRetry === undefined ? false : params.override.overrideRetry);
+    }
+
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
   }
 
@@ -217,6 +223,17 @@ H5P.InteractiveVideo = (function ($) {
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
         label: this.l10n.summary
+      });
+    }
+
+    //Extend subcontent with overrided button settings.
+    if (this.overrideButtons) {
+      that.params.assets.interactions.forEach( function (subcontent) {
+        //Extend subcontent parameters
+        H5P.jQuery.extend(subcontent.action.params.behaviour, {
+          enableSolutionsButton: that.overrideShowSolutionButton,
+          enableRetry: that.overrideRetry
+        });
       });
     }
 

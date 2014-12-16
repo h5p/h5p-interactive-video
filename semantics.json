@@ -100,11 +100,12 @@
                     "H5P.Table 1.0",
                     "H5P.Link 1.0",
                     "H5P.Image 1.0",
-                    "H5P.MultiChoice 1.0",
-                    "H5P.Blanks 1.0",
-                    "H5P.DragQuestion 1.0",
+                    "H5P.MultiChoice 1.1",
+                    "H5P.Blanks 1.1",
+                    "H5P.DragQuestion 1.1",
                     "H5P.Summary 1.1",
-                    "H5P.MarkTheWords 1.0"
+                    "H5P.MarkTheWords 1.1",
+                    "H5P.DragText 1.1"
                   ]
                 }
               ]
@@ -154,6 +155,36 @@
             "default": 3
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "override",
+    "type": "group",
+    "label": "Settings for \"Show solution\" button and \"Retry\".",
+    "description": "These options will let you override when to display \"Show solution\" button and \"Retry\" in integrated h5p content.",
+    "optional": true,
+    "fields": [
+      {
+        "name": "overrideButtons",
+        "type": "boolean",
+        "label": "Enable override for \"Show solution\" and \"Retry\" settings.",
+        "description": "If this is enabled the questions own settings will be ignored and the below settings will be used instead.",
+        "default": false
+      },
+      {
+        "name": "overrideShowSolutionButton",
+        "type": "boolean",
+        "label": "Enable \"Show solution\" buttons.",
+        "description": "Enabling this option will make questions show the \"Show solution\" button.",
+        "default": false
+      },
+      {
+        "name": "overrideRetry",
+        "type": "boolean",
+        "label": "Enable \"Retry\".",
+        "description": "Enabling this option will make the user able to \"Retry\" .",
+        "default": false
       }
     ]
   }
