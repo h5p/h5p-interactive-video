@@ -205,14 +205,19 @@ H5P.InteractiveVideo = (function ($) {
       durationFields[0].min = durationFields[1].min = 0;
     }
 
-    // Add summary interaction to last second
+    // Add summary interaction
     if (this.hasMainSummary()) {
+      var displayAt = duration - this.params.summary.displayAt;
+      if (displayAt < 0) {
+        displayAt = 0;
+      }
+
       this.params.assets.interactions.push({
-        action: this.params.summary,
+        action: this.params.summary.task,
         x: 80,
         y: 80,
         duration: {
-          from: duration - 3,
+          from: displayAt,
           to: duration
         },
         bigDialog: true,
@@ -249,12 +254,15 @@ H5P.InteractiveVideo = (function ($) {
    *   false otherwise
    */
   C.prototype.hasMainSummary = function() {
-    return this.params.summary !== undefined &&
-      this.params.summary.params !== undefined &&
-      this.params.summary.params.summaries !== undefined &&
-      this.params.summary.params.summaries.length > 0 &&
-      this.params.summary.params.summaries[0].summary !== undefined &&
-      this.params.summary.params.summaries[0].summary.length > 0;
+    var summary = this.params.summary;
+    return !(summary === undefined ||
+        summary.displayAt === undefined ||
+        summary.task === undefined ||
+        summary.task.params === undefined ||
+        summary.task.params.summaries === undefined ||
+        !summary.task.params.summaries.length ||
+        summary.task.params.summaries[0].summary === undefined ||
+        !summary.task.params.summaries[0].summary.length);
   };
 
   /**
@@ -572,6 +580,11 @@ H5P.InteractiveVideo = (function ($) {
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
       width = this.$container.width();
+
+      if (isNaN(this.video.getDuration())) {
+        // Make sure video has an aspect ratio of 16/9 when not loaded.
+        this.$videoWrapper.css('height', (width * 0.5625) + 'px');
+      }
     }
 
     // Set base font size. Don't allow it to fall below original size.
@@ -815,11 +828,11 @@ H5P.InteractiveVideo = (function ($) {
     var className = this.getClassName(interaction);
     var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
 
-    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' 
-      + className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y
-      + '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>'
-      + (showLabel ? '<div class="h5p-interaction-label">' + interaction.label
-      + '</div>' : '') + '</div>')
+    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' +
+            className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y +
+            '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' +
+            (showLabel ? '<div class="h5p-interaction-label">' + interaction.label +
+            '</div>' : '') + '</div>')
       .appendTo(this.$overlay)
       .click(function () {
         if (that.editor === undefined) {
@@ -896,13 +909,30 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     if (interaction !== undefined) {
-      var $dialog = this.$dialog.children('.h5p-dialog-inner').html('<div class="h5p-dialog-interaction"></div>').children();
+      var $inner = this.$dialog.children('.h5p-dialog-inner');
+      var $dialog = $inner.html('<div class="h5p-dialog-interaction"></div>').children();
       instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
 
       var lib = interaction.action.library.split(' ')[0];
 
       if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
         interaction.bigDialog = true;
+
+        if (lib === 'H5P.Summary') {
+          // Scroll summary to bottom if the task changes size
+          var lastHeight = 0;
+          instance.$.on('resize', function () {
+            var height = $dialog.height();
+            if (lastHeight > height + 10 || lastHeight < height - 10)  {
+              setTimeout(function () {
+                $inner.stop().animate({
+                  scrollTop: height
+                }, 300);
+              }, 500);
+            }
+            lastHeight = height;
+          });
+        }
       }
     }
 
