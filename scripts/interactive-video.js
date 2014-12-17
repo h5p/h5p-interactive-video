@@ -15,7 +15,9 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {_L2.C}
    */
   function C(params, id) {
-    this.$ = $(this);
+    var self = this;
+    self.$ = $(self);
+
     this.params = $.extend({
       video: {},
       assets: {}
@@ -38,7 +40,98 @@ H5P.InteractiveVideo = (function ($) {
     };
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+
+    this.video = H5P.newRunnable({
+      library: 'H5P.Video 1.1',
+      params: {
+        files: this.params.video.files,
+        controls: this.justVideo,
+        autoplay: false,
+        fitToWrapper: false
+      }
+    }, this.contentId);
+
+    this.video.on('error', function (message) {
+      // Make sure splash screen is removed so the error is visible.
+      self.removeSplash();
+    });
+
+    var firstPlay = true;
+    this.video.on('stateChange', function (state) {
+      if (self.currentState === SEEKING) {
+        return; // Prevent updateing UI while seeking
+      }
+
+      switch (state) {
+        case H5P.Video.ENDED:
+          self.currentState = ENDED;
+          self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+
+          // Post user score
+          if (self.postUserStatistics === true) {
+            H5P.setFinished(self.contentId, 0, 0);
+          }
+          break;
+
+        case H5P.Video.PLAYING:
+          if (firstPlay) {
+            firstPlay = false;
+
+            // Qualities might not be available until after play.
+            self.addQualityChooser();
+
+            // Make sure splash screen is removed.
+            self.removeSplash();
+
+            // Make sure we track buffering of the video.
+            self.startUpdatingBufferBar();
+          }
+
+          self.currentState = PLAYING;
+          self.controls.$play.removeClass('h5p-pause').attr('title', self.l10n.pause);
+          self.timeUpdate(self.video.getCurrentTime());
+          break;
+
+        case H5P.Video.PAUSED:
+          self.currentState = PAUSED;
+          self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+          break;
+
+        case H5P.Video.BUFFERING:
+          self.currentState = BUFFERING;
+
+          // Make sure splash screen is removed.
+          self.removeSplash();
+
+          // Make sure we track buffering of the video.
+          self.startUpdatingBufferBar();
+
+          // Remove interactions while buffering
+          self.timeUpdate(-1);
+          break;
+      }
+    });
+
+    this.video.on('qualityChange', function (quality) {
+      self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
+    });
+
+    this.video.on('loaded', function (state) {
+      self.loaded();
+    });
   }
+
+  /**
+   * Removes splash screen.
+   */
+  C.prototype.removeSplash = function () {
+    if (this.$splash === undefined) {
+      return;
+    }
+
+    this.$splash.remove();
+    delete this.$splash;
+  };
 
   /**
    * Attach interactive video to DOM element.
@@ -97,76 +190,24 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachVideo = function ($wrapper) {
     var that = this;
 
-    this.video = new H5P.Video({
-      files: this.params.video.files,
-      controls: this.justVideo,
-      autoplay: false,
-      fitToWrapper: false
-    }, this.contentId);
-
-    this.video = H5P.newRunnable({
-      library: 'H5P.Video 1.0',
-      params: {
-        files: this.params.video.files,
-        controls: this.justVideo,
-        autoplay: false,
-        fitToWrapper: false
-      }
-    }, this.contentId);
-
+    this.video.attach($wrapper);
     if (this.justVideo) {
-      this.video.attach($wrapper);
       return;
     }
 
-    this.video.errorCallback = function (errorCode, errorMessage) {
-      if (errorCode instanceof Event) {
-        // Video
-        switch (errorCode.target.error.code) {
-          case MediaError.MEDIA_ERR_ABORTED:
-            errorMessage = 'Media playback has been aborted';
-            break;
-          case MediaError.MEDIA_ERR_NETWORK:
-            errorMessage = 'Network failure';
-            break;
-          case MediaError.MEDIA_ERR_DECODE:
-            errorMessage = 'Unable to decode media';
-            break;
-          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-            errorMessage = 'Video format not supported';
-            break;
-          case MediaError.MEDIA_ERR_ENCRYPTED:
-            errorMessage = 'Encrypted';
-            break;
-        }
-      }
-
-      that.$container.html('<div class="h5p-video-error">Error: ' + errorMessage + '.</div>');
-      if (that.editor !== undefined) {
-        delete that.editor.IV;
-      }
-    };
-    this.video.endedCallback = function () {
-      if (this.controls === undefined) return; // Might fail before we are ready.
-      that.ended();
-    };
-    this.video.loadedCallback = function () {
-      that.loaded();
-    };
-
-    this.video.attach($wrapper);
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
 
     if (this.editor === undefined) {
       this.$splash = $('<div class="h5p-splash-wrapper"><div class="h5p-splash"><h2>Interactive Video</h2><p>Press the icons as the video plays for challenges and more information on the topics!</p><div class="h5p-interaction h5p-multichoice-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">Challenges</div></div><div class="h5p-interaction h5p-text-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">More information</div></div></div></div>')
-      .click(function(){
-        that.play();
-        H5P.jQuery(this).remove();
-      })
-      .appendTo(this.$overlay);
-      this.$splash.find('.h5p-interaction-button').click(function () {
-        return false;
-      });
+        .click(function () {
+          that.video.play();
+        })
+        .appendTo(this.$overlay)
+        .find('.h5p-interaction-button')
+          .click(function () {
+            return false;
+          })
+          .end();
     }
   };
 
@@ -323,7 +364,7 @@ H5P.InteractiveVideo = (function ($) {
           $bookmark.mouseover().mouseout();
         }
         self.controls.$bookmarksChooser.removeClass('h5p-show');
-        self.seek(bookmark.time);
+        self.video.seek(bookmark.time);
       });
 
     // Insert bookmark in the correct place.
@@ -363,16 +404,16 @@ H5P.InteractiveVideo = (function ($) {
   C.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality h5p-disabled"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
     this.controls = {};
 
     // Play/pause button
     this.controls.$play = $wrapper.find('.h5p-play').click(function () {
       if (that.controls.$play.hasClass('h5p-pause')) {
-        that.play();
+        that.video.play();
       }
       else {
-        that.pause();
+        that.video.pause();
       }
       return false;
     });
@@ -399,32 +440,15 @@ H5P.InteractiveVideo = (function ($) {
       });
 
       // Video quality selector
-      var $chooser = $wrapper.find('.h5p-chooser.h5p-quality');
-      $wrapper.find('.h5p-control.h5p-quality').click(function () {
-        $chooser.toggleClass('h5p-show');
+      this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
+      this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
+        if (!that.controls.$qualityButton.hasClass('h5p-disabled')) {
+          that.controls.$qualityChooser.toggleClass('h5p-show');
+        }
         return false;
       });
 
-      var qualities = '';
-      for (var level in this.video.qualities) {
-        if (this.video.qualities.hasOwnProperty(level)) {
-          qualities += '<li role="button" tabIndex="1" data-level="' + level + '" class="' + (this.video.qualities[level]['default'] !== undefined ? 'h5p-selected' : '') + '">' + this.video.qualities[level].label + '</li>';
-        }
-      }
-      if (qualities !== '') {
-        $chooser.append('<ol>' + qualities + '</ol>');
-        var $options = $chooser.find('li').click(function () {
-          $options.removeClass('h5p-selected');
-          that.video.setQuality($(this).addClass('h5p-selected').attr('data-level'));
-
-          // Clear buffered canvas.
-          var canvas = that.controls.$buffered[0];
-          canvas.width = canvas.width;
-        });
-      }
-      else {
-        $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
-      }
+      this.addQualityChooser();
     }
     else {
       // Remove buttons in editor mode.
@@ -437,7 +461,7 @@ H5P.InteractiveVideo = (function ($) {
       this.controls.$volume = $wrapper.find('.h5p-volume').click(function () {
         if (that.controls.$volume.hasClass('h5p-muted')) {
           that.controls.$volume.removeClass('h5p-muted').attr('title', that.l10n.mute);
-          that.video.unmute();
+          that.video.unMute();
         }
         else {
           that.controls.$volume.addClass('h5p-muted').attr('title', that.l10n.unmute);
@@ -464,33 +488,88 @@ H5P.InteractiveVideo = (function ($) {
 			range: 'min',
       max: 0,
       start: function () {
-        if (that.playing === undefined) {
-          if (that.controls.$slider.slider('option', 'max') !== 0) {
-            that.playing = false;
-          }
+        if (that.currentState === SEEKING) {
+          return; // Prevent double start on touch devies!
         }
-        else if (that.playing) {
-          that.pause(true);
-        }
+
+        that.lastState = (that.currentState === ENDED ? PLAYING : that.currentState);
+        that.video.pause();
+        that.currentState = SEEKING;
+
+        // Make sure splash screen is removed.
+        that.removeSplash();
       },
       slide: function (e, ui) {
-        // Update timer
+        // Update elapsed time
         that.controls.$currentTime.html(C.humanizeTime(ui.value));
       },
       stop: function (e, ui) {
-        that.seek(ui.value);
-        if (that.playing !== undefined && that.playing) {
-          that.play(true);
+        that.currentState = that.lastState;
+        that.video.seek(ui.value);
+        if (that.lastState === PLAYING) {
+          that.video.play();
+        }
+        else {
+          that.timeUpdate(ui.value);
         }
       }
     });
 
     // Slider bufferer
-    this.controls.$buffered = $('<canvas class="h5p-buffered" width="100" height="8"></canvas>').prependTo(this.controls.$slider);
+    this.controls.$buffered = $('<div class="h5p-buffered"></div>').prependTo(this.controls.$slider);
 
     // Slider containers
     this.controls.$interactionsContainer = $slider.find('.h5p-interactions-container');
     this.controls.$bookmarksContainer = $slider.find('.h5p-bookmarks-container');
+  };
+
+  /**
+   *
+   */
+  C.prototype.addQualityChooser = function () {
+    var self = this;
+
+    var qualities = this.video.getQualities();
+    if (!qualities || this.controls.$qualityButton === undefined ||
+        !this.controls.$qualityButton.hasClass('h5p-disabled')) {
+      return;
+    }
+
+    var currentQuality = this.video.getQuality();
+
+    var html = '';
+    for (var i = 0; i < qualities.length; i++) {
+      var quality = qualities[i];
+      html += '<li role="button" tabIndex="1" data-quality="' + quality.name + '" class="' + (quality.name === currentQuality ? 'h5p-selected' : '') + '">' + quality.label + '</li>';
+    }
+
+    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
+    var $options = $list.children().click(function () {
+      self.video.setQuality($(this).attr('data-quality'));
+      self.controls.$qualityChooser.removeClass('h5p-show');
+    });
+
+    // Enable quality chooser button
+    this.controls.$qualityButton.removeClass('h5p-disabled');
+  };
+
+  /**
+   * Create loop that constantly updates the buffer bar
+   */
+  C.prototype.startUpdatingBufferBar = function () {
+    var self = this;
+    if (self.bufferLoop) {
+      return;
+    }
+
+    var updateBufferBar = function () {
+      var buffered = self.video.getBuffered();
+      if (buffered && self.controls.$buffered) {
+        self.controls.$buffered.css('width', buffered + '%');
+      }
+      self.bufferLoop = setTimeout(updateBufferBar, 500);
+    };
+    updateBufferBar();
   };
 
   /**
@@ -515,14 +594,6 @@ H5P.InteractiveVideo = (function ($) {
           marginRight: right
         });
       }
-    }
-
-    if (this.video.video !== undefined) {
-      var that = this;
-      setTimeout(function () {
-        that.controls.$buffered.attr('width', that.controls.$slider.width());
-        that.drawBufferBar();
-      }, 1);
     }
 
     this.$videoWrapper.css({
@@ -563,11 +634,6 @@ H5P.InteractiveVideo = (function ($) {
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
       width = this.$container.width();
-
-      if (isNaN(this.video.getDuration())) {
-        // Make sure video has an aspect ratio of 16/9 when not loaded.
-        this.$videoWrapper.css('height', (width * 0.5625) + 'px');
-      }
     }
 
     // Set base font size. Don't allow it to fall below original size.
@@ -611,61 +677,17 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   /**
-   * Start the show.
-   *
-   * @param {Boolean} seeking
-   * @returns {undefined}
-   */
-  C.prototype.play = function (seeking) {
-    var that = this;
-
-    if (seeking === undefined) {
-      this.playing = true;
-
-      if (this.$splash !== undefined) {
-        this.$splash.remove();
-        delete this.$splash;
-      }
-
-      if (this.hasEnded !== undefined && this.hasEnded) {
-        // Start video over again
-        this.video.seek(0);
-        this.hasEnded = false;
-      }
-
-      this.controls.$play.removeClass('h5p-pause').attr('title', this.l10n.pause);
-    }
-
-    // Start video
-    this.video.play();
-
-    // Set interval that updates our UI as the video clip plays.
-    this.uiUpdater = setInterval(function () {
-      that.timeUpdate(that.video.getTime());
-    }, 40); // 25 FPS
-  };
-
-  /**
    * Called when the time of the video changes.
    * Makes sure to update all UI elements.
    *
-   * @params {Number} time new
+   * @param {Number} time
    */
   C.prototype.timeUpdate = function (time) {
     var self = this;
 
-    if (self.$splash !== undefined) {
-      // Remove splash
-      self.$splash.remove();
-      delete self.$splash;
-    }
-
     // Scroll slider
-    self.controls.$slider.slider('option', 'value', time);
-
-    // Update buffer bar
-    if (self.video.video !== undefined) {
-      self.drawBufferBar();
+    if (time > 0) {
+      self.controls.$slider.slider('option', 'value', time);
     }
 
     // Some UI elements are updated every 10th of a second.
@@ -690,82 +712,21 @@ H5P.InteractiveVideo = (function ($) {
         self.editor.dnb.blur();
       }
 
-      // Update timer
-      self.controls.$currentTime.html(C.humanizeTime(second));
+
+      if (self.currentState === PLAYING) {
+        // Update elapsed time
+        self.controls.$currentTime.html(C.humanizeTime(second));
+      }
     }
     self.lastSecond = second;
 
-    self.controls.$currentTime.html(C.humanizeTime(time));
-
     self.toggleInteractions(Math.floor(time));
-  };
 
-  /**
-   * Seek the interactive video to the given time.
-   *
-   * @param {Number} time
-   */
-  C.prototype.seek = function (time) {
-    var self = this;
-
-    self.video.seek(time); // Update video
-    self.timeUpdate(time); // Update overlay
-
-    if (self.hasEnded !== undefined && self.hasEnded) {
-      // Prevent video from restarting when pressing play
-      self.hasEnded = false;
-    }
-  };
-
-  /**
-   * Draw the buffer bar
-   */
-  C.prototype.drawBufferBar = function () {
-    var canvas = this.controls.$buffered[0].getContext('2d');
-    var width = parseFloat(this.controls.$buffered.attr('width'));
-    var buffered = this.video.video.buffered;
-    var duration = this.video.video.duration;
-
-    canvas.fillStyle = '#5f5f5f';
-    for (var i = 0; i < buffered.length; i++) {
-      var from = buffered.start(i) / duration * width;
-      var to = (buffered.end(i) / duration * width) - from;
-
-      canvas.fillRect(from, 0, to, 8);
-    }
-  };
-
-  /**
-   * Pause our interactive video.
-   *
-   * @param {Boolean} seeking
-   * @returns {undefined}
-   */
-  C.prototype.pause = function (seeking) {
-    if (seeking === undefined) {
-      this.controls.$play.addClass('h5p-pause').attr('title', this.l10n.play);
-      this.playing = false;
-    }
-
-    this.video.pause();
-    clearInterval(this.uiUpdater);
-  };
-
-  /**
-   * Interactive video has ended.
-   */
-  C.prototype.ended = function () {
-    this.controls.$play.addClass('h5p-pause').attr('title', this.l10n.play);
-    this.playing = false;
-    this.hasEnded = true;
-
-    this.video.pause();
-    clearInterval(this.uiUpdater);
-
-    // Post user score
-    if (this.postUserStatistics === true) {
-      H5P.setFinished(this.contentId, 0, 0);
-    }
+    setTimeout(function () {
+      if (self.currentState === PLAYING) {
+        self.timeUpdate(self.video.getCurrentTime());
+      }
+    }, 40); // 25 fps
   };
 
   /**
@@ -791,7 +752,7 @@ H5P.InteractiveVideo = (function ($) {
     var interaction = this.params.assets.interactions[i];
 
     if (second === undefined) {
-      second = Math.floor(this.video.getTime());
+      second = Math.floor(this.video.getCurrentTime());
     }
 
     if (second < interaction.duration.from || second > interaction.duration.to) {
@@ -839,7 +800,7 @@ H5P.InteractiveVideo = (function ($) {
     }, 1);
 
     if (interaction.pause && this.playing) {
-      this.pause();
+      this.video.pause();
     }
 
     return $interaction;
@@ -887,9 +848,8 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     var instance;
 
-    if (this.playing) {
-      this.pause(true);
-    }
+    this.lastState = this.currentState;
+    this.video.pause();
 
     if (interaction !== undefined) {
       var $inner = this.$dialog.children('.h5p-dialog-inner');
@@ -1090,8 +1050,8 @@ H5P.InteractiveVideo = (function ($) {
       that.$dialogWrapper.hide();
     }, 201);
 
-    if ((this.editor === undefined || this.playing) && (this.hasEnded === undefined || this.hasEnded === false)) {
-      this.play(this.playing ? true : undefined);
+    if (this.editor === undefined && that.lastState === PLAYING) {
+      this.video.play();
     }
   };
 
@@ -1131,6 +1091,16 @@ H5P.InteractiveVideo = (function ($) {
     return info;
   };
 
+  /** @constant {number} */
+  var ENDED = 0;
+  /** @constant {number} */
+  var PLAYING = 1;
+  /** @constant {number} */
+  var PAUSED = 2;
+  /** @constant {number} */
+  var BUFFERING = 3;
+  /** @constant {number} */
+  var SEEKING = 4;
 
   /**
    * Formats time in H:MM:SS.

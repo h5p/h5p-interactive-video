@@ -21,7 +21,7 @@
    use display:none, since IV is triggering a click on
    the disable fullscreen button in semi fullscreen mode */
 .h5p-interactive-video .h5p-content-controls {
-  visibility:hidden;
+  visibility: hidden;
   position: absolute;
   top:0;
 }
@@ -38,12 +38,13 @@
 .h5p-interactive-video object {
   display: block;
 }
-.h5p-interactive-video .h5p-video-wrapper .h5p-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.h5p-interactive-video .h5p-overlay.h5p-visible {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 .h5p-interactive-video .h5p-ie-transparent-background {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=);
@@ -338,6 +339,9 @@
 .h5p-interactive-video .h5p-control:hover:before {
   color: #dbd7d1;
 }
+.h5p-interactive-video .h5p-control.h5p-disabled:before {
+	color: #606060;
+}
 
 .h5p-interactive-video .h5p-play:before {
   content: "\f04c";
@@ -504,6 +508,9 @@
   top: 0;
   left: 0;
   border-radius: 4px;
+	height: 8px;
+	width: 0;
+	background: #5f5f5f;
 }
 
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container {
@@ -683,11 +690,6 @@
 }
 .h5p-interactive-video .h5p-text p:last-child {
 	margin-bottom: 0;
-}
-
-.h5p-interactive-video .h5p-video-error {
-  padding: 1em;
-  color: #fff;
 }
 
 .h5p-interactive-video .h5p-table {
