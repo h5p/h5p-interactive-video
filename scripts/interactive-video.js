@@ -1156,5 +1156,5 @@ H5P.InteractiveVideo = (function ($) {
     return time;
   };
 
-  return C;
+  return InteractiveVideo;
 })(H5P.jQuery);
