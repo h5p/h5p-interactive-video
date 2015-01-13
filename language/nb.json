@@ -28,14 +28,12 @@
                 "description": "Sett avspillingen på pause mens denne interaksjonen vises."
               },
               {
+                "label": "Vis som en interaktiv knapp",
+                "description": "Brukeren må åpne interaktiviteten."
+              },
+              {
                 "label": "Ledetekst",
                 "description": "Ledetekst som vises ved siden av interaksjonsikonet."
-              },
-              {
-              },
-              {
-              },
-              {
               }
             ]
           }

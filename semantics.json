@@ -70,6 +70,13 @@
                   "type": "boolean"
                 },
                 {
+                  "name": "displayAsButton",
+                  "label": "Display as an interactive button",
+                  "description": "The user has to open the interaction.",
+                  "type": "boolean",
+                  "default": true
+                },
+                {
                   "name": "label",
                   "type": "text",
                   "widget": "html",
@@ -88,6 +95,16 @@
                 },
                 {
                   "name": "y",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "width",
+                  "type": "number",
+                  "widget": "none"
+                },
+                {
+                  "name": "height",
                   "type": "number",
                   "widget": "none"
                 },
