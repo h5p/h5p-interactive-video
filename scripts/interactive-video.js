@@ -119,7 +119,9 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     this.video.on('qualityChange', function (quality) {
-      self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
+      if (self.controls.$qualityChooser) {
+        self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
+      }
     });
 
     this.video.on('loaded', function (state) {
