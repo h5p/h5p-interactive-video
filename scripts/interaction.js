@@ -103,7 +103,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
           // Use the image size info that is stored
-          resizeImage($img, max, action.params.file);
+          resizeImage($img, max, {
+            width: action.params.file.width,
+            height: action.params.file.height
+          });
         }
         else {
           // Wait for image to load
@@ -155,9 +158,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Object} size width,height in px
      */
     var resizeImage = function ($img, max, size) {
-      // Convert to em
-      size.width /= FONT_SIZE;
-      size.height /= FONT_SIZE;
+      var fontSize = 16;
+      size.width /= fontSize;
+      size.height /= fontSize;
 
       if (size.height > max.height) {
         size.width = size.width * max.height / size.height;
@@ -168,8 +171,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         size.width = max.width;
       }
 
-      // Set image size
-      $img.css(size);
+      fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
+      $img.css({
+        width: (size.width * fontSizeRatio) + 'em',
+        height: (size.height * fontSizeRatio) + 'em',
+      });
 
       // Set dialog size and position
       dialog.position($interaction, size);
@@ -269,4 +275,5 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
   /** @constant {number} */
   var FONT_SIZE = 16;
 
-})($, H5P.EventDispatcher);
+  return Interaction;
+})(H5P.jQuery, H5P.EventDispatcher);

@@ -103,12 +103,13 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       $dialog.removeClass('h5p-big');
 
       if (size) {
-        // Add padding
-        size.width += toNum($dialog.css('paddingLeft')) + toNum($dialog.css('paddingRight'));
-        size.height += toNum($dialog.css('paddingTop')) + toNum($dialog.css('paddingBottom'));
+        var fontSizeRatio = 16 / toNum($container.css('fontSize'));
 
         // Use a fixed size
-        $dialog.css(size);
+        $dialog.css({
+          width: (size.width * fontSizeRatio) + 'em',
+          height: (size.height * fontSizeRatio) + 'em',
+        });
         $inner.css('width', 'auto');
       }
 
@@ -184,21 +185,18 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       var max = {};
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
         // Space to the left of the button minus margin
-        max.width = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
+        max.width = buttonPosition.left * (1 - (1 - interactionMaxFillRatio) / 2);
       }
       else {
         // Space to the right of the button minus margin
-        max.width = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
+        max.width = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio) / 2);
       }
       max.height = containerHeight * interactionMaxFillRatio;
 
-      // Subtract dialog padding
-      max.width -= toNum($dialog.css('paddingLeft')) + toNum($dialog.css('paddingRight'));
-      max.height -= toNum($dialog.css('paddingTop')) + toNum($dialog.css('paddingBottom'));
-
       // Use em
-      max.width /= FONT_SIZE;
-      max.height /= FONT_SIZE;
+      var fontSize = 16;
+      max.width /= fontSize;
+      max.height /= fontSize;
 
       return max;
     };
@@ -223,9 +221,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
   Dialog.prototype = Object.create(EventDispatcher.prototype);
   Dialog.prototype.constructor = Dialog;
 
-  /** @constant {number} */
-  var FONT_SIZE = 16;
-
   /**
    * @private
    */
@@ -234,4 +229,4 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
   };
 
   return Dialog;
-})($, H5P.EventDispatcher);
+})(H5P.jQuery, H5P.EventDispatcher);
