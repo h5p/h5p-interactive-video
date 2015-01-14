@@ -1,7 +1,7 @@
 H5P Interactive Video
 ==========
 
-Put other multimedias, texts and tasks on top of your video.
+Put texts, tasks and other medias on top of your video.
 
 ## License
 

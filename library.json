@@ -1,6 +1,10 @@
 {
+  "machineName": "H5P.InteractiveVideo",
   "title": "Interactive Video",
-  "contentType": "H5P.InteractiveVideo",
+  "description": "Put texts, tasks and other medias on top of your video.",
+  "license": "MIT",
+  "author": "Amendor AS (icc)",
+  "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 3,
   "patchVersion": 0,
@@ -9,13 +13,17 @@
   ],
   "runnable": 1,
   "fullscreen": 1,
-  "machineName": "H5P.InteractiveVideo",
-  "author": "Frode Petterson",
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 2
+    "minorVersion": 4
   },
   "preloadedJs": [
+    {
+      "path": "scripts/dialog.js"
+    },
+    {
+      "path": "scripts/interaction.js"
+    },
     {
       "path": "scripts/interactive-video.js"
     }

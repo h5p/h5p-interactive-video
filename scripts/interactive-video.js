@@ -1,11 +1,5 @@
-var H5P = H5P || {};
-
-/**
- * Interactive Video module
- *
- * @param {jQuery} $
- */
-H5P.InteractiveVideo = (function ($) {
+/** @namespace H5P */
+H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Initialize a new interactive video.
@@ -151,7 +145,7 @@ H5P.InteractiveVideo = (function ($) {
     var that = this;
     this.$container = $container;
 
-    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
+    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');
 
     // Font size is now hardcoded, since some browsers (At least Android
     // native browser) will have scaled down the original CSS font size by the
@@ -175,18 +169,20 @@ H5P.InteractiveVideo = (function ($) {
     this.$controls = $container.children('.h5p-controls');
     this.attachControls(this.$controls);
 
-    // Dialog
-    this.$dialogWrapper = $container.children('.h5p-dialog-wrapper').click(function () {
-      if (that.editor === undefined) {
-        that.hideDialog();
+    // Create a popup dialog
+    this.dialog = new Dialog($container, this.$videoWrapper);
+
+    // Pause video when opening dialog
+    this.dialog.on('open', function () {
+      that.lastState = that.currentState;
+      that.video.pause();
+    });
+
+    // Resume playing
+    this.dialog.on('close', function () {
+      if (this.editor === undefined && that.lastState === PLAYING) {
+        that.video.play();
       }
-    });
-    this.$dialog = this.$dialogWrapper.children('.h5p-dialog').click(function (event) {
-      event.stopPropagation();
-    });
-    this.$dialog.children('.h5p-dialog-hide').click(function () {
-      that.hideDialog();
-      return false;
     });
   };
 
@@ -269,21 +265,35 @@ H5P.InteractiveVideo = (function ($) {
       });
     }
 
-    //Extend subcontent with overrided button settings.
-    if (this.overrideButtons) {
-      that.params.assets.interactions.forEach( function (subcontent) {
-        //Extend subcontent parameters
-        H5P.jQuery.extend(subcontent.action.params.behaviour, {
-          enableSolutionsButton: that.overrideShowSolutionButton,
-          enableRetry: that.overrideRetry
-        });
+    // Determine how many percentage one second is.
+    this.oneSecondInPercentage = (100 / this.video.getDuration());
+
+    // Initialize interactions
+    this.interactions = [];
+    for (var i = 0; i < this.params.assets.interactions.length; i++) {
+      var parameters = this.params.assets.interactions[i];
+
+      // Extend interaction parameters
+      H5P.jQuery.extend(parameters.action.params.behaviour, {
+        enableSolutionsButton: that.overrideShowSolutionButton,
+        enableRetry: that.overrideRetry
       });
+
+      var interaction = new Interaction(parameters, this.dialog, this.l10n.interaction, this.oneSecondInPercentage, this.contentId);
+      // TODO: Add editor deps?
+      // if (that.editor === undefined) {
+      //   that.showDialog(interaction, $interaction);
+      // }
+      this.interactions.push(interaction);
     }
 
-    this.oneSecondInPercentage = (100 / this.video.getDuration());
+    // Add dots above seeking line.
     this.addSliderInteractions();
+
+    // Add bookmarks
     this.addBookmarks();
 
+    // Use available space
     this.$.trigger('resize');
   };
 
@@ -315,15 +325,9 @@ H5P.InteractiveVideo = (function ($) {
     // Remove old dots
     this.controls.$slider.children('.h5p-seekbar-interaction').remove();
 
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      var interaction = this.params.assets.interactions[i];
-      if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
-        continue; // Skip "sub titles"
-      }
-
-      var title = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction);
-      // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
-      $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%" title="' + title + '"></div>').appendTo(this.controls.$interactionsContainer);
+    // Add new dots
+    for (var i = 0; i < this.interactions.length; i++) {
+      this.interactions[i].addDot(this.controls.$interactionsContainer);
     }
   };
 
@@ -739,8 +743,6 @@ H5P.InteractiveVideo = (function ($) {
     }
     self.lastSecond = second;
 
-    self.toggleInteractions(Math.floor(time));
-
     setTimeout(function () {
       if (self.currentState === PLAYING) {
         self.timeUpdate(self.video.getCurrentTime());
@@ -754,323 +756,15 @@ H5P.InteractiveVideo = (function ($) {
    * @param {int} second
    */
   InteractiveVideo.prototype.toggleInteractions = function (second) {
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      this.toggleInteraction(i, second);
-    }
-  };
+    for (var i = 0; i < this.interactions.length; i++) {
+      var $interaction = this.interactions[i].toggle(second);
+      if ($interaction) {
+        $interaction.appendTo(this.$overlay);
 
-  /**
-   * Display or remove an interaction on the video.
-   *
-   * @param {int} i Interaction index in params.
-   * @param {int} second Optional. Current video time second.
-   * @returns {unresolved}
-   */
-  InteractiveVideo.prototype.toggleInteraction = function (i, second) {
-    var that = this;
-    var interaction = this.params.assets.interactions[i];
-
-    if (second === undefined) {
-      second = Math.floor(this.video.getCurrentTime());
-    }
-
-    if (second < interaction.duration.from || second > interaction.duration.to) {
-      // Remove interaction
-      if (this.visibleInteractions[i] !== undefined) {
-        this.visibleInteractions[i].remove();
-        delete this.visibleInteractions[i];
-      }
-      return;
-    }
-
-    if (this.visibleInteractions[i] !== undefined) {
-      return; // Interaction already exists.
-    }
-
-    // Add interaction
-    var className = this.getClassName(interaction);
-    var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
-
-    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' +
-            className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y +
-            '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' +
-            (showLabel ? '<div class="h5p-interaction-label">' + interaction.label +
-            '</div>' : '') + '</div>')
-      .appendTo(this.$overlay)
-      .click(function () {
-        if (that.editor === undefined) {
-          that.showDialog(interaction, $interaction);
-        }
-        return false;
-      })
-      .end();
-
-    if (this.editor !== undefined) {
-      // Append editor magic
-      this.editor.newInteraction($interaction);
-    }
-
-    // Transition in
-    setTimeout(function () {
-      $interaction.removeClass('h5p-hidden');
-      if (className !== 'h5p-nil-interaction') {
-        that.positionLabel($interaction);
-      }
-    }, 1);
-
-    if (interaction.pause && this.playing) {
-      this.video.pause();
-    }
-
-    return $interaction;
-  };
-
-  /**
-   * Detect custom html class for interaction.
-   *
-   * @param {Object} interaction
-   * @return {String} HTML class
-   */
-  InteractiveVideo.prototype.getClassName = function (interaction) {
-    if (interaction.className === undefined) {
-      var nameParts = interaction.action.library.split(' ')[0].toLowerCase().split('.');
-      return nameParts[0] + '-' + nameParts[1] + '-interaction';
-    }
-    else {
-      return interaction.className;
-    }
-  };
-
-  /**
-   *
-   * @param {type} $interaction
-   * @returns {undefined}
-   */
-  InteractiveVideo.prototype.positionLabel = function ($interaction) {
-    var $label = $interaction.children('.h5p-interaction-label');
-    if ($label.length) {
-      $label.removeClass('h5p-left-label');
-      if (parseInt($interaction.css('left')) + $label.position().left + $label.outerWidth() > this.$videoWrapper.width()) {
-        $label.addClass('h5p-left-label');
-      }
-    }
-  };
-
-  /**
-   * Display interaction dialog.
-   *
-   * @param {Object} interaction
-   * @param {jQuery} $button
-   * @returns {undefined}
-   */
-  InteractiveVideo.prototype.showDialog = function (interaction, $button) {
-    var that = this;
-    var instance;
-
-    this.lastState = this.currentState;
-    this.video.pause();
-
-    if (interaction !== undefined) {
-      var $inner = this.$dialog.children('.h5p-dialog-inner');
-      var $dialog = $inner.html('<div class="h5p-dialog-interaction"></div>').children();
-      instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
-
-      var lib = interaction.action.library.split(' ')[0];
-
-      if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
-        interaction.bigDialog = true;
-
-        if (lib === 'H5P.Summary') {
-          // Scroll summary to bottom if the task changes size
-          var lastHeight = 0;
-          instance.$.on('resize', function () {
-            var height = $dialog.height();
-            if (lastHeight > height + 10 || lastHeight < height - 10)  {
-              setTimeout(function () {
-                $inner.stop().animate({
-                  scrollTop: height
-                }, 300);
-              }, 500);
-            }
-            lastHeight = height;
-          });
+        if (self.currentState === PLAYING && this.interactions[i].pause()) {
+          this.video.pause();
         }
       }
-    }
-
-    this.$dialogWrapper.show();
-    this.positionDialog(interaction, $button, instance);
-
-    setTimeout(function () {
-      that.$dialogWrapper.removeClass('h5p-hidden');
-    }, 1);
-  };
-
-  /**
-   * Position current dialog.
-   *
-   * @param {object} interaction
-   * @param {jQuery} $button
-   * @param {object} instance
-   * @returns {undefined}
-   */
-  InteractiveVideo.prototype.positionDialog = function (interaction, $button, instance) {
-    // Reset dialog styles
-    this.$dialog.removeClass('h5p-big').css({
-      left: '',
-      top: '',
-      height: '',
-      width: '',
-      fontSize: ''
-    }).children().css('width', '');
-
-    if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
-      this.$dialog.addClass('h5p-big');
-    }
-    else {
-      if (instance.$ !== undefined) {
-        instance.$.trigger('resize');
-      }
-
-      // TODO: Just let image implement resize or something? If so make sure
-      // in image class that it only runs once.
-
-      // How much of the player should the interaction cover?
-      var interactionMaxFillRatio = 0.8;
-      var buttonWidth = $button.outerWidth(true);
-      var buttonPosition = $button.position();
-      var containerWidth = this.$container.width();
-      var containerHeight = this.$container.height();
-      var that = this;
-
-      // Special case for images
-      if (interaction.action.library.split(' ')[0] === 'H5P.Image') {
-        var $img = this.$dialog.find('img');
-        var imgHeight, imgWidth, maxWidth;
-        if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
-          // Space to the left of the button minus margin
-          maxWidth = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
-        }
-        else {
-          // Space to the right of the button minus margin
-          maxWidth = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
-        }
-        var maxHeight = containerHeight * interactionMaxFillRatio;
-
-        // Use image size info if it is stored
-        if (interaction.action.params.file.height !== undefined) {
-          imgHeight = interaction.action.params.file.height;
-          imgWidth = interaction.action.params.file.width;
-        }
-        // Image size info is missing. We must find image size
-        else {
-          // TODO: Note that we allready have an img with the approperiate
-          // source attached to the DOM, wouldn't attaching another cause
-          // double loading?
-          $("<img/>") // Make in memory copy of image to avoid css issues
-            .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
-            .load(function() { // TODO: Is load needed multiple times or would one('load') suffice?
-              // Note that we're actually changing the params here if we're in the editor.
-              interaction.action.params.file.width = this.width;   // Note: $(this).width() will not work for in memory images.
-              interaction.action.params.file.height = this.height;
-              that.positionDialog(interaction, $button);
-          });
-          // TODO: What happens to our in memory img now? Could we reuse it?
-        }
-        // Resize image and dialog container
-        if (typeof imgWidth != "undefined") { // TODO: imgWidth !== undefined is insanely faster than string comparison...
-          if (imgHeight > maxHeight) {
-            imgWidth = imgWidth * maxHeight / imgHeight;
-            imgHeight = maxHeight;
-          }
-          if (imgWidth > maxWidth) {
-            imgHeight = imgHeight * maxWidth / imgWidth;
-            imgWidth = maxWidth;
-          }
-          $img.css({
-            width: imgWidth,
-            height: imgHeight
-          });
-          this.$dialog.css({
-            width: imgWidth + 1.5 * this.fontSize, // TODO: What is 1.5? Where are the docs?
-            height: imgHeight
-          })
-          .children('.h5p-dialog-inner').css('width', 'auto');
-        }
-      }
-
-      // TODO: This function is HUGE, could some of it maybe be moved to
-      // H5P.Image? Content sizing shouldn't be a part of positioning the
-      // dialog, it should happen before. If we're waiting for something to
-      // load show a dialog with a throbber or something...
-
-      // Position dialog horizontally
-      var left = buttonPosition.left;
-
-      var dialogWidth = this.$dialog.outerWidth(true);
-
-      // If dialog is too big to fit within the container, display as h5p-big instead.
-      if (dialogWidth > containerWidth) {
-        this.$dialog.addClass('h5p-big');
-        return;
-      }
-
-      if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
-        // Show on left
-        left -= dialogWidth - buttonWidth;
-      }
-
-      // Make sure the dialog is within the video on the right.
-      if ((left + dialogWidth) > containerWidth) {
-        left = containerWidth - dialogWidth;
-      }
-
-      var marginLeft = parseInt(this.$videoWrapper.css('marginLeft'));
-      if (isNaN(marginLeft)) {
-        marginLeft = 0;
-      }
-
-      // And finally, make sure we're within bounds on the left hand side too...
-      if (left < marginLeft) {
-        left = marginLeft;
-      }
-
-      // Position dialog vertically
-      var marginTop = parseInt(this.$videoWrapper.css('marginTop'));
-      if (isNaN(marginTop)) {
-        marginTop = 0;
-      }
-
-      var top = buttonPosition.top + marginTop;
-      var totalHeight = top + this.$dialog.outerHeight(true);
-
-      if (totalHeight > containerHeight) {
-        top -= totalHeight - containerHeight;
-      }
-
-      this.$dialog.removeClass('h5p-big').css({
-        top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%'
-      });
-    }
-  };
-
-  /**
-   * Hide current dialog.
-   *
-   * @returns {Boolean}
-   */
-  InteractiveVideo.prototype.hideDialog = function () {
-    var that = this;
-
-    this.$dialogWrapper.addClass('h5p-hidden');
-
-    setTimeout(function () {
-      that.$dialogWrapper.hide();
-    }, 201);
-
-    if (this.editor === undefined && that.lastState === PLAYING) {
-      this.video.play();
     }
   };
 
@@ -1094,16 +788,10 @@ H5P.InteractiveVideo = (function ($) {
     }
     info.addMedia(videoRights);
 
-    for (var i = 0; i < self.params.assets.interactions.length; i++) {
-      var interaction = self.params.assets.interactions[i];
-      var instance = H5P.newRunnable(interaction.action, self.contentId);
-
-      if (instance !== undefined && instance.getCopyrights !== undefined) {
-        var interactionCopyrights = instance.getCopyrights();
-        if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel((interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + humanizeTime(interaction.duration.from) + ' - ' + humanizeTime(interaction.duration.to));
-          info.addContent(interactionCopyrights);
-        }
+    for (var i = 0; i < self.interactions.length; i++) {
+      var interactionCopyrights = self.interactions[i].getCopyrights();
+      if (interactionCopyrights) {
+        info.addContent(interactionCopyrights);
       }
     }
 
@@ -1157,4 +845,4 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   return InteractiveVideo;
-})(H5P.jQuery);
+})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideoDialog, H5P.InteractiveVideoInteraction);
