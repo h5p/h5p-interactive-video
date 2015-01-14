@@ -915,6 +915,8 @@ H5P.InteractiveVideo = (function ($) {
 
       var lib = interaction.action.library.split(' ')[0];
 
+      this.$dialog.attr('data-lib', lib);
+
       if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
         interaction.bigDialog = true;
 
