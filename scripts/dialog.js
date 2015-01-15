@@ -48,6 +48,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         }
       }
     }).appendTo($dialog);
+    var $customButtons;
 
     // Add all to DOM
     $wrapper.appendTo($container);
@@ -66,7 +67,10 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         width: '',
         fontSize: ''
       });
-      $inner.css('width', '');
+      $inner.css({
+        'width': '',
+        'height': ''
+      });
     };
 
     /**
@@ -74,14 +78,35 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      *
      * @public
      * @param {jQuery} $element
+     * @param {jQuery} [$buttons] Use custom buttons for dialog
      */
-    self.open = function ($element) {
+    self.open = function ($element, $buttons) {
       $wrapper.show();
       $inner.html('').append($element);
 
       // Reset positioning
       resetPosition();
       $dialog.addClass('h5p-big');
+
+      if ($customButtons) {
+        // Clean up after previous custom buttons
+        $customButtons.remove();
+        $close.show();
+      }
+      if ($buttons) {
+        $customButtons = $buttons;
+
+        // Hide default close button
+        $close.hide();
+
+        // Add custom buttons
+        $dialog.append($buttons);
+        var fontSize = toNum($inner.css('fontSize'));
+        $inner.css({
+          width: '100%',
+          height: (($inner.height() / fontSize) - ($buttons.height() / fontSize)) + 'em',
+        });
+      }
 
       // Remove class on next tick to ensure css animation
       setTimeout(function () {

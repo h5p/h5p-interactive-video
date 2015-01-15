@@ -17,7 +17,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       assets: {}
     }, params.interactiveVideo);
     this.contentId = id;
-    this.visibleInteractions = [];
     this.postUserStatistics = (H5P.postUserStatistics === true);
 
     this.l10n = {
@@ -174,13 +173,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Pause video when opening dialog
     this.dialog.on('open', function () {
-      that.lastState = that.currentState;
-      that.video.pause();
+      if (that.currentState !== PAUSED && that.currentState !== ENDED) {
+        that.lastState = that.currentState;
+        that.video.pause();
+      }
     });
 
     // Resume playing
     this.dialog.on('close', function () {
-      if (this.editor === undefined && that.lastState === PLAYING) {
+      if (that.lastState !== PAUSED && that.lastState !== ENDED) {
         that.video.play();
       }
     });
@@ -271,20 +272,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Initialize interactions
     this.interactions = [];
     for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      var parameters = this.params.assets.interactions[i];
-
-      // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, {
-        enableSolutionsButton: that.overrideShowSolutionButton,
-        enableRetry: that.overrideRetry
-      });
-
-      var interaction = new Interaction(parameters, this.dialog, this.l10n.interaction, this.oneSecondInPercentage, this.contentId);
-      // TODO: Add editor deps?
-      // if (that.editor === undefined) {
-      //   that.showDialog(interaction, $interaction);
-      // }
-      this.interactions.push(interaction);
+      this.initInteraction(i);
     }
 
     // Add dots above seeking line.
@@ -295,6 +283,41 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Use available space
     this.$.trigger('resize');
+  };
+
+  /**
+   *
+   */
+  InteractiveVideo.prototype.initInteraction = function(index) {
+    var self = this;
+    var parameters = this.params.assets.interactions[index];
+
+    // Extend interaction parameters
+    H5P.jQuery.extend(parameters.action.params.behaviour, {
+      enableSolutionsButton: this.overrideShowSolutionButton,
+      enableRetry: this.overrideRetry
+    });
+
+    var interaction = new Interaction(parameters, this.dialog, this.l10n.interaction, this.oneSecondInPercentage, this.contentId);
+    interaction.on('display', function ($interaction) {
+      $interaction.appendTo(self.$overlay);
+
+      if (self.currentState === PLAYING && interaction.pause()) {
+        self.video.pause();
+      }
+
+      setTimeout(function () {
+        interaction.positionLabel(self.$videoWrapper.width());
+      }, 0);
+    });
+
+    this.interactions.push(interaction);
+
+    if (this.editor !== undefined) {
+      this.editor.processInteraction(interaction, parameters);
+    }
+
+    return interaction;
   };
 
   /**
@@ -323,7 +346,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.addSliderInteractions = function () {
     // Remove old dots
-    this.controls.$slider.children('.h5p-seekbar-interaction').remove();
+    this.controls.$interactionsContainer.children().remove();
 
     // Add new dots
     for (var i = 0; i < this.interactions.length; i++) {
@@ -757,14 +780,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.toggleInteractions = function (second) {
     for (var i = 0; i < this.interactions.length; i++) {
-      var $interaction = this.interactions[i].toggle(second);
-      if ($interaction) {
-        $interaction.appendTo(this.$overlay);
-
-        if (self.currentState === PLAYING && this.interactions[i].pause()) {
-          this.video.pause();
-        }
-      }
+      this.interactions[i].toggle(second);
     }
   };
 

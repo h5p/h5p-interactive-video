@@ -17,7 +17,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction;
+    var $interaction, $label;
     var action = parameters.action;
 
     // Find library name and title
@@ -43,16 +43,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           left: parameters.x + '%',
           top: parameters.y + '%'
         },
-        html: '<a href="#" class="h5p-interaction-button"></a>',
         on: {
           click: function () {
-            openDialog();
+            if (!self.dialogDisabled) {
+              openDialog();
+            }
           }
         }
       });
+      $('<a/>', {
+        'class': 'h5p-interaction-button',
+        href: '#',
+        on: {
+          click: function () {
+            return false;
+          }
+        }
+      }).appendTo($interaction);
 
       // Check to see if we should add label
-      var $label;
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
         $label = $('<div/>', {
           'class': 'h5p-interaction-label',
@@ -60,25 +69,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }).appendTo($interaction);
       }
 
-      // TODO
-      // if (this.editor !== undefined) {
-      //   // Append editor magic
-      //   this.editor.newInteraction($interaction);
-      // }
-
+      self.trigger('display', $interaction);
       setTimeout(function () {
         // Transition in
         $interaction.removeClass('h5p-hidden');
-
-        // Position label
-        if (library !== 'H5P.Nil' && $label) {
-          $label.removeClass('h5p-left-label');
-          // TODO: Fix label pos
-          // if (parseInt($interaction.css('left')) + $label.position().left + $label.outerWidth() > this.$videoWrapper.width()) {
-          //   $label.addClass('h5p-left-label');
-          // }
-        }
-      }, 1);
+      }, 0);
     };
 
     /**
@@ -93,7 +88,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add new instance to dialog and open
-      instance = H5P.newRunnable(parameters.action, contentId, $dialogContent);
+      instance = H5P.newRunnable(action, contentId, $dialogContent);
       dialog.open($dialogContent);
 
       if (library === 'H5P.Image') {
@@ -181,13 +176,47 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Display the current interaction as a poster on top of the video.
+     *
+     * @private
+     */
+    var createPoster = function () {
+      $interaction = $('<div/>', {
+        'class': 'h5p-interaction ' + classes + '',
+        css: {
+          left: parameters.x + '%',
+          top: parameters.y + '%',
+          width: (parameters.width ? parameters.width : 10) + 'em',
+          height: (parameters.height ? parameters.height : 10) + 'em'
+        }
+      });
+      $inner = $('<div/>', {
+        'class': 'h5p-interaction-inner',
+      }).appendTo($interaction);
+      instance = H5P.newRunnable(action, contentId, $inner);
+
+      self.trigger('display', $interaction);
+      // setTimeout(function () {
+      //   // Transition in
+      //   $interaction.removeClass('h5p-hidden');
+      // }, 0);
+    };
+
+    /**
      * Checks to see if the interaction should pause the video.
      *
      * @public
      * @returns {Boolean}
      */
     self.pause = function () {
-      return interaction.pause;
+      return parameters.pause;
+    };
+
+    /**
+     *
+     */
+    self.isButton = function () {
+      return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
     };
 
     /**
@@ -212,7 +241,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }).appendTo($container);
     };
 
-
     /**
      * Display or remove the interaction depending on the video time.
      *
@@ -224,8 +252,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (second < parameters.duration.from || second > parameters.duration.to) {
         if ($interaction) {
           // Remove interaction from display
-          $interaction.remove();
-          $interaction = undefined;
+          self.remove();
         }
         return;
       }
@@ -234,15 +261,46 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      if (parameters.displayAsButton === undefined || parameters.displayAsButton) {
+      if (self.isButton()) {
         createButton();
       }
       else {
-        console.log('Not displaying as button!');
-        // TODO
+        createPoster();
       }
 
       return $interaction;
+    };
+
+    /**
+     * @public
+     */
+    self.positionLabel = function (width) {
+      if (!self.isButton() || !$label) {
+        return;
+      }
+
+      $label.removeClass('h5p-left-label');
+      if (parseInt($interaction.css('left')) + $label.position().left + $label.outerWidth() > width) {
+        $label.addClass('h5p-left-label');
+      }
+    };
+
+    /**
+     * @public
+     */
+    self.setPosition = function (x, y) {
+      parameters.x = x;
+      parameters.y = y;
+    };
+
+    /**
+     * @public
+     */
+    self.remove = function () {
+      if ($interaction) {
+        $interaction.remove();
+        $interaction = undefined;
+      }
     };
 
     /**
@@ -252,7 +310,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
-      var instance = H5P.newRunnable(parameters.action, contentId);
+      var instance = H5P.newRunnable(action, contentId);
 
       if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
