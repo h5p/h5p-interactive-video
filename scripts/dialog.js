@@ -104,11 +104,13 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
       if (size) {
         var fontSizeRatio = 16 / toNum($container.css('fontSize'));
+        size.width = (size.width * fontSizeRatio) + 1.5; // padding for close button
+        size.height = (size.height * fontSizeRatio);
 
         // Use a fixed size
         $dialog.css({
-          width: (size.width * fontSizeRatio) + 'em',
-          height: (size.height * fontSizeRatio) + 'em',
+          width: size.width + 'em',
+          height: size.height + 'em',
         });
         $inner.css('width', 'auto');
       }
@@ -194,9 +196,9 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       max.height = containerHeight * interactionMaxFillRatio;
 
       // Use em
-      var fontSize = 16;
-      max.width /= fontSize;
-      max.height /= fontSize;
+      var fontSize = toNum($container.css('fontSize'));
+      max.width = (max.width / fontSize) * (fontSize / 16);
+      max.height = (max.height / fontSize) * (fontSize / 16);
 
       return max;
     };

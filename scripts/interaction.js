@@ -110,9 +110,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
         else {
           // Wait for image to load
-          // TODO: Test, we might need to position before loading.
           $img.load(function () {
-            console.log('Image loaded.');
             if ($img.is(':visible')) {
               resizeImage($img, max, {
                 width: this.width,
@@ -120,6 +118,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               });
             }
           });
+          dialog.position($interaction);
         }
       }
       else if (!(library === 'H5P.Summary' || library === 'H5P.Blanks')) {
@@ -127,7 +126,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         dialog.position($interaction);
       }
 
-      // TODO: Check if this is needed
+      // TODO: Check if this is needed for any content types
       // if (instance.$ !== undefined) {
       //   instance.$.trigger('resize');
       // }
