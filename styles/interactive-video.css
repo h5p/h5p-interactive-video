@@ -309,6 +309,19 @@
   -webkit-animation: none;
 }
 
+.h5p-interactive-video .h5p-interaction-inner,
+.h5p-interactive-video .h5p-interaction-inner.h5p-image {
+	width: 100%;
+	height: 100%;
+}
+.h5p-interactive-video .h5p-interaction-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .h5p-interactive-video .h5p-controls {
   font-size: 16px;
   height: 36px;
