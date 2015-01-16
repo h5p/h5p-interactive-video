@@ -229,6 +229,15 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     };
 
     /**
+     * @public
+     */
+    self.scroll = function (to, ms) {
+      $inner.stop().animate({
+        scrollTop: to
+      }, ms);
+    };
+
+    /**
      * Close the currently open dialog.
      *
      * @public

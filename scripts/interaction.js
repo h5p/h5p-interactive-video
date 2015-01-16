@@ -133,9 +133,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var height = $dialogContent.height();
           if (lastHeight > height + 10 || lastHeight < height - 10)  {
             setTimeout(function () {
-              $inner.stop().animate({
-                scrollTop: height
-              }, 300);
+              dialog.scroll(height, 300);
             }, 500);
           }
           lastHeight = height;
@@ -294,9 +292,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-     * @public
-     */
-    self.setSize = function (width, height) {
+    * @public
+    */
+    self.setHeight = function (width, height) {
       parameters.width = width;
       parameters.height = height;
     };
