@@ -2,7 +2,7 @@
   "title": "Interactive Video",
   "contentType": "H5P.InteractiveVideo",
   "majorVersion": 1,
-  "minorVersion": 3,
+  "minorVersion": 4,
   "patchVersion": 0,
   "embedTypes": [
     "iframe"
@@ -51,7 +51,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 4
     }
   ]
 }
