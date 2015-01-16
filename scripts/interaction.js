@@ -296,6 +296,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * @public
      */
+    self.setSize = function (width, height) {
+      parameters.width = width;
+      parameters.height = height;
+    };
+
+    /**
+     * @public
+     */
     self.remove = function () {
       if ($interaction) {
         $interaction.remove();
