@@ -43,10 +43,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
       params: {
-        files: this.params.video.files,
+        sources: this.params.video.files,
         controls: this.justVideo,
-        autoplay: false,
-        fitToWrapper: false
+        fit: false
       }
     }, this.contentId);
 
@@ -574,6 +573,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
     var self = this;
+
+    if (!this.video.getQualities) {
+      return;
+    }
 
     var qualities = this.video.getQualities();
     if (!qualities || this.controls.$qualityButton === undefined ||
