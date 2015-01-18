@@ -170,15 +170,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Create a popup dialog
     this.dialog = new Dialog($container, this.$videoWrapper);
 
-    // Pause video when opening dialog
-    this.dialog.on('open', function () {
-      if (that.currentState !== PAUSED && that.currentState !== ENDED) {
+    if (this.editor === undefined) {
+      // Pause video when opening dialog
+      this.dialog.on('open', function () {
+        // Keep track of last state
         that.lastState = that.currentState;
-        that.video.pause();
-      }
-    });
 
-    // Resume playing
+        if (that.currentState !== PAUSED && that.currentState !== ENDED) {
+          // Pause video
+          that.video.pause();
+        }
+      });
+    }
+
+    // Resume playing when closing dialog
     this.dialog.on('close', function () {
       if (that.lastState !== PAUSED && that.lastState !== ENDED) {
         that.video.play();

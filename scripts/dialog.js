@@ -116,6 +116,10 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       self.trigger('open');
     };
 
+    self.isOpen = function () {
+      return $wrapper.is(':visible');
+    };
+
     /**
      * Reposition the currently open dialog relative to the given button.
      *
