@@ -294,7 +294,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
     * @public
     */
-    self.setHeight = function (width, height) {
+    self.setSize = function (width, height) {
       parameters.width = width;
       parameters.height = height;
     };
