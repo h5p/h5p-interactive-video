@@ -759,4 +759,5 @@
   padding: 0.1em 0.5em;
   min-height: 1.5em;
   min-width: 1.5em;
+	cursor: default;
 }

@@ -45,7 +45,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         },
         on: {
           click: function () {
-            if (!self.dialogDisabled) {
+            if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
           }
@@ -55,8 +55,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction-button',
         href: '#',
         on: {
-          click: function () {
-            return false;
+          click: function (event) {
+            event.preventDefault();
           }
         }
       }).appendTo($interaction);
