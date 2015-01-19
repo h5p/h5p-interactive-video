@@ -233,7 +233,11 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     };
 
     /**
+     * Scroll to given position in current dialog.
+     *
      * @public
+     * @param {Number} to Scroll position
+     * @param {Number} ms Time the animation takes.
      */
     self.scroll = function (to, ms) {
       $inner.stop().animate({

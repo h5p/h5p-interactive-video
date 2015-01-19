@@ -46,9 +46,13 @@
   display: block;
   width: 100%;
   height: auto;
+	color: #fff;
 }
 .h5p-interactive-video object {
   display: block;
+}
+.h5p-interactive-video .h5p-overlay {
+	color: #2c2c2c;
 }
 .h5p-interactive-video .h5p-overlay.h5p-visible {
 	position: absolute;
@@ -314,6 +318,11 @@
 	width: 100%;
 	height: 100%;
 	font-size: 0.875em;
+	overflow-y: auto;
+}
+.h5p-interactive-video .h5p-interaction-inner.h5p-image,
+.h5p-interactive-video .h5p-interaction-inner.h5p-dragquestion {
+	overflow-y: hidden;
 }
 .h5p-interactive-video .h5p-interaction-overlay {
 	position: absolute;

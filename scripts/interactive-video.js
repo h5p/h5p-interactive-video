@@ -290,9 +290,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
+   * Initialize interaction at the given index.
    *
+   * @public
+   * @param {Number} index
+   * @returns {Interaction}
    */
-  InteractiveVideo.prototype.initInteraction = function(index) {
+  InteractiveVideo.prototype.initInteraction = function (index) {
     var self = this;
     var parameters = this.params.assets.interactions[index];
 

@@ -17,7 +17,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label;
+    var instance, $interaction, $label;
     var action = parameters.action;
 
     // Find library name and title
@@ -88,7 +88,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add new instance to dialog and open
-      instance = H5P.newRunnable(action, contentId, $dialogContent);
+      var instance = H5P.newRunnable(action, contentId, $dialogContent);
       dialog.open($dialogContent);
 
       if (library === 'H5P.Image') {
@@ -121,11 +121,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         dialog.position($interaction);
       }
 
-      // TODO: Check if this is needed for any content types
-      // if (instance.$ !== undefined) {
-      //   instance.$.trigger('resize');
-      // }
-
       if (library === 'H5P.Summary') {
         // Scroll summary to bottom if the task changes size
         var lastHeight = 0;
@@ -139,6 +134,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           lastHeight = height;
         });
       }
+
+      setTimeout(function () {
+        instance.$.trigger('resize');
+      }, 0);
     };
 
     /**
@@ -193,11 +192,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }).appendTo($interaction);
       instance = H5P.newRunnable(action, contentId, $inner);
 
+      // Trigger event listeners
       self.trigger('display', $interaction);
-      // setTimeout(function () {
-      //   // Transition in
-      //   $interaction.removeClass('h5p-hidden');
-      // }, 0);
+
+      // Resize on next tick
+      setTimeout(function () {
+        instance.$.trigger('resize');
+      }, 0);
     };
 
     /**
@@ -211,7 +212,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Check to see if interaction should be displayed as button.
      *
+     * @public
+     * @returns {Boolean}
      */
     self.isButton = function () {
       return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
@@ -270,7 +274,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Position label to the left or right of the action button.
+     *
      * @public
+     * @param {Number} width Size of the container
      */
     self.positionLabel = function (width) {
       if (!self.isButton() || !$label) {
@@ -284,7 +291,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Update element position.
+     *
      * @public
+     * @param {Number} x left
+     * @param {Number} y top
      */
     self.setPosition = function (x, y) {
       parameters.x = x;
@@ -292,18 +303,49 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-    * @public
-    */
+     * Update element size.
+     *
+     * @public
+     * @param {Number} width in ems
+     * @param {Number} height in ems
+     */
     self.setSize = function (width, height) {
       parameters.width = width;
       parameters.height = height;
+
+      if (library === 'H5P.DragQuestion') {
+        // Re-create element to set new size
+        self.remove(true);
+        self.toggle(parameters.from);
+      }
+
+      instance.$.trigger('resize');
     };
 
     /**
+     * Removes interaction from display.
+     *
      * @public
+     * @param {Boolean} [updateSize] Used when re-creating element
      */
-    self.remove = function () {
+    self.remove = function (updateSize) {
       if ($interaction) {
+        if (updateSize && library === 'H5P.DragQuestion') {
+          // Update size
+          var size = action.params.question.settings.size;
+          var fontSize = Number($interaction.css('fontSize').replace('px', ''));
+          if (self.isButton()) {
+            // Update element size with drag question parameters
+            parameters.width = size.width / fontSize;
+            parameters.height = size.height / fontSize;
+          }
+          else {
+            // Update drag question parameters with size set on element
+            size.width = Math.round(parameters.width * fontSize);
+            size.height = Math.round(parameters.height * fontSize);
+          }
+        }
+
         $interaction.remove();
         $interaction = undefined;
       }
@@ -334,9 +376,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
   // Tool for converting
   var $converter = $('<div/>');
-
-  /** @constant {number} */
-  var FONT_SIZE = 16;
 
   return Interaction;
 })(H5P.jQuery, H5P.EventDispatcher);
