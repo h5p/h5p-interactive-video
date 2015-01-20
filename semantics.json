@@ -124,6 +124,72 @@
                     "H5P.MarkTheWords 1.1",
                     "H5P.DragText 1.1"
                   ]
+                },
+                {
+                  "name": "adaptivity",
+                  "type": "group",
+                  "label": "Adaptivity",
+                  "optional": true,
+                  "fields": [
+                    {
+                      "name": "correct",
+                      "type": "group",
+                      "label": "Action on all correct",
+                      "fields": [
+                        {
+                          "name": "seekTo",
+                          "type": "number",
+                          "label": "Seek to"
+                        },
+                        {
+                          "name": "allowOptOut",
+                          "type": "boolean",
+                          "label": "Allow the user to opt out and continue"
+                        },
+                        {
+                          "name": "message",
+                          "type": "text",
+                          "widget": "html",
+                          "enterMode": "p",
+                          "label": "Message"
+                        },
+                        {
+                          "name": "seekLabel",
+                          "type": "text",
+                          "label": "Label for seek button"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "wrong",
+                      "type": "group",
+                      "label": "Action on wrong",
+                      "fields": [
+                        {
+                          "name": "seekTo",
+                          "type": "number",
+                          "label": "Seek to"
+                        },
+                        {
+                          "name": "allowOptOut",
+                          "type": "boolean",
+                          "label": "Allow the user to opt out and continue"
+                        },
+                        {
+                          "name": "message",
+                          "type": "text",
+                          "widget": "html",
+                          "enterMode": "p",
+                          "label": "Message"
+                        },
+                        {
+                          "name": "seekLabel",
+                          "type": "text",
+                          "label": "Label for seek button"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

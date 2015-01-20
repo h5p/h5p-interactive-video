@@ -6,12 +6,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
    *
    * @class
    * @param {Object} parameters describes action behavior
-   * @param {H5P.InteractiveVideoDialog} dialog instance
-   * @param {String} defaultInteractionLabel localization
-   * @param {Number} oneSecondInPercentage
-   * @param {Number} contentId
+   * @param {H5P.InteractiveVideo} player instance
    */
-  function Interaction(parameters, dialog, defaultInteractionLabel, oneSecondInPercentage, contentId) {
+  function Interaction(parameters, player) {
     var self = this;
 
     // Initialize event inheritance
@@ -22,7 +19,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     // Find library name and title
     var library = action.library.split(' ')[0];
-    var title = (action.params.contentName !== undefined ? action.params.contentName : defaultInteractionLabel);
+    var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
 
     // Detect custom html class for interaction.
     var classes = parameters.className;
@@ -88,12 +85,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add new instance to dialog and open
-      var instance = H5P.newRunnable(action, contentId, $dialogContent);
-      dialog.open($dialogContent);
+      var instance = H5P.newRunnable(action, player.contentId, $dialogContent);
+      player.dialog.open($dialogContent);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
-        var max = dialog.getMaxSize($interaction);
+        var max = player.dialog.getMaxSize($interaction);
 
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
@@ -113,12 +110,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               });
             }
           });
-          dialog.position($interaction);
+          player.dialog.position($interaction);
         }
       }
       else if (!(library === 'H5P.Summary' || library === 'H5P.Blanks')) {
         // Only Summary and Blanks uses the dialog that covers the entire video
-        dialog.position($interaction);
+        player.dialog.position($interaction);
       }
 
       if (library === 'H5P.Summary') {
@@ -128,7 +125,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var height = $dialogContent.height();
           if (lastHeight > height + 10 || lastHeight < height - 10)  {
             setTimeout(function () {
-              dialog.scroll(height, 300);
+              player.dialog.scroll(height, 300);
             }, 500);
           }
           lastHeight = height;
@@ -169,7 +166,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Set dialog size and position
-      dialog.position($interaction, size);
+      player.dialog.position($interaction, size);
     };
 
     /**
@@ -190,7 +187,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner',
       }).appendTo($interaction);
-      instance = H5P.newRunnable(action, contentId, $inner);
+      instance = H5P.newRunnable(action, player.contentId, $inner);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
@@ -199,6 +196,49 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         instance.$.trigger('resize');
       }, 0);
+
+      if (parameters.adaptivity.correct.seekTo && parameters.adaptivity.wrong.seekTo) {
+        instance.on('checkAnswer', function (passRate) {
+          // Stop playback
+          player.pause();
+
+          $interaction.css('zIndex', 52);
+          player.dialog.openOverlay();
+
+          // Determine adaptivity
+          var adaptivity = (passRate < 1 ? parameters.adaptivity.wrong : parameters.adaptivity.correct);
+
+          // Replace interaction with adaptivity screen
+          $inner.html(adaptivity.message);
+          instance = '';
+
+          // Buttons wrapper
+          var $buttonWrapper = $('<div/>', {
+            'class': ''
+          });
+
+          // Add continue button
+          $('<div/>', {
+            tabIndex: 1,
+            role: 'button',
+            'class': 'h5p-joubel-ui-button',
+            html: adaptivity.seekLabel,
+            on: {
+              click: function () {
+                console.log('Seeking to', adaptivity.seekTo);
+                player.dialog.closeOverlay();
+                $interaction.css('zIndex', '');
+                
+                self.remove();
+                player.seek(adaptivity.seekTo);
+                player.play();
+              }
+            }
+          }).appendTo($buttonWrapper);
+
+          $buttonWrapper.appendTo($inner);
+        });
+      }
     };
 
     /**
@@ -233,12 +273,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Skip "sub titles"
       }
 
-      // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * oneSecondInPercentage)
+      // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
       $('<div/>', {
         'class': 'h5p-seekbar-interaction ' + classes,
         title: title,
         css: {
-          left: (parameters.duration.from * oneSecondInPercentage) + '%'
+          left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
         }
       }).appendTo($container);
     };
@@ -352,13 +392,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * @public
+     * @returns {String}
+     */
+    self.getLibraryName = function () {
+      return library;
+    };
+
+    /**
      * Collect copyright information for the interaction.
      *
      * @public
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
-      var instance = H5P.newRunnable(action, contentId);
+      var instance = H5P.newRunnable(action, player.contentId);
 
       if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();

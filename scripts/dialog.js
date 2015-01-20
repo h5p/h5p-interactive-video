@@ -19,8 +19,9 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       'class': 'h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden',
       on: {
         click: function () {
-          // TODO: Do not close for editor?
-          self.close();
+          if (!self.disableOverlay)  {
+            self.close();
+          }
         }
       }
     });
@@ -74,6 +75,40 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     };
 
     /**
+     * Display overlay.
+     *
+     * @private
+     * @param {Function} next callback
+     */
+    var showOverlay = function (next) {
+      $wrapper.show();
+      setTimeout(function () {
+        // Remove class on next tick to ensure css animation
+        $wrapper.removeClass('h5p-hidden');
+        if (next) {
+          next();
+        }
+      }, 0);
+    };
+
+    /**
+     * Close overlay.
+     *
+     * @private
+     * @param {Function} next callback
+     */
+    var hideOverlay = function (next) {
+      $wrapper.addClass('h5p-hidden');
+      setTimeout(function () {
+        // Hide when animation is done
+        $wrapper.hide();
+        if (next) {
+          next();
+        }
+      }, 200);
+    };
+
+    /**
      * Opens a new dialog. Displays the given element.
      *
      * @public
@@ -81,7 +116,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * @param {jQuery} [$buttons] Use custom buttons for dialog
      */
     self.open = function ($element, $buttons) {
-      $wrapper.show();
+      showOverlay();
       $inner.html('').append($element);
 
       // Reset positioning
@@ -107,11 +142,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
           height: (($inner.height() / fontSize) - ($buttons.height() / fontSize)) + 'em',
         });
       }
-
-      // Remove class on next tick to ensure css animation
-      setTimeout(function () {
-        $wrapper.removeClass('h5p-hidden');
-      }, 1);
 
       self.trigger('open');
     };
@@ -258,6 +288,30 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       }, 201);
 
       self.trigger('close');
+    };
+
+    /**
+     * Open overlay only.
+     *
+     * @public
+     */
+    self.openOverlay = function () {
+      self.disableOverlay = true;
+      $dialog.hide();
+      showOverlay();
+    };
+
+    /**
+     * Close overlay only.
+     *
+     * @public
+     */
+    self.closeOverlay = function () {
+      $wrapper.addClass('h5p-hidden');
+      hideOverlay(function () {
+        $dialog.show();
+        self.disableOverlay = false;
+      });
     };
   }
 

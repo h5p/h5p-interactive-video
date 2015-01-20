@@ -182,6 +182,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         }
       });
     }
+    else {
+      this.dialog.disableOverlay = true;
+    }
 
     // Resume playing when closing dialog
     this.dialog.on('close', function () {
@@ -306,7 +309,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       enableRetry: this.overrideRetry
     });
 
-    var interaction = new Interaction(parameters, this.dialog, this.l10n.interaction, this.oneSecondInPercentage, this.contentId);
+    var interaction = new Interaction(parameters, self);
     interaction.on('display', function ($interaction) {
       $interaction.appendTo(self.$overlay);
 
@@ -794,6 +797,43 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     for (var i = 0; i < this.interactions.length; i++) {
       this.interactions[i].toggle(second);
     }
+  };
+
+  /**
+   * Start interactive video playback.
+   *
+   * @public
+   */
+  InteractiveVideo.prototype.play = function () {
+    this.video.play();
+  };
+
+  /**
+   * Seek interactive video to the given time
+   *
+   * @public
+   * @param {Number} time
+   */
+  InteractiveVideo.prototype.seek = function (time) {
+    this.video.seek(time);
+  };
+
+  /**
+   * Pause interactive video playback.
+   *
+   * @public
+   */
+  InteractiveVideo.prototype.pause = function () {
+    this.video.pause();
+  };
+
+  /**
+  * Pause interactive video playback.
+  *
+  * @public
+  */
+  InteractiveVideo.prototype.freezeControls = function () {
+    console.log('Freezing');
   };
 
   /**
