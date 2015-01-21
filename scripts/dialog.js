@@ -313,6 +313,15 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         self.disableOverlay = false;
       });
     };
+
+    /**
+     * Removes the close button from the current dialog.
+     *
+     * @public
+     */
+    self.hideCloseButton = function () {
+      $close.hide();
+    };
   }
 
   // Extends the event dispatcher
