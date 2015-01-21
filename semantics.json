@@ -151,6 +151,12 @@
                           "type": "text",
                           "widget": "html",
                           "enterMode": "p",
+                          "tags": [
+                            "strong",
+                            "em",
+                            "del",
+                            "a"
+                          ],
                           "label": "Message"
                         },
                         {
@@ -180,6 +186,12 @@
                           "type": "text",
                           "widget": "html",
                           "enterMode": "p",
+                          "tags": [
+                            "strong",
+                            "em",
+                            "del",
+                            "a"
+                          ],
                           "label": "Message"
                         },
                         {
