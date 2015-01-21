@@ -179,7 +179,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createPoster = function () {
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction ' + classes + '',
+        'class': 'h5p-interaction h5p-poster ' + classes + '',
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
