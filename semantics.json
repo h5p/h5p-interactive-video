@@ -74,7 +74,8 @@
                   "label": "Display as an interactive button",
                   "description": "The user has to open the interaction.",
                   "type": "boolean",
-                  "default": true
+                  "default": true,
+                  "optional": true
                 },
                 {
                   "name": "label",
@@ -101,12 +102,14 @@
                 {
                   "name": "width",
                   "type": "number",
-                  "widget": "none"
+                  "widget": "none",
+                  "optional": true
                 },
                 {
                   "name": "height",
                   "type": "number",
-                  "widget": "none"
+                  "widget": "none",
+                  "optional": true
                 },
                 {
                   "name": "action",
