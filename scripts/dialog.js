@@ -104,7 +104,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         var fontSize = toNum($inner.css('fontSize'));
         $inner.css({
           width: '100%',
-          height: (($inner.height() / fontSize) - ($buttons.height() / fontSize)) + 'em',
+          height: (($inner.height() / fontSize) - ($buttons.height() / fontSize)) + 'em'
         });
       }
 
@@ -139,7 +139,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         // Use a fixed size
         $dialog.css({
           width: size.width + 'em',
-          height: size.height + 'em',
+          height: size.height + 'em'
         });
         $inner.css('width', 'auto');
       }

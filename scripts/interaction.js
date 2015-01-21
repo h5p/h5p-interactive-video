@@ -162,10 +162,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         size.width = max.width;
       }
 
-      fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
+      var fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
       $img.css({
         width: (size.width * fontSizeRatio) + 'em',
-        height: (size.height * fontSizeRatio) + 'em',
+        height: (size.height * fontSizeRatio) + 'em'
       });
 
       // Set dialog size and position
@@ -188,7 +188,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       });
       $inner = $('<div/>', {
-        'class': 'h5p-interaction-inner',
+        'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
       instance = H5P.newRunnable(action, contentId, $inner);
 
