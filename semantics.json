@@ -139,6 +139,7 @@
                         {
                           "name": "seekTo",
                           "type": "number",
+                          "widget": "timecode",
                           "label": "Seek to"
                         },
                         {
@@ -174,6 +175,7 @@
                         {
                           "name": "seekTo",
                           "type": "number",
+                          "widget": "timecode",
                           "label": "Seek to"
                         },
                         {
