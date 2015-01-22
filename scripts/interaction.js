@@ -280,7 +280,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Number} width Size of the container
      */
     self.positionLabel = function (width) {
-      if (!self.isButton() || !$label) {
+      if (!self.isButton() || !$label || library === 'H5P.Nil') {
         return;
       }
 
