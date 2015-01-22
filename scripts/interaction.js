@@ -161,10 +161,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         size.width = max.width;
       }
 
-      fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
+      var fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
       $img.css({
         width: (size.width * fontSizeRatio) + 'em',
-        height: (size.height * fontSizeRatio) + 'em',
+        height: (size.height * fontSizeRatio) + 'em'
       });
 
       // Set dialog size and position
@@ -178,7 +178,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createPoster = function () {
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction ' + classes + '',
+        'class': 'h5p-interaction h5p-poster ' + classes + '',
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
@@ -187,7 +187,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       });
       $inner = $('<div/>', {
-        'class': 'h5p-interaction-inner',
+        'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
       instance = H5P.newRunnable(action, player.contentId, $inner);
 
@@ -346,7 +346,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Number} width Size of the container
      */
     self.positionLabel = function (width) {
-      if (!self.isButton() || !$label) {
+      if (!self.isButton() || !$label || library === 'H5P.Nil') {
         return;
       }
 
