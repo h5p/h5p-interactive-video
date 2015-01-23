@@ -216,6 +216,23 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Determine adaptivity
         var adaptivity = (passRate < 1 ? parameters.adaptivity.wrong : parameters.adaptivity.correct);
         if (adaptivity.seekTo === undefined) {
+          // Add continue button
+          $('<div/>', {
+            tabIndex: 1,
+            role: 'button',
+            'class': 'h5p-joubel-ui-button',
+            html: player.l10n.defaultAdaptivitySeekLabel,
+            on: {
+              click: function () {
+                if (self.isButton()) {
+                  player.dialog.close();
+                }
+
+                self.remove();
+                player.play();
+              }
+            }
+          }).appendTo($target.find('.h5p-show-solution-container'));
           return; // Not set
         }
 
