@@ -206,7 +206,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var adaptivity = function ($target) {
-      if (!parameters.adaptivity.correct.seekTo || !parameters.adaptivity.wrong.seekTo) {
+      if (!parameters.adaptivity ||
+          !parameters.adaptivity.correct.seekTo ||
+          !parameters.adaptivity.wrong.seekTo) {
         return; // Both need to be set
       }
 
@@ -246,11 +248,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
           on: {
             click: function () {
+              if (self.isButton()) {
+                player.dialog.close();
+              }
               if (!adaptivity.allowOptOut) {
-                if (self.isButton()) {
-                  player.dialog.close();
-                }
-                else {
+                if (!self.isButton()) {
                   player.dialog.closeOverlay();
                   $interaction.css('zIndex', '');
                 }

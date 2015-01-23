@@ -283,8 +283,11 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     self.close = function () {
       $wrapper.addClass('h5p-hidden');
 
+
       setTimeout(function () {
         $wrapper.hide();
+        self.disableOverlay = false;
+        $close.show();
       }, 201);
 
       self.trigger('close');
