@@ -144,7 +144,7 @@
                           "type": "number",
                           "widget": "timecode",
                           "label": "Seek to",
-                          "description": "Enter timecode in the format HH:MM:SS"
+                          "description": "Enter timecode in the format M:SS"
                         },
                         {
                           "name": "allowOptOut",
@@ -181,7 +181,7 @@
                           "type": "number",
                           "widget": "timecode",
                           "label": "Seek to",
-                          "description": "Enter timecode in the format HH:MM:SS"
+                          "description": "Enter timecode in the format M:SS"
                         },
                         {
                           "name": "allowOptOut",
