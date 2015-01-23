@@ -208,15 +208,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var adaptivity = function ($target) {
-      if (!parameters.adaptivity ||
-          !parameters.adaptivity.correct.seekTo ||
-          !parameters.adaptivity.wrong.seekTo) {
-        return; // Both need to be set
+      if (!parameters.adaptivity) {
+        return; // Not set
       }
 
       instance.on('checkAnswer', function (passRate) {
         // Determine adaptivity
         var adaptivity = (passRate < 1 ? parameters.adaptivity.wrong : parameters.adaptivity.correct);
+        if (!adaptivity.seekTo) {
+          return; // Not set
+        }
 
         // Stop playback
         player.pause();
