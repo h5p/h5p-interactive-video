@@ -68,8 +68,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       self.trigger('display', $interaction);
       setTimeout(function () {
-        // Transition in
-        $interaction.removeClass('h5p-hidden');
+        if ($interaction) {
+          // Transition in
+          $interaction.removeClass('h5p-hidden');
+        }
       }, 0);
     };
 
@@ -348,7 +350,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Number} width Size of the container
      */
     self.positionLabel = function (width) {
-      if (!self.isButton() || !$label || library === 'H5P.Nil') {
+      if (!$interaction || !self.isButton() || !$label || library === 'H5P.Nil') {
         return;
       }
 
