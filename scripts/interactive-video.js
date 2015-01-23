@@ -29,7 +29,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
-      bookmarks: 'Bookmarks'
+      bookmarks: 'Bookmarks',
+      defaultAdaptivitySeekLabel: 'Continue'
     };
 
     if (params.override !== undefined) {
@@ -825,15 +826,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.pause = function () {
     this.video.pause();
-  };
-
-  /**
-  * Pause interactive video playback.
-  *
-  * @public
-  */
-  InteractiveVideo.prototype.freezeControls = function () {
-    console.log('Freezing');
   };
 
   /**

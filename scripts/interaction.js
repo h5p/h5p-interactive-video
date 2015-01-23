@@ -243,7 +243,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           tabIndex: 1,
           role: 'button',
           'class': 'h5p-joubel-ui-button',
-          html: adaptivity.seekLabel,
+          html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
           on: {
             click: function () {
               if (!adaptivity.allowOptOut) {

@@ -287,5 +287,13 @@
         "default": false
       }
     ]
+  },
+  {
+    "name": "defaultAdaptivitySeekLabel",
+    "type": "text",
+    "label": "Default label for adaptivity seek button",
+    "default": "Continue",
+    "common": true,
+    "optional": true
   }
 ]
