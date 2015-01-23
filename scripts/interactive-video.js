@@ -246,11 +246,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     duration = Math.floor(duration);
 
-    // Set max/min for editor duration fields
     if (this.editor !== undefined) {
-      var durationFields = this.editor.field.fields[0].field.fields[0].fields;
+      var interactions = findField('interactions', this.editor.field.fields);
+
+      // Set max/min for editor duration fields
+      var durationFields = findField('duration', interactions.field.fields).fields;
       durationFields[0].max = durationFields[1].max = duration;
       durationFields[0].min = durationFields[1].min = 0;
+
+      // Set max value for adaptive seeking timecodes
+      var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
+      for (var i = 0; i < adaptivityFields.length; i++) {
+        findField('seekTo', adaptivityFields[i].fields).max = duration;
+      }
     }
 
     // Add summary interaction
@@ -902,6 +910,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     time += seconds;
 
     return time;
+  };
+
+  /**
+   * Look for field with the given name in the given collection.
+   * Only used by editor. TODO: move
+   *
+   * @private
+   * @param {String} name of field
+   * @param {Array} fields collection to look in
+   * @returns {Object} field object
+   */
+  var findField = function (name, fields) {
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i].name === name) {
+        return fields[i];
+      }
+    }
   };
 
   return InteractiveVideo;
