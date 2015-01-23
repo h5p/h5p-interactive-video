@@ -33,12 +33,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       defaultAdaptivitySeekLabel: 'Continue'
     };
 
-    if (params.override !== undefined) {
-      this.overrideButtons = (params.override.overrideButtons === undefined ? false : params.override.overrideButtons);
-      this.overrideShowSolutionButton = (params.override.overrideShowSolutionButton === undefined ? false : params.override.overrideShowSolutionButton);
-      this.overrideRetry = (params.override.overrideRetry === undefined ? false : params.override.overrideRetry);
-    }
-
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
 
     this.video = H5P.newRunnable({
@@ -312,11 +306,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var self = this;
     var parameters = this.params.assets.interactions[index];
 
-    // Extend interaction parameters
-    H5P.jQuery.extend(parameters.action.params.behaviour, {
-      enableSolutionsButton: this.overrideShowSolutionButton,
-      enableRetry: this.overrideRetry
-    });
+    if (self.params.override && self.params.override.overrideButtons) {
+      // Extend interaction parameters
+      H5P.jQuery.extend(parameters.action.params.behaviour, {
+        enableSolutionsButton: self.params.override.overrideShowSolutionButton ? true : false,
+        enableRetry: self.params.override.overrideRetry ? true : false
+      });
+    }
 
     var interaction = new Interaction(parameters, self);
     interaction.on('display', function ($interaction) {
