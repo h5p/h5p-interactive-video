@@ -213,8 +213,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       instance.on('checkAnswer', function (passRate) {
+        var fullScore = (passRate >= 1);
+
         // Determine adaptivity
-        var adaptivity = (passRate < 1 ? parameters.adaptivity.wrong : parameters.adaptivity.correct);
+        var adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
         if (adaptivity.seekTo === undefined) {
           if (!$continueButton) {
             // Add continue button
@@ -226,16 +228,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               on: {
                 click: function () {
                   if (self.isButton()) {
+                    // Close dialog
                     player.dialog.close();
                   }
+                  else {
+                    // Remove interaction posters
+                    $interaction.remove();
+                  }
 
+                  // Remove continue button
                   $continueButton.remove();
+                  $continueButton = undefined;
+
                   player.play();
                 }
               }
             }).appendTo($target.find('.h5p-show-solution-container'));
           }
-          return; // Not set
+
+          return; // No adaptivity
         }
 
         // Stop playback
