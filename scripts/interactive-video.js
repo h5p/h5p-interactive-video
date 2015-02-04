@@ -15,7 +15,7 @@ H5P.InteractiveVideo = (function ($) {
    * @returns {_L2.C}
    */
   function C(params, id) {
-    this.$ = $(this);
+    H5P.EventDispatcher.call(this);
     this.params = $.extend({
       video: {},
       assets: {}
@@ -43,7 +43,12 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+    
+    this.isCompleted = false;
   }
+  
+  C.prototype = Object.create(H5P.EventDispatcher.prototype);
+  C.prototype.constructor = C;
 
   /**
    * Attach interactive video to DOM element.
@@ -221,7 +226,8 @@ H5P.InteractiveVideo = (function ($) {
         },
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
-        label: this.l10n.summary
+        label: this.l10n.summary,
+        mainSummary: true
       });
     }
 
@@ -239,8 +245,19 @@ H5P.InteractiveVideo = (function ($) {
     this.oneSecondInPercentage = (100 / this.video.getDuration());
     this.addSliderInteractions();
     this.addBookmarks();
-
-    this.triggerH5PEvent('resize');
+    this.createInteractionsArray();
+    this.trigger('resize');
+  };
+  
+  C.prototype.createInteractionsArray = function() {
+    this.interactions = [];
+    for (var i in this.params.assets.interactions) {
+      this.interactions.push({
+        score: null,
+        maxScore: null
+        // instances will probably be added to this object later
+      });
+    }
   };
 
   /**
@@ -352,12 +369,12 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Listen for changes to our id.
-    self.registerH5PEventListener('bookmarksChanged', function (event, index, number) {
+    self.on('bookmarksChanged', function (event, index, number) {
       if (index === id && number < 0) {
         // We are removing this item.
         $li.remove();
         delete self.bookmarksMap[tenth];
-        $(this).unbind(event);
+        self.off('bookmarksChanged', this);
       }
       else if (id >= index) {
         // We must update our id.
@@ -367,7 +384,7 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     // Tell others we have added a new bookmark.
-    self.triggerH5PEvent('bookmarkAdded', [$bookmark]);
+    self.trigger('bookmarkAdded', [$bookmark]);
     return $bookmark;
   };
 
@@ -547,7 +564,7 @@ H5P.InteractiveVideo = (function ($) {
       width: '',
       height: ''
     });
-    this.video.triggerH5PEvent('resize');
+    this.video.trigger('resize');
 
     var width;
     var controlsHeight = this.$controls.height();
@@ -571,7 +588,7 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       // Resize again to fit the new container size.
-      this.video.triggerH5PEvent('resize');
+      this.video.trigger('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -777,9 +794,36 @@ H5P.InteractiveVideo = (function ($) {
 
     this.video.pause();
     clearInterval(this.uiUpdater);
+    this.complete();
+  };
+  
+  C.prototype.complete = function() {
+    if (!this.isCompleted) {
+      // Post user score. Max score is based on how many of the questions the user
+      // actually answered
+      this.triggerXAPICompleted(this.getUsersScore(), this.getUsersMaxScore());
+    }
+    this.isCompleted = true;
+  }
 
-    // Post user score
-    this.triggerH5PxAPIEvent('completed', H5P.getxAPIScoredResult(0, 0));
+  C.prototype.getUsersScore = function() {
+    var score = 0;
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].score) {
+        score += this.interactions[i].score;
+      }
+    }
+    return score;
+  };
+  
+  C.prototype.getUsersMaxScore = function() {
+    var maxScore = 0;
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].maxScore) {
+        maxScore += this.interactions[i].maxScore;
+      }
+    }
+    return maxScore;
   };
 
   /**
@@ -833,7 +877,7 @@ H5P.InteractiveVideo = (function ($) {
       .appendTo(this.$overlay)
       .click(function () {
         if (that.editor === undefined) {
-          that.showDialog(interaction, $interaction);
+          that.showDialog(i, $interaction);
         }
         return false;
       })
@@ -893,11 +937,13 @@ H5P.InteractiveVideo = (function ($) {
   /**
    * Display interaction dialog.
    *
-   * @param {Object} interaction
+   * @param {int} i
+   *  The interactions index in the semantics interactions array
    * @param {jQuery} $button
    * @returns {undefined}
    */
-  C.prototype.showDialog = function (interaction, $button) {
+  C.prototype.showDialog = function (i, $button) {
+    var interaction = this.params.assets.interactions[i];
     var that = this;
     var instance;
 
@@ -909,6 +955,13 @@ H5P.InteractiveVideo = (function ($) {
       var $inner = this.$dialog.children('.h5p-dialog-inner');
       var $dialog = $inner.html('<div class="h5p-dialog-interaction"></div>').children();
       instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
+      H5P.on(instance, 'xAPI', function(event) {
+        that.interactions[i].score = event.getScore();
+        that.interactions[i].maxScore = event.getMaxScore();
+        if (interaction.mainSummary) {
+          that.complete();
+        }
+      });
 
       var lib = interaction.action.library.split(' ')[0];
 
@@ -920,7 +973,7 @@ H5P.InteractiveVideo = (function ($) {
         if (lib === 'H5P.Summary') {
           // Scroll summary to bottom if the task changes size
           var lastHeight = 0;
-          instance.$.on('resize', function () {
+          instance.on('resize', function () {
             var height = $dialog.height();
             if (lastHeight > height + 10 || lastHeight < height - 10)  {
               setTimeout(function () {
