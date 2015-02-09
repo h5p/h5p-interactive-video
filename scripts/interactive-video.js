@@ -384,7 +384,7 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     // Tell others we have added a new bookmark.
-    self.trigger('bookmarkAdded', [$bookmark]);
+    self.trigger('bookmarkAdded', {'bookmark': $bookmark});
     return $bookmark;
   };
 
