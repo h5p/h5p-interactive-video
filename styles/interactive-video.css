@@ -222,7 +222,7 @@
 .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-markthewords-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button,
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button {
   font-family: 'H5Picons';
   background: #981d99;
   background-image: -webkit-linear-gradient(bottom, #981d99 50%, #ce6cd8 50%, #981d99 100%);
@@ -248,7 +248,7 @@
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button:before {
   content: "\e600";
 }
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button:before {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button:before {
   content: "\e603";
 }
 
@@ -696,6 +696,17 @@
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] {
+  overflow: hidden;
+  padding: 0;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-inner {
+  overflow: hidden;
+  width: 100%;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-sc-sound-control {
+  right: 1.2em;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big {
 	width: auto;
