@@ -188,5 +188,85 @@
         "default": false
       }
     ]
+  },
+  {
+    "name": "interaction",
+    "type": "text",
+    "label": "Interaction title",
+    "default": "Interaction",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "play",
+    "type": "text",
+    "label": "Play title",
+    "default": "Play",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "pause",
+    "type": "text",
+    "label": "Pause title",
+    "default": "Pause",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "mute",
+    "type": "text",
+    "label": "Mute title",
+    "default": "Mute",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "unmute",
+    "type": "text",
+    "label": "Unmute title",
+    "default": "Unmute",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "quality",
+    "type": "text",
+    "label": "Video quality title",
+    "default": "Video Quality",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "fullscreen",
+    "type": "text",
+    "label": "Fullscreen title",
+    "default": "Fullscreen",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "exitFullscreen",
+    "type": "text",
+    "label": "Exit fullscreen title",
+    "default": "Exit Fullscreen",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "summary",
+    "type": "text",
+    "label": "Summary title",
+    "default": "Summary",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "bookmarks",
+    "type": "text",
+    "label": "Bookmarks title",
+    "default": "Bookmarks",
+    "common": true,
+    "optional": true
   }
 ]
