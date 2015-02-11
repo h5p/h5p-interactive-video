@@ -212,18 +212,22 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Not set
       }
 
-      instance.on('checkAnswer', function (passRate) {
-        var fullScore = (passRate >= 1);
+      instance.on('xAPI', function (event) {
+        if (event.getShortVerb() !== 'completed'
+          || !event.getMaxScore()
+          || event.getScore() === null) {
+          return;
+        }
+        var fullScore = event.getScore() >= event.getMaxScore();
 
         // Determine adaptivity
         var adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
         if (adaptivity.seekTo === undefined) {
           if (!$continueButton) {
             // Add continue button
-            $continueButton = $('<div/>', {
+            $continueButton = H5P.JoubelUI.createButton({
               tabIndex: 1,
               role: 'button',
-              'class': 'h5p-joubel-ui-button',
               html: player.l10n.defaultAdaptivitySeekLabel,
               on: {
                 click: function () {
@@ -274,10 +278,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
 
         // Add continue button
-        $('<div/>', {
+        H5P.JoubelUI.createButton({
           tabIndex: 1,
-          role: 'button',
-          'class': 'h5p-joubel-ui-button',
           html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
           on: {
             click: function () {
