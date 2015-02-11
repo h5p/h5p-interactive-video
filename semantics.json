@@ -70,6 +70,14 @@
                   "type": "boolean"
                 },
                 {
+                  "name": "displayAsButton",
+                  "label": "Display as an interactive button",
+                  "description": "The user has to open the interaction.",
+                  "type": "boolean",
+                  "default": true,
+                  "optional": true
+                },
+                {
                   "name": "label",
                   "type": "text",
                   "widget": "html",
@@ -92,6 +100,18 @@
                   "widget": "none"
                 },
                 {
+                  "name": "width",
+                  "type": "number",
+                  "widget": "none",
+                  "optional": true
+                },
+                {
+                  "name": "height",
+                  "type": "number",
+                  "widget": "none",
+                  "optional": true
+                },
+                {
                   "name": "action",
                   "type": "library",
                   "options": [
@@ -107,6 +127,88 @@
                     "H5P.DragQuestion 1.2",
                     "H5P.MarkTheWords 1.2",
                     "H5P.DragText 1.2"
+                  ]
+                },
+                {
+                  "name": "adaptivity",
+                  "type": "group",
+                  "label": "Adaptivity",
+                  "optional": true,
+                  "fields": [
+                    {
+                      "name": "correct",
+                      "type": "group",
+                      "label": "Action on all correct",
+                      "fields": [
+                        {
+                          "name": "seekTo",
+                          "type": "number",
+                          "widget": "timecode",
+                          "label": "Seek to",
+                          "description": "Enter timecode in the format M:SS"
+                        },
+                        {
+                          "name": "allowOptOut",
+                          "type": "boolean",
+                          "label": "Allow the user to opt out and continue"
+                        },
+                        {
+                          "name": "message",
+                          "type": "text",
+                          "widget": "html",
+                          "enterMode": "p",
+                          "tags": [
+                            "strong",
+                            "em",
+                            "del",
+                            "a"
+                          ],
+                          "label": "Message"
+                        },
+                        {
+                          "name": "seekLabel",
+                          "type": "text",
+                          "label": "Label for seek button"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "wrong",
+                      "type": "group",
+                      "label": "Action on wrong",
+                      "fields": [
+                        {
+                          "name": "seekTo",
+                          "type": "number",
+                          "widget": "timecode",
+                          "label": "Seek to",
+                          "description": "Enter timecode in the format M:SS"
+                        },
+                        {
+                          "name": "allowOptOut",
+                          "type": "boolean",
+                          "label": "Allow the user to opt out and continue"
+                        },
+                        {
+                          "name": "message",
+                          "type": "text",
+                          "widget": "html",
+                          "enterMode": "p",
+                          "tags": [
+                            "strong",
+                            "em",
+                            "del",
+                            "a"
+                          ],
+                          "label": "Message"
+                        },
+                        {
+                          "name": "seekLabel",
+                          "type": "text",
+                          "label": "Label for seek button"
+                        }
+                      ]
+                    }
                   ]
                 }
               ]
@@ -188,5 +290,93 @@
         "default": false
       }
     ]
+  },
+  {
+    "name": "interaction",
+    "type": "text",
+    "label": "Interaction title",
+    "default": "Interaction",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "play",
+    "type": "text",
+    "label": "Play title",
+    "default": "Play",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "pause",
+    "type": "text",
+    "label": "Pause title",
+    "default": "Pause",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "mute",
+    "type": "text",
+    "label": "Mute title",
+    "default": "Mute",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "unmute",
+    "type": "text",
+    "label": "Unmute title",
+    "default": "Unmute",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "quality",
+    "type": "text",
+    "label": "Video quality title",
+    "default": "Video Quality",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "fullscreen",
+    "type": "text",
+    "label": "Fullscreen title",
+    "default": "Fullscreen",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "exitFullscreen",
+    "type": "text",
+    "label": "Exit fullscreen title",
+    "default": "Exit Fullscreen",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "summary",
+    "type": "text",
+    "label": "Summary title",
+    "default": "Summary",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "bookmarks",
+    "type": "text",
+    "label": "Bookmarks title",
+    "default": "Bookmarks",
+    "common": true,
+    "optional": true
+  },
+  {
+    "name": "defaultAdaptivitySeekLabel",
+    "type": "text",
+    "label": "Default label for adaptivity seek button",
+    "default": "Continue",
+    "common": true,
+    "optional": true
   }
 ]

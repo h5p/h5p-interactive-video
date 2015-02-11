@@ -28,14 +28,12 @@
                 "description": "Sett avspillinga på pause mens denne interaksjonen vises."
               },
               {
+                "label": "Vis som ein interaktiv knapp",
+                "description": "Brukaren må åpne interaktiviteten."
+              },
+              {
                 "label": "Ledetekst",
                 "description": "Ledetekst som vises ved sida av interaksjonsikonet."
-              },
-              {
-              },
-              {
-              },
-              {
               }
             ]
           }
@@ -62,6 +60,50 @@
           "description": "Aktivering vil slå på \"Prøv igjen\" ."
         }
       ]
+    },
+    {
+      "label": "Interaksjonstittel",
+      "default": "Interaksjon"
+    },
+    {
+      "label": "Spel av-tittel",
+      "default": "Spel av"
+    },
+    {
+      "label": "Pause-tittel",
+      "default": "Pause"
+    },
+    {
+      "label": "Lyd av-tittel",
+      "default": "Lyd av"
+    },
+    {
+      "label": "Lyd på-tittel",
+      "default": "Lyd på"
+    },
+    {
+      "label": "Videokvalitetstittel",
+      "default": "Videokvalitet"
+    },
+    {
+      "label": "Fullskjermstittel",
+      "default": "Fullskjerm"
+    },
+    {
+      "label": "Avslutt fullskjerm-tittel",
+      "default": "Avslutt fullskjerm"
+    },
+    {
+      "label": "Oppsummeringstittel",
+      "default": "Oppsummering"
+    },
+    {
+      "label": "Bokmerketittel",
+      "default": "Bokmerker"
+    },
+    {
+      "label": "Standard merkelapp for adaptivitetssøkeknappen",
+      "default": "Fortsett"
     }
   ]
 }
