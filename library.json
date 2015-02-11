@@ -6,6 +6,8 @@
   "majorVersion": 1,
   "minorVersion": 4,
   "patchVersion": 0,
+  "machineName": "H5P.InteractiveVideo",
+  "author": "Joubel AS",
   "embedTypes": [
     "iframe"
   ],
