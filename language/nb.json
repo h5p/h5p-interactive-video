@@ -60,6 +60,46 @@
           "description": "Aktivering vil slå på \"Prøv igjen\" ."
         }
       ]
+    },
+    {
+      "label": "Interaksjonstittel",
+      "default": "Interaksjon"
+    },
+    {
+      "label": "Spill av-tittel",
+      "default": "Spill av"
+    },
+    {
+      "label": "Pause-tittel",
+      "default": "Pause"
+    },
+    {
+      "label": "Lyd av-tittel",
+      "default": "Lyd av"
+    },
+    {
+      "label": "Lyd på-tittel",
+      "default": "Lyd på"
+    },
+    {
+      "label": "Videokvalitetstittel",
+      "default": "Videokvalitet"
+    },
+    {
+      "label": "Fullskjermstittel",
+      "default": "Fullskjerm"
+    },
+    {
+      "label": "Avslutt fullskjerm-tittel",
+      "default": "Avslutt fullskjerm"
+    },
+    {
+      "label": "Oppsummeringstittel",
+      "default": "Oppsummering"
+    },
+    {
+      "label": "Bokmerketittel",
+      "default": "Bokmerker"
     }
   ]
 }
