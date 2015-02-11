@@ -62,10 +62,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
           self.currentState = ENDED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
 
-          // Post user score
-          if (self.postUserStatistics === true) {
-            H5P.setFinished(self.contentId, 0, 0);
-          }
+          self.complete();
           break;
 
         case H5P.Video.PLAYING:
@@ -809,19 +806,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         self.timeUpdate(self.video.getCurrentTime());
       }
     }, 40); // 25 fps
-  };
-
-  /**
-   * Interactive video has ended.
-   */
-  InteractiveVideo.prototype.ended = function () {
-    this.controls.$play.addClass('h5p-pause').attr('title', this.l10n.play);
-    this.playing = false;
-    this.hasEnded = true;
-
-    this.video.pause();
-    clearInterval(this.uiUpdater);
-    this.complete();
   };
   
   InteractiveVideo.prototype.complete = function() {
