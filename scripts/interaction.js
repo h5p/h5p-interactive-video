@@ -10,7 +10,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
    */
   function Interaction(parameters, player) {
     var self = this;
-
     // Initialize event inheritance
     EventDispatcher.call(self);
 
@@ -134,11 +133,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-      setTimeout(function () {
-        instance.trigger('resize');
-      }, 0);
-
-      adaptivity($dialogContent);
+     processInstance($dialogContent, instance);
     };
 
     /**
@@ -196,12 +191,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Trigger event listeners
       self.trigger('display', $interaction);
 
+      processInstance($inner, instance);
+    };
+    
+    var processInstance = function($target, instance) {
       // Resize on next tick
       setTimeout(function () {
         instance.trigger('resize');
       }, 0);
-
-      adaptivity($inner);
+      instance.on('xAPI', function (event) {
+        if (event.getShortVerb() !== 'completed'
+          || !event.getMaxScore()
+          || event.getScore() === null) {
+          return;
+        }
+        self.score = event.getScore();
+        self.maxScore = event.getMaxScore()
+        self.trigger(event);
+        adaptivity($target);
+      });
     };
 
     /**
@@ -212,96 +220,91 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Not set
       }
 
-      instance.on('xAPI', function (event) {
-        if (event.getShortVerb() !== 'completed'
-          || !event.getMaxScore()
-          || event.getScore() === null) {
-          return;
-        }
-        var fullScore = event.getScore() >= event.getMaxScore();
+      
+      var fullScore = self.score >= self.maxScore;
 
-        // Determine adaptivity
-        var adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
-        if (adaptivity.seekTo === undefined) {
-          if (!$continueButton) {
-            // Add continue button
-            $continueButton = H5P.JoubelUI.createButton({
-              tabIndex: 1,
-              role: 'button',
-              html: player.l10n.defaultAdaptivitySeekLabel,
-              on: {
-                click: function () {
-                  if (self.isButton()) {
-                    // Close dialog
-                    player.dialog.close();
-                  }
-                  else {
-                    // Remove interaction posters
-                    $interaction.remove();
-                  }
-
-                  // Remove continue button
-                  $continueButton.remove();
-                  $continueButton = undefined;
-
-                  player.play();
+      // Determine adaptivity
+      var adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
+      if (adaptivity.seekTo === undefined) {
+        if (!$continueButton) {
+          // Add continue button
+          $continueButton = H5P.JoubelUI.createButton({
+            tabIndex: 1,
+            role: 'button',
+            html: player.l10n.defaultAdaptivitySeekLabel,
+            on: {
+              click: function () {
+                if (self.isButton()) {
+                  // Close dialog
+                  player.dialog.close();
                 }
-              }
-            }).appendTo($target.find('.h5p-show-solution-container'));
-          }
-
-          return; // No adaptivity
-        }
-
-        // Stop playback
-        player.pause();
-
-        if (!adaptivity.allowOptOut) {
-          // Make sure only the interaction is useable.
-          if (self.isButton()) {
-            player.dialog.disableOverlay = true;
-            player.dialog.hideCloseButton();
-          }
-          else {
-            $interaction.css('zIndex', 52);
-            player.dialog.openOverlay();
-          }
-        }
-
-        // Replace interaction with adaptivity screen
-        $target.html(adaptivity.message);
-        //instance = ''; ??
-
-        // Buttons wrapper
-        var $buttonWrapper = $('<div/>', {
-          'class': ''
-        });
-
-        // Add continue button
-        H5P.JoubelUI.createButton({
-          tabIndex: 1,
-          html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
-          on: {
-            click: function () {
-              if (self.isButton()) {
-                player.dialog.close();
-              }
-              if (!adaptivity.allowOptOut) {
-                if (!self.isButton()) {
-                  player.dialog.closeOverlay();
-                  $interaction.css('zIndex', '');
+                else {
+                  // Remove interaction posters
+                  $interaction.remove();
                 }
-              }
 
-              self.remove();
-              player.seek(adaptivity.seekTo);
-              player.play();
+                // Remove continue button
+                $continueButton.remove();
+                $continueButton = undefined;
+  
+                player.play();
+              }
             }
-          }
-        }).appendTo($buttonWrapper);
+          }).appendTo($target.find('.h5p-show-solution-container'));
+        }
 
-        $buttonWrapper.appendTo($target);
+        return; // No adaptivity
+      }
+
+      // Stop playback
+      player.pause();
+
+      if (!adaptivity.allowOptOut) {
+        // Make sure only the interaction is useable.
+        if (self.isButton()) {
+          player.dialog.disableOverlay = true;
+          player.dialog.hideCloseButton();
+        }
+        else {
+          $interaction.css('zIndex', 52);
+          player.dialog.openOverlay();
+        }
+      }
+
+      // Replace interaction with adaptivity screen
+      $target.html(adaptivity.message);
+      //instance = ''; ??
+
+      // Buttons wrapper
+      var $buttonWrapper = $('<div/>', {
+        'class': ''
       });
+
+      // Add continue button
+      H5P.JoubelUI.createButton({
+        tabIndex: 1,
+        html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
+        on: {
+          click: function () {
+            if (self.isButton()) {
+              player.dialog.close();
+            }
+            if (!adaptivity.allowOptOut) {
+              if (!self.isButton()) {
+                player.dialog.closeOverlay();
+                $interaction.css('zIndex', '');
+              }
+            }
+
+            self.remove();
+            player.seek(adaptivity.seekTo);
+            player.play();
+          }
+        }
+      }).appendTo($buttonWrapper);
+
+      $buttonWrapper.appendTo($target);
+
     };
 
     /**
@@ -322,6 +325,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.isButton = function () {
       return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
+    };
+    
+    self.isMainSummary = function() {
+      return parameters.mainSummary === true;
     };
 
     /**
@@ -422,7 +429,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         self.toggle(parameters.from);
       }
 
-      instance.$.trigger('resize');
+      instance.trigger('resize');
     };
 
     /**

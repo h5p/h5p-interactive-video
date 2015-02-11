@@ -294,19 +294,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Add bookmarks
     this.addBookmarks();
-    //this.createInteractionsArray();
     this.trigger('resize');
-  };
-  
-  InteractiveVideo.prototype.createInteractionsArray = function() {
-    this.interactions = [];
-    for (var i in this.params.assets.interactions) {
-      this.interactions.push({
-        score: null,
-        maxScore: null
-        // instances will probably be added to this object later
-      });
-    }
   };
 
   /**
@@ -340,6 +328,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       setTimeout(function () {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
+    });
+    interaction.on('xAPI', function(event) {
+      if (event.getShortVerb() === 'completed'
+        || event.getMaxScore()
+        || event.getScore() !== null) {
+    
+        if (interaction.isMainSummary()) {
+          self.complete();
+        }
+      }
     });
 
     this.interactions.push(interaction);
