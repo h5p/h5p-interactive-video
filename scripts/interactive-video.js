@@ -45,13 +45,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }, this.contentId);
 
-    this.video.on('error', function (message) {
+    this.video.on('error', function (event) {
       // Make sure splash screen is removed so the error is visible.
       self.removeSplash();
     });
 
     var firstPlay = true;
-    this.video.on('stateChange', function (state) {
+    this.video.on('stateChange', function (event) {
+      var state = event.data
       if (self.currentState === SEEKING) {
         return; // Prevent updateing UI while seeking
       }
@@ -106,13 +107,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     });
 
-    this.video.on('qualityChange', function (quality) {
+    this.video.on('qualityChange', function (event) {
+      var quality = event.data;
       if (self.controls.$qualityChooser) {
         self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
       }
     });
 
-    this.video.on('loaded', function (state) {
+    this.video.on('loaded', function (event) {
       self.loaded();
     });
   }
@@ -295,11 +297,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Add bookmarks
     this.addBookmarks();
-    this.createInteractionsArray();
+    //this.createInteractionsArray();
     this.trigger('resize');
   };
   
-  C.prototype.createInteractionsArray = function() {
+  InteractiveVideo.prototype.createInteractionsArray = function() {
     this.interactions = [];
     for (var i in this.params.assets.interactions) {
       this.interactions.push({
@@ -335,7 +337,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
 
     var interaction = new Interaction(parameters, self);
-    interaction.on('display', function ($interaction) {
+    interaction.on('display', function (event) {
+      var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
 
       if (self.currentState === PLAYING && interaction.pause()) {
@@ -459,7 +462,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
 
     // Listen for changes to our id.
-    self.on('bookmarksChanged', function (event, index, number) {
+    self.on('bookmarksChanged', function (event) {
+      var index = event.data.index;
+      var number = event.data.number;
       if (index === id && number < 0) {
         // We are removing this item.
         $li.remove();
