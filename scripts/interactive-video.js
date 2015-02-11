@@ -310,11 +310,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         // instances will probably be added to this object later
       });
     }
-=======
-
-    // Use available space
-    this.$.trigger('resize');
->>>>>>> adaptivity
   };
 
   /**
