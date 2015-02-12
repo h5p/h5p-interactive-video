@@ -39,7 +39,15 @@
           }
         },
         {
-          "label": "Oppsummeringsoppgave"
+          "label": "Oppsummeringsoppgave",
+          "fields": [
+            {
+            },
+            {
+              "label": "Visningstid",
+              "description": "Antall sekunder før videoen slutter."
+            }
+          ]
         }
       ]
     },
