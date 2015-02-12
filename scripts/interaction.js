@@ -122,7 +122,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Summary') {
         // Scroll summary to bottom if the task changes size
         var lastHeight = 0;
-        instance.on('resize', function () {
+        H5P.on(instance, 'resize', function () {
           var height = $dialogContent.height();
           if (lastHeight > height + 10 || lastHeight < height - 10)  {
             setTimeout(function () {
@@ -199,8 +199,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         instance.trigger('resize');
       }, 0);
-      instance.on('xAPI', function (event) {
-        if (event.getShortVerb() !== 'completed'
+      H5P.on(instance, 'xAPI', function (event) {
+        if (event.getVerb() !== 'completed'
           || !event.getMaxScore()
           || event.getScore() === null) {
           return;

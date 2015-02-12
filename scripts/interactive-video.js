@@ -330,7 +330,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }, 0);
     });
     interaction.on('xAPI', function(event) {
-      if (event.getShortVerb() === 'completed'
+      if (event.getVerb() === 'completed'
         || event.getMaxScore()
         || event.getScore() !== null) {
     
