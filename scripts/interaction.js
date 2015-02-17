@@ -197,7 +197,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var processInstance = function($target, instance) {
       // Resize on next tick
       setTimeout(function () {
-        instance.trigger('resize');
+        H5P.trigger(instance, 'resize');
       }, 0);
       H5P.on(instance, 'xAPI', function (event) {
         if (event.getVerb() !== 'completed'
@@ -429,7 +429,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         self.toggle(parameters.from);
       }
 
-      instance.trigger('resize');
+      H5P.trigger(instance, 'resize');
     };
 
     /**
