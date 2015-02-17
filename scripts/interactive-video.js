@@ -1,14 +1,15 @@
-/** @namespace H5P */
-H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
+H5P.InteractiveVideo.Player = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Initialize a new interactive video.
    *
+   * @class
+   * @namespace H5P.InteractiveVideo
+   * @extends H5P.EventDispatcher
    * @param {Array} params
-   * @param {int} id
-   * @returns {_L2.C}
+   * @param {Number} id
    */
-  function InteractiveVideo(params, id) {
+  function Player(params, id) {
     H5P.EventDispatcher.call(this);
     var self = this;
     self.$ = $(self);
@@ -38,6 +39,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     this.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
+      constructor: 'Player',
       params: {
         sources: this.params.video.files,
         controls: this.justVideo,
@@ -115,14 +117,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       self.loaded();
     });
   }
-  
-  InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
-  InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+  Player.prototype = Object.create(EventDispatcher.prototype);
+  Player.prototype.constructor = Player;
 
   /**
    * Removes splash screen.
    */
-   InteractiveVideo.prototype.removeSplash = function () {
+   Player.prototype.removeSplash = function () {
     if (this.$splash === undefined) {
       return;
     }
@@ -137,7 +139,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {jQuery} $container
    * @returns {undefined}
    */
-  InteractiveVideo.prototype.attach = function ($container) {
+  Player.prototype.attach = function ($container) {
     var that = this;
     this.$container = $container;
 
@@ -197,7 +199,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @param {jQuery} $wrapper
    */
-  InteractiveVideo.prototype.attachVideo = function ($wrapper) {
+  Player.prototype.attachVideo = function ($wrapper) {
     var that = this;
 
     this.video.attach($wrapper);
@@ -226,7 +228,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @returns {undefined}
    */
-  InteractiveVideo.prototype.loaded = function () {
+  Player.prototype.loaded = function () {
     var that = this;
 
     var duration = this.video.getDuration();
@@ -304,7 +306,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {Number} index
    * @returns {Interaction}
    */
-  InteractiveVideo.prototype.initInteraction = function (index) {
+  Player.prototype.initInteraction = function (index) {
     var self = this;
     var parameters = this.params.assets.interactions[index];
 
@@ -333,7 +335,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if (event.getVerb() === 'completed'
         || event.getMaxScore()
         || event.getScore() !== null) {
-    
+
         if (interaction.isMainSummary()) {
           self.complete();
         }
@@ -358,7 +360,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *   true if this interactive video has a summary
    *   false otherwise
    */
-  InteractiveVideo.prototype.hasMainSummary = function() {
+  Player.prototype.hasMainSummary = function() {
     var summary = this.params.summary;
     return !(summary === undefined ||
         summary.displayAt === undefined ||
@@ -373,7 +375,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Puts the tiny cute balls above the slider / seek bar.
    */
-  InteractiveVideo.prototype.addSliderInteractions = function () {
+  Player.prototype.addSliderInteractions = function () {
     // Remove old dots
     this.controls.$interactionsContainer.children().remove();
 
@@ -386,7 +388,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Puts all the cool narrow lines around the slider / seek bar.
    */
-  InteractiveVideo.prototype.addBookmarks = function () {
+  Player.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
     if (this.params.assets.bookmarks !== undefined) {
       for (var i = 0; i < this.params.assets.bookmarks.length; i++) {
@@ -398,7 +400,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    */
-  InteractiveVideo.prototype.addBookmark = function (id, tenth) {
+  Player.prototype.addBookmark = function (id, tenth) {
     var self = this;
     var bookmark = self.params.assets.bookmarks[id];
 
@@ -478,7 +480,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @param {jQuery} $wrapper
    */
-  InteractiveVideo.prototype.attachControls = function ($wrapper) {
+  Player.prototype.attachControls = function ($wrapper) {
     var that = this;
 
     $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality h5p-disabled"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
@@ -603,7 +605,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    *
    */
-  InteractiveVideo.prototype.addQualityChooser = function () {
+  Player.prototype.addQualityChooser = function () {
     var self = this;
 
     if (!this.video.getQualities) {
@@ -637,7 +639,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Create loop that constantly updates the buffer bar
    */
-  InteractiveVideo.prototype.startUpdatingBufferBar = function () {
+  Player.prototype.startUpdatingBufferBar = function () {
     var self = this;
     if (self.bufferLoop) {
       return;
@@ -659,7 +661,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {Boolean} fullScreen
    * @returns {undefined}
    */
-  InteractiveVideo.prototype.resize = function () {
+  Player.prototype.resize = function () {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
@@ -728,7 +730,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @returns {undefined}
    */
-  InteractiveVideo.prototype.toggleFullScreen = function () {
+  Player.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       if (H5P.fullScreenBrowserPrefix === undefined) {
@@ -763,7 +765,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @param {Number} time
    */
-  InteractiveVideo.prototype.timeUpdate = function (time) {
+  Player.prototype.timeUpdate = function (time) {
     var self = this;
 
     // Scroll slider
@@ -805,8 +807,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }, 40); // 25 fps
   };
-  
-  InteractiveVideo.prototype.complete = function() {
+
+  Player.prototype.complete = function() {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
@@ -815,7 +817,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.isCompleted = true;
   }
 
-  InteractiveVideo.prototype.getUsersScore = function() {
+  Player.prototype.getUsersScore = function() {
     var score = 0;
     for (var i = 0; i < this.interactions.length; i++) {
       if (this.interactions[i].score) {
@@ -824,8 +826,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
     return score;
   };
-  
-  InteractiveVideo.prototype.getUsersMaxScore = function() {
+
+  Player.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
     for (var i = 0; i < this.interactions.length; i++) {
       if (this.interactions[i].maxScore) {
@@ -840,7 +842,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @param {int} second
    */
-  InteractiveVideo.prototype.toggleInteractions = function (second) {
+  Player.prototype.toggleInteractions = function (second) {
     for (var i = 0; i < this.interactions.length; i++) {
       this.interactions[i].toggle(second);
     }
@@ -851,7 +853,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @public
    */
-  InteractiveVideo.prototype.play = function () {
+  Player.prototype.play = function () {
     this.video.play();
   };
 
@@ -861,7 +863,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @public
    * @param {Number} time
    */
-  InteractiveVideo.prototype.seek = function (time) {
+  Player.prototype.seek = function (time) {
     this.video.seek(time);
   };
 
@@ -870,7 +872,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @public
    */
-  InteractiveVideo.prototype.pause = function () {
+  Player.prototype.pause = function () {
     this.video.pause();
   };
 
@@ -879,7 +881,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *
    * @returns {H5P.ContentCopyrights}
    */
-  InteractiveVideo.prototype.getCopyrights = function () {
+  Player.prototype.getCopyrights = function () {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
@@ -967,5 +969,5 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
   };
 
-  return InteractiveVideo;
-})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideoDialog, H5P.InteractiveVideoInteraction);
+  return Player;
+})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideo.Dialog, H5P.InteractiveVideo.Interaction);

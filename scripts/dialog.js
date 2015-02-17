@@ -1,12 +1,14 @@
-/** @namespace H5P */
-H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
+H5P.InteractiveVideo = {};
+H5P.InteractiveVideo.Dialog = (function ($, EventDispatcher) {
 
   /**
    * Controls the dialog in the interactive video.
    *
    * @class
-   * @param {jQuery} $container for dialog
-   * @param {jQuery} $videoWrapper needed for positioning of dialog
+   * @namespace H5P.InteractiveVideo
+   * @extends H5P.EventDispatcher
+   * @param {H5P.jQuery} $container for dialog
+   * @param {H5P.jQuery} $videoWrapper needed for positioning of dialog
    */
   function Dialog($container, $videoWrapper) {
     var self = this;

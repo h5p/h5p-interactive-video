@@ -1,10 +1,11 @@
-/** @namespace H5P */
-H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
+H5P.InteractiveVideo.Interaction = (function ($, EventDispatcher) {
 
   /**
    * Keeps control of interactions in the interactive video.
    *
    * @class
+   * @namespace H5P.InteractiveVideo
+   * @extends H5P.EventDispatcher
    * @param {Object} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
    */
@@ -193,7 +194,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       processInstance($inner, instance);
     };
-    
+
     var processInstance = function($target, instance) {
       // Resize on next tick
       setTimeout(function () {
@@ -220,7 +221,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Not set
       }
 
-      
+
       var fullScore = self.score >= self.maxScore;
 
       // Determine adaptivity
@@ -246,7 +247,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                 // Remove continue button
                 $continueButton.remove();
                 $continueButton = undefined;
-  
+
                 player.play();
               }
             }
@@ -326,7 +327,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.isButton = function () {
       return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
     };
-    
+
     self.isMainSummary = function() {
       return parameters.mainSummary === true;
     };
