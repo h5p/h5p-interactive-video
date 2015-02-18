@@ -11,7 +11,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   function InteractiveVideo(params, id) {
     H5P.EventDispatcher.call(this);
     var self = this;
-    self.$ = $(self);
     this.params = $.extend({
       video: {},
       assets: {}
@@ -114,8 +113,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.video.on('loaded', function (event) {
       self.loaded();
     });
+
+    self.on('resize', function () {
+      self.resize();
+    });
   }
-  
+
   InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
   InteractiveVideo.prototype.constructor = InteractiveVideo;
 
@@ -333,7 +336,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if (event.getVerb() === 'completed'
         || event.getMaxScore()
         || event.getScore() !== null) {
-    
+
         if (interaction.isMainSummary()) {
           self.complete();
         }
@@ -805,7 +808,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }, 40); // 25 fps
   };
-  
+
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
@@ -824,7 +827,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
     return score;
   };
-  
+
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
     for (var i = 0; i < this.interactions.length; i++) {
