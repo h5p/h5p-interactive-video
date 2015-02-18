@@ -182,17 +182,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
           that.video.pause();
         }
       });
+
+      // Resume playing when closing dialog
+      this.dialog.on('close', function () {
+        if (that.lastState !== PAUSED && that.lastState !== ENDED) {
+          that.video.play();
+        }
+      });
     }
     else {
       this.dialog.disableOverlay = true;
     }
-
-    // Resume playing when closing dialog
-    this.dialog.on('close', function () {
-      if (that.lastState !== PAUSED && that.lastState !== ENDED) {
-        that.video.play();
-      }
-    });
   };
 
   /**

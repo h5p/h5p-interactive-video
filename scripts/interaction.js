@@ -193,7 +193,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       processInstance($inner, instance);
     };
-    
+
     var processInstance = function($target, instance) {
       // Resize on next tick
       setTimeout(function () {
@@ -220,7 +220,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Not set
       }
 
-      
+
       var fullScore = self.score >= self.maxScore;
 
       // Determine adaptivity
@@ -246,7 +246,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                 // Remove continue button
                 $continueButton.remove();
                 $continueButton = undefined;
-  
+
                 player.play();
               }
             }
@@ -326,7 +326,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.isButton = function () {
       return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
     };
-    
+
     self.isMainSummary = function() {
       return parameters.mainSummary === true;
     };
