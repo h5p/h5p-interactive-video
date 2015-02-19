@@ -33,7 +33,7 @@
    use display:none, since IV is triggering a click on
    the disable fullscreen button in semi fullscreen mode */
 .h5p-interactive-video .h5p-content-controls {
-  visibility:hidden;
+  visibility: hidden;
   position: absolute;
   top:0;
 }
@@ -46,16 +46,21 @@
   display: block;
   width: 100%;
   height: auto;
+	color: #fff;
 }
 .h5p-interactive-video object {
   display: block;
 }
-.h5p-interactive-video .h5p-video-wrapper .h5p-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.h5p-interactive-video .h5p-overlay {
+	color: #2c2c2c;
+}
+.h5p-interactive-video .h5p-overlay.h5p-visible {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 .h5p-interactive-video .h5p-ie-transparent-background {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=);
@@ -217,7 +222,7 @@
 .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-markthewords-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button,
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button {
   font-family: 'H5Picons';
   background: #981d99;
   background-image: -webkit-linear-gradient(bottom, #981d99 50%, #ce6cd8 50%, #981d99 100%);
@@ -243,7 +248,7 @@
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button:before {
   content: "\e600";
 }
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button:before {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button:before {
   content: "\e603";
 }
 
@@ -308,6 +313,42 @@
   -webkit-animation: none;
 }
 
+
+.h5p-interactive-video .h5p-interaction.h5p-poster {
+  background: #fff;
+  border-radius: 0.125em;
+  box-shadow: 0 0 0.25em #2c2c2c;
+  padding: 0.25em;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.h5p-interactive-video .h5p-interaction-inner,
+.h5p-interactive-video .h5p-interaction-inner.h5p-image {
+  width: 100%;
+  height: 100%;
+  font-size: 0.875em;
+  overflow-y: auto;
+}
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar {
+  width: 0.5em;
+  background: #fff;
+}
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb {
+  border-radius: 0.25em;
+  background: #191919;
+}
+.h5p-interactive-video .h5p-interaction-inner.h5p-image,
+.h5p-interactive-video .h5p-interaction-inner.h5p-dragquestion {
+  overflow-y: hidden;
+}
+.h5p-interactive-video .h5p-interaction-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .h5p-interactive-video .h5p-controls {
   font-size: 16px;
   height: 36px;
@@ -367,6 +408,9 @@
 }
 .h5p-interactive-video .h5p-control:hover:before {
   color: #dbd7d1;
+}
+.h5p-interactive-video .h5p-control.h5p-disabled:before {
+	color: #606060;
 }
 
 .h5p-interactive-video .h5p-play:before {
@@ -534,6 +578,9 @@
   top: 0;
   left: 0;
   border-radius: 4px;
+	height: 8px;
+	width: 0;
+	background: #5f5f5f;
 }
 
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container {
@@ -650,6 +697,17 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] {
+  overflow: hidden;
+  padding: 0;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-inner {
+  overflow: hidden;
+  width: 100%;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-sc-sound-control {
+  right: 1.2em;
+}
 .h5p-interactive-video .h5p-dialog.h5p-big {
 	width: auto;
 	height: auto;
@@ -715,11 +773,6 @@
 	margin-bottom: 0;
 }
 
-.h5p-interactive-video .h5p-video-error {
-  padding: 1em;
-  color: #fff;
-}
-
 .h5p-interactive-video .h5p-table {
   font-size: 0.875em;
   border-collapse: collapse;
@@ -743,4 +796,5 @@
   padding: 0.1em 0.5em;
   min-height: 1.5em;
   min-width: 1.5em;
+	cursor: default;
 }

@@ -1,11 +1,5 @@
-var H5P = H5P || {};
-
-/**
- * Interactive Video module
- *
- * @param {jQuery} $
- */
-H5P.InteractiveVideo = (function ($) {
+/** @namespace H5P */
+H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Initialize a new interactive video.
@@ -14,15 +8,15 @@ H5P.InteractiveVideo = (function ($) {
    * @param {int} id
    * @returns {_L2.C}
    */
-  function C(params, id) {
-    this.$ = $(this);
+  function InteractiveVideo(params, id) {
+    H5P.EventDispatcher.call(this);
+    var self = this;
     this.params = $.extend({
       video: {},
       assets: {}
     }, params.interactiveVideo);
     this.contentId = id;
     this.visibleInteractions = [];
-    this.postUserStatistics = (H5P.postUserStatistics === true);
 
     this.l10n = {
       interaction: 'Interaction',
@@ -34,17 +28,111 @@ H5P.InteractiveVideo = (function ($) {
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
-      bookmarks: 'Bookmarks'
+      bookmarks: 'Bookmarks',
+      defaultAdaptivitySeekLabel: 'Continue'
     };
 
-    if (params.override !== undefined) {
-      this.overrideButtons = (params.override.overrideButtons === undefined ? false : params.override.overrideButtons);
-      this.overrideShowSolutionButton = (params.override.overrideShowSolutionButton === undefined ? false : params.override.overrideShowSolutionButton);
-      this.overrideRetry = (params.override.overrideRetry === undefined ? false : params.override.overrideRetry);
+    this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+    this.isCompleted = false;
+
+    this.video = H5P.newRunnable({
+      library: 'H5P.Video 1.1',
+      params: {
+        sources: this.params.video.files,
+        controls: this.justVideo,
+        fit: false
+      }
+    }, this.contentId);
+
+    this.video.on('error', function (event) {
+      // Make sure splash screen is removed so the error is visible.
+      self.removeSplash();
+    });
+
+    var firstPlay = true;
+    this.video.on('stateChange', function (event) {
+      var state = event.data
+      if (self.currentState === SEEKING) {
+        return; // Prevent updateing UI while seeking
+      }
+
+      switch (state) {
+        case H5P.Video.ENDED:
+          self.currentState = ENDED;
+          self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+
+          self.complete();
+          break;
+
+        case H5P.Video.PLAYING:
+          if (firstPlay) {
+            firstPlay = false;
+
+            // Qualities might not be available until after play.
+            self.addQualityChooser();
+
+            // Make sure splash screen is removed.
+            self.removeSplash();
+
+            // Make sure we track buffering of the video.
+            self.startUpdatingBufferBar();
+          }
+
+          self.currentState = PLAYING;
+          self.controls.$play.removeClass('h5p-pause').attr('title', self.l10n.pause);
+          self.timeUpdate(self.video.getCurrentTime());
+          break;
+
+        case H5P.Video.PAUSED:
+          self.currentState = PAUSED;
+          self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+          break;
+
+        case H5P.Video.BUFFERING:
+          self.currentState = BUFFERING;
+
+          // Make sure splash screen is removed.
+          self.removeSplash();
+
+          // Make sure we track buffering of the video.
+          self.startUpdatingBufferBar();
+
+          // Remove interactions while buffering
+          self.timeUpdate(-1);
+          break;
+      }
+    });
+
+    this.video.on('qualityChange', function (event) {
+      var quality = event.data;
+      if (self.controls.$qualityChooser) {
+        self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
+      }
+    });
+
+    this.video.on('loaded', function (event) {
+      self.loaded();
+    });
+
+    self.on('resize', function () {
+      self.resize();
+    });
+  }
+
+  InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
+  InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+  /**
+   * Removes splash screen.
+   */
+   InteractiveVideo.prototype.removeSplash = function () {
+    if (this.$splash === undefined) {
+      return;
     }
 
-    this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
-  }
+    this.$splash.remove();
+    delete this.$splash;
+  };
 
   /**
    * Attach interactive video to DOM element.
@@ -52,11 +140,11 @@ H5P.InteractiveVideo = (function ($) {
    * @param {jQuery} $container
    * @returns {undefined}
    */
-  C.prototype.attach = function ($container) {
+  InteractiveVideo.prototype.attach = function ($container) {
     var that = this;
     this.$container = $container;
 
-    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div><div class="h5p-dialog-wrapper h5p-ie-transparent-background h5p-hidden"><div class="h5p-dialog"><div class="h5p-dialog-inner"></div><a href="#" class="h5p-dialog-hide">&#xf00d;</a></div></div>');
+    $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');
 
     // Font size is now hardcoded, since some browsers (At least Android
     // native browser) will have scaled down the original CSS font size by the
@@ -80,19 +168,31 @@ H5P.InteractiveVideo = (function ($) {
     this.$controls = $container.children('.h5p-controls');
     this.attachControls(this.$controls);
 
-    // Dialog
-    this.$dialogWrapper = $container.children('.h5p-dialog-wrapper').click(function () {
-      if (that.editor === undefined) {
-        that.hideDialog();
-      }
-    });
-    this.$dialog = this.$dialogWrapper.children('.h5p-dialog').click(function (event) {
-      event.stopPropagation();
-    });
-    this.$dialog.children('.h5p-dialog-hide').click(function () {
-      that.hideDialog();
-      return false;
-    });
+    // Create a popup dialog
+    this.dialog = new Dialog($container, this.$videoWrapper);
+
+    if (this.editor === undefined) {
+      // Pause video when opening dialog
+      this.dialog.on('open', function () {
+        // Keep track of last state
+        that.lastState = that.currentState;
+
+        if (that.currentState !== PAUSED && that.currentState !== ENDED) {
+          // Pause video
+          that.video.pause();
+        }
+      });
+
+      // Resume playing when closing dialog
+      this.dialog.on('close', function () {
+        if (that.lastState !== PAUSED && that.lastState !== ENDED) {
+          that.video.play();
+        }
+      });
+    }
+    else {
+      this.dialog.disableOverlay = true;
+    }
   };
 
   /**
@@ -100,79 +200,27 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @param {jQuery} $wrapper
    */
-  C.prototype.attachVideo = function ($wrapper) {
+  InteractiveVideo.prototype.attachVideo = function ($wrapper) {
     var that = this;
 
-    this.video = new H5P.Video({
-      files: this.params.video.files,
-      controls: this.justVideo,
-      autoplay: false,
-      fitToWrapper: false
-    }, this.contentId);
-
-    this.video = H5P.newRunnable({
-      library: 'H5P.Video 1.0',
-      params: {
-        files: this.params.video.files,
-        controls: this.justVideo,
-        autoplay: false,
-        fitToWrapper: false
-      }
-    }, this.contentId);
-
+    this.video.attach($wrapper);
     if (this.justVideo) {
-      this.video.attach($wrapper);
       return;
     }
 
-    this.video.errorCallback = function (errorCode, errorMessage) {
-      if (errorCode instanceof Event) {
-        // Video
-        switch (errorCode.target.error.code) {
-          case MediaError.MEDIA_ERR_ABORTED:
-            errorMessage = 'Media playback has been aborted';
-            break;
-          case MediaError.MEDIA_ERR_NETWORK:
-            errorMessage = 'Network failure';
-            break;
-          case MediaError.MEDIA_ERR_DECODE:
-            errorMessage = 'Unable to decode media';
-            break;
-          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-            errorMessage = 'Video format not supported';
-            break;
-          case MediaError.MEDIA_ERR_ENCRYPTED:
-            errorMessage = 'Encrypted';
-            break;
-        }
-      }
-
-      that.$container.html('<div class="h5p-video-error">Error: ' + errorMessage + '.</div>');
-      if (that.editor !== undefined) {
-        delete that.editor.IV;
-      }
-    };
-    this.video.endedCallback = function () {
-      if (this.controls === undefined) return; // Might fail before we are ready.
-      that.ended();
-    };
-    this.video.loadedCallback = function () {
-      that.loaded();
-    };
-
-    this.video.attach($wrapper);
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
 
     if (this.editor === undefined) {
       this.$splash = $('<div class="h5p-splash-wrapper"><div class="h5p-splash"><h2>Interactive Video</h2><p>Press the icons as the video plays for challenges and more information on the topics!</p><div class="h5p-interaction h5p-multichoice-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">Challenges</div></div><div class="h5p-interaction h5p-text-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">More information</div></div></div></div>')
-      .click(function(){
-        that.play();
-        H5P.jQuery(this).remove();
-      })
-      .appendTo(this.$overlay);
-      this.$splash.find('.h5p-interaction-button').click(function () {
-        return false;
-      });
+        .click(function () {
+          that.video.play();
+        })
+        .appendTo(this.$overlay)
+        .find('.h5p-interaction-button')
+          .click(function () {
+            return false;
+          })
+          .end();
     }
   };
 
@@ -181,11 +229,11 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @returns {undefined}
    */
-  C.prototype.loaded = function () {
+  InteractiveVideo.prototype.loaded = function () {
     var that = this;
 
     var duration = this.video.getDuration();
-    var time = C.humanizeTime(duration);
+    var time = humanizeTime(duration);
     this.controls.$totalTime.html(time);
     this.controls.$slider.slider('option', 'max', duration);
 
@@ -194,15 +242,23 @@ H5P.InteractiveVideo = (function ($) {
       marginLeft: this.$controls.children('.h5p-controls-left').width(),
       marginRight: this.$controls.children('.h5p-controls-right').width()
     });
-    this.controls.$currentTime.html(C.humanizeTime(0));
+    this.controls.$currentTime.html(humanizeTime(0));
 
     duration = Math.floor(duration);
 
-    // Set max/min for editor duration fields
     if (this.editor !== undefined) {
-      var durationFields = this.editor.field.fields[0].field.fields[0].fields;
+      var interactions = findField('interactions', this.editor.field.fields);
+
+      // Set max/min for editor duration fields
+      var durationFields = findField('duration', interactions.field.fields).fields;
       durationFields[0].max = durationFields[1].max = duration;
       durationFields[0].min = durationFields[1].min = 0;
+
+      // Set max value for adaptive seeking timecodes
+      var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
+      for (var i = 0; i < adaptivityFields.length; i++) {
+        findField('seekTo', adaptivityFields[i].fields).max = duration;
+      }
     }
 
     // Add summary interaction
@@ -222,26 +278,78 @@ H5P.InteractiveVideo = (function ($) {
         },
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
-        label: this.l10n.summary
+        label: this.l10n.summary,
+        mainSummary: true
       });
     }
 
-    //Extend subcontent with overrided button settings.
-    if (this.overrideButtons) {
-      that.params.assets.interactions.forEach( function (subcontent) {
-        //Extend subcontent parameters
-        H5P.jQuery.extend(subcontent.action.params.behaviour, {
-          enableSolutionsButton: that.overrideShowSolutionButton,
-          enableRetry: that.overrideRetry
-        });
-      });
-    }
-
+    // Determine how many percentage one second is.
     this.oneSecondInPercentage = (100 / this.video.getDuration());
-    this.addSliderInteractions();
-    this.addBookmarks();
 
-    this.$.trigger('resize');
+    // Initialize interactions
+    this.interactions = [];
+    for (var i = 0; i < this.params.assets.interactions.length; i++) {
+      this.initInteraction(i);
+    }
+
+    // Add dots above seeking line.
+    this.addSliderInteractions();
+
+    // Add bookmarks
+    this.addBookmarks();
+    this.trigger('resize');
+  };
+
+  /**
+   * Initialize interaction at the given index.
+   *
+   * @public
+   * @param {Number} index
+   * @returns {Interaction}
+   */
+  InteractiveVideo.prototype.initInteraction = function (index) {
+    var self = this;
+    var parameters = this.params.assets.interactions[index];
+
+    if (self.params.override && self.params.override.overrideButtons) {
+      // Extend interaction parameters
+      H5P.jQuery.extend(parameters.action.params.behaviour, {
+        enableSolutionsButton: self.params.override.overrideShowSolutionButton ? true : false,
+        enableRetry: self.params.override.overrideRetry ? true : false
+      });
+    }
+
+    var interaction = new Interaction(parameters, self);
+    interaction.on('display', function (event) {
+      var $interaction = event.data;
+      $interaction.appendTo(self.$overlay);
+
+      if (self.currentState === PLAYING && interaction.pause()) {
+        self.video.pause();
+      }
+
+      setTimeout(function () {
+        interaction.positionLabel(self.$videoWrapper.width());
+      }, 0);
+    });
+    interaction.on('xAPI', function(event) {
+      if (event.getVerb() === 'completed'
+        || event.getMaxScore()
+        || event.getScore() !== null) {
+
+        if (interaction.isMainSummary()) {
+          self.complete();
+        }
+      }
+    });
+
+    this.interactions.push(interaction);
+
+    if (this.editor !== undefined) {
+      this.editor.processInteraction(interaction, parameters);
+    }
+
+    return interaction;
   };
 
   /**
@@ -253,7 +361,7 @@ H5P.InteractiveVideo = (function ($) {
    *   true if this interactive video has a summary
    *   false otherwise
    */
-  C.prototype.hasMainSummary = function() {
+  InteractiveVideo.prototype.hasMainSummary = function() {
     var summary = this.params.summary;
     return !(summary === undefined ||
         summary.displayAt === undefined ||
@@ -268,26 +376,20 @@ H5P.InteractiveVideo = (function ($) {
   /**
    * Puts the tiny cute balls above the slider / seek bar.
    */
-  C.prototype.addSliderInteractions = function () {
+  InteractiveVideo.prototype.addSliderInteractions = function () {
     // Remove old dots
-    this.controls.$slider.children('.h5p-seekbar-interaction').remove();
+    this.controls.$interactionsContainer.children().remove();
 
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      var interaction = this.params.assets.interactions[i];
-      if (interaction.action.library.split(' ')[0] === 'H5P.Nil') {
-        continue; // Skip "sub titles"
-      }
-
-      var title = (interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : this.l10n.interaction);
-      // One could also set width using ((interaction.duration.to - interaction.duration.from + 1) * this.oneSecondInPercentage)
-      $('<div class="h5p-seekbar-interaction ' + this.getClassName(interaction) + '" style="left:' + (interaction.duration.from * this.oneSecondInPercentage) + '%" title="' + title + '"></div>').appendTo(this.controls.$interactionsContainer);
+    // Add new dots
+    for (var i = 0; i < this.interactions.length; i++) {
+      this.interactions[i].addDot(this.controls.$interactionsContainer);
     }
   };
 
   /**
    * Puts all the cool narrow lines around the slider / seek bar.
    */
-  C.prototype.addBookmarks = function () {
+  InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
     if (this.params.assets.bookmarks !== undefined) {
       for (var i = 0; i < this.params.assets.bookmarks.length; i++) {
@@ -299,7 +401,7 @@ H5P.InteractiveVideo = (function ($) {
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    */
-  C.prototype.addBookmark = function (id, tenth) {
+  InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     var self = this;
     var bookmark = self.params.assets.bookmarks[id];
 
@@ -340,7 +442,7 @@ H5P.InteractiveVideo = (function ($) {
           $bookmark.mouseover().mouseout();
         }
         self.controls.$bookmarksChooser.removeClass('h5p-show');
-        self.seek(bookmark.time);
+        self.video.seek(bookmark.time);
       });
 
     // Insert bookmark in the correct place.
@@ -353,12 +455,14 @@ H5P.InteractiveVideo = (function ($) {
     }
 
     // Listen for changes to our id.
-    self.$.on('bookmarksChanged', function (event, index, number) {
+    self.on('bookmarksChanged', function (event) {
+      var index = event.data.index;
+      var number = event.data.number;
       if (index === id && number < 0) {
         // We are removing this item.
         $li.remove();
         delete self.bookmarksMap[tenth];
-        $(this).unbind(event);
+        self.off('bookmarksChanged', this);
       }
       else if (id >= index) {
         // We must update our id.
@@ -368,7 +472,7 @@ H5P.InteractiveVideo = (function ($) {
     });
 
     // Tell others we have added a new bookmark.
-    self.$.trigger('bookmarkAdded', [$bookmark]);
+    self.trigger('bookmarkAdded', {'bookmark': $bookmark});
     return $bookmark;
   };
 
@@ -377,19 +481,19 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @param {jQuery} $wrapper
    */
-  C.prototype.attachControls = function ($wrapper) {
+  InteractiveVideo.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
+    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality h5p-disabled"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
     this.controls = {};
 
     // Play/pause button
     this.controls.$play = $wrapper.find('.h5p-play').click(function () {
       if (that.controls.$play.hasClass('h5p-pause')) {
-        that.play();
+        that.video.play();
       }
       else {
-        that.pause();
+        that.video.pause();
       }
       return false;
     });
@@ -416,32 +520,15 @@ H5P.InteractiveVideo = (function ($) {
       });
 
       // Video quality selector
-      var $chooser = $wrapper.find('.h5p-chooser.h5p-quality');
-      $wrapper.find('.h5p-control.h5p-quality').click(function () {
-        $chooser.toggleClass('h5p-show');
+      this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
+      this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
+        if (!that.controls.$qualityButton.hasClass('h5p-disabled')) {
+          that.controls.$qualityChooser.toggleClass('h5p-show');
+        }
         return false;
       });
 
-      var qualities = '';
-      for (var level in this.video.qualities) {
-        if (this.video.qualities.hasOwnProperty(level)) {
-          qualities += '<li role="button" tabIndex="1" data-level="' + level + '" class="' + (this.video.qualities[level]['default'] !== undefined ? 'h5p-selected' : '') + '">' + this.video.qualities[level].label + '</li>';
-        }
-      }
-      if (qualities !== '') {
-        $chooser.append('<ol>' + qualities + '</ol>');
-        var $options = $chooser.find('li').click(function () {
-          $options.removeClass('h5p-selected');
-          that.video.setQuality($(this).addClass('h5p-selected').attr('data-level'));
-
-          // Clear buffered canvas.
-          var canvas = that.controls.$buffered[0];
-          canvas.width = canvas.width;
-        });
-      }
-      else {
-        $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
-      }
+      this.addQualityChooser();
     }
     else {
       // Remove buttons in editor mode.
@@ -454,7 +541,7 @@ H5P.InteractiveVideo = (function ($) {
       this.controls.$volume = $wrapper.find('.h5p-volume').click(function () {
         if (that.controls.$volume.hasClass('h5p-muted')) {
           that.controls.$volume.removeClass('h5p-muted').attr('title', that.l10n.mute);
-          that.video.unmute();
+          that.video.unMute();
         }
         else {
           that.controls.$volume.addClass('h5p-muted').attr('title', that.l10n.unmute);
@@ -481,33 +568,92 @@ H5P.InteractiveVideo = (function ($) {
 			range: 'min',
       max: 0,
       start: function () {
-        if (that.playing === undefined) {
-          if (that.controls.$slider.slider('option', 'max') !== 0) {
-            that.playing = false;
-          }
+        if (that.currentState === SEEKING) {
+          return; // Prevent double start on touch devies!
         }
-        else if (that.playing) {
-          that.pause(true);
-        }
+
+        that.lastState = (that.currentState === ENDED ? PLAYING : that.currentState);
+        that.video.pause();
+        that.currentState = SEEKING;
+
+        // Make sure splash screen is removed.
+        that.removeSplash();
       },
       slide: function (e, ui) {
-        // Update timer
-        that.controls.$currentTime.html(C.humanizeTime(ui.value));
+        // Update elapsed time
+        that.controls.$currentTime.html(humanizeTime(ui.value));
       },
       stop: function (e, ui) {
-        that.seek(ui.value);
-        if (that.playing !== undefined && that.playing) {
-          that.play(true);
+        that.currentState = that.lastState;
+        that.video.seek(ui.value);
+        if (that.lastState === PLAYING) {
+          that.video.play();
+        }
+        else {
+          that.timeUpdate(ui.value);
         }
       }
     });
 
     // Slider bufferer
-    this.controls.$buffered = $('<canvas class="h5p-buffered" width="100" height="8"></canvas>').prependTo(this.controls.$slider);
+    this.controls.$buffered = $('<div class="h5p-buffered"></div>').prependTo(this.controls.$slider);
 
     // Slider containers
     this.controls.$interactionsContainer = $slider.find('.h5p-interactions-container');
     this.controls.$bookmarksContainer = $slider.find('.h5p-bookmarks-container');
+  };
+
+  /**
+   *
+   */
+  InteractiveVideo.prototype.addQualityChooser = function () {
+    var self = this;
+
+    if (!this.video.getQualities) {
+      return;
+    }
+
+    var qualities = this.video.getQualities();
+    if (!qualities || this.controls.$qualityButton === undefined ||
+        !this.controls.$qualityButton.hasClass('h5p-disabled')) {
+      return;
+    }
+
+    var currentQuality = this.video.getQuality();
+
+    var html = '';
+    for (var i = 0; i < qualities.length; i++) {
+      var quality = qualities[i];
+      html += '<li role="button" tabIndex="1" data-quality="' + quality.name + '" class="' + (quality.name === currentQuality ? 'h5p-selected' : '') + '">' + quality.label + '</li>';
+    }
+
+    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
+    var $options = $list.children().click(function () {
+      self.video.setQuality($(this).attr('data-quality'));
+      self.controls.$qualityChooser.removeClass('h5p-show');
+    });
+
+    // Enable quality chooser button
+    this.controls.$qualityButton.removeClass('h5p-disabled');
+  };
+
+  /**
+   * Create loop that constantly updates the buffer bar
+   */
+  InteractiveVideo.prototype.startUpdatingBufferBar = function () {
+    var self = this;
+    if (self.bufferLoop) {
+      return;
+    }
+
+    var updateBufferBar = function () {
+      var buffered = self.video.getBuffered();
+      if (buffered && self.controls.$buffered) {
+        self.controls.$buffered.css('width', buffered + '%');
+      }
+      self.bufferLoop = setTimeout(updateBufferBar, 500);
+    };
+    updateBufferBar();
   };
 
   /**
@@ -516,7 +662,7 @@ H5P.InteractiveVideo = (function ($) {
    * @param {Boolean} fullScreen
    * @returns {undefined}
    */
-  C.prototype.resize = function () {
+  InteractiveVideo.prototype.resize = function () {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
@@ -534,21 +680,13 @@ H5P.InteractiveVideo = (function ($) {
       }
     }
 
-    if (this.video.video !== undefined) {
-      var that = this;
-      setTimeout(function () {
-        that.controls.$buffered.attr('width', that.controls.$slider.width());
-        that.drawBufferBar();
-      }, 1);
-    }
-
     this.$videoWrapper.css({
       marginTop: '',
       marginLeft: '',
       width: '',
       height: ''
     });
-    this.video.$.trigger('resize');
+    this.video.trigger('resize');
 
     var width;
     var controlsHeight = this.$controls.height();
@@ -572,7 +710,7 @@ H5P.InteractiveVideo = (function ($) {
       }
 
       // Resize again to fit the new container size.
-      this.video.$.trigger('resize');
+      this.video.trigger('resize');
     }
     else {
       if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
@@ -580,11 +718,6 @@ H5P.InteractiveVideo = (function ($) {
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
       width = this.$container.width();
-
-      if (isNaN(this.video.getDuration())) {
-        // Make sure video has an aspect ratio of 16/9 when not loaded.
-        this.$videoWrapper.css('height', (width * 0.5625) + 'px');
-      }
     }
 
     // Set base font size. Don't allow it to fall below original size.
@@ -598,7 +731,7 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @returns {undefined}
    */
-  C.prototype.toggleFullScreen = function () {
+  InteractiveVideo.prototype.toggleFullScreen = function () {
     if (this.controls.$fullscreen.hasClass('h5p-exit')) {
       this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       if (H5P.fullScreenBrowserPrefix === undefined) {
@@ -628,61 +761,17 @@ H5P.InteractiveVideo = (function ($) {
   };
 
   /**
-   * Start the show.
-   *
-   * @param {Boolean} seeking
-   * @returns {undefined}
-   */
-  C.prototype.play = function (seeking) {
-    var that = this;
-
-    if (seeking === undefined) {
-      this.playing = true;
-
-      if (this.$splash !== undefined) {
-        this.$splash.remove();
-        delete this.$splash;
-      }
-
-      if (this.hasEnded !== undefined && this.hasEnded) {
-        // Start video over again
-        this.video.seek(0);
-        this.hasEnded = false;
-      }
-
-      this.controls.$play.removeClass('h5p-pause').attr('title', this.l10n.pause);
-    }
-
-    // Start video
-    this.video.play();
-
-    // Set interval that updates our UI as the video clip plays.
-    this.uiUpdater = setInterval(function () {
-      that.timeUpdate(that.video.getTime());
-    }, 40); // 25 FPS
-  };
-
-  /**
    * Called when the time of the video changes.
    * Makes sure to update all UI elements.
    *
-   * @params {Number} time new
+   * @param {Number} time
    */
-  C.prototype.timeUpdate = function (time) {
+  InteractiveVideo.prototype.timeUpdate = function (time) {
     var self = this;
 
-    if (self.$splash !== undefined) {
-      // Remove splash
-      self.$splash.remove();
-      delete self.$splash;
-    }
-
     // Scroll slider
-    self.controls.$slider.slider('option', 'value', time);
-
-    // Update buffer bar
-    if (self.video.video !== undefined) {
-      self.drawBufferBar();
+    if (time > 0) {
+      self.controls.$slider.slider('option', 'value', time);
     }
 
     // Some UI elements are updated every 10th of a second.
@@ -706,83 +795,47 @@ H5P.InteractiveVideo = (function ($) {
       if (self.editor !== undefined) {
         self.editor.dnb.blur();
       }
-
-      // Update timer
-      self.controls.$currentTime.html(C.humanizeTime(second));
+      if (self.currentState === PLAYING) {
+        // Update elapsed time
+        self.controls.$currentTime.html(humanizeTime(second));
+      }
     }
     self.lastSecond = second;
 
-    self.controls.$currentTime.html(C.humanizeTime(time));
-
-    self.toggleInteractions(Math.floor(time));
+    setTimeout(function () {
+      if (self.currentState === PLAYING) {
+        self.timeUpdate(self.video.getCurrentTime());
+      }
+    }, 40); // 25 fps
   };
 
-  /**
-   * Seek the interactive video to the given time.
-   *
-   * @param {Number} time
-   */
-  C.prototype.seek = function (time) {
-    var self = this;
-
-    self.video.seek(time); // Update video
-    self.timeUpdate(time); // Update overlay
-
-    if (self.hasEnded !== undefined && self.hasEnded) {
-      // Prevent video from restarting when pressing play
-      self.hasEnded = false;
+  InteractiveVideo.prototype.complete = function() {
+    if (!this.isCompleted) {
+      // Post user score. Max score is based on how many of the questions the user
+      // actually answered
+      this.triggerXAPICompleted(this.getUsersScore(), this.getUsersMaxScore());
     }
+    this.isCompleted = true;
+  }
+
+  InteractiveVideo.prototype.getUsersScore = function() {
+    var score = 0;
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].score) {
+        score += this.interactions[i].score;
+      }
+    }
+    return score;
   };
 
-  /**
-   * Draw the buffer bar
-   */
-  C.prototype.drawBufferBar = function () {
-    var canvas = this.controls.$buffered[0].getContext('2d');
-    var width = parseFloat(this.controls.$buffered.attr('width'));
-    var buffered = this.video.video.buffered;
-    var duration = this.video.video.duration;
-
-    canvas.fillStyle = '#5f5f5f';
-    for (var i = 0; i < buffered.length; i++) {
-      var from = buffered.start(i) / duration * width;
-      var to = (buffered.end(i) / duration * width) - from;
-
-      canvas.fillRect(from, 0, to, 8);
+  InteractiveVideo.prototype.getUsersMaxScore = function() {
+    var maxScore = 0;
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].maxScore) {
+        maxScore += this.interactions[i].maxScore;
+      }
     }
-  };
-
-  /**
-   * Pause our interactive video.
-   *
-   * @param {Boolean} seeking
-   * @returns {undefined}
-   */
-  C.prototype.pause = function (seeking) {
-    if (seeking === undefined) {
-      this.controls.$play.addClass('h5p-pause').attr('title', this.l10n.play);
-      this.playing = false;
-    }
-
-    this.video.pause();
-    clearInterval(this.uiUpdater);
-  };
-
-  /**
-   * Interactive video has ended.
-   */
-  C.prototype.ended = function () {
-    this.controls.$play.addClass('h5p-pause').attr('title', this.l10n.play);
-    this.playing = false;
-    this.hasEnded = true;
-
-    this.video.pause();
-    clearInterval(this.uiUpdater);
-
-    // Post user score
-    if (this.postUserStatistics === true) {
-      H5P.setFinished(this.contentId, 0, 0);
-    }
+    return maxScore;
   };
 
   /**
@@ -790,326 +843,38 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @param {int} second
    */
-  C.prototype.toggleInteractions = function (second) {
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      this.toggleInteraction(i, second);
+  InteractiveVideo.prototype.toggleInteractions = function (second) {
+    for (var i = 0; i < this.interactions.length; i++) {
+      this.interactions[i].toggle(second);
     }
   };
 
   /**
-   * Display or remove an interaction on the video.
+   * Start interactive video playback.
    *
-   * @param {int} i Interaction index in params.
-   * @param {int} second Optional. Current video time second.
-   * @returns {unresolved}
+   * @public
    */
-  C.prototype.toggleInteraction = function (i, second) {
-    var that = this;
-    var interaction = this.params.assets.interactions[i];
-
-    if (second === undefined) {
-      second = Math.floor(this.video.getTime());
-    }
-
-    if (second < interaction.duration.from || second > interaction.duration.to) {
-      // Remove interaction
-      if (this.visibleInteractions[i] !== undefined) {
-        this.visibleInteractions[i].remove();
-        delete this.visibleInteractions[i];
-      }
-      return;
-    }
-
-    if (this.visibleInteractions[i] !== undefined) {
-      return; // Interaction already exists.
-    }
-
-    // Add interaction
-    var className = this.getClassName(interaction);
-    var showLabel = (className === 'h5p-nil-interaction') || (interaction.label !== undefined && $("<div/>").html(interaction.label).text().length > 0);
-
-    var $interaction = this.visibleInteractions[i] = $('<div class="h5p-interaction ' +
-            className + ' h5p-hidden" data-id="' + i + '" style="top:' + interaction.y +
-            '%;left:' + interaction.x + '%"><a href="#" class="h5p-interaction-button"></a>' +
-            (showLabel ? '<div class="h5p-interaction-label">' + interaction.label +
-            '</div>' : '') + '</div>')
-      .appendTo(this.$overlay)
-      .click(function () {
-        if (that.editor === undefined) {
-          that.showDialog(interaction, $interaction);
-        }
-        return false;
-      })
-      .end();
-
-    if (this.editor !== undefined) {
-      // Append editor magic
-      this.editor.newInteraction($interaction);
-    }
-
-    // Transition in
-    setTimeout(function () {
-      $interaction.removeClass('h5p-hidden');
-      if (className !== 'h5p-nil-interaction') {
-        that.positionLabel($interaction);
-      }
-    }, 1);
-
-    if (interaction.pause && this.playing) {
-      this.pause();
-    }
-
-    return $interaction;
+  InteractiveVideo.prototype.play = function () {
+    this.video.play();
   };
 
   /**
-   * Detect custom html class for interaction.
+   * Seek interactive video to the given time
    *
-   * @param {Object} interaction
-   * @return {String} HTML class
+   * @public
+   * @param {Number} time
    */
-  C.prototype.getClassName = function (interaction) {
-    if (interaction.className === undefined) {
-      var nameParts = interaction.action.library.split(' ')[0].toLowerCase().split('.');
-      return nameParts[0] + '-' + nameParts[1] + '-interaction';
-    }
-    else {
-      return interaction.className;
-    }
+  InteractiveVideo.prototype.seek = function (time) {
+    this.video.seek(time);
   };
 
   /**
+   * Pause interactive video playback.
    *
-   * @param {type} $interaction
-   * @returns {undefined}
+   * @public
    */
-  C.prototype.positionLabel = function ($interaction) {
-    var $label = $interaction.children('.h5p-interaction-label');
-    if ($label.length) {
-      $label.removeClass('h5p-left-label');
-      if (parseInt($interaction.css('left')) + $label.position().left + $label.outerWidth() > this.$videoWrapper.width()) {
-        $label.addClass('h5p-left-label');
-      }
-    }
-  };
-
-  /**
-   * Display interaction dialog.
-   *
-   * @param {Object} interaction
-   * @param {jQuery} $button
-   * @returns {undefined}
-   */
-  C.prototype.showDialog = function (interaction, $button) {
-    var that = this;
-    var instance;
-
-    if (this.playing) {
-      this.pause(true);
-    }
-
-    if (interaction !== undefined) {
-      var $inner = this.$dialog.children('.h5p-dialog-inner');
-      var $dialog = $inner.html('<div class="h5p-dialog-interaction"></div>').children();
-      instance = H5P.newRunnable(interaction.action, this.contentId, $dialog);
-
-      var lib = interaction.action.library.split(' ')[0];
-
-      if (lib === 'H5P.Summary' || lib === 'H5P.Blanks') {
-        interaction.bigDialog = true;
-
-        if (lib === 'H5P.Summary') {
-          // Scroll summary to bottom if the task changes size
-          var lastHeight = 0;
-          instance.$.on('resize', function () {
-            var height = $dialog.height();
-            if (lastHeight > height + 10 || lastHeight < height - 10)  {
-              setTimeout(function () {
-                $inner.stop().animate({
-                  scrollTop: height
-                }, 300);
-              }, 500);
-            }
-            lastHeight = height;
-          });
-        }
-      }
-    }
-
-    this.$dialogWrapper.show();
-    this.positionDialog(interaction, $button, instance);
-
-    setTimeout(function () {
-      that.$dialogWrapper.removeClass('h5p-hidden');
-    }, 1);
-  };
-
-  /**
-   * Position current dialog.
-   *
-   * @param {object} interaction
-   * @param {jQuery} $button
-   * @param {object} instance
-   * @returns {undefined}
-   */
-  C.prototype.positionDialog = function (interaction, $button, instance) {
-    // Reset dialog styles
-    this.$dialog.removeClass('h5p-big').css({
-      left: '',
-      top: '',
-      height: '',
-      width: '',
-      fontSize: ''
-    }).children().css('width', '');
-
-    if (interaction === undefined || interaction.bigDialog !== undefined && interaction.bigDialog) {
-      this.$dialog.addClass('h5p-big');
-    }
-    else {
-      if (instance.$ !== undefined) {
-        instance.$.trigger('resize');
-      }
-
-      // TODO: Just let image implement resize or something? If so make sure
-      // in image class that it only runs once.
-
-      // How much of the player should the interaction cover?
-      var interactionMaxFillRatio = 0.8;
-      var buttonWidth = $button.outerWidth(true);
-      var buttonPosition = $button.position();
-      var containerWidth = this.$container.width();
-      var containerHeight = this.$container.height();
-      var that = this;
-
-      // Special case for images
-      if (interaction.action.library.split(' ')[0] === 'H5P.Image') {
-        var $img = this.$dialog.find('img');
-        var imgHeight, imgWidth, maxWidth;
-        if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
-          // Space to the left of the button minus margin
-          maxWidth = buttonPosition.left * (1 - (1 - interactionMaxFillRatio)/2);
-        }
-        else {
-          // Space to the right of the button minus margin
-          maxWidth = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio)/2);
-        }
-        var maxHeight = containerHeight * interactionMaxFillRatio;
-
-        // Use image size info if it is stored
-        if (interaction.action.params.file.height !== undefined) {
-          imgHeight = interaction.action.params.file.height;
-          imgWidth = interaction.action.params.file.width;
-        }
-        // Image size info is missing. We must find image size
-        else {
-          // TODO: Note that we allready have an img with the approperiate
-          // source attached to the DOM, wouldn't attaching another cause
-          // double loading?
-          $("<img/>") // Make in memory copy of image to avoid css issues
-            .attr("src", $img.attr("src")) // TODO: Check img.complete ? The image might be in cache.
-            .load(function() { // TODO: Is load needed multiple times or would one('load') suffice?
-              // Note that we're actually changing the params here if we're in the editor.
-              interaction.action.params.file.width = this.width;   // Note: $(this).width() will not work for in memory images.
-              interaction.action.params.file.height = this.height;
-              that.positionDialog(interaction, $button);
-          });
-          // TODO: What happens to our in memory img now? Could we reuse it?
-        }
-        // Resize image and dialog container
-        if (typeof imgWidth != "undefined") { // TODO: imgWidth !== undefined is insanely faster than string comparison...
-          if (imgHeight > maxHeight) {
-            imgWidth = imgWidth * maxHeight / imgHeight;
-            imgHeight = maxHeight;
-          }
-          if (imgWidth > maxWidth) {
-            imgHeight = imgHeight * maxWidth / imgWidth;
-            imgWidth = maxWidth;
-          }
-          $img.css({
-            width: imgWidth,
-            height: imgHeight
-          });
-          this.$dialog.css({
-            width: imgWidth + 1.5 * this.fontSize, // TODO: What is 1.5? Where are the docs?
-            height: imgHeight
-          })
-          .children('.h5p-dialog-inner').css('width', 'auto');
-        }
-      }
-
-      // TODO: This function is HUGE, could some of it maybe be moved to
-      // H5P.Image? Content sizing shouldn't be a part of positioning the
-      // dialog, it should happen before. If we're waiting for something to
-      // load show a dialog with a throbber or something...
-
-      // Position dialog horizontally
-      var left = buttonPosition.left;
-
-      var dialogWidth = this.$dialog.outerWidth(true);
-
-      // If dialog is too big to fit within the container, display as h5p-big instead.
-      if (dialogWidth > containerWidth) {
-        this.$dialog.addClass('h5p-big');
-        return;
-      }
-
-      if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
-        // Show on left
-        left -= dialogWidth - buttonWidth;
-      }
-
-      // Make sure the dialog is within the video on the right.
-      if ((left + dialogWidth) > containerWidth) {
-        left = containerWidth - dialogWidth;
-      }
-
-      var marginLeft = parseInt(this.$videoWrapper.css('marginLeft'));
-      if (isNaN(marginLeft)) {
-        marginLeft = 0;
-      }
-
-      // And finally, make sure we're within bounds on the left hand side too...
-      if (left < marginLeft) {
-        left = marginLeft;
-      }
-
-      // Position dialog vertically
-      var marginTop = parseInt(this.$videoWrapper.css('marginTop'));
-      if (isNaN(marginTop)) {
-        marginTop = 0;
-      }
-
-      var top = buttonPosition.top + marginTop;
-      var totalHeight = top + this.$dialog.outerHeight(true);
-
-      if (totalHeight > containerHeight) {
-        top -= totalHeight - containerHeight;
-      }
-
-      this.$dialog.removeClass('h5p-big').css({
-        top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%'
-      });
-    }
-  };
-
-  /**
-   * Hide current dialog.
-   *
-   * @returns {Boolean}
-   */
-  C.prototype.hideDialog = function () {
-    var that = this;
-
-    this.$dialogWrapper.addClass('h5p-hidden');
-
-    setTimeout(function () {
-      that.$dialogWrapper.hide();
-    }, 201);
-
-    if ((this.editor === undefined || this.playing) && (this.hasEnded === undefined || this.hasEnded === false)) {
-      this.play(this.playing ? true : undefined);
-    }
+  InteractiveVideo.prototype.pause = function () {
+    this.video.pause();
   };
 
   /**
@@ -1117,7 +882,7 @@ H5P.InteractiveVideo = (function ($) {
    *
    * @returns {H5P.ContentCopyrights}
    */
-  C.prototype.getCopyrights = function () {
+  InteractiveVideo.prototype.getCopyrights = function () {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
@@ -1132,30 +897,35 @@ H5P.InteractiveVideo = (function ($) {
     }
     info.addMedia(videoRights);
 
-    for (var i = 0; i < self.params.assets.interactions.length; i++) {
-      var interaction = self.params.assets.interactions[i];
-      var instance = H5P.newRunnable(interaction.action, self.contentId);
-
-      if (instance !== undefined && instance.getCopyrights !== undefined) {
-        var interactionCopyrights = instance.getCopyrights();
-        if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel((interaction.action.params.contentName !== undefined ? interaction.action.params.contentName : 'Interaction') + ' ' + C.humanizeTime(interaction.duration.from) + ' - ' + C.humanizeTime(interaction.duration.to));
-          info.addContent(interactionCopyrights);
-        }
+    for (var i = 0; i < self.interactions.length; i++) {
+      var interactionCopyrights = self.interactions[i].getCopyrights();
+      if (interactionCopyrights) {
+        info.addContent(interactionCopyrights);
       }
     }
 
     return info;
   };
 
+  /** @constant {number} */
+  var ENDED = 0;
+  /** @constant {number} */
+  var PLAYING = 1;
+  /** @constant {number} */
+  var PAUSED = 2;
+  /** @constant {number} */
+  var BUFFERING = 3;
+  /** @constant {number} */
+  var SEEKING = 4;
 
   /**
    * Formats time in H:MM:SS.
    *
+   * @private
    * @param {float} seconds
    * @returns {string}
    */
-  C.humanizeTime = function (seconds) {
+  var humanizeTime = function (seconds) {
     var minutes = Math.floor(seconds / 60);
     var hours = Math.floor(minutes / 60);
 
@@ -1183,5 +953,22 @@ H5P.InteractiveVideo = (function ($) {
     return time;
   };
 
-  return C;
-})(H5P.jQuery);
+  /**
+   * Look for field with the given name in the given collection.
+   * Only used by editor. TODO: move
+   *
+   * @private
+   * @param {String} name of field
+   * @param {Array} fields collection to look in
+   * @returns {Object} field object
+   */
+  var findField = function (name, fields) {
+    for (var i = 0; i < fields.length; i++) {
+      if (fields[i].name === name) {
+        return fields[i];
+      }
+    }
+  };
+
+  return InteractiveVideo;
+})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideoDialog, H5P.InteractiveVideoInteraction);
