@@ -51,7 +51,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     var firstPlay = true;
     this.video.on('stateChange', function (event) {
-      var state = event.data
+
+      if (!self.controls) {
+        self.addControls();
+        self.trigger('resize');
+      }
+
+      var state = event.data;
       if (self.currentState === SEEKING) {
         return; // Prevent updateing UI while seeking
       }
@@ -165,8 +171,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
 
     // Controls
-    this.$controls = $container.children('.h5p-controls');
-    this.attachControls(this.$controls);
+    this.$controls = $container.children('.h5p-controls').hide();
 
     // Create a popup dialog
     this.dialog = new Dialog($container, this.$videoWrapper);
@@ -210,7 +215,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
 
-    if (this.editor === undefined) {
+    if (this.editor === undefined && !this.video.pressToPlay) {
       this.$splash = $('<div class="h5p-splash-wrapper"><div class="h5p-splash"><h2>Interactive Video</h2><p>Press the icons as the video plays for challenges and more information on the topics!</p><div class="h5p-interaction h5p-multichoice-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">Challenges</div></div><div class="h5p-interaction h5p-text-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">More information</div></div></div></div>')
         .click(function () {
           that.video.play();
@@ -225,12 +230,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * Unbind event listeners.
-   *
-   * @returns {undefined}
+   * Update and show controls for the interactive video.
    */
-  InteractiveVideo.prototype.loaded = function () {
-    var that = this;
+  InteractiveVideo.prototype.addControls = function () {
+    this.attachControls(this.$controls.show());
 
     var duration = this.video.getDuration();
     var time = humanizeTime(duration);
@@ -243,6 +246,29 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       marginRight: this.$controls.children('.h5p-controls-right').width()
     });
     this.controls.$currentTime.html(humanizeTime(0));
+
+    // Add dots above seeking line.
+    this.addSliderInteractions();
+
+    // Add bookmarks
+    this.addBookmarks();
+
+    this.trigger('controls');
+  };
+
+  /**
+   * Unbind event listeners.
+   *
+   * @returns {undefined}
+   */
+  InteractiveVideo.prototype.loaded = function () {
+    var that = this;
+
+    // Get duration
+    var duration = this.video.getDuration();
+
+    // Determine how many percentage one second is.
+    this.oneSecondInPercentage = (100 / this.video.getDuration());
 
     duration = Math.floor(duration);
 
@@ -283,20 +309,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
     }
 
-    // Determine how many percentage one second is.
-    this.oneSecondInPercentage = (100 / this.video.getDuration());
-
     // Initialize interactions
     this.interactions = [];
-    for (var i = 0; i < this.params.assets.interactions.length; i++) {
-      this.initInteraction(i);
+    for (var j = 0; j < this.params.assets.interactions.length; j++) {
+      this.initInteraction(j);
     }
 
-    // Add dots above seeking line.
-    this.addSliderInteractions();
+    if (!this.video.pressToPlay) {
+      this.addControls();
+    }
 
-    // Add bookmarks
-    this.addBookmarks();
     this.trigger('resize');
   };
 
@@ -713,7 +735,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.video.trigger('resize');
     }
     else {
-      if (this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
+      if (this.controls !== undefined && this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
         // Update icon if we some how got out of fullscreen.
         this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
       }
