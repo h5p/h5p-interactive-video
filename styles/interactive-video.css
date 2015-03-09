@@ -152,12 +152,10 @@
   display: block;
   width: 1.75em;
   height: 1.75em;
-  background: #00f;
-  color: #fff;
-  font-family: 'H5PFontAwesome4';
-  font-size: 1em;
   border-radius: 50%;
   line-height: 1.875em;
+  color: #fff;
+  font-family: 'H5PFontAwesome4';
   box-shadow: 0.15em 0.25em 0.25em 0 #191919;
   text-shadow: 0 0 0.3em #191919;
   text-align: center;

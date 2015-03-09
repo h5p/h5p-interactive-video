@@ -34,6 +34,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createButton = function () {
       $interaction = $('<div/>', {
+        tabIndex: 0,
+        role: 'button',
         'class': 'h5p-interaction ' + classes + ' h5p-hidden',
         css: {
           left: parameters.x + '%',
@@ -44,17 +46,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
+          },
+          keypress: function (event) {
+            if ((event.charCode || event.keyCode) === 32) { // Space
+              if (!self.dialogDisabled && library !== 'H5P.Nil') {
+                openDialog();
+              }
+            }
           }
         }
       });
-      $('<a/>', {
-        'class': 'h5p-interaction-button',
-        href: '#',
-        on: {
-          click: function (event) {
-            event.preventDefault();
-          }
-        }
+      $('<div/>', {
+        'class': 'h5p-interaction-button'
       }).appendTo($interaction);
 
       // Check to see if we should add label
