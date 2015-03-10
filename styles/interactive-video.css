@@ -318,7 +318,7 @@
   box-shadow: 0 0 0.25em #2c2c2c;
   padding: 0.25em;
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
@@ -326,6 +326,8 @@
   height: 100%;
   font-size: 0.875em;
   overflow-y: auto;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar {
   width: 0.5em;
@@ -795,4 +797,15 @@
   min-height: 1.5em;
   min-width: 1.5em;
 	cursor: default;
+}
+
+.h5p-interactive-video .h5p-dragquestion .h5p-button {
+  right: auto;
+  left: 1.225em;
+}
+.h5p-interactive-video .h5p-dragquestion .h5p-joubelui-button {
+  position: absolute;
+  bottom: 0.625em;
+  right: 1.225em;
+  z-index: 4;
 }
