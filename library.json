@@ -1,13 +1,13 @@
 {
-  "machineName": "H5P.InteractiveVideo",
   "title": "Interactive Video",
   "description": "Put texts, tasks and other medias on top of your video.",
   "license": "MIT",
-  "author": "Amendor AS (icc)",
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 4,
-  "patchVersion": 0,
+  "patchVersion": 1,
+  "machineName": "H5P.InteractiveVideo",
+  "author": "Joubel AS",
   "embedTypes": [
     "iframe"
   ],

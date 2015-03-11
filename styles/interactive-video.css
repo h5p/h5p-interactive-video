@@ -152,12 +152,10 @@
   display: block;
   width: 1.75em;
   height: 1.75em;
-  background: #00f;
-  color: #fff;
-  font-family: 'H5PFontAwesome4';
-  font-size: 1em;
   border-radius: 50%;
   line-height: 1.875em;
+  color: #fff;
+  font-family: 'H5PFontAwesome4';
   box-shadow: 0.15em 0.25em 0.25em 0 #191919;
   text-shadow: 0 0 0.3em #191919;
   text-align: center;
@@ -222,7 +220,7 @@
 .h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-markthewords-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button,
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button {
   font-family: 'H5Picons';
   background: #981d99;
   background-image: -webkit-linear-gradient(bottom, #981d99 50%, #ce6cd8 50%, #981d99 100%);
@@ -248,7 +246,7 @@
 .h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button:before {
   content: "\e600";
 }
-.h5p-interactive-video .h5p-singlechoice-interaction > .h5p-interaction-button:before {
+.h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button:before {
   content: "\e603";
 }
 
@@ -320,7 +318,7 @@
   box-shadow: 0 0 0.25em #2c2c2c;
   padding: 0.25em;
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
@@ -328,6 +326,8 @@
   height: 100%;
   font-size: 0.875em;
   overflow-y: auto;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar {
   width: 0.5em;
@@ -697,6 +697,17 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] {
+  overflow: hidden;
+  padding: 0;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-inner {
+  overflow: hidden;
+  width: 100%;
+}
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-sc-sound-control {
+  right: 1.2em;
+}
 .h5p-interactive-video .h5p-dialog.h5p-big {
 	width: auto;
 	height: auto;
@@ -786,4 +797,15 @@
   min-height: 1.5em;
   min-width: 1.5em;
 	cursor: default;
+}
+
+.h5p-interactive-video .h5p-dragquestion .h5p-button {
+  right: auto;
+  left: 1.225em;
+}
+.h5p-interactive-video .h5p-dragquestion .h5p-joubelui-button {
+  position: absolute;
+  bottom: 0.625em;
+  right: 1.225em;
+  z-index: 4;
 }
