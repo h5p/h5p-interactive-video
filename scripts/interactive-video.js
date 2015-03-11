@@ -355,10 +355,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }, 0);
     });
     interaction.on('xAPI', function(event) {
-      if (event.getVerb() === 'completed'
-        || event.getMaxScore()
-        || event.getScore() !== null) {
-
+      if (event.getVerb() === 'completed' ||
+          event.getMaxScore() ||
+          event.getScore() !== null) {
         if (interaction.isMainSummary()) {
           self.complete();
         }
@@ -637,7 +636,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   *
+   * TODO
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
     var self = this;
@@ -818,6 +817,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }, 40); // 25 fps
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
@@ -827,6 +829,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.isCompleted = true;
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
     for (var i = 0; i < this.interactions.length; i++) {
@@ -837,6 +842,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     return score;
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
     for (var i = 0; i < this.interactions.length; i++) {
