@@ -35,6 +35,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
     this.isCompleted = false;
 
+    self.on('resize', function () {
+      self.resize();
+    });
+
     this.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
       params: {
@@ -43,6 +47,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         fit: false
       }
     }, this.contentId);
+
+    if (this.justVideo) {
+      this.video.on('loaded', function (event) {
+        self.trigger('resize');
+      });
+      return;
+    }
 
     this.video.on('error', function (event) {
       // Make sure splash screen is removed so the error is visible.
@@ -118,10 +129,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     this.video.on('loaded', function (event) {
       self.loaded();
-    });
-
-    self.on('resize', function () {
-      self.resize();
     });
   }
 
@@ -698,7 +705,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
-    if (this.controlsSized === undefined) {
+    if (!this.justVideo && this.controlsSized === undefined) {
       var left = this.$controls.children('.h5p-controls-left').width();
       var right = this.$controls.children('.h5p-controls-right').width();
       if (left || right) {
@@ -721,7 +728,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.video.trigger('resize');
 
     var width;
-    var controlsHeight = this.$controls.height();
+    var controlsHeight = this.justVideo ? 0 : this.$controls.height();
     var containerHeight = this.$container.height();
     if (fullscreenOn) {
       var videoHeight = this.$videoWrapper.height();
