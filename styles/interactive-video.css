@@ -147,6 +147,7 @@
   padding: 0.1em 1em 0.1em 0.5em;
 }
 .h5p-interactive-video .h5p-interaction-button {
+	cursor: pointer;
   position: absolute;
   z-index: 2;
   display: block;
