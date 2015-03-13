@@ -362,10 +362,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }, 0);
     });
     interaction.on('xAPI', function(event) {
-      if (event.getVerb() === 'completed'
-        || event.getMaxScore()
-        || event.getScore() !== null) {
-
+      if (event.getVerb() === 'completed' ||
+          event.getMaxScore() ||
+          event.getScore() !== null) {
         if (interaction.isMainSummary()) {
           self.complete();
         }
@@ -548,6 +547,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         return false;
       });
 
+      this.$.on('enterFullScreen', function () {
+        that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
+      });
+      this.$.on('exitFullScreen', function () {
+        that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
+      });
+
       // Video quality selector
       this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
       this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
@@ -563,6 +569,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
       $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
+    }
+
+    if (!H5P.canHasFullScreen) {
+      $wrapper.find('.h5p-fullscreen').remove();
     }
 
     // Volume/mute button
@@ -633,7 +643,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   *
+   * TODO
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
     var self = this;
@@ -742,10 +752,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.video.trigger('resize');
     }
     else {
-      if (this.controls !== undefined && this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
-        // Update icon if we some how got out of fullscreen.
-        this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      }
       width = this.$container.width();
     }
 
@@ -761,31 +767,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @returns {undefined}
    */
   InteractiveVideo.prototype.toggleFullScreen = function () {
-    if (this.controls.$fullscreen.hasClass('h5p-exit')) {
-      this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
-        // Click button to disable fullscreen
-        $('.h5p-disable-fullscreen').click();
-      }
-      else {
-        if (H5P.fullScreenBrowserPrefix === '') {
-          window.top.document.exitFullScreen();
-        }
-        else if (H5P.fullScreenBrowserPrefix === 'ms') {
-          window.top.document.msExitFullscreen();
-        }
-        else {
-          window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
-        }
-      }
+    if (H5P.isFullscreen) {
+      H5P.exitFullScreen();
     }
     else {
-      this.controls.$fullscreen.addClass('h5p-exit').attr('title', this.l10n.exitFullscreen);
       H5P.fullScreen(this.$container, this);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
-        // Hide disable full screen button. We have our own!
-        $('.h5p-disable-fullscreen').hide();
-      }
     }
   };
 
@@ -838,6 +824,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }, 40); // 25 fps
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
@@ -845,8 +834,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.triggerXAPICompleted(this.getUsersScore(), this.getUsersMaxScore());
     }
     this.isCompleted = true;
-  }
+  };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
     for (var i = 0; i < this.interactions.length; i++) {
@@ -857,6 +849,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     return score;
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
     for (var i = 0; i < this.interactions.length; i++) {
