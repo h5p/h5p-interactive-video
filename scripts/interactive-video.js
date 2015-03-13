@@ -547,10 +547,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         return false;
       });
 
-      this.$.on('enterFullScreen', function () {
+      that.on('enterFullScreen', function () {
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
       });
-      this.$.on('exitFullScreen', function () {
+      that.on('exitFullScreen', function () {
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
       });
 
@@ -571,7 +571,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
-    if (!H5P.canHasFullScreen) {
+    if (H5P.canHasFullScreen === false) {
       $wrapper.find('.h5p-fullscreen').remove();
     }
 
@@ -767,11 +767,43 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @returns {undefined}
    */
   InteractiveVideo.prototype.toggleFullScreen = function () {
-    if (H5P.isFullscreen) {
-      H5P.exitFullScreen();
+    var self = this;
+
+    if (H5P.isFullscreen || this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen')) {
+      // Cancel fullscreen
+      if (H5P.exitFullScreen !== undefined) {
+        H5P.exitFullScreen();
+      }
+      else {
+        // Use old system
+        if (H5P.fullScreenBrowserPrefix === undefined) {
+          // Click button to disable fullscreen
+          $('.h5p-disable-fullscreen').click();
+        }
+        else {
+          // Exit full screen
+          if (H5P.fullScreenBrowserPrefix === '') {
+            window.top.document.exitFullScreen();
+          }
+          else if (H5P.fullScreenBrowserPrefix === 'ms') {
+            window.top.document.msExitFullscreen();
+          }
+          else {
+            window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          }
+        }
+
+        // Manually trigger event that updates fullscreen icon
+        self.trigger('exitFullScreen');
+      }
     }
     else {
       H5P.fullScreen(this.$container, this);
+
+      if (H5P.exitFullScreen === undefined) {
+        // Old system; manually trigger the event that updates the fullscreen icon
+        self.trigger('enterFullScreen');
+      }
     }
   };
 
