@@ -89,7 +89,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add new instance to dialog and open
-      instance = H5P.newRunnable(action, player.contentId, $dialogContent);
+      instance = H5P.newRunnable(action, player.contentId, $dialogContent, undefined, {parent: player});
       player.dialog.open($dialogContent);
 
       if (library === 'H5P.Image') {
@@ -189,7 +189,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
-      instance = H5P.newRunnable(action, player.contentId, $inner);
+      instance = H5P.newRunnable(action, player.contentId, $inner, undefined, player);
 
       // Trigger event listeners
       self.trigger('display', $interaction);

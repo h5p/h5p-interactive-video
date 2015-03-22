@@ -12,7 +12,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     H5P.EventDispatcher.call(this);
     var self = this;
     this.params = $.extend({
-      video: {},
+      video: {
+        title: 'Interactive Video'
+      },
       assets: {}
     }, params.interactiveVideo);
     this.contentId = id;
@@ -46,7 +48,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         controls: this.justVideo,
         fit: false
       }
-    }, this.contentId);
+    }, this.contentId, undefined, undefined, {parent: this});
 
     if (this.justVideo) {
       this.video.on('loaded', function (event) {
@@ -892,6 +894,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }
     return maxScore;
+  };
+  
+  InteractiveVideo.prototype.getH5PTitle = function() {
+    return H5P.createH5PTitle(this.params.video.title);
   };
 
   /**
