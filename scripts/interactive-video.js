@@ -8,7 +8,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {int} id
    * @returns {_L2.C}
    */
-  function InteractiveVideo(params, id) {
+  function InteractiveVideo(params, id, contentData) {
     H5P.EventDispatcher.call(this);
     var self = this;
     this.params = $.extend({
@@ -17,6 +17,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }, params.interactiveVideo);
     this.contentId = id;
     this.visibleInteractions = [];
+
+    if (contentData && contentData.previousState !== undefined) {
+      self.previousState = contentData.previousState;
+    }
 
     this.l10n = {
       interaction: 'Interaction',
@@ -103,6 +107,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         case H5P.Video.PAUSED:
           self.currentState = PAUSED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+          self.timeUpdate(self.video.getCurrentTime());
           break;
 
         case H5P.Video.BUFFERING:
@@ -129,11 +134,35 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     this.video.on('loaded', function (event) {
       self.loaded();
+
+      if (self.previousState !== undefined) {
+        self.video.seek(self.previousState.progress);
+      }
     });
   }
 
   InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
   InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+  /**
+   *
+   */
+  InteractiveVideo.prototype.getCurrentState = function () {
+    var self = this;
+
+    var state = {
+      progress: self.video.getCurrentTime(),
+      answers: []
+    };
+
+    for (var i = 0; i < self.interactions.length; i++) {
+      state.answers[i] = self.interactions[i].getCurrentState();
+    }
+
+    if (state.progress) {
+      return state;
+    }
+  };
 
   /**
    * Removes splash screen.
@@ -348,7 +377,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
     }
 
-    var interaction = new Interaction(parameters, self);
+    var previousState;
+    if (self.previousState !== undefined && self.previousState.answers[index] !== null) {
+      previousState = self.previousState.answers[index];
+    }
+
+    var interaction = new Interaction(parameters, self, previousState);
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
@@ -365,6 +399,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if (event.getVerb() === 'completed' ||
           event.getMaxScore() ||
           event.getScore() !== null) {
+
         if (interaction.isMainSummary()) {
           self.complete();
         }
@@ -842,7 +877,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if (self.editor !== undefined) {
         self.editor.dnb.blur();
       }
-      if (self.currentState === PLAYING) {
+      if (self.currentState === PLAYING || self.currentState === PAUSED) {
         // Update elapsed time
         self.controls.$currentTime.html(humanizeTime(second));
       }
