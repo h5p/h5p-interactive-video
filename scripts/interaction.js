@@ -8,13 +8,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
    * @param {Object} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
    */
-  function Interaction(parameters, player) {
+  function Interaction(parameters, player, previousState) {
     var self = this;
     // Initialize event inheritance
     EventDispatcher.call(self);
 
     var instance, $interaction, $label, $continueButton;
     var action = parameters.action;
+    if (previousState) {
+      action.userDatas = {
+        state: previousState
+      };
+    }
 
     // Find library name and title
     var library = action.library.split(' ')[0];
@@ -91,6 +96,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Add new instance to dialog and open
       instance = H5P.newRunnable(action, player.contentId, $dialogContent, undefined, {parent: player});
       player.dialog.open($dialogContent);
+
+      if (instance.getCurrentState instanceof Function ||
+          typeof instance.getCurrentState === 'function') {
+        // Keep track of the last state when closing the popup.
+        player.dialog.once('close', function () {
+          action.userDatas = {
+            state: instance.getCurrentState()
+          };
+        });
+      }
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
@@ -340,6 +355,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       $buttonWrapper.appendTo($target);
+    };
+
+    /**
+     * Extract the current state of interactivity for serialization.
+     *
+     * @public
+     * @returns {object}
+     */
+    self.getCurrentState = function () {
+      if (instance && (instance.getCurrentState instanceof Function ||
+                       typeof instance.getCurrentState === 'function')) {
+        return instance.getCurrentState();
+      }
     };
 
     /**
