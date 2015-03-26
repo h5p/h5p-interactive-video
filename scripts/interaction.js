@@ -204,7 +204,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
-      instance = H5P.newRunnable(action, player.contentId, $inner, undefined, player);
+      instance = H5P.newRunnable(action, player.contentId, $inner, undefined, {parent: player});
 
       // Trigger event listeners
       self.trigger('display', $interaction);
