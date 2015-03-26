@@ -156,9 +156,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       progress: self.video.getCurrentTime(),
       answers: []
     };
-
-    for (var i = 0; i < self.interactions.length; i++) {
-      state.answers[i] = self.interactions[i].getCurrentState();
+    
+    if (typeof self.interactions === 'array') {
+      for (var i = 0; i < self.interactions.length; i++) {
+        state.answers[i] = self.interactions[i].getCurrentState();
+      }
     }
 
     if (state.progress) {
@@ -929,6 +931,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }
     return maxScore;
+  };
+  
+  InteractiveVideo.prototype.getScore = function() {
+    return this.getUsersScore();
+  };
+  
+  InteractiveVideo.prototype.getMaxScore = function() {
+    return this.getUsersMaxScore();
+  };
+  
+  InteractiveVideo.prototype.showSolutions = function() {
+    // Intentionally left empty. Function makes IV pop up i CP summary
   };
   
   InteractiveVideo.prototype.getH5PTitle = function() {
