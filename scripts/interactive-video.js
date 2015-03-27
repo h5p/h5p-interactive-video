@@ -136,10 +136,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     this.video.on('loaded', function (event) {
       self.loaded();
-
-      if (self.previousState !== undefined) {
-        self.video.seek(self.previousState.progress);
-      }
     });
   }
 
@@ -156,7 +152,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       progress: self.video.getCurrentTime(),
       answers: []
     };
-    
+
     if (typeof self.interactions === 'array') {
       for (var i = 0; i < self.interactions.length; i++) {
         state.answers[i] = self.interactions[i].getCurrentState();
@@ -238,6 +234,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     else {
       this.dialog.disableOverlay = true;
     }
+
+    if (this.currentState === LOADED) {
+      if (!this.video.pressToPlay) {
+        this.addControls();
+      }
+      if (this.previousState !== undefined) {
+        this.video.seek(this.previousState.progress);
+      }
+    }
+    this.currentState = ATTACHED;
   };
 
   /**
@@ -355,11 +361,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.initInteraction(j);
     }
 
-    if (!this.video.pressToPlay) {
-      this.addControls();
+    if (this.currentState === ATTACHED) {
+      if (this.previousState !== undefined) {
+        this.video.seek(this.previousState.progress);
+      }
+      if (!this.video.pressToPlay) {
+        this.addControls();
+      }
+
+      this.trigger('resize');
     }
 
-    this.trigger('resize');
+    this.currentState = LOADED;
   };
 
   /**
@@ -932,19 +945,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
     return maxScore;
   };
-  
+
   InteractiveVideo.prototype.getScore = function() {
     return this.getUsersScore();
   };
-  
+
   InteractiveVideo.prototype.getMaxScore = function() {
     return this.getUsersMaxScore();
   };
-  
+
   InteractiveVideo.prototype.showSolutions = function() {
     // Intentionally left empty. Function makes IV pop up i CP summary
   };
-  
+
   InteractiveVideo.prototype.getH5PTitle = function() {
     return H5P.createH5PTitle(this.params.video.title);
   };
@@ -1028,6 +1041,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   var BUFFERING = 3;
   /** @constant {number} */
   var SEEKING = 4;
+  /** @constant {number} */
+  var LOADED = 5;
+  /** @constant {number} */
+  var ATTACHED = 6;
 
   /**
    * Formats time in H:MM:SS.
