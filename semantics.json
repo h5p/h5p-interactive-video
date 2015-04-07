@@ -250,10 +250,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.2"
+              "H5P.Summary 1.3"
             ],
             "default": {
-              "library": "H5P.Summary 1.2",
+              "library": "H5P.Summary 1.3",
               "params": {}
             }
           },
