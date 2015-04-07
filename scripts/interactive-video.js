@@ -945,8 +945,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Intentionally left empty. Function makes IV pop up i CP summary
   };
   
-  InteractiveVideo.prototype.getH5PTitle = function() {
-    return H5P.createH5PTitle(this.params.video.title);
+  InteractiveVideo.prototype.getTitle = function() {
+    return H5P.createTitle(this.params.video.title);
   };
 
   /**
