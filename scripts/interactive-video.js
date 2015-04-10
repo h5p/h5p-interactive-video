@@ -925,11 +925,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
-    for (var i = 0; i < this.interactions.length; i++) {
-      if (this.interactions[i].score) {
-        score += this.interactions[i].score;
+    if (this.interactions !== undefined) {
+      for (var i = 0; i < this.interactions.length; i++) {
+        if (this.interactions[i].score) {
+          score += this.interactions[i].score;
+        }
       }
     }
+
     return score;
   };
 
@@ -938,11 +941,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
-    for (var i = 0; i < this.interactions.length; i++) {
-      if (this.interactions[i].maxScore) {
-        maxScore += this.interactions[i].maxScore;
+
+    if (this.interactions !== undefined) {
+      for (var i = 0; i < this.interactions.length; i++) {
+        if (this.interactions[i].maxScore) {
+          maxScore += this.interactions[i].maxScore;
+        }
       }
     }
+
     return maxScore;
   };
 
@@ -957,7 +964,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   InteractiveVideo.prototype.showSolutions = function() {
     // Intentionally left empty. Function makes IV pop up i CP summary
   };
-  
+
   InteractiveVideo.prototype.getTitle = function() {
     return H5P.createTitle(this.params.video.title);
   };
