@@ -265,6 +265,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {jQuery} $target
      */
     var adaptivity = function ($target) {
+
       var adaptivity;
       if (parameters.adaptivity) {
         var fullScore = self.score >= self.maxScore;
@@ -285,7 +286,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             $container = $target.find('.h5p-drag-button-bar'); // DW
           }
           if (!$container.length) {
-            $container = $target.find('.h5p-sc-feedback'); // SC
+            $container = $target.find('.h5p-sc-set-results'); // SC
           }
           if (!$container.length) {
             $container = $target.find('.h5p-inner:first'); // DD
@@ -305,7 +306,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               $continueButton.remove();
               $continueButton = undefined;
 
-              player.play();
+              // Do not play if player is at the end, state 0 = ENDED
+              if (player.currentState !== 0) {
+                player.play();
+              }
             });
           }
         }
