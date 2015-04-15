@@ -11,7 +11,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   function InteractiveVideo(params, id, contentData) {
     H5P.EventDispatcher.call(this);
     var self = this;
-    this.params = $.extend({
+    this.params = $.extend(true, {
       video: {
         title: 'Interactive Video'
       },
