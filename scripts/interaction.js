@@ -265,7 +265,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {jQuery} $target
      */
     var adaptivity = function ($target) {
-      debugger;
       var adaptivity;
       if (parameters.adaptivity) {
         var fullScore = self.score >= self.maxScore;
