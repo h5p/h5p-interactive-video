@@ -781,20 +781,24 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     var width;
     var controlsHeight = this.justVideo ? 0 : this.$controls.height();
-    var containerHeight = this.$container.height();
+
+    var containerHeight = this.$container[0].clientHeight;
+    var containerWidth = this.$container[0].clientWidth;
+
     if (fullscreenOn) {
-      var videoHeight = this.$videoWrapper.height();
+      var videoHeight = this.$videoWrapper[0].clientHeight;
+      var videoWidth = this.$videoWrapper[0].clientWidth;
 
       if (videoHeight + controlsHeight <= containerHeight) {
         this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
-        width = this.$videoWrapper.width();
+        width = videoWidth;
       }
       else {
-        var ratio = this.$videoWrapper.width() / videoHeight;
+        var ratio = videoWidth / videoHeight;
         var height = containerHeight - controlsHeight;
         width = height * ratio;
         this.$videoWrapper.css({
-          marginLeft: (this.$container.width() - width) / 2,
+          marginLeft: (containerWidth - width) / 2,
           width: width,
           height: height
         });
@@ -804,7 +808,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.video.trigger('resize');
     }
     else {
-      width = this.$container.width();
+      width = containerWidth;
     }
 
     // Set base font size. Don't allow it to fall below original size.
