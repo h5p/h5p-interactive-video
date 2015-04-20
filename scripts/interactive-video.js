@@ -823,7 +823,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     if (H5P.isFullscreen || this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen')) {
       // Cancel fullscreen
-      if (H5P.exitFullScreen !== undefined) {
+      if (H5P.exitFullScreen !== undefined && H5P.fullScreenBrowserPrefix !== undefined) {
         H5P.exitFullScreen();
       }
       else {
