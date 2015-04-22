@@ -8,15 +8,27 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {int} id
    * @returns {_L2.C}
    */
-  function InteractiveVideo(params, id) {
+  function InteractiveVideo(params, id, contentData) {
     H5P.EventDispatcher.call(this);
     var self = this;
-    this.params = $.extend({
+
+    // Insert defaults
+    this.params = $.extend({ // Deep is not used since editor uses references.
       video: {},
       assets: {}
     }, params.interactiveVideo);
+
+    // Add default title
+    if (!this.params.video.title) {
+      this.params.video.title = 'Interactive Video';
+    }
+
     this.contentId = id;
     this.visibleInteractions = [];
+
+    if (contentData && contentData.previousState !== undefined) {
+      self.previousState = contentData.previousState;
+    }
 
     this.l10n = {
       interaction: 'Interaction',
@@ -35,6 +47,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
     this.isCompleted = false;
 
+    self.on('resize', function () {
+      self.resize();
+    });
+
     this.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
       params: {
@@ -42,7 +58,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         controls: this.justVideo,
         fit: false
       }
-    }, this.contentId);
+    }, this.contentId, undefined, undefined, {parent: this});
+
+    if (this.justVideo) {
+      this.video.on('loaded', function (event) {
+        self.trigger('resize');
+      });
+      return;
+    }
 
     this.video.on('error', function (event) {
       // Make sure splash screen is removed so the error is visible.
@@ -92,6 +115,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         case H5P.Video.PAUSED:
           self.currentState = PAUSED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+          self.timeUpdate(self.video.getCurrentTime());
           break;
 
         case H5P.Video.BUFFERING:
@@ -119,14 +143,32 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.video.on('loaded', function (event) {
       self.loaded();
     });
-
-    self.on('resize', function () {
-      self.resize();
-    });
   }
 
   InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
   InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+  /**
+   *
+   */
+  InteractiveVideo.prototype.getCurrentState = function () {
+    var self = this;
+
+    var state = {
+      progress: self.video.getCurrentTime(),
+      answers: []
+    };
+
+    if (typeof self.interactions === 'array') {
+      for (var i = 0; i < self.interactions.length; i++) {
+        state.answers[i] = self.interactions[i].getCurrentState();
+      }
+    }
+
+    if (state.progress) {
+      return state;
+    }
+  };
 
   /**
    * Removes splash screen.
@@ -198,6 +240,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     else {
       this.dialog.disableOverlay = true;
     }
+
+    if (this.currentState === LOADED) {
+      if (!this.video.pressToPlay) {
+        this.addControls();
+      }
+      if (this.previousState !== undefined) {
+        this.video.seek(this.previousState.progress);
+      }
+    }
+    this.currentState = ATTACHED;
   };
 
   /**
@@ -315,11 +367,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.initInteraction(j);
     }
 
-    if (!this.video.pressToPlay) {
-      this.addControls();
+    if (this.currentState === ATTACHED) {
+      if (this.previousState !== undefined) {
+        this.video.seek(this.previousState.progress);
+      }
+      if (!this.video.pressToPlay) {
+        this.addControls();
+      }
+
+      this.trigger('resize');
     }
 
-    this.trigger('resize');
+    this.currentState = LOADED;
   };
 
   /**
@@ -341,7 +400,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
     }
 
-    var interaction = new Interaction(parameters, self);
+    var previousState;
+    if (self.previousState !== undefined && self.previousState.answers[index] !== null) {
+      previousState = self.previousState.answers[index];
+    }
+
+    var interaction = new Interaction(parameters, self, previousState);
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
@@ -355,9 +419,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }, 0);
     });
     interaction.on('xAPI', function(event) {
-      if (event.getVerb() === 'completed'
-        || event.getMaxScore()
-        || event.getScore() !== null) {
+      if (event.getVerb() === 'completed' ||
+          event.getMaxScore() ||
+          event.getScore() !== null) {
 
         if (interaction.isMainSummary()) {
           self.complete();
@@ -541,6 +605,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         return false;
       });
 
+      that.on('enterFullScreen', function () {
+        that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
+      });
+      that.on('exitFullScreen', function () {
+        that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
+      });
+
       // Video quality selector
       this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
       this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
@@ -556,6 +627,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
       $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
+    }
+
+    if (H5P.canHasFullScreen === false) {
+      $wrapper.find('.h5p-fullscreen').remove();
     }
 
     // Volume/mute button
@@ -626,7 +701,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   *
+   * TODO
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
     var self = this;
@@ -688,7 +763,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
-    if (this.controlsSized === undefined) {
+    if (!this.justVideo && this.controlsSized === undefined) {
       var left = this.$controls.children('.h5p-controls-left').width();
       var right = this.$controls.children('.h5p-controls-right').width();
       if (left || right) {
@@ -711,7 +786,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.video.trigger('resize');
 
     var width;
-    var controlsHeight = this.$controls.height();
+    var controlsHeight = this.justVideo ? 0 : this.$controls.height();
     var containerHeight = this.$container.height();
     if (fullscreenOn) {
       var videoHeight = this.$videoWrapper.height();
@@ -735,10 +810,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.video.trigger('resize');
     }
     else {
-      if (this.controls !== undefined && this.controls.$fullscreen !== undefined && this.controls.$fullscreen.hasClass('h5p-exit')) {
-        // Update icon if we some how got out of fullscreen.
-        this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      }
       width = this.$container.width();
     }
 
@@ -754,30 +825,42 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @returns {undefined}
    */
   InteractiveVideo.prototype.toggleFullScreen = function () {
-    if (this.controls.$fullscreen.hasClass('h5p-exit')) {
-      this.controls.$fullscreen.removeClass('h5p-exit').attr('title', this.l10n.fullscreen);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
-        // Click button to disable fullscreen
-        $('.h5p-disable-fullscreen').click();
+    var self = this;
+
+    if (H5P.isFullscreen || this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen')) {
+      // Cancel fullscreen
+      if (H5P.exitFullScreen !== undefined && H5P.fullScreenBrowserPrefix !== undefined) {
+        H5P.exitFullScreen();
       }
       else {
-        if (H5P.fullScreenBrowserPrefix === '') {
-          window.top.document.exitFullScreen();
-        }
-        else if (H5P.fullScreenBrowserPrefix === 'ms') {
-          window.top.document.msExitFullscreen();
+        // Use old system
+        if (H5P.fullScreenBrowserPrefix === undefined) {
+          // Click button to disable fullscreen
+          $('.h5p-disable-fullscreen').click();
         }
         else {
-          window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          // Exit full screen
+          if (H5P.fullScreenBrowserPrefix === '') {
+            window.top.document.exitFullScreen();
+          }
+          else if (H5P.fullScreenBrowserPrefix === 'ms') {
+            window.top.document.msExitFullscreen();
+          }
+          else {
+            window.top.document[H5P.fullScreenBrowserPrefix + 'CancelFullScreen']();
+          }
         }
+
+        // Manually trigger event that updates fullscreen icon
+        self.trigger('exitFullScreen');
       }
     }
     else {
-      this.controls.$fullscreen.addClass('h5p-exit').attr('title', this.l10n.exitFullscreen);
       H5P.fullScreen(this.$container, this);
-      if (H5P.fullScreenBrowserPrefix === undefined) {
-        // Hide disable full screen button. We have our own!
-        $('.h5p-disable-fullscreen').hide();
+
+      if (H5P.exitFullScreen === undefined) {
+        // Old system; manually trigger the event that updates the fullscreen icon
+        self.trigger('enterFullScreen');
       }
     }
   };
@@ -817,7 +900,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if (self.editor !== undefined) {
         self.editor.dnb.blur();
       }
-      if (self.currentState === PLAYING) {
+      if (self.currentState === PLAYING || self.currentState === PAUSED) {
         // Update elapsed time
         self.controls.$currentTime.html(humanizeTime(second));
       }
@@ -831,6 +914,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }, 40); // 25 fps
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
@@ -838,26 +924,55 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.triggerXAPICompleted(this.getUsersScore(), this.getUsersMaxScore());
     }
     this.isCompleted = true;
-  }
+  };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
-    for (var i = 0; i < this.interactions.length; i++) {
-      if (this.interactions[i].score) {
-        score += this.interactions[i].score;
+    if (this.interactions !== undefined) {
+      for (var i = 0; i < this.interactions.length; i++) {
+        if (this.interactions[i].score) {
+          score += this.interactions[i].score;
+        }
       }
     }
+
     return score;
   };
 
+  /**
+   * TODO: Document
+   */
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
-    for (var i = 0; i < this.interactions.length; i++) {
-      if (this.interactions[i].maxScore) {
-        maxScore += this.interactions[i].maxScore;
+
+    if (this.interactions !== undefined) {
+      for (var i = 0; i < this.interactions.length; i++) {
+        if (this.interactions[i].maxScore) {
+          maxScore += this.interactions[i].maxScore;
+        }
       }
     }
+
     return maxScore;
+  };
+
+  InteractiveVideo.prototype.getScore = function() {
+    return this.getUsersScore();
+  };
+
+  InteractiveVideo.prototype.getMaxScore = function() {
+    return this.getUsersMaxScore();
+  };
+
+  InteractiveVideo.prototype.showSolutions = function() {
+    // Intentionally left empty. Function makes IV pop up i CP summary
+  };
+
+  InteractiveVideo.prototype.getTitle = function() {
+    return H5P.createTitle(this.params.video.title);
   };
 
   /**
@@ -939,6 +1054,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   var BUFFERING = 3;
   /** @constant {number} */
   var SEEKING = 4;
+  /** @constant {number} */
+  var LOADED = 5;
+  /** @constant {number} */
+  var ATTACHED = 6;
 
   /**
    * Formats time in H:MM:SS.

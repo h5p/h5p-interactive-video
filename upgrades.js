@@ -47,6 +47,22 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
 
         // Done
         finished(null, parameters);
+      },
+      5: function (parameters, finished) {
+        if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+          var interactions = parameters.interactiveVideo.assets.interactions;
+          for (var i = 0; i < interactions.length; i++) {
+            if (interactions[i].action && interactions[i].action.subContentId === undefined) {
+              // NOTE: We avoid using H5P.createUUID since this is an upgrade script and H5P function may change in the
+              // future
+              interactions[i].action.subContentId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(char) {
+                var random = Math.random()*16|0, newChar = char === 'x' ? random : (random&0x3|0x8);
+                return newChar.toString(16);
+              });
+            }
+          }
+        }
+        finished(null, parameters);
       }
     }
   };

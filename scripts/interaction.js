@@ -8,13 +8,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
    * @param {Object} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
    */
-  function Interaction(parameters, player) {
+  function Interaction(parameters, player, previousState) {
     var self = this;
     // Initialize event inheritance
     EventDispatcher.call(self);
 
     var instance, $interaction, $label, $continueButton;
     var action = parameters.action;
+    if (previousState) {
+      action.userDatas = {
+        state: previousState
+      };
+    }
 
     // Find library name and title
     var library = action.library.split(' ')[0];
@@ -34,6 +39,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createButton = function () {
       $interaction = $('<div/>', {
+        tabIndex: 0,
+        role: 'button',
         'class': 'h5p-interaction ' + classes + ' h5p-hidden',
         css: {
           left: parameters.x + '%',
@@ -44,17 +51,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
+          },
+          keypress: function (event) {
+            if ((event.charCode || event.keyCode) === 32) { // Space
+              if (!self.dialogDisabled && library !== 'H5P.Nil') {
+                openDialog();
+              }
+            }
           }
         }
       });
-      $('<a/>', {
-        'class': 'h5p-interaction-button',
-        href: '#',
-        on: {
-          click: function (event) {
-            event.preventDefault();
-          }
-        }
+      $('<div/>', {
+        'class': 'h5p-interaction-button'
       }).appendTo($interaction);
 
       // Check to see if we should add label
@@ -86,8 +94,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add new instance to dialog and open
-      instance = H5P.newRunnable(action, player.contentId, $dialogContent);
+      instance = H5P.newRunnable(action, player.contentId, $dialogContent, undefined, {parent: player});
       player.dialog.open($dialogContent);
+
+      if (instance.getCurrentState instanceof Function ||
+          typeof instance.getCurrentState === 'function') {
+        // Keep track of the last state when closing the popup.
+        player.dialog.once('close', function () {
+          action.userDatas = {
+            state: instance.getCurrentState()
+          };
+        });
+      }
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
@@ -186,7 +204,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
-      instance = H5P.newRunnable(action, player.contentId, $inner);
+      instance = H5P.newRunnable(action, player.contentId, $inner, undefined, {parent: player});
 
       // Trigger event listeners
       self.trigger('display', $interaction);
@@ -194,66 +212,109 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       processInstance($inner, instance);
     };
 
-    var processInstance = function($target, instance) {
+    var processInstance = function ($target, instance) {
       // Resize on next tick
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
       H5P.on(instance, 'xAPI', function (event) {
-        if (event.getVerb() !== 'completed'
-          || !event.getMaxScore()
-          || event.getScore() === null) {
+        if (event.getVerb() !== 'completed' ||
+            !event.getMaxScore() ||
+            event.getScore() === null) {
           return;
         }
         self.score = event.getScore();
-        self.maxScore = event.getMaxScore()
+        self.maxScore = event.getMaxScore();
         self.trigger(event);
         adaptivity($target);
       });
     };
 
     /**
+     * Makes it easy to create buttons.
+     *
      * @private
+     * @param {jQuery} $container Where to append the button
+     * @param {string} label Html
+     * @param {function} handler What to do when clicked
+     * @returns {jQuery}
+     */
+    var addButton = function ($container, label, handler) {
+      return H5P.JoubelUI.createButton({
+        tabIndex: 0,
+        role: 'button',
+        html: label,
+        on: {
+          click: function () {
+            handler();
+          },
+          keypress: function (event) {
+            if ((event.charCode || event.keyCode) === 32) {
+              handler(); // Buttons must react to space
+            }
+          }
+        },
+        appendTo: $container
+      });
+    };
+
+    /**
+     * Adds adaptivity or continue button to exercies.
+     *
+     * @private
+     * @param {jQuery} $target
      */
     var adaptivity = function ($target) {
-      if (!parameters.adaptivity) {
-        return; // Not set
+
+      var adaptivity;
+      if (parameters.adaptivity) {
+        var fullScore = self.score >= self.maxScore;
+
+        // Determine adaptivity
+        adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
       }
 
-
-      var fullScore = self.score >= self.maxScore;
-
-      // Determine adaptivity
-      var adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
-      if (adaptivity.seekTo === undefined) {
+      if (!adaptivity || adaptivity.seekTo === undefined) {
+        // Add continue button if no adaptivity
         if (!$continueButton) {
-          // Add continue button
-          $continueButton = H5P.JoubelUI.createButton({
-            tabIndex: 1,
-            role: 'button',
-            html: player.l10n.defaultAdaptivitySeekLabel,
-            on: {
-              click: function () {
-                if (self.isButton()) {
-                  // Close dialog
-                  player.dialog.close();
-                }
-                else {
-                  // Remove interaction posters
-                  $interaction.remove();
-                }
+          // Try to find suitable container
+          var $container = $target.find('.h5p-show-solution-container'); // MC
+          if (!$container.length) {
+            $container = $target.find('.h5p-button-bar'); // B
+          }
+          if (!$container.length) {
+            $container = $target.find('.h5p-drag-button-bar'); // DW
+          }
+          if (!$container.length) {
+            $container = $target.find('.h5p-sc-set-results'); // SC
+          }
+          if (!$container.length) {
+            $container = $target.find('.h5p-inner:first'); // DD
+          }
+          if ($container.length) {
+            $continueButton = addButton($container, player.l10n.defaultAdaptivitySeekLabel, function () {
+              if (self.isButton()) {
+                // Close dialog
+                player.dialog.close();
+              }
+              else {
+                // Remove interaction posters
+                $interaction.remove();
+              }
 
-                // Remove continue button
-                $continueButton.remove();
-                $continueButton = undefined;
+              // Remove continue button
+              $continueButton.remove();
+              $continueButton = undefined;
 
+              // Do not play if player is at the end, state 0 = ENDED
+              if (player.currentState !== 0) {
                 player.play();
               }
-            }
-          }).appendTo($target.find('.h5p-show-solution-container'));
+            });
+          }
         }
 
-        return; // No adaptivity
+        return;
       }
 
       // Stop playback
@@ -281,30 +342,36 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Add continue button
-      H5P.JoubelUI.createButton({
-        tabIndex: 1,
-        html: adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel,
-        on: {
-          click: function () {
-            if (self.isButton()) {
-              player.dialog.close();
-            }
-            if (!adaptivity.allowOptOut) {
-              if (!self.isButton()) {
-                player.dialog.closeOverlay();
-                $interaction.css('zIndex', '');
-              }
-            }
-
-            self.remove();
-            player.seek(adaptivity.seekTo);
-            player.play();
+      addButton($buttonWrapper, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
+        if (self.isButton()) {
+          player.dialog.close();
+        }
+        if (!adaptivity.allowOptOut) {
+          if (!self.isButton()) {
+            player.dialog.closeOverlay();
+            $interaction.css('zIndex', '');
           }
         }
-      }).appendTo($buttonWrapper);
+
+        self.remove();
+        player.seek(adaptivity.seekTo);
+        player.play();
+      });
 
       $buttonWrapper.appendTo($target);
+    };
 
+    /**
+     * Extract the current state of interactivity for serialization.
+     *
+     * @public
+     * @returns {object}
+     */
+    self.getCurrentState = function () {
+      if (instance && (instance.getCurrentState instanceof Function ||
+                       typeof instance.getCurrentState === 'function')) {
+        return instance.getCurrentState();
+      }
     };
 
     /**

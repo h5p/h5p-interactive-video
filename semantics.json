@@ -17,6 +17,13 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
+            "name": "title",
+            "type": "text",
+            "label": "The title of this interactive video",
+            "default": "Interactive Video",
+            "description": "Used in summaries, statistics etc."
+          },
+          {
             "name": "copyright",
             "type": "text",
             "widget": "html",
@@ -120,13 +127,13 @@
                     "H5P.Table 1.0",
                     "H5P.Link 1.0",
                     "H5P.Image 1.0",
-                    "H5P.Summary 1.2",
-                    "H5P.SingleChoiceSet 1.1",
-                    "H5P.MultiChoice 1.2",
-                    "H5P.Blanks 1.2",
-                    "H5P.DragQuestion 1.2",
-                    "H5P.MarkTheWords 1.2",
-                    "H5P.DragText 1.2"
+                    "H5P.Summary 1.3",
+                    "H5P.SingleChoiceSet 1.2",
+                    "H5P.MultiChoice 1.3",
+                    "H5P.Blanks 1.3",
+                    "H5P.DragQuestion 1.3",
+                    "H5P.MarkTheWords 1.3",
+                    "H5P.DragText 1.3"
                   ]
                 },
                 {
@@ -243,10 +250,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.2"
+              "H5P.Summary 1.3"
             ],
             "default": {
-              "library": "H5P.Summary 1.2",
+              "library": "H5P.Summary 1.3",
               "params": {}
             }
           },
