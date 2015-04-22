@@ -11,12 +11,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   function InteractiveVideo(params, id, contentData) {
     H5P.EventDispatcher.call(this);
     var self = this;
-    this.params = $.extend(true, {
-      video: {
-        title: 'Interactive Video'
-      },
+
+    // Insert defaults
+    this.params = $.extend({ // Deep is not used since editor uses references.
+      video: {},
       assets: {}
     }, params.interactiveVideo);
+
+    // Add default title
+    if (!this.params.video.title) {
+      this.params.video.title = 'Interactive Video';
+    }
+
     this.contentId = id;
     this.visibleInteractions = [];
 
