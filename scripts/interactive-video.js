@@ -1034,10 +1034,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
     info.addMedia(videoRights);
 
-    for (var i = 0; i < self.interactions.length; i++) {
-      var interactionCopyrights = self.interactions[i].getCopyrights();
-      if (interactionCopyrights) {
-        info.addContent(interactionCopyrights);
+    if (self.interactions !== undefined) {
+      for (var i = 0; i < self.interactions.length; i++) {
+        var interactionCopyrights = self.interactions[i].getCopyrights();
+        if (interactionCopyrights) {
+          info.addContent(interactionCopyrights);
+        }
       }
     }
 
@@ -1066,7 +1068,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @param {float} seconds
    * @returns {string}
    */
-  var humanizeTime = function (seconds) {
+  var humanizeTime = InteractiveVideo.humanizeTime = function (seconds) {
     var minutes = Math.floor(seconds / 60);
     var hours = Math.floor(minutes / 60);
 
