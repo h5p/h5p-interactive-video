@@ -327,15 +327,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       // Replace interaction with adaptivity screen
-      $target.html(adaptivity.message);
-
-      // Buttons wrapper
-      var $buttonWrapper = $('<div/>', {
-        'class': ''
+      var $adap = $('<div/>', {
+        'class': 'h5p-iv-adap',
+        html: adaptivity.message,
+        appendTo: $target.html('')
       });
 
       // Add continue button
-      addButton($buttonWrapper, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
+      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
         if (self.isButton()) {
           player.dialog.close();
         }
@@ -351,7 +350,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.play();
       });
 
-      $buttonWrapper.appendTo($target);
+      // Center vertically
+      var fS = Number($adap.css('fontSize').replace('px',''));
+      $adap.css('marginTop', (($target.height() - $adap.height()) / fS / 2) + 'em');
     };
 
     /**
