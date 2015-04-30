@@ -24,6 +24,30 @@
             "description": "Used in summaries, statistics etc."
           },
           {
+            "name": "startScreenOptions",
+            "type": "group",
+            "label": "Video start screen options",
+            "description": "These options will let you override when to display \"Show solution\" button and \"Retry\" in integrated h5p content.",
+            "optional": true,
+            "fields": [
+              {
+                "name": "hideStartTitle",
+                "type": "boolean",
+                "label": "Hide title on video start screen",
+                "optional": true,
+                "default": false
+              },
+              {
+                "name": "shortStartDescription",
+                "type": "text",
+                "label": "Short description (Optional)",
+                "optional": true,
+                "maxLength": 120,
+                "description": "Optional. Display a short description text on the video start screen."
+              }
+            ]
+          },
+          {
             "name": "copyright",
             "type": "text",
             "widget": "html",
