@@ -784,10 +784,16 @@
   background: rgba(0, 0, 0, 0.75);
   color: #ffffff;
   cursor: pointer;
+  transition: background 0.2s ease-in;
 }
 
 .h5p-interactive-video .h5p-splash:hover {
   background: rgba(0, 0, 0, 0.85);
+}
+
+.h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
@@ -797,8 +803,7 @@
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon {
   font-size: 6em;
-  line-height: 1.25em;
-  padding-top: 0.15em;
+  line-height: 1.4em;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon:before {

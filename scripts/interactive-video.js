@@ -343,7 +343,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
           .end();
 
       // Add play functionality and title to play icon
-      $('h5p-splash-play-icon', this.$splash).keydown(function (e) {
+      $('.h5p-splash-play-icon', this.$splash).keydown(function (e) {
         var code = e.which;
         // 32 = Space
         if (code === 32) {
@@ -919,7 +919,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var titleFontSizeThreshold = 16;
     var titleSizeEm = 1.5;
 
-    var playFontSizeThreshold = 16;
+    var playFontSizeThreshold = 10;
 
     var staticWidthToFontRatio = 50;
     var staticMobileViewThreshold = 510;
@@ -933,7 +933,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       hasDescription = false;
       if (this.startScreenOptions.hideStartTitle) {
         hasTitle = false;
-        staticWidthToFontRatio = 40;
+        staticWidthToFontRatio = 45;
       }
     }
 
