@@ -196,10 +196,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       answers: []
     };
 
-    if (self.interactions instanceof Array) {
-      for (var i = 0; i < self.interactions.length; i++) {
-        state.answers[i] = self.interactions[i].getCurrentState();
-      }
+    for (var i = 0; i < self.interactions.length; i++) {
+      state.answers[i] = self.interactions[i].getCurrentState();
     }
 
     if (state.progress) {
@@ -984,11 +982,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
-    if (this.interactions !== undefined) {
-      for (var i = 0; i < this.interactions.length; i++) {
-        if (this.interactions[i].score) {
-          score += this.interactions[i].score;
-        }
+
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].score) {
+        score += this.interactions[i].score;
       }
     }
 
@@ -1004,11 +1001,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
 
-    if (this.interactions !== undefined) {
-      for (var i = 0; i < this.interactions.length; i++) {
-        if (this.interactions[i].maxScore) {
-          maxScore += this.interactions[i].maxScore;
-        }
+    for (var i = 0; i < this.interactions.length; i++) {
+      if (this.interactions[i].maxScore) {
+        maxScore += this.interactions[i].maxScore;
       }
     }
 
