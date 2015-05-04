@@ -27,7 +27,6 @@
             "name": "startScreenOptions",
             "type": "group",
             "label": "Video start screen options",
-            "description": "These options will let you override when to display \"Show solution\" button and \"Retry\" in integrated h5p content.",
             "optional": true,
             "fields": [
               {

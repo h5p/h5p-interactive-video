@@ -319,7 +319,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
               '<div class="h5p-splash-main">' +
                 '<div class="h5p-splash-main-outer">' +
                   '<div class="h5p-splash-main-inner">' +
-                    '<div class="h5p-splash-play-icon"></div>' +
+                    '<div class="h5p-splash-play-icon" role="button" tabindex="1" title="' + this.params.play + '"></div>' +
                     '<div class="h5p-splash-title">' + this.params.video.title + '</div>' +
                   '</div>' +
                 '</div>' +
@@ -341,6 +341,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
             return false;
           })
           .end();
+
+      // Add play functionality and title to play icon
+      $('h5p-splash-play-icon', this.$splash).keydown(function (e) {
+        var code = e.which;
+        // 32 = Space
+        if (code === 32) {
+          that.video.play();
+          e.preventDefault();
+        }
+      });
 
       if (this.startScreenOptions.shortStartDescription === undefined || !this.startScreenOptions.shortStartDescription.length) {
         this.$splash.addClass('no-description');
@@ -896,7 +906,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
-    this.resizeStartScreen();
+    if ((this.currentState === 5 || this.currentState === 6) && this.editor === undefined) {
+      this.resizeStartScreen();
+    }
+
   };
 
   InteractiveVideo.prototype.resizeStartScreen = function () {
@@ -909,7 +922,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var playFontSizeThreshold = 16;
 
     var staticWidthToFontRatio = 50;
-    var staticMobileViewThreshold = 490;
+    var staticMobileViewThreshold = 510;
 
     var hasDescription = true;
     var hasTitle = true;
@@ -939,6 +952,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     }
 
+    // Determine if we should add mobile view
+    if (containerWidth < staticMobileViewThreshold) {
+      this.$splash.addClass('mobile');
+    } else {
+      this.$splash.removeClass('mobile');
+    }
+
     // Minimum font sizes
     if (newFontSize * descriptionSizeEm < descriptionFontSizeThreshold) {
       $splashDescription.css('font-size', descriptionFontSizeThreshold);
@@ -954,13 +974,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Set new font size
     this.$splash.css('font-size', newFontSize);
-
-    // Determine if we should add mobile view
-    if (containerWidth < staticMobileViewThreshold) {
-      this.$splash.addClass('mobile')
-    } else {
-      this.$splash.removeClass('mobile');
-    }
   };
 
   /**
