@@ -62,6 +62,7 @@
 	height: 100%;
 	overflow: hidden;
 }
+
 .h5p-interactive-video .h5p-ie-transparent-background {
   position: absolute;
   top: 0;
@@ -887,6 +888,16 @@
   display: table-cell;
 }
 
+.h5p-interactive-video .h5p-iv-adap {
+  top: 50%;
+  position: relative;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	-webkit-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
 .h5p-interactive-video .h5p-iv-adap .h5p-joubelui-button {
-  margin: 0;
+  margin: 0.25em;
 }

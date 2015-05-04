@@ -349,10 +349,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.seek(adaptivity.seekTo);
         player.play();
       });
-
-      // Center vertically
-      var fS = Number($adap.css('fontSize').replace('px',''));
-      $adap.css('marginTop', (($target.height() - $adap.height()) / fS / 2) + 'em');
     };
 
     /**
