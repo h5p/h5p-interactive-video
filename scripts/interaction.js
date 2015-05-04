@@ -10,10 +10,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
    */
   function Interaction(parameters, player, previousState) {
     var self = this;
+
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var instance, $interaction, $label, $continueButton;
+    var $interaction, $label, $continueButton;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -31,6 +32,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var classParts = action.library.split(' ')[0].toLowerCase().split('.');
       classes = classParts[0] + '-' + classParts[1] + '-interaction';
     }
+
+    // Create instance of interaction
+    var instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -93,19 +97,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-dialog-interaction'
       });
 
-      // Add new instance to dialog and open
-      instance = H5P.newRunnable(action, player.contentId, $dialogContent, undefined, {parent: player});
+      // Attach instance to dialog and open
+      instance.attach($dialogContent);
       player.dialog.open($dialogContent);
-
-      if (instance.getCurrentState instanceof Function ||
-          typeof instance.getCurrentState === 'function') {
-        // Keep track of the last state when closing the popup.
-        player.dialog.once('close', function () {
-          action.userDatas = {
-            state: instance.getCurrentState()
-          };
-        });
-      }
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
@@ -204,7 +198,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
-      instance = H5P.newRunnable(action, player.contentId, $inner, undefined, {parent: player});
+      instance.attach($inner);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
@@ -333,16 +327,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       // Replace interaction with adaptivity screen
-      $target.html(adaptivity.message);
-      //instance = ''; ??
-
-      // Buttons wrapper
-      var $buttonWrapper = $('<div/>', {
-        'class': ''
+      var $adap = $('<div/>', {
+        'class': 'h5p-iv-adap',
+        html: adaptivity.message,
+        appendTo: $target.html('')
       });
 
       // Add continue button
-      addButton($buttonWrapper, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
+      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
         if (self.isButton()) {
           player.dialog.close();
         }
@@ -358,7 +350,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.play();
       });
 
-      $buttonWrapper.appendTo($target);
+      // Center vertically
+      var fS = Number($adap.css('fontSize').replace('px',''));
+      $adap.css('marginTop', (($target.height() - $adap.height()) / fS / 2) + 'em');
     };
 
     /**
