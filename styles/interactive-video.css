@@ -63,6 +63,10 @@
 	overflow: hidden;
 }
 .h5p-interactive-video .h5p-ie-transparent-background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=);
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=', sizingMethod='scale');
 }
