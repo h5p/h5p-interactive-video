@@ -793,7 +793,6 @@
 
 .h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon {
   transform: scale(1.05);
-  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
@@ -804,6 +803,7 @@
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon {
   font-size: 6em;
   line-height: 1.4em;
+  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon:before {
@@ -822,7 +822,7 @@
   font-family: 'Open Sans', sans-serif;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.8em;
-  line-height: 1.5em;
+  line-height: 1.25em;
   padding: 1.5em;
 }
 
@@ -853,6 +853,14 @@
 .h5p-interactive-video .h5p-splash-wrapper.no-title.mobile .h5p-splash .h5p-splash-title,
 .h5p-interactive-video .h5p-splash-wrapper.no-title .h5p-splash .h5p-splash-title {
   display: none;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper .h5p-splash .h5p-splash-title.minimum-font-size {
+  font-size: 16px;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper .h5p-splash .h5p-splash-description.minimum-font-size {
+  font-size: 12px;
 }
 
 /* Mobile splash start screen */

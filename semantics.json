@@ -20,6 +20,7 @@
             "name": "title",
             "type": "text",
             "label": "The title of this interactive video",
+            "maxLength": 60,
             "default": "Interactive Video",
             "description": "Used in summaries, statistics etc."
           },

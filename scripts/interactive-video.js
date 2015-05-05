@@ -906,17 +906,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
-    if ((this.currentState === 5 || this.currentState === 6) && this.editor === undefined) {
+    if (this.$splash !== undefined) {
       this.resizeStartScreen();
     }
 
   };
 
   InteractiveVideo.prototype.resizeStartScreen = function () {
-    var descriptionFontSizeThreshold = 12;
     var descriptionSizeEm = 0.8;
-
-    var titleFontSizeThreshold = 16;
     var titleSizeEm = 1.5;
 
     var playFontSizeThreshold = 10;
@@ -939,6 +936,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     var $splashDescription = $('.h5p-splash-description', this.$splash);
     var $splashTitle = $('.h5p-splash-title', this.$splash);
+    var $tmpDescription = $splashDescription.clone()
+      .css('position', 'absolute')
+      .addClass('minimum-font-size')
+      .appendTo($splashDescription.parent());
+    var $tmpTitle = $splashTitle.clone()
+      .css('position', 'absolute')
+      .addClass('minimum-font-size')
+      .appendTo($splashTitle.parent());
+    var descriptionFontSizeThreshold = parseInt($tmpDescription.css('font-size'), 10);
+    var titleFontSizeThreshold = parseInt($tmpTitle.css('font-size'), 10);
 
     // Determine new font size for splash screen from container width
     var containerWidth = this.$container.width();
@@ -961,19 +968,21 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Minimum font sizes
     if (newFontSize * descriptionSizeEm < descriptionFontSizeThreshold) {
-      $splashDescription.css('font-size', descriptionFontSizeThreshold);
+      $splashDescription.addClass('minimum-font-size');
     } else {
-      $splashDescription.css('font-size', '');
+      $splashDescription.removeClass('minimum-font-size');
     }
 
     if (newFontSize * titleSizeEm < titleFontSizeThreshold) {
-      $splashTitle.css('font-size', titleFontSizeThreshold);
+      $splashTitle.addClass('minimum-font-size');
     } else {
-      $splashTitle.css('font-size', '');
+      $splashTitle.removeClass('minimum-font-size');
     }
 
     // Set new font size
     this.$splash.css('font-size', newFontSize);
+    $tmpDescription.remove();
+    $tmpTitle.remove();
   };
 
   /**
