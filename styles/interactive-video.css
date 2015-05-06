@@ -787,14 +787,6 @@
   transition: background 0.2s ease-in;
 }
 
-.h5p-interactive-video .h5p-splash:hover {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon {
-  transform: scale(1.05);
-}
-
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
   display: table-cell;
   vertical-align: middle;
@@ -803,12 +795,13 @@
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon {
   font-size: 6em;
   line-height: 1.4em;
-  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon:before {
   font-family: "H5PFontAwesome4";
   content: "\f04b";
+  display: block;
+  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash .h5p-splash-title {
@@ -837,6 +830,21 @@
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Hover and focus effects */
+.h5p-interactive-video .h5p-splash:focus,
+.h5p-interactive-video .h5p-splash:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.h5p-interactive-video .h5p-splash:focus .h5p-splash-play-icon:before,
+.h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon:before {
+  transform: scale(1.05);
+}
+
+.h5p-interactive-video .h5p-splash:focus {
+  outline: 1px solid lightskyblue;
 }
 
 /* No description */

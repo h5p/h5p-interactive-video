@@ -315,11 +315,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.$splash = $(
         '<div class="h5p-splash-wrapper">' +
           '<div class="h5p-splash-outer">' +
-            '<div class="h5p-splash">' +
+            '<div class="h5p-splash" role="button" tabindex="1" title="' + this.params.play + '">' +
               '<div class="h5p-splash-main">' +
                 '<div class="h5p-splash-main-outer">' +
                   '<div class="h5p-splash-main-inner">' +
-                    '<div class="h5p-splash-play-icon" role="button" tabindex="1" title="' + this.params.play + '"></div>' +
+                    '<div class="h5p-splash-play-icon"></div>' +
                     '<div class="h5p-splash-title">' + this.params.video.title + '</div>' +
                   '</div>' +
                 '</div>' +
@@ -343,7 +343,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
           .end();
 
       // Add play functionality and title to play icon
-      $('.h5p-splash-play-icon', this.$splash).keydown(function (e) {
+      $('.h5p-splash', this.$splash).keydown(function (e) {
         var code = e.which;
         // 32 = Space
         if (code === 32) {
