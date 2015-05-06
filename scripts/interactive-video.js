@@ -44,6 +44,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       self.previousState = contentData.previousState;
     }
 
+    // Set default splash options
+    self.startScreenOptions = $.extend({
+      hideStartTitle: false,
+      shortStartDescription: ''
+    }, self.params.video.startScreenOptions);
+
     // Separate UI translations
     // TODO: Create separate params object for UI string translations.
     self.l10n = {};
@@ -306,7 +312,26 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
 
     if (this.editor === undefined && !this.video.pressToPlay && this.video.play) {
-      this.$splash = $('<div class="h5p-splash-wrapper"><div class="h5p-splash"><h2>Interactive Video</h2><p>Press the icons as the video plays for challenges and more information on the topics!</p><div class="h5p-interaction h5p-multichoice-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">Challenges</div></div><div class="h5p-interaction h5p-text-interaction"><a href="#" class="h5p-interaction-button"></a><div class="h5p-interaction-label">More information</div></div></div></div>')
+      this.$splash = $(
+        '<div class="h5p-splash-wrapper">' +
+          '<div class="h5p-splash-outer">' +
+            '<div class="h5p-splash">' +
+              '<div class="h5p-splash-main">' +
+                '<div class="h5p-splash-main-outer">' +
+                  '<div class="h5p-splash-main-inner">' +
+                    '<div class="h5p-splash-play-icon" role="button" tabindex="1" title="' + this.params.play + '"></div>' +
+                    '<div class="h5p-splash-title">' + this.params.video.title + '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div class="h5p-splash-footer">' +
+                '<div class="h5p-splash-footer-holder">' +
+                  '<div class="h5p-splash-description">' + that.startScreenOptions.shortStartDescription + '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>')
         .click(function () {
           that.video.play();
         })
@@ -316,6 +341,24 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
             return false;
           })
           .end();
+
+      // Add play functionality and title to play icon
+      $('.h5p-splash-play-icon', this.$splash).keydown(function (e) {
+        var code = e.which;
+        // 32 = Space
+        if (code === 32) {
+          that.video.play();
+          e.preventDefault();
+        }
+      });
+
+      if (this.startScreenOptions.shortStartDescription === undefined || !this.startScreenOptions.shortStartDescription.length) {
+        this.$splash.addClass('no-description');
+      }
+
+      if (this.startScreenOptions.hideStartTitle) {
+        this.$splash.addClass('no-title');
+      }
     }
   };
 
@@ -861,6 +904,85 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$container.css('fontSize', (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize + 'px');
 
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
+
+    // Resize start screen
+    if (this.$splash !== undefined) {
+      this.resizeStartScreen();
+    }
+
+  };
+
+  InteractiveVideo.prototype.resizeStartScreen = function () {
+    var descriptionSizeEm = 0.8;
+    var titleSizeEm = 1.5;
+
+    var playFontSizeThreshold = 10;
+
+    var staticWidthToFontRatio = 50;
+    var staticMobileViewThreshold = 510;
+
+    var hasDescription = true;
+    var hasTitle = true;
+
+    // Scale up width to font ratio if one component is missing
+    if (this.startScreenOptions.shortStartDescription === undefined ||
+        !this.startScreenOptions.shortStartDescription.length) {
+      hasDescription = false;
+      if (this.startScreenOptions.hideStartTitle) {
+        hasTitle = false;
+        staticWidthToFontRatio = 45;
+      }
+    }
+
+    var $splashDescription = $('.h5p-splash-description', this.$splash);
+    var $splashTitle = $('.h5p-splash-title', this.$splash);
+    var $tmpDescription = $splashDescription.clone()
+      .css('position', 'absolute')
+      .addClass('minimum-font-size')
+      .appendTo($splashDescription.parent());
+    var $tmpTitle = $splashTitle.clone()
+      .css('position', 'absolute')
+      .addClass('minimum-font-size')
+      .appendTo($splashTitle.parent());
+    var descriptionFontSizeThreshold = parseInt($tmpDescription.css('font-size'), 10);
+    var titleFontSizeThreshold = parseInt($tmpTitle.css('font-size'), 10);
+
+    // Determine new font size for splash screen from container width
+    var containerWidth = this.$container.width();
+    var newFontSize = parseInt(containerWidth / staticWidthToFontRatio, 10);
+
+    if (!hasDescription) {
+      if (hasTitle && newFontSize < descriptionFontSizeThreshold) {
+        newFontSize = descriptionFontSizeThreshold;
+      } else if (newFontSize < playFontSizeThreshold) {
+        newFontSize = playFontSizeThreshold;
+      }
+    }
+
+    // Determine if we should add mobile view
+    if (containerWidth < staticMobileViewThreshold) {
+      this.$splash.addClass('mobile');
+    } else {
+      this.$splash.removeClass('mobile');
+    }
+
+    // Minimum font sizes
+    if (newFontSize * descriptionSizeEm < descriptionFontSizeThreshold) {
+      $splashDescription.addClass('minimum-font-size');
+    } else {
+      $splashDescription.removeClass('minimum-font-size');
+    }
+
+    if (newFontSize * titleSizeEm < titleFontSizeThreshold) {
+      $splashTitle.addClass('minimum-font-size');
+    } else {
+      $splashTitle.removeClass('minimum-font-size');
+    }
+
+    // Set new font size
+    this.$splash.css('font-size', newFontSize);
+    $tmpDescription.remove();
+    $tmpTitle.remove();
   };
 
   /**
