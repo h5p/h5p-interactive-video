@@ -909,6 +909,17 @@
   display: table-cell;
 }
 
+/* Youtube specific splash start screen options */
+.h5p-interactive-video .h5p-video.youtube .h5p-splash-wrapper.mobile {
+  display: none;
+}
+
+.h5p-interactive-video .h5p-video.youtube .h5p-splash-wrapper .h5p-splash,
+.h5p-interactive-video .h5p-video.youtube .h5p-splash-wrapper:hover .h5p-splash {
+  background: #000;
+}
+
+/* Adaptivity */
 .h5p-interactive-video .h5p-iv-adap {
   top: 50%;
   position: relative;
