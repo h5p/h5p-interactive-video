@@ -919,6 +919,14 @@
   background: #000;
 }
 
+.h5p-interactive-video .h5p-video.h5p-youtube .h5p-ie-transparent-background {
+  pointer-events: none;
+}
+
+.h5p-interactive-video .h5p-video.h5p-youtube .h5p-splash {
+  pointer-events: auto;
+}
+
 /* Adaptivity */
 .h5p-interactive-video .h5p-iv-adap {
   top: 50%;
