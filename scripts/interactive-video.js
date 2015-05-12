@@ -1082,9 +1082,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
-   *
+   * Call xAPI completed only once
+   * 
    * @public
    */
   InteractiveVideo.prototype.complete = function() {
@@ -1097,8 +1096,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Gets the users score
    *
    * @public
    */
@@ -1115,8 +1113,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Gets the users max score
    *
    * @public
    */
@@ -1133,8 +1130,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Implements getScore from the question type contract
    *
    * @public
    */
@@ -1143,8 +1139,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Implements getMaxScore from the question type contract
    *
    * @public
    */
@@ -1153,19 +1148,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Implements showSolutions from the question type contract
    *
    * @public
    */
   InteractiveVideo.prototype.showSolutions = function() {
     // Intentionally left empty. Function makes IV pop up i CP summary
-    // TODO: We should not need to have empty functions, bad SW design.
   };
 
   /**
-   * xAPI?
-   * TODO: Document
+   * Implements getTitle from the question type contract
    *
    * @public
    */
@@ -1299,7 +1291,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Look for field with the given name in the given collection.
-   * Only used by editor. TODO: move
+   * Only used by editor.
    *
    * @private
    * @param {String} name of field
