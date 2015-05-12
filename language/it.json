@@ -11,6 +11,23 @@
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilit� dei browser � consigliato utilizzare i formati video WebM o MP4."
             },
             {
+              "label": "The title of this interactive video",
+              "default": "Interactive Video",
+              "description": "Used in summaries, statistics etc."
+            },
+            {
+              "label": "Video start screen options",
+              "fields": [
+                {
+                  "label": "Hide title on video start screen"
+                },
+                {
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen."
+                }
+              ]
+            },
+            {
               "label": "Informazioni Copyright Video",
               "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
             }
