@@ -64,10 +64,6 @@
 }
 
 .h5p-interactive-video .h5p-ie-transparent-background {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=);
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader( src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUODw0yPG414gAAAA1JREFUCNdj+P//PwMACPwC/lyfz9oAAAAASUVORK5CYII=', sizingMethod='scale');
 }
@@ -787,14 +783,6 @@
   transition: background 0.2s ease-in;
 }
 
-.h5p-interactive-video .h5p-splash:hover {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon {
-  transform: scale(1.05);
-}
-
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
   display: table-cell;
   vertical-align: middle;
@@ -803,12 +791,13 @@
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon {
   font-size: 6em;
   line-height: 1.4em;
-  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon:before {
   font-family: "H5PFontAwesome4";
   content: "\f04b";
+  display: block;
+  transition: transform 0.2s ease;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash .h5p-splash-title {
@@ -834,9 +823,27 @@
 .h5p-interactive-video .h5p-splash-wrapper {
   position: absolute;
   display: table;
-  top: 0;
+  top: 50%;
   width: 100%;
   height: 100%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* Hover and focus effects */
+.h5p-interactive-video .h5p-splash:focus,
+.h5p-interactive-video .h5p-splash:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.h5p-interactive-video .h5p-splash:focus .h5p-splash-play-icon:before,
+.h5p-interactive-video .h5p-splash:hover .h5p-splash-play-icon:before {
+  transform: scale(1.05);
+}
+
+.h5p-interactive-video .h5p-splash:focus {
+  outline: 1px solid lightskyblue;
 }
 
 /* No description */
@@ -901,6 +908,17 @@
   display: table-cell;
 }
 
+/* Youtube specific splash start screen options */
+.h5p-interactive-video .h5p-video.h5p-youtube .h5p-splash-wrapper.mobile {
+  display: none;
+}
+
+.h5p-interactive-video .h5p-video.h5p-youtube .h5p-splash-wrapper .h5p-splash,
+.h5p-interactive-video .h5p-video.h5p-youtube .h5p-splash-wrapper:hover .h5p-splash {
+  background: #000;
+}
+
+/* Adaptivity */
 .h5p-interactive-video .h5p-poster .h5p-iv-adap {
   top: 50%;
   position: relative;
