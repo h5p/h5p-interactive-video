@@ -33,8 +33,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       classes = classParts[0] + '-' + classParts[1] + '-interaction';
     }
 
-    // Create instance of interaction
-    var instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+    // Keep track of content instance
+    var instance;
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -519,6 +519,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Create a new instance of the interaction.
+     * Useful if the input parameters have changes.
+     */
+    self.reCreate = function () {
+      if (library !== 'H5P.Nil') {
+        instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      }
+    };
+
+    /**
      * @public
      * @returns {String}
      */
@@ -533,6 +543,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
+      if (library === 'H5P.Nil') {
+        return undefined;
+      }
+
       var instance = H5P.newRunnable(action, player.contentId);
 
       if (instance !== undefined && instance.getCopyrights !== undefined) {
@@ -543,6 +557,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
     };
+
+    // Create instance of content
+    self.reCreate();
   }
 
   // Extends the event dispatcher
