@@ -541,6 +541,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
+      if (library === 'H5P.Nil') {
+        return undefined;
+      }
+
       var instance = H5P.newRunnable(action, player.contentId);
 
       if (instance !== undefined && instance.getCopyrights !== undefined) {
