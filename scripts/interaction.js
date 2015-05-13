@@ -523,7 +523,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Useful if the input parameters have changes.
      */
     self.reCreate = function () {
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      if (library !== 'H5P.Nil') {
+        instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      }
     };
 
     /**
