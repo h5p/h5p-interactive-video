@@ -146,6 +146,16 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       self.trigger('open');
     };
 
+    /**
+     * Adds a name to the dialog for identifying what it contains.
+     *
+     * @public
+     * @param {string} machineName Name of library inside dialog.
+     */
+    self.addLibraryClass = function (machineName) {
+      $dialog.attr('data-lib', machineName);
+    };
+
     self.isOpen = function () {
       return $wrapper.is(':visible');
     };

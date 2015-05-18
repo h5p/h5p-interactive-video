@@ -100,6 +100,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Attach instance to dialog and open
       instance.attach($dialogContent);
       player.dialog.open($dialogContent);
+      player.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
