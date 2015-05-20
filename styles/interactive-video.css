@@ -851,11 +851,14 @@
 
 .h5p-interactive-video .h5p-splash-wrapper.no-description .h5p-splash {
   padding: 0.35em 0;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.no-description.no-title .h5p-splash {
   width: 25%;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.no-description .h5p-splash-play-icon {
-  padding: 0.35em 0 0.5em;
+  padding: 0.5em 0;
   font-size: 4em;
 }
 
@@ -888,13 +891,22 @@
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main {
-  display: table-row;
+  display: table-cell;
   height: 100%;
+  position: relative;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-outer {
-  display: table-cell;
-  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-inner {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash .h5p-splash-title {
@@ -907,11 +919,7 @@
 
 /* mobile footer */
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  max-height: 25%;
+  display: table-footer-group;
 }
 
 /* Youtube specific splash start screen options */
