@@ -883,6 +883,8 @@
 }
 
 /* Mobile splash start screen */
+.h5p-interactive-video .h5p-splash-wrapper.mobile.no-description.no-title .h5p-splash,
+.h5p-interactive-video .h5p-splash-wrapper.mobile.no-description .h5p-splash,
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash {
   width: 100%;
   height: 100%;
