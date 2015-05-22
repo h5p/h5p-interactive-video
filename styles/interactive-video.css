@@ -790,7 +790,7 @@
 }
 
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash-play-icon {
-  font-size: 6em;
+  font-size: 5em;
   padding: 0.5em 0;
   line-height: 1em;
 }
@@ -850,7 +850,16 @@
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.no-description .h5p-splash {
-  padding: 2em 0;
+  padding: 0.35em 0;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.no-description.no-title .h5p-splash {
+  width: 25%;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.no-description .h5p-splash-play-icon {
+  padding: 0.5em 0;
+  font-size: 4em;
 }
 
 /* No title */
@@ -859,6 +868,12 @@
   display: none;
 }
 
+
+.h5p-interactive-video .h5p-splash-wrapper.no-title .h5p-splash {
+  padding: 0.5em 0;
+}
+
+/* Minimum font sizes */
 .h5p-interactive-video .h5p-splash-wrapper .h5p-splash .h5p-splash-title.minimum-font-size {
   font-size: 16px;
 }
@@ -868,6 +883,8 @@
 }
 
 /* Mobile splash start screen */
+.h5p-interactive-video .h5p-splash-wrapper.mobile.no-description.no-title .h5p-splash,
+.h5p-interactive-video .h5p-splash-wrapper.mobile.no-description .h5p-splash,
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash {
   width: 100%;
   height: 100%;
@@ -876,12 +893,22 @@
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main {
-  display: table-row;
+  display: table-cell;
+  height: 100%;
+  position: relative;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-outer {
-  display: table-cell;
-  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-inner {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash .h5p-splash-title {
@@ -895,14 +922,6 @@
 /* mobile footer */
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer {
   display: table-footer-group;
-}
-
-.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer .h5p-splash-footer-holder {
-  display: table-row;
-}
-
-.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer .h5p-splash-description {
-  display: table-cell;
 }
 
 /* Youtube specific splash start screen options */
