@@ -429,6 +429,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         displayAt = 0;
       }
 
+      if (this.params.assets.interactions === undefined) {
+        this.params.assets.interactions = [];
+      }
+
       this.params.assets.interactions.push({
         action: this.params.summary.task,
         x: 80,
@@ -442,6 +446,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         label: this.l10n.summary,
         mainSummary: true
       });
+      this.initInteraction(this.params.assets.interactions.length - 1);
     }
 
     if (this.currentState === ATTACHED) {
@@ -1083,7 +1088,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Call xAPI completed only once
-   * 
+   *
    * @public
    */
   InteractiveVideo.prototype.complete = function() {
