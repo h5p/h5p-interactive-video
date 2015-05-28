@@ -865,6 +865,7 @@
 
 .h5p-interactive-video .h5p-splash-wrapper.no-description.no-title .h5p-splash {
   width: 25%;
+  padding: 1em 0;
 }
 
 /* No title */
