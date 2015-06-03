@@ -29,11 +29,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       summary: 'Summary',
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue'
-    }, params.interactiveVideo);
+    }, params);
 
     // Add default title
-    if (!self.params.video.title) {
-      self.params.video.title = 'Interactive Video';
+    if (!self.params.interactiveVideo.video.title) {
+      self.params.interactiveVideo.video.title = 'Interactive Video';
     }
 
     // Keep track of content ID
@@ -48,7 +48,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, self.params.video.startScreenOptions);
+    }, self.params.interactiveVideo.video.startScreenOptions);
 
     // Separate UI translations
     // TODO: Create separate params object for UI string translations.
@@ -74,7 +74,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
       params: {
-        sources: self.params.video.files,
+        sources: self.params.interactiveVideo.video.files,
         controls: self.justVideo,
         fit: false
       }
@@ -174,8 +174,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Initialize interactions
     self.interactions = [];
-    if (self.params.assets.interactions) {
-      for (var i = 0; i < self.params.assets.interactions.length; i++) {
+    if (self.params.interactiveVideo.assets.interactions) {
+      for (var i = 0; i < self.params.interactiveVideo.assets.interactions.length; i++) {
         this.initInteraction(i);
       }
     }
@@ -320,7 +320,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
                 '<div class="h5p-splash-main-outer">' +
                   '<div class="h5p-splash-main-inner">' +
                     '<div class="h5p-splash-play-icon"></div>' +
-                    '<div class="h5p-splash-title">' + this.params.video.title + '</div>' +
+                    '<div class="h5p-splash-title">' + this.params.interactiveVideo.video.title + '</div>' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -424,17 +424,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Add summary interaction
     if (this.hasMainSummary()) {
-      var displayAt = duration - this.params.summary.displayAt;
+      var displayAt = duration - this.params.interactiveVideo.summary.displayAt;
       if (displayAt < 0) {
         displayAt = 0;
       }
 
-      if (this.params.assets.interactions === undefined) {
-        this.params.assets.interactions = [];
+      if (this.params.interactiveVideo.assets.interactions === undefined) {
+        this.params.interactiveVideo.assets.interactions = [];
       }
 
-      this.params.assets.interactions.push({
-        action: this.params.summary.task,
+      this.params.interactiveVideo.assets.interactions.push({
+        action: this.params.interactiveVideo.summary.task,
         x: 80,
         y: 80,
         duration: {
@@ -446,7 +446,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         label: this.l10n.summary,
         mainSummary: true
       });
-      this.initInteraction(this.params.assets.interactions.length - 1);
+      this.initInteraction(this.params.interactiveVideo.assets.interactions.length - 1);
     }
 
     if (this.currentState === ATTACHED) {
@@ -472,7 +472,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.initInteraction = function (index) {
     var self = this;
-    var parameters = self.params.assets.interactions[index];
+    var parameters = self.params.interactiveVideo.assets.interactions[index];
 
     if (self.params.override && self.params.override.overrideButtons) {
       // Extend interaction parameters
@@ -527,7 +527,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    *   false otherwise
    */
   InteractiveVideo.prototype.hasMainSummary = function() {
-    var summary = this.params.summary;
+    var summary = this.params.interactiveVideo.summary;
     return !(summary === undefined ||
         summary.displayAt === undefined ||
         summary.task === undefined ||
@@ -560,8 +560,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
-    if (this.params.assets.bookmarks !== undefined) {
-      for (var i = 0; i < this.params.assets.bookmarks.length; i++) {
+    if (this.params.interactiveVideo.assets.bookmarks !== undefined) {
+      for (var i = 0; i < this.params.interactiveVideo.assets.bookmarks.length; i++) {
         this.addBookmark(i);
       }
     }
@@ -577,7 +577,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     var self = this;
-    var bookmark = self.params.assets.bookmarks[id];
+    var bookmark = self.params.interactiveVideo.assets.bookmarks[id];
 
     // Avoid stacking of bookmarks.
     if (tenth === undefined) {
@@ -674,7 +674,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     });
 
     // Bookmark selector
-    if ((this.params.assets.bookmarks === undefined || this.params.assets.bookmarks.length === 0) && this.editor === undefined) {
+    if ((this.params.interactiveVideo.assets.bookmarks === undefined || this.params.interactiveVideo.assets.bookmarks.length === 0) && this.editor === undefined) {
       // No bookmarks and no editor, remove button.
       $wrapper.find('.h5p-control.h5p-bookmarks').remove();
     }
@@ -1167,7 +1167,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * @public
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.params.video.title);
+    return H5P.createTitle(this.params.interactiveVideo.video.title);
   };
 
   /**
@@ -1220,14 +1220,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
-    var videoRights, video = self.params.video.files[0];
+    var videoRights, video = self.params.interactiveVideo.video.files[0];
     if (video.copyright !== undefined) {
       videoRights = new H5P.MediaCopyright(video.copyright, self.l10n);
     }
 
-    if ((videoRights === undefined || videoRights.undisclosed()) && self.params.video.copyright !== undefined) {
+    if ((videoRights === undefined || videoRights.undisclosed()) && self.params.interactiveVideo.video.copyright !== undefined) {
       // Use old copyright info as fallback.
-      videoRights = self.params.video.copyright;
+      videoRights = self.params.interactiveVideo.video.copyright;
     }
     info.addMedia(videoRights);
 
