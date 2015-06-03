@@ -120,6 +120,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         case H5P.Video.ENDED:
           self.currentState = ENDED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+          self.timeUpdate(self.video.getCurrentTime());
+          self.controls.$currentTime.html(self.controls.$totalTime.html());
 
           self.complete();
           break;
