@@ -1,12 +1,11 @@
-/** @namespace H5P */
 H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
   /**
    * Controls the dialog in the interactive video.
    *
-   * @class
-   * @param {jQuery} $container for dialog
-   * @param {jQuery} $videoWrapper needed for positioning of dialog
+   * @class H5P.InteractiveVideoDialog
+   * @param {H5P.jQuery} $container for dialog
+   * @param {H5P.jQuery} $videoWrapper needed for positioning of dialog
    */
   function Dialog($container, $videoWrapper) {
     var self = this;
@@ -78,7 +77,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * Display overlay.
      *
      * @private
-     * @param {Function} next callback
+     * @param {function} next callback
      */
     var showOverlay = function (next) {
       $wrapper.show();
@@ -95,7 +94,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * Close overlay.
      *
      * @private
-     * @param {Function} next callback
+     * @param {function} next callback
      */
     var hideOverlay = function (next) {
       $wrapper.addClass('h5p-hidden');
@@ -111,9 +110,8 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     /**
      * Opens a new dialog. Displays the given element.
      *
-     * @public
-     * @param {jQuery} $element
-     * @param {jQuery} [$buttons] Use custom buttons for dialog
+     * @param {H5P.jQuery} $element
+     * @param {H5P.jQuery} [$buttons] Use custom buttons for dialog
      */
     self.open = function ($element, $buttons) {
       showOverlay();
@@ -149,7 +147,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     /**
      * Adds a name to the dialog for identifying what it contains.
      *
-     * @public
      * @param {string} machineName Name of library inside dialog.
      */
     self.addLibraryClass = function (machineName) {
@@ -163,8 +160,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     /**
      * Reposition the currently open dialog relative to the given button.
      *
-     * @public
-     * @param {jQuery} $button
+     * @param {H5P.jQuery} $button
      * @param {Object} [size] Sets a size for the dialog, useful for images.
      */
     self.position = function ($button, size) {
@@ -242,8 +238,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * Find max available space inside dialog when positioning relative to
      * given button.
      *
-     * @public
-     * @param {jQuery} $button
+     * @param {H5P.jQuery} $button
      * @returns {Object} Attrs: width, height
      */
     self.getMaxSize = function ($button) {
@@ -275,9 +270,8 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     /**
      * Scroll to given position in current dialog.
      *
-     * @public
-     * @param {Number} to Scroll position
-     * @param {Number} ms Time the animation takes.
+     * @param {number} to Scroll position
+     * @param {number} ms Time the animation takes.
      */
     self.scroll = function (to, ms) {
       $inner.stop().animate({
@@ -287,8 +281,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
     /**
      * Close the currently open dialog.
-     *
-     * @public
      */
     self.close = function () {
       $wrapper.addClass('h5p-hidden');
@@ -305,8 +297,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
     /**
      * Open overlay only.
-     *
-     * @public
      */
     self.openOverlay = function () {
       self.disableOverlay = true;
@@ -316,8 +306,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
     /**
      * Close overlay only.
-     *
-     * @public
      */
     self.closeOverlay = function () {
       $wrapper.addClass('h5p-hidden');
@@ -329,8 +317,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
 
     /**
      * Removes the close button from the current dialog.
-     *
-     * @public
      */
     self.hideCloseButton = function () {
       $close.hide();
@@ -342,7 +328,11 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
   Dialog.prototype.constructor = Dialog;
 
   /**
+   * Converts css px value to number.
+   *
    * @private
+   * @param {string} num
+   * @returns {Number}
    */
   var toNum = function (num) {
     return Number(num.replace('px',''));

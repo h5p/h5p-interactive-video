@@ -1,12 +1,13 @@
-/** @namespace H5P */
 H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
   /**
    * Keeps control of interactions in the interactive video.
    *
-   * @class
+   * @class H5P.InteractiveVideoInteraction
+   * @extends H5P.EventDispatcher
    * @param {Object} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
+   * @param {Object} previousState
    */
   function Interaction(parameters, player, previousState) {
     var self = this;
@@ -153,7 +154,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Resize the image so that it fits the available dialog space.
      *
      * @private
-     * @param {jQuery} $img
+     * @param {H5P.jQuery} $img
      * @param {Object} max width,height in em
      * @param {Object} size width,height in px
      */
@@ -207,6 +208,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       processInstance($inner, instance);
     };
 
+    /**
+     * Resizes the interaction at the next tick.
+     * Binds event listeners.
+     *
+     * @private
+     */
     var processInstance = function ($target, instance) {
       // Resize on next tick
       setTimeout(function () {
@@ -229,10 +236,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Makes it easy to create buttons.
      *
      * @private
-     * @param {jQuery} $container Where to append the button
+     * @param {H5P.jQuery} $container Where to append the button
      * @param {string} label Html
      * @param {function} handler What to do when clicked
-     * @returns {jQuery}
+     * @returns {H5P.jQuery}
      */
     var addButton = function ($container, label, handler) {
       return H5P.JoubelUI.createButton({
@@ -257,7 +264,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Adds adaptivity or continue button to exercies.
      *
      * @private
-     * @param {jQuery} $target
+     * @param {H5P.jQuery} $target
      */
     var adaptivity = function ($target) {
 
@@ -355,8 +362,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Extract the current state of interactivity for serialization.
      *
-     * @public
-     * @returns {object}
+     * @returns {Object}
      */
     self.getCurrentState = function () {
       if (instance && (instance.getCurrentState instanceof Function ||
@@ -368,8 +374,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Checks to see if the interaction should pause the video.
      *
-     * @public
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     self.pause = function () {
       return parameters.pause;
@@ -378,13 +383,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Check to see if interaction should be displayed as button.
      *
-     * @public
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     self.isButton = function () {
       return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
     };
 
+    /**
+     * Checks if this is the end summary.
+     *
+     * @returns {boolean}
+     */
     self.isMainSummary = function() {
       return parameters.mainSummary === true;
     };
@@ -393,8 +402,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Create dot for displaying above the video timeline.
      * Append to given container.
      *
-     * @public
-     * @param {jQuery} $container
+     * @param {H5P.jQuery} $container
      */
     self.addDot = function ($container) {
       if (library === 'H5P.Nil') {
@@ -414,9 +422,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Display or remove the interaction depending on the video time.
      *
-     * @public
-     * @param {Number} second video time
-     * @returns {jQuery} interaction button or container
+     * @param {number} second video time
+     * @returns {H5P.jQuery} interaction button or container
      */
     self.toggle = function (second) {
       if (second < parameters.duration.from || second > parameters.duration.to) {
@@ -444,8 +451,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Position label to the left or right of the action button.
      *
-     * @public
-     * @param {Number} width Size of the container
+     * @param {number} width Size of the container
      */
     self.positionLabel = function (width) {
       if (!$interaction || !self.isButton() || !$label || library === 'H5P.Nil') {
@@ -461,9 +467,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Update element position.
      *
-     * @public
-     * @param {Number} x left
-     * @param {Number} y top
+     * @param {number} x left
+     * @param {number} y top
      */
     self.setPosition = function (x, y) {
       parameters.x = x;
@@ -473,9 +478,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Update element size.
      *
-     * @public
-     * @param {Number} width in ems
-     * @param {Number} height in ems
+     * @param {number} width in ems
+     * @param {number} height in ems
      */
     self.setSize = function (width, height) {
       parameters.width = width;
@@ -493,8 +497,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Removes interaction from display.
      *
-     * @public
-     * @param {Boolean} [updateSize] Used when re-creating element
+     * @param {boolean} [updateSize] Used when re-creating element
      */
     self.remove = function (updateSize) {
       if ($interaction) {
@@ -530,8 +533,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-     * @public
-     * @returns {String}
+     * Gets the name of the library used in the interaction.
+     *
+     * @returns {string}
      */
     self.getLibraryName = function () {
       return library;
@@ -540,7 +544,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Collect copyright information for the interaction.
      *
-     * @public
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
@@ -567,7 +570,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
   Interaction.prototype = Object.create(EventDispatcher.prototype);
   Interaction.prototype.constructor = Interaction;
 
-  // Tool for converting
+  /**
+   * Tool for converting.
+   *
+   * @private
+   * @type {H5P.jQuery}
+   */
   var $converter = $('<div/>');
 
   return Interaction;

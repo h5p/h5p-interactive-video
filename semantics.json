@@ -323,91 +323,89 @@
     ]
   },
   {
-    "name": "interaction",
-    "type": "text",
-    "label": "Interaction title",
-    "default": "Interaction",
+    "name": "l10n",
+    "type": "group",
+    "label": "Localize",
     "common": true,
-    "optional": true
-  },
-  {
-    "name": "play",
-    "type": "text",
-    "label": "Play title",
-    "default": "Play",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "pause",
-    "type": "text",
-    "label": "Pause title",
-    "default": "Pause",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "mute",
-    "type": "text",
-    "label": "Mute title",
-    "default": "Mute",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "unmute",
-    "type": "text",
-    "label": "Unmute title",
-    "default": "Unmute",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "quality",
-    "type": "text",
-    "label": "Video quality title",
-    "default": "Video Quality",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "fullscreen",
-    "type": "text",
-    "label": "Fullscreen title",
-    "default": "Fullscreen",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "exitFullscreen",
-    "type": "text",
-    "label": "Exit fullscreen title",
-    "default": "Exit Fullscreen",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "summary",
-    "type": "text",
-    "label": "Summary title",
-    "default": "Summary",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "bookmarks",
-    "type": "text",
-    "label": "Bookmarks title",
-    "default": "Bookmarks",
-    "common": true,
-    "optional": true
-  },
-  {
-    "name": "defaultAdaptivitySeekLabel",
-    "type": "text",
-    "label": "Default label for adaptivity seek button",
-    "default": "Continue",
-    "common": true,
-    "optional": true
+    "optional": true,
+    "fields": [
+      {
+        "name": "interaction",
+        "type": "text",
+        "label": "Interaction title",
+        "default": "Interaction",
+        "optional": true
+      },
+      {
+        "name": "play",
+        "type": "text",
+        "label": "Play title",
+        "default": "Play",
+        "optional": true
+      },
+      {
+        "name": "pause",
+        "type": "text",
+        "label": "Pause title",
+        "default": "Pause",
+        "optional": true
+      },
+      {
+        "name": "mute",
+        "type": "text",
+        "label": "Mute title",
+        "default": "Mute",
+        "optional": true
+      },
+      {
+        "name": "unmute",
+        "type": "text",
+        "label": "Unmute title",
+        "default": "Unmute",
+        "optional": true
+      },
+      {
+        "name": "quality",
+        "type": "text",
+        "label": "Video quality title",
+        "default": "Video Quality",
+        "optional": true
+      },
+      {
+        "name": "fullscreen",
+        "type": "text",
+        "label": "Fullscreen title",
+        "default": "Fullscreen",
+        "optional": true
+      },
+      {
+        "name": "exitFullscreen",
+        "type": "text",
+        "label": "Exit fullscreen title",
+        "default": "Exit Fullscreen",
+        "optional": true
+      },
+      {
+        "name": "summary",
+        "type": "text",
+        "label": "Summary title",
+        "default": "Summary",
+        "optional": true
+      },
+      {
+        "name": "bookmarks",
+        "type": "text",
+        "label": "Bookmarks title",
+        "default": "Bookmarks",
+        "optional": true
+      },
+      {
+        "name": "defaultAdaptivitySeekLabel",
+        "type": "text",
+        "label": "Default label for adaptivity seek button",
+        "default": "Continue",
+        "optional": true
+      }
+    ]
   }
 ]

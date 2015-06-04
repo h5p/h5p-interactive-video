@@ -1,12 +1,13 @@
-/** @namespace H5P */
 H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Initialize a new interactive video.
    *
-   * @param {Array} params
-   * @param {int} id
-   * @returns {_L2.C}
+   * @class H5P.InteractiveVideo
+   * @extends H5P.EventDispatcher
+   * @param {Object} params
+   * @param {number} id
+   * @param {Object} contentData
    */
   function InteractiveVideo(params, id, contentData) {
     var self = this;
@@ -14,10 +15,31 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Inheritance
     H5P.EventDispatcher.call(self);
 
-    // Insert defaults
-    self.params = $.extend({ // Deep is not used since editor uses references.
+    // Keep track of content ID
+    self.contentId = id;
+
+    // Insert default options
+    self.options = $.extend({ // Deep is not used since editor uses references.
       video: {},
-      assets: {},
+      assets: {}
+    }, params.interactiveVideo);
+
+    // Add default title
+    if (!self.options.video.title) {
+      self.options.video.title = 'Interactive Video';
+    }
+
+    // Set default splash options
+    self.startScreenOptions = $.extend({
+      hideStartTitle: false,
+      shortStartDescription: ''
+    }, params.interactiveVideo.video.startScreenOptions);
+
+    // Overriding
+    self.overrides = params.override;
+
+    // Translated UI text defaults
+    self.l10n = $.extend({
       interaction: 'Interaction',
       play: 'Play',
       pause: 'Pause',
@@ -29,37 +51,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       summary: 'Summary',
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue'
-    }, params);
-
-    // Add default title
-    if (!self.params.interactiveVideo.video.title) {
-      self.params.interactiveVideo.video.title = 'Interactive Video';
-    }
-
-    // Keep track of content ID
-    self.contentId = id;
+    }, params.l10n);
 
     // Make it possible to restore from previous state
     if (contentData && contentData.previousState !== undefined) {
       self.previousState = contentData.previousState;
-    }
-
-    // Set default splash options
-    self.startScreenOptions = $.extend({
-      hideStartTitle: false,
-      shortStartDescription: ''
-    }, self.params.interactiveVideo.video.startScreenOptions);
-
-    // Separate UI translations
-    // TODO: Create separate params object for UI string translations.
-    self.l10n = {};
-    for (var param in self.params) {
-      if (self.params.hasOwnProperty(param) &&
-           (typeof self.params[param] === 'string' ||
-           self.params[param] instanceof String)) {
-        // Assum l10n if string param
-        self.l10n[param] = self.params[param];
-      }
     }
 
     // Listen for resize events to make sure we cover our container.
@@ -74,7 +70,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
       params: {
-        sources: self.params.interactiveVideo.video.files,
+        sources: self.options.video.files,
         controls: self.justVideo,
         fit: false
       }
@@ -112,13 +108,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
 
       var state = event.data;
-      if (self.currentState === SEEKING) {
+      if (self.currentState === InteractiveVideo.SEEKING) {
         return; // Prevent updateing UI while seeking
       }
 
       switch (state) {
         case H5P.Video.ENDED:
-          self.currentState = ENDED;
+          self.currentState = H5P.Video.ENDED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
           self.timeUpdate(self.video.getCurrentTime());
           self.controls.$currentTime.html(self.controls.$totalTime.html());
@@ -140,19 +136,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
             self.startUpdatingBufferBar();
           }
 
-          self.currentState = PLAYING;
+          self.currentState = H5P.Video.PLAYING;
           self.controls.$play.removeClass('h5p-pause').attr('title', self.l10n.pause);
           self.timeUpdate(self.video.getCurrentTime());
           break;
 
         case H5P.Video.PAUSED:
-          self.currentState = PAUSED;
+          self.currentState = H5P.Video.PAUSED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
           self.timeUpdate(self.video.getCurrentTime());
           break;
 
         case H5P.Video.BUFFERING:
-          self.currentState = BUFFERING;
+          self.currentState = H5P.Video.BUFFERING;
 
           // Make sure splash screen is removed.
           self.removeSplash();
@@ -176,20 +172,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Initialize interactions
     self.interactions = [];
-    if (self.params.interactiveVideo.assets.interactions) {
-      for (var i = 0; i < self.params.interactiveVideo.assets.interactions.length; i++) {
+    if (self.options.assets.interactions) {
+      for (var i = 0; i < self.options.assets.interactions.length; i++) {
         this.initInteraction(i);
       }
     }
   }
 
+  // Inheritance
   InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
   InteractiveVideo.prototype.constructor = InteractiveVideo;
 
   /**
    * Returns the current state of the interactions
    *
-   * @public
    * @returns {Object}
    */
   InteractiveVideo.prototype.getCurrentState = function () {
@@ -215,8 +211,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Removes splash screen.
-   *
-   * @public
    */
    InteractiveVideo.prototype.removeSplash = function () {
     if (this.$splash === undefined) {
@@ -230,8 +224,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Attach interactive video to DOM element.
    *
-   * @public
-   * @param {jQuery} $container
+   * @param {H5P.jQuery} $container
    */
   InteractiveVideo.prototype.attach = function ($container) {
     var that = this;
@@ -243,7 +236,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // native browser) will have scaled down the original CSS font size by the
     // time this is run. (It turned out to have become 13px) Hard coding it
     // makes it be consistent with the intended size set in CSS.
-    // TODO: For this to be used inside something else, we cannot assume that the font size will be 16.
     this.fontSize = 16;
     this.width = 640; // parseInt($container.css('width')); // Get width in px
 
@@ -269,7 +261,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         // Keep track of last state
         that.lastState = that.currentState;
 
-        if (that.currentState !== PAUSED && that.currentState !== ENDED) {
+        if (that.currentState !== H5P.Video.PAUSED && that.currentState !== H5P.Video.ENDED) {
           // Pause video
           that.video.pause();
         }
@@ -277,7 +269,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
       // Resume playing when closing dialog
       this.dialog.on('close', function () {
-        if (that.lastState !== PAUSED && that.lastState !== ENDED) {
+        if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
           that.video.play();
         }
       });
@@ -286,7 +278,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.dialog.disableOverlay = true;
     }
 
-    if (this.currentState === LOADED) {
+    if (this.currentState === InteractiveVideo.LOADED) {
       if (!this.video.pressToPlay) {
         this.addControls();
       }
@@ -294,14 +286,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         this.video.seek(this.previousState.progress);
       }
     }
-    this.currentState = ATTACHED;
+    this.currentState = InteractiveVideo.ATTACHED;
   };
 
   /**
    * Attach the video to the given wrapper.
    *
-   * @public
-   * @param {jQuery} $wrapper
+   * @param {H5P.jQuery} $wrapper
    */
   InteractiveVideo.prototype.attachVideo = function ($wrapper) {
     var that = this;
@@ -317,12 +308,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.$splash = $(
         '<div class="h5p-splash-wrapper">' +
           '<div class="h5p-splash-outer">' +
-            '<div class="h5p-splash" role="button" tabindex="1" title="' + this.params.play + '">' +
+            '<div class="h5p-splash" role="button" tabindex="1" title="' + this.l10n.play + '">' +
               '<div class="h5p-splash-main">' +
                 '<div class="h5p-splash-main-outer">' +
                   '<div class="h5p-splash-main-inner">' +
                     '<div class="h5p-splash-play-icon"></div>' +
-                    '<div class="h5p-splash-title">' + this.params.interactiveVideo.video.title + '</div>' +
+                    '<div class="h5p-splash-title">' + this.options.video.title + '</div>' +
                   '</div>' +
                 '</div>' +
               '</div>' +
@@ -366,8 +357,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Update and show controls for the interactive video.
-   *
-   * @public
    */
   InteractiveVideo.prototype.addControls = function () {
     this.attachControls(this.$controls.show());
@@ -394,9 +383,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * Unbind event listeners.
-   *
-   * @public
+   * Prepares the IV for playing.
    */
   InteractiveVideo.prototype.loaded = function () {
     var that = this;
@@ -426,17 +413,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Add summary interaction
     if (this.hasMainSummary()) {
-      var displayAt = duration - this.params.interactiveVideo.summary.displayAt;
+      var displayAt = duration - this.options.summary.displayAt;
       if (displayAt < 0) {
         displayAt = 0;
       }
 
-      if (this.params.interactiveVideo.assets.interactions === undefined) {
-        this.params.interactiveVideo.assets.interactions = [];
+      if (this.options.assets.interactions === undefined) {
+        this.options.assets.interactions = [];
       }
 
-      this.params.interactiveVideo.assets.interactions.push({
-        action: this.params.interactiveVideo.summary.task,
+      this.options.assets.interactions.push({
+        action: this.options.summary.task,
         x: 80,
         y: 80,
         duration: {
@@ -448,10 +435,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         label: this.l10n.summary,
         mainSummary: true
       });
-      this.initInteraction(this.params.interactiveVideo.assets.interactions.length - 1);
+      this.initInteraction(this.options.assets.interactions.length - 1);
     }
 
-    if (this.currentState === ATTACHED) {
+    if (this.currentState === InteractiveVideo.ATTACHED) {
       if (this.previousState !== undefined) {
         this.video.seek(this.previousState.progress);
       }
@@ -462,25 +449,24 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.trigger('resize');
     }
 
-    this.currentState = LOADED;
+    this.currentState = InteractiveVideo.LOADED;
   };
 
   /**
    * Initialize interaction at the given index.
    *
-   * @public
-   * @param {Number} index
+   * @param {number} index
    * @returns {Interaction}
    */
   InteractiveVideo.prototype.initInteraction = function (index) {
     var self = this;
-    var parameters = self.params.interactiveVideo.assets.interactions[index];
+    var parameters = self.options.assets.interactions[index];
 
-    if (self.params.override && self.params.override.overrideButtons) {
+    if (self.override && self.override.overrideButtons) {
       // Extend interaction parameters
       H5P.jQuery.extend(parameters.action.params.behaviour, {
-        enableSolutionsButton: self.params.override.overrideShowSolutionButton ? true : false,
-        enableRetry: self.params.override.overrideRetry ? true : false
+        enableSolutionsButton: self.override.overrideShowSolutionButton ? true : false,
+        enableRetry: self.override.overrideRetry ? true : false
       });
     }
 
@@ -494,7 +480,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
 
-      if (self.currentState === PLAYING && interaction.pause()) {
+      if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
         self.video.pause();
       }
 
@@ -519,17 +505,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * Does the interactive video have a main summary?
+   * Checks if the interactive video should have summary task scheduled at
+   * the end of the video.
    *
-   * This is the summary created in the summary tab of the editor
+   * This is the summary created in the summary tab of the editor.
    *
-   * @public
-   * @returns {Boolean}
+   * @returns {boolean}
    *   true if this interactive video has a summary
    *   false otherwise
    */
   InteractiveVideo.prototype.hasMainSummary = function() {
-    var summary = this.params.interactiveVideo.summary;
+    var summary = this.options.summary;
     return !(summary === undefined ||
         summary.displayAt === undefined ||
         summary.task === undefined ||
@@ -542,8 +528,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Puts the tiny cute balls above the slider / seek bar.
-   *
-   * @public
    */
   InteractiveVideo.prototype.addSliderInteractions = function () {
     // Remove old dots
@@ -557,13 +541,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Puts all the cool narrow lines around the slider / seek bar.
-   *
-   * @public
    */
   InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
-    if (this.params.interactiveVideo.assets.bookmarks !== undefined) {
-      for (var i = 0; i < this.params.interactiveVideo.assets.bookmarks.length; i++) {
+    if (this.options.assets.bookmarks !== undefined) {
+      for (var i = 0; i < this.options.assets.bookmarks.length; i++) {
         this.addBookmark(i);
       }
     }
@@ -572,14 +554,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
-   * @public
-   * @param {Number} id
-   * @param {Number} tenth
-   * @returns {jQuery}
+   * @param {number} id
+   * @param {number} tenth
+   * @returns {H5P.jQuery}
    */
   InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     var self = this;
-    var bookmark = self.params.interactiveVideo.assets.bookmarks[id];
+    var bookmark = self.options.assets.bookmarks[id];
 
     // Avoid stacking of bookmarks.
     if (tenth === undefined) {
@@ -614,7 +595,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Create list element for bookmark
     var $li = $('<li role="button" tabindex="1">' + bookmark.label + '</li>')
       .click(function () {
-        if (self.playing === undefined || self.playing === false) {
+        if (self.currentState !== H5P.Video.PLAYING) {
           $bookmark.mouseover().mouseout();
         }
         self.controls.$bookmarksChooser.removeClass('h5p-show');
@@ -653,10 +634,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   /**
-   * Attach video controls to the given wrapper
+   * Attach video controls to the given wrapper.
    *
-   * @public
-   * @param {jQuery} $wrapper
+   * @param {H5P.jQuery} $wrapper
    */
   InteractiveVideo.prototype.attachControls = function ($wrapper) {
     var that = this;
@@ -676,7 +656,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     });
 
     // Bookmark selector
-    if ((this.params.interactiveVideo.assets.bookmarks === undefined || this.params.interactiveVideo.assets.bookmarks.length === 0) && this.editor === undefined) {
+    if ((this.options.assets.bookmarks === undefined || this.options.assets.bookmarks.length === 0) && this.editor === undefined) {
       // No bookmarks and no editor, remove button.
       $wrapper.find('.h5p-control.h5p-bookmarks').remove();
     }
@@ -756,13 +736,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 			range: 'min',
       max: 0,
       start: function () {
-        if (that.currentState === SEEKING) {
+        if (that.currentState === InteractiveVideo.SEEKING) {
           return; // Prevent double start on touch devies!
         }
 
-        that.lastState = (that.currentState === ENDED ? PLAYING : that.currentState);
+        that.lastState = (that.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : that.currentState);
         that.video.pause();
-        that.currentState = SEEKING;
+        that.currentState = InteractiveVideo.SEEKING;
 
         // Make sure splash screen is removed.
         that.removeSplash();
@@ -774,7 +754,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       stop: function (e, ui) {
         that.currentState = that.lastState;
         that.video.seek(ui.value);
-        if (that.lastState === PLAYING) {
+        if (that.lastState === H5P.Video.PLAYING) {
           that.video.play();
         }
         else {
@@ -793,8 +773,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Add a dialog for selecting video quality.
-   *
-   * @public
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
     var self = this;
@@ -829,8 +807,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Create loop that constantly updates the buffer bar
-   *
-   * @public
    */
   InteractiveVideo.prototype.startUpdatingBufferBar = function () {
     var self = this;
@@ -850,8 +826,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Resize the video to fit the wrapper.
-   *
-   * @public
    */
   InteractiveVideo.prototype.resize = function () {
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
@@ -916,9 +890,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (this.$splash !== undefined) {
       this.resizeStartScreen();
     }
-
   };
 
+  /**
+   * Resizes the start screen.
+   */
   InteractiveVideo.prototype.resizeStartScreen = function () {
     var descriptionSizeEm = 0.8;
     var titleSizeEm = 1.5;
@@ -994,8 +970,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Toggle enter or exit fullscreen mode.
-   *
-   * @public
    */
   InteractiveVideo.prototype.toggleFullScreen = function () {
     var self = this;
@@ -1042,8 +1016,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * Called when the time of the video changes.
    * Makes sure to update all UI elements.
    *
-   * @public
-   * @param {Number} time
+   * @param {number} time
    */
   InteractiveVideo.prototype.timeUpdate = function (time) {
     var self = this;
@@ -1067,14 +1040,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Some UI elements are updated every second.
     var second = Math.floor(time);
     if (second !== self.lastSecond) {
-      // TODO: Is it possible to move interactions to tenth of a second instead?
-      // This would greatly improve precision of the interactions and UX. (now it feels a bit limited)
       self.toggleInteractions(second);
 
       if (self.editor !== undefined) {
         self.editor.dnb.blur();
       }
-      if (self.currentState === PLAYING || self.currentState === PAUSED) {
+      if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second));
       }
@@ -1082,7 +1053,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.lastSecond = second;
 
     setTimeout(function () {
-      if (self.currentState === PLAYING) {
+      if (self.currentState === H5P.Video.PLAYING) {
         self.timeUpdate(self.video.getCurrentTime());
       }
     }, 40); // 25 fps
@@ -1090,8 +1061,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Call xAPI completed only once
-   *
-   * @public
    */
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {
@@ -1104,8 +1073,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Gets the users score
-   *
-   * @public
+   * @returns {number}
    */
   InteractiveVideo.prototype.getUsersScore = function() {
     var score = 0;
@@ -1121,8 +1089,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Gets the users max score
-   *
-   * @public
+   * @returns {number}
    */
   InteractiveVideo.prototype.getUsersMaxScore = function() {
     var maxScore = 0;
@@ -1138,8 +1105,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Implements getScore from the question type contract
-   *
-   * @public
+   * @returns {number}
    */
   InteractiveVideo.prototype.getScore = function() {
     return this.getUsersScore();
@@ -1147,8 +1113,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Implements getMaxScore from the question type contract
-   *
-   * @public
+   * @returns {number}
    */
   InteractiveVideo.prototype.getMaxScore = function() {
     return this.getUsersMaxScore();
@@ -1156,27 +1121,22 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Implements showSolutions from the question type contract
-   *
-   * @public
    */
   InteractiveVideo.prototype.showSolutions = function() {
-    // Intentionally left empty. Function makes IV pop up i CP summary
+    // Intentionally left empty. Function makes IV pop up in CP summary
   };
 
   /**
    * Implements getTitle from the question type contract
-   *
-   * @public
+   * @returns {string}
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.params.interactiveVideo.video.title);
+    return H5P.createTitle(this.options.video.title);
   };
 
   /**
    * Display and remove interactions for the given second.
-   *
-   * @public
-   * @param {int} second
+   * @param {number} second
    */
   InteractiveVideo.prototype.toggleInteractions = function (second) {
     for (var i = 0; i < this.interactions.length; i++) {
@@ -1186,8 +1146,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Start interactive video playback.
-   *
-   * @public
    */
   InteractiveVideo.prototype.play = function () {
     this.video.play();
@@ -1195,9 +1153,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Seek interactive video to the given time
-   *
-   * @public
-   * @param {Number} time
+   * @param {number} time
    */
   InteractiveVideo.prototype.seek = function (time) {
     this.video.seek(time);
@@ -1205,8 +1161,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Pause interactive video playback.
-   *
-   * @public
    */
   InteractiveVideo.prototype.pause = function () {
     this.video.pause();
@@ -1215,21 +1169,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   /**
    * Gather copyright information for the current content.
    *
-   * @public
    * @returns {H5P.ContentCopyrights}
    */
   InteractiveVideo.prototype.getCopyrights = function () {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
-    var videoRights, video = self.params.interactiveVideo.video.files[0];
+    var videoRights, video = self.options.video.files[0];
     if (video.copyright !== undefined) {
       videoRights = new H5P.MediaCopyright(video.copyright, self.l10n);
     }
 
-    if ((videoRights === undefined || videoRights.undisclosed()) && self.params.interactiveVideo.video.copyright !== undefined) {
+    if ((videoRights === undefined || videoRights.undisclosed()) && self.options.video.copyright !== undefined) {
       // Use old copyright info as fallback.
-      videoRights = self.params.interactiveVideo.video.copyright;
+      videoRights = self.options.video.copyright;
     }
     info.addMedia(videoRights);
 
@@ -1243,29 +1196,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     return info;
   };
 
-
-  // TODO: Make public? Use the ones from Video?
-
+  // Additional player states
   /** @constant {number} */
-  var ENDED = 0;
+  InteractiveVideo.SEEKING = 4;
   /** @constant {number} */
-  var PLAYING = 1;
+  InteractiveVideo.LOADED = 5;
   /** @constant {number} */
-  var PAUSED = 2;
-  /** @constant {number} */
-  var BUFFERING = 3;
-  /** @constant {number} */
-  var SEEKING = 4;
-  /** @constant {number} */
-  var LOADED = 5;
-  /** @constant {number} */
-  var ATTACHED = 6;
+  InteractiveVideo.ATTACHED = 6;
 
   /**
    * Formats time in H:MM:SS.
    *
    * @public
-   * @param {float} seconds
+   * @param {number} seconds
    * @returns {string}
    */
   InteractiveVideo.humanizeTime = function (seconds) {
@@ -1301,7 +1244,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * Only used by editor.
    *
    * @private
-   * @param {String} name of field
+   * @param {string} name of field
    * @param {Array} fields collection to look in
    * @returns {Object} field object
    */
