@@ -662,8 +662,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
     else {
       this.controls.$bookmarksChooser = $wrapper.find('.h5p-chooser.h5p-bookmarks');
-      $wrapper.find('.h5p-control.h5p-bookmarks').click(function () {
-        // TODO: Mark chooser buttons as active when open. (missing design)
+      var $bcb = $wrapper.find('.h5p-control.h5p-bookmarks').click(function () {
+        $bcb.toggleClass('h5p-active');
         that.controls.$bookmarksChooser.toggleClass('h5p-show');
         return false;
       });
@@ -687,6 +687,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
       this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
         if (!that.controls.$qualityButton.hasClass('h5p-disabled')) {
+          that.controls.$qualityButton.toggleClass('h5p-active');
           that.controls.$qualityChooser.toggleClass('h5p-show');
         }
         return false;

@@ -367,6 +367,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.h5p-interactive-video .h5p-control.h5p-active:before,
+.h5p-interactive-video .h5p-control:active:before {
+  color: #bababa
+}
 .h5p-interactive-video .h5p-control:hover:before {
   color: #dbd7d1;
 }
