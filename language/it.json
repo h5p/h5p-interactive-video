@@ -152,37 +152,42 @@
       ]
     },
     {
-      "label": "Titolo Interazione"
-    },
-    {
-      "label": "Titolo Play"
-    },
-    {
-      "label": "Titolo Pausa"
-    },
-    {
-      "label": "Titolo modalit� muto"
-    },
-    {
-      "label": "Titolo disattiva modalit� muto"
-    },
-    {
-      "label": "Titolo qualit� Video"
-    },
-    {
-      "label": "Titolo Schermo intero"
-    },
-    {
-      "label": "Titolo Esci da Schermo intero"
-    },
-    {
-      "label": "Titolo Riepilogo"
-    },
-    {
-      "label": "Titolo Segnalibri"
-    },
-    {
-      "label": "Etichetta predefinita per adattabilit� pulsante Vai a"
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Titolo Interazione"
+        },
+        {
+          "label": "Titolo Play"
+        },
+        {
+          "label": "Titolo Pausa"
+        },
+        {
+          "label": "Titolo modalit� muto"
+        },
+        {
+          "label": "Titolo disattiva modalit� muto"
+        },
+        {
+          "label": "Titolo qualit� Video"
+        },
+        {
+          "label": "Titolo Schermo intero"
+        },
+        {
+          "label": "Titolo Esci da Schermo intero"
+        },
+        {
+          "label": "Titolo Riepilogo"
+        },
+        {
+          "label": "Titolo Segnalibri"
+        },
+        {
+          "label": "Etichetta predefinita per adattabilit� pulsante Vai a"
+        }
+      ]
     }
   ]
 }
