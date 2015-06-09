@@ -16,6 +16,18 @@
               "description": "Brukes i oppsummeringer, statistikk o.l."
             },
             {
+              "label": "Video startskjerm innstillinger",
+              "fields": [
+                {
+                  "label": "Skjul tittel på startskjerm"
+                },
+                {
+                  "label": "Kort beskrivelse (Valgfri)",
+                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                }
+              ]
+            },
+            {
               "label": "Opphavsrettsinformasjon",
               "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
             }

@@ -20,8 +20,32 @@
             "name": "title",
             "type": "text",
             "label": "The title of this interactive video",
+            "maxLength": 60,
             "default": "Interactive Video",
             "description": "Used in summaries, statistics etc."
+          },
+          {
+            "name": "startScreenOptions",
+            "type": "group",
+            "label": "Video start screen options",
+            "optional": true,
+            "fields": [
+              {
+                "name": "hideStartTitle",
+                "type": "boolean",
+                "label": "Hide title on video start screen",
+                "optional": true,
+                "default": false
+              },
+              {
+                "name": "shortStartDescription",
+                "type": "text",
+                "label": "Short description (Optional)",
+                "optional": true,
+                "maxLength": 120,
+                "description": "Optional. Display a short description text on the video start screen."
+              }
+            ]
           },
           {
             "name": "copyright",
@@ -131,7 +155,7 @@
                     "H5P.SingleChoiceSet 1.2",
                     "H5P.MultiChoice 1.3",
                     "H5P.Blanks 1.3",
-                    "H5P.DragQuestion 1.3",
+                    "H5P.DragQuestion 1.4",
                     "H5P.MarkTheWords 1.3",
                     "H5P.DragText 1.3"
                   ]
