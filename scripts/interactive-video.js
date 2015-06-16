@@ -16,7 +16,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
     // Insert defaults
     self.params = $.extend({ // Deep is not used since editor uses references.
-      interactiveVideo: {},
       interaction: 'Interaction',
       play: 'Play',
       pause: 'Pause',
@@ -27,14 +26,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
       bookmarks: 'Bookmarks',
-      defaultAdaptivitySeekLabel: 'Continue'
+      defaultAdaptivitySeekLabel: 'Continue',
+      interactiveVideo: {
+        video: {},
+        assets: {
+          interactions: {}
+        },
+        summary: {}
+      }
     }, params);
-    
-    self.params.interactiveVideo = $.extend({
-      video: {},
-      assets: {},
-      summary: {}
-    }, params.interactiveVideo);
 
     // Add default title
     if (!self.params.interactiveVideo.video.title) {
