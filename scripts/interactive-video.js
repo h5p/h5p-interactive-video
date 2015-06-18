@@ -72,7 +72,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       params: {
         sources: self.options.video.files,
         controls: self.justVideo,
-        fit: false
+        fit: false,
+        poster: self.params.video.poster
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -1062,6 +1063,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
   /**
    * Call xAPI completed only once
+   *
+   * @public
    */
   InteractiveVideo.prototype.complete = function() {
     if (!this.isCompleted) {

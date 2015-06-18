@@ -17,6 +17,11 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
+            "name": "poster",
+            "type": "image",
+            "label": "Poster image"
+          },
+          {
             "name": "title",
             "type": "text",
             "label": "The title of this interactive video",
@@ -70,6 +75,7 @@
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
+        "poster": "video/poster",
         "fields": [
           {
             "name": "interactions",
