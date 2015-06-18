@@ -11,6 +11,9 @@
               "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
+              "label": "الملصق"
+            },
+            {
               "label": "The title of this interactive video",
               "default": "Interactive Video",
               "description": "Used in summaries, statistics etc."

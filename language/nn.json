@@ -11,6 +11,9 @@
               "description": "Vel videofilane du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
             },
             {
+              "label": "Plakat"
+            },
+            {
               "label": "Tittel",
               "default": "Interaktiv video",
               "description": "Brukes i oppsummeringer, statistikk o.l."

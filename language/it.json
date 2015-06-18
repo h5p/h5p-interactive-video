@@ -11,6 +11,9 @@
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilit� dei browser � consigliato utilizzare i formati video WebM o MP4."
             },
             {
+              "label": "Poster"
+            },
+            {
               "label": "The title of this interactive video",
               "default": "Interactive Video",
               "description": "Used in summaries, statistics etc."
