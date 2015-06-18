@@ -73,7 +73,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         sources: self.options.video.files,
         controls: self.justVideo,
         fit: false,
-        poster: self.params.video.poster
+        poster: self.options.video.poster
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
