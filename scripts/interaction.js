@@ -550,13 +550,31 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       var instance = H5P.newRunnable(action, player.contentId);
 
-      if (instance !== undefined && instance.getCopyrights !== undefined) {
-        var interactionCopyrights = instance.getCopyrights();
-        if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
-          return interactionCopyrights;
-        }
+      var interactionCopyrights;
+      if (instance.getCopyrights !== undefined) {
+        // Use the instance's own copyright generator
+        interactionCopyrights = instance.getCopyrights();
       }
+      if (interactionCopyrights === undefined) {
+        // Create a generic flat copyright list
+        interactionCopyrights = new H5P.ContentCopyrights();
+        H5P.findCopyrights(interactionCopyrights, action.params, player.contentId);
+      }
+
+      var label;
+      if (action.params.contentName !== undefined) {
+        label = action.params.contentName;
+      }
+      else if (instance.getTitle !== undefined) {
+        label = instance.getTitle();
+      }
+      else {
+        label = player.l10n.interaction;
+      }
+      label += ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to);
+      interactionCopyrights.setLabel(label);
+
+      return interactionCopyrights;
     };
 
     // Create instance of content
