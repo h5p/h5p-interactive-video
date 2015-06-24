@@ -220,6 +220,43 @@
 .h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
   min-height: 5em;
 }
+/* Link interaction specific style */
+.h5p-interactive-video .h5p-link-interaction .h5p-link a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction {
+  background-color: rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px 0 rgba(255,255,255,0.2);
+  border-radius: 1em;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:hover,
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:focus {
+  background-color: rgba(0,0,0,0.7);
+  box-shadow: 0 0 15px 0 rgba(255,255,255,0.2);
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:active {
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0 0 5px 0 rgba(255,255,255,0.2);
+}
+
+.h5p-interactive-video .h5p-interaction .h5p-interaction-inner.h5p-link:after {
+  font-family: "H5PFontAwesome4";
+  content: '\f08e';
+  color: #fff;
+  margin-left: 0.7em;
+  font-size: 0.75em;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction .h5p-interaction-inner.h5p-link {
+  margin: 0 0.8em;
+}
 
 @keyframes blinking
 {

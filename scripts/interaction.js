@@ -197,6 +197,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           height: (parameters.height ? parameters.height : 10) + 'em'
         }
       });
+
+      // Reset link interaction dimensions
+      if (library === 'H5P.Link') {
+        $interaction.css('height', 'auto');
+        $interaction.css('width', 'auto');
+      }
+
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner'
       }).appendTo($interaction);
