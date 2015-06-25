@@ -566,6 +566,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
           return interactionCopyrights;
         }
+      } else if (instance !== undefined) {
+        return H5P.getCopyrights(instance, instance.params, player.contentId);
       }
     };
 
