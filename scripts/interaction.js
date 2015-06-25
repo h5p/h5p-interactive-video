@@ -202,6 +202,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Link') {
         $interaction.css('height', 'auto');
         $interaction.css('width', 'auto');
+
+        // Set link functionality on whole button
+        $interaction.click(function () {
+          window.open(parameters.action.params.url);
+          player.pause();
+          return false;
+        });
       }
 
       $inner = $('<div/>', {
