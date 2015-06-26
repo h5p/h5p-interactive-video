@@ -549,6 +549,24 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Returns the human readable label for the interaction.
+     *
+     * @returns {string}
+     */
+    self.getTitle = function () {
+      return title;
+    };
+
+    /**
+     * Get HTML class name
+     *
+     * @returns {string}
+     */
+    self.getClass = function () {
+      return classes;
+    };
+
+    /**
      * Collect copyright information for the interaction.
      *
      * @returns {H5P.ContentCopyrights}
