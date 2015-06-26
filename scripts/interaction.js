@@ -572,7 +572,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
         if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
           return interactionCopyrights;
         }
       } else if (instance !== undefined) {
