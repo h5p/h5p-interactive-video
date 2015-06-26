@@ -576,7 +576,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           return interactionCopyrights;
         }
       } else if (instance !== undefined) {
-        return H5P.getCopyrights(instance, instance.params, player.contentId);
+        return H5P.getCopyrights(instance, parameters, player.contentId);
       }
     };
 
