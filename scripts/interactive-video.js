@@ -33,7 +33,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, params.interactiveVideo.video.startScreenOptions);
+    }, self.options.video.startScreenOptions);
 
     // Overriding
     self.overrides = params.override;
