@@ -1044,7 +1044,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (second !== self.lastSecond) {
       self.toggleInteractions(second);
 
-      if (self.editor !== undefined) {
+      if (self.editor !== undefined && self.editor.dnb) {
         self.editor.dnb.blur();
       }
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
