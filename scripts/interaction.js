@@ -202,6 +202,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Link') {
         $interaction.css('height', 'auto');
         $interaction.css('width', 'auto');
+
+        // Set link functionality on whole button
+        if (player.editor === undefined) {
+          $interaction.click(function () {
+            window.open(parameters.action.params.url);
+            player.pause();
+            return false;
+          });
+        }
       }
 
       $inner = $('<div/>', {
@@ -549,6 +558,24 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Returns the human readable label for the interaction.
+     *
+     * @returns {string}
+     */
+    self.getTitle = function () {
+      return title;
+    };
+
+    /**
+     * Get HTML class name
+     *
+     * @returns {string}
+     */
+    self.getClass = function () {
+      return classes;
+    };
+
+    /**
      * Collect copyright information for the interaction.
      *
      * @returns {H5P.ContentCopyrights}
@@ -566,6 +593,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
           return interactionCopyrights;
         }
+      } else if (instance !== undefined) {
+        return H5P.getCopyrights(instance, parameters, player.contentId);
       }
     };
 
