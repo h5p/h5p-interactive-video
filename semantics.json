@@ -8,7 +8,7 @@
       {
         "name": "video",
         "type": "group",
-        "label": "Upload video",
+        "label": "Upload/embed video",
         "fields": [
           {
             "name": "files",
