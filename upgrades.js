@@ -96,6 +96,15 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
           }
         }
 
+        /* Move displayAsButton to displayType  */
+        if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+          var interactions = parameters.interactiveVideo.assets.interactions;
+          for (var i = 0; i < interactions.length; i++) {
+            interactions[i].displayType = (interactions[i].displayAsButton === undefined || interactions[i].displayAsButton) ? 'button' : 'poster';
+            delete interactions[i].displayAsButton;
+          }
+        }
+
         finished(null, parameters);
       }
     }

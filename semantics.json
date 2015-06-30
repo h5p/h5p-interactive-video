@@ -102,17 +102,26 @@
                 },
                 {
                   "name": "pause",
-                  "label": "Pause",
-                  "description": "Set playback on pause when this interaction is reached.",
+                  "label": "Pause video",
                   "type": "boolean"
                 },
                 {
-                  "name": "displayAsButton",
-                  "label": "Display as an interactive button",
-                  "description": "The user has to open the interaction.",
-                  "type": "boolean",
-                  "default": true,
-                  "optional": true
+                  "name": "displayType",
+                  "label": "Display as",
+                  "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                  "type": "select",
+                  "widget": "imageRadioButtonGroup",
+                  "options": [
+                    {
+                      "value": "button",
+                      "label": "Button"
+                    },
+                    {
+                      "value": "poster",
+                      "label": "Poster"
+                    }
+                  ],
+                  "default": "button"
                 },
                 {
                   "name": "label",

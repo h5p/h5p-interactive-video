@@ -44,12 +44,19 @@
                 "label": "Visningstid"
               },
               {
-                "label": "Pause",
-                "description": "Sett avspillingen på pause mens denne interaksjonen vises."
+                "label": "Pause video"
               },
               {
-                "label": "Vis som en interaktiv knapp",
-                "description": "Brukeren må åpne interaktiviteten."
+                "label": "Display as",
+                "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                "options": [
+                  {
+                    "label": "Button"
+                  },
+                  {
+                    "label": "Poster"
+                  }
+                ]
               },
               {
                 "label": "Ledetekst",
