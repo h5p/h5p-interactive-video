@@ -47,14 +47,14 @@
                 "label": "Pause video"
               },
               {
-                "label": "Display as",
-                "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                "label": "Vis som",
+                "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
                 "options": [
                   {
-                    "label": "Button"
+                    "label": "Knapp"
                   },
                   {
-                    "label": "Poster"
+                    "label": "Plakat"
                   }
                 ]
               },
