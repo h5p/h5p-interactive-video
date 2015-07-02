@@ -553,7 +553,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
 
-        $interaction.remove();
+        $interaction.detach();
         $interaction = undefined;
       }
     };
