@@ -429,7 +429,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
+      return parameters.displayType === 'button' || library === 'H5P.Nil';
     };
 
     /**

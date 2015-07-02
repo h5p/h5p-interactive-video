@@ -44,12 +44,19 @@
                 "label": "Visningstid"
               },
               {
-                "label": "Pause",
-                "description": "Sett avspillingen på pause mens denne interaksjonen vises."
+                "label": "Pause video"
               },
               {
-                "label": "Vis som en interaktiv knapp",
-                "description": "Brukeren må åpne interaktiviteten."
+                "label": "Vis som",
+                "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
+                "options": [
+                  {
+                    "label": "Knapp"
+                  },
+                  {
+                    "label": "Plakat"
+                  }
+                ]
               },
               {
                 "label": "Ledetekst",

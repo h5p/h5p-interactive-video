@@ -50,12 +50,19 @@
                     ]
                   },
                   {
-                    "label": "إيقاف مؤقت",
-                    "description": "تعيين تشغيل على وقفة عند الوصول إلى هذا التفاعل"
+                    "label": "إيقاف مؤقت"
                   },
                   {
-                    "label": "عرض الزر كحلقه تبادلية",
-                    "description": "الزام المستخدم لفتح التفاعل"
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
                   },
                   {
                     "label": "التسمية",

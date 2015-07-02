@@ -33,7 +33,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, params.interactiveVideo.video.startScreenOptions);
+    }, self.options.video.startScreenOptions);
 
     // Overriding
     self.overrides = params.override;
@@ -472,7 +472,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
 
     var previousState;
-    if (self.previousState !== undefined && self.previousState.answers[index] !== null) {
+    if (self.previousState !== undefined && self.previousState.answers !== undefined && self.previousState.answers[index] !== null) {
       previousState = self.previousState.answers[index];
     }
 
