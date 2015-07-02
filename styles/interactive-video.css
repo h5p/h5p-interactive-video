@@ -807,7 +807,7 @@
 	margin: 0 1.5em 0 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
-	margin: 0;
+	margin: 0 0 1.5em;
 }
 
 .h5p-interactive-video .h5p-image {
@@ -1023,6 +1023,10 @@
 }
 
 /* Adaptivity */
+.h5p-interactive-video .h5p-iv-adap {
+  margin: 1.5em;
+	overflow: hidden;
+}
 .h5p-interactive-video .h5p-poster .h5p-iv-adap {
   top: 50%;
   position: relative;
@@ -1035,4 +1039,10 @@
 }
 .h5p-interactive-video .h5p-iv-adap .h5p-joubelui-button {
   margin: 0.25em;
+}
+.h5p-interactive-video .h5p-question .h5p-question-iv-continue {
+	float: right;
+}
+.h5p-interactive-video .h5p-question-iv-continue:before {
+  content: "\f04b";
 }

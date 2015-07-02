@@ -284,8 +284,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {function} handler What to do when clicked
      * @returns {H5P.jQuery}
      */
-    var addButton = function ($container, label, handler) {
+    var addButton = function ($container, label, buttonClasses, handler) {
       return H5P.JoubelUI.createButton({
+        'class': buttonClasses,
         tabIndex: 0,
         role: 'button',
         html: label,
@@ -321,23 +322,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (!adaptivity || adaptivity.seekTo === undefined) {
         // Add continue button if no adaptivity
-        if (!$continueButton) {
-          // Try to find suitable container
-          var $container = $target.find('.h5p-show-solution-container'); // MC
-          if (!$container.length) {
-            $container = $target.find('.h5p-button-bar'); // B
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-drag-button-bar'); // DW
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-sc-set-results'); // SC
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-inner:first'); // DD
-          }
-          if ($container.length) {
-            $continueButton = addButton($container, player.l10n.defaultAdaptivitySeekLabel, function () {
+        if (instance.hasButton !== undefined) {
+          if (!instance.hasButton('iv-continue')) {
+            // Register continue button
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
               if (self.isButton()) {
                 // Close dialog
                 player.dialog.close();
@@ -348,14 +336,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               }
 
               // Remove continue button
-              $continueButton.remove();
-              $continueButton = undefined;
+              instance.hideButton('iv-continue');
 
               // Do not play if player is at the end, state 0 = ENDED
               if (player.currentState !== 0) {
                 player.play();
               }
             });
+          }
+          else {
+            instance.showButton('iv-continue');
           }
         }
 
@@ -377,15 +367,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      // Detach children to preserve jQuery events
+      $target.children().detach();
+
       // Replace interaction with adaptivity screen
       var $adap = $('<div/>', {
         'class': 'h5p-iv-adap',
         html: adaptivity.message,
-        appendTo: $target.html('')
+        appendTo: $target
       });
 
       // Add continue button
-      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
+      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), 'h5p-question-iv-continue', function () {
         if (self.isButton()) {
           player.dialog.close();
         }
