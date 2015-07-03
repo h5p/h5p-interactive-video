@@ -115,7 +115,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      */
     self.open = function ($element, $buttons) {
       showOverlay();
-      $inner.html('').append($element);
+      $inner.children().detach().end().append($element);
 
       // Reset positioning
       resetPosition();
