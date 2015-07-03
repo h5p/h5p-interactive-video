@@ -690,7 +690,7 @@
   max-height: 81.5%;
   margin: 1.25em;
   background: #fff;
-  overflow: auto;
+  overflow: hidden;
   box-shadow: 0 0 2.5em 0 #191919;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
@@ -701,9 +701,10 @@
   position: absolute;
   width: 100%;
   top: 0;
-  padding: 0.25em 0.5em;
+  padding: 0.5em 1em;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
+  font-size: 0.875em;
 }
 .h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] {
   overflow: hidden;
@@ -729,10 +730,12 @@
 	-moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-dialog-close {
-	position: absolute;
-	top: 0.25em;
-	right: 0.5em;
-	cursor: pointer;
+  position: absolute;
+  top: 0.25em;
+  right: 0.5em;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+	outline: none;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
 	font-family: 'H5PFontAwesome4';
@@ -753,6 +756,7 @@
 }
 .h5p-interactive-video .h5p-big > .h5p-dialog-inner {
   width: 96%;
+	height: auto;
 }
 .h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar {
@@ -804,7 +808,7 @@
 	float: left;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
-	margin: 0 1.5em 0 0;
+	margin: 0 1.5em 1.5em 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
 	margin: 0 0 1.5em;
@@ -1024,7 +1028,7 @@
 
 /* Adaptivity */
 .h5p-interactive-video .h5p-iv-adap {
-  margin: 1.5em;
+  margin: 1.5em 1.5em 0;
 	overflow: hidden;
 }
 .h5p-interactive-video .h5p-poster .h5p-iv-adap {

@@ -65,11 +65,13 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         top: '',
         height: '',
         width: '',
-        fontSize: ''
+        fontSize: '',
+        bottom: ''
       });
       $inner.css({
-        'width': '',
-        'height': ''
+        width: '',
+        height: '',
+        maxHeight: ''
       });
     };
 
@@ -138,9 +140,10 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         var buttonsHeight = (($buttons.outerHeight() + 1) / fontSize);
         $inner.css({
           width: '100%',
-          height: (($inner.height() / fontSize) - buttonsHeight) + 'em',
+          maxHeight: (($dialog.outerHeight() / fontSize) - buttonsHeight) + 'em',
           marginTop: buttonsHeight + 'em'
         });
+        $dialog.css('bottom', 'auto');
       }
 
       self.trigger('open');
