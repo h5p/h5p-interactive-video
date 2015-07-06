@@ -231,8 +231,8 @@
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction {
-  background-color: rgba(0,0,0,0.5);
-  box-shadow: 0 0 10px 0 rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2);
   border-radius: 1em;
   height: auto;
   width: auto;
@@ -241,13 +241,13 @@
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:hover,
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:focus {
-  background-color: rgba(0,0,0,0.7);
-  box-shadow: 0 0 15px 0 rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.2);
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:active {
-  background-color: rgba(0,0,0,0.8);
-  box-shadow: 0 0 5px 0 rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.2);
 }
 
 .h5p-interactive-video .h5p-interaction .h5p-interaction-inner.h5p-link:after {
@@ -317,9 +317,7 @@
 .h5p-interactive-video .h5p-interaction.h5p-poster {
   z-index: 1;
   background: #fff;
-  border-radius: 0.125em;
-  box-shadow: 0 0 0.25em #2c2c2c;
-  padding: 0.25em;
+  box-shadow: 0 0 0.625em 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
@@ -691,7 +689,7 @@
   margin: 1.25em;
   background: #fff;
   overflow: hidden;
-  box-shadow: 0 0 2.5em 0 #191919;
+  box-shadow: 0 0 0.625em 0 rgba(0, 0, 0, 0.25);
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
@@ -705,6 +703,7 @@
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
   font-size: 0.875em;
+  color: #757575;
 }
 .h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] {
   overflow: hidden;
@@ -740,14 +739,14 @@
 .h5p-interactive-video .h5p-dialog-close:before {
 	font-family: 'H5PFontAwesome4';
   content: "\f057";
-  color: #707070;
+  color: #757575;
 }
 .h5p-interactive-video .h5p-dialog-close:hover:before,
 .h5p-interactive-video .h5p-dialog-close:focus:before {
-	color: #606060;
+  color: #555555;
 }
 .h5p-interactive-video .h5p-dialog-close:active:before {
-	color: #505050;
+  color: #454545;
 }
 .h5p-interactive-video .h5p-dialog-inner {
   width: 22.9em;
@@ -808,7 +807,7 @@
 	float: left;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
-	margin: 0 1.5em 1.5em 0;
+  margin: 0 1em 1.5em 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
 	margin: 0 0 1.5em;

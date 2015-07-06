@@ -137,7 +137,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         // Add custom buttons
         $dialog.append($buttons);
         var fontSize = toNum($inner.css('fontSize'));
-        var buttonsHeight = (($buttons.outerHeight() + 1) / fontSize);
+        var buttonsHeight = ($buttons.outerHeight() / fontSize);
         $inner.css({
           width: '100%',
           maxHeight: (($dialog.outerHeight() / fontSize) - buttonsHeight) + 'em',
