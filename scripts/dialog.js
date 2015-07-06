@@ -33,22 +33,40 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       }
     }).appendTo($wrapper);
 
+    // Create title bar
+    var $titleBar = $('<div/>', {
+      'class': 'h5p-dialog-titlebar',
+      appendTo: $dialog
+    });
+    var $title = $('<div/>', {
+      'class': 'h5p-dialog-title',
+      appendTo: $titleBar
+    });
+    var $close = $('<div/>', {
+      'class': 'h5p-dialog-close',
+      tabindex: 0,
+      on: {
+        click: function () {
+          if (event.which === 1) {
+            self.close();
+          }
+        },
+        keypress: function (event) {
+          if (event.which === 32) {
+            self.close();
+          }
+        }
+      },
+      appendTo: $titleBar
+    });
+
+    // Used instead of close
+    var $customButtons;
+
     // Create inner DOM elements for dialog
     var $inner = $('<div/>', {
       'class': 'h5p-dialog-inner'
     }).appendTo($dialog);
-    var $close = $('<a/>', {
-      href: '#',
-      'class': 'h5p-dialog-hide',
-      html: '&#xf00d;',
-      on: {
-        click: function () {
-          self.close();
-          return false;
-        }
-      }
-    }).appendTo($dialog);
-    var $customButtons;
 
     // Add all to DOM
     $wrapper.appendTo($container);
@@ -71,7 +89,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       $inner.css({
         width: '',
         height: '',
-        maxHeight: ''
+        overflow: ''
       });
     };
 
@@ -113,21 +131,32 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * Opens a new dialog. Displays the given element.
      *
      * @param {H5P.jQuery} $element
+     * @param {string} [title] Label for the dialog
+     * @param {string} [classes] For styling
      * @param {H5P.jQuery} [$buttons] Use custom buttons for dialog
      */
-    self.open = function ($element, $buttons) {
+    self.open = function ($element, title, classes, $buttons) {
       showOverlay();
       $inner.children().detach().end().append($element);
 
       // Reset positioning
       resetPosition();
       $dialog.addClass('h5p-big');
+      $title.attr('class', 'h5p-dialog-title' + (classes ? ' ' + classes : ''));
 
+      // Add label
+      if (!title) {
+        title = '';
+      }
+      $title.html(title);
+
+      // Clean up after previous custom buttons
       if ($customButtons) {
-        // Clean up after previous custom buttons
         $customButtons.remove();
         $close.show();
       }
+
+      // Add new custom buttons
       if ($buttons) {
         $customButtons = $buttons;
 
@@ -135,16 +164,23 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         $close.hide();
 
         // Add custom buttons
-        $dialog.append($buttons);
-        var fontSize = toNum($inner.css('fontSize'));
-        var buttonsHeight = ($buttons.outerHeight() / fontSize);
-        $inner.css({
-          width: '100%',
-          maxHeight: (($dialog.outerHeight() / fontSize) - buttonsHeight) + 'em',
-          marginTop: buttonsHeight + 'em'
-        });
-        $dialog.css('bottom', 'auto');
+        $buttons.appendTo($titleBar);
       }
+
+      var fontSize = toNum($inner.css('fontSize'));
+      var titleBarHeight = ($titleBar.outerHeight() / fontSize);
+
+      // Same as height
+      var maxHeight = $container.height();
+      // minus dialog margins
+      maxHeight -= Number($dialog.css('top').replace('px', '')) * 2;
+
+      $inner.css({
+        width: '100%',
+        maxHeight: ((maxHeight / fontSize) - titleBarHeight) + 'em',
+        marginTop: titleBarHeight + 'em'
+      });
+      $dialog.css('bottom', 'auto');
 
       self.trigger('open');
     };
@@ -171,18 +207,22 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     self.position = function ($button, size) {
       resetPosition();
       $dialog.removeClass('h5p-big');
+      var titleBarHeight = Number($inner[0].style.marginTop.replace('em', ''));
 
       if (size) {
         var fontSizeRatio = 16 / toNum($container.css('fontSize'));
-        size.width = (size.width * fontSizeRatio) + 1.5; // padding for close button
-        size.height = (size.height * fontSizeRatio);
+        size.width = (size.width * fontSizeRatio);
+        size.height = (size.height * fontSizeRatio) + titleBarHeight;
 
         // Use a fixed size
         $dialog.css({
           width: size.width + 'em',
           height: size.height + 'em'
         });
-        $inner.css('width', 'auto');
+        $inner.css({
+          width: 'auto',
+          overflow: 'hidden'
+        });
       }
 
       var buttonWidth = $button.outerWidth(true);
@@ -251,18 +291,17 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       var buttonPosition = $button.position();
       var containerWidth = $container.width();
       var containerHeight = $container.height();
-      var interactionMaxFillRatio = 0.8;
 
       var max = {};
       if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
         // Space to the left of the button minus margin
-        max.width = buttonPosition.left * (1 - (1 - interactionMaxFillRatio) / 2);
+        max.width = buttonPosition.left;
       }
       else {
         // Space to the right of the button minus margin
-        max.width = (containerWidth - buttonPosition.left - buttonWidth) * (1 - (1 - interactionMaxFillRatio) / 2);
+        max.width = (containerWidth - buttonPosition.left - buttonWidth);
       }
-      max.height = containerHeight * interactionMaxFillRatio;
+      max.height = Number($inner.css('maxHeight').replace('px', ''));
 
       // Use em
       var fontSize = toNum($container.css('fontSize'));

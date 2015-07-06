@@ -101,33 +101,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Attach instance to dialog and open
       instance.attach($dialogContent);
 
-      // Create title bar
-      var $titleBar = $('<div/>', {
-        'class': 'h5p-dialog-titlebar'
-      });
-      var $title = $('<div/>', {
-        'class': 'h5p-dialog-title',
-        html: title,
-        appendTo: $titleBar
-      });
-      var $closeButton = $('<div/>', {
-        'class': 'h5p-dialog-close',
-        tabindex: 1,
-        on: {
-          click: function () {
-            player.dialog.close();
-          },
-          keypress: function (event) {
-            if (event.which === 32) {
-              player.dialog.close();
-            }
-          }
-        },
-        appendTo: $titleBar
-      });
-
       // Open dialog
-      player.dialog.open($dialogContent, $titleBar);
+      player.dialog.open($dialogContent, title);
       player.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
@@ -186,6 +161,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Object} size width,height in px
      */
     var resizeImage = function ($img, max, size) {
+      size.width -= 100; // Math.floor(size.width);
+      size.height -= 100; //  Math.floor(size.height);
+
       var fontSize = 16;
       size.width /= fontSize;
       size.height /= fontSize;
