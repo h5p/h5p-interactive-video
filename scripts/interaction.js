@@ -350,11 +350,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      // Detach interaction elements to keep their bindings/events
+      $target.children().detach();
+
       // Replace interaction with adaptivity screen
       var $adap = $('<div/>', {
         'class': 'h5p-iv-adap',
         html: adaptivity.message,
-        appendTo: $target.html('')
+        appendTo: $target
       });
 
       // Add continue button
@@ -589,13 +592,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (instance !== undefined && instance.getCopyrights !== undefined) {
         var interactionCopyrights = instance.getCopyrights();
-        if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
-          return interactionCopyrights;
-        }
       } else if (instance !== undefined) {
-        return H5P.getCopyrights(instance, parameters, player.contentId);
+        var interactionCopyrights = H5P.getCopyrights(instance, parameters, player.contentId);
       }
+      if (interactionCopyrights !== undefined) {
+        interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
+        return interactionCopyrights;
+      }
+      return undefined;
     };
 
     // Create instance of content

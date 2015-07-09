@@ -620,7 +620,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         // We are removing this item.
         $li.remove();
         delete self.bookmarksMap[tenth];
-        self.off('bookmarksChanged', this);
+        // self.off('bookmarksChanged');
       }
       else if (id >= index) {
         // We must update our id.
