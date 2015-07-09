@@ -327,11 +327,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      // Detach interaction elements to keep their bindings/events
+      $target.children().detach();
+
       // Replace interaction with adaptivity screen
       var $adap = $('<div/>', {
         'class': 'h5p-iv-adap',
         html: adaptivity.message,
-        appendTo: $target.html('')
+        appendTo: $target
       });
 
       // Add continue button
