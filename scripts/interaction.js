@@ -236,7 +236,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         H5P.trigger(instance, 'resize');
       }, 0);
       H5P.on(instance, 'xAPI', function (event) {
-        if (event.getVerb() !== 'completed' ||
+        if (!$.inArray(event.getVerb(), ['completed', 'answered']) ||
             !event.getMaxScore() ||
             event.getScore() === null) {
           return;
