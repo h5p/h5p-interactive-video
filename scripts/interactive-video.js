@@ -493,7 +493,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       if ($.inArray(event.getVerb(), ['completed', 'answered']) ||
           event.getMaxScore() ||
           event.getScore() !== null) {
-
+        event.setVerb('answered');
         if (interaction.isMainSummary()) {
           self.complete();
         }

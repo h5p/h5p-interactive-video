@@ -243,6 +243,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
         self.score = event.getScore();
         self.maxScore = event.getMaxScore();
+        event.setVerb('answered');
         self.trigger(event);
         adaptivity($target);
       });
