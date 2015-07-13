@@ -889,9 +889,43 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
+    this.resizeMobileView();
     if (this.$splash !== undefined) {
       this.resizeStartScreen();
     }
+  };
+
+  /**
+   * Determine if interactive video should be in mobile view.
+   */
+  InteractiveVideo.prototype.resizeMobileView = function () {
+    // Width to font size ratio threshold
+    var widthToEmThreshold = 30;
+    var ivWidth = this.$container.width();
+    var fontSize = parseInt(this.$container.css('font-size'), 10);
+    var widthToEmRatio = ivWidth / fontSize;
+    if (widthToEmRatio < widthToEmThreshold) {
+      if (!this.isMobileView) {
+        this.$container.addClass('mobile');
+        this.isMobileView = true;
+        this.recreateCurrentInteractions();
+      }
+    } else {
+      if (this.isMobileView) {
+        this.$container.removeClass('mobile');
+        this.isMobileView = false;
+        this.recreateCurrentInteractions();
+      }
+    }
+  };
+
+  /**
+   * Recreate currently
+   */
+  InteractiveVideo.prototype.recreateCurrentInteractions = function () {
+    this.interactions.forEach(function (interaction) {
+      interaction.reCreateInteraction();
+    });
   };
 
   /**

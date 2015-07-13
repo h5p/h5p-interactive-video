@@ -452,7 +452,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      if (self.isButton()) {
+      if (self.isButton() || player.isMobileView) {
         createButton();
       }
       else {
@@ -460,6 +460,22 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       return $interaction;
+    };
+
+    /**
+     * Recreate interactions. Useful when an interaction or view has changed.
+     */
+    self.reCreateInteraction = function () {
+      // Only recreate existing interactions
+      if ($interaction) {
+        $interaction.detach();
+
+        if (self.isButton() || player.isMobileView) {
+          createButton();
+        } else {
+          createPoster();
+        }
+      }
     };
 
     /**

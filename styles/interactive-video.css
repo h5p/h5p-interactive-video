@@ -215,13 +215,14 @@
   content: "\e603";
 }
 
-.h5p-dialog-interaction {
+.h5p-interactive-video .h5p-dialog-interaction {
 	font-size: 0.875em; /* 14px */
 }
-.h5p-dialog-interaction.h5p-blanks {
+.h5p-interactive-video .h5p-dialog-interaction.h5p-blanks,
+.h5p-interactive-video .h5p-interaction-inner.h5p-blanks {
   font-size: 0.8125em; /* 13px */
 }
-.h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
+.h5p-interactive-video .h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
   min-height: 5em;
 }
 /* Link interaction specific style */
@@ -806,10 +807,10 @@
 	float: left;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
-  margin: 0 1em 1.5em 0;
+  margin: 0 0.5em 1.5em 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
-	margin: 0 0 1.5em;
+	margin: 0 0 1.5em 0.5em;
 }
 
 .h5p-interactive-video .h5p-image {
