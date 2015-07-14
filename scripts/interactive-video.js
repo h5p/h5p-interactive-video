@@ -905,16 +905,30 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var fontSize = parseInt(this.$container.css('font-size'), 10);
     var widthToEmRatio = ivWidth / fontSize;
     if (widthToEmRatio < widthToEmThreshold) {
+      // Resize interactions in mobile view
+      this.interactions.forEach(function (interaction) {
+        interaction.resizeInteraction();
+      });
+
+      // Resize open dialog
+      this.dialog.resize();
+
       if (!this.isMobileView) {
+        // Close dialog when changing view
+        this.dialog.close();
         this.$container.addClass('mobile');
         this.isMobileView = true;
         this.recreateCurrentInteractions();
+        this.pause();
       }
     } else {
       if (this.isMobileView) {
+        // Close dialog when changing view
+        this.dialog.close();
         this.$container.removeClass('mobile');
         this.isMobileView = false;
         this.recreateCurrentInteractions();
+        this.pause();
       }
     }
   };

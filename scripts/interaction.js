@@ -478,6 +478,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    self.resizeInteraction = function () {
+      H5P.trigger(instance, 'resize');
+    };
+
     /**
      * Position label to the left or right of the action button.
      *

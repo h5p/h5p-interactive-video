@@ -167,6 +167,12 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         $buttons.appendTo($titleBar);
       }
 
+      self.resize();
+
+      self.trigger('open');
+    };
+
+    self.resize = function () {
       var fontSize = toNum($inner.css('fontSize'));
       var titleBarHeight = ($titleBar.outerHeight() / fontSize);
 
@@ -181,8 +187,6 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         marginTop: titleBarHeight + 'em'
       });
       $dialog.css('bottom', 'auto');
-
-      self.trigger('open');
     };
 
     /**
@@ -365,11 +369,14 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
     self.hideCloseButton = function () {
       $close.hide();
     };
+
+    this.on('resize', this.resize, this);
   }
 
   // Extends the event dispatcher
   Dialog.prototype = Object.create(EventDispatcher.prototype);
   Dialog.prototype.constructor = Dialog;
+
 
   /**
    * Converts css px value to number.
