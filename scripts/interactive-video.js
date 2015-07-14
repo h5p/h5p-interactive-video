@@ -914,8 +914,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       this.dialog.resize();
 
       if (!this.isMobileView) {
-        // Close dialog when changing view
-        this.dialog.close();
         this.$container.addClass('mobile');
         this.isMobileView = true;
         this.recreateCurrentInteractions();
@@ -923,7 +921,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
     } else {
       if (this.isMobileView) {
-        // Close dialog when changing view
+        // Close dialog because we can not know if it will turn into a poster
         this.dialog.close();
         this.$container.removeClass('mobile');
         this.isMobileView = false;
