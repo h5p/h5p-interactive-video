@@ -307,8 +307,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               if (self.isButton()) {
                 // Close dialog
                 player.dialog.close();
-              }
-              else {
+              } else {
+                if (player.isMobileView) {
+                  player.dialog.close();
+                }
                 // Remove interaction posters
                 $interaction.remove();
               }
