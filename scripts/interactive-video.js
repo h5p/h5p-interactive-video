@@ -229,6 +229,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    */
   InteractiveVideo.prototype.attach = function ($container) {
     var that = this;
+    this.setActivityStarted();
     this.$container = $container;
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');
@@ -1070,7 +1071,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
-      this.triggerXAPICompleted(this.getUsersScore(), this.getUsersMaxScore());
+      this.triggerXAPIScored(this.getUsersScore(), this.getUsersMaxScore(), 'completed');
     }
     this.isCompleted = true;
   };
