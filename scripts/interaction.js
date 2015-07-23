@@ -100,12 +100,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       // Attach instance to dialog and open
       instance.attach($dialogContent);
-      player.dialog.open($dialogContent);
-      player.dialog.addLibraryClass(library);
+      player.dnb.dialog.open($dialogContent);
+      player.dnb.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
-        var max = player.dialog.getMaxSize($interaction);
+        var max = player.dnb.dialog.getMaxSize($interaction);
 
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
@@ -125,12 +125,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               });
             }
           });
-          player.dialog.position($interaction);
+          player.dnb.dialog.position($interaction);
         }
       }
       else if (!(library === 'H5P.Summary' || library === 'H5P.Blanks')) {
         // Only Summary and Blanks uses the dialog that covers the entire video
-        player.dialog.position($interaction);
+        player.dnb.dialog.position($interaction);
       }
 
       if (library === 'H5P.Summary') {
@@ -140,7 +140,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var height = $dialogContent.height();
           if (lastHeight > height + 10 || lastHeight < height - 10)  {
             setTimeout(function () {
-              player.dialog.scroll(height, 300);
+              player.dnb.dialog.scroll(height, 300);
             }, 500);
           }
           lastHeight = height;
@@ -179,7 +179,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Set dialog size and position
-      player.dialog.position($interaction, size);
+      player.dnb.dialog.position($interaction, size);
     };
 
     /**
@@ -314,10 +314,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             $continueButton = addButton($container, player.l10n.defaultAdaptivitySeekLabel, function () {
               if (self.isButton()) {
                 // Close dialog
-                player.dialog.close();
+                player.dnb.dialog.close();
               }
               else {
                 // Remove interaction posters
+                player.dnb.removeElement($interaction);
                 $interaction.remove();
               }
 
@@ -342,12 +343,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (!adaptivity.allowOptOut) {
         // Make sure only the interaction is useable.
         if (self.isButton()) {
-          player.dialog.disableOverlay = true;
-          player.dialog.hideCloseButton();
+          player.dnb.dialog.disableOverlay = true;
+          player.dnb.dialog.hideCloseButton();
         }
         else {
           $interaction.css('zIndex', 52);
-          player.dialog.openOverlay();
+          player.dnb.dialog.openOverlay();
         }
       }
 
@@ -364,11 +365,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Add continue button
       addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
         if (self.isButton()) {
-          player.dialog.close();
+          player.dnb.dialog.close();
         }
         if (!adaptivity.allowOptOut) {
           if (!self.isButton()) {
-            player.dialog.closeOverlay();
+            player.dnb.dialog.closeOverlay();
             $interaction.css('zIndex', '');
           }
         }
@@ -537,6 +538,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
 
+        if (player.editor !== undefined) {
+          player.editor.dnb.removeElement(action.subContentId);
+        }
         $interaction.remove();
         $interaction = undefined;
       }
@@ -601,6 +605,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return interactionCopyrights;
       }
       return undefined;
+    };
+
+    /**
+     * Returns unique content id
+     * @returns {String} Sub content Id
+     */
+    self.getSubcontentId = function () {
+      return action.subContentId;
     };
 
     // Create instance of content

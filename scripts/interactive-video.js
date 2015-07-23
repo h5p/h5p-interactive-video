@@ -1,4 +1,4 @@
-H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
+H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
    * Initialize a new interactive video.
@@ -254,12 +254,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Controls
     this.$controls = $container.children('.h5p-controls').hide();
 
-    // Create a popup dialog
-    this.dialog = new Dialog($container, this.$videoWrapper);
-
+    this.dnb = new DragNBar([], this.$videoWrapper, false);
     if (this.editor === undefined) {
       // Pause video when opening dialog
-      this.dialog.on('open', function () {
+      this.dnb.dialog.on('open', function () {
         // Keep track of last state
         that.lastState = that.currentState;
 
@@ -270,14 +268,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
 
       // Resume playing when closing dialog
-      this.dialog.on('close', function () {
+      this.dnb.dialog.on('close', function () {
         if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
           that.video.play();
         }
       });
     }
     else {
-      this.dialog.disableOverlay = true;
+      this.dnb.dialog.disableOverlay = true;
     }
 
     if (this.currentState === InteractiveVideo.LOADED) {
@@ -1045,9 +1043,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (second !== self.lastSecond) {
       self.toggleInteractions(second);
 
-      if (self.editor !== undefined && self.editor.dnb) {
-        self.editor.dnb.blur();
-      }
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second));
@@ -1262,4 +1257,4 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   return InteractiveVideo;
-})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideoDialog, H5P.InteractiveVideoInteraction);
+})(H5P.jQuery, H5P.EventDispatcher, H5P.DragNBar, H5P.InteractiveVideoInteraction);
