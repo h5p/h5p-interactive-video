@@ -218,10 +218,6 @@
 .h5p-interactive-video .h5p-dialog-interaction {
 	font-size: 0.875em; /* 14px */
 }
-.h5p-interactive-video .h5p-dialog-interaction.h5p-blanks,
-.h5p-interactive-video .h5p-interaction-inner.h5p-blanks {
-  font-size: 0.8125em; /* 13px */
-}
 .h5p-interactive-video .h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
   min-height: 5em;
 }
