@@ -15,7 +15,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label, $continueButton;
+    var $interaction, $label;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -241,15 +241,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         H5P.trigger(instance, 'resize');
       }, 0);
       H5P.on(instance, 'xAPI', function (event) {
-        if (event.getVerb() !== 'completed' ||
-            !event.getMaxScore() ||
+        if (!event.getMaxScore() ||
             event.getScore() === null) {
           return;
         }
-        self.score = event.getScore();
-        self.maxScore = event.getMaxScore();
-        self.trigger(event);
-        adaptivity($target);
+        if (event.getVerb() === 'completed' ||
+            event.getVerb() === 'answered') {
+          self.score = event.getScore();
+          self.maxScore = event.getMaxScore();
+          self.trigger(event);
+          adaptivity($target);
+        }
       });
     };
 
