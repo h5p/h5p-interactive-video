@@ -1063,4 +1063,5 @@
 
 .h5p-interactive-video.mobile .h5p-dialog.h5p-big > .h5p-dialog-inner {
   height: inherit;
+  width: 100%;
 }
