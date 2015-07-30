@@ -292,9 +292,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var adaptivity = function ($target) {
 
-      var adaptivity;
+      var adaptivity, fullScore;
       if (parameters.adaptivity) {
-        var fullScore = self.score >= self.maxScore;
+        fullScore = self.score >= self.maxScore;
 
         // Determine adaptivity
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
@@ -371,6 +371,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
 
+        // Reset interaction
+        if (!fullScore && instance.resetTask) {
+          instance.resetTask();
+        }
+
+        // Remove interaction
         self.remove();
         player.seek(adaptivity.seekTo);
         player.play();
