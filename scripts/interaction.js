@@ -95,7 +95,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var openDialog = function () {
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
-        'class': 'h5p-dialog-interaction'
+        'class': 'h5p-dialog-interaction h5p-frame'
       });
 
       // Attach instance to dialog and open
@@ -219,7 +219,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       $inner = $('<div/>', {
-        'class': 'h5p-interaction-inner'
+        'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($interaction);
       instance.attach($inner);
 
