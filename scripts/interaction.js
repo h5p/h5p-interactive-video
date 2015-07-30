@@ -529,12 +529,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       parameters.width = width;
       parameters.height = height;
 
-      if (library === 'H5P.DragQuestion') {
-        // Re-create element to set new size
-        self.remove(true);
-        self.toggle(parameters.from);
-      }
-
       H5P.trigger(instance, 'resize');
     };
 
