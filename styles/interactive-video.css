@@ -327,8 +327,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.h5p-interactive-video .h5p-interaction-inner.h5p-image,
-.h5p-interactive-video .h5p-interaction-inner.h5p-dragquestion {
+.h5p-interactive-video .h5p-interaction-inner.h5p-image {
   overflow-y: hidden;
 }
 .h5p-interactive-video .h5p-interaction-overlay {
@@ -852,12 +851,6 @@
 .h5p-interactive-video .h5p-dragquestion .h5p-button {
   right: auto;
   left: 1.225em;
-}
-.h5p-interactive-video .h5p-dragquestion .h5p-joubelui-button {
-  position: absolute;
-  bottom: 0.625em;
-  right: 1.225em;
-  z-index: 4;
 }
 
 /* Splash start screen */
