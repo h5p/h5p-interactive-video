@@ -679,9 +679,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
 
       that.on('enterFullScreen', function () {
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
+        that.resizeInteractions();
       });
       that.on('exitFullScreen', function () {
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
+        that.resizeInteractions();
       });
 
       // Video quality selector
@@ -906,9 +908,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     var widthToEmRatio = ivWidth / fontSize;
     if (widthToEmRatio < widthToEmThreshold) {
       // Resize interactions in mobile view
-      this.interactions.forEach(function (interaction) {
-        interaction.resizeInteraction();
-      });
+      this.resizeInteractions();
 
       // Resize open dialog
       this.dialog.resize();
@@ -929,6 +929,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         this.pause();
       }
     }
+  };
+
+  /**
+   * Resize all interactions.
+   */
+  InteractiveVideo.prototype.resizeInteractions = function () {
+    this.interactions.forEach(function (interaction) {
+      interaction.resizeInteraction();
+    });
   };
 
   /**
@@ -1058,6 +1067,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         self.trigger('enterFullScreen');
       }
     }
+    // Resize all interactions
+    this.resizeInteractions();
   };
 
   /**
