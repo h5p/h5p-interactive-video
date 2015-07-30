@@ -680,10 +680,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       that.on('enterFullScreen', function () {
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
         that.resizeInteractions();
+        that.$container.parent('.h5p-content').css('height', '100%');
       });
       that.on('exitFullScreen', function () {
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
         that.resizeInteractions();
+        that.$container.parent('.h5p-content').css('height', 'auto');
       });
 
       // Video quality selector
