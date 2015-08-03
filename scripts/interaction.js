@@ -354,7 +354,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       // Add continue button
       addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), 'h5p-question-iv-continue', function () {
-        if (self.isButton()) {
+        if (self.isButton() || player.isMobileView) {
           player.dialog.close();
         }
         if (!adaptivity.allowOptOut) {
