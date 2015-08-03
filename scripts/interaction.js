@@ -317,9 +317,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                 $interaction.remove();
               }
 
-              // Remove continue button
-              instance.hideButton('iv-continue');
-
               // Do not play if player is at the end, state 0 = ENDED
               if (player.currentState !== 0) {
                 player.play();
@@ -349,14 +346,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
-      // Detach children to preserve jQuery events
-      $target.children().detach();
-
       // Replace interaction with adaptivity screen
       var $adap = $('<div/>', {
         'class': 'h5p-iv-adap',
-        html: adaptivity.message,
-        appendTo: $target
+        html: adaptivity.message
       });
 
       // Add continue button
@@ -381,6 +374,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.seek(adaptivity.seekTo);
         player.play();
       });
+
+      // Queue detaching to remove any added elements.
+      setTimeout(function () {
+        // Detach children to preserve jQuery events
+        $target.children().detach();
+        // Attach adaptivity
+        $target.append($adap);
+      }, 0);
+
     };
 
     /**
