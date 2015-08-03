@@ -105,7 +105,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       player.dialog.open($dialogContent, title);
       player.dialog.addLibraryClass(library);
 
-      if (library === 'H5P.Image') {
+      if (library === 'H5P.Image' && !player.isMobileView) {
         // Special case for fitting images
         var max = player.dialog.getMaxSize($interaction);
 
