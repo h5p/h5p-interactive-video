@@ -678,10 +678,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
 
       that.on('enterFullScreen', function () {
+        if (that.$container !== undefined) {
+          that.$container.parent('.h5p-content').css('height', '100%');
+        }
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
         that.resizeInteractions();
       });
       that.on('exitFullScreen', function () {
+        if (that.$container !== undefined) {
+          that.$container.parent('.h5p-content').css('height', 'auto');
+        }
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
         that.resizeInteractions();
       });
@@ -895,6 +901,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (this.$splash !== undefined) {
       this.resizeStartScreen();
     }
+    this.resizeInteractions();
   };
 
   /**

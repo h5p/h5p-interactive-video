@@ -95,7 +95,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var openDialog = function () {
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
-        'class': 'h5p-dialog-interaction'
+        'class': 'h5p-dialog-interaction h5p-frame'
       });
 
       // Attach instance to dialog and open
@@ -219,7 +219,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       $inner = $('<div/>', {
-        'class': 'h5p-interaction-inner'
+        'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($interaction);
       instance.attach($inner);
 
@@ -541,22 +541,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.remove = function (updateSize) {
       if ($interaction) {
-        if (updateSize && library === 'H5P.DragQuestion') {
-          // Update size
-          var size = action.params.question.settings.size;
-          var fontSize = Number($interaction.css('fontSize').replace('px', ''));
-          if (self.isButton()) {
-            // Update element size with drag question parameters
-            parameters.width = size.width / fontSize;
-            parameters.height = size.height / fontSize;
-          }
-          else {
-            // Update drag question parameters with size set on element
-            size.width = Math.round(parameters.width * fontSize);
-            size.height = Math.round(parameters.height * fontSize);
-          }
-        }
-
         $interaction.detach();
         $interaction = undefined;
       }
