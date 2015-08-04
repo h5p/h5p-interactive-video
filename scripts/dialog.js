@@ -279,7 +279,8 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       // Set dialog size
       $dialog.css({
         top: (top / (containerHeight / 100)) + '%',
-        left: (left / (containerWidth / 100)) + '%'
+        left: (left / (containerWidth / 100)) + '%',
+        width: $dialog.width()
       });
     };
 
