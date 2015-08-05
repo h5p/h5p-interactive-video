@@ -749,7 +749,7 @@
   overflow: auto;
 }
 .h5p-interactive-video .h5p-big > .h5p-dialog-inner {
-  width: 96%;
+  width: 100%;
 	height: auto;
 }
 .h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar,
