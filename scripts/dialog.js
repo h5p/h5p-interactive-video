@@ -289,24 +289,28 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * given button.
      *
      * @param {H5P.jQuery} $button
+     * @param {Boolean} fullScreen True if dialog fills whole parent
      * @returns {Object} Attrs: width, height
      */
-    self.getMaxSize = function ($button) {
+    self.getMaxSize = function ($button, fullScreen) {
       var buttonWidth = $button.outerWidth(true);
       var buttonPosition = $button.position();
       var containerWidth = $container.width();
-      var containerHeight = $container.height();
 
       var max = {};
-      if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
-        // Space to the left of the button minus margin
-        max.width = buttonPosition.left;
-      }
-      else {
-        // Space to the right of the button minus margin
-        max.width = (containerWidth - buttonPosition.left - buttonWidth);
-      }
       max.height = Number($inner.css('maxHeight').replace('px', ''));
+      if (fullScreen) {
+        max.width = containerWidth;
+      } else {
+        if (buttonPosition.left > (containerWidth / 2) - (buttonWidth / 2)) {
+          // Space to the left of the button minus margin
+          max.width = buttonPosition.left;
+        }
+        else {
+          // Space to the right of the button minus margin
+          max.width = (containerWidth - buttonPosition.left - buttonWidth);
+        }
+      }
 
       // Use em
       var fontSize = toNum($container.css('fontSize'));

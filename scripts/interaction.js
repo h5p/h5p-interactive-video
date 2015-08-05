@@ -105,9 +105,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       player.dialog.open($dialogContent, title);
       player.dialog.addLibraryClass(library);
 
-      if (library === 'H5P.Image' && !player.isMobileView) {
+      if (library === 'H5P.Image') {
         // Special case for fitting images
-        var max = player.dialog.getMaxSize($interaction);
+        var max = player.dialog.getMaxSize($interaction, player.isMobileView);
 
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
@@ -115,7 +115,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           resizeImage($img, max, {
             width: action.params.file.width,
             height: action.params.file.height
-          });
+          }, !player.isMobileView);
         }
         else {
           // Wait for image to load
@@ -124,7 +124,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               resizeImage($img, max, {
                 width: this.width,
                 height: this.height
-              });
+              }, !player.isMobileView);
             }
           });
           player.dialog.position($interaction);
@@ -159,11 +159,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $img
      * @param {Object} max width,height in em
      * @param {Object} size width,height in px
+     * @param {Boolean} positionDialog position dialog if true
      */
-    var resizeImage = function ($img, max, size) {
-      size.width -= 100; // Math.floor(size.width);
-      size.height -= 100; //  Math.floor(size.height);
-
+    var resizeImage = function ($img, max, size, positionDialog) {
       var fontSize = 16;
       size.width /= fontSize;
       size.height /= fontSize;
@@ -183,8 +181,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         height: (size.height * fontSizeRatio) + 'em'
       });
 
-      // Set dialog size and position
-      player.dialog.position($interaction, size);
+      if (positionDialog) {
+        // Set dialog size and position
+        player.dialog.position($interaction, size);
+      }
     };
 
     /**
