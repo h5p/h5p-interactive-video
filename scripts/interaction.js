@@ -375,14 +375,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.play();
       });
 
-      // Queue detaching to remove any added elements.
-      setTimeout(function () {
-        // Detach children to preserve jQuery events
-        $target.children().detach();
-        // Attach adaptivity
-        $target.append($adap);
-      }, 0);
-
+      // Detach children to preserve jQuery events
+      $target.children().detach();
+      // Attach adaptivity
+      $target.append($adap);
     };
 
     /**
