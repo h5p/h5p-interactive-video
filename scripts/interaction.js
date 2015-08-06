@@ -379,6 +379,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $target.children().detach();
       // Attach adaptivity
       $target.append($adap);
+
+      // Queue removing feedback
+      // H5P.Question should probably implement a queue so we can specify to never show feedback in this case
+      setTimeout(function () {
+        if (instance.setFeedback) {
+          instance.setFeedback();
+        }
+      }, 0);
     };
 
     /**
