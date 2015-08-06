@@ -283,6 +283,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         width: $dialog.width(),
         maxHeight: maxHeight
       });
+      $inner.css('maxHeight', maxHeight - $titleBar.outerHeight(true));
     };
 
     /**
