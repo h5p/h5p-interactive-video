@@ -275,12 +275,13 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       if (totalHeight > containerHeight) {
         top -= totalHeight - containerHeight;
       }
-
+      var maxHeight = $container.height() - top + $dialog.height() - $dialog.outerHeight(true);
       // Set dialog size
       $dialog.css({
         top: (top / (containerHeight / 100)) + '%',
         left: (left / (containerWidth / 100)) + '%',
-        width: $dialog.width()
+        width: $dialog.width(),
+        maxHeight: maxHeight
       });
     };
 
