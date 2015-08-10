@@ -316,7 +316,8 @@
   background: #fff;
   box-shadow: 0 0 0.625em 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
@@ -743,21 +744,21 @@
   width: 100%;
 	height: auto;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar,
+.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar {
   width: 0.5em;
   background: #fff;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb,
+.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb {
   background: #ddd;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:hover,
+.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:hover,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:hover {
   background: #aaa;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:active,
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:focus,
+.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:active,
+.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:focus,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:active,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:focus {
   background: #888;
