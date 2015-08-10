@@ -186,7 +186,10 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         maxHeight: ((maxHeight / fontSize) - titleBarHeight) + 'em',
         marginTop: titleBarHeight + 'em'
       });
-      $dialog.css('bottom', 'auto');
+      $dialog.css({
+        bottom: 'auto',
+        maxHeight: ''
+      });
     };
 
     /**
