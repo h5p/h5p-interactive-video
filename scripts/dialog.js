@@ -212,6 +212,8 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      * @param {Object} [size] Sets a size for the dialog, useful for images.
      */
     self.position = function ($button, size) {
+      var minWidth = 100;
+      var minHeight = 75;
       resetPosition();
       $dialog.removeClass('h5p-big');
       var titleBarHeight = Number($inner[0].style.marginTop.replace('em', ''));
@@ -219,14 +221,24 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       if (size) {
         var fontSizeRatio = 16 / toNum($container.css('fontSize'));
         size.width = (size.width * fontSizeRatio);
-        size.height = (size.height * fontSizeRatio) + titleBarHeight;
+        size.height = (size.height * fontSizeRatio);
+
+        // Set minimum sizes
+        if (size.width < minWidth / 16 * fontSizeRatio) {
+          size.width = minWidth / 16 * fontSizeRatio;
+        }
+
+        if (size.height < (minHeight / 16 * fontSizeRatio)) {
+          size.height = (minHeight / 16 * fontSizeRatio);
+        }
 
         // Use a fixed size
         $dialog.css({
           width: size.width + 'em',
-          height: size.height + 'em'
+          height: (size.height + titleBarHeight) + 'em'
         });
         $inner.css({
+          height: 'calc(100% - ' + titleBarHeight + 'em)',
           width: 'auto',
           overflow: 'hidden'
         });

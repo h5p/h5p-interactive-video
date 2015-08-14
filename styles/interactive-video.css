@@ -334,6 +334,23 @@
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
   height: 100%;
 }
+
+.h5p-interactive-video .h5p-dialog .h5p-image {
+  height: 100%;
+}
+
+.h5p-interactive-video .h5p-dialog .h5p-image img {
+  margin: 0 auto;
+
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .h5p-interactive-video .h5p-interaction-overlay {
   position: absolute;
   left: 0;
@@ -693,6 +710,14 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+
+.h5p-interactive-video .h5p-dialog-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: calc(100% - 1em);
+}
+
 .h5p-interactive-video .h5p-dialog-titlebar {
   overflow: hidden;
   position: absolute;
