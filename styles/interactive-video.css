@@ -328,13 +328,11 @@
   width: 100%;
   height: auto;
   font-size: 0.875em;
-  overflow-y: auto;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
   height: 100%;
-  overflow-y: hidden;
 }
 .h5p-interactive-video .h5p-interaction-overlay {
   position: absolute;
