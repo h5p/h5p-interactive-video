@@ -66,6 +66,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
       });
+
+      // Touch area for button
+      $('<div/>', {
+        'class': 'h5p-touch-area'
+      }).appendTo($interaction);
+
       $('<div/>', {
         'class': 'h5p-interaction-button'
       }).appendTo($interaction);
