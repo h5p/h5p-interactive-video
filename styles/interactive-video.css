@@ -1049,19 +1049,11 @@
 }
 
 /* Adaptivity */
-.h5p-interactive-video .h5p-iv-adap {
-  margin: 1.5em 1.5em 0;
-	overflow: hidden;
+.h5p-interactive-video .h5p-question .h5p-question-iv-adaptivity-correct,
+.h5p-interactive-video .h5p-question .h5p-question-iv-adaptivity-wrong {
+  float: right;
 }
-.h5p-interactive-video .h5p-poster .h5p-iv-adap {
-  position: relative;
-  -webkit-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.h5p-interactive-video .h5p-iv-adap .h5p-joubelui-button {
-  margin: 0.25em;
-}
+
 .h5p-interactive-video .h5p-question .h5p-question-iv-continue {
 	float: right;
 }

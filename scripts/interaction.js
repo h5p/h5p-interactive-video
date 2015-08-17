@@ -262,35 +262,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-     * Makes it easy to create buttons.
-     *
-     * @private
-     * @param {H5P.jQuery} $container Where to append the button
-     * @param {string} label Html
-     * @param {function} handler What to do when clicked
-     * @returns {H5P.jQuery}
-     */
-    var addButton = function ($container, label, buttonClasses, handler) {
-      return H5P.JoubelUI.createButton({
-        'class': buttonClasses,
-        tabIndex: 0,
-        role: 'button',
-        html: label,
-        on: {
-          click: function () {
-            handler();
-          },
-          keypress: function (event) {
-            if ((event.charCode || event.keyCode) === 32) {
-              handler(); // Buttons must react to space
-            }
-          }
-        },
-        appendTo: $container
-      });
-    };
-
-    /**
      * Adds adaptivity or continue button to exercies.
      *
      * @private
@@ -352,44 +323,42 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
-      // Replace interaction with adaptivity screen
-      var $adap = $('<div/>', {
-        'class': 'h5p-iv-adap',
-        html: adaptivity.message
-      });
+      var adaptivityId = (fullScore ? 'correct' : 'wrong');
+      var adaptivityLabel = adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel;
 
-      // Add continue button
-      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), 'h5p-question-iv-continue', function () {
-        if (self.isButton() || player.isMobileView) {
-          player.dialog.close();
-        }
-        if (!adaptivity.allowOptOut) {
-          if (!self.isButton()) {
-            player.dialog.closeOverlay();
-            $interaction.css('zIndex', '');
+      // add and show adaptivity button
+      instance.addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
+          if (self.isButton() || player.isMobileView) {
+            player.dialog.close();
           }
+          if (!adaptivity.allowOptOut) {
+            if (!self.isButton()) {
+              player.dialog.closeOverlay();
+              $interaction.css('zIndex', '');
+            }
+          }
+
+          // Reset interaction
+          instance.hideButton('iv-adaptivity-' + adaptivityId);
+          if (!fullScore && instance.resetTask) {
+            instance.resetTask();
+          }
+
+          // Remove interaction
+          self.remove();
+          player.seek(adaptivity.seekTo);
+          player.play();
         }
+      ).showButton('iv-adaptivity-' + adaptivityId);
 
-        // Reset interaction
-        if (!fullScore && instance.resetTask) {
-          instance.resetTask();
-        }
-
-        // Remove interaction
-        self.remove();
-        player.seek(adaptivity.seekTo);
-        player.play();
-      });
-
-      // Detach sections to preserve jQuery events
-      if (instance.detachSections) {
-        instance.detachSections();
-      } else {
-        $target.children().detach();
-      }
-
-      // Attach adaptivity
-      $target.append($adap);
+      // Wait for any modifications Question does to feedback and buttons
+      setTimeout(function () {
+        // Set adaptivity message and hide interaction flow controls
+        instance.updateFeedbackContent(adaptivity.message)
+          .hideButton('check-answer')
+          .hideButton('show-solution')
+          .hideButton('try-again');
+      }, 0);
     };
 
     /**
