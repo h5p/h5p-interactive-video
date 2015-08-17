@@ -82,7 +82,7 @@
   z-index: 2;
 }
 
-/* Touch area bigger than button actual button */
+/* Touch area bigger than actual button */
 .h5p-interactive-video .h5p-interaction .h5p-touch-area {
   width: 2.25em;
   height: 2.25em;
