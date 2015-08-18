@@ -127,8 +127,11 @@
 }
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
   left: auto;
-  right: 1.75em;
-  padding: 0.1em 1em 0.1em 0.5em;
+  right: 0.875em;
+  padding: 0 1.375em 0 0.875em;
+  border-radius: 0;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 .h5p-interactive-video .h5p-interaction-button {
 	cursor: pointer;
