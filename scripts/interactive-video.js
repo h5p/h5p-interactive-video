@@ -45,7 +45,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     self.contentId = id;
 
     // Make it possible to restore from previous state
-    if (contentData && contentData.previousState !== undefined) {
+    if (contentData &&
+        contentData.previousState !== undefined &&
+        contentData.previousState.progress !== undefined &&
+        contentData.previousState.answers !== undefined) {
       self.previousState = contentData.previousState;
     }
 
