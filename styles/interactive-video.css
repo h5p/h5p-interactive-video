@@ -141,7 +141,7 @@
   width: 1.75em;
   height: 1.75em;
   border-radius: 50%;
-  line-height: 1.875em;
+  line-height: 1.75em;
   color: #fff;
   font-family: 'H5PFontAwesome4';
   -webkit-box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
@@ -152,10 +152,6 @@
 }
 .h5p-interactive-video .h5p-interaction-button:before {
   content: "\f055";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 .h5p-interactive-video .h5p-interaction:hover .h5p-interaction-button {
   -webkit-box-shadow: 0 0.3em 0.25em 0 rgba(0, 0, 0, 0.5);
