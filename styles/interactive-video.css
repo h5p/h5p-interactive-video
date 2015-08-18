@@ -84,8 +84,8 @@
 
 /* Touch area bigger than actual button */
 .h5p-interactive-video .h5p-interaction .h5p-touch-area {
-  width: 2.25em;
-  height: 2.25em;
+  width: 2.5em;
+  height: 2.5em;
   position: absolute;
   top: 50%;
   left: 50%;
