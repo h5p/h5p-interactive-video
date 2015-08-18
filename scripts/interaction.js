@@ -37,6 +37,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of content instance
     var instance;
 
+    // Only register listeners once
+    var hasRegisteredListeners = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -155,7 +158,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-     processInstance($dialogContent, instance);
+      setTimeout(function () {
+        H5P.trigger(instance, 'resize');
+      }, 0);
     };
 
     /**
@@ -232,33 +237,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Trigger event listeners
       self.trigger('display', $interaction);
 
-      processInstance($inner, instance);
-    };
-
-    /**
-     * Resizes the interaction at the next tick.
-     * Binds event listeners.
-     *
-     * @private
-     */
-    var processInstance = function ($target, instance) {
-      // Resize on next tick
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
-      H5P.on(instance, 'xAPI', function (event) {
-        if (!event.getMaxScore() ||
-            event.getScore() === null) {
-          return;
-        }
-        if (event.getVerb() === 'completed' ||
-            event.getVerb() === 'answered') {
-          self.score = event.getScore();
-          self.maxScore = event.getMaxScore();
-          self.trigger(event);
-          adaptivity($target);
-        }
-      });
     };
 
     /**
@@ -354,7 +335,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
         // Set adaptivity message and hide interaction flow controls
-        instance.updateFeedbackContent(adaptivity.message)
+        instance.updateFeedbackContent(adaptivity.message, true)
           .hideButton('check-answer')
           .hideButton('show-solution')
           .hideButton('try-again');
@@ -445,6 +426,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       else {
         createPoster();
+      }
+
+      // Make sure listeners are only registered once
+      if (!hasRegisteredListeners) {
+        instance.on('xAPI', function (event) {
+          if (!event.getMaxScore() ||
+            event.getScore() === null) {
+            return;
+          }
+          if (event.getVerb() === 'completed' ||
+            event.getVerb() === 'answered') {
+            self.score = event.getScore();
+            self.maxScore = event.getMaxScore();
+            self.trigger(event);
+            adaptivity($interaction);
+          }
+        });
+
+        hasRegisteredListeners = true;
       }
 
       return $interaction;
