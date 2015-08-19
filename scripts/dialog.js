@@ -46,7 +46,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       'class': 'h5p-dialog-close',
       tabindex: 0,
       on: {
-        click: function () {
+        click: function (event) {
           if (event.which === 1) {
             self.close();
           }
