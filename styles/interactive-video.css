@@ -105,7 +105,7 @@
   height: 100%;
   line-height: 1.75em;
   padding: 0 0.875em 0 1.375em;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   border-top-right-radius: 1em;
   border-bottom-right-radius: 1em;
   color: #fff;
@@ -149,6 +149,11 @@
   box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
   text-align: center;
   border: 0;
+  -webkit-transition: background 0.3s, box-shadow 0.3s;
+  -moz-transition: background 0.3s, box-shadow 0.3s;
+  -ms-transition: background 0.3s, box-shadow 0.3s;
+  -o-transition: background 0.3s, box-shadow 0.3s;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 .h5p-interactive-video .h5p-interaction-button:before {
   content: "\f055";
