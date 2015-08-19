@@ -334,8 +334,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
-        // Set adaptivity message and hide interaction flow controls
-        instance.updateFeedbackContent(adaptivity.message, true)
+        // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
+        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true)
           .hideButton('check-answer')
           .hideButton('show-solution')
           .hideButton('try-again');
