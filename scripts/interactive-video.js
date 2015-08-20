@@ -908,6 +908,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * Determine if interactive video should be in mobile view.
    */
   InteractiveVideo.prototype.resizeMobileView = function () {
+    // IV not init
+    if (isNaN(this.currentState)) {
+      return;
+    }
     // Width to font size ratio threshold
     var widthToEmThreshold = 30;
     var ivWidth = this.$container.width();
@@ -942,6 +946,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * Resize all interactions.
    */
   InteractiveVideo.prototype.resizeInteractions = function () {
+    // IV not init
+    if (isNaN(this.currentState)) {
+      return;
+    }
+
     this.interactions.forEach(function (interaction) {
       interaction.resizeInteraction();
     });
