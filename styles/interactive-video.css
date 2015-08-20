@@ -192,18 +192,6 @@
   background: #003fdf;
 }
 
-.h5p-interactive-video .h5p-text-interaction > .h5p-interaction-button:before {
-  content: "\f055";
-}
-.h5p-interactive-video .h5p-table-interaction > .h5p-interaction-button:before {
-  content: "\f055";
-}
-.h5p-interactive-video .h5p-link-interaction > .h5p-interaction-button:before {
-  content: "\f055";
-}
-.h5p-interactive-video .h5p-image-interaction > .h5p-interaction-button:before {
-  content: "\f055";
-}
 /* H5P specific dropped tasks icons */
 .h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-multichoice-interaction > .h5p-interaction-button,
@@ -226,24 +214,12 @@
   background: #661366;
 }
 
-.h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
-.h5p-interactive-video .h5p-multichoice-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
-.h5p-interactive-video .h5p-blanks-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
-.h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
-.h5p-interactive-video .h5p-markthewords-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
-.h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button:before {
-  content: "\e609";
-}
+.h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button:before,
+.h5p-interactive-video .h5p-multichoice-interaction > .h5p-interaction-button:before,
+.h5p-interactive-video .h5p-blanks-interaction > .h5p-interaction-button:before,
+.h5p-interactive-video .h5p-dragquestion-interaction > .h5p-interaction-button:before,
+.h5p-interactive-video .h5p-markthewords-interaction > .h5p-interaction-button:before,
+.h5p-interactive-video .h5p-dragtext-interaction > .h5p-interaction-button:before,
 .h5p-interactive-video .h5p-singlechoiceset-interaction > .h5p-interaction-button:before {
   content: "\e609";
 }
