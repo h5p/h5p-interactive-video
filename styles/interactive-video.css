@@ -850,11 +850,12 @@
 .h5p-interactive-video .h5p-nil-interaction > .h5p-interaction-label {
   top: 0;
   left: 0;
-  padding: 0.1em 0.5em;
-  min-height: 1.5em;
-  min-width: 1.5em;
+  padding: 0.2em 0.5em;
+	line-height: 1.5;
+	height: auto;
+	min-width: 1.5em;
 	cursor: default;
-  border-radius: 1em;
+  border-radius: 0;
 }
 
 .h5p-interactive-video .h5p-dragquestion .h5p-button {
