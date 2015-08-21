@@ -307,8 +307,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var adaptivityId = (fullScore ? 'correct' : 'wrong');
       var adaptivityLabel = adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel;
 
-      // add and show adaptivity button
-      instance.addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
+      // add and show adaptivity button, hide continue button
+      instance.hideButton('iv-continue')
+        .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
           if (self.isButton() || player.isMobileView) {
             player.dialog.close();
           }
