@@ -468,7 +468,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     self.resizeInteraction = function () {
-      H5P.trigger(instance, 'resize');
+      if (library !== 'H5P.Nil') {
+        H5P.trigger(instance, 'resize');
+      }
     };
 
     /**
