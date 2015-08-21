@@ -38,32 +38,82 @@
         },
         {
           "label": "Legg til interaksjonar",
-          "field": {
-            "fields": [
-              {
-                "label": "Visningstid"
-              },
-              {
-                "label": "Pause video"
-              },
-              {
-                "label": "Vis som",
-                "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
-                "options": [
+          "fields": [
+            {
+              "field": {
+                "fields": [
                   {
-                    "label": "Knapp"
+                    "label": "Visningstid"
                   },
                   {
-                    "label": "Plakat"
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Vis som",
+                    "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
+                    "options": [
+                      {
+                        "label": "Knapp"
+                      },
+                      {
+                        "label": "Plakat"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ledetekst",
+                    "description": "Ledetekst som vises ved sida av interaksjonsikonet."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivitet",
+                    "fields": [
+                      {
+                        "label": "Når oppgaven er besvart korrekt",
+                        "fields": [
+                          {
+                            "label": "Spol til",
+                            "description": "Skriv inn tidskoden på formatet M:SS"
+                          },
+                          {
+                            "label": "Tillat at brukeren kan avbryte oppgaven og fortsette"
+                          },
+                          {
+                            "label": "Beskjed"
+                          },
+                          {
+                            "label": "Merkelapp for spoleknappen"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Når oppgaven er besvart feil",
+                        "fields": [
+                          {
+                            "label": "Spol til",
+                            "description": "Skriv inn tidskoden på formatet M:SS"
+                          },
+                          {
+                            "label": "Tillat at brukeren kan avbryte oppgaven og fortsette"
+                          },
+                          {
+                            "label": "Beskjed"
+                          },
+                          {
+                            "label": "Merkelapp for spoleknappen"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
-              },
-              {
-                "label": "Ledetekst",
-                "description": "Ledetekst som vises ved sida av interaksjonsikonet."
               }
-            ]
-          }
+            }
+          ]
         },
         {
           "label": "Oppsummeringsoppgave",
@@ -141,9 +191,4 @@
         },
         {
           "label": "Standard merkelapp for adaptivitetssøkeknappen",
-          "default": "Fortsett"
-        }
-      ]
-    }
-  ]
-}
+          "default": "Forts
