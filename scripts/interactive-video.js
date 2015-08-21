@@ -431,6 +431,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
           from: displayAt,
           to: duration
         },
+        displayType: 'button',
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
         label: this.l10n.summary,
