@@ -870,6 +870,9 @@
   min-height: 1.5em;
   min-width: 1.5em;
 	cursor: default;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
 }
 
 .h5p-interactive-video .h5p-dragquestion .h5p-button {

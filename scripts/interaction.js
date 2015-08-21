@@ -430,7 +430,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       // Make sure listeners are only registered once
-      if (!hasRegisteredListeners) {
+      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
         instance.on('xAPI', function (event) {
           if (!event.getMaxScore() ||
             event.getScore() === null) {
