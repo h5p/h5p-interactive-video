@@ -188,8 +188,20 @@
 .h5p-interactive-video .h5p-text-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-link-interaction:hover > .h5p-interaction-button,
-.h5p-interactive-video .h5p-image-interaction:hover > .h5p-interaction-button {
+.h5p-interactive-video .h5p-image-interaction:hover > .h5p-interaction-button,
+.h5p-interactive-video .h5p-text-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-table-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-link-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-image-interaction:focus > .h5p-interaction-button {
   background: #003fdf;
+}
+
+.h5p-interactive-video .h5p-text-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-table-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-link-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-image-interaction:active > .h5p-interaction-button {
+  background: #163c9b;
+  box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
 }
 
 /* H5P specific dropped tasks icons */
@@ -210,8 +222,26 @@
 .h5p-interactive-video .h5p-dragquestion-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-markthewords-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-dragtext-interaction:hover > .h5p-interaction-button,
-.h5p-interactive-video .h5p-singlechoiceset-interaction:hover > .h5p-interaction-button {
+.h5p-interactive-video .h5p-singlechoiceset-interaction:hover > .h5p-interaction-button,
+.h5p-interactive-video .h5p-summary-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-multichoice-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-blanks-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-dragquestion-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-markthewords-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-dragtext-interaction:focus > .h5p-interaction-button,
+.h5p-interactive-video .h5p-singlechoiceset-interaction:focus > .h5p-interaction-button {
   background: #661366;
+}
+
+.h5p-interactive-video .h5p-summary-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-multichoice-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-blanks-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-dragquestion-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-markthewords-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-dragtext-interaction:active > .h5p-interaction-button,
+.h5p-interactive-video .h5p-singlechoiceset-interaction:active > .h5p-interaction-button {
+  background: #4c0e4c;
+  box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
 }
 
 .h5p-interactive-video .h5p-summary-interaction > .h5p-interaction-button:before,
