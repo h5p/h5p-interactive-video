@@ -501,6 +501,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Update element size. This function is needed by the IV editor
+     *
+     * @param {number} width in ems
+     * @param {number} height in ems
+     */
+    self.setSize = function (width, height) {
+      parameters.width = width;
+      parameters.height = height;
+
+      H5P.trigger(instance, 'resize');
+    };
+
+    /**
      * Removes interaction from display.
      *
      * @param {boolean} [updateSize] Used when re-creating element
