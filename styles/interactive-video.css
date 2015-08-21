@@ -159,6 +159,7 @@
 .h5p-interactive-video .h5p-interaction-button:before {
   content: "\f055";
 }
+.h5p-interactive-video .h5p-interaction:focus .h5p-interaction-button,
 .h5p-interactive-video .h5p-interaction:hover .h5p-interaction-button {
   -webkit-box-shadow: 0 0.3em 0.25em 0 rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0.3em 0.25em 0 rgba(0, 0, 0, 0.5);
