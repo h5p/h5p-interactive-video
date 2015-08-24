@@ -25,7 +25,7 @@
                   "label": "Hide title on video start screen"
                 },
                 {
-                  "label": "Short description (Optional)"
+                  "label": "Short description (Optional)",
                   "description": "Optional. Display a short description text on the video start screen."
                 }
               ]
