@@ -574,15 +574,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       var instance = H5P.newRunnable(action, player.contentId);
 
+      var interactionCopyrights;
       if (instance !== undefined && instance.getCopyrights !== undefined) {
-        var interactionCopyrights = instance.getCopyrights();
-        if (interactionCopyrights !== undefined) {
-          interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
-          return interactionCopyrights;
-        }
-      } else if (instance !== undefined) {
-        return H5P.getCopyrights(instance, parameters, player.contentId);
+        interactionCopyrights = instance.getCopyrights();
       }
+      else if (instance !== undefined) {
+        interactionCopyrights = H5P.getCopyrights(instance, parameters, player.contentId);
+      }
+      if (interactionCopyrights !== undefined) {
+        interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
+        return interactionCopyrights;
+      }
+      return undefined;
     };
 
     // Create instance of content
