@@ -330,12 +330,6 @@
   overflow-y: hidden;
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-poster:hover > .h5p-interaction-overlay,
-.h5p-interactive-video .h5p-interaction.h5p-poster:focus > .h5p-interaction-overlay {
-  outline: 2px solid #0099ff;
-  outline-offset: -1px;
-}
-
 .h5p-interactive-video .h5p-interaction-overlay {
   position: absolute;
   left: 0;
