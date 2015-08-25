@@ -284,7 +284,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
       $dialog.css({
         top: (top / (containerHeight / 100)) + '%',
         left: (left / (containerWidth / 100)) + '%',
-        width: $dialog.width(),
+        width: window.getComputedStyle($dialog[0]).width,
         maxHeight: maxHeight
       });
       $inner.css('maxHeight', maxHeight - $titleBar.outerHeight(true));
