@@ -333,6 +333,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       ).showButton('iv-adaptivity-' + adaptivityId);
 
+      // Disable any input
+      if (instance.disableInput !== undefined &&
+          (instance.disableInput instanceof Function ||
+           typeof instance.disableInput === 'function')) {
+        instance.disableInput();
+      }
+
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
