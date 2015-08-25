@@ -691,6 +691,8 @@
 .h5p-interactive-video .h5p-dialog {
   position: absolute;
   width: auto;
+  min-width: 6.25em;
+  min-height: 4.6875em;
   margin: 1.25em;
   background: #fff;
   overflow: hidden;
