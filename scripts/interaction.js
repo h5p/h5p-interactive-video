@@ -222,7 +222,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Set link functionality on whole button
         if (player.editor === undefined) {
           $interaction.click(function () {
-            window.open(parameters.action.params.url);
+            window.open(instance.getUrl());
             player.pause();
             return false;
           });
