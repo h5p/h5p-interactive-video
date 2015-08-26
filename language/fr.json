@@ -8,58 +8,51 @@
           "fields": [
             {
               "label": "Fichiers vidéo",
-              "description": "Selectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
-            },
-            {
-              "label": "Poster image"
-            },
-            {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
-            },
-            {
-              "label": "Video start screen options",
-              "fields": [
-                {
-                  "label": "Hide title on video start screen"
-                },
-                {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
-                }
-              ]
+              "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
             },
             {
               "label": "Information sur le copyright de la vidéo",
+              "default": "Interactive Video",
               "description": "Information sur le copyright de la vidéo et de ses éléments."
-            }
-          ]
         },
         {
           "label": "Ajoute des interactions",
           "fields": [
             {
+                  "label": "Cacher le titre au début de la vidéo"
+                },
+                {
+                  "label": "Courte description (Optionel)",
+                  "description": "Optionel. Affiche une courte description au début de la vidéo."
+                }
+              ]
+            },
+            {
+              "label": "Copyright Video",
+              "description": "Information sur les droits d'utilisation de la vidéo."
+            }
+          ]
+        },
+        {
+          "label": "Ajouter une interaction",
+          "fields": [
+            {
               "field": {
                 "fields": [
                   {
-                    "label": "Montrer la durée"
+                    "label": "Montrer la durée",
+                    "fields": [
+                      {},
+                      {}
+                    ]
                   },
                   {
                     "label": "Pause",
                     "description": "Mettre la lecture en pause quand l'activité interactive est commencée."
                   },
                   {
-                    "label": "montrer comme",
-                    "description": "<b>Bouton</b> est une interaction effondré l'utilisateur doit appuyer sur pour ouvrir. <b>Affiche</b> est une interaction élargie affiché directement sur le dessus de la vidéo.",
-                    "options": [
-                      {
-                        "label": "Bouton"
-                      },
-                      {
-                        "label": "Affiche"
-                      }
-                    ]
+                    "label": "Montrer un bouton d'interaction",
+                    "description": "L'utilisateur doit démarrer l'élément interactif."
                   },
                   {
                     "label": "Texte",
@@ -114,13 +107,24 @@
                 ]
               }
             },
-            {}
+            {
+              "field": {
+                "fields": [
+                  {},
+                  {}
+                ]
+              }
+            }
           ]
         },
         {
           "label": "Résumé de l'exercice",
           "fields": [
-            {},
+            {
+              "default": {
+                "params": {}
+              }
+            },
             {
               "label": "Montrer à",
               "description": "Nombre de secondes avant la fin de la vidéo."
@@ -148,53 +152,37 @@
       ]
     },
     {
-      "label": "Localiser",
-      "fields": [
-        {
-          "label": "Titre de l'activité",
-          "default": "Activité"
-        },
-        {
-          "label": "Jouer le titre",
-          "default": "Lecture"
-        },
-        {
-          "label": "Pause",
-          "default": "Pause"
-        },
-        {
-          "label": "Couper le son",
-          "default": "Couper le son"
-        },
-        {
-          "label": "Remettre le son",
-          "default": "Remettre le son"
-        },
-        {
-          "label": "Qualité vidéo",
-          "default": "Qualité vidéo"
-        },
-        {
-          "label": "Plein écran",
-          "default": "Plein écran"
-        },
-        {
-          "label": "Sortir du plein écran",
-          "default": "Sortir du plein écran"
-        },
-        {
-          "label": "Résumé",
-          "default": "Résumé"
-        },
-        {
-          "label": "Favoris",
-          "default": "Favoris"
-        },
-        {
-          "label": "Texte du texte de recherche",
-          "default": "Rechercher"
-        }
-      ]
+      "label": "Titre de l'activité"
+    },
+    {
+      "label": "Jouer le titre"
+    },
+    {
+      "label": "Pause"
+    },
+    {
+      "label": "Couper le son"
+    },
+    {
+      "label": "Remettre le son"
+    },
+    {
+      "label": "Qualité vidéo"
+    },
+    {
+      "label": "Plein écran"
+    },
+    {
+      "label": "Sortir du plein écran"
+    },
+    {
+      "label": "Résumé"
+    },
+    {
+      "label": "Favoris"
+    },
+    {
+      "label": "Texte du texte de recherche"
     }
   ]
 }
