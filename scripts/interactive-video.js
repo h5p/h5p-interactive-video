@@ -59,7 +59,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     }
 
     // Listen for resize events to make sure we cover our container.
-    self.on('resize', function () {
+    self.on('resize', function () {
       self.resize();
     });
 
@@ -421,7 +421,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       }
 
       if (this.options.assets.interactions === undefined) {
-        this.options.assets.interactions = [];
+        this.options.assets.interactions = [];
       }
 
       this.options.assets.interactions.push({
@@ -679,14 +679,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
         return false;
       });
 
-      that.on('enterFullScreen', function () {
+      that.on('enterFullScreen', function () {
         if (that.$container !== undefined) {
           that.$container.parent('.h5p-content').css('height', '100%');
         }
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
         that.resizeInteractions();
       });
-      that.on('exitFullScreen', function () {
+      that.on('exitFullScreen', function () {
         if (that.$container !== undefined) {
           that.$container.parent('.h5p-content').css('height', 'auto');
         }

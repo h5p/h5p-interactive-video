@@ -45,7 +45,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var createButton = function () {
+    var createButton = function () {
       $interaction = $('<div/>', {
         tabIndex: 0,
         role: 'button',
@@ -55,7 +55,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           top: parameters.y + '%'
         },
         on: {
-          click: function () {
+          click: function () {
             if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
@@ -126,7 +126,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             height: action.params.file.height
           }, !player.isMobileView);
         }
-        else {
+        else {
           // Wait for image to load
           $img.load(function () {
             if ($img.is(':visible')) {
@@ -172,7 +172,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Object} size width,height in px
      * @param {Boolean} positionDialog position dialog if true
      */
-    var resizeImage = function ($img, max, size, positionDialog) {
+    var resizeImage = function ($img, max, size, positionDialog) {
       var fontSize = 16;
       size.width /= fontSize;
       size.height /= fontSize;
@@ -203,7 +203,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var createPoster = function () {
+    var createPoster = function () {
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + '',
         css: {
@@ -355,7 +355,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @returns {Object}
      */
-    self.getCurrentState = function () {
+    self.getCurrentState = function () {
       if (instance && (instance.getCurrentState instanceof Function ||
                        typeof instance.getCurrentState === 'function')) {
         return instance.getCurrentState();
@@ -536,7 +536,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Create a new instance of the interaction.
      * Useful if the input parameters have changes.
      */
-    self.reCreate = function () {
+    self.reCreate = function () {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
       }
