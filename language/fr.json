@@ -11,14 +11,15 @@
               "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
             },
             {
-              "label": "Information sur le copyright de la vidéo",
-              "default": "Interactive Video",
-              "description": "Information sur le copyright de la vidéo et de ses éléments."
-        },
-        {
-          "label": "Ajoute des interactions",
-          "fields": [
+              "label": "Affiche"
+            },
             {
+              "label": "Titre"
+            },
+            {
+              "label": "Ajoute des interactions",
+              "fields": [
+                {
                   "label": "Cacher le titre au début de la vidéo"
                 },
                 {
@@ -28,8 +29,8 @@
               ]
             },
             {
-              "label": "Copyright Video",
-              "description": "Information sur les droits d'utilisation de la vidéo."
+              "label": "Information sur le copyright de la vidéo",
+              "description": "Information sur le copyright de la vidéo et de ses éléments."
             }
           ]
         },
@@ -40,19 +41,23 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Montrer la durée",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "label": "Montrer la durée"
                   },
                   {
                     "label": "Pause",
                     "description": "Mettre la lecture en pause quand l'activité interactive est commencée."
                   },
                   {
-                    "label": "Montrer un bouton d'interaction",
-                    "description": "L'utilisateur doit démarrer l'élément interactif."
+                    "label": "Montrer comme",
+                    "description": "<b>Bouton</b> est une interaction effondré l'utilisateur doit appuyer sur pour ouvrir. <b>Affiche</b> est une interaction élargie affiché directement sur le dessus de la vidéo.",
+                    "options": [
+                      {
+                        "label": "Bouton"
+                      },
+                      {
+                        "label": "Affiche"
+                      }
+                    ]
                   },
                   {
                     "label": "Texte",
@@ -106,25 +111,13 @@
                   }
                 ]
               }
-            },
-            {
-              "field": {
-                "fields": [
-                  {},
-                  {}
-                ]
-              }
             }
           ]
         },
         {
           "label": "Résumé de l'exercice",
           "fields": [
-            {
-              "default": {
-                "params": {}
-              }
-            },
+            {},
             {
               "label": "Montrer à",
               "description": "Nombre de secondes avant la fin de la vidéo."
@@ -152,37 +145,42 @@
       ]
     },
     {
-      "label": "Titre de l'activité"
-    },
-    {
-      "label": "Jouer le titre"
-    },
-    {
-      "label": "Pause"
-    },
-    {
-      "label": "Couper le son"
-    },
-    {
-      "label": "Remettre le son"
-    },
-    {
-      "label": "Qualité vidéo"
-    },
-    {
-      "label": "Plein écran"
-    },
-    {
-      "label": "Sortir du plein écran"
-    },
-    {
-      "label": "Résumé"
-    },
-    {
-      "label": "Favoris"
-    },
-    {
-      "label": "Texte du texte de recherche"
+      "label": "Localiser",
+      "fields": [
+        {
+          "label": "Titre de l'activité"
+        },
+        {
+          "label": "Jouer le titre"
+        },
+        {
+          "label": "Pause"
+        },
+        {
+          "label": "Couper le son"
+        },
+        {
+          "label": "Remettre le son"
+        },
+        {
+          "label": "Qualité vidéo"
+        },
+        {
+          "label": "Plein écran"
+        },
+        {
+          "label": "Sortir du plein écran"
+        },
+        {
+          "label": "Résumé"
+        },
+        {
+          "label": "Favoris"
+        },
+        {
+          "label": "Texte du texte de recherche"
+        }
+      ]
     }
   ]
 }
