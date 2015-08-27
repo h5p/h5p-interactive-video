@@ -76,7 +76,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }).appendTo($interaction);
 
       $('<div/>', {
-        'class': 'h5p-interaction-button'
+        'class': 'h5p-interaction-button',
+        'aria-label': title
       }).appendTo($interaction);
 
       // Check to see if we should add label
@@ -456,6 +457,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       return $interaction;
+    };
+
+    self.setTitle = function (customTitle) {
+      if ($interaction) {
+        $interaction.attr('aria-label', customTitle);
+      }
+      title = customTitle;
     };
 
     /**
