@@ -433,9 +433,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           from: displayAt,
           to: duration
         },
+        displayType: 'button',
         bigDialog: true,
         className: 'h5p-summary-interaction h5p-end-summary',
-        label: this.l10n.summary,
+        label: '<p>' + this.l10n.summary + '</p>',
         mainSummary: true
       });
       this.initInteraction(this.options.assets.interactions.length - 1);
@@ -680,10 +681,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
 
       that.on('enterFullScreen', function () {
+        if (that.$container !== undefined) {
+          that.$container.parent('.h5p-content').css('height', '100%');
+        }
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
+        that.resizeInteractions();
       });
       that.on('exitFullScreen', function () {
+        if (that.$container !== undefined) {
+          that.$container.parent('.h5p-content').css('height', 'auto');
+        }
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
+        that.resizeInteractions();
       });
 
       // Video quality selector
@@ -891,9 +900,72 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
+    this.resizeMobileView();
     if (this.$splash !== undefined) {
       this.resizeStartScreen();
     }
+    this.resizeInteractions();
+  };
+
+  /**
+   * Determine if interactive video should be in mobile view.
+   */
+  InteractiveVideo.prototype.resizeMobileView = function () {
+    // IV not init
+    if (isNaN(this.currentState)) {
+      return;
+    }
+    // Width to font size ratio threshold
+    var widthToEmThreshold = 30;
+    var ivWidth = this.$container.width();
+    var fontSize = parseInt(this.$container.css('font-size'), 10);
+    var widthToEmRatio = ivWidth / fontSize;
+    if (widthToEmRatio < widthToEmThreshold) {
+      // Resize interactions in mobile view
+      this.resizeInteractions();
+
+      // Resize open dialog
+      this.dialog.resize();
+
+      if (!this.isMobileView) {
+        this.$container.addClass('mobile');
+        this.isMobileView = true;
+        this.recreateCurrentInteractions();
+        this.pause();
+      }
+    } else {
+      if (this.isMobileView) {
+        // Close dialog because we can not know if it will turn into a poster
+        this.dialog.close();
+        this.$container.removeClass('mobile');
+        this.isMobileView = false;
+        this.recreateCurrentInteractions();
+        this.pause();
+      }
+    }
+  };
+
+  /**
+   * Resize all interactions.
+   */
+  InteractiveVideo.prototype.resizeInteractions = function () {
+    // IV not init
+    if (isNaN(this.currentState)) {
+      return;
+    }
+
+    this.interactions.forEach(function (interaction) {
+      interaction.resizeInteraction();
+    });
+  };
+
+  /**
+   * Recreate currently
+   */
+  InteractiveVideo.prototype.recreateCurrentInteractions = function () {
+    this.interactions.forEach(function (interaction) {
+      interaction.reCreateInteraction();
+    });
   };
 
   /**
@@ -1014,6 +1086,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.trigger('enterFullScreen');
       }
     }
+    // Resize all interactions
+    this.resizeInteractions();
   };
 
   /**
