@@ -615,6 +615,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       return action.subContentId;
     };
 
+    /**
+     * Focus interaction element
+     */
+    self.focus = function () {
+      $interaction.focus();
+    };
+
     // Create instance of content
     self.reCreate();
   }

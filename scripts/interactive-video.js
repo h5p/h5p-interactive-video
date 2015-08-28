@@ -254,8 +254,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Controls
     this.$controls = $container.children('.h5p-controls').hide();
 
-    this.dnb = new DragNBar([], this.$videoWrapper, false);
     if (this.editor === undefined) {
+      this.dnb = new DragNBar([], this.$videoWrapper, false);
       // Pause video when opening dialog
       this.dnb.dialog.on('open', function () {
         // Keep track of last state
@@ -275,7 +275,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
     else {
-      this.dnb.dialog.disableOverlay = true;
+      this.on('dnbEditorReady', function () {
+        this.dnb = this.editor.dnb;
+        this.dnb.dialog.disableOverlay = true;
+      });
     }
 
     if (this.currentState === InteractiveVideo.LOADED) {
