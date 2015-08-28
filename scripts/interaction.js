@@ -76,8 +76,30 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }).appendTo($interaction);
 
       $('<div/>', {
-        'class': 'h5p-interaction-button'
+        'class': 'h5p-interaction-button',
+        'aria-label': title
       }).appendTo($interaction);
+
+      // Show label in editor on hover
+      if (player.editor) {
+        $interaction.hover(function () {
+          if (!$interaction.is(':focus')) {
+            player.editor.showInteractionTitle(title, $interaction);
+          } else {
+
+            // Hide if interaction is focused, because of coordinates picker
+            player.editor.hideInteractionTitle();
+          }
+        }, function () {
+
+          // Hide on hover out
+          player.editor.hideInteractionTitle();
+        }).focus(function () {
+
+          // Hide on focus, because of coord picker
+          player.editor.hideInteractionTitle();
+        });
+      }
 
       // Check to see if we should add label
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
@@ -456,6 +478,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       return $interaction;
+    };
+
+    self.setTitle = function (customTitle) {
+      if ($interaction) {
+        $interaction.attr('aria-label', customTitle);
+      }
+      title = customTitle;
     };
 
     /**
