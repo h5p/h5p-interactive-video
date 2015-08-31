@@ -15,7 +15,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label;
+    var $interaction, $label, $inner;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -133,7 +133,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($dialogContent);
 
       // Open dialog
-      player.dnb.dialog.open($dialogContent);
+      player.dnb.dialog.open($dialogContent, title);
       player.dnb.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
@@ -295,8 +295,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                   player.dnb.dialog.close();
                 }
                 // Remove interaction posters
-                player.dnb.removeElement(action.subContentId);
-                $interaction.remove();
+                $interaction.detach();
               }
 
               // Do not play if player is at the end, state 0 = ENDED
