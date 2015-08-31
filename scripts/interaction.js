@@ -83,7 +83,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Show label in editor on hover
       if (player.editor) {
         $interaction.hover(function () {
-          if (!$interaction.is(':focus') && !player.dnb.newElement) {
+          if (!$interaction.is('.focused') && !$interaction.is(':focus') && !player.dnb.newElement) {
             player.editor.showInteractionTitle(title, $interaction);
           } else {
 
@@ -458,7 +458,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       else {
         createPoster();
       }
-      player.dnb.add($interaction, self.getSubcontentId(), {disableContextMenu: true});
+      if (player.editor === undefined) {
+        player.dnb.add($interaction, self.getSubcontentId(), {disableContextMenu: true});
+      }
 
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {

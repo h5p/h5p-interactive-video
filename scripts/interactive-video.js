@@ -275,9 +275,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
     else {
-      this.on('dnbEditorReady', function () {
-        this.dnb = this.editor.dnb;
-        this.dnb.dialog.disableOverlay = true;
+      that.on('dnbEditorReady', function () {
+        that.dnb = that.editor.dnb;
+        that.dnb.dialog.disableOverlay = true;
       });
     }
 
@@ -841,6 +841,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Resize the video to fit the wrapper.
    */
   InteractiveVideo.prototype.resize = function () {
+    var self = this;
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
@@ -900,10 +901,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
-    this.resizeMobileView();
-    if (this.$splash !== undefined) {
-      this.resizeStartScreen();
+    if (!this.editor) {
+      this.resizeMobileView();
+      if (this.$splash !== undefined) {
+        this.resizeStartScreen();
+      }
     }
+
     this.resizeInteractions();
   };
 
@@ -924,9 +928,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Resize interactions in mobile view
       this.resizeInteractions();
 
-      // Resize open dialog
-      this.dialog.resize();
-
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
@@ -936,7 +937,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     } else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
-        this.dialog.close();
+        if (this.dnb && this.dnb.dialog) {
+          this.dnb.dialog.close();
+        }
         this.$container.removeClass('mobile');
         this.isMobileView = false;
         this.recreateCurrentInteractions();
