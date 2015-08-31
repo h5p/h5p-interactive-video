@@ -295,7 +295,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                   player.dnb.dialog.close();
                 }
                 // Remove interaction posters
-                player.dnb.removeElement($interaction);
+                player.dnb.removeElement(action.subContentId);
                 $interaction.remove();
               }
 
@@ -459,6 +459,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       else {
         createPoster();
       }
+      player.dnb.add($interaction, self.getSubcontentId(), {disableContextMenu: true});
 
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {
@@ -641,7 +642,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Focus interaction element
      */
     self.focus = function () {
-      $interaction.focus();
+      if ($interaction) {
+        $interaction.focus();
+      }
     };
 
     // Create instance of content
