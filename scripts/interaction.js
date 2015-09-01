@@ -644,6 +644,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Returns interaction element
+     * @returns {*}
+     */
+    self.getElement = function () {
+      return $interaction;
+    };
+
+    /**
      * Focus interaction element
      */
     self.focus = function () {
