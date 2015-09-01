@@ -538,6 +538,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.setPosition = function (x, y) {
       parameters.x = x;
       parameters.y = y;
+      $interaction.css({
+        'left': x + '%',
+        'top': y + '%'
+      });
     };
 
     /**
