@@ -588,10 +588,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Set dnb element for interaction, connecting it to a dialog/form
      *
-     * @param {H5P.DragNBarElement} dnbElement
+     * @param {H5P.DragNBarElement} newDnbElement
+     * @returns {Boolean} True if a new DragNBarElement was set.
      */
     self.setDnbElement = function (newDnbElement) {
+      if (dnbElement === newDnbElement) {
+        return false;
+      }
       dnbElement = newDnbElement;
+      return true;
     };
 
     /**
