@@ -40,6 +40,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Only register listeners once
     var hasRegisteredListeners = false;
 
+    // Keep track of DragNBarElement and related dialog/form
+    var dnbElement;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -443,6 +446,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (second < parameters.duration.from || second > parameters.duration.to) {
         if ($interaction) {
           // Remove interaction from display
+          if (dnbElement) {
+            dnbElement.hideContextMenu();
+          }
           self.remove();
         }
         return;
@@ -459,7 +465,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         createPoster();
       }
       if (player.editor === undefined) {
-        player.dnb.add($interaction, self.getSubcontentId(), {disableContextMenu: true});
+        dnbElement = player.dnb.add($interaction, {dnbElement: dnbElement, disableContextMenu: true});
       }
 
       // Make sure listeners are only registered once
@@ -564,9 +570,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.remove = function (updateSize) {
       if ($interaction) {
-        if (player.editor !== undefined) {
-          player.editor.dnb.removeElement(action.subContentId);
-        }
         $interaction.detach();
         $interaction = undefined;
       }
@@ -580,6 +583,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
       }
+    };
+
+    /**
+     * Set dnb element for interaction, connecting it to a dialog/form
+     *
+     * @param {H5P.DragNBarElement} dnbElement
+     */
+    self.setDnbElement = function (newDnbElement) {
+      dnbElement = newDnbElement;
     };
 
     /**
