@@ -43,16 +43,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of DragNBarElement and related dialog/form
     var dnbElement;
 
+    // Keep track of interaction element state
+    var isShownAsButton = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
      * @private
      */
     var createButton = function () {
+      var hiddenClass = isShownAsButton ? '' : ' h5p-hidden';
       $interaction = $('<div/>', {
         tabIndex: 0,
         role: 'button',
-        'class': 'h5p-interaction ' + classes + ' h5p-hidden',
+        'class': 'h5p-interaction ' + classes + hiddenClass,
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%'
@@ -230,7 +234,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createPoster = function () {
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction h5p-poster ' + classes + '',
+        'class': 'h5p-interaction h5p-poster ' + classes,
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
@@ -443,6 +447,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {H5P.jQuery} interaction button or container
      */
     self.toggle = function (second) {
+      second = Math.floor(second);
       if (second < parameters.duration.from || second > parameters.duration.to) {
         if ($interaction) {
           // Remove interaction from display
@@ -460,9 +465,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (self.isButton() || player.isMobileView) {
         createButton();
+        isShownAsButton = true;
       }
       else {
         createPoster();
+        isShownAsButton = false;
       }
       if (player.editor === undefined) {
         dnbElement = player.dnb.add($interaction, {dnbElement: dnbElement, disableContextMenu: true});
