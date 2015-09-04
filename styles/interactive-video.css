@@ -845,10 +845,6 @@
   border-bottom: 0;
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-nil-interaction {
-  z-index: auto;
-}
-
 .h5p-interactive-video .h5p-nil-interaction > .h5p-interaction-button {
   display: none;
 }
