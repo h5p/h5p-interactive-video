@@ -1,12 +1,13 @@
-/** @namespace H5P */
 H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
   /**
    * Keeps control of interactions in the interactive video.
    *
-   * @class
+   * @class H5P.InteractiveVideoInteraction
+   * @extends H5P.EventDispatcher
    * @param {Object} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
+   * @param {Object} previousState
    */
   function Interaction(parameters, player, previousState) {
     var self = this;
@@ -14,7 +15,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label, $continueButton;
+    var $interaction, $label;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -36,12 +37,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of content instance
     var instance;
 
+    // Only register listeners once
+    var hasRegisteredListeners = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
      * @private
      */
-    var createButton = function () {
+    var createButton = function () {
       $interaction = $('<div/>', {
         tabIndex: 0,
         role: 'button',
@@ -51,7 +55,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           top: parameters.y + '%'
         },
         on: {
-          click: function () {
+          click: function () {
             if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
@@ -65,9 +69,37 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
       });
+
+      // Touch area for button
       $('<div/>', {
-        'class': 'h5p-interaction-button'
+        'class': 'h5p-touch-area'
       }).appendTo($interaction);
+
+      $('<div/>', {
+        'class': 'h5p-interaction-button',
+        'aria-label': title
+      }).appendTo($interaction);
+
+      // Show label in editor on hover
+      if (player.editor) {
+        $interaction.hover(function () {
+          if (!$interaction.is(':focus')) {
+            player.editor.showInteractionTitle(title, $interaction);
+          } else {
+
+            // Hide if interaction is focused, because of coordinates picker
+            player.editor.hideInteractionTitle();
+          }
+        }, function () {
+
+          // Hide on hover out
+          player.editor.hideInteractionTitle();
+        }).focus(function () {
+
+          // Hide on focus, because of coord picker
+          player.editor.hideInteractionTitle();
+        });
+      }
 
       // Check to see if we should add label
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
@@ -94,17 +126,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var openDialog = function () {
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
-        'class': 'h5p-dialog-interaction'
+        'class': 'h5p-dialog-interaction h5p-frame'
       });
 
       // Attach instance to dialog and open
       instance.attach($dialogContent);
-      player.dialog.open($dialogContent);
+
+      // Open dialog
+      player.dialog.open($dialogContent, title);
       player.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
-        var max = player.dialog.getMaxSize($interaction);
+        var max = player.dialog.getMaxSize($interaction, player.isMobileView);
 
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
@@ -112,16 +146,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           resizeImage($img, max, {
             width: action.params.file.width,
             height: action.params.file.height
-          });
+          }, !player.isMobileView);
         }
-        else {
+        else {
           // Wait for image to load
           $img.load(function () {
             if ($img.is(':visible')) {
               resizeImage($img, max, {
                 width: this.width,
                 height: this.height
-              });
+              }, !player.isMobileView);
             }
           });
           player.dialog.position($interaction);
@@ -146,18 +180,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-     processInstance($dialogContent, instance);
+      setTimeout(function () {
+        H5P.trigger(instance, 'resize');
+      }, 0);
     };
 
     /**
      * Resize the image so that it fits the available dialog space.
      *
      * @private
-     * @param {jQuery} $img
+     * @param {H5P.jQuery} $img
      * @param {Object} max width,height in em
      * @param {Object} size width,height in px
+     * @param {Boolean} positionDialog position dialog if true
      */
-    var resizeImage = function ($img, max, size) {
+    var resizeImage = function ($img, max, size, positionDialog) {
       var fontSize = 16;
       size.width /= fontSize;
       size.height /= fontSize;
@@ -177,8 +214,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         height: (size.height * fontSizeRatio) + 'em'
       });
 
-      // Set dialog size and position
-      player.dialog.position($interaction, size);
+      if (positionDialog) {
+        // Set dialog size and position
+        player.dialog.position($interaction, size);
+      }
     };
 
     /**
@@ -186,7 +225,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var createPoster = function () {
+    var createPoster = function () {
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + '',
         css: {
@@ -196,74 +235,46 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           height: (parameters.height ? parameters.height : 10) + 'em'
         }
       });
+
+      // Reset link interaction dimensions
+      if (library === 'H5P.Link') {
+        $interaction.css('height', 'auto');
+        $interaction.css('width', 'auto');
+
+        // Set link functionality on whole button
+        if (player.editor === undefined) {
+          $interaction.click(function () {
+            window.open(parameters.action.params.url);
+            player.pause();
+            return false;
+          });
+        }
+      }
+
       $inner = $('<div/>', {
-        'class': 'h5p-interaction-inner'
+        'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($interaction);
       instance.attach($inner);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
 
-      processInstance($inner, instance);
-    };
-
-    var processInstance = function ($target, instance) {
-      // Resize on next tick
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
-      H5P.on(instance, 'xAPI', function (event) {
-        if (event.getVerb() !== 'completed' ||
-            !event.getMaxScore() ||
-            event.getScore() === null) {
-          return;
-        }
-        self.score = event.getScore();
-        self.maxScore = event.getMaxScore();
-        self.trigger(event);
-        adaptivity($target);
-      });
-    };
-
-    /**
-     * Makes it easy to create buttons.
-     *
-     * @private
-     * @param {jQuery} $container Where to append the button
-     * @param {string} label Html
-     * @param {function} handler What to do when clicked
-     * @returns {jQuery}
-     */
-    var addButton = function ($container, label, handler) {
-      return H5P.JoubelUI.createButton({
-        tabIndex: 0,
-        role: 'button',
-        html: label,
-        on: {
-          click: function () {
-            handler();
-          },
-          keypress: function (event) {
-            if ((event.charCode || event.keyCode) === 32) {
-              handler(); // Buttons must react to space
-            }
-          }
-        },
-        appendTo: $container
-      });
     };
 
     /**
      * Adds adaptivity or continue button to exercies.
      *
      * @private
-     * @param {jQuery} $target
+     * @param {H5P.jQuery} $target
      */
     var adaptivity = function ($target) {
 
-      var adaptivity;
+      var adaptivity, fullScore;
       if (parameters.adaptivity) {
-        var fullScore = self.score >= self.maxScore;
+        fullScore = self.score >= self.maxScore;
 
         // Determine adaptivity
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
@@ -271,41 +282,29 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (!adaptivity || adaptivity.seekTo === undefined) {
         // Add continue button if no adaptivity
-        if (!$continueButton) {
-          // Try to find suitable container
-          var $container = $target.find('.h5p-show-solution-container'); // MC
-          if (!$container.length) {
-            $container = $target.find('.h5p-button-bar'); // B
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-drag-button-bar'); // DW
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-sc-set-results'); // SC
-          }
-          if (!$container.length) {
-            $container = $target.find('.h5p-inner:first'); // DD
-          }
-          if ($container.length) {
-            $continueButton = addButton($container, player.l10n.defaultAdaptivitySeekLabel, function () {
+        if (instance.hasButton !== undefined) {
+          if (!instance.hasButton('iv-continue')) {
+            // Register continue button
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
               if (self.isButton()) {
                 // Close dialog
                 player.dialog.close();
-              }
-              else {
+              } else {
+                if (player.isMobileView) {
+                  player.dialog.close();
+                }
                 // Remove interaction posters
                 $interaction.remove();
               }
-
-              // Remove continue button
-              $continueButton.remove();
-              $continueButton = undefined;
 
               // Do not play if player is at the end, state 0 = ENDED
               if (player.currentState !== 0) {
                 player.play();
               }
             });
+          }
+          else {
+            instance.showButton('iv-continue');
           }
         }
 
@@ -327,41 +326,58 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
-      // Detach interaction elements to keep their bindings/events
-      $target.children().detach();
+      var adaptivityId = (fullScore ? 'correct' : 'wrong');
+      var adaptivityLabel = adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel;
 
-      // Replace interaction with adaptivity screen
-      var $adap = $('<div/>', {
-        'class': 'h5p-iv-adap',
-        html: adaptivity.message,
-        appendTo: $target
-      });
-
-      // Add continue button
-      addButton($adap, (adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel), function () {
-        if (self.isButton()) {
-          player.dialog.close();
-        }
-        if (!adaptivity.allowOptOut) {
-          if (!self.isButton()) {
-            player.dialog.closeOverlay();
-            $interaction.css('zIndex', '');
+      // add and show adaptivity button, hide continue button
+      instance.hideButton('iv-continue')
+        .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
+          if (self.isButton() || player.isMobileView) {
+            player.dialog.close();
           }
-        }
+          if (!adaptivity.allowOptOut) {
+            if (!self.isButton()) {
+              player.dialog.closeOverlay();
+              $interaction.css('zIndex', '');
+            }
+          }
 
-        self.remove();
-        player.seek(adaptivity.seekTo);
-        player.play();
-      });
+          // Reset interaction
+          instance.hideButton('iv-adaptivity-' + adaptivityId);
+          if (!fullScore && instance.resetTask) {
+            instance.resetTask();
+          }
+
+          // Remove interaction
+          self.remove();
+          player.seek(adaptivity.seekTo);
+          player.play();
+        }
+      ).showButton('iv-adaptivity-' + adaptivityId);
+
+      // Disable any input
+      if (instance.disableInput !== undefined &&
+          (instance.disableInput instanceof Function ||
+           typeof instance.disableInput === 'function')) {
+        instance.disableInput();
+      }
+
+      // Wait for any modifications Question does to feedback and buttons
+      setTimeout(function () {
+        // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
+        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true)
+          .hideButton('check-answer')
+          .hideButton('show-solution')
+          .hideButton('try-again');
+      }, 0);
     };
 
     /**
      * Extract the current state of interactivity for serialization.
      *
-     * @public
-     * @returns {object}
+     * @returns {Object}
      */
-    self.getCurrentState = function () {
+    self.getCurrentState = function () {
       if (instance && (instance.getCurrentState instanceof Function ||
                        typeof instance.getCurrentState === 'function')) {
         return instance.getCurrentState();
@@ -371,8 +387,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Checks to see if the interaction should pause the video.
      *
-     * @public
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     self.pause = function () {
       return parameters.pause;
@@ -381,13 +396,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Check to see if interaction should be displayed as button.
      *
-     * @public
-     * @returns {Boolean}
+     * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayAsButton === undefined || parameters.displayAsButton || library === 'H5P.Nil';
+      return parameters.displayType === 'button' || library === 'H5P.Nil';
     };
 
+    /**
+     * Checks if this is the end summary.
+     *
+     * @returns {boolean}
+     */
     self.isMainSummary = function() {
       return parameters.mainSummary === true;
     };
@@ -396,8 +415,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Create dot for displaying above the video timeline.
      * Append to given container.
      *
-     * @public
-     * @param {jQuery} $container
+     * @param {H5P.jQuery} $container
      */
     self.addDot = function ($container) {
       if (library === 'H5P.Nil') {
@@ -417,9 +435,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Display or remove the interaction depending on the video time.
      *
-     * @public
-     * @param {Number} second video time
-     * @returns {jQuery} interaction button or container
+     * @param {number} second video time
+     * @returns {H5P.jQuery} interaction button or container
      */
     self.toggle = function (second) {
       if (second < parameters.duration.from || second > parameters.duration.to) {
@@ -434,21 +451,68 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      if (self.isButton()) {
+      if (self.isButton() || player.isMobileView) {
         createButton();
       }
       else {
         createPoster();
       }
 
+      // Make sure listeners are only registered once
+      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
+        instance.on('xAPI', function (event) {
+          if (!event.getMaxScore() ||
+            event.getScore() === null) {
+            return;
+          }
+          if (event.getVerb() === 'completed' ||
+            event.getVerb() === 'answered') {
+            self.score = event.getScore();
+            self.maxScore = event.getMaxScore();
+            self.trigger(event);
+            adaptivity($interaction);
+          }
+        });
+
+        hasRegisteredListeners = true;
+      }
+
       return $interaction;
+    };
+
+    self.setTitle = function (customTitle) {
+      if ($interaction) {
+        $interaction.attr('aria-label', customTitle);
+      }
+      title = customTitle;
+    };
+
+    /**
+     * Recreate interactions. Useful when an interaction or view has changed.
+     */
+    self.reCreateInteraction = function () {
+      // Only recreate existing interactions
+      if ($interaction) {
+        $interaction.detach();
+
+        if (self.isButton() || player.isMobileView) {
+          createButton();
+        } else {
+          createPoster();
+        }
+      }
+    };
+
+    self.resizeInteraction = function () {
+      if (library !== 'H5P.Nil') {
+        H5P.trigger(instance, 'resize');
+      }
     };
 
     /**
      * Position label to the left or right of the action button.
      *
-     * @public
-     * @param {Number} width Size of the container
+     * @param {number} width Size of the container
      */
     self.positionLabel = function (width) {
       if (!$interaction || !self.isButton() || !$label || library === 'H5P.Nil') {
@@ -464,9 +528,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Update element position.
      *
-     * @public
-     * @param {Number} x left
-     * @param {Number} y top
+     * @param {number} x left
+     * @param {number} y top
      */
     self.setPosition = function (x, y) {
       parameters.x = x;
@@ -474,21 +537,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-     * Update element size.
+     * Update element size. This function is needed by the IV editor
      *
-     * @public
-     * @param {Number} width in ems
-     * @param {Number} height in ems
+     * @param {number} width in ems
+     * @param {number} height in ems
      */
     self.setSize = function (width, height) {
       parameters.width = width;
       parameters.height = height;
-
-      if (library === 'H5P.DragQuestion') {
-        // Re-create element to set new size
-        self.remove(true);
-        self.toggle(parameters.from);
-      }
 
       H5P.trigger(instance, 'resize');
     };
@@ -496,28 +552,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     /**
      * Removes interaction from display.
      *
-     * @public
-     * @param {Boolean} [updateSize] Used when re-creating element
+     * @param {boolean} [updateSize] Used when re-creating element
      */
     self.remove = function (updateSize) {
       if ($interaction) {
-        if (updateSize && library === 'H5P.DragQuestion') {
-          // Update size
-          var size = action.params.question.settings.size;
-          var fontSize = Number($interaction.css('fontSize').replace('px', ''));
-          if (self.isButton()) {
-            // Update element size with drag question parameters
-            parameters.width = size.width / fontSize;
-            parameters.height = size.height / fontSize;
-          }
-          else {
-            // Update drag question parameters with size set on element
-            size.width = Math.round(parameters.width * fontSize);
-            size.height = Math.round(parameters.height * fontSize);
-          }
-        }
-
-        $interaction.remove();
+        $interaction.detach();
         $interaction = undefined;
       }
     };
@@ -526,24 +565,42 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Create a new instance of the interaction.
      * Useful if the input parameters have changes.
      */
-    self.reCreate = function () {
+    self.reCreate = function () {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
       }
     };
 
     /**
-     * @public
-     * @returns {String}
+     * Gets the name of the library used in the interaction.
+     *
+     * @returns {string}
      */
     self.getLibraryName = function () {
       return library;
     };
 
     /**
+     * Returns the human readable label for the interaction.
+     *
+     * @returns {string}
+     */
+    self.getTitle = function () {
+      return title;
+    };
+
+    /**
+     * Get HTML class name
+     *
+     * @returns {string}
+     */
+    self.getClass = function () {
+      return classes;
+    };
+
+    /**
      * Collect copyright information for the interaction.
      *
-     * @public
      * @returns {H5P.ContentCopyrights}
      */
     self.getCopyrights = function () {
@@ -554,30 +611,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var instance = H5P.newRunnable(action, player.contentId);
 
       var interactionCopyrights;
-      if (instance.getCopyrights !== undefined) {
-        // Use the instance's own copyright generator
+      if (instance !== undefined && instance.getCopyrights !== undefined) {
         interactionCopyrights = instance.getCopyrights();
       }
-      if (interactionCopyrights === undefined) {
-        // Create a generic flat copyright list
-        interactionCopyrights = new H5P.ContentCopyrights();
-        H5P.findCopyrights(interactionCopyrights, action.params, player.contentId);
+      else if (instance !== undefined) {
+        interactionCopyrights = H5P.getCopyrights(instance, parameters, player.contentId);
       }
-
-      var label;
-      if (action.params.contentName !== undefined) {
-        label = action.params.contentName;
+      if (interactionCopyrights !== undefined) {
+        interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
+        return interactionCopyrights;
       }
-      else if (instance.getTitle !== undefined) {
-        label = instance.getTitle();
-      }
-      else {
-        label = player.l10n.interaction;
-      }
-      label += ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to);
-      interactionCopyrights.setLabel(label);
-
-      return interactionCopyrights;
+      return undefined;
     };
 
     // Create instance of content
@@ -588,7 +632,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
   Interaction.prototype = Object.create(EventDispatcher.prototype);
   Interaction.prototype.constructor = Interaction;
 
-  // Tool for converting
+  /**
+   * Tool for converting.
+   *
+   * @private
+   * @type {H5P.jQuery}
+   */
   var $converter = $('<div/>');
 
   return Interaction;

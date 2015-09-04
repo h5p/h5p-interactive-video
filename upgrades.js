@@ -12,7 +12,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * properties to the video, i.e. a bookmark list
        *
        * @params {Object} parameters
-       * @params {Function} finished
+       * @params {function} finished
        */
       1: function (parameters, finished) {
 
@@ -35,7 +35,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * to the summary task, i.e. when to display the task.
        *
        * @params {Object} parameters
-       * @params {Function} finished
+       * @params {function} finished
        */
       3: function (parameters, finished) {
 
@@ -48,6 +48,16 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         // Done
         finished(null, parameters);
       },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.5.
+       *
+       * Adds unique identifiers to sub content?
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
       5: function (parameters, finished) {
         if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
@@ -62,6 +72,39 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
             }
           }
         }
+        finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.7.
+       *
+       * Groups all UI text strings to make them eaiser to translate and handle.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      7: function (parameters, finished) {
+        parameters.l10n = {};
+
+        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel'];
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[i];
+          if (parameters.hasOwnProperty(key)) {
+            parameters.l10n[key] = parameters[key];
+            delete parameters[key];
+          }
+        }
+
+        /* Move displayAsButton to displayType  */
+        if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+          var interactions = parameters.interactiveVideo.assets.interactions;
+          for (var i = 0; i < interactions.length; i++) {
+            interactions[i].displayType = (interactions[i].displayAsButton === undefined || interactions[i].displayAsButton) ? 'button' : 'poster';
+            delete interactions[i].displayAsButton;
+          }
+        }
+
         finished(null, parameters);
       }
     }

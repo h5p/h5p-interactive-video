@@ -11,6 +11,9 @@
               "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
+              "label": "الملصق"
+            },
+            {
               "label": "The title of this interactive video",
               "default": "Interactive Video",
               "description": "Used in summaries, statistics etc."
@@ -47,12 +50,19 @@
                     ]
                   },
                   {
-                    "label": "إيقاف مؤقت",
-                    "description": "تعيين تشغيل على وقفة عند الوصول إلى هذا التفاعل"
+                    "label": "إيقاف مؤقت"
                   },
                   {
-                    "label": "عرض الزر كحلقه تبادلية",
-                    "description": "الزام المستخدم لفتح التفاعل"
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
                   },
                   {
                     "label": "التسمية",
@@ -152,37 +162,42 @@
       ]
     },
     {
-      "label": "عنوان التفاعل"
-    },
-    {
-      "label": "لقب التشغيل"
-    },
-    {
-      "label": "عنوان إيقاف مؤقت"
-    },
-    {
-      "label": "عنوان كتم الصوت"
-    },
-    {
-      "label": "عنوان عدم كتمان الصوت"
-    },
-    {
-      "label": "عنوان جودة الفيديو"
-    },
-    {
-      "label": "عنوان ملء الشاشة"
-    },
-    {
-      "label": "عنوان الخروج ملء الشاشة"
-    },
-    {
-      "label": "عنوان الملخص"
-    },
-    {
-      "label": "عنوان الإشارات المرجعية"
-    },
-    {
-      "label": "التسمية الافتراضية لقابلية التكيف زر السعى"
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "عنوان التفاعل"
+        },
+        {
+          "label": "لقب التشغيل"
+        },
+        {
+          "label": "عنوان إيقاف مؤقت"
+        },
+        {
+          "label": "عنوان كتم الصوت"
+        },
+        {
+          "label": "عنوان عدم كتمان الصوت"
+        },
+        {
+          "label": "عنوان جودة الفيديو"
+        },
+        {
+          "label": "عنوان ملء الشاشة"
+        },
+        {
+          "label": "عنوان الخروج ملء الشاشة"
+        },
+        {
+          "label": "عنوان الملخص"
+        },
+        {
+          "label": "عنوان الإشارات المرجعية"
+        },
+        {
+          "label": "التسمية الافتراضية لقابلية التكيف زر السعى"
+        }
+      ]
     }
   ]
 }

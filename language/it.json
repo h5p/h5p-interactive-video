@@ -11,6 +11,9 @@
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilit� dei browser � consigliato utilizzare i formati video WebM o MP4."
             },
             {
+              "label": "Poster"
+            },
+            {
               "label": "The title of this interactive video",
               "default": "Interactive Video",
               "description": "Used in summaries, statistics etc."
@@ -47,12 +50,19 @@
                     ]
                   },
                   {
-                    "label": "Pausa",
-                    "description": "Impostare la riproduzione in pausa quando questa interazione viene toccata."
+                    "label": "Pausa"
                   },
                   {
-                    "label": "Visualizza come pulsante interattivo",
-                    "description": "L'utente deve aprire l'interazione."
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
                   },
                   {
                     "label": "Etchetta",
@@ -152,37 +162,42 @@
       ]
     },
     {
-      "label": "Titolo Interazione"
-    },
-    {
-      "label": "Titolo Play"
-    },
-    {
-      "label": "Titolo Pausa"
-    },
-    {
-      "label": "Titolo modalit� muto"
-    },
-    {
-      "label": "Titolo disattiva modalit� muto"
-    },
-    {
-      "label": "Titolo qualit� Video"
-    },
-    {
-      "label": "Titolo Schermo intero"
-    },
-    {
-      "label": "Titolo Esci da Schermo intero"
-    },
-    {
-      "label": "Titolo Riepilogo"
-    },
-    {
-      "label": "Titolo Segnalibri"
-    },
-    {
-      "label": "Etichetta predefinita per adattabilit� pulsante Vai a"
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Titolo Interazione"
+        },
+        {
+          "label": "Titolo Play"
+        },
+        {
+          "label": "Titolo Pausa"
+        },
+        {
+          "label": "Titolo modalit� muto"
+        },
+        {
+          "label": "Titolo disattiva modalit� muto"
+        },
+        {
+          "label": "Titolo qualit� Video"
+        },
+        {
+          "label": "Titolo Schermo intero"
+        },
+        {
+          "label": "Titolo Esci da Schermo intero"
+        },
+        {
+          "label": "Titolo Riepilogo"
+        },
+        {
+          "label": "Titolo Segnalibri"
+        },
+        {
+          "label": "Etichetta predefinita per adattabilit� pulsante Vai a"
+        }
+      ]
     }
   ]
 }
