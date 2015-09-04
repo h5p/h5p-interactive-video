@@ -93,7 +93,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Show label in editor on hover
       if (player.editor) {
         $interaction.hover(function () {
-          if (!$interaction.is('.focused') && !$interaction.is(':focus') && !player.dnb.newElement) {
+          if ((!$interaction.is('.focused') && !$interaction.is(':focus')) &&
+              (!player.dnb || (player.dnb && !player.dnb.newElement))) {
             player.editor.showInteractionTitle(title, $interaction);
             isHovered = true;
           } else {
