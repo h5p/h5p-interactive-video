@@ -46,6 +46,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of interaction element state
     var isShownAsButton = false;
 
+    // Keep track of tooltip state
+    var isHovered = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -92,19 +95,23 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         $interaction.hover(function () {
           if (!$interaction.is('.focused') && !$interaction.is(':focus') && !player.dnb.newElement) {
             player.editor.showInteractionTitle(title, $interaction);
+            isHovered = true;
           } else {
 
             // Hide if interaction is focused, because of coordinates picker
             player.editor.hideInteractionTitle();
+            isHovered = false;
           }
         }, function () {
 
           // Hide on hover out
           player.editor.hideInteractionTitle();
+          isHovered = false;
         }).focus(function () {
 
           // Hide on focus, because of coord picker
           player.editor.hideInteractionTitle();
+          isHovered = false;
         });
       }
 
@@ -453,6 +460,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Remove interaction from display
           if (dnbElement) {
             dnbElement.hideContextMenu();
+          }
+          if (player.editor && isHovered) {
+            player.editor.hideInteractionTitle();
+            isHovered = false;
           }
           self.remove();
         }
