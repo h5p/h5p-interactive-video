@@ -211,10 +211,11 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
      *
      * @param {H5P.jQuery} $button
      * @param {Object} [size] Sets a size for the dialog, useful for images.
+     * @param {boolean} [medium] Sets a min. size for medium dialogs.
      */
-    self.position = function ($button, size) {
+    self.position = function ($button, size, medium) {
       resetPosition();
-      $dialog.removeClass('h5p-big');
+      $dialog.removeClass('h5p-big h5p-medium');
       var titleBarHeight = Number($inner[0].style.marginTop.replace('em', ''));
 
       if (size) {
@@ -231,6 +232,10 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
           width: 'auto',
           overflow: 'hidden'
         });
+      }
+
+      if (medium) {
+        $dialog.addClass('h5p-medium');
       }
 
       var buttonWidth = $button.outerWidth(true);
@@ -274,7 +279,7 @@ H5P.InteractiveVideoDialog = (function ($, EventDispatcher) {
         marginTop = 0;
       }
 
-      var top = buttonPosition.top + marginTop;
+      var top = (medium ? 0 : (buttonPosition.top + marginTop));
       var totalHeight = top + $dialog.outerHeight(true);
       if (totalHeight > containerHeight) {
         top -= totalHeight - containerHeight;
