@@ -1,4 +1,4 @@
-H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
+H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
    * Initialize a new interactive video.
@@ -257,12 +257,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     // Controls
     this.$controls = $container.children('.h5p-controls').hide();
 
-    // Create a popup dialog
-    this.dialog = new Dialog($container, this.$videoWrapper);
-
     if (this.editor === undefined) {
+      this.dnb = new DragNBar([], this.$videoWrapper, this.$container, false);
       // Pause video when opening dialog
-      this.dialog.on('open', function () {
+      this.dnb.dialog.on('open', function () {
         // Keep track of last state
         that.lastState = that.currentState;
 
@@ -273,14 +271,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       });
 
       // Resume playing when closing dialog
-      this.dialog.on('close', function () {
+      this.dnb.dialog.on('close', function () {
         if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
           that.video.play();
         }
       });
     }
     else {
-      this.dialog.disableOverlay = true;
+      that.on('dnbEditorReady', function () {
+        that.dnb = that.editor.dnb;
+        that.dnb.dialog.disableOverlay = true;
+      });
     }
 
     if (this.currentState === InteractiveVideo.LOADED) {
@@ -843,6 +844,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
    * Resize the video to fit the wrapper.
    */
   InteractiveVideo.prototype.resize = function () {
+    var self = this;
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
     // Resize the controls the first time we're visible
@@ -902,10 +904,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
 
     // Resize start screen
-    this.resizeMobileView();
-    if (this.$splash !== undefined) {
-      this.resizeStartScreen();
+    if (!this.editor) {
+      this.resizeMobileView();
+      if (this.$splash !== undefined) {
+        this.resizeStartScreen();
+      }
     }
+
     this.resizeInteractions();
   };
 
@@ -926,9 +931,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
       // Resize interactions in mobile view
       this.resizeInteractions();
 
-      // Resize open dialog
-      this.dialog.resize();
-
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
@@ -938,7 +940,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     } else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
-        this.dialog.close();
+        if (this.dnb && this.dnb.dialog) {
+          this.dnb.dialog.close();
+        }
         this.$container.removeClass('mobile');
         this.isMobileView = false;
         this.recreateCurrentInteractions();
@@ -1122,9 +1126,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
     if (second !== self.lastSecond) {
       self.toggleInteractions(second);
 
-      if (self.editor !== undefined && self.editor.dnb) {
-        self.editor.dnb.blur();
-      }
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second));
@@ -1339,4 +1340,4 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, Dialog, Interaction) {
   };
 
   return InteractiveVideo;
-})(H5P.jQuery, H5P.EventDispatcher, H5P.InteractiveVideoDialog, H5P.InteractiveVideoInteraction);
+})(H5P.jQuery, H5P.EventDispatcher, H5P.DragNBar, H5P.InteractiveVideoInteraction);

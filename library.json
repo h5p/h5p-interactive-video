@@ -4,7 +4,7 @@
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 7,
+  "minorVersion": 8,
   "patchVersion": 0,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel AS",
@@ -18,9 +18,6 @@
     "minorVersion": 6
   },
   "preloadedJs": [
-    {
-      "path": "scripts/dialog.js"
-    },
     {
       "path": "scripts/interaction.js"
     },
@@ -37,7 +34,7 @@
     {
       "machineName": "FontAwesome",
       "majorVersion": 4,
-      "minorVersion": 1
+      "minorVersion": 3
     },
     {
       "machineName": "jQuery.ui",
@@ -46,6 +43,11 @@
     },
     {
       "machineName": "H5P.Video",
+      "majorVersion": 1,
+      "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.DragNBar",
       "majorVersion": 1,
       "minorVersion": 1
     }
@@ -59,7 +61,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 7
+      "minorVersion": 8
     }
   ]
 }
