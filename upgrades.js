@@ -106,6 +106,29 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         }
 
         finished(null, parameters);
+      },
+
+      /**
+       * Upgrade links to always be displayed as poster
+       */
+      8: function (parameters, finished) {
+        console.log("what is parameters ?");
+        console.log(parameters);
+
+        if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+          var interactions = parameters.interactiveVideo.assets.interactions;
+          var i;
+          for (i = 0; i < interactions.length; i++) {
+            var interaction = interactions[i];
+
+            // Set links displayType to poster
+            if (interaction.action && interaction.action.library && interaction.action.library.split(' ')[0] === "H5P.Link") {
+              interaction.displayType = "poster";
+            }
+          }
+        }
+
+        finished(null, parameters);
       }
     }
   };
