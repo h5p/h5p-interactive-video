@@ -15,7 +15,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label;
+    var $interaction, $label, $inner;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -40,16 +40,26 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Only register listeners once
     var hasRegisteredListeners = false;
 
+    // Keep track of DragNBarElement and related dialog/form
+    var dnbElement;
+
+    // Keep track of interaction element state
+    var isShownAsButton = false;
+
+    // Keep track of tooltip state
+    var isHovered = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
      * @private
      */
     var createButton = function () {
+      var hiddenClass = isShownAsButton ? '' : ' h5p-hidden';
       $interaction = $('<div/>', {
         tabIndex: 0,
         role: 'button',
-        'class': 'h5p-interaction ' + classes + ' h5p-hidden',
+        'class': 'h5p-interaction ' + classes + hiddenClass,
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%'
@@ -76,8 +86,35 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }).appendTo($interaction);
 
       $('<div/>', {
-        'class': 'h5p-interaction-button'
+        'class': 'h5p-interaction-button',
+        'aria-label': title
       }).appendTo($interaction);
+
+      // Show label in editor on hover
+      if (player.editor) {
+        $interaction.hover(function () {
+          if ((!$interaction.is('.focused') && !$interaction.is(':focus')) &&
+              (!player.dnb || (player.dnb && !player.dnb.newElement))) {
+            player.editor.showInteractionTitle(title, $interaction);
+            isHovered = true;
+          } else {
+
+            // Hide if interaction is focused, because of coordinates picker
+            player.editor.hideInteractionTitle();
+            isHovered = false;
+          }
+        }, function () {
+
+          // Hide on hover out
+          player.editor.hideInteractionTitle();
+          isHovered = false;
+        }).focus(function () {
+
+          // Hide on focus, because of coord picker
+          player.editor.hideInteractionTitle();
+          isHovered = false;
+        });
+      }
 
       // Check to see if we should add label
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
@@ -111,12 +148,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($dialogContent);
 
       // Open dialog
-      player.dialog.open($dialogContent, title);
-      player.dialog.addLibraryClass(library);
+      player.dnb.dialog.open($dialogContent, title);
+      player.dnb.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
-        var max = player.dialog.getMaxSize($interaction, player.isMobileView);
+        var max = player.dnb.dialog.getMaxSize($interaction);
 
         var $img = $dialogContent.find('img');
         if (action.params.file.width && action.params.file.height) {
@@ -136,12 +173,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               }, !player.isMobileView);
             }
           });
-          player.dialog.position($interaction);
+          player.dnb.dialog.position($interaction);
         }
       }
       else if (!(library === 'H5P.Summary' || library === 'H5P.Blanks')) {
         // Only Summary and Blanks uses the dialog that covers the entire video
-        player.dialog.position($interaction);
+        player.dnb.dialog.position($interaction);
       }
 
       if (library === 'H5P.Summary') {
@@ -151,7 +188,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var height = $dialogContent.height();
           if (lastHeight > height + 10 || lastHeight < height - 10)  {
             setTimeout(function () {
-              player.dialog.scroll(height, 300);
+              player.dnb.dialog.scroll(height, 300);
             }, 500);
           }
           lastHeight = height;
@@ -194,7 +231,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (positionDialog) {
         // Set dialog size and position
-        player.dialog.position($interaction, size);
+        player.dnb.dialog.position($interaction, size);
       }
     };
 
@@ -205,7 +242,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var createPoster = function () {
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction h5p-poster ' + classes + '',
+        'class': 'h5p-interaction h5p-poster ' + classes,
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
@@ -266,13 +303,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
               if (self.isButton()) {
                 // Close dialog
-                player.dialog.close();
-              } else {
+                player.dnb.dialog.close();
+              }
+              else {
                 if (player.isMobileView) {
-                  player.dialog.close();
+                  player.dnb.dialog.close();
                 }
                 // Remove interaction posters
-                $interaction.remove();
+                $interaction.detach();
               }
 
               // Do not play if player is at the end, state 0 = ENDED
@@ -295,12 +333,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (!adaptivity.allowOptOut) {
         // Make sure only the interaction is useable.
         if (self.isButton()) {
-          player.dialog.disableOverlay = true;
-          player.dialog.hideCloseButton();
+          player.dnb.dialog.disableOverlay = true;
+          player.dnb.dialog.hideCloseButton();
         }
         else {
           $interaction.css('zIndex', 52);
-          player.dialog.openOverlay();
+          player.dnb.dialog.openOverlay();
         }
       }
 
@@ -311,11 +349,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
           if (self.isButton() || player.isMobileView) {
-            player.dialog.close();
+            player.dnb.dialog.close();
           }
           if (!adaptivity.allowOptOut) {
             if (!self.isButton()) {
-              player.dialog.closeOverlay();
+              player.dnb.dialog.closeOverlay();
               $interaction.css('zIndex', '');
             }
           }
@@ -332,6 +370,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.play();
         }
       ).showButton('iv-adaptivity-' + adaptivityId);
+
+      // Disable any input
+      if (instance.disableInput !== undefined &&
+          (instance.disableInput instanceof Function ||
+           typeof instance.disableInput === 'function')) {
+        instance.disableInput();
+      }
 
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
@@ -410,9 +455,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {H5P.jQuery} interaction button or container
      */
     self.toggle = function (second) {
+      second = Math.floor(second);
       if (second < parameters.duration.from || second > parameters.duration.to) {
         if ($interaction) {
           // Remove interaction from display
+          if (dnbElement) {
+            dnbElement.hideContextMenu();
+          }
+          if (player.editor && isHovered) {
+            player.editor.hideInteractionTitle();
+            isHovered = false;
+          }
           self.remove();
         }
         return;
@@ -424,9 +477,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       if (self.isButton() || player.isMobileView) {
         createButton();
+        isShownAsButton = true;
       }
       else {
         createPoster();
+        isShownAsButton = false;
+      }
+      if (player.editor === undefined) {
+        dnbElement = player.dnb.add($interaction, {dnbElement: dnbElement, disableContextMenu: true});
+      } else {
+        // Pause video when interaction is focused
+        $interaction.focus(function () {
+          player.pause();
+        });
       }
 
       // Make sure listeners are only registered once
@@ -449,6 +512,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       return $interaction;
+    };
+
+    self.setTitle = function (customTitle) {
+      if ($interaction) {
+        $interaction.attr('aria-label', customTitle);
+      }
+      title = customTitle;
     };
 
     /**
@@ -498,6 +568,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.setPosition = function (x, y) {
       parameters.x = x;
       parameters.y = y;
+      $interaction.css({
+        'left': x + '%',
+        'top': y + '%'
+      });
     };
 
     /**
@@ -533,6 +607,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
       }
+    };
+
+    /**
+     * Set dnb element for interaction, connecting it to a dialog/form
+     *
+     * @param {H5P.DragNBarElement} newDnbElement
+     * @returns {Boolean} True if a new DragNBarElement was set.
+     */
+    self.setDnbElement = function (newDnbElement) {
+      if (dnbElement === newDnbElement) {
+        return false;
+      }
+      dnbElement = newDnbElement;
+      return true;
     };
 
     /**
@@ -586,6 +674,31 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return interactionCopyrights;
       }
       return undefined;
+    };
+
+    /**
+     * Returns unique content id
+     * @returns {String} Sub content Id
+     */
+    self.getSubcontentId = function () {
+      return action.subContentId;
+    };
+
+    /**
+     * Returns interaction element
+     * @returns {*}
+     */
+    self.getElement = function () {
+      return $interaction;
+    };
+
+    /**
+     * Focus interaction element
+     */
+    self.focus = function () {
+      if ($interaction) {
+        $interaction.focus();
+      }
     };
 
     // Create instance of content

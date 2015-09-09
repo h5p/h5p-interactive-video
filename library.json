@@ -19,9 +19,6 @@
   },
   "preloadedJs": [
     {
-      "path": "scripts/dialog.js"
-    },
-    {
       "path": "scripts/interaction.js"
     },
     {
@@ -37,7 +34,7 @@
     {
       "machineName": "FontAwesome",
       "majorVersion": 4,
-      "minorVersion": 1
+      "minorVersion": 3
     },
     {
       "machineName": "jQuery.ui",
@@ -46,6 +43,11 @@
     },
     {
       "machineName": "H5P.Video",
+      "majorVersion": 1,
+      "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.DragNBar",
       "majorVersion": 1,
       "minorVersion": 1
     }

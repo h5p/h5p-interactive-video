@@ -8,25 +8,23 @@
           "fields": [
             {
               "label": "Fichiers vidéo",
-              "description": "Selectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
+              "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
             },
             {
-              "label": "Poster image"
+              "label": "Affiche"
             },
             {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
+              "label": "Titre"
             },
             {
-              "label": "Video start screen options",
+              "label": "Ajoute des interactions",
               "fields": [
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Cacher le titre au début de la vidéo"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "label": "Courte description (Optionel)",
+                  "description": "Optionel. Affiche une courte description au début de la vidéo."
                 }
               ]
             },
@@ -37,7 +35,7 @@
           ]
         },
         {
-          "label": "Ajoute des interactions",
+          "label": "Ajouter une interaction",
           "fields": [
             {
               "field": {
@@ -50,7 +48,7 @@
                     "description": "Mettre la lecture en pause quand l'activité interactive est commencée."
                   },
                   {
-                    "label": "montrer comme",
+                    "label": "Montrer comme",
                     "description": "<b>Bouton</b> est une interaction effondré l'utilisateur doit appuyer sur pour ouvrir. <b>Affiche</b> est une interaction élargie affiché directement sur le dessus de la vidéo.",
                     "options": [
                       {
@@ -113,8 +111,7 @@
                   }
                 ]
               }
-            },
-            {}
+            }
           ]
         },
         {
@@ -151,48 +148,37 @@
       "label": "Localiser",
       "fields": [
         {
-          "label": "Titre de l'activité",
-          "default": "Activité"
+          "label": "Titre de l'activité"
         },
         {
-          "label": "Jouer le titre",
-          "default": "Lecture"
+          "label": "Jouer le titre"
         },
         {
-          "label": "Pause",
-          "default": "Pause"
+          "label": "Pause"
         },
         {
-          "label": "Couper le son",
-          "default": "Couper le son"
+          "label": "Couper le son"
         },
         {
-          "label": "Remettre le son",
-          "default": "Remettre le son"
+          "label": "Remettre le son"
         },
         {
-          "label": "Qualité vidéo",
-          "default": "Qualité vidéo"
+          "label": "Qualité vidéo"
         },
         {
-          "label": "Plein écran",
-          "default": "Plein écran"
+          "label": "Plein écran"
         },
         {
-          "label": "Sortir du plein écran",
-          "default": "Sortir du plein écran"
+          "label": "Sortir du plein écran"
         },
         {
-          "label": "Résumé",
-          "default": "Résumé"
+          "label": "Résumé"
         },
         {
-          "label": "Favoris",
-          "default": "Favoris"
+          "label": "Favoris"
         },
         {
-          "label": "Texte du texte de recherche",
-          "default": "Rechercher"
+          "label": "Texte du texte de recherche"
         }
       ]
     }

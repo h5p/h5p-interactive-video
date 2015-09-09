@@ -50,7 +50,7 @@
   display: block;
   width: 100%;
   height: auto;
-        color: #fff;
+	color: #fff;
 }
 .h5p-interactive-video .h5p-video::-internal-media-controls-overlay-cast-button {
   display: none; /* No chromecast support */
@@ -766,16 +766,16 @@
   width: 0.5em;
   background: #fff;
 }
-.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb,
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb {
   background: #ddd;
 }
-.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:hover,
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:hover,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:hover {
   background: #aaa;
 }
-.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:active,
-.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar-thumb:focus,
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:active,
+.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:focus,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:active,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:focus {
   background: #888;
