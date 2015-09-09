@@ -112,9 +112,6 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * Upgrade links to always be displayed as poster
        */
       8: function (parameters, finished) {
-        console.log("what is parameters ?");
-        console.log(parameters);
-
         if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
           var i;
