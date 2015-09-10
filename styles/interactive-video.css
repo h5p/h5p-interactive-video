@@ -297,6 +297,8 @@
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction .h5p-interaction-inner.h5p-link {
   margin: 0 0.8em;
+  width: auto;
+  height: auto;
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster {
@@ -308,12 +310,13 @@
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster .h5p-interaction-outer {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .h5p-interactive-video .h5p-interaction-inner,
