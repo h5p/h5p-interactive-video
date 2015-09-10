@@ -15,7 +15,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Initialize event inheritance
     EventDispatcher.call(self);
 
-    var $interaction, $label, $inner;
+    var $interaction, $label, $inner, $outer;
     var action = parameters.action;
     if (previousState) {
       action.userDatas = {
@@ -266,9 +266,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      $outer = $('<div>', {
+        'class': 'h5p-interaction-outer'
+      }).appendTo($interaction);
+
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner h5p-frame'
-      }).appendTo($interaction);
+      }).appendTo($outer);
       instance.attach($inner);
 
       // Trigger event listeners

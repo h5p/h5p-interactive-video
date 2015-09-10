@@ -305,8 +305,17 @@
   box-shadow: 0 0 0.625em 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   overflow: hidden;
-  overflow-y: auto;
 }
+
+.h5p-interactive-video .h5p-interaction.h5p-poster .h5p-interaction-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
   width: 100%;
@@ -761,21 +770,21 @@
   width: 100%;
   height: auto;
 }
-.h5p-interactive-video .h5p-poster.h5p-interaction::-webkit-scrollbar,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar {
   width: 0.5em;
   background: #fff;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb {
   background: #ddd;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:hover,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:hover,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:hover {
   background: #aaa;
 }
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:active,
-.h5p-interactive-video .h5p-interaction-inner::-webkit-scrollbar-thumb:focus,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:active,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:focus,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:active,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:focus {
   background: #888;
