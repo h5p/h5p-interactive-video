@@ -176,9 +176,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.dnb.dialog.position($interaction);
         }
       }
-      else if (!(library === 'H5P.Summary' || library === 'H5P.Blanks')) {
-        // Only Summary and Blanks uses the dialog that covers the entire video
-        player.dnb.dialog.position($interaction);
+      else {
+        // Position dialog. Use medium dialog for all interactive dialogs.
+        player.dnb.dialog.position($interaction, null, !(library === 'H5P.Text' || library === 'H5P.Table'));
       }
 
       if (library === 'H5P.Summary') {

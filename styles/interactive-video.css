@@ -712,6 +712,10 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+.h5p-interactive-video .h5p-dialog.h5p-medium {
+  min-width: 20em;
+  top: 0;
+}
 
 .h5p-interactive-video .h5p-dialog-title {
   text-overflow: ellipsis;
