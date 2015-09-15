@@ -598,6 +598,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.remove = function (updateSize) {
       if ($interaction) {
+        // Let others reach to the hiding of this interaction
+        self.trigger('domHidden', {
+          '$dom': $interaction,
+          'key': 'videoProgressedPast'
+        }, {'bubbles': true, 'external': true});
         $interaction.detach();
         $interaction = undefined;
       }
