@@ -336,10 +336,6 @@
   height: 100%;
 }
 
-.h5p-interactive-video .h5p-dialog .h5p-image {
-  position: relative;
-}
-
 .h5p-interactive-video .h5p-dialog .h5p-image img {
   margin: 0 auto;
   position: relative;
