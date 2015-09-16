@@ -148,7 +148,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($dialogContent);
 
       // Open dialog
-      player.dnb.dialog.open($dialogContent, title);
+      player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
