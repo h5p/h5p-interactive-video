@@ -705,6 +705,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    /**
+     * Create clipboard data object.
+     * @returns {object}
+     */
+    self.getClipboardData = function () {
+      return H5P.DragNBar.clipboardify(H5PEditor.InteractiveVideo.clipboardKey, parameters, 'action');
+    };
+
     // Create instance of content
     self.reCreate();
   }
