@@ -819,13 +819,13 @@
   float: left;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
-  margin: 0 0.5em 1.5em 0;
+  margin: 0 0.5em 1em 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
-  margin: 0 0 1.5em 0.5em;
+  margin: 0 0 1em 0.5em;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child:last-child {
-  margin: 0 0 1.5em;
+  margin: 0 0 1em;
 }
 
 .h5p-interactive-video .h5p-image {
