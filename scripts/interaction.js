@@ -363,9 +363,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
 
           // Reset interaction
-          instance.hideButton('iv-adaptivity-' + adaptivityId);
           if (!fullScore && instance.resetTask) {
             instance.resetTask();
+            instance.hideButton('iv-adaptivity-' + adaptivityId);
           }
 
           // Remove interaction
