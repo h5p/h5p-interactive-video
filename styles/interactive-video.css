@@ -118,14 +118,18 @@
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
 /* Text in labels should have smaller margins: */
-.h5p-interactive-video .h5p-interaction-label > p {
-  margin: 0.3em 0 0 0;
+.h5p-interactive-video .h5p-interaction-label .h5p-interaction-label-text {
+  display: block;
   color: #fff;
   font-size: 0.7em;
-}
-.h5p-interactive-video .h5p-interaction-label > p:first-child {
   margin: 0;
 }
+
+.h5p-interactive-video .h5p-interaction-label .h5p-interaction-label-text > p {
+  font-size: 1em;
+  margin: 0;
+}
+
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
   left: auto;
   right: 0.875em;
@@ -134,6 +138,7 @@
   border-top-left-radius: 1em;
   border-bottom-left-radius: 1em;
 }
+
 .h5p-interactive-video .h5p-interaction-button {
   cursor: pointer;
   position: absolute;
