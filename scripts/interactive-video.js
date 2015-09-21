@@ -939,6 +939,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
+        this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
         this.pause();
       }
