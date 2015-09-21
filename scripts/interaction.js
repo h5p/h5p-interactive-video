@@ -373,7 +373,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.seek(adaptivity.seekTo);
           player.play();
         }
-      ).showButton('iv-adaptivity-' + adaptivityId);
+      ).showButton('iv-adaptivity-' + adaptivityId, 1)
+        .hideButton('check-answer', 1)
+        .hideButton('show-solution', 1)
+        .hideButton('try-again', 1);
 
       // Disable any input
       if (instance.disableInput !== undefined &&
@@ -385,10 +388,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
-        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true)
-          .hideButton('check-answer')
-          .hideButton('show-solution')
-          .hideButton('try-again');
+        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
       }, 0);
     };
 
