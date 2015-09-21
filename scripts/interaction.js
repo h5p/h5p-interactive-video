@@ -714,7 +714,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Resize to fit wrapper so icon does not overflow
      */
     self.repositionToWrapper = function ($wrapper) {
-      if (isShownAsButton) {
+      if ($interaction && isShownAsButton) {
         // Check if button overflows parent
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
