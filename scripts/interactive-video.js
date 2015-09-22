@@ -487,6 +487,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
 
+      // Make sure the interaction does not overflow videowrapper.
+      if ($interaction.position().top + $interaction.height() > self.$videoWrapper.height()) {
+        $interaction.css('top', ((self.$videoWrapper.height() - $interaction.height()) / self.$videoWrapper.height() * 100) + '%');
+      }
+
       if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
         self.video.pause();
       }
@@ -934,6 +939,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
+        this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
         this.pause();
       }
@@ -960,8 +966,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
+    var self = this;
     this.interactions.forEach(function (interaction) {
       interaction.resizeInteraction();
+      interaction.repositionToWrapper(self.$videoWrapper);
     });
   };
 

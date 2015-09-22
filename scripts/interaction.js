@@ -120,7 +120,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
         $label = $('<div/>', {
           'class': 'h5p-interaction-label',
-          html: parameters.label
+          html: '<span class="h5p-interaction-label-text">' + parameters.label + '</span>'
         }).appendTo($interaction);
       }
 
@@ -148,7 +148,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($dialogContent);
 
       // Open dialog
-      player.dnb.dialog.open($dialogContent, title);
+      player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
 
       if (library === 'H5P.Image') {
@@ -363,9 +363,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
 
           // Reset interaction
-          instance.hideButton('iv-adaptivity-' + adaptivityId);
           if (!fullScore && instance.resetTask) {
             instance.resetTask();
+            instance.hideButton('iv-adaptivity-' + adaptivityId);
           }
 
           // Remove interaction
@@ -373,7 +373,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.seek(adaptivity.seekTo);
           player.play();
         }
-      ).showButton('iv-adaptivity-' + adaptivityId);
+      ).showButton('iv-adaptivity-' + adaptivityId, 1)
+        .hideButton('check-answer', 1)
+        .hideButton('show-solution', 1)
+        .hideButton('try-again', 1);
 
       // Disable any input
       if (instance.disableInput !== undefined &&
@@ -385,10 +388,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Wait for any modifications Question does to feedback and buttons
       setTimeout(function () {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
-        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true)
-          .hideButton('check-answer')
-          .hideButton('show-solution')
-          .hideButton('try-again');
+        instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
       }, 0);
     };
 
@@ -419,7 +419,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayType === 'button' || library === 'H5P.Nil';
+      return parameters.displayType === 'button' || library === 'H5P.Nil' || player.isMobileView;
     };
 
     /**
@@ -598,6 +598,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.remove = function (updateSize) {
       if ($interaction) {
+        // Let others reach to the hiding of this interaction
+        self.trigger('domHidden', {
+          '$dom': $interaction,
+          'key': 'videoProgressedPast'
+        }, {'bubbles': true, 'external': true});
         $interaction.detach();
         $interaction = undefined;
       }
@@ -711,6 +716,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.getClipboardData = function () {
       return H5P.DragNBar.clipboardify(H5PEditor.InteractiveVideo.clipboardKey, parameters, 'action');
+    };
+
+    /**
+     * Resize to fit wrapper so icon does not overflow
+     * @param {H5P.jQuery} $wrapper
+     */
+    self.repositionToWrapper = function ($wrapper) {
+      if ($interaction && isShownAsButton) {
+        // Check if button overflows parent
+        if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
+          var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
+          $interaction.css('top', newTop + '%');
+        }
+      }
     };
 
     // Create instance of content
