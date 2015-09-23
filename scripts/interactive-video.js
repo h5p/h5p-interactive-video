@@ -174,6 +174,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     });
 
+    self.on('exitFullScreen', function () {
+      // Close dialog
+      if (self.dnb && self.dnb.dialog) {
+        self.dnb.dialog.close();
+      }
+    });
+
     // Initialize interactions
     self.interactions = [];
     if (self.options.assets.interactions) {
@@ -974,7 +981,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Recreate currently
+   * Recreate interactions
    */
   InteractiveVideo.prototype.recreateCurrentInteractions = function () {
     this.interactions.forEach(function (interaction) {
@@ -1100,6 +1107,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.trigger('enterFullScreen');
       }
     }
+
     // Resize all interactions
     this.resizeInteractions();
   };
