@@ -726,7 +726,7 @@
   position: absolute;
   width: 100%;
   top: 0;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em 0.5em;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
   font-size: 0.875em;
