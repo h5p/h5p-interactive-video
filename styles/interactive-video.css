@@ -128,6 +128,7 @@
 .h5p-interactive-video .h5p-interaction-label .h5p-interaction-label-text > p {
   font-size: 1em;
   margin: 0;
+  line-height: 2.5em;
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {

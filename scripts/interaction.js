@@ -120,7 +120,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
         $label = $('<div/>', {
           'class': 'h5p-interaction-label',
-          html: '<span class="h5p-interaction-label-text">' + parameters.label + '</span>'
+          html: '<div class="h5p-interaction-label-text">' + parameters.label + '</div>'
         }).appendTo($interaction);
       }
 
