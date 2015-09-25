@@ -334,7 +334,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Stop playback
       player.pause();
 
-      if (!adaptivity.allowOptOut) {
+      if (!adaptivity.allowOptOut && $interaction) {
         // Make sure only the interaction is useable.
         if (self.isButton()) {
           player.dnb.dialog.disableOverlay = true;
