@@ -948,7 +948,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.isMobileView = true;
         this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
-        this.pause();
       }
     } else {
       if (this.isMobileView) {
@@ -959,7 +958,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.$container.removeClass('mobile');
         this.isMobileView = false;
         this.recreateCurrentInteractions();
-        this.pause();
       }
     }
   };
