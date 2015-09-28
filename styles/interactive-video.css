@@ -1002,16 +1002,34 @@
   width: 100%;
   height: 100%;
   margin: 0;
-  display: table;
+  display: flex;
+  top: 0;
+  left: 0;
+  position: absolute;
+  flex-flow: column;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.mobile {
+  display: block;
+  top: 0;
+  -webkit-transform: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
+  display: block;
+  vertical-align: auto;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main {
-  display: table-cell;
-  height: 100%;
+  flex: auto;
   position: relative;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-outer {
+  position: absolute;
   height: 100%;
   width: 100%;
 }
@@ -1034,7 +1052,7 @@
 
 /* mobile footer */
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer {
-  display: table-footer-group;
+  flex: none;
 }
 
 /* Youtube specific splash start screen options */
