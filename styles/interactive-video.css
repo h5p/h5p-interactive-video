@@ -701,7 +701,6 @@
   position: absolute;
   width: auto;
   min-width: 6.25em;
-  max-width: calc(100% - 2.5em);
   min-height: 4.6875em;
   margin: 1.25em;
   background: #fff;
@@ -711,6 +710,11 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+
+.h5p-interactive-video .h5p-dialog:not(.h5p-big) {
+  max-width: calc(100% - 2.5em);
+}
+
 .h5p-interactive-video .h5p-dialog.h5p-medium {
   min-width: 20em;
   top: 0;
