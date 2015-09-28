@@ -1018,7 +1018,7 @@
   height: 100%;
 }
 
-.h5p-interactive-video .h5p-splash-wrapper .h5p-splash-outer {
+.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-outer {
   display: block;
   vertical-align: auto;
 }
