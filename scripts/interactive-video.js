@@ -265,7 +265,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.$controls = $container.children('.h5p-controls').hide();
 
     if (this.editor === undefined) {
-      this.dnb = new DragNBar([], this.$videoWrapper, this.$container, false);
+      this.dnb = new DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
       // Pause video when opening dialog
       this.dnb.dialog.on('open', function () {
         // Keep track of last state
