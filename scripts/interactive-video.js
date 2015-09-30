@@ -1260,7 +1260,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Pause interactive video playback.
    */
   InteractiveVideo.prototype.pause = function () {
-    this.video.pause();
+    if (this.video && this.video.pause) {
+      this.video.pause();
+    }
   };
 
   /**
