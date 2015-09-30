@@ -975,6 +975,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.interactions.forEach(function (interaction) {
       interaction.resizeInteraction();
       interaction.repositionToWrapper(self.$videoWrapper);
+      interaction.positionLabel(self.$videoWrapper.width());
     });
   };
 
@@ -1238,6 +1239,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.toggleInteractions = function (second) {
     for (var i = 0; i < this.interactions.length; i++) {
       this.interactions[i].toggle(second);
+      this.interactions[i].repositionToWrapper(this.$videoWrapper);
     }
   };
 

@@ -722,6 +722,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
           $interaction.css('top', newTop + '%');
         }
+        if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
+          var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+          $interaction.css('left', newLeft + '%');
+        }
       }
     };
 
