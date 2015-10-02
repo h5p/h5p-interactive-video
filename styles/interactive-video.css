@@ -360,7 +360,8 @@
   height: 36px;
   background: #2c2c2c;
 }
-.h5p-interactive-video.h5p-fullscreen .h5p-controls, .h5p-interactive-video.h5p-semi-fullscreen .h5p-controls {
+.h5p-interactive-video.h5p-fullscreen .h5p-controls,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-controls {
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -482,6 +483,10 @@
   overflow: auto;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.h5p-interactive-video.h5p-fullscreen .h5p-chooser,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-chooser {
+  background: rgba(0, 0, 0, 0.6);
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks {
   left: 12px;
@@ -657,6 +662,10 @@
   -moz-transition: visibility 0s 0.2s, opacity 0.2s;
   transition: visibility 0s 0.2s, opacity 0.2s;
 }
+.h5p-interactive-video.h5p-fullscreen .h5p-bookmark-label,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-bookmark-label {
+  background: rgba(0, 0, 0, 0.6);
+}
 .h5p-interactive-video .h5p-show .h5p-bookmark-label {
   opacity: 1;
   visibility: visible;
@@ -674,6 +683,10 @@
   border-top-color: rgba(44, 44, 44, 0.8);
   border-bottom: 0;
   top: 100%;
+}
+.h5p-interactive-video.h5p-fullscreen .h5p-bookmark-label:after,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-bookmark-label:after {
+  border-top-color: rgba(0, 0, 0, 0.6);
 }
 .h5p-interactive-video .h5p-bookmark-text {
   white-space: nowrap;
