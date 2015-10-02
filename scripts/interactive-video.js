@@ -164,6 +164,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.timeUpdate(-1);
           break;
       }
+
+      if (H5P.isFullscreen) {
+        if (state === H5P.Video.PAUSED || state === H5P.Video.ENDED) {
+          self.disableAutoHide();
+        }
+        else {
+          self.enableAutoHide();
+        }
+      }
     });
 
     self.video.on('qualityChange', function (event) {
@@ -653,39 +662,68 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.attachControls = function ($wrapper) {
     var that = this;
 
-    $wrapper.html('<div class="h5p-controls-left"><a href="#" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></a><a href="#" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></a><div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div></div><div class="h5p-controls-right"><a href="#" class="h5p-control h5p-fullscreen"  title="' + that.l10n.fullscreen + '"></a><a href="#" class="h5p-control h5p-quality h5p-disabled"  title="' + that.l10n.quality + '"></a><div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div><a href="#" class="h5p-control h5p-volume"  title="' + that.l10n.mute + '"></a><div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div></div><div class="h5p-control h5p-slider"><div class="h5p-interactions-container"></div><div class="h5p-bookmarks-container"></div><div></div></div>');
+    $wrapper.html(
+      '<div class="h5p-controls-left">' +
+        '<div tabindex="0" role="button" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></div>' +
+        '<div tabindex="0" role="button" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></div>' +
+        '<div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div>' +
+      '</div>' +
+      '<div class="h5p-controls-right">' +
+        '<div tabindex="0" role="button" class="h5p-control h5p-fullscreen" title="' + that.l10n.fullscreen + '"></div>' +
+        '<div tabindex="0" role="button" class="h5p-control h5p-quality h5p-disabled" title="' + that.l10n.quality + '"></div>' +
+        '<div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div>' +
+        '<div tabindex="0" role="button" class="h5p-control h5p-volume" title="' + that.l10n.mute + '"></div>' +
+        '<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>' +
+      '</div>' +
+      '<div class="h5p-control h5p-slider">' +
+        '<div class="h5p-interactions-container"></div>' +
+        '<div class="h5p-bookmarks-container"></div>' +
+      '<div>');
     this.controls = {};
 
     // Play/pause button
-    this.controls.$play = $wrapper.find('.h5p-play').click(function () {
+    var togglePlay = function () {
       if (that.controls.$play.hasClass('h5p-pause')) {
         that.video.play();
       }
       else {
         that.video.pause();
       }
-      return false;
-    });
+    };
+    this.controls.$play = $wrapper.find('.h5p-play').keypress(function (event) {
+      if (event.which === 32) { // Space
+        togglePlay();
+      }
+    }).click(togglePlay);
 
     // Bookmark selector
-    if ((this.options.assets.bookmarks === undefined || this.options.assets.bookmarks.length === 0) && this.editor === undefined) {
+    if ((this.options.assets.bookmarks === undefined ||
+         this.options.assets.bookmarks.length === 0) &&
+        this.editor === undefined) {
       // No bookmarks and no editor, remove button.
       $wrapper.find('.h5p-control.h5p-bookmarks').remove();
     }
     else {
       this.controls.$bookmarksChooser = $wrapper.find('.h5p-chooser.h5p-bookmarks');
-      var $bcb = $wrapper.find('.h5p-control.h5p-bookmarks').click(function () {
+      var toggleBookmarks = function () {
         $bcb.toggleClass('h5p-active');
         that.controls.$bookmarksChooser.toggleClass('h5p-show');
-        return false;
-      });
+      };
+      var $bcb = $wrapper.find('.h5p-control.h5p-bookmarks').keypress(function (event) {
+        if (event.which === 32) { // Space
+          toggleBookmarks();
+        }
+      }).click(toggleBookmarks);
     }
 
-    if (this.editor === undefined) {
+    if (this.editor === undefined && H5P.canHasFullScreen !== false) {
       // Fullscreen button
-      this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').click(function () {
+      this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').keypress(function (event) {
+        if (event.which === 32) { // Space
+          that.toggleFullScreen();
+        }
+      }).click(function () {
         that.toggleFullScreen();
-        return false;
       });
 
       that.on('enterFullScreen', function () {
@@ -694,6 +732,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
         that.resizeInteractions();
+
+        // Enable auto-hide of controls
+        if (that.controls.$play.hasClass('h5p-pause')) {
+          $wrapper.addClass('h5p-autohide');
+        }
+        else {
+          that.enableAutoHide();
+        }
       });
       that.on('exitFullScreen', function () {
         if (that.$container !== undefined) {
@@ -701,6 +747,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
         that.resizeInteractions();
+
+        // Disable auto-hide of controls
+        that.disableAutoHide();
       });
 
       // Video quality selector
@@ -718,16 +767,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     else {
       // Remove buttons in editor mode.
       $wrapper.find('.h5p-fullscreen').remove();
-      $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
-    if (H5P.canHasFullScreen === false) {
-      $wrapper.find('.h5p-fullscreen').remove();
+    if (this.editor !== undefined) {
+      $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
     }
 
     // Volume/mute button
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
-      this.controls.$volume = $wrapper.find('.h5p-volume').click(function () {
+      var toggleMute = function () {
         if (that.controls.$volume.hasClass('h5p-muted')) {
           that.controls.$volume.removeClass('h5p-muted').attr('title', that.l10n.mute);
           that.video.unMute();
@@ -736,10 +784,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           that.controls.$volume.addClass('h5p-muted').attr('title', that.l10n.unmute);
           that.video.mute();
         }
-        return false;
-      });
+      };
+      this.controls.$volume = $wrapper.find('.h5p-volume').keypress(function (event) {
+        if (event.which === 32) { // Space
+          toggleMute();
+        }
+      }).click(toggleMute);
     }
     else {
+      // No volume controls needed for Android or iPad. (built-in)
       $wrapper.find('.h5p-volume').remove();
     }
 
@@ -790,6 +843,67 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Slider containers
     this.controls.$interactionsContainer = $slider.find('.h5p-interactions-container');
     this.controls.$bookmarksContainer = $slider.find('.h5p-bookmarks-container');
+  };
+
+  /**
+   * Event handler for auto-hiding the controls
+   *
+   * @param {Event} event
+   */
+  InteractiveVideo.showControls = function (event) {
+    if (InteractiveVideo.hideControls) {
+      clearTimeout(InteractiveVideo.hideControls);
+    }
+    else {
+      event.data.self.$controls.addClass('h5p-autohide');
+    }
+    InteractiveVideo.hideControls = setTimeout(function () {
+      event.data.self.$controls.removeClass('h5p-autohide');
+      InteractiveVideo.hideControls = false;
+    }, 2000);
+  };
+
+  /**
+   * Event handler for temporarly disabling auto-hiding of controls when
+   * using the controls.
+   *
+   * @param {Event} event
+   */
+  InteractiveVideo.holdControls = function (event) {
+    H5P.$body.off('mousemove touchmove', InteractiveVideo.showControls);
+    clearTimeout(InteractiveVideo.hideControls);
+  };
+
+  /**
+   * Event handler for enabling auto-hiding of the controls after they've
+   * been temporarly disabled.
+   *
+   * @param {Event} event
+   */
+  InteractiveVideo.unholdControls = function (event) {
+    H5P.$body.on('mousemove touchmove', {self:event.data.self}, InteractiveVideo.showControls);
+    InteractiveVideo.showControls(event);
+  };
+
+  /**
+   * Enables auto-hiding of the controls.
+   */
+  InteractiveVideo.prototype.enableAutoHide = function () {
+    var eventData = {self:this};
+    H5P.$body.on('mousemove touchmove', eventData, InteractiveVideo.showControls);
+
+    // Prevent auto hide when hovering controls
+    this.$controls.on('mouseenter', eventData, InteractiveVideo.holdControls).on('mouseleave', eventData, InteractiveVideo.unholdControls);
+    InteractiveVideo.showControls({data:eventData});
+  };
+
+  /**
+   * Disables auto-hiding of the controls.
+   */
+  InteractiveVideo.prototype.disableAutoHide = function () {
+    H5P.$body.off('mousemove touchmove', InteractiveVideo.showControls);
+    this.$controls.addClass('h5p-autohide').off('mouseenter', InteractiveVideo.holdControls).off('mouseleave', InteractiveVideo.unholdControls);
+    clearTimeout(InteractiveVideo.hideControls);
   };
 
   /**
@@ -881,13 +995,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (fullscreenOn) {
       var videoHeight = this.$videoWrapper.height();
 
-      if (videoHeight + controlsHeight <= containerHeight) {
-        this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
+      if (videoHeight <= containerHeight) {
+        this.$videoWrapper.css('marginTop', (containerHeight - videoHeight) / 2);
         width = this.$videoWrapper.width();
       }
       else {
         var ratio = this.$videoWrapper.width() / videoHeight;
-        var height = containerHeight - controlsHeight;
+        var height = containerHeight;
         width = height * ratio;
         this.$videoWrapper.css({
           marginLeft: (this.$container.width() - width) / 2,
