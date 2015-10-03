@@ -50,7 +50,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
       bookmarks: 'Bookmarks',
-      defaultAdaptivitySeekLabel: 'Continue'
+      defaultAdaptivitySeekLabel: 'Continue',
+      more: 'More'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -181,6 +182,31 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         // Update quality selector
         self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
       }
+    });
+
+    // Handle entering fullscreen
+    self.on('enterFullScreen', function () {
+      self.$container.parent('.h5p-content').css('height', '100%');
+      self.controls.$fullscreen.addClass('h5p-exit').attr('title', self.l10n.exitFullscreen);
+      self.resizeInteractions();
+
+      // Enable auto-hide of controls
+      if (self.controls.$play.hasClass('h5p-pause')) {
+        self.$controls.addClass('h5p-autohide');
+      }
+      else {
+        self.enableAutoHide();
+      }
+    });
+
+    // Handle exiting fullscreen
+    self.on('exitFullScreen', function () {
+      self.$container.parent('.h5p-content').css('height', 'auto');
+      self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
+      self.resizeInteractions();
+
+      // Disable auto-hide of controls
+      self.disableAutoHide();
     });
 
     // Initialize interactions
@@ -618,8 +644,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       .click(function () {
         if (self.currentState !== H5P.Video.PLAYING) {
           $bookmark.mouseover().mouseout();
+          setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
         }
         self.controls.$bookmarksChooser.removeClass('h5p-show');
+        if (self.controls.$more.hasClass('h5p-active')) {
+          self.controls.$more.click();
+        }
         self.video.seek(bookmark.time);
       });
 
@@ -660,189 +690,240 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {H5P.jQuery} $wrapper
    */
   InteractiveVideo.prototype.attachControls = function ($wrapper) {
-    var that = this;
+    var self = this;
 
-    $wrapper.html(
-      '<div class="h5p-controls-left">' +
-        '<div tabindex="0" role="button" class="h5p-control h5p-play h5p-pause" title="' + that.l10n.play + '"></div>' +
-        '<div tabindex="0" role="button" class="h5p-control h5p-bookmarks" title="' + that.l10n.bookmarks + '"></div>' +
-        '<div class="h5p-chooser h5p-bookmarks"><h3>' + that.l10n.bookmarks + '</h3></div>' +
-      '</div>' +
-      '<div class="h5p-controls-right">' +
-        '<div tabindex="0" role="button" class="h5p-control h5p-fullscreen" title="' + that.l10n.fullscreen + '"></div>' +
-        '<div tabindex="0" role="button" class="h5p-control h5p-quality h5p-disabled" title="' + that.l10n.quality + '"></div>' +
-        '<div class="h5p-chooser h5p-quality"><h3>' + that.l10n.quality + '</h3></div>' +
-        '<div tabindex="0" role="button" class="h5p-control h5p-volume" title="' + that.l10n.mute + '"></div>' +
-        '<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>' +
-      '</div>' +
-      '<div class="h5p-control h5p-slider">' +
-        '<div class="h5p-interactions-container"></div>' +
-        '<div class="h5p-bookmarks-container"></div>' +
-      '<div>');
-    this.controls = {};
+    // The controls consist of three different sections:
+    var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
+    var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
+    var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
 
-    // Play/pause button
-    var togglePlay = function () {
-      if (that.controls.$play.hasClass('h5p-pause')) {
-        that.video.play();
+    // Keep track of all controls
+    self.controls = {};
+
+    // Add play button/pause button
+    self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
+      if (self.controls.$play.hasClass('h5p-pause')) {
+        self.video.play();
       }
       else {
-        that.video.pause();
+        self.video.pause();
       }
+    });
+
+    /**
+     * Handler for opening bookmarks selection dialog.
+     * Only available for controls.
+     * @private
+     */
+    var toggleBookmarks;
+
+    // Add bookmark controls
+    if ((self.options.assets.bookmarks && self.options.assets.bookmarks.length) || self.editor) {
+      // Popup dialog for choosing bookmarks
+      self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
+        'class': 'h5p-chooser h5p-bookmarks',
+        html: '<h3>' + self.l10n.bookmarks + '</h3>',
+        appendTo: self.$container
+      });
+
+      // Add control handler
+      toggleBookmarks = function () {
+        self.controls.$bookmarks.toggleClass('h5p-active');
+        self.controls.$bookmarksChooser.toggleClass('h5p-show');
+      };
+
+      // Button for opening bookmark popup
+      self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, toggleBookmarks);
+    }
+
+    // Current time for minimal display
+    var $time = $('<div class="h5p-control h5p-simple-time"><span class="h5p-current">0:00</span></div>').appendTo($left);
+    self.controls.$currentTime = $time.find('.h5p-current');
+
+    // Add fullscreen button
+    if (!self.editor && H5P.canHasFullScreen !== false) {
+      self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
+        self.toggleFullScreen();
+      });
+    }
+
+    // TODO: Do not add until qualities are present?
+    // Add popup for selecting video quality
+    self.controls.$qualityChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-quality',
+      html: '<h3>' + self.l10n.quality + '</h3>',
+      appendTo: self.$container
+    });
+
+    /**
+     * Handler for opening video quality selection dialog.
+     * Only available for controls.
+     * @private
+     * @returns {boolean} false when disabled
+     */
+    var openQualityChooser = function () {
+      if (self.controls.$qualityButton.hasClass('h5p-disabled')) {
+        return false; // Not enabled
+      }
+
+      self.controls.$qualityButton.toggleClass('h5p-active');
+      self.controls.$qualityChooser.toggleClass('h5p-show');
     };
-    this.controls.$play = $wrapper.find('.h5p-play').keypress(function (event) {
-      if (event.which === 32) { // Space
-        togglePlay();
-      }
-    }).click(togglePlay);
 
-    // Bookmark selector
-    if ((this.options.assets.bookmarks === undefined ||
-         this.options.assets.bookmarks.length === 0) &&
-        this.editor === undefined) {
-      // No bookmarks and no editor, remove button.
-      $wrapper.find('.h5p-control.h5p-bookmarks').remove();
-    }
-    else {
-      this.controls.$bookmarksChooser = $wrapper.find('.h5p-chooser.h5p-bookmarks');
-      var toggleBookmarks = function () {
-        $bcb.toggleClass('h5p-active');
-        that.controls.$bookmarksChooser.toggleClass('h5p-show');
-      };
-      var $bcb = $wrapper.find('.h5p-control.h5p-bookmarks').keypress(function (event) {
-        if (event.which === 32) { // Space
-          toggleBookmarks();
-        }
-      }).click(toggleBookmarks);
-    }
+    // Button for opening video quality selection dialog
+    self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, openQualityChooser);
 
-    if (this.editor === undefined && H5P.canHasFullScreen !== false) {
-      // Fullscreen button
-      this.controls.$fullscreen = $wrapper.find('.h5p-fullscreen').keypress(function (event) {
-        if (event.which === 32) { // Space
-          that.toggleFullScreen();
-        }
-      }).click(function () {
-        that.toggleFullScreen();
-      });
-
-      that.on('enterFullScreen', function () {
-        if (that.$container !== undefined) {
-          that.$container.parent('.h5p-content').css('height', '100%');
-        }
-        that.controls.$fullscreen.addClass('h5p-exit').attr('title', that.l10n.exitFullscreen);
-        that.resizeInteractions();
-
-        // Enable auto-hide of controls
-        if (that.controls.$play.hasClass('h5p-pause')) {
-          $wrapper.addClass('h5p-autohide');
-        }
-        else {
-          that.enableAutoHide();
-        }
-      });
-      that.on('exitFullScreen', function () {
-        if (that.$container !== undefined) {
-          that.$container.parent('.h5p-content').css('height', 'auto');
-        }
-        that.controls.$fullscreen.removeClass('h5p-exit').attr('title', that.l10n.fullscreen);
-        that.resizeInteractions();
-
-        // Disable auto-hide of controls
-        that.disableAutoHide();
-      });
-
-      // Video quality selector
-      this.controls.$qualityChooser = $wrapper.find('.h5p-chooser.h5p-quality');
-      this.controls.$qualityButton = $wrapper.find('.h5p-control.h5p-quality').click(function () {
-        if (!that.controls.$qualityButton.hasClass('h5p-disabled')) {
-          that.controls.$qualityButton.toggleClass('h5p-active');
-          that.controls.$qualityChooser.toggleClass('h5p-show');
-        }
-        return false;
-      });
-
-      this.addQualityChooser();
-    }
-    else {
-      // Remove buttons in editor mode.
-      $wrapper.find('.h5p-fullscreen').remove();
-    }
-
-    if (this.editor !== undefined) {
-      $wrapper.find('.h5p-quality, .h5p-quality-chooser').remove();
-    }
-
-    // Volume/mute button
+    // Add volume button control (toggle mute)
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
-      var toggleMute = function () {
-        if (that.controls.$volume.hasClass('h5p-muted')) {
-          that.controls.$volume.removeClass('h5p-muted').attr('title', that.l10n.mute);
-          that.video.unMute();
+      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
+        if (self.controls.$volume.hasClass('h5p-muted')) {
+          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+          self.video.unMute();
         }
         else {
-          that.controls.$volume.addClass('h5p-muted').attr('title', that.l10n.unmute);
-          that.video.mute();
+          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+          self.video.mute();
         }
-      };
-      this.controls.$volume = $wrapper.find('.h5p-volume').keypress(function (event) {
-        if (event.which === 32) { // Space
-          toggleMute();
-        }
-      }).click(toggleMute);
-    }
-    else {
-      // No volume controls needed for Android or iPad. (built-in)
-      $wrapper.find('.h5p-volume').remove();
+      });
     }
 
-    // Timer
-    var $time = $wrapper.find('.h5p-time');
-    this.controls.$currentTime = $time.children('.h5p-current');
-    this.controls.$totalTime = $time.children('.h5p-total');
+    // Add more button for collapsing controls when there's little space
+    if (toggleBookmarks && openQualityChooser) {
+      // Add overlay for display controls inside
+      self.controls.$minimalOverlay = H5P.jQuery('<div/>', {
+        'class': 'h5p-minimal-overlay',
+        appendTo: self.$container
+      });
 
-    // Timeline
-    var $slider = $wrapper.find('.h5p-slider');
-    this.controls.$slider = $slider.children(':last').slider({
+      // Use wrapper to center controls
+      var $minimalWrap = H5P.jQuery('<div/>', {
+        'class': 'h5p-minimal-wrap',
+        appendTo: self.controls.$minimalOverlay
+      });
+
+      // Add buttons to wrapper
+      var $buttons = H5P.jQuery([]);
+      if (toggleBookmarks) {
+        $buttons = $buttons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
+          if (toggleBookmarks() !== false) {
+            $buttons.addClass('h5p-hide');
+          }
+        }, true));
+      }
+      if (openQualityChooser) {
+        self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
+          if (openQualityChooser() !== false) {
+            $buttons.addClass('h5p-hide');
+          }
+        }, true);
+        $buttons = $buttons.add(self.controls.$qualityButtonMinimal);
+      }
+
+      // Add control for displaying overlay with buttons
+      self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
+        if  (self.controls.$more.hasClass('h5p-active')) {
+          // Close overlay
+          if (H5P.isFullscreen) {
+            self.enableAutoHide();
+          }
+          self.controls.$minimalOverlay.removeClass('h5p-show');
+          self.controls.$more.removeClass('h5p-active');
+          $buttons.removeClass('h5p-hide');
+        }
+        else {
+          // Open overlay
+          if (H5P.isFullscreen) {
+            self.disableAutoHide();
+          }
+          self.controls.$minimalOverlay.addClass('h5p-show');
+          self.controls.$more.addClass('h5p-active');
+
+          // Make sure splash screen is removed.
+          self.removeSplash();
+        }
+
+        // Make sure sub menus are closed
+        self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
+      });
+    }
+    self.addQualityChooser();
+
+    // Add display for time elapsed and duration
+    $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
+    self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current'));
+    self.controls.$totalTime = $time.find('.h5p-total');
+
+    // Add containers for objects that will be displayed around the seekbar
+    self.controls.$interactionsContainer = $('<div/>', {'class': 'h5p-interactions-container', appendTo: $slider});
+    self.controls.$bookmarksContainer = $('<div/>', {'class': 'h5p-bookmarks-container', appendTo: $slider});
+
+    // Add seekbar/timeline
+    self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
       orientation: 'horizontal',
 			range: 'min',
       max: 0,
       start: function () {
-        if (that.currentState === InteractiveVideo.SEEKING) {
+        if (self.currentState === InteractiveVideo.SEEKING) {
           return; // Prevent double start on touch devies!
         }
 
-        that.lastState = (that.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : that.currentState);
-        that.video.pause();
-        that.currentState = InteractiveVideo.SEEKING;
+        self.lastState = (self.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : self.currentState);
+        self.video.pause();
+        self.currentState = InteractiveVideo.SEEKING;
 
         // Make sure splash screen is removed.
-        that.removeSplash();
+        self.removeSplash();
       },
       slide: function (e, ui) {
         // Update elapsed time
-        that.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
+        self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
       },
       stop: function (e, ui) {
-        that.currentState = that.lastState;
-        that.video.seek(ui.value);
-        if (that.lastState === H5P.Video.PLAYING) {
-          that.video.play();
+        self.currentState = self.lastState;
+        self.video.seek(ui.value);
+        if (self.lastState === H5P.Video.PLAYING) {
+          self.video.play();
         }
         else {
-          that.timeUpdate(ui.value);
+          self.timeUpdate(ui.value);
         }
       }
     });
 
-    // Slider bufferer
-    this.controls.$buffered = $('<div class="h5p-buffered"></div>').prependTo(this.controls.$slider);
+    // Add buffered status to seekbar
+    self.controls.$buffered = $('<div/>', {'class': 'h5p-buffered', prependTo: self.controls.$slider});
+  };
 
-    // Slider containers
-    this.controls.$interactionsContainer = $slider.find('.h5p-interactions-container');
-    this.controls.$bookmarksContainer = $slider.find('.h5p-bookmarks-container');
+  /**
+   * Help create control buttons.
+   *
+   * @param {string} type
+   * @param {string} extraClass
+   * @param {H5P.jQuery} $target
+   * @param {function} handler
+   */
+  InteractiveVideo.prototype.createButton = function (type, extraClass, $target, handler, text) {
+    var self = this;
+    var options = {
+      role: 'button',
+      tabindex: 0,
+      'class': (extraClass === undefined ? '' : extraClass + ' ') + 'h5p-' + type,
+      on: {
+        click: function () {
+          handler.call(this);
+        },
+        keypress: function () {
+          if (event.which === 32) { // Space
+            handler.call(this);
+          }
+        }
+      },
+      appendTo: $target
+    };
+    options[text ? 'text' : 'title'] = self.l10n[type];
+    return H5P.jQuery('<div/>', options);
   };
 
   /**
@@ -934,10 +1015,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $options = $list.children().click(function () {
       self.video.setQuality($(this).attr('data-quality'));
       self.controls.$qualityChooser.removeClass('h5p-show');
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
     });
 
     // Enable quality chooser button
-    this.controls.$qualityButton.removeClass('h5p-disabled');
+    this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeClass('h5p-disabled');
   };
 
   /**
@@ -1020,7 +1104,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Set base font size. Don't allow it to fall below original size.
     this.$container.css('fontSize', (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize + 'px');
 
-    this.$container.find('.h5p-chooser').css('maxHeight', (containerHeight - controlsHeight) + 'px');
+    if (width < this.width) {
+      // Use minimal controls
+      this.$container.addClass('h5p-minimal');
+    }
+    else {
+      this.$container.removeClass('h5p-minimal');
+    }
+
+    // Set max height of popup controls
+    var maxHeight = {maxHeight: (containerHeight - controlsHeight) + 'px'};
+    if (this.controls && this.controls.$minimalOverlay) {
+      this.controls.$minimalOverlay.css(maxHeight);
+    }
+    this.$container.find('.h5p-chooser').css(maxHeight);
 
     // Resize start screen
     if (!this.editor) {

@@ -429,28 +429,58 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button {
+  display: inline-block;
+  padding-top: 4em;
+  margin: 0 1em;
+  position: relative;
+  vertical-align: bottom;
+  outline: none;
+  -webkit-transition: visibility 0s linear 0.1s;
+}
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button.h5p-hide {
+  visibility: hidden;
+  -webkit-transition-delay: 0s;
+}
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:before {
+  font-size: 4em;
+  line-height: 1em;
+  position: absolute;
+  font-family: 'H5PFontAwesome4';
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .h5p-interactive-video .h5p-control.h5p-active:before,
-.h5p-interactive-video .h5p-control:active:before {
+.h5p-interactive-video .h5p-control:active:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:active {
   color: #bababa
 }
 .h5p-interactive-video .h5p-control:hover:before,
-.h5p-interactive-video .h5p-control:focus:before {
+.h5p-interactive-video .h5p-control:focus:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:hover,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:focus {
   color: #dbd7d1;
 }
-.h5p-interactive-video .h5p-control.h5p-disabled:before {
+.h5p-interactive-video .h5p-control.h5p-disabled:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button.h5p-disabled {
   color: #606060;
 }
-
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button.h5p-disabled {
+  color: #747474;
+}
 .h5p-interactive-video .h5p-play:before {
   content: "\f04c";
 }
 .h5p-interactive-video .h5p-pause:before {
   content: "\f04b";
 }
-.h5p-interactive-video .h5p-control.h5p-bookmarks:before {
+.h5p-interactive-video .h5p-control.h5p-bookmarks:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-bookmarks:before {
   content: "\f02e";
 }
-.h5p-interactive-video .h5p-control.h5p-quality:before {
+.h5p-interactive-video .h5p-control.h5p-quality:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-quality:before {
   content: "\f013";
 }
 .h5p-interactive-video .h5p-fullscreen:before {
@@ -459,14 +489,58 @@
 .h5p-interactive-video .h5p-exit:before {
   content: "\f066";
 }
-.h5p-interactive-video .h5p-volume:before {
+.h5p-interactive-video .h5p-mute:before {
   content: "\f028";
 }
 .h5p-interactive-video .h5p-muted:before {
   content: "\f026";
 }
+.h5p-interactive-video .h5p-more:before {
+  content: "\f142";
+}
+
+.h5p-interactive-video.h5p-minimal .h5p-control.h5p-bookmarks,
+.h5p-interactive-video.h5p-minimal .h5p-time,
+.h5p-interactive-video.h5p-minimal .h5p-control.h5p-quality,
+.h5p-interactive-video .h5p-more,
+.h5p-interactive-video .h5p-simple-time {
+  display: none;
+}
+.h5p-interactive-video.h5p-minimal .h5p-simple-time,
+.h5p-interactive-video.h5p-minimal .h5p-more,
+.h5p-interactive-video.h5p-minimal .h5p-simple-time {
+  display: block;
+}
+
+.h5p-interactive-video .h5p-minimal-overlay {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid #8e8e8e;
+  text-align: center;
+  color: #fefefe;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s linear 0.1s, opacity 0.1s linear;
+}
+.h5p-interactive-video .h5p-minimal-overlay.h5p-show {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.h5p-interactive-video .h5p-minimal-wrap {
+  top: 50%;
+  position: absolute;
+  width: 100%;
+  transform: translateY(-50%);
+}
 
 .h5p-interactive-video .h5p-chooser {
+  font-size: 17px;
   position: absolute;
   z-index: 10;
   max-width: 300px;
@@ -542,17 +616,29 @@
   content: "\f02e";
 }
 
-.h5p-interactive-video .h5p-time {
+.h5p-interactive-video.h5p-minimal .h5p-chooser {
+  z-index: 11;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  max-width: none;
+}
+.h5p-interactive-video.h5p-minimal .h5p-chooser > h3 {
+  border-bottom-color: #8e8e8e;
+}
+
+.h5p-interactive-video .h5p-time,
+.h5p-interactive-video .h5p-simple-time {
   width: auto;
   height: auto;
   font-size: 0.875em;
   color: #808080;
   padding: 0 8px;
-}
-.h5p-interactive-video .h5p-controls-right .h5p-time {
   line-height: 36px;
 }
-.h5p-interactive-video .h5p-time > .h5p-current {
+.h5p-interactive-video .h5p-time > .h5p-current,
+.h5p-interactive-video .h5p-simple-time > .h5p-current {
   color: #fff;
   display: inline;
 }
