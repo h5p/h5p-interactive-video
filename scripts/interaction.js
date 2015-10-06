@@ -120,7 +120,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
         $label = $('<div/>', {
           'class': 'h5p-interaction-label',
-          html: '<span class="h5p-interaction-label-text">' + parameters.label + '</span>'
+          html: '<div class="h5p-interaction-label-text">' + parameters.label + '</div>'
         }).appendTo($interaction);
       }
 
@@ -178,7 +178,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       else {
         // Position dialog. Use medium dialog for all interactive dialogs.
-        player.dnb.dialog.position($interaction, null, !(library === 'H5P.Text' || library === 'H5P.Table'));
+        if (!player.isMobileView) {
+          player.dnb.dialog.position($interaction, null, !(library === 'H5P.Text' || library === 'H5P.Table'));
+        }
       }
 
       if (library === 'H5P.Summary') {
@@ -334,7 +336,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Stop playback
       player.pause();
 
-      if (!adaptivity.allowOptOut) {
+      if (!adaptivity.allowOptOut && $interaction) {
         // Make sure only the interaction is useable.
         if (self.isButton()) {
           player.dnb.dialog.disableOverlay = true;
@@ -728,6 +730,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
           $interaction.css('top', newTop + '%');
+        }
+        if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
+          var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+          $interaction.css('left', newLeft + '%');
         }
       }
     };
