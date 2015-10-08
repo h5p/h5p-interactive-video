@@ -587,8 +587,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {number} height in ems
      */
     self.setSize = function (width, height) {
-      parameters.width = width;
-      parameters.height = height;
+      if (width) {
+        parameters.width = width;
+      }
+      if (height) {
+        parameters.height = height;
+      }
 
       H5P.trigger(instance, 'resize');
     };
