@@ -36,7 +36,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, self.options.video.startScreenOptions);
 
     // Overriding
-    self.overrides = params.override;
+    self.override = params.override;
 
     // Translated UI text defaults
     self.l10n = $.extend({
