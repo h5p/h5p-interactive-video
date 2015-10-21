@@ -128,6 +128,7 @@
 .h5p-interactive-video .h5p-interaction-label .h5p-interaction-label-text > p {
   font-size: 1em;
   margin: 0;
+  line-height: 2.5em;
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-left-label {
@@ -823,6 +824,11 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
+
+.h5p-interactive-video .h5p-dialog:not(.h5p-big) {
+  max-width: calc(100% - 2.5em);
+}
+
 .h5p-interactive-video .h5p-dialog.h5p-medium {
   min-width: 20em;
   top: 0;
@@ -840,7 +846,7 @@
   position: absolute;
   width: 100%;
   top: 0;
-  padding: 0.5em 1em;
+  padding: 0.5em 1em 0.5em 0.5em;
   box-sizing: border-box;
   border-bottom: 1px solid #eee;
   font-size: 0.875em;
@@ -947,7 +953,7 @@
   margin: 0 0 1em;
 }
 
-.h5p-interactive-video .h5p-image {
+.h5p-interactive-video .h5p-image:not(.h5p-dq-element-inner) {
   display: block;
   height: auto;
 }
@@ -1109,16 +1115,34 @@
   width: 100%;
   height: 100%;
   margin: 0;
-  display: table;
+  display: flex;
+  top: 0;
+  left: 0;
+  position: absolute;
+  flex-flow: column;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.mobile {
+  display: block;
+  top: 0;
+  -webkit-transform: none;
+  transform: none;
+  width: 100%;
+  height: 100%;
+}
+
+.h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-outer {
+  display: block;
+  vertical-align: auto;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main {
-  display: table-cell;
-  height: 100%;
+  flex: auto;
   position: relative;
 }
 
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-main-outer {
+  position: absolute;
   height: 100%;
   width: 100%;
 }
@@ -1141,7 +1165,7 @@
 
 /* mobile footer */
 .h5p-interactive-video .h5p-splash-wrapper.mobile .h5p-splash-footer {
-  display: table-footer-group;
+  flex: none;
 }
 
 /* Youtube specific splash start screen options */

@@ -36,7 +36,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, self.options.video.startScreenOptions);
 
     // Overriding
-    self.overrides = params.override;
+    self.override = params.override;
 
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -207,6 +207,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Disable auto-hide of controls
       self.disableAutoHide();
+
+      // Close dialog
+      if (self.dnb && self.dnb.dialog) {
+        self.dnb.dialog.close();
+      }
     });
 
     // Initialize interactions
@@ -293,7 +298,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.$controls = $container.children('.h5p-controls').hide();
 
     if (this.editor === undefined) {
-      this.dnb = new DragNBar([], this.$videoWrapper, this.$container, false);
+      this.dnb = new DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
       // Pause video when opening dialog
       this.dnb.dialog.on('open', function () {
         // Keep track of last state
@@ -1152,7 +1157,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.isMobileView = true;
         this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
-        this.pause();
       }
     } else {
       if (this.isMobileView) {
@@ -1163,7 +1167,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.$container.removeClass('mobile');
         this.isMobileView = false;
         this.recreateCurrentInteractions();
-        this.pause();
       }
     }
   };
@@ -1181,11 +1184,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.interactions.forEach(function (interaction) {
       interaction.resizeInteraction();
       interaction.repositionToWrapper(self.$videoWrapper);
+      interaction.positionLabel(self.$videoWrapper.width());
     });
   };
 
   /**
-   * Recreate currently
+   * Recreate interactions
    */
   InteractiveVideo.prototype.recreateCurrentInteractions = function () {
     this.interactions.forEach(function (interaction) {
@@ -1311,6 +1315,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.trigger('enterFullScreen');
       }
     }
+
     // Resize all interactions
     this.resizeInteractions();
   };
@@ -1443,6 +1448,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.toggleInteractions = function (second) {
     for (var i = 0; i < this.interactions.length; i++) {
       this.interactions[i].toggle(second);
+      this.interactions[i].repositionToWrapper(this.$videoWrapper);
     }
   };
 
@@ -1465,7 +1471,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Pause interactive video playback.
    */
   InteractiveVideo.prototype.pause = function () {
-    this.video.pause();
+    if (this.video && this.video.pause) {
+      this.video.pause();
+    }
   };
 
   /**

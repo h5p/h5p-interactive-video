@@ -85,10 +85,11 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * @params {function} finished
        */
       7: function (parameters, finished) {
+        var i;
         parameters.l10n = {};
 
         var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel'];
-        for (var i = 0; i < keys.length; i++) {
+        for (i = 0; i < keys.length; i++) {
           var key = keys[i];
           if (parameters.hasOwnProperty(key)) {
             parameters.l10n[key] = parameters[key];
@@ -99,34 +100,20 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         /* Move displayAsButton to displayType  */
         if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
-          for (var i = 0; i < interactions.length; i++) {
-            interactions[i].displayType = (interactions[i].displayAsButton === undefined || interactions[i].displayAsButton) ? 'button' : 'poster';
-            delete interactions[i].displayAsButton;
-          }
-        }
-
-        finished(null, parameters);
-      },
-
-      /**
-       * Upgrade links to always be displayed as poster
-       */
-      8: function (parameters, finished) {
-        if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
-          var interactions = parameters.interactiveVideo.assets.interactions;
-          var i;
           for (i = 0; i < interactions.length; i++) {
             var interaction = interactions[i];
+            interaction.displayType = (interaction.displayAsButton === undefined || interaction.displayAsButton) ? 'button' : 'poster';
+            delete interaction.displayAsButton;
 
             // Set links displayType to poster
-            if (interaction.action && interaction.action.library && interaction.action.library.split(' ')[0] === "H5P.Link") {
-              interaction.displayType = "poster";
+            if (interaction.action && interaction.action.library && interaction.action.library.split(' ')[0] === 'H5P.Link') {
+              interaction.displayType = 'poster';
             }
           }
         }
 
         finished(null, parameters);
-      }
+      },
     }
   };
 })(H5P.jQuery);
