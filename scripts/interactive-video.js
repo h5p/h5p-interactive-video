@@ -1057,17 +1057,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Resize the controls the first time we're visible
     if (!this.justVideo && this.controlsSized === undefined) {
-      var left = this.$controls.children('.h5p-controls-left').width();
-      var right = this.$controls.children('.h5p-controls-right').width();
-      if (left || right) {
-        this.controlsSized = true;
-
-        // Set correct margins for timeline
-        this.controls.$slider.parent().css({
-          marginLeft: left,
-          marginRight: right
-        });
-      }
+      this.resizeControls();
     }
 
     this.$videoWrapper.css({
@@ -1110,11 +1100,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.$container.css('fontSize', (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize + 'px');
 
     if (width < this.width) {
-      // Use minimal controls
-      this.$container.addClass('h5p-minimal');
+      if (!this.$container.hasClass('h5p-minimal')) {
+        // Use minimal controls
+        this.$container.addClass('h5p-minimal');
+        this.resizeControls();
+      }
     }
-    else {
+    else if (this.$container.hasClass('h5p-minimal')) {
       this.$container.removeClass('h5p-minimal');
+      this.resizeControls();
     }
 
     // Set max height of popup controls
@@ -1133,6 +1127,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     this.resizeInteractions();
+  };
+
+  /**
+   * Make sure that the jQuery UI scrollbar fits between the controls
+   */
+  InteractiveVideo.prototype.resizeControls = function () {
+    var left = this.$controls.children('.h5p-controls-left').width();
+    var right = this.$controls.children('.h5p-controls-right').width();
+    if (left || right) {
+      this.controlsSized = true;
+
+      // Set correct margins for timeline
+      this.controls.$slider.parent().css({
+        marginLeft: left,
+        marginRight: right
+      });
+    }
   };
 
   /**
