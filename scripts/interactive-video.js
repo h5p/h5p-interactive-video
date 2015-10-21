@@ -701,7 +701,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls = {};
 
     // Add play button/pause button
-    self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
+    self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
       if (self.controls.$play.hasClass('h5p-pause')) {
         self.video.play();
       }
@@ -727,7 +727,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
 
       // Add control handler
-      toggleBookmarks = function () {
+      toggleBookmarks = function () {
         self.controls.$bookmarks.toggleClass('h5p-active');
         self.controls.$bookmarksChooser.toggleClass('h5p-show');
       };
@@ -742,7 +742,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add fullscreen button
     if (!self.editor && H5P.canHasFullScreen !== false) {
-      self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
+      self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
         self.toggleFullScreen();
       });
     }
@@ -775,7 +775,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add volume button control (toggle mute)
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
-      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
+      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
         if (self.controls.$volume.hasClass('h5p-muted')) {
           self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
           self.video.unMute();
@@ -804,7 +804,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Add buttons to wrapper
       var $buttons = H5P.jQuery([]);
       if (toggleBookmarks) {
-        $buttons = $buttons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
+        $buttons = $buttons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
           if (toggleBookmarks() !== false) {
             $buttons.addClass('h5p-hide');
           }
@@ -904,7 +904,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {H5P.jQuery} $target
    * @param {function} handler
    */
-  InteractiveVideo.prototype.createButton = function (type, extraClass, $target, handler, text) {
+  InteractiveVideo.prototype.createButton = function (type, extraClass, $target, handler, text) {
     var self = this;
     var options = {
       role: 'button',
@@ -931,7 +931,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    *
    * @param {Event} event
    */
-  InteractiveVideo.showControls = function (event) {
+  InteractiveVideo.showControls = function (event) {
     if (InteractiveVideo.hideControls) {
       clearTimeout(InteractiveVideo.hideControls);
     }
