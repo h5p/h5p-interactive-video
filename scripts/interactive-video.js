@@ -166,7 +166,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           break;
       }
 
-      if (H5P.isFullscreen) {
+      if (self.hasFullScreen) {
         if (state === H5P.Video.PAUSED || state === H5P.Video.ENDED) {
           self.disableAutoHide();
         }
@@ -186,6 +186,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Handle entering fullscreen
     self.on('enterFullScreen', function () {
+      self.hasFullScreen = true;
       self.$container.parent('.h5p-content').css('height', '100%');
       self.controls.$fullscreen.addClass('h5p-exit').attr('title', self.l10n.exitFullscreen);
       self.resizeInteractions();
@@ -201,6 +202,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Handle exiting fullscreen
     self.on('exitFullScreen', function () {
+      self.hasFullScreen = false;
       self.$container.parent('.h5p-content').css('height', 'auto');
       self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
       self.resizeInteractions();
@@ -828,7 +830,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
         if  (self.controls.$more.hasClass('h5p-active')) {
           // Close overlay
-          if (H5P.isFullscreen) {
+          if (self.hasFullScreen) {
             self.enableAutoHide();
           }
           self.controls.$minimalOverlay.removeClass('h5p-show');
@@ -837,7 +839,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         else {
           // Open overlay
-          if (H5P.isFullscreen) {
+          if (self.hasFullScreen) {
             self.disableAutoHide();
           }
           self.controls.$minimalOverlay.addClass('h5p-show');
