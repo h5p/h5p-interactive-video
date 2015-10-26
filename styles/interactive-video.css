@@ -989,6 +989,7 @@
   height: auto;
   min-width: 1.5em;
   cursor: default;
+  border-radius: 0;
 }
 
 .h5p-interactive-video .h5p-dragquestion .h5p-button {
