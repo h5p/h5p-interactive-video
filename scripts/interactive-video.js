@@ -62,6 +62,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.previousState = contentData.previousState;
     }
 
+    // Initial state
+    self.lastState = H5P.Video.ENDED;
+
     // Listen for resize events to make sure we cover our container.
     self.on('resize', function () {
       self.resize();
