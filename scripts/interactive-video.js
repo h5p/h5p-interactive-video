@@ -961,7 +961,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {Event} event
    */
   InteractiveVideo.holdControls = function (event) {
-    H5P.$body.off('mousemove touchmove', InteractiveVideo.showControls);
+    H5P.$body.off('mousemove touchstart', InteractiveVideo.showControls);
     clearTimeout(InteractiveVideo.hideControls);
   };
 
@@ -972,7 +972,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {Event} event
    */
   InteractiveVideo.unholdControls = function (event) {
-    H5P.$body.on('mousemove touchmove', {self:event.data.self}, InteractiveVideo.showControls);
+    H5P.$body.on('mousemove touchstart', {self:event.data.self}, InteractiveVideo.showControls);
     InteractiveVideo.showControls(event);
   };
 
@@ -981,7 +981,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.enableAutoHide = function () {
     var eventData = {self:this};
-    H5P.$body.on('mousemove touchmove', eventData, InteractiveVideo.showControls);
+    H5P.$body.on('mousemove touchstart', eventData, InteractiveVideo.showControls);
 
     // Prevent auto hide when hovering controls
     this.$controls.on('mouseenter', eventData, InteractiveVideo.holdControls).on('mouseleave', eventData, InteractiveVideo.unholdControls);
@@ -992,7 +992,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Disables auto-hiding of the controls.
    */
   InteractiveVideo.prototype.disableAutoHide = function () {
-    H5P.$body.off('mousemove touchmove', InteractiveVideo.showControls);
+    H5P.$body.off('mousemove touchstart', InteractiveVideo.showControls);
     this.$controls.addClass('h5p-autohide').off('mouseenter', InteractiveVideo.holdControls).off('mouseleave', InteractiveVideo.unholdControls);
     clearTimeout(InteractiveVideo.hideControls);
   };
