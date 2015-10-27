@@ -372,6 +372,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
           // Remove interaction
           self.remove();
+          player.pause();
           player.seek(adaptivity.seekTo);
           player.play();
         }
