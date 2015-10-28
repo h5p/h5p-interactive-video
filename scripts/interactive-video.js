@@ -169,7 +169,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           break;
       }
 
-      if (self.hasFullScreen) {
+      if (self.hasFullScreen && !self.canHasMenuOpen) {
         if (state === H5P.Video.PAUSED || state === H5P.Video.ENDED) {
           self.disableAutoHide();
         }
@@ -206,7 +206,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Handle exiting fullscreen
     self.on('exitFullScreen', function () {
       self.hasFullScreen = false;
-      self.$container.parent('.h5p-content').css('height', 'auto');
+      self.$container.parent('.h5p-content').css('height', '');
       self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
       self.resizeInteractions();
 
@@ -656,9 +656,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           $bookmark.mouseover().mouseout();
           setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
         }
-        self.controls.$bookmarksChooser.removeClass('h5p-show');
         if (self.controls.$more.hasClass('h5p-active')) {
           self.controls.$more.click();
+        }
+        else {
+          self.controls.$bookmarks.click();
         }
         self.video.seek(bookmark.time);
       });
@@ -721,6 +723,35 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     /**
+     * Wraps a specifc handler to do some generic operations each time the handler is triggered.
+     *
+     * @private
+     * @param {function} action
+     */
+    var createPopupMenuHandler = function (action) {
+      return function () {
+        if (action() === false) {
+          return; // Unable to open menu
+        }
+
+        if ($(this).hasClass('h5p-active')) {
+          // Opening
+          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
+            self.disableAutoHide();
+          }
+          self.canHasMenuOpen = true;
+        }
+        else {
+          // Closing
+          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
+            self.enableAutoHide();
+          }
+          self.canHasMenuOpen = false;
+        }
+      };
+    };
+
+    /**
      * Handler for opening bookmarks selection dialog.
      * Only available for controls.
      * @private
@@ -743,7 +774,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       };
 
       // Button for opening bookmark popup
-      self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, toggleBookmarks);
+      self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, createPopupMenuHandler(toggleBookmarks));
     }
 
     // Current time for minimal display
@@ -781,7 +812,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     };
 
     // Button for opening video quality selection dialog
-    self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, openQualityChooser);
+    self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler(openQualityChooser));
 
     // Add volume button control (toggle mute)
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
@@ -833,18 +864,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
         if  (self.controls.$more.hasClass('h5p-active')) {
           // Close overlay
-          if (self.hasFullScreen) {
+          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
             self.enableAutoHide();
           }
+          self.canHasMenuOpen = false;
           self.controls.$minimalOverlay.removeClass('h5p-show');
           self.controls.$more.removeClass('h5p-active');
           $buttons.removeClass('h5p-hide');
         }
         else {
           // Open overlay
-          if (self.hasFullScreen) {
+          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
             self.disableAutoHide();
           }
+          self.canHasMenuOpen = true;
           self.controls.$minimalOverlay.addClass('h5p-show');
           self.controls.$more.addClass('h5p-active');
 
@@ -1024,9 +1057,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
     var $options = $list.children().click(function () {
       self.video.setQuality($(this).attr('data-quality'));
-      self.controls.$qualityChooser.removeClass('h5p-show');
       if (self.controls.$more.hasClass('h5p-active')) {
         self.controls.$more.click();
+      }
+      else {
+        self.controls.$qualityButton.click();
       }
     });
 
