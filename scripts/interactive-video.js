@@ -205,6 +205,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Handle exiting fullscreen
     self.on('exitFullScreen', function () {
+      if (self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
+        self.pause();
+      }
+
       self.hasFullScreen = false;
       self.$container.parent('.h5p-content').css('height', '');
       self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
@@ -715,6 +719,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
       if (self.controls.$play.hasClass('h5p-pause')) {
+        if (!self.hasFullScreen && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
+          self.toggleFullScreen();
+        }
         self.video.play();
       }
       else {
