@@ -1150,11 +1150,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.$container.hasClass('h5p-minimal')) {
         // Use minimal controls
         this.$container.addClass('h5p-minimal');
+
+        // Close pop-up menus
+        if (self.controls.$bookmarks.hasClass('h5p-active')) {
+          self.controls.$bookmarks.click();
+        }
+        if (self.controls.$qualityButton.hasClass('h5p-active')) {
+          self.controls.$qualityButton.click();
+        }
+
         this.resizeControls();
       }
     }
     else if (this.$container.hasClass('h5p-minimal')) {
       this.$container.removeClass('h5p-minimal');
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
       this.resizeControls();
     }
 
