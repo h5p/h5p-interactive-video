@@ -953,10 +953,6 @@
   margin: 0 0 1em;
 }
 
-.h5p-interactive-video .h5p-image:not(.h5p-dq-element-inner) {
-  display: block;
-  height: auto;
-}
 .h5p-interactive-video .h5p-text p:first-child {
   margin-top: 0;
 }
