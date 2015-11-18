@@ -150,6 +150,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
+      player.dnb.dialog.once('close', function () {
+        // Try to pause any media when closing dialog
+        try {
+          if (instance.pause !== undefined &&
+            (instance.pause instanceof Function ||
+            typeof instance.pause === 'function')) {
+            instance.pause();
+          }
+        }
+        catch (err) {
+          // Prevent crashing, log error.
+          H5P.error(err);
+        }
+      });
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
