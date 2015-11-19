@@ -1404,7 +1404,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Scroll slider
     if (time > 0) {
-      self.controls.$slider.slider('option', 'value', time);
+      try {
+        self.controls.$slider.slider('option', 'value', time);
+      }
+      catch (err) {
+        // Prevent crashing when changing lib. Exit function
+        return;
+      }
     }
 
     // Some UI elements are updated every 10th of a second.
