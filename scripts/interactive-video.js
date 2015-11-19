@@ -1139,8 +1139,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Set base font size. Don't allow it to fall below original size.
-    var fontSize = (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize;
-    this.$container.css('fontSize', fontSize + 'px');
+    this.scaledFontSize = (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize;
+    this.$container.css('fontSize', this.scaledFontSize + 'px');
 
     if (!this.editor) {
       if (width < this.width) {
@@ -1172,7 +1172,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
     else if (this.editor.dnb) {
-      this.editor.dnb.dnr.setContainerEm(fontSize);
+      this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
     }
 
     this.resizeInteractions();
