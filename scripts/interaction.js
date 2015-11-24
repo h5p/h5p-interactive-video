@@ -506,7 +506,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       if (player.editor === undefined) {
         dnbElement = player.dnb.add($interaction, undefined, {dnbElement: dnbElement, disableContextMenu: true});
-      } else {
+      }
+      else {
+
+        if (self.fit) {
+          // Make sure player is inside video container
+          player.editor.fit($interaction, parameters);
+          self.fit = false;
+        }
+
         // Pause video when interaction is focused
         $interaction.focus(function () {
           player.pause();
