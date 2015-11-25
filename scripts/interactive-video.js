@@ -1265,6 +1265,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Recreate interactions
    */
   InteractiveVideo.prototype.recreateCurrentInteractions = function () {
+    this.dnb.blurAll();
     this.interactions.forEach(function (interaction) {
       interaction.reCreateInteraction();
     });
