@@ -482,6 +482,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Remove interaction from display
           if (dnbElement) {
             dnbElement.hideContextMenu();
+            if (dnbElement === player.dnb.focusedElement) {
+              dnbElement.blur();
+              delete player.dnb.focusedElement;
+            }
           }
           if (player.editor && isHovered) {
             player.editor.hideInteractionTitle();
