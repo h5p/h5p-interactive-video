@@ -537,9 +537,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       $interaction.appendTo(self.$overlay);
 
       // Make sure the interaction does not overflow videowrapper.
-      if ($interaction.position().top + $interaction.height() > self.$videoWrapper.height()) {
-        $interaction.css('top', ((self.$videoWrapper.height() - $interaction.height()) / self.$videoWrapper.height() * 100) + '%');
-      }
+      interaction.repositionToWrapper(self.$videoWrapper);
 
       if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
         self.video.pause();

@@ -49,6 +49,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of tooltip state
     var isHovered = false;
 
+    this.on('resize', function () {
+      // Forget the static dialog width on resize
+      delete self.dialogWidth;
+      player.dnb.dialog.removeStaticWidth();
+    });
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -220,10 +226,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }, 500);
           }
           lastHeight = height;
-
-          // Forget the static dialog width on resize
-          delete self.dialogWidth;
-          player.dnb.dialog.removeStaticWidth();
         });
       }
 
@@ -772,14 +774,31 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $wrapper
      */
     self.repositionToWrapper = function ($wrapper) {
-      if ($interaction && isShownAsButton) {
+
+      if ($interaction) {
         // Check if button overflows parent
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
+
+          // We must reduce interaction height
+          if (newTop < 0) {
+            newTop = 0;
+            var newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
+            $interaction.css('height', newHeight + 'em');
+          }
           $interaction.css('top', newTop + '%');
         }
+
         if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
           var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+
+          // We must reduce interaction height
+          if (newLeft < 0) {
+            newLeft = 0;
+            var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
+            $interaction.css('height', newWidth + 'em');
+          }
+
           $interaction.css('left', newLeft + '%');
         }
       }
