@@ -281,7 +281,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.attach = function ($container) {
     var that = this;
-    this.setActivityStarted();
+    // isRoot is undefined in the editor
+    if (this.isRoot !== undefined && this.isRoot()) {
+      this.setActivityStarted();
+    }
     this.$container = $container;
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');

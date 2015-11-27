@@ -145,6 +145,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var openDialog = function () {
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
+      
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -315,6 +319,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
+      
+      // Register that this interaction has started if it is a question
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
     };
 
     /**
