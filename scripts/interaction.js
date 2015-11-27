@@ -163,6 +163,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Prevent crashing, log error.
           H5P.error(err);
         }
+
+        self.dialogWidth = player.dnb.dialog.getDialogWidth();
       });
 
       if (library === 'H5P.Image') {
@@ -193,7 +195,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       else {
         // Position dialog. Use medium dialog for all interactive dialogs.
         if (!player.isMobileView) {
-          player.dnb.dialog.position($interaction, null, !(library === 'H5P.Text' || library === 'H5P.Table'));
+          // Set size of dialog
+          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, !(library === 'H5P.Text' || library === 'H5P.Table'));
         }
       }
 
@@ -208,6 +211,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }, 500);
           }
           lastHeight = height;
+
+          // Forget the static dialog width on resize
+          delete self.dialogWidth;
+          player.dnb.dialog.removeStaticWidth();
         });
       }
 
