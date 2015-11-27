@@ -28,6 +28,9 @@
   line-height: 1.25em;
   font-size: 16px;
 }
+.h5p-interactive-video > div {
+  z-index: 1;
+}
 
 .h5p-interactive-video .h5p-question {
   color: #000;
