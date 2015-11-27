@@ -163,9 +163,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Prevent crashing, log error.
           H5P.error(err);
         }
-
-        self.dialogWidth = player.dnb.dialog.getDialogWidth();
       });
+
+      /**
+       * Set dialog width of interaction and unregister dialog close listener
+       */
+      var setDialogWidth = function () {
+        self.dialogWidth = player.dnb.dialog.getDialogWidth();
+        player.dnb.dialog.off('close', setDialogWidth);
+      };
+
+      // Keep dialog width when dialog closes.
+      player.dnb.dialog.on('close', setDialogWidth);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
