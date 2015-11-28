@@ -555,17 +555,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {
         instance.on('xAPI', function (event) {
-          if (!event.getMaxScore() ||
-            event.getScore() === null) {
-            return;
-          }
-          if (event.getVerb() === 'completed' ||
-            event.getVerb() === 'answered') {
+          if ((event.getMaxScore() && event.getScore() !== null)
+          && event.getVerb() === 'completed'
+          || event.getVerb() === 'answered') {
             self.score = event.getScore();
             self.maxScore = event.getMaxScore();
-            self.trigger(event);
             adaptivity($interaction);
           }
+          self.trigger(event);
         });
 
         hasRegisteredListeners = true;

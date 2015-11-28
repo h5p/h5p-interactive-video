@@ -559,6 +559,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.complete();
         }
       }
+      if (event.data.statement.context.extensions === undefined) {
+        event.data.statement.context.extensions = [];
+      }
+      event.data.statement.context.extensions['http://id.tincanapi.com/extension/ending-point'] = 'PT' + Math.floor(self.video.getCurrentTime()) + 'S';
     });
 
     self.interactions.push(interaction);
