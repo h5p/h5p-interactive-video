@@ -531,9 +531,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }, 0);
     });
     interaction.on('xAPI', function(event) {
-      if ($.inArray(event.getVerb(), ['completed', 'answered']) ||
-          event.getMaxScore() ||
-          event.getScore() !== null) {
+      if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
         if (interaction.isMainSummary()) {
           self.complete();
