@@ -145,6 +145,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var openDialog = function () {
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
+      
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -315,6 +319,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
+      
+      // Register that this interaction has started if it is a question
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
     };
 
     /**
@@ -546,17 +555,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {
         instance.on('xAPI', function (event) {
-          if (!event.getMaxScore() ||
-            event.getScore() === null) {
-            return;
-          }
-          if (event.getVerb() === 'completed' ||
-            event.getVerb() === 'answered') {
+          if ((event.getMaxScore() && event.getScore() !== null)
+          && event.getVerb() === 'completed'
+          || event.getVerb() === 'answered') {
             self.score = event.getScore();
             self.maxScore = event.getMaxScore();
-            self.trigger(event);
             adaptivity($interaction);
           }
+          self.trigger(event);
         });
 
         hasRegisteredListeners = true;
