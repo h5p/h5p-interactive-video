@@ -521,6 +521,14 @@
   visibility: visible;
   transition-delay: 0s;
 }
+
+.h5p-interactive-video.h5p-minimal.h5p-fullscreen .h5p-minimal-overlay,
+.h5p-interactive-video.h5p-minimal.h5p-semi-fullscreen .h5p-minimal-overlay {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
 .h5p-interactive-video .h5p-minimal-wrap {
   top: 50%;
   position: absolute;
@@ -547,10 +555,19 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+
 .h5p-interactive-video.h5p-fullscreen .h5p-chooser,
 .h5p-interactive-video.h5p-semi-fullscreen .h5p-chooser {
   background: rgba(0, 0, 0, 0.6);
 }
+
+.h5p-interactive-video.h5p-fullscreen .h5p-chooser,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-chooser {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks {
   left: 12px;
 }
@@ -565,6 +582,13 @@
   -moz-transition-delay: 0s;
   transition-delay: 0s;
 }
+
+.h5p-interactive-video.h5p-fullscreen .h5p-chooser.h5p-show,
+.h5p-interactive-video.h5p-semi-fullscreen .h5p-chooser.h5p-show {
+  top: 0;
+  bottom: auto;
+}
+
 .h5p-interactive-video .h5p-chooser > h3 {
   margin: 0 0 8px 0;
   padding: 8px 12px;

@@ -1056,6 +1056,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (!this.editor) {
       if (width < this.width) {
         if (!this.$container.hasClass('h5p-minimal')) {
+
+          // Close controls before changing layout
+          this.closeControls();
+
           // Use minimal controls
           this.$container.addClass('h5p-minimal');
           this.resizeControls();
@@ -1068,12 +1072,31 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
-    // Set max height of popup controls
-    var maxHeight = {maxHeight: (containerHeight - controlsHeight) + 'px'};
-    if (this.controls && this.controls.$minimalOverlay) {
-      this.controls.$minimalOverlay.css(maxHeight);
+    // Reset control popup calculations
+    var controlsCss = {
+      marginTop: '',
+      maxHeight: ''
+    };
+
+    if (fullscreenOn) {
+
+      // Make sure popup controls are on top of video wrapper
+      var marginTop = this.$videoWrapper.height();
+
+      // Center popup menus
+      if (videoHeight + controlsHeight <= containerHeight) {
+        marginTop = videoHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
+      }
+      controlsCss.marginTop = marginTop + 'px';
     }
-    this.$container.find('.h5p-chooser').css(maxHeight);
+    else { // Set max height of popup controls
+      controlsCss.maxHeight = (containerHeight - controlsHeight) + 'px';
+    }
+
+    if (this.controls && this.controls.$minimalOverlay) {
+      this.controls.$minimalOverlay.css(controlsCss);
+    }
+    this.$container.find('.h5p-chooser').css(controlsCss);
 
     // Resize start screen
     if (!this.editor) {
@@ -1090,9 +1113,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Make sure that the jQuery UI scrollbar fits between the controls
+   * Close all open control menus. Useful when modifying controls.
    */
-  InteractiveVideo.prototype.resizeControls = function () {
+  InteractiveVideo.prototype.closeControls = function () {
+
     // Close pop-up menus
     if (this.controls) {
       if (this.controls.$bookmarks && this.controls.$bookmarks.hasClass('h5p-active')) {
@@ -1105,6 +1129,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.controls.$more.click();
       }
     }
+  };
+
+  /**
+   * Make sure that the jQuery UI scrollbar fits between the controls
+   */
+  InteractiveVideo.prototype.resizeControls = function () {
+    this.closeControls();
 
     var left = this.$controls.children('.h5p-controls-left').width();
     var right = this.$controls.children('.h5p-controls-right').width();
