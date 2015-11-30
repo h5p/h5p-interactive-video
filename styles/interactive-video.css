@@ -364,21 +364,6 @@
   height: 36px;
   background: #2c2c2c;
 }
-.h5p-interactive-video.h5p-fullscreen .h5p-controls,
-.h5p-interactive-video.h5p-semi-fullscreen .h5p-controls {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  opacity: 0;
-  visibility: hidden;
-  background: rgba(0, 0, 0, 0.6);
-  -webkit-transition: opacity 1s ease-in-out, visibility 0s linear 1s;
-}
-.h5p-interactive-video .h5p-controls.h5p-autohide {
-  opacity: 1;
-  visibility: visible;
-  -webkit-transition: opacity 0.1s ease-in-out, visibility 0s linear 0.1s;
-}
 .h5p-interactive-video .h5p-control {
   display: block;
   height: 36px;

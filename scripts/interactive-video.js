@@ -168,15 +168,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.timeUpdate(-1);
           break;
       }
-
-      if (self.hasFullScreen && !self.canHasMenuOpen) {
-        if (state === H5P.Video.PAUSED || state === H5P.Video.ENDED) {
-          self.disableAutoHide();
-        }
-        else {
-          self.enableAutoHide();
-        }
-      }
     });
 
     self.video.on('qualityChange', function (event) {
@@ -193,14 +184,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.$container.parent('.h5p-content').css('height', '100%');
       self.controls.$fullscreen.addClass('h5p-exit').attr('title', self.l10n.exitFullscreen);
       self.resizeInteractions();
-
-      // Enable auto-hide of controls
-      if (self.controls.$play.hasClass('h5p-pause')) {
-        self.$controls.addClass('h5p-autohide');
-      }
-      else {
-        self.enableAutoHide();
-      }
     });
 
     // Handle exiting fullscreen
@@ -213,9 +196,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.$container.parent('.h5p-content').css('height', '');
       self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
       self.resizeInteractions();
-
-      // Disable auto-hide of controls
-      self.disableAutoHide();
 
       // Close dialog
       if (self.dnb && self.dnb.dialog) {
@@ -717,7 +697,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
       if (self.controls.$play.hasClass('h5p-pause')) {
-        if (!self.hasFullScreen && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
+
+        // Auto toggle fullscreen on play if on a small device
+        var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
+        if (!self.hasFullScreen && isSmallDevice && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
           self.toggleFullScreen();
         }
         self.video.play();
@@ -745,19 +728,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           // Opening
           $button.addClass('h5p-active');
           $menu.addClass('h5p-show');
-          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
-            self.disableAutoHide();
-          }
-          self.canHasMenuOpen = true;
         }
         else {
           // Closing
           $button.removeClass('h5p-active');
           $menu.removeClass('h5p-show');
-          if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
-            self.enableAutoHide();
-          }
-          self.canHasMenuOpen = false;
         }
       };
     };
@@ -856,10 +831,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
         // Close overlay
-        if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
-          self.enableAutoHide();
-        }
-        self.canHasMenuOpen = false;
         self.controls.$minimalOverlay.removeClass('h5p-show');
         self.controls.$more.removeClass('h5p-active');
         if (self.controls.$bookmarks && self.controls.$bookmarks.hasClass('h5p-active')) {
@@ -874,10 +845,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
       else {
         // Open overlay
-        if (self.hasFullScreen && self.currentState !== H5P.Video.PAUSED && self.currentState !== H5P.Video.ENDED) {
-          self.disableAutoHide();
-        }
-        self.canHasMenuOpen = true;
         self.controls.$minimalOverlay.addClass('h5p-show');
         self.controls.$more.addClass('h5p-active');
 
@@ -970,67 +937,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Event handler for auto-hiding the controls
-   *
-   * @param {Event} event
-   */
-  InteractiveVideo.showControls = function (event) {
-    if (InteractiveVideo.hideControls) {
-      clearTimeout(InteractiveVideo.hideControls);
-    }
-    else {
-      event.data.self.$controls.addClass('h5p-autohide');
-    }
-    InteractiveVideo.hideControls = setTimeout(function () {
-      event.data.self.$controls.removeClass('h5p-autohide');
-      InteractiveVideo.hideControls = false;
-    }, 2000);
-  };
-
-  /**
-   * Event handler for temporarly disabling auto-hiding of controls when
-   * using the controls.
-   *
-   * @param {Event} event
-   */
-  InteractiveVideo.holdControls = function (event) {
-    H5P.$body.off('mousemove touchstart', InteractiveVideo.showControls);
-    clearTimeout(InteractiveVideo.hideControls);
-  };
-
-  /**
-   * Event handler for enabling auto-hiding of the controls after they've
-   * been temporarly disabled.
-   *
-   * @param {Event} event
-   */
-  InteractiveVideo.unholdControls = function (event) {
-    H5P.$body.on('mousemove touchstart', {self:event.data.self}, InteractiveVideo.showControls);
-    InteractiveVideo.showControls(event);
-  };
-
-  /**
-   * Enables auto-hiding of the controls.
-   */
-  InteractiveVideo.prototype.enableAutoHide = function () {
-    var eventData = {self:this};
-    H5P.$body.on('mousemove touchstart', eventData, InteractiveVideo.showControls);
-
-    // Prevent auto hide when hovering controls
-    this.$controls.on('mouseenter', eventData, InteractiveVideo.holdControls).on('mouseleave', eventData, InteractiveVideo.unholdControls);
-    InteractiveVideo.showControls({data:eventData});
-  };
-
-  /**
-   * Disables auto-hiding of the controls.
-   */
-  InteractiveVideo.prototype.disableAutoHide = function () {
-    H5P.$body.off('mousemove touchstart', InteractiveVideo.showControls);
-    this.$controls.addClass('h5p-autohide').off('mouseenter', InteractiveVideo.holdControls).off('mouseleave', InteractiveVideo.unholdControls);
-    clearTimeout(InteractiveVideo.hideControls);
-  };
-
-  /**
    * Add a dialog for selecting video quality.
    */
   InteractiveVideo.prototype.addQualityChooser = function () {
@@ -1114,13 +1020,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (fullscreenOn) {
       var videoHeight = this.$videoWrapper.height();
 
-      if (videoHeight <= containerHeight) {
-        this.$videoWrapper.css('marginTop', (containerHeight - videoHeight) / 2);
+      if (videoHeight + controlsHeight <= containerHeight) {
+        this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
         width = this.$videoWrapper.width();
       }
       else {
         var ratio = this.$videoWrapper.width() / videoHeight;
-        var height = containerHeight;
+        var height = containerHeight - controlsHeight;
         width = height * ratio;
         this.$videoWrapper.css({
           marginLeft: (this.$container.width() - width) / 2,
