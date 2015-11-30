@@ -526,6 +526,22 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
+      
+      // Make sure listeners are only registered once
+      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
+        instance.on('xAPI', function (event) {
+          if ((event.getMaxScore() && event.getScore() !== null)
+          && event.getVerb() === 'completed'
+          || event.getVerb() === 'answered') {
+            self.score = event.getScore();
+            self.maxScore = event.getMaxScore();
+            adaptivity($interaction);
+          }
+          self.trigger(event);
+        });
+
+        hasRegisteredListeners = true;
+      }
 
       if (self.isButton() || player.isMobileView) {
         createButton();
@@ -550,22 +566,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         $interaction.focus(function () {
           player.pause();
         });
-      }
-
-      // Make sure listeners are only registered once
-      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
-        instance.on('xAPI', function (event) {
-          if ((event.getMaxScore() && event.getScore() !== null)
-          && event.getVerb() === 'completed'
-          || event.getVerb() === 'answered') {
-            self.score = event.getScore();
-            self.maxScore = event.getMaxScore();
-            adaptivity($interaction);
-          }
-          self.trigger(event);
-        });
-
-        hasRegisteredListeners = true;
       }
 
       return $interaction;
