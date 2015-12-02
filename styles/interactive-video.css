@@ -760,6 +760,7 @@
   -webkit-transition: visibility 0s 0.2s, opacity 0.2s;
   -moz-transition: visibility 0s 0.2s, opacity 0.2s;
   transition: visibility 0s 0.2s, opacity 0.2s;
+  z-index: 1;
 }
 .h5p-interactive-video.h5p-fullscreen .h5p-bookmark-label,
 .h5p-interactive-video.h5p-semi-fullscreen .h5p-bookmark-label {
