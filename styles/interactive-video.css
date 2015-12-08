@@ -32,6 +32,14 @@
   z-index: 1;
 }
 
+.h5p-interactive-video .h5p-video-wrapper.h5p-disable-opt-out {
+  z-index: auto;
+}
+
+.h5p-interactive-video .h5p-video-wrapper.h5p-disable-opt-out .h5p-interaction {
+  z-index: 1;
+}
+
 .h5p-interactive-video .h5p-question {
   color: #000;
 }

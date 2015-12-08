@@ -148,7 +148,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
       }
-      
+
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -319,7 +319,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
-      
+
       // Register that this interaction has started if it is a question
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
@@ -385,6 +385,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
         else {
           $interaction.css('zIndex', 52);
+          player.$videoWrapper.addClass('h5p-disable-opt-out');
           player.dnb.dialog.openOverlay();
         }
       }
@@ -402,6 +403,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             if (!self.isButton()) {
               player.dnb.dialog.closeOverlay();
               $interaction.css('zIndex', '');
+              player.$videoWrapper.removeClass('h5p-disable-opt-out');
             }
           }
 
@@ -526,7 +528,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
-      
+
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {
         instance.on('xAPI', function (event) {
