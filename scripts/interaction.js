@@ -674,6 +674,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.reCreate = function () {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+
+        // Set adaptivity if question is finished on attach
+        if (instance.on) {
+          instance.on('question-finished', function () {
+            adaptivity();
+          });
+        }
       }
     };
 
