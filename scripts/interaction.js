@@ -311,6 +311,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
+
+      if (player.editor !== undefined && instance.disableAutoPlay) {
+        instance.disableAutoPlay();
+      }
+
       instance.attach($inner);
 
       // Trigger event listeners
