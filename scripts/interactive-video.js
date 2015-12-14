@@ -47,6 +47,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       quality: 'Video quality',
       unmute: 'Unmute',
       fullscreen: 'Fullscreen',
+      subtitles: 'Subtitles',
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
       bookmarks: 'Bookmarks',
@@ -279,6 +280,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
     this.attachVideo(this.$videoWrapper);
+
+    // Subtitles
+    var jsonFilename = '';
+    this.$videoWrapper.find('video').attr("ontimeupdate","subtitlesLoad('"+ jsonFilename+"')");
 
     if (this.justVideo) {
       this.$videoWrapper.find('video').css('minHeight', '200px');
@@ -905,6 +910,55 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.timeUpdate(ui.value);
         }
       }
+    });
+
+    // Subtitles
+    var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+    };
+    contentId = getUrlParameter('id');
+
+    $(".h5p-subtitles-languages").hide();
+
+    $.ajax({
+      url: "../wp-content/uploads/h5p/libraries/H5P.InteractiveVideo-1.7/scripts/languageDropdown.php",
+      data: "contentId=" + contentId,
+      type: "POST",
+      success: function (data) {
+        if (data) {
+            // SRT found.
+            $(".h5p-subtitles-languages").html(data);
+
+            $('.h5p-subtitles').click(function () {
+              $(".h5p-subtitles-languages").fadeToggle();
+            });
+
+            $('.h5p-subtitles-languages-a:not(.h5p-subtitlesoff)').click(function() {
+              $(".h5p-subtitles-languages").hide();
+              var subtitlesLanguage = contentId + "_" + $(this).data('lang') + '.json';
+              subtitlesLoad(subtitlesLanguage);
+              subtitlesEnable();
+            });
+
+            $('.h5p-subtitlesoff').click(function () {
+                  subtitlesDisable();
+                  $(".h5p-subtitles-languages").hide();
+            });
+          } else {
+                // No SRT Files.
+                $(".h5p-subtitles").hide();
+          }
+        }
     });
 
     // Add buffered status to seekbar

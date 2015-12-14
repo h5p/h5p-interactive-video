@@ -13,8 +13,8 @@
           {
             "name": "files",
             "type": "video",
-            "label": "Video files",
-            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
+            "label": "Video  & subtitle files",
+            "description": "Select the video files and subtitles (optional) you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats and srt format for subtitles."
           },
           {
             "name": "poster",

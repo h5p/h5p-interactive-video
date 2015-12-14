@@ -1244,3 +1244,46 @@
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+
+
+/* Subtitles */
+.h5p-controls {
+  position: relative;
+}
+
+.h5p-interactive-video .h5p-subtitles:before {
+  content: "\f0c9";
+  cursor: pointer;
+}
+
+.h5p-subtitles-wrapper {
+  display: none;
+  margin-left:2%;
+  position: absolute;
+  width: 96%;
+  height: 50px;
+  text-align: center;
+  bottom: 80px;
+  font-weight: normal;
+  color: white;
+}
+
+.h5p-subtitles-languages {
+  position: absolute;
+  right: 50px;
+  height: auto !important;
+  width: 50px;
+  bottom: 36px;
+  background-color: #2C2C2C;
+  font-size: 12px;
+  text-align: center;
+}
+
+.h5p-subtitles-languages a {
+  color: white;
+  text-decoration: none;
+}
+
+.h5p-subtitles-languages a:hover {
+  text-decoration: underline;
+}
