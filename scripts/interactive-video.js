@@ -1023,7 +1023,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var controlsHeight = this.justVideo ? 0 : this.$controls.height();
     var containerHeight = this.$container.height();
     if (fullscreenOn) {
-    var videoHeight = this.$videoWrapper.height();
+      var videoHeight = this.$videoWrapper.height();
 
       if (videoHeight + controlsHeight <= containerHeight) {
         this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
@@ -1073,20 +1073,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
     var controlsCss = {
-      marginTop: '',
+      bottom: '',
       maxHeight: popupControlsHeight + 'px'
     };
 
     if (fullscreenOn) {
 
       // Make sure popup controls are on top of video wrapper
-      var marginTop = popupControlsHeight;
+      var offsetBottom = controlsHeight;
 
       // Center popup menus
       if (videoHeight + controlsHeight <= containerHeight) {
-        marginTop = videoHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
+        offsetBottom = controlsHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
       }
-      controlsCss.marginTop = marginTop + 'px';
+      controlsCss.bottom = offsetBottom + 'px';
     }
 
     if (this.controls && this.controls.$minimalOverlay) {
