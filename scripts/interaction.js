@@ -49,12 +49,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of tooltip state
     var isHovered = false;
 
-    this.on('resize', function () {
-      // Forget the static dialog width on resize
-      delete self.dialogWidth;
-      player.dnb.dialog.removeStaticWidth();
-    });
-
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -684,6 +678,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         if (instance.on) {
           instance.on('question-finished', function () {
             adaptivity();
+          });
+
+          instance.on('resize', function () {
+            // Forget the static dialog width on resize
+            delete self.dialogWidth;
+            player.dnb.dialog.removeStaticWidth();
           });
         }
       }
