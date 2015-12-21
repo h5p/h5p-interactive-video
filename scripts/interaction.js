@@ -49,6 +49,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of tooltip state
     var isHovered = false;
 
+    // Changes if interaction has moved from original position
+    var isRepositioned = false;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -796,6 +799,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.repositionToWrapper = function ($wrapper) {
 
       if ($interaction) {
+
+        // Reset positions
+        if (isRepositioned) {
+          $interaction.css({
+            'height': (parameters.height ? parameters.height : 10) + 'em',
+            'width': (parameters.width ? parameters.width : 10) + 'em',
+            'top': parameters.y + '%',
+            'left': parameters.x + '%'
+          });
+          isRepositioned = false;
+        }
+
         // Check if button overflows parent
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
@@ -807,19 +822,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             $interaction.css('height', newHeight + 'em');
           }
           $interaction.css('top', newTop + '%');
+          isRepositioned = true;
         }
 
         if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
           var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
 
-          // We must reduce interaction height
+          // We must reduce interaction width
           if (newLeft < 0) {
             newLeft = 0;
             var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
-            $interaction.css('height', newWidth + 'em');
+            $interaction.css('width', newWidth + 'em');
           }
 
           $interaction.css('left', newLeft + '%');
+          isRepositioned = true;
         }
       }
     };
