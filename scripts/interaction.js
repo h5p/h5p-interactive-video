@@ -686,7 +686,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           instance.on('resize', function () {
             // Forget the static dialog width on resize
             delete self.dialogWidth;
-            player.dnb.dialog.removeStaticWidth();
+            if (player && player.dnb) {
+              player.dnb.dialog.removeStaticWidth();
+            }
           });
         }
       }
