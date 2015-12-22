@@ -65,7 +65,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction ' + classes + hiddenClass,
         css: {
           left: parameters.x + '%',
-          top: parameters.y + '%'
+          top: parameters.y + '%',
+          width: '',
+          height: ''
         },
         on: {
           click: function () {
@@ -592,8 +594,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         if (self.isButton() || player.isMobileView) {
           createButton();
+          isShownAsButton = true;
         } else {
           createPoster();
+          isShownAsButton = false;
         }
       }
     };
@@ -805,11 +809,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Reset positions
         if (isRepositioned) {
           $interaction.css({
-            'height': (parameters.height ? parameters.height : 10) + 'em',
-            'width': (parameters.width ? parameters.width : 10) + 'em',
             'top': parameters.y + '%',
             'left': parameters.x + '%'
           });
+
+          // Reset dimensions
+          var height = '';
+          var width = '';
+
+          // Posters reset to standard dimensions
+          if (!isShownAsButton) {
+            height = (parameters.height ? parameters.height : 10) + 'em';
+            width = (parameters.width ? parameters.width : 10) + 'em';
+          }
+
+          $interaction.css({
+            'height': height,
+            'width': width
+          });
+
           isRepositioned = false;
         }
 
