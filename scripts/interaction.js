@@ -818,7 +818,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           var width = '';
 
           // Posters reset to standard dimensions
-          if (!isShownAsButton) {
+          if (!self.isButton()) {
             height = (parameters.height ? parameters.height : 10) + 'em';
             width = (parameters.width ? parameters.width : 10) + 'em';
           }
