@@ -148,6 +148,8 @@
   padding: 0 1.375em 0 0.875em;
   border-top-left-radius: 1em;
   border-bottom-left-radius: 1em;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .h5p-interactive-video .h5p-interaction-button {
