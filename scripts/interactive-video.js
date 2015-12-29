@@ -82,8 +82,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         controls: self.justVideo,
         fit: false,
         poster: self.options.video.poster,
-        startAt: startAt,
-        autoplay: (startAt > 0)
+        startAt: startAt
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
