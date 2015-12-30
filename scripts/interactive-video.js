@@ -73,7 +73,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Detect whether to add interactivies or just display a plain video.
     self.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
 
-    var startAt = (self.previousState && self.previousState.progress) ? self.previousState.progress : 0;
+    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
