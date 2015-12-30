@@ -890,7 +890,8 @@
 }
 .h5p-interactive-video .h5p-dialog-inner {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .h5p-interactive-video .h5p-big > .h5p-dialog-inner {
   width: 100%;
