@@ -8,7 +8,7 @@
           "fields": [
             {
               "label": "File Video",
-              "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilit� dei browser � consigliato utilizzare i formati video WebM o MP4."
+              "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
               "label": "Poster"
@@ -74,7 +74,7 @@
                   {},
                   {},
                   {
-                    "label": "Adattabilit�",
+                    "label": "Adattabilità",
                     "fields": [
                       {
                         "label": "Azione su Tutto corretto",
@@ -128,7 +128,7 @@
           ]
         },
         {
-          "label": "Riepilogo attivit�",
+          "label": "Riepilogo attività",
           "fields": [
             {
               "default": {
@@ -149,15 +149,15 @@
       "fields": [
         {
           "label": "Abilita ignora impostazioni per \"Mostra soluzione\" e \"Riprova\".",
-          "description": "Se questa opzione � abilitata le proprie impostazioni per le domande saranno ignorate e verranno utilizzate le impostazioni seguenti."
+          "description": "Se questa opzione è abilitata le proprie impostazioni per le domande saranno ignorate e verranno utilizzate le impostazioni seguenti."
         },
         {
           "label": "Abilita pulsanti \"Mostra soluzione\".",
-          "description": "L'attivazione di questa opzione far� in modo che le domande mostrino il tasto \"Mostra soluzione\"."
+          "description": "L'attivazione di questa opzione farà in modo che le domande mostrino il tasto \"Mostra soluzione\"."
         },
         {
           "label": "Abilita \"Riprova\".",
-          "description": "L'attivazione di questa opzione far� in modo che per l'utente sia abilitata l'opzione \"Riprova\"."
+          "description": "L'attivazione di questa opzione farà in modo che per l'utente sia abilitata l'opzione \"Riprova\"."
         }
       ]
     },
@@ -174,13 +174,13 @@
           "label": "Titolo Pausa"
         },
         {
-          "label": "Titolo modalit� muto"
+          "label": "Titolo modalità muto"
         },
         {
-          "label": "Titolo disattiva modalit� muto"
+          "label": "Titolo disattiva modalità muto"
         },
         {
-          "label": "Titolo qualit� Video"
+          "label": "Titolo qualità Video"
         },
         {
           "label": "Titolo Schermo intero"
@@ -195,7 +195,7 @@
           "label": "Titolo Segnalibri"
         },
         {
-          "label": "Etichetta predefinita per adattabilit� pulsante Vai a"
+          "label": "Etichetta predefinita per adattabilità pulsante Vai a"
         }
       ]
     }

@@ -49,12 +49,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of tooltip state
     var isHovered = false;
 
+    this.on('resize', function () {
+      // Forget the static dialog width on resize
+      delete self.dialogWidth;
+      player.dnb.dialog.removeStaticWidth();
+    });
+
     /**
      * Display the current interaction as a button on top of the video.
      *
      * @private
      */
-    var createButton = function () {
+    var createButton = function () {
       var hiddenClass = isShownAsButton ? '' : ' h5p-hidden';
       $interaction = $('<div/>', {
         tabIndex: 0,
@@ -65,7 +71,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           top: parameters.y + '%'
         },
         on: {
-          click: function () {
+          click: function () {
             if (!self.dialogDisabled && library !== 'H5P.Nil') {
               openDialog();
             }
@@ -139,6 +145,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var openDialog = function () {
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
+      
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -150,6 +160,31 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
+      player.dnb.dialog.once('close', function () {
+        // Try to pause any media when closing dialog
+        try {
+          if (instance.pause !== undefined &&
+            (instance.pause instanceof Function ||
+            typeof instance.pause === 'function')) {
+            instance.pause();
+          }
+        }
+        catch (err) {
+          // Prevent crashing, log error.
+          H5P.error(err);
+        }
+      });
+
+      /**
+       * Set dialog width of interaction and unregister dialog close listener
+       */
+      var setDialogWidth = function () {
+        self.dialogWidth = player.dnb.dialog.getDialogWidth();
+        player.dnb.dialog.off('close', setDialogWidth);
+      };
+
+      // Keep dialog width when dialog closes.
+      player.dnb.dialog.on('close', setDialogWidth);
 
       if (library === 'H5P.Image') {
         // Special case for fitting images
@@ -163,7 +198,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             height: action.params.file.height
           }, !player.isMobileView);
         }
-        else {
+        else {
           // Wait for image to load
           $img.load(function () {
             if ($img.is(':visible')) {
@@ -179,7 +214,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       else {
         // Position dialog. Use medium dialog for all interactive dialogs.
         if (!player.isMobileView) {
-          player.dnb.dialog.position($interaction, null, !(library === 'H5P.Text' || library === 'H5P.Table'));
+          // Set size of dialog
+          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, !(library === 'H5P.Text' || library === 'H5P.Table'));
         }
       }
 
@@ -211,7 +247,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {Object} size width,height in px
      * @param {Boolean} positionDialog position dialog if true
      */
-    var resizeImage = function ($img, max, size, positionDialog) {
+    var resizeImage = function ($img, max, size, positionDialog) {
       var fontSize = 16;
       size.width /= fontSize;
       size.height /= fontSize;
@@ -242,7 +278,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var createPoster = function () {
+    var createPoster = function () {
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes,
         css: {
@@ -283,6 +319,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
+      
+      // Register that this interaction has started if it is a question
+      if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
+        instance.setActivityStarted();
+      }
     };
 
     /**
@@ -372,6 +413,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
           // Remove interaction
           self.remove();
+          player.pause();
           player.seek(adaptivity.seekTo);
           player.play();
         }
@@ -399,7 +441,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @returns {Object}
      */
-    self.getCurrentState = function () {
+    self.getCurrentState = function () {
       if (instance && (instance.getCurrentState instanceof Function ||
                        typeof instance.getCurrentState === 'function')) {
         return instance.getCurrentState();
@@ -467,6 +509,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Remove interaction from display
           if (dnbElement) {
             dnbElement.hideContextMenu();
+            if (dnbElement === player.dnb.focusedElement) {
+              dnbElement.blur();
+              delete player.dnb.focusedElement;
+            }
           }
           if (player.editor && isHovered) {
             player.editor.hideInteractionTitle();
@@ -480,6 +526,22 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
+      
+      // Make sure listeners are only registered once
+      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
+        instance.on('xAPI', function (event) {
+          if ((event.getMaxScore() && event.getScore() !== null)
+          && event.getVerb() === 'completed'
+          || event.getVerb() === 'answered') {
+            self.score = event.getScore();
+            self.maxScore = event.getMaxScore();
+            adaptivity($interaction);
+          }
+          self.trigger(event);
+        });
+
+        hasRegisteredListeners = true;
+      }
 
       if (self.isButton() || player.isMobileView) {
         createButton();
@@ -490,31 +552,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         isShownAsButton = false;
       }
       if (player.editor === undefined) {
-        dnbElement = player.dnb.add($interaction, {dnbElement: dnbElement, disableContextMenu: true});
-      } else {
+        dnbElement = player.dnb.add($interaction, undefined, {dnbElement: dnbElement, disableContextMenu: true});
+      }
+      else {
+
+        if (self.fit) {
+          // Make sure player is inside video container
+          player.editor.fit($interaction, parameters);
+          self.fit = false;
+        }
+
         // Pause video when interaction is focused
         $interaction.focus(function () {
           player.pause();
         });
-      }
-
-      // Make sure listeners are only registered once
-      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
-        instance.on('xAPI', function (event) {
-          if (!event.getMaxScore() ||
-            event.getScore() === null) {
-            return;
-          }
-          if (event.getVerb() === 'completed' ||
-            event.getVerb() === 'answered') {
-            self.score = event.getScore();
-            self.maxScore = event.getMaxScore();
-            self.trigger(event);
-            adaptivity($interaction);
-          }
-        });
-
-        hasRegisteredListeners = true;
       }
 
       return $interaction;
@@ -587,8 +638,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {number} height in ems
      */
     self.setSize = function (width, height) {
-      parameters.width = width;
-      parameters.height = height;
+      if (width) {
+        parameters.width = width;
+      }
+      if (height) {
+        parameters.height = height;
+      }
 
       H5P.trigger(instance, 'resize');
     };
@@ -614,7 +669,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Create a new instance of the interaction.
      * Useful if the input parameters have changes.
      */
-    self.reCreate = function () {
+    self.reCreate = function () {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
       }
@@ -713,17 +768,43 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Create clipboard data object.
+     * @returns {object}
+     */
+    self.getClipboardData = function () {
+      return H5P.DragNBar.clipboardify(H5PEditor.InteractiveVideo.clipboardKey, parameters, 'action');
+    };
+
+    /**
      * Resize to fit wrapper so icon does not overflow
+     * @param {H5P.jQuery} $wrapper
      */
     self.repositionToWrapper = function ($wrapper) {
-      if ($interaction && isShownAsButton) {
+
+      if ($interaction) {
         // Check if button overflows parent
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
+
+          // We must reduce interaction height
+          if (newTop < 0) {
+            newTop = 0;
+            var newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
+            $interaction.css('height', newHeight + 'em');
+          }
           $interaction.css('top', newTop + '%');
         }
+
         if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
           var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+
+          // We must reduce interaction height
+          if (newLeft < 0) {
+            newLeft = 0;
+            var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
+            $interaction.css('height', newWidth + 'em');
+          }
+
           $interaction.css('left', newLeft + '%');
         }
       }
