@@ -1,0 +1,187 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de video interactivo",
+      "fields": [
+        {
+          "label": "Subir/Insertar video",
+          "fields": [
+            {
+              "label": "Archivo de video",
+              "description": "Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
+            },
+            {
+              "label": "Cartel"
+            },
+            {
+              "label": "Título",
+			  "description": "Utilizado en extractos, estadísticas, etc."
+            },
+            {
+              "label": "Ajuste de interacciones",
+              "fields": [
+                {
+                  "label": "Ocultar el título al inicio del video"
+                },
+                {
+                  "label": "Descripción corta (Opcional)",
+                  "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                }
+              ]
+            },
+            {
+              "label": "Derechos de autor del video",
+              "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
+            }
+          ]
+        },
+        {
+          "label": "Agregar una interacción",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Mostar duración"
+                  },
+                  {
+                    "label": "Pause",
+                    "description": "Pausar la reproducción del video una vez que haya sido iniciada"
+                  },
+                  {
+                    "label": "Mostras como",
+                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe preseionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
+                    "options": [
+                      {
+                        "label": "Botón"
+                      },
+                      {
+                        "label": "Cartel"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Etiqueta",
+                    "description": "Etiqueta descriptiva adjunta al ícono de interacción."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptabilidad",
+                    "fields": [
+                      {
+                        "label": "Acción cuando todo es correcto",
+                        "fields": [
+                          {
+                            "label": "Ir a",
+                            "description": "Introduzca el código de tiempo en formato M:SS"
+                          },
+                          {
+                            "label": "Permitir al usuario optar por no responder y proseguir"
+                          },
+                          {
+                            "label": "Mensaje"
+                          },
+                          {
+                            "label": "Etiqueta para el botón de búsqueda"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Acción en caso de respuesta incorrecta",
+                        "fields": [
+                          {
+                            "label": "Ir a",
+                            "description": "Introduzca el código de tiempo en formato M:SS"
+                          },
+                          {
+                            "label": "Permitir al usuario optar por no responder y proseguir"
+                          },
+                          {
+                            "label": "Mensaje"
+                          },
+                          {
+                            "label": "Etiqueta para el botón de búsqueda"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Resúmen del ejercicio",
+          "fields": [
+            {},
+            {
+              "label": "Mostrar en",
+              "description": "Número de segundos antes de que termine el video."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Ajustes para los botones \"Solución\" y \"Reintentar\".",
+      "description": "Estas opciones le permitirán anular cuándo se mostrarán los botones \"Solución\" y \"Reintentar\" en contenidos integrados de h5p.",
+      "fields": [
+        {
+          "label": "Activar anulación de los ajustes de \"Solución\" y \"Reintentar\".",
+          "description": "Al activar, los ajustes propios del questionario será ignorados y los ajustes mostrados a continuación serán utilizados en sustitución."
+        },
+        {
+          "label": "Mostrar el botón \"Solución\".",
+          "description": "Al activar esta opción, se mostrará el botón \"Solución\"."
+        },
+        {
+          "label": "Mostrar el botón \"Reintentar\".",
+          "description": "Al activar esta opción, se mostrará el botón \"Reintentar\"."
+        }
+      ]
+    },
+    {
+      "label": "Localizar",
+      "fields": [
+        {
+          "label": "Título de la actividad"
+        },
+        {
+          "label": "Reproducir"
+        },
+        {
+          "label": "Pausar"
+        },
+        {
+          "label": "Silenciar"
+        },
+        {
+          "label": "Habilitar sonido"
+        },
+        {
+          "label": "Calidad del video"
+        },
+        {
+          "label": "Pantalla completa"
+        },
+        {
+          "label": "Salir de pantalla completa"
+        },
+        {
+          "label": "Resumen"
+        },
+        {
+          "label": "Marcadores"
+        },
+        {
+          "label": "Etiqueta por defecto del botón de búsqueda"
+        }
+      ]
+    }
+  ]
+}
