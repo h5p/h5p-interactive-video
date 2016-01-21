@@ -694,6 +694,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               player.dnb.dialog.removeStaticWidth();
             }
           });
+
+          if (library === 'H5P.GoToQuestion') {
+            instance.on('chosen', function (event) {
+              if (player.currentState === H5P.Video.PAUSED ||
+                  player.currentState === H5P.Video.ENDED) {
+                player.play();
+              }
+              player.seek(event.data);
+            });
+          }
         }
       }
     };
