@@ -49,11 +49,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of tooltip state
     var isHovered = false;
 
-    this.on('resize', function () {
-      // Forget the static dialog width on resize
-      delete self.dialogWidth;
-      player.dnb.dialog.removeStaticWidth();
-    });
+    // Changes if interaction has moved from original position
+    var isRepositioned = false;
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -68,7 +65,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction ' + classes + hiddenClass,
         css: {
           left: parameters.x + '%',
-          top: parameters.y + '%'
+          top: parameters.y + '%',
+          width: '',
+          height: ''
         },
         on: {
           click: function () {
@@ -148,7 +147,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
       }
-      
+
       // Create wrapper for dialog content
       var $dialogContent = $('<div/>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -311,6 +310,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $inner = $('<div/>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
+
+      if (player.editor !== undefined && instance.disableAutoPlay) {
+        instance.disableAutoPlay();
+      }
+
       instance.attach($inner);
 
       // Trigger event listeners
@@ -319,7 +323,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
-      
+
       // Register that this interaction has started if it is a question
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
@@ -385,6 +389,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
         else {
           $interaction.css('zIndex', 52);
+          player.$videoWrapper.addClass('h5p-disable-opt-out');
           player.dnb.dialog.openOverlay();
         }
       }
@@ -402,6 +407,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             if (!self.isButton()) {
               player.dnb.dialog.closeOverlay();
               $interaction.css('zIndex', '');
+              player.$videoWrapper.removeClass('h5p-disable-opt-out');
             }
           }
 
@@ -526,7 +532,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
-      
+
       // Make sure listeners are only registered once
       if (!hasRegisteredListeners && library !== 'H5P.Nil') {
         instance.on('xAPI', function (event) {
@@ -588,8 +594,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         if (self.isButton() || player.isMobileView) {
           createButton();
+          isShownAsButton = true;
         } else {
           createPoster();
+          isShownAsButton = false;
         }
       }
     };
@@ -672,6 +680,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.reCreate = function () {
       if (library !== 'H5P.Nil') {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+
+        // Set adaptivity if question is finished on attach
+        if (instance.on) {
+          instance.on('question-finished', function () {
+            adaptivity();
+          });
+
+          instance.on('resize', function () {
+            // Forget the static dialog width on resize
+            delete self.dialogWidth;
+            if (player && player.dnb) {
+              player.dnb.dialog.removeStaticWidth();
+            }
+          });
+        }
       }
     };
 
@@ -782,6 +805,32 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.repositionToWrapper = function ($wrapper) {
 
       if ($interaction) {
+
+        // Reset positions
+        if (isRepositioned) {
+          $interaction.css({
+            'top': parameters.y + '%',
+            'left': parameters.x + '%'
+          });
+
+          // Reset dimensions
+          var height = '';
+          var width = '';
+
+          // Posters reset to standard dimensions
+          if (!self.isButton()) {
+            height = (parameters.height ? parameters.height : 10) + 'em';
+            width = (parameters.width ? parameters.width : 10) + 'em';
+          }
+
+          $interaction.css({
+            'height': height,
+            'width': width
+          });
+
+          isRepositioned = false;
+        }
+
         // Check if button overflows parent
         if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
           var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
@@ -793,19 +842,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             $interaction.css('height', newHeight + 'em');
           }
           $interaction.css('top', newTop + '%');
+          isRepositioned = true;
         }
 
         if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
           var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
 
-          // We must reduce interaction height
+          // We must reduce interaction width
           if (newLeft < 0) {
             newLeft = 0;
             var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
-            $interaction.css('height', newWidth + 'em');
+            $interaction.css('width', newWidth + 'em');
           }
 
           $interaction.css('left', newLeft + '%');
+          isRepositioned = true;
         }
       }
     };

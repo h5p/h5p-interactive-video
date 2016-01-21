@@ -73,6 +73,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Detect whether to add interactivies or just display a plain video.
     self.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
 
+    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.1',
@@ -80,7 +81,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         sources: self.options.video.files,
         controls: self.justVideo,
         fit: false,
-        poster: self.options.video.poster
+        poster: self.options.video.poster,
+        startAt: startAt
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -320,9 +322,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.video.pressToPlay) {
         this.addControls();
       }
-      if (this.previousState !== undefined) {
-        this.video.seek(this.previousState.progress);
-      }
     }
     this.currentState = InteractiveVideo.ATTACHED;
   };
@@ -478,9 +477,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     if (this.currentState === InteractiveVideo.ATTACHED) {
-      if (this.previousState !== undefined) {
-        this.video.seek(this.previousState.progress);
-      }
       if (!this.video.pressToPlay) {
         this.addControls();
       }
@@ -1023,7 +1019,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var controlsHeight = this.justVideo ? 0 : this.$controls.height();
     var containerHeight = this.$container.height();
     if (fullscreenOn) {
-    var videoHeight = this.$videoWrapper.height();
+      var videoHeight = this.$videoWrapper.height();
 
       if (videoHeight + controlsHeight <= containerHeight) {
         this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
@@ -1073,20 +1069,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
     var controlsCss = {
-      marginTop: '',
+      bottom: '',
       maxHeight: popupControlsHeight + 'px'
     };
 
     if (fullscreenOn) {
 
       // Make sure popup controls are on top of video wrapper
-      var marginTop = popupControlsHeight;
+      var offsetBottom = controlsHeight;
 
       // Center popup menus
       if (videoHeight + controlsHeight <= containerHeight) {
-        marginTop = videoHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
+        offsetBottom = controlsHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
       }
-      controlsCss.marginTop = marginTop + 'px';
+      controlsCss.bottom = offsetBottom + 'px';
     }
 
     if (this.controls && this.controls.$minimalOverlay) {
