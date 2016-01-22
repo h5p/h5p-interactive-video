@@ -1491,6 +1491,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
+   * Reset all interaction progress and answers
+   */
+  InteractiveVideo.prototype.resetTask = function () {
+    this.seek(0); // Rewind
+    this.timeUpdate(0);
+    this.controls.$slider.slider('option', 'value', 0);
+
+    for (var i = 0; i < this.interactions.length; i++) {
+      var interactionCopyrights = this.interactions[i].resetTask();
+    }
+  };
+
+
+  /**
    * Gather copyright information for the current content.
    *
    * @returns {H5P.ContentCopyrights}

@@ -878,6 +878,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    /**
+     * Reset task.
+     */
+    self.resetTask = function () {
+      if (instance && (instance.resetTask instanceof Function ||
+                       typeof instance.resetTask === 'function')) {
+        return instance.resetTask();
+      }
+    };
+
     // Create instance of content
     self.reCreate();
   }
