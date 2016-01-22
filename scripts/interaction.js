@@ -697,10 +697,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
           if (library === 'H5P.GoToQuestion') {
             instance.on('chosen', function (event) {
+              if (self.isButton()) {
+                // Close dialog
+                player.dnb.dialog.close();
+              }
               if (player.currentState === H5P.Video.PAUSED ||
                   player.currentState === H5P.Video.ENDED) {
+                // Start playing again
                 player.play();
               }
+
+              // Jump to chosen timecode
               player.seek(event.data);
             });
           }
