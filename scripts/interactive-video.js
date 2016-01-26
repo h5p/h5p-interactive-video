@@ -1494,7 +1494,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Reset all interaction progress and answers
    */
   InteractiveVideo.prototype.resetTask = function () {
-    if (self.controls === undefined) {
+    if (this.controls === undefined) {
       return; // Content has not been used
     }
     
