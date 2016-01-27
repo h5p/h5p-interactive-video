@@ -1497,13 +1497,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (this.controls === undefined) {
       return; // Content has not been used
     }
-    
+
     this.seek(0); // Rewind
     this.timeUpdate(0);
     this.controls.$slider.slider('option', 'value', 0);
 
     for (var i = 0; i < this.interactions.length; i++) {
-      var interactionCopyrights = this.interactions[i].resetTask();
+      this.interactions[i].resetTask();
     }
   };
 

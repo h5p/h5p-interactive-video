@@ -882,10 +882,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Reset task.
      */
     self.resetTask = function () {
-      if (instance && (instance.resetTask instanceof Function ||
-                       typeof instance.resetTask === 'function')) {
-        return instance.resetTask();
+      if (action.userDatas !== undefined && action.userDatas.state !== undefined) {
+        delete action.userDatas.state;
       }
+      self.reCreate();
     };
 
     // Create instance of content
