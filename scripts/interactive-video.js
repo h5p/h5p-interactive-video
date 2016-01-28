@@ -1499,7 +1499,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     this.seek(0); // Rewind
-    this.timeUpdate(0);
+    this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
 
     for (var i = 0; i < this.interactions.length; i++) {
