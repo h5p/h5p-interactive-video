@@ -213,6 +213,18 @@
   content: "\e609";
 }
 
+/* Green interaction; gotoquestion */
+.h5p-interactive-video .h5p-gotoquestion-interaction > .h5p-interaction-button {
+  background: #018d82;
+}
+.h5p-interactive-video .h5p-gotoquestion-interaction:hover > .h5p-interaction-button,
+.h5p-interactive-video .h5p-gotoquestion-interaction:focus > .h5p-interaction-button {
+  background: #02766c;
+}
+.h5p-interactive-video .h5p-gotoquestion-interaction:active > .h5p-interaction-button {
+  background: #025f57;
+}
+
 /* Blue interactions; text, images, etc. */
 .h5p-interactive-video .h5p-text-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction > .h5p-interaction-button,
