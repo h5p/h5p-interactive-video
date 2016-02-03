@@ -172,7 +172,8 @@
                     "H5P.Blanks 1.4",
                     "H5P.DragQuestion 1.5",
                     "H5P.MarkTheWords 1.5",
-                    "H5P.DragText 1.4"
+                    "H5P.DragText 1.4",
+                    "H5P.GoToQuestion 1.0"
                   ]
                 },
                 {
