@@ -885,6 +885,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (action.userDatas !== undefined && action.userDatas.state !== undefined) {
         delete action.userDatas.state;
       }
+      delete self.score;
+      delete self.maxScore;
+
       self.reCreate();
     };
 
