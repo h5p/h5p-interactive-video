@@ -1366,7 +1366,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
-        self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second));
+        self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second < 0 ? 0 : second));
       }
     }
     self.lastSecond = second;
