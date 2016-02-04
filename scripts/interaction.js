@@ -37,9 +37,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of content instance
     var instance;
 
-    // Only register listeners once
-    var hasRegisteredListeners = false;
-
     // Keep track of DragNBarElement and related dialog/form
     var dnbElement;
 
@@ -533,22 +530,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      // Make sure listeners are only registered once
-      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
-        instance.on('xAPI', function (event) {
-          if ((event.getMaxScore() && event.getScore() !== null)
-          && event.getVerb() === 'completed'
-          || event.getVerb() === 'answered') {
-            self.score = event.getScore();
-            self.maxScore = event.getMaxScore();
-            adaptivity($interaction);
-          }
-          self.trigger(event);
-        });
-
-        hasRegisteredListeners = true;
-      }
-
       if (self.isButton() || player.isMobileView) {
         createButton();
         isShownAsButton = true;
@@ -683,6 +664,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         // Set adaptivity if question is finished on attach
         if (instance.on) {
+
+          // Handle question/task finished
+          instance.on('xAPI', function (event) {
+            if ((event.getMaxScore() && event.getScore() !== null) &&
+                event.getVerb() === 'completed' ||
+                event.getVerb() === 'answered') {
+              self.score = event.getScore();
+              self.maxScore = event.getMaxScore();
+              adaptivity();
+            }
+            self.trigger(event);
+          });
           instance.on('question-finished', function () {
             adaptivity();
           });
