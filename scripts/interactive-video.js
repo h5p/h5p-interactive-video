@@ -534,7 +534,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
       if (event.data.statement.context.extensions === undefined) {
-        event.data.statement.context.extensions = [];
+        event.data.statement.context.extensions = {};
       }
       event.data.statement.context.extensions['http://id.tincanapi.com/extension/ending-point'] = 'PT' + Math.floor(self.video.getCurrentTime()) + 'S';
     });
