@@ -1389,6 +1389,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @public
    */
   InteractiveVideo.prototype.complete = function() {
+    // Skip for editor
+    if (this.editor) {
+      return;
+    }
+
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
