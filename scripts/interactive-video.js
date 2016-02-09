@@ -854,7 +854,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
 
       // Make sure sub menus are closed
-      self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
+      if (bookmarksEnabled) {
+        self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
+      }
+      else {
+        self.controls.$qualityChooser.removeClass('h5p-show');
+      }
     });
 
     self.addQualityChooser();
