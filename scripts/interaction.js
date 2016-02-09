@@ -156,7 +156,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
-      player.dnb.dialog.once('close', function () {
+
+      /**
+       * Handle dialog closing once.
+       * @private
+       */
+      var dialogCloseHandler = function () {
+        this.off('close', dialogCloseHandler); // Avoid running more than once
+
         // Try to pause any media when closing dialog
         try {
           if (instance.pause !== undefined &&
@@ -169,7 +176,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Prevent crashing, log error.
           H5P.error(err);
         }
-      });
+      };
+      player.dnb.dialog.on('close', dialogCloseHandler);
 
       /**
        * Set dialog width of interaction and unregister dialog close listener
