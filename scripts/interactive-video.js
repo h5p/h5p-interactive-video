@@ -1343,7 +1343,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
 
     // Scroll slider
-    if (time > 0) {
+    if (time >= 0) {
       try {
         self.controls.$slider.slider('option', 'value', time);
       }
