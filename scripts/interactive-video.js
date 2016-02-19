@@ -854,7 +854,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
 
       // Make sure sub menus are closed
-      self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
+      if (bookmarksEnabled) {
+        self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
+      }
+      else {
+        self.controls.$qualityChooser.removeClass('h5p-show');
+      }
     });
 
     self.addQualityChooser();
@@ -1338,7 +1343,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
 
     // Scroll slider
-    if (time > 0) {
+    if (time >= 0) {
       try {
         self.controls.$slider.slider('option', 'value', time);
       }
@@ -1366,7 +1371,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
-        self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second));
+        self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second < 0 ? 0 : second));
       }
     }
     self.lastSecond = second;
@@ -1384,6 +1389,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @public
    */
   InteractiveVideo.prototype.complete = function() {
+    // Skip for editor
+    if (this.editor) {
+      return;
+    }
+
     if (!this.isCompleted) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
