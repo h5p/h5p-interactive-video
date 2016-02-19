@@ -37,9 +37,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Keep track of content instance
     var instance;
 
-    // Only register listeners once
-    var hasRegisteredListeners = false;
-
     // Keep track of DragNBarElement and related dialog/form
     var dnbElement;
 
@@ -159,7 +156,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
-      player.dnb.dialog.once('close', function () {
+
+      /**
+       * Handle dialog closing once.
+       * @private
+       */
+      var dialogCloseHandler = function () {
+        this.off('close', dialogCloseHandler); // Avoid running more than once
+
         // Try to pause any media when closing dialog
         try {
           if (instance.pause !== undefined &&
@@ -172,7 +176,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           // Prevent crashing, log error.
           H5P.error(err);
         }
-      });
+      };
+      player.dnb.dialog.on('close', dialogCloseHandler);
 
       /**
        * Set dialog width of interaction and unregister dialog close listener
@@ -533,22 +538,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      // Make sure listeners are only registered once
-      if (!hasRegisteredListeners && library !== 'H5P.Nil') {
-        instance.on('xAPI', function (event) {
-          if ((event.getMaxScore() && event.getScore() !== null)
-          && event.getVerb() === 'completed'
-          || event.getVerb() === 'answered') {
-            self.score = event.getScore();
-            self.maxScore = event.getMaxScore();
-            adaptivity($interaction);
-          }
-          self.trigger(event);
-        });
-
-        hasRegisteredListeners = true;
-      }
-
       if (self.isButton() || player.isMobileView) {
         createButton();
         isShownAsButton = true;
@@ -683,6 +672,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         // Set adaptivity if question is finished on attach
         if (instance.on) {
+
+          // Handle question/task finished
+          instance.on('xAPI', function (event) {
+            if ((event.getMaxScore() && event.getScore() !== null) &&
+                event.getVerb() === 'completed' ||
+                event.getVerb() === 'answered') {
+              self.score = event.getScore();
+              self.maxScore = event.getMaxScore();
+              adaptivity();
+            }
+            self.trigger(event);
+          });
           instance.on('question-finished', function () {
             adaptivity();
           });
@@ -694,6 +695,23 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               player.dnb.dialog.removeStaticWidth();
             }
           });
+
+          if (library === 'H5P.GoToQuestion') {
+            instance.on('chosen', function (event) {
+              if (self.isButton()) {
+                // Close dialog
+                player.dnb.dialog.close();
+              }
+              if (player.currentState === H5P.Video.PAUSED ||
+                  player.currentState === H5P.Video.ENDED) {
+                // Start playing again
+                player.play();
+              }
+
+              // Jump to chosen timecode
+              player.seek(event.data);
+            });
+          }
         }
       }
     };
@@ -859,6 +877,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           isRepositioned = true;
         }
       }
+    };
+
+    /**
+     * Reset task.
+     */
+    self.resetTask = function () {
+      if (action.userDatas !== undefined && action.userDatas.state !== undefined) {
+        delete action.userDatas.state;
+      }
+      delete self.score;
+      delete self.maxScore;
+
+      self.reCreate();
     };
 
     // Create instance of content

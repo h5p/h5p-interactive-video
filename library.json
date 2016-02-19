@@ -5,7 +5,7 @@
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 8,
-  "patchVersion": 2,
+  "patchVersion": 5,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel AS",
   "embedTypes": [
@@ -34,7 +34,7 @@
     {
       "machineName": "FontAwesome",
       "majorVersion": 4,
-      "minorVersion": 3
+      "minorVersion": 5
     },
     {
       "machineName": "jQuery.ui",
