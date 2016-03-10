@@ -79,9 +79,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       library: 'H5P.Video 1.2',
       params: {
         sources: self.options.video.files,
-        controls: self.justVideo,
-        fit: false,
-        poster: self.options.video.poster,
+        visuals: {
+          poster: self.options.video.poster,
+          controls: self.justVideo,
+          fit: false
+        },
         startAt: startAt
       }
     }, self.contentId, undefined, undefined, {parent: self});
