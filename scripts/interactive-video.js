@@ -35,8 +35,22 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       shortStartDescription: ''
     }, self.options.video.startScreenOptions);
 
-    // Overriding
-    self.override = params.override;
+    // Set overrides for interactions
+    if (params.override.showSolutionButton || params.override.retryButton) {
+      self.override = {};
+
+      if (params.override.showSolutionButton) {
+        // Force "Show solution" button to be on or off for all interactions
+        self.override.enableSolutionsButton =
+            (params.override.showSolutionButton === 'on' ? true : false);
+      }
+
+      if (params.override.retryButton) {
+        // Force "Retry" button to be on or off for all interactions
+        self.override.enableRetry =
+            (params.override.retryButton === 'on' ? true : false);
+      }
+    }
 
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -499,12 +513,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
     var parameters = self.options.assets.interactions[index];
 
-    if (self.override && self.override.overrideButtons) {
+    if (self.override) {
       // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, {
-        enableSolutionsButton: self.override.overrideShowSolutionButton ? true : false,
-        enableRetry: self.override.overrideRetry ? true : false
-      });
+      H5P.jQuery.extend(parameters.action.params.behaviour, self.override);
     }
 
     var previousState;

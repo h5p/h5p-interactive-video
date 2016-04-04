@@ -145,19 +145,30 @@
     },
     {
       "label": "إعدادات \"مشاهدة حل \" الزر، و\"إعادة المحاولة \".",
-      "description": "وهذه الخيارات تمكنك من تجاوز وقت عرض زر \"مشاهدة حل \" و \"إعادة المحاولة \" في محتويات متكامل h5p.",
       "fields": [
         {
-          "label": "تفعيل تجاوز ل \"مشاهدة حل \" و إعدادات \"إعادة المحاولة \"",
-          "description": "وإذا تم تفعيل هذه الأسئلة سيتم تجاهل الإعدادات الخاصة وسيتم استخدام الضبط أدناه بدلا من ذلك"
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         },
         {
-          "label": "تفعيل أزرار \"إظهار حل \"",
-          "description": "تفعيل هذا الخيار يجعل الأسئلة تظهر \"مشاهدة حل \" زر"
-        },
-        {
-          "label": "تفعيل \"إعادة المحاولة \"",
-          "description": "تفعيل هذا الخيار يجعل المستخدم قادرا على \"إعادة المحاولة\""
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         }
       ]
     },
