@@ -76,12 +76,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
     self.video = H5P.newRunnable({
-      library: 'H5P.Video 1.1',
+      library: 'H5P.Video 1.2',
       params: {
         sources: self.options.video.files,
-        controls: self.justVideo,
-        fit: false,
-        poster: self.options.video.poster,
+        visuals: {
+          poster: self.options.video.poster,
+          controls: self.justVideo,
+          fit: false
+        },
         startAt: startAt
       }
     }, self.contentId, undefined, undefined, {parent: self});
@@ -534,7 +536,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
       if (event.data.statement.context.extensions === undefined) {
-        event.data.statement.context.extensions = [];
+        event.data.statement.context.extensions = {};
       }
       event.data.statement.context.extensions['http://id.tincanapi.com/extension/ending-point'] = 'PT' + Math.floor(self.video.getCurrentTime()) + 'S';
     });
