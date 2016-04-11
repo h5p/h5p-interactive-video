@@ -36,7 +36,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, self.options.video.startScreenOptions);
 
     // Set overrides for interactions
-    if (params.override.showSolutionButton || params.override.retryButton) {
+    if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
       self.override = {};
 
       if (params.override.showSolutionButton) {
