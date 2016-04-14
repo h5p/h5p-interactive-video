@@ -896,6 +896,53 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.reCreate();
   }
 
+  self.subtitlesLoad = function (jsonFilename) {
+    videoCurrentTime = document.getElementsByTagName('video')[0].currentTime;
+    videoFormatted = formatTime(videoCurrentTime);
+
+    if (jsonFilename) {
+      $.ajax({
+            url: "../wp-content/uploads/h5p/content/" + contentId + "/videos/" + jsonFilename,
+            dataType: "text",
+            success: function(data) {
+                        var jsonSubtitle = $.parseJSON(data);
+
+                        for (var i in jsonSubtitle) {
+                          if (videoFormatted > jsonSubtitle[i].startTime && videoFormatted < jsonSubtitle[i].stopTime) {
+                              $(".h5p-subtitles-wrapper").html("<div><strong>" + jsonSubtitle[i].text +"</strong></div>");
+                          } else {
+                            if (videoFormatted >= jsonSubtitle[i].stopTime) {
+                                $(".h5p-subtitles-wrapper").html("");
+                              }
+                          }
+                        }
+
+                        if (videoFormatted >= jsonSubtitle[i].stopTime) {
+                              $(".h5p-subtitles-wrapper").html("");
+                        }
+                      }
+      });
+
+      $('video').attr("ontimeupdate","subtitlesLoad('" + jsonFilename+ "')");
+    }
+  };
+
+  self.subtitlesEnable = function () {
+    $(".h5p-subtitles-wrapper").fadeIn();
+  };
+
+  self.subtitlesDisable = function () {
+    $(".h5p-subtitles-wrapper").fadeOut();
+  };
+
+  self.formatTime = function (seconds) {
+    minutes = Math.floor(seconds / 60);
+    minutes = (minutes >= 10) ? minutes : "0" + minutes;
+    seconds = Math.floor(seconds % 60);
+    seconds = (seconds >= 10) ? seconds : "0" + seconds;
+    return '00:' + minutes + ":" + seconds + ",00";
+  };
+
   // Extends the event dispatcher
   Interaction.prototype = Object.create(EventDispatcher.prototype);
   Interaction.prototype.constructor = Interaction;
