@@ -220,14 +220,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.dnb.dialog.close();
       }
     });
-
-    // Initialize interactions
-    self.interactions = [];
-    if (self.options.assets.interactions) {
-      for (var i = 0; i < self.options.assets.interactions.length; i++) {
-        this.initInteraction(i);
-      }
-    }
   }
 
   // Inheritance
@@ -287,6 +279,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');
 
+    // Initialize interactions
+    that.interactions = [];
+    if (that.options.assets.interactions) {
+      for (var i = 0; i < that.options.assets.interactions.length; i++) {
+        this.initInteraction(i);
+      }
+    }
+    
+    
     // Font size is now hardcoded, since some browsers (At least Android
     // native browser) will have scaled down the original CSS font size by the
     // time this is run. (It turned out to have become 13px) Hard coding it

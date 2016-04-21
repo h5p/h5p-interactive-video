@@ -1225,3 +1225,7 @@
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+
+.h5p-interactive-video .h5p-confirmation-dialog-background {
+  z-index: 101;
+}
