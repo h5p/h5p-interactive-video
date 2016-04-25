@@ -670,7 +670,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if (library !== 'H5P.Nil') {
         action.params = action.params || {};
         action.params.overrideSettings = action.params.overrideSettings || {};
-        action.params.overrideSettings.$confirmationDialogParent = player.$container;
+        if (player.$container) {
+          action.params.overrideSettings.$confirmationDialogParent = player.$container;
+        }
 
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
