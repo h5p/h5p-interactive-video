@@ -311,30 +311,42 @@
   {
     "name": "override",
     "type": "group",
-    "label": "Settings for \"Show solution\" button and \"Retry\".",
-    "description": "These options will let you override when to display \"Show solution\" button and \"Retry\" in integrated h5p content.",
+    "label": "Settings for \"Show solution\" and \"Retry\" buttons",
     "optional": true,
     "fields": [
       {
-        "name": "overrideButtons",
-        "type": "boolean",
-        "label": "Enable override for \"Show solution\" and \"Retry\" settings.",
-        "description": "If this is enabled the questions own settings will be ignored and the below settings will be used instead.",
-        "default": false
+        "name": "showSolutionButton",
+        "type": "select",
+        "label": "Override \"Show Solution\" button",
+        "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+        "optional": true,
+        "options": [
+          {
+            "value": "on",
+            "label": "Enabled"
+          },
+          {
+            "value": "off",
+            "label": "Disabled"
+          }
+        ]
       },
       {
-        "name": "overrideShowSolutionButton",
-        "type": "boolean",
-        "label": "Enable \"Show solution\" buttons.",
-        "description": "Enabling this option will make questions show the \"Show solution\" button.",
-        "default": false
-      },
-      {
-        "name": "overrideRetry",
-        "type": "boolean",
-        "label": "Enable \"Retry\".",
-        "description": "Enabling this option will make the user able to \"Retry\" .",
-        "default": false
+        "name": "retryButton",
+        "type": "select",
+        "label": "Override \"Retry\" button",
+        "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+        "optional": true,
+        "options": [
+          {
+            "value": "on",
+            "label": "Enabled"
+          },
+          {
+            "value": "off",
+            "label": "Disabled"
+          }
+        ]
       }
     ]
   },

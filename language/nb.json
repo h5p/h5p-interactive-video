@@ -128,20 +128,31 @@
       ]
     },
     {
-      "label": "Innstillinger for \"Vis svar\" knapp og \"Prøv igjen\".",
-      "description": "Disse instillingene lar deg overstyre når \"Vis svar\" knapp og \"Prøv igjen\" er slått på i integrert h5p innhold.",
+      "label": "Innstillinger for «Vis svar»- og «Prøv igjen»-knapp",
       "fields": [
         {
-          "label": "Slå på overstyring for \"Vis svar\" og \"Prøv igjen\".",
-          "description": "Aktivering vil overstyre de følgende innstillingene for integrert innhold."
+          "label": "Overstyr «Vis svar»-knapp",
+          "description": "Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options": [
+            {
+              "label": "Aktivert"
+            },
+            {
+              "label": "Deaktivert"
+            }
+          ]
         },
         {
-          "label": "Slå på \"Vis svar\" knapp.",
-          "description": "Aktivering vil slå på \"Vis svar\" knappen."
-        },
-        {
-          "label": "Slå på \"Prøv igjen\".",
-          "description": "Aktivering vil slå på \"Prøv igjen\" ."
+          "label": "Overstyr «Prøv igjen»-knapp",
+          "description": "Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options": [
+            {
+              "label": "Aktivert"
+            },
+            {
+              "label": "Deaktivert"
+            }
+          ]
         }
       ]
     },

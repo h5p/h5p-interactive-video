@@ -114,6 +114,32 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
 
         finished(null, parameters);
       },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.7.
+       *
+       * Groups all UI text strings to make them eaiser to translate and handle.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      10: function (parameters, finished) {
+        if (parameters.override.overrideButtons) {
+          // Set new variables
+          parameters.override.showSolutionButton =
+              (parameters.override.overrideShowSolutionButton ? 'on' : 'off');
+          parameters.override.retryButton =
+              (parameters.override.overrideRetry ? 'on' : 'off');
+        }
+
+        // Remove old field variables
+        delete parameters.override.overrideButtons;
+        delete parameters.override.overrideShowSolutionButton;
+        delete parameters.override.overrideRetry;
+
+        finished(null, parameters);
+      }
     }
   };
 })(H5P.jQuery);

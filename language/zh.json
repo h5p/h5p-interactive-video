@@ -144,19 +144,30 @@
     },
     {
       "label": " \"查看答案\" 按钮与 \"重做\" 按钮相关设置。",
-      "description": "通过这些选项来替换 \"查看答案\" 按钮与 \"重做\" 按钮的展示时机。",
       "fields": [
         {
-          "label": "允许替换 \"查看答案\" 和 \"重做\" 按钮的默认设置。",
-          "description": "选中后，问题自身的设置失效，如下设置将会启用。"
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         },
         {
-          "label": "启用 \"查看答案\" 按钮.",
-          "description": "启用后 \"查看答案\" 按钮将会显示."
-        },
-        {
-          "label": "启用 \"重做\".",
-          "description": "启用后，学员讲会有机会 \"重做\" ."
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         }
       ]
     },
