@@ -293,7 +293,7 @@
               "H5P.Summary 1.5"
             ],
             "default": {
-              "library": "H5P.Summary 1.4",
+              "library": "H5P.Summary 1.5",
               "params": {}
             }
           },
