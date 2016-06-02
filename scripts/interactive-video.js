@@ -1557,8 +1557,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Adding copyrights for poster
     var poster = self.options.video.poster;
-    if (poster && poster[0] && poster[0].copyright !== undefined) {
-      info.addMedia(new H5P.MediaCopyright(poster[0].copyright, self.l10n));
+    if (poster && poster.copyright !== undefined) {
+      var image = new H5P.MediaCopyright(poster.copyright, self.l10n)
+      var imgSource = H5P.getPath(poster.path, self.contentId);
+      image.setThumbnail(new H5P.Thumbnail(imgSource, poster.width, poster.height));
+      info.addMedia(image);
     }
 
     // Adding copyrights for interactions
