@@ -35,8 +35,22 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       shortStartDescription: ''
     }, self.options.video.startScreenOptions);
 
-    // Overriding
-    self.override = params.override;
+    // Set overrides for interactions
+    if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
+      self.override = {};
+
+      if (params.override.showSolutionButton) {
+        // Force "Show solution" button to be on or off for all interactions
+        self.override.enableSolutionsButton =
+            (params.override.showSolutionButton === 'on' ? true : false);
+      }
+
+      if (params.override.retryButton) {
+        // Force "Retry" button to be on or off for all interactions
+        self.override.enableRetry =
+            (params.override.retryButton === 'on' ? true : false);
+      }
+    }
 
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -280,6 +294,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.fontSize = 16;
     this.width = 640; // parseInt($container.css('width')); // Get width in px
 
+    // interactions require parent $container, recreate with input
+    this.interactions.forEach(function (interaction) {
+      interaction.reCreate();
+    });
+
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
     this.attachVideo(this.$videoWrapper);
@@ -499,12 +518,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
     var parameters = self.options.assets.interactions[index];
 
-    if (self.override && self.override.overrideButtons) {
+    if (self.override) {
       // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, {
-        enableSolutionsButton: self.override.overrideShowSolutionButton ? true : false,
-        enableRetry: self.override.overrideRetry ? true : false
-      });
+      H5P.jQuery.extend(parameters.action.params.behaviour, self.override);
     }
 
     var previousState;
@@ -1529,17 +1545,26 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
-    var videoRights, video = self.options.video.files[0];
-    if (video.copyright !== undefined) {
-      videoRights = new H5P.MediaCopyright(video.copyright, self.l10n);
+    // Adding video file copyright info
+    if (self.options.video.files !== undefined && self.options.video.files[0] !== undefined) {
+      info.addMedia(new H5P.MediaCopyright(self.options.video.files[0].copyright, self.l10n));
     }
 
-    if ((videoRights === undefined || videoRights.undisclosed()) && self.options.video.copyright !== undefined) {
-      // Use old copyright info as fallback.
-      videoRights = self.options.video.copyright;
+    // Adding info from copyright field
+    if (self.options.video.copyright !== undefined) {
+      info.addMedia(self.options.video.copyright);
     }
-    info.addMedia(videoRights);
 
+    // Adding copyrights for poster
+    var poster = self.options.video.poster;
+    if (poster && poster.copyright !== undefined) {
+      var image = new H5P.MediaCopyright(poster.copyright, self.l10n)
+      var imgSource = H5P.getPath(poster.path, self.contentId);
+      image.setThumbnail(new H5P.Thumbnail(imgSource, poster.width, poster.height));
+      info.addMedia(image);
+    }
+
+    // Adding copyrights for interactions
     for (var i = 0; i < self.interactions.length; i++) {
       var interactionCopyrights = self.interactions[i].getCopyrights();
       if (interactionCopyrights) {

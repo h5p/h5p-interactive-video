@@ -128,19 +128,30 @@
     },
     {
       "label": "Options pour les boutons \"Montrer la solution\" et \"Réessayer\".",
-      "description": "Ces options vous permettent de choisir quand afficher les boutons \"Solutions\" et \"Réessayer\" dans votre acivité h5p..",
       "fields": [
         {
-          "label": "Activer les réglages par défaut pour les boutons \"Solution\" et \"Réessayer\".",
-          "description": "Si cette option est choisie, les réglages seront valables pour toutes les questions, les réglages individuels ne seront pas pris en compte."
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         },
         {
-          "label": "Afficher le bouton \"Solution\".",
-          "description": "Affiche le bouton \"Solution\"."
-        },
-        {
-          "label": "Afficher le bouton \"Réessayer\".",
-          "description": "Affiche le bouton \"Réessayer\"."
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         }
       ]
     },

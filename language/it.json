@@ -145,19 +145,30 @@
     },
     {
       "label": "Impostazioni per i pulsanti \"Mostra soluzione\" e \"Riprova\".",
-      "description": "Queste opzioni consentono di ignorare quando visualizzare i pulsanti \"Mostra soluzione\" e \"Riprova\" nel contenuto H5P integrato.",
       "fields": [
         {
-          "label": "Abilita ignora impostazioni per \"Mostra soluzione\" e \"Riprova\".",
-          "description": "Se questa opzione è abilitata le proprie impostazioni per le domande saranno ignorate e verranno utilizzate le impostazioni seguenti."
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         },
         {
-          "label": "Abilita pulsanti \"Mostra soluzione\".",
-          "description": "L'attivazione di questa opzione farà in modo che le domande mostrino il tasto \"Mostra soluzione\"."
-        },
-        {
-          "label": "Abilita \"Riprova\".",
-          "description": "L'attivazione di questa opzione farà in modo che per l'utente sia abilitata l'opzione \"Riprova\"."
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         }
       ]
     },

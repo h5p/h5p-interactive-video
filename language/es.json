@@ -129,19 +129,30 @@
     },
     {
       "label": "Ajustes para los botones \"Solución\" y \"Reintentar\".",
-      "description": "Estas opciones le permitirán anular cuándo se mostrarán los botones \"Solución\" y \"Reintentar\" en contenidos integrados de h5p.",
       "fields": [
         {
-          "label": "Activar anulación de los ajustes de \"Solución\" y \"Reintentar\".",
-          "description": "Al activar, los ajustes propios del questionario será ignorados y los ajustes mostrados a continuación serán utilizados en sustitución."
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         },
         {
-          "label": "Mostrar el botón \"Solución\".",
-          "description": "Al activar esta opción, se mostrará el botón \"Solución\"."
-        },
-        {
-          "label": "Mostrar el botón \"Reintentar\".",
-          "description": "Al activar esta opción, se mostrará el botón \"Reintentar\"."
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
         }
       ]
     },
