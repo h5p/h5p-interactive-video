@@ -410,6 +410,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (this.startScreenOptions.hideStartTitle) {
         this.$splash.addClass('no-title');
       }
+
+      this.$splash.hide();
     }
   };
 
@@ -417,6 +419,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Update and show controls for the interactive video.
    */
   InteractiveVideo.prototype.addControls = function () {
+    // Display splash screen
+    if (this.$splash) {
+      this.$splash.show();
+    }
+
     this.attachControls(this.$controls.show());
 
     var duration = this.video.getDuration();
