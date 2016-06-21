@@ -1552,17 +1552,26 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
     var info = new H5P.ContentCopyrights();
 
-    var videoRights, video = self.options.video.files[0];
-    if (video.copyright !== undefined) {
-      videoRights = new H5P.MediaCopyright(video.copyright, self.l10n);
+    // Adding video file copyright info
+    if (self.options.video.files !== undefined && self.options.video.files[0] !== undefined) {
+      info.addMedia(new H5P.MediaCopyright(self.options.video.files[0].copyright, self.l10n));
     }
 
-    if ((videoRights === undefined || videoRights.undisclosed()) && self.options.video.copyright !== undefined) {
-      // Use old copyright info as fallback.
-      videoRights = self.options.video.copyright;
+    // Adding info from copyright field
+    if (self.options.video.copyright !== undefined) {
+      info.addMedia(self.options.video.copyright);
     }
-    info.addMedia(videoRights);
 
+    // Adding copyrights for poster
+    var poster = self.options.video.poster;
+    if (poster && poster.copyright !== undefined) {
+      var image = new H5P.MediaCopyright(poster.copyright, self.l10n)
+      var imgSource = H5P.getPath(poster.path, self.contentId);
+      image.setThumbnail(new H5P.Thumbnail(imgSource, poster.width, poster.height));
+      info.addMedia(image);
+    }
+
+    // Adding copyrights for interactions
     for (var i = 0; i < self.interactions.length; i++) {
       var interactionCopyrights = self.interactions[i].getCopyrights();
       if (interactionCopyrights) {

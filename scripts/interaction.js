@@ -775,17 +775,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       var instance = H5P.newRunnable(action, player.contentId);
 
-      var interactionCopyrights;
-      if (instance !== undefined && instance.getCopyrights !== undefined) {
-        interactionCopyrights = instance.getCopyrights();
-      }
-      else if (instance !== undefined) {
-        interactionCopyrights = H5P.getCopyrights(instance, parameters, player.contentId);
-      }
-      if (interactionCopyrights !== undefined) {
+      if (instance !== undefined) {
+        var interactionCopyrights = new H5P.ContentCopyrights();
+        interactionCopyrights.addContent(H5P.getCopyrights(instance, parameters, player.contentId));
         interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
         return interactionCopyrights;
       }
+
       return undefined;
     };
 
