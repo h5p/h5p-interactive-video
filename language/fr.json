@@ -4,64 +4,68 @@
       "label": "Éditeur de vidéo interactive",
       "fields": [
         {
-          "label": "Envoyer une vidéo",
+          "label": "Envoyer/intégrer une vidéo",
           "fields": [
             {
               "label": "Fichiers vidéo",
-              "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximum avec les navigateurs, merci d'utiliser des vidéos au format mp4 ou webm."
+              "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label": "Affiche"
+              "label": "Image de la vidéo ",
+              "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
             },
             {
-              "label": "Titre"
+              "label": "Titre de la vidéo interactive",
+              "default": "Vidéo interactive",
+              "description": "Utilisé dans les récapitulatifs, statistiques, etc."
+
             },
             {
-              "label": "Ajoute des interactions",
+              "label": "Options de l'écran de lancement de la vidéo",
               "fields": [
                 {
-                  "label": "Cacher le titre au début de la vidéo"
+                  "label": "Cacher le titre sur l'écran de lancement de la vidéo"
                 },
                 {
-                  "label": "Courte description (Optionel)",
-                  "description": "Optionel. Affiche une courte description au début de la vidéo."
+                  "label": "Courte description (en option)",
+                  "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
                 }
               ]
             },
             {
-              "label": "Information sur le copyright de la vidéo",
-              "description": "Information sur le copyright de la vidéo et de ses éléments."
+              "label": "Informations sur le copyright de la vidéo",
+              "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
             }
           ]
         },
         {
-          "label": "Ajouter une interaction",
+          "label": "Ajouter des activités",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Montrer la durée"
+                    "label": "Plage d'apparition"
                   },
                   {
-                    "label": "Pause",
-                    "description": "Mettre la lecture en pause quand l'activité interactive est commencée."
+                    "label": "Mettre la vidéo sur pause",
+                    "description": "Mettre la lecture en pause quand l'activité est commencée."
                   },
                   {
-                    "label": "Montrer comme",
-                    "description": "<b>Bouton</b> est une interaction effondré l'utilisateur doit appuyer sur pour ouvrir. <b>Affiche</b> est une interaction élargie affiché directement sur le dessus de la vidéo.",
+                    "label": "Afficher sous forme de",
+                    "description": "<b>Bouton</b> : l'utilisateur doit appuyer dessus pour faire apparaître l'activité. <b>Cadre</b> : l'activité est affichée directement sous la forme d'un cadre en surimpression sur la vidéo.",
                     "options": [
                       {
                         "label": "Bouton"
                       },
                       {
-                        "label": "Affiche"
+                        "label": "Cadre"
                       }
                     ]
                   },
                   {
-                    "label": "Texte",
-                    "description": "Texte affiché à côté de l'icône de l'activité interactive."
+                    "label": "Intitulé du bouton",
+                    "description": "Texte affiché à côté de l'icône de l'activité."
                   },
                   {},
                   {},
@@ -69,10 +73,10 @@
                   {},
                   {},
                   {
-                    "label": "Synchronisation",
+                    "label": "Enchaînement",
                     "fields": [
                       {
-                        "label": "Action quand tout est correct",
+                        "label": "Action si tout est juste",
                         "fields": [
                           {
                             "label": "Aller à",
@@ -82,10 +86,10 @@
                             "label": "Autoriser les utilisateurs à passer et à continuer"
                           },
                           {
-                            "label": "Recherche"
+                            "label": "Message à afficher"
                           },
                           {
-                            "label": "Texte du bouton de recherche"
+                            "label": "Intitulé du bouton de reprise"
                           }
                         ]
                       },
@@ -100,10 +104,10 @@
                             "label": "Autoriser les utilisateurs à passer et à continuer"
                           },
                           {
-                            "label": "Recherche"
+                            "label": "Message à afficher"
                           },
                           {
-                            "label": "Texte du bouton de recherche"
+                            "label": "Intitulé du bouton de reprise"
                           }
                         ]
                       }
@@ -115,11 +119,11 @@
           ]
         },
         {
-          "label": "Résumé de l'exercice",
+          "label": "Récapitulatif",
           "fields": [
             {},
             {
-              "label": "Montrer à",
+              "label": "Afficher à",
               "description": "Nombre de secondes avant la fin de la vidéo."
             }
           ]
@@ -127,79 +131,79 @@
       ]
     },
     {
-      "label": "Options pour les boutons \"Montrer la solution\" et \"Réessayer\".",
+      "label": "Réglages des boutons \"Voir la correction\" et \"Recommencer\".",
       "fields": [
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Ecraser le bouton \"Voir la correction\"",
+          "description": "Cette option détermine si le bouton \"Voir la correction\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Activé"
             },
             {
-              "label": "Disabled"
+              "label": "Désactivé"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Ecraser le bouton \"Recommencer\"",
+          "description": "Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Activé"
             },
             {
-              "label": "Disabled"
+              "label": "Désactivé"
             }
           ]
         }
       ]
     },
     {
-      "label": "Localiser",
+      "label": "Traduction de l'interface",
       "fields": [
         {
-          "label": "Titre de l'activité",
-          "default": "Titre"
+          "label": "Intitulé de l'activité",
+          "default": "Activité"
         },
         {
-          "label": "Jouer le titre",
+          "label": "Intitulé \"Jouer\"",
           "default": "Jouer"
         },
         {
-          "label": "Pause",
+          "label": "Intitulé \"Pause\"",
           "default": "Pause"
         },
         {
-          "label": "Couper le son",
+          "label": "Intitulé \"Couper le son\"",
           "default": "Couper le son"
         },
         {
-          "label": "Remettre le son",
-          "default": "Remettre le son"
+          "label": "Intitulé \"Remettre le son\"",
+          "default": "Rétablir le son"
         },
         {
-          "label": "Qualité vidéo",
-          "default": "Qualité vidéo"
+          "label": "Intitulé \"Qualité de la vidéo\"",
+          "default": "Qualité de la vidéo"
         },
         {
-          "label": "Plein écran",
+          "label": "Intitulé \"Plein écran\"",
           "default": "Plein écran"
         },
         {
-          "label": "Sortir du plein écran",
+          "label": "Intitulé \"Sortir du plein écran\"",
           "default": "Sortir du plein écran"
         },
         {
-          "label": "Résumé",
-          "default": "Résumé"
+          "label": "Intitulé du récapitulatif",
+          "default": "Récapitulatif"
         },
         {
-          "label": "Favoris",
-          "default": "Favoris"
+          "label": "Intitulé du bouton \"Signets\"",
+          "default": "Signets"
         },
         {
-          "label": "Texte du texte de recherche",
+          "label": "Texte par défaut du bouton de reprise",
           "default": "Continuer"
         }
       ]
