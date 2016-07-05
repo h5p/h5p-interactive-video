@@ -159,37 +159,48 @@
       "label": "Localiser",
       "fields": [
         {
-          "label": "Titre de l'activité"
+          "label": "Titre de l'activité",
+          "default": "Titre"
         },
         {
-          "label": "Jouer le titre"
+          "label": "Jouer le titre",
+          "default": "Jouer"
         },
         {
-          "label": "Pause"
+          "label": "Pause",
+          "default": "Pause"
         },
         {
-          "label": "Couper le son"
+          "label": "Couper le son",
+          "default": "Couper le son"
         },
         {
-          "label": "Remettre le son"
+          "label": "Remettre le son",
+          "default": "Remettre le son"
         },
         {
-          "label": "Qualité vidéo"
+          "label": "Qualité vidéo",
+          "default": "Qualité vidéo"
         },
         {
-          "label": "Plein écran"
+          "label": "Plein écran",
+          "default": "Plein écran"
         },
         {
-          "label": "Sortir du plein écran"
+          "label": "Sortir du plein écran",
+          "default": "Sortir du plein écran"
         },
         {
-          "label": "Résumé"
+          "label": "Résumé",
+          "default": "Résumé"
         },
         {
-          "label": "Favoris"
+          "label": "Favoris",
+          "default": "Favoris"
         },
         {
-          "label": "Texte du texte de recherche"
+          "label": "Texte du texte de recherche",
+          "default": "Continuer"
         }
       ]
     }
