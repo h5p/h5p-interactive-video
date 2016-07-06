@@ -18,7 +18,6 @@
               "label": "Titre de la vidéo interactive",
               "default": "Vidéo interactive",
               "description": "Utilisé dans les récapitulatifs, statistiques, etc."
-
             },
             {
               "label": "Options de l'écran de lancement de la vidéo",
