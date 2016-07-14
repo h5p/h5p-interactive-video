@@ -32,25 +32,18 @@
             },
             {
               "label": "Video Urheberrechtsinformationen",
-              "description": "Informationen bezüglich des Urheberrechts des Videos und Elemte, die im Video verwendet werden.",
-              "tags": []
+              "description": "Informationen bezüglich des Urheberrechts des Videos und Elemte, die im Video verwendet werden."
             }
           ]
         },
         {
           "label": "Interaktionen hinzufügen",
-          "video": "Video/Dateien",
-          "poster": "Video/Poster",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Anzeigezeit",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "label": "Anzeigezeit"
                   },
                   {
                     "label": "Video pausieren"
@@ -65,21 +58,17 @@
                       {
                         "label": "Poster"
                       }
-                    ],
-                    "default": "Button"
+                    ]
                   },
                   {
                     "label": "Label",
-                    "description": "Label, das neben dem Interaktionsicon angezeigt wird.",
-                    "tags": []
+                    "description": "Label, das neben dem Interaktionsicon angezeigt wird."
                   },
                   {},
                   {},
                   {},
                   {},
-                  {
-                    "options": []
-                  },
+                  {},
                   {
                     "label": "Adaptionsfähigkeit",
                     "fields": [
@@ -94,7 +83,6 @@
                             "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
                           },
                           {
-                            "tags": [],
                             "label": "Nachricht"
                           },
                           {
@@ -113,7 +101,6 @@
                             "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
                           },
                           {
-                            "tags": [],
                             "label": "Nachricht"
                           },
                           {
@@ -125,26 +112,13 @@
                   }
                 ]
               }
-            },
-            {
-              "field": {
-                "fields": [
-                  {},
-                  {}
-                ]
-              }
             }
           ]
         },
         {
           "label": "Zusammenfassende Aufgabe",
           "fields": [
-            {
-              "options": [],
-              "default": {
-                "params": {}
-              }
-            },
+            {},
             {
               "label": "Anzeigen um",
               "description": "Anzahl an Sekunden bevor das Video endet."
