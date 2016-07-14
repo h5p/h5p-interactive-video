@@ -22,7 +22,7 @@
               "label": "Videooptionen für den Startbildschirm",
               "fields": [
                 {
-                  "label": "Titel auf Video Startbildschirm verstecken",
+                  "label": "Titel auf Video Startbildschirm verstecken"
                 },
                 {
                   "label": "Kurze Beschreibung (optional)",
@@ -33,134 +33,90 @@
             {
               "label": "Video Urheberrechtsinformationen",
               "description": "Informationen bezüglich des Urheberrechts des Videos und Elemte, die im Video verwendet werden.",
-              "tags": [
-              ]
+              "tags": []
             }
           ]
         },
         {
           "label": "Interaktionen hinzufügen",
-
           "video": "Video/Dateien",
           "poster": "Video/Poster",
           "fields": [
             {
-
               "field": {
-
                 "fields": [
                   {
-
                     "label": "Anzeigezeit",
                     "fields": [
-                      {
-
-                      },
-                      {
-
-                      }
+                      {},
+                      {}
                     ]
                   },
                   {
-                    "label": "Video pausieren",
+                    "label": "Video pausieren"
                   },
                   {
                     "label": "Anzeigen als",
                     "description": "<b>Button</b> ist eine engeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine erweiterte Interaktion, die direkt über dem Video angezeigt wird",
-
                     "options": [
                       {
-
                         "label": "Button"
                       },
                       {
-
                         "label": "Poster"
                       }
                     ],
                     "default": "Button"
                   },
                   {
-
                     "label": "Label",
                     "description": "Label, das neben dem Interaktionsicon angezeigt wird.",
-
-                    "tags": [
-
-                    ]
+                    "tags": []
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "options": []
                   },
                   {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                    "options": [
-
-                    ]
-                  },
-                  {
-
                     "label": "Adaptionsfähigkeit",
-
                     "fields": [
                       {
-
                         "label": "Aktion überall korrekt",
                         "fields": [
                           {
-
-
                             "label": "Suchen um",
                             "description": "Den Zeitcode in folgendem Format angeben M:SS"
                           },
                           {
-
                             "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
                           },
                           {
-
-                            "tags": [
-
-                            ],
+                            "tags": [],
                             "label": "Nachricht"
                           },
                           {
-
                             "label": "Label für den Suchen Button"
                           }
                         ]
                       },
                       {
-
                         "label": "Aktion wenn Falsch",
                         "fields": [
                           {
-
                             "label": "Suchen um",
                             "description": "Den Zeitcode in folgendem Format angeben M:SS"
                           },
                           {
-
                             "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
                           },
                           {
-
-                            "tags": [
-
-                            ],
+                            "tags": [],
                             "label": "Nachricht"
                           },
                           {
-
                             "label": "Label für den Suchen Button"
                           }
                         ]
@@ -171,78 +127,55 @@
               }
             },
             {
-
               "field": {
-
                 "fields": [
-                  {
-
-                  },
-                  {
-
-                  }
+                  {},
+                  {}
                 ]
               }
             }
           ]
         },
         {
-
           "label": "Zusammenfassende Aufgabe",
           "fields": [
             {
-
-              "options": [
-
-              ],
+              "options": [],
               "default": {
-
                 "params": {}
               }
             },
             {
-
               "label": "Anzeigen um",
-              "description": "Anzahl an Sekunden bevor das Video endet.",
-
+              "description": "Anzahl an Sekunden bevor das Video endet."
             }
           ]
         }
       ]
     },
     {
-
       "label": "Einstellungen für die Buttons \"Lösung anzeigen\" und \"Wiederholen\"",
-
       "fields": [
         {
-
           "label": "Überschreiben des \"Lösungen anzeigen\" Buttons",
           "description": "Diese Option gibt vor, ob der \"Lösung anzeigen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
-
           "options": [
             {
-
               "label": "Aktiviert"
             },
             {
-
               "label": "Deaktiviert"
             }
           ]
         },
         {
-
           "label": "Überschreiben des \"Wiederholen\" Buttons",
           "description": "Diese Option gibt vor, ob der \"Wiederholen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
-
           "options": [
             {
-
               "label": "Aktiviert"
             },
             {
-
               "label": "Deakitivert"
             }
           ]
@@ -250,75 +183,53 @@
       ]
     },
     {
-
       "label": "Lokalisieren",
-
       "fields": [
         {
-
           "label": "Interaktionstitel",
-          "default": "Interaktion",
-
+          "default": "Interaktion"
         },
         {
-
           "label": "Titel zum Abspielen",
-          "default": "Abspielen",
-
+          "default": "Abspielen"
         },
         {
-
           "label": "Titel zum Pausieren",
-          "default": "Pause",
-
+          "default": "Pause"
         },
         {
-
           "label": "Titel zum Stummschalten",
-          "default": "Stumm",
-
+          "default": "Stumm"
         },
         {
-
           "label": "Titel, um Stummmodus aufzuheben",
-          "default": "Stummschaltung aufheben",
-
+          "default": "Stummschaltung aufheben"
         },
         {
-
           "label": "Titel für die Videoqualität",
-          "default": "Video Quality",
-
+          "default": "Video Quality"
         },
         {
-
           "label": "Titel für den Vollbildmodus",
-          "default": "Vollbildmodus",
-
+          "default": "Vollbildmodus"
         },
         {
-
           "label": "Titel zum Verlassen des Vollbildmodus",
-          "default": "Vollbildmodus verlassen",
-
+          "default": "Vollbildmodus verlassen"
         },
         {
-
           "label": "Titel für Zusammenfassungen",
-          "default": "Zusammenfassung",
-
+          "default": "Zusammenfassung"
         },
         {
-
           "label": "Titel für Lesezeichen",
-          "default": "Lesezeichen",
-
+          "default": "Lesezeichen"
         },
         {
-
           "label": "Standardlabel für Adpativitäts Suchbutton",
-          "default": "Fortfahren",
+          "default": "Fortfahren"
         }
       ]
     }
   ]
+}
