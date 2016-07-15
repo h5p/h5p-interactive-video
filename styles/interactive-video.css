@@ -469,6 +469,10 @@
 .h5p-interactive-video .h5p-minimal-overlay .h5p-quality:before {
   content: "\f013";
 }
+.h5p-interactive-video .h5p-control.h5p-playbackRate:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-playbackRate:before {
+  content: "\f0e4";
+}
 .h5p-interactive-video .h5p-fullscreen:before {
   content: "\f065";
 }
@@ -488,6 +492,7 @@
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-bookmarks,
 .h5p-interactive-video.h5p-minimal .h5p-time,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-quality,
+.h5p-interactive-video.h5p-minimal .h5p-control.h5p-playbackRate,
 .h5p-interactive-video .h5p-more,
 .h5p-interactive-video .h5p-simple-time {
   display: none;
@@ -555,6 +560,9 @@
   left: 12px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-quality {
+  right: 12px;
+}
+.h5p-interactive-video .h5p-chooser.h5p-playbackRate {
   right: 12px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-show {
