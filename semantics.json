@@ -19,7 +19,10 @@
           {
             "name": "poster",
             "type": "image",
-            "label": "Poster image"
+            "label": "Poster image",
+            "optional": true,
+            "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+            
           },
           {
             "name": "title",
