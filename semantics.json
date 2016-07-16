@@ -21,8 +21,7 @@
             "type": "image",
             "label": "Poster image",
             "optional": true,
-            "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
-            
+            "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
           },
           {
             "name": "title",
@@ -51,7 +50,7 @@
                 "label": "Short description (Optional)",
                 "optional": true,
                 "maxLength": 120,
-                "description": "Optional. Display a short description text on the video start screen."
+                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
               }
             ]
           },
