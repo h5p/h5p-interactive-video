@@ -824,7 +824,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }	
 
-	// TODO: Do not add until playback rates are present?
     // Add popup for selecting playback rate
     self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-playbackRate',

@@ -471,7 +471,7 @@
 }
 .h5p-interactive-video .h5p-control.h5p-playbackRate:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-playbackRate:before {
-  content: "\f0e4";
+  content: "\f0e4"; /* fa-tachometer */
 }
 .h5p-interactive-video .h5p-fullscreen:before {
   content: "\f065";
