@@ -440,7 +440,7 @@
         "label": "Set playback rate",
         "default": "Playback Rate",
         "optional": true
-      }	  
+      }      
     ]
   }
 ]

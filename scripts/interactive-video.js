@@ -66,7 +66,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue',
       more: 'More',
-	  playbackRate: 'Playback rate'
+      playbackRate: 'Playback rate'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -155,9 +155,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             // Qualities might not be available until after play.
             self.addQualityChooser();
-			
-			// Playback rates might not be available until after play.
-			self.addPlaybackRateChooser();
+            
+            // Playback rates might not be available until after play.
+            self.addPlaybackRateChooser();
 
             // Make sure splash screen is removed.
             self.removeSplash();
@@ -199,14 +199,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
       }
     });
-	
+    
     self.video.on('playbackRateChange', function (event) {
       var playbackRate = event.data;
       if (self.controls.$playbackRateChooser) {
         // Update playbackRate selector
         self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
       }
-    });	
+    });    
 
     // Handle entering fullscreen
     self.on('enterFullScreen', function () {
@@ -809,7 +809,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Button for opening video quality selection dialog
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
-	
+    
     // Add volume button control (toggle mute)
     if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
       self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
@@ -822,7 +822,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.video.mute();
         }
       });
-    }	
+    }    
 
     // Add popup for selecting playback rate
     self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
@@ -832,8 +832,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Button for opening video playback rate selection dialog
-    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));	
-	
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));    
+    
     // Add more button for collapsing controls when there's little space
 
     // Add overlay for display controls inside
@@ -875,8 +875,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$playbackRateButton.click();
       }
     }, true);
-    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);	
-	
+    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);    
+    
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
@@ -891,7 +891,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
           self.controls.$playbackRateButton.click();
-        }		
+        }        
         setTimeout(function () {
           $buttons.removeClass('h5p-hide');
         }, 150);
@@ -911,12 +911,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
       else {
         self.controls.$qualityChooser.removeClass('h5p-show');
-		self.controls.$playbackRateChooser.removeClass('h5p-show');
+        self.controls.$playbackRateChooser.removeClass('h5p-show');
       }
     });
 
     self.addQualityChooser();
-	self.addPlaybackRateChooser();
+    self.addPlaybackRateChooser();
 
     // Add display for time elapsed and duration
     $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
@@ -932,7 +932,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       value: 0,
       step: 0.01,
       orientation: 'horizontal',
-			range: 'min',
+            range: 'min',
       max: 0,
       start: function () {
         if (self.currentState === InteractiveVideo.SEEKING) {
@@ -1217,7 +1217,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
       if (this.controls.$playbackRateButton && this.controls.$playbackRateButton.hasClass('h5p-active')) {
         this.controls.$playbackRateButton.click();
-      }	  
+      }      
       if (this.controls.$more && this.controls.$more.hasClass('h5p-active')) {
         this.controls.$more.click();
       }
