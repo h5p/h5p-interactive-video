@@ -181,7 +181,7 @@
         },
         {
           "label": "Titel für die Videoqualität",
-          "default": "Video Quality"
+          "default": "Video Qualität"
         },
         {
           "label": "Titel für den Vollbildmodus",
@@ -202,7 +202,11 @@
         {
           "label": "Standardlabel für Adpativitäts Suchbutton",
           "default": "Fortfahren"
-        }
+        },
+        {
+          "label": "Abspielgeschwindigkeit setzen",
+          "default": "Abspielgeschwindigkeit"
+        }        
       ]
     }
   ]
