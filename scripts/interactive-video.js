@@ -66,7 +66,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue',
       more: 'More',
-      playbackRate: 'Playback rate'
+      playbackRate: 'Playback rate',
+      rewind10: 'Rewind 10 seconds'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -156,7 +157,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
             
-            // Playback rates might not be available until after play.
             self.addPlaybackRateChooser();
 
             // Make sure splash screen is removed.
@@ -747,6 +747,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.video.pause();
       }
     });
+    
+    // Add button for rewinding 10 seconds
+    self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
+      if (self.video.getCurrentTime() > 0) { // video will play otherwise
+        newTime = Math.max(self.video.getCurrentTime()-10, 0);
+        self.video.seek(newTime);
+        if (self.currentState == H5P.Video.PAUSED) {
+          self.timeUpdate(newTime);
+        }
+      }
+    });    
 
     /**
      * Wraps a specifc handler to do some generic operations each time the handler is triggered.

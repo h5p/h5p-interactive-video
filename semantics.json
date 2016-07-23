@@ -442,7 +442,14 @@
         "label": "Set playback rate",
         "default": "Playback Rate",
         "optional": true
-      }      
+      },
+      {
+        "name": "rewind10",
+        "type": "text",
+        "label": "Rewind 10 Seconds",
+        "default": "Rewind 10 Seconds",
+        "optional": true
+      }
     ]
   }
 ]

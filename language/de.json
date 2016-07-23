@@ -206,7 +206,11 @@
         {
           "label": "Abspielgeschwindigkeit setzen",
           "default": "Abspielgeschwindigkeit"
-        }        
+        },
+        {
+          "label": "10 Sekunden zurückspringen",
+          "default": "10 Sekunden zurück"
+        }         
       ]
     }
   ]

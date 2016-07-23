@@ -461,6 +461,9 @@
 .h5p-interactive-video .h5p-pause:before {
   content: "\f04b";
 }
+.h5p-interactive-video .h5p-rewind10:before {
+  content: "\f1da"; /* fa-history */
+}
 .h5p-interactive-video .h5p-control.h5p-bookmarks:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-bookmarks:before {
   content: "\f02e";
