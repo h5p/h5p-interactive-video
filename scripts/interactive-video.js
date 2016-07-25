@@ -916,10 +916,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
         // Make sure splash screen is removed.
         self.removeSplash();
+        console.log("started sliding");
       },
       slide: function (e, ui) {
         // Update elapsed time
+        self.video.seek(ui.value);
+        self.updateInteractions(ui.value);
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
+        console.log("sliding !");
       },
       stop: function (e, ui) {
         self.currentState = self.lastState;
@@ -930,6 +934,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.timeUpdate(ui.value);
         }
+        console.log("stopped sliding");
       }
     });
 
@@ -1378,6 +1383,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
+    self.updateInteractions(time);
+
+    setTimeout(function () {
+      if (self.currentState === H5P.Video.PLAYING) {
+        self.timeUpdate(self.video.getCurrentTime());
+      }
+    }, 40); // 25 fps
+  };
+
+  InteractiveVideo.prototype.updateInteractions = function (time) {
+    var self = this;
+
     // Some UI elements are updated every 10th of a second.
     var tenth = Math.floor(time * 10) / 10;
     if (tenth !== self.lastTenth) {
@@ -1400,12 +1417,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
     self.lastSecond = second;
-
-    setTimeout(function () {
-      if (self.currentState === H5P.Video.PLAYING) {
-        self.timeUpdate(self.video.getCurrentTime());
-      }
-    }, 40); // 25 fps
   };
 
   /**
