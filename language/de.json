@@ -1,0 +1,209 @@
+{
+  "semantics": [
+    {
+      "label": "Interaktiver Videobearbeiter",
+      "fields": [
+        {
+          "label": "Video hochladen/einbetten",
+          "fields": [
+            {
+              "label": "Videodateien",
+              "description": "Wählen der Videodateien, die in dem interaktiven Video verwendet werden sollen. Um den maximalen Support in Browsern zu gewährleisten, muss zumindest eine Version des Videos im webm und mp4 Format hinzugefügt werden."
+            },
+            {
+              "label": "Posterbild"
+            },
+            {
+              "label": "Der Titel dieses interaktiven Videos",
+              "default": "Interaktives Video",
+              "description": "In Zusammenfassungen, Statistiken etc. verwendet"
+            },
+            {
+              "label": "Videooptionen für den Startbildschirm",
+              "fields": [
+                {
+                  "label": "Titel auf Video Startbildschirm verstecken"
+                },
+                {
+                  "label": "Kurze Beschreibung (optional)",
+                  "description": "Optional. Zeige einen kurzen Beschreibungstext auf dem Startbildschirm des Videos an."
+                }
+              ]
+            },
+            {
+              "label": "Video Urheberrechtsinformationen",
+              "description": "Informationen bezüglich des Urheberrechts des Videos und Elemte, die im Video verwendet werden."
+            }
+          ]
+        },
+        {
+          "label": "Interaktionen hinzufügen",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Anzeigezeit"
+                  },
+                  {
+                    "label": "Video pausieren"
+                  },
+                  {
+                    "label": "Anzeigen als",
+                    "description": "<b>Button</b> ist eine engeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine erweiterte Interaktion, die direkt über dem Video angezeigt wird",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Label",
+                    "description": "Label, das neben dem Interaktionsicon angezeigt wird."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptionsfähigkeit",
+                    "fields": [
+                      {
+                        "label": "Aktion überall korrekt",
+                        "fields": [
+                          {
+                            "label": "Suchen um",
+                            "description": "Den Zeitcode in folgendem Format angeben M:SS"
+                          },
+                          {
+                            "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
+                          },
+                          {
+                            "label": "Nachricht"
+                          },
+                          {
+                            "label": "Label für den Suchen Button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Aktion wenn Falsch",
+                        "fields": [
+                          {
+                            "label": "Suchen um",
+                            "description": "Den Zeitcode in folgendem Format angeben M:SS"
+                          },
+                          {
+                            "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
+                          },
+                          {
+                            "label": "Nachricht"
+                          },
+                          {
+                            "label": "Label für den Suchen Button"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Zusammenfassende Aufgabe",
+          "fields": [
+            {},
+            {
+              "label": "Anzeigen um",
+              "description": "Anzahl an Sekunden bevor das Video endet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Einstellungen für die Buttons \"Lösung anzeigen\" und \"Wiederholen\"",
+      "fields": [
+        {
+          "label": "Überschreiben des \"Lösungen anzeigen\" Buttons",
+          "description": "Diese Option gibt vor, ob der \"Lösung anzeigen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
+          "options": [
+            {
+              "label": "Aktiviert"
+            },
+            {
+              "label": "Deaktiviert"
+            }
+          ]
+        },
+        {
+          "label": "Überschreiben des \"Wiederholen\" Buttons",
+          "description": "Diese Option gibt vor, ob der \"Wiederholen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
+          "options": [
+            {
+              "label": "Aktiviert"
+            },
+            {
+              "label": "Deakitivert"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Lokalisieren",
+      "fields": [
+        {
+          "label": "Interaktionstitel",
+          "default": "Interaktion"
+        },
+        {
+          "label": "Titel zum Abspielen",
+          "default": "Abspielen"
+        },
+        {
+          "label": "Titel zum Pausieren",
+          "default": "Pause"
+        },
+        {
+          "label": "Titel zum Stummschalten",
+          "default": "Stumm"
+        },
+        {
+          "label": "Titel, um Stummmodus aufzuheben",
+          "default": "Stummschaltung aufheben"
+        },
+        {
+          "label": "Titel für die Videoqualität",
+          "default": "Video Quality"
+        },
+        {
+          "label": "Titel für den Vollbildmodus",
+          "default": "Vollbildmodus"
+        },
+        {
+          "label": "Titel zum Verlassen des Vollbildmodus",
+          "default": "Vollbildmodus verlassen"
+        },
+        {
+          "label": "Titel für Zusammenfassungen",
+          "default": "Zusammenfassung"
+        },
+        {
+          "label": "Titel für Lesezeichen",
+          "default": "Lesezeichen"
+        },
+        {
+          "label": "Standardlabel für Adpativitäts Suchbutton",
+          "default": "Fortfahren"
+        }
+      ]
+    }
+  ]
+}
