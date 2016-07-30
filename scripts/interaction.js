@@ -503,6 +503,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         title: title,
         css: {
           left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
+        },
+        on: {
+          click: function () {
+            if (player.currentState === H5P.Video.PLAYING) {
+              player.seek(parameters.duration.from);
+            } else {
+              player.play(); // for updating the slider
+              player.seek(parameters.duration.from);
+              player.pause();
+            }
+          },
         }
       }).appendTo($container);
     };
