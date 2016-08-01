@@ -513,7 +513,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               player.seek(parameters.duration.from);
               player.pause();
             }
-          },
+          }
         }
       }).appendTo($container);
     };
