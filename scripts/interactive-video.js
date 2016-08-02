@@ -353,63 +353,67 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {H5P.jQuery} $wrapper
    */
   InteractiveVideo.prototype.attachVideo = function ($wrapper) {
-    var that = this;
-
     this.video.attach($wrapper);
-    if (this.justVideo) {
+    if (!this.justVideo) {
+      this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
+    }
+  };
+
+  /**
+   * Add splash screen
+   */
+  InteractiveVideo.prototype.addSplash = function () {
+    var that = this;
+    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play) {
       return;
     }
 
-    this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
-
-    if (this.editor === undefined && !this.video.pressToPlay && this.video.play) {
-      this.$splash = $(
-        '<div class="h5p-splash-wrapper">' +
-          '<div class="h5p-splash-outer">' +
-            '<div class="h5p-splash" role="button" tabindex="1" title="' + this.l10n.play + '">' +
-              '<div class="h5p-splash-main">' +
-                '<div class="h5p-splash-main-outer">' +
-                  '<div class="h5p-splash-main-inner">' +
-                    '<div class="h5p-splash-play-icon"></div>' +
-                    '<div class="h5p-splash-title">' + this.options.video.title + '</div>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-              '<div class="h5p-splash-footer">' +
-                '<div class="h5p-splash-footer-holder">' +
-                  '<div class="h5p-splash-description">' + that.startScreenOptions.shortStartDescription + '</div>' +
+    this.$splash = $(
+      '<div class="h5p-splash-wrapper">' +
+        '<div class="h5p-splash-outer">' +
+          '<div class="h5p-splash" role="button" tabindex="1" title="' + this.l10n.play + '">' +
+            '<div class="h5p-splash-main">' +
+              '<div class="h5p-splash-main-outer">' +
+                '<div class="h5p-splash-main-inner">' +
+                  '<div class="h5p-splash-play-icon"></div>' +
+                  '<div class="h5p-splash-title">' + this.options.video.title + '</div>' +
                 '</div>' +
               '</div>' +
             '</div>' +
+            '<div class="h5p-splash-footer">' +
+              '<div class="h5p-splash-footer-holder">' +
+                '<div class="h5p-splash-description">' + that.startScreenOptions.shortStartDescription + '</div>' +
+              '</div>' +
+            '</div>' +
           '</div>' +
-        '</div>')
+        '</div>' +
+      '</div>')
+      .click(function () {
+        that.video.play();
+      })
+      .appendTo(this.$overlay)
+      .find('.h5p-interaction-button')
         .click(function () {
-          that.video.play();
+          return false;
         })
-        .appendTo(this.$overlay)
-        .find('.h5p-interaction-button')
-          .click(function () {
-            return false;
-          })
-          .end();
+        .end();
 
-      // Add play functionality and title to play icon
-      $('.h5p-splash', this.$splash).keydown(function (e) {
-        var code = e.which;
-        // 32 = Space
-        if (code === 32) {
-          that.video.play();
-          e.preventDefault();
-        }
-      });
-
-      if (this.startScreenOptions.shortStartDescription === undefined || !this.startScreenOptions.shortStartDescription.length) {
-        this.$splash.addClass('no-description');
+    // Add play functionality and title to play icon
+    $('.h5p-splash', this.$splash).keydown(function (e) {
+      var code = e.which;
+      // 32 = Space
+      if (code === 32) {
+        that.video.play();
+        e.preventDefault();
       }
+    });
 
-      if (this.startScreenOptions.hideStartTitle) {
-        this.$splash.addClass('no-title');
-      }
+    if (this.startScreenOptions.shortStartDescription === undefined || !this.startScreenOptions.shortStartDescription.length) {
+      this.$splash.addClass('no-description');
+    }
+
+    if (this.startScreenOptions.hideStartTitle) {
+      this.$splash.addClass('no-title');
     }
   };
 
@@ -417,6 +421,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Update and show controls for the interactive video.
    */
   InteractiveVideo.prototype.addControls = function () {
+    // Display splash screen
+    this.addSplash();
+
     this.attachControls(this.$controls.show());
 
     var duration = this.video.getDuration();
