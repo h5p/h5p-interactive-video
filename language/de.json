@@ -1,38 +1,39 @@
 {
   "semantics": [
     {
-      "label": "Interaktiver Videobearbeiter",
+      "label": "Editor für interaktive Videos",
       "fields": [
         {
           "label": "Video hochladen/einbetten",
           "fields": [
             {
               "label": "Videodateien",
-              "description": "Wählen der Videodateien, die in dem interaktiven Video verwendet werden sollen. Um den maximalen Support in Browsern zu gewährleisten, muss zumindest eine Version des Videos im webm und mp4 Format hinzugefügt werden."
+              "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Posterbild"
+              "label": "Posterbild",
+              "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
             },
             {
               "label": "Der Titel dieses interaktiven Videos",
               "default": "Interaktives Video",
-              "description": "In Zusammenfassungen, Statistiken etc. verwendet"
+              "description": "Wird in Zusammenfassungen, Statistiken, etc. verwendet"
             },
             {
               "label": "Videooptionen für den Startbildschirm",
               "fields": [
                 {
-                  "label": "Titel auf Video Startbildschirm verstecken"
+                  "label": "Titel auf Video-Startbildschirm ausblenden"
                 },
                 {
                   "label": "Kurze Beschreibung (optional)",
-                  "description": "Optional. Zeige einen kurzen Beschreibungstext auf dem Startbildschirm des Videos an."
+                  "description": "Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
                 }
               ]
             },
             {
-              "label": "Video Urheberrechtsinformationen",
-              "description": "Informationen bezüglich des Urheberrechts des Videos und Elemte, die im Video verwendet werden."
+              "label": "Video-Urheberrechtsinformationen",
+              "description": "Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
             }
           ]
         },
@@ -50,7 +51,7 @@
                   },
                   {
                     "label": "Anzeigen als",
-                    "description": "<b>Button</b> ist eine engeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine erweiterte Interaktion, die direkt über dem Video angezeigt wird",
+                    "description": "<b>Button</b> ist eine eingeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine ausgeklappte Interaktion, die direkt über dem Video angezeigt wird",
                     "options": [
                       {
                         "label": "Button"
@@ -61,8 +62,8 @@
                     ]
                   },
                   {
-                    "label": "Label",
-                    "description": "Label, das neben dem Interaktionsicon angezeigt wird."
+                    "label": "Beschriftung",
+                    "description": "Beschriftung neben dem Interaktionssymbol."
                   },
                   {},
                   {},
@@ -70,41 +71,41 @@
                   {},
                   {},
                   {
-                    "label": "Adaptionsfähigkeit",
+                    "label": "Anpassen an Antworten",
                     "fields": [
                       {
-                        "label": "Aktion überall korrekt",
+                        "label": "Aktion, wenn alles richtig",
                         "fields": [
                           {
-                            "label": "Suchen um",
-                            "description": "Den Zeitcode in folgendem Format angeben M:SS"
+                            "label": "Springe zu",
+                            "description": "Den Zeitcode im Format M:SS angeben"
                           },
                           {
-                            "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
+                            "label": "Dem Benutzer erlauben, direkt weiterzumachen"
                           },
                           {
                             "label": "Nachricht"
                           },
                           {
-                            "label": "Label für den Suchen Button"
+                            "label": "Beschriftung für den Springen-Button"
                           }
                         ]
                       },
                       {
-                        "label": "Aktion wenn Falsch",
+                        "label": "Aktion, wenn falsch",
                         "fields": [
                           {
-                            "label": "Suchen um",
-                            "description": "Den Zeitcode in folgendem Format angeben M:SS"
+                            "label": "Springe zu",
+                            "description": "Den Zeitcode im Format M:SS angeben"
                           },
                           {
-                            "label": "Dem Benutzer erlauben auszusteigen und weiterzumachen"
+                            "label": "Dem Benutzer erlauben, direkt weiterzumachen"
                           },
                           {
                             "label": "Nachricht"
                           },
                           {
-                            "label": "Label für den Suchen Button"
+                            "label": "Beschriftung für den Springen-Button"
                           }
                         ]
                       }
@@ -120,43 +121,43 @@
           "fields": [
             {},
             {
-              "label": "Anzeigen um",
-              "description": "Anzahl an Sekunden bevor das Video endet."
+              "label": "Anzeigen bei",
+              "description": "Anzahl der Sekunden vor Ende des Videos."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Verhaltenssteuerung",
       "fields": [
         {
-          "label": "Überschreiben des \"Lösungen anzeigen\" Buttons",
-          "description": "Diese Option gibt vor, ob der \"Lösung anzeigen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
+          "label": "Überschreiben des \"Lösungen anzeigen\"-Buttons",
+          "description": "Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options": [
             {
-              "label": "Aktiviert"
+              "label": "Anzeigen"
             },
             {
-              "label": "Deaktiviert"
+              "label": "Ausblenden"
             }
           ]
         },
         {
-          "label": "Überschreiben des \"Wiederholen\" Buttons",
-          "description": "Diese Option gibt vor, ob der \"Wiederholen\" Button für alle Fragen angezeigt, versteckt oder für jede Frage individuell konfiguriert wird.",
+          "label": "Überschreiben des \"Wiederholen\"-Buttons",
+          "description": "Diese Option gibt an, ob der \"Wiederholen\" Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options": [
             {
-              "label": "Aktiviert"
+              "label": "Anzeigen"
             },
             {
-              "label": "Deakitivert"
+              "label": "Ausblenden"
             }
           ]
         },
         {
-          "label": "Show bookmarks menu on load",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label": "Zeige das Lesezeichen-Menü beim Laden",
+          "description": "Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         }
       ]
     },
@@ -185,7 +186,7 @@
         },
         {
           "label": "Titel für die Videoqualität",
-          "default": "Video Quality"
+          "default": "Video-Qualität"
         },
         {
           "label": "Titel für den Vollbildmodus",
@@ -204,9 +205,9 @@
           "default": "Lesezeichen"
         },
         {
-          "label": "Standardlabel für Adpativitäts Suchbutton",
-          "default": "Fortfahren"
-        }
+          "label": "Standardbeschriftung für Springen-Button",
+          "default": "Weiter"
+        }        
       ]
     }
   ]
