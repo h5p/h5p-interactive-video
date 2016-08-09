@@ -52,6 +52,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
+    self.showBookmarksmenuOnLoad = (params.override !== undefined && params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
+
     // Translated UI text defaults
     self.l10n = $.extend({
       interaction: 'Interaction',
@@ -164,6 +166,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             // Make sure we track buffering of the video.
             self.startUpdatingBufferBar();
+
+            // Remove bookmarkchooser
+            self.toggleBookmarksChooser(false);
           }
 
           self.currentState = H5P.Video.PLAYING;
@@ -629,6 +634,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
+   * Toggle bookmarks menu
+   *
+   * @method toggleBookmarksChooser
+   * @param  {boolean}               show
+   */
+  InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
+    if (this.controls.$bookmarks) {
+      show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
+
+      this.controls.$more.toggleClass('h5p-active', show);
+      this.controls.$minimalOverlay.toggleClass('h5p-show', show);
+      this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
+      this.controls.$bookmarks.toggleClass('h5p-active', show);
+      this.controls.$bookmarksChooser.toggleClass('h5p-show', show);
+    }
+  }
+  /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
    * @param {number} id
@@ -676,13 +698,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           $bookmark.mouseover().mouseout();
           setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
         }
+
         if (self.controls.$more.hasClass('h5p-active')) {
           self.controls.$more.click();
         }
         else {
-          self.controls.$bookmarks.click();
+          self.toggleBookmarksChooser(false);
         }
         self.video.seek(bookmark.time);
+        self.video.play();
       });
 
     // Insert bookmark in the correct place.
@@ -786,6 +810,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       };
     };
 
+    var isIpad = function () {
+      return navigator.userAgent.indexOf('iPad') !== -1;
+    };
+
+    var isAndroid = function () {
+      navigator.userAgent.indexOf('Android') !== -1
+    };
+
     /**
      * Indicates if bookmarks are available.
      * Only available for controls.
@@ -803,7 +835,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
 
       // Button for opening bookmark popup
-      self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, createPopupMenuHandler('$bookmarks', '$bookmarksChooser'));
+      self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
+        self.toggleBookmarksChooser();
+      });
     }
 
     // Current time for minimal display
@@ -829,7 +863,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
     
     // Add volume button control (toggle mute)
-    if (navigator.userAgent.indexOf('Android') === -1 && navigator.userAgent.indexOf('iPad') === -1) {
+    if (!isAndroid() && !isIpad()) {
       self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
         if (self.controls.$volume.hasClass('h5p-muted')) {
           self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
@@ -873,7 +907,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (bookmarksEnabled) {
       $buttons = $buttons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
         $buttons.addClass('h5p-hide');
-        self.controls.$bookmarks.click();
+        self.toggleBookmarksChooser(true);
       }, true));
     }
 
@@ -901,9 +935,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         // Close overlay
         self.controls.$minimalOverlay.removeClass('h5p-show');
         self.controls.$more.removeClass('h5p-active');
-        if (self.controls.$bookmarks && self.controls.$bookmarks.hasClass('h5p-active')) {
-          self.controls.$bookmarks.click();
-        }
+        self.toggleBookmarksChooser(false);
         if (self.controls.$qualityButton && self.controls.$qualityButton.hasClass('h5p-active')) {
           self.controls.$qualityButton.click();
         }
@@ -979,6 +1011,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
     });
+
+    /* Show bookmarks, except when youtube is used on iPad */
+    if (self.showBookmarksmenuOnLoad && !(isIpad() && self.video.getType() === 'youtube')) {
+      self.toggleBookmarksChooser(true);
+    }
 
     // Add buffered status to seekbar
     self.controls.$buffered = $('<div/>', {'class': 'h5p-buffered', prependTo: self.controls.$slider});
@@ -1166,10 +1203,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (!this.editor) {
       if (width < this.width) {
         if (!this.$container.hasClass('h5p-minimal')) {
-
-          // Close controls before changing layout
-          this.closeControls();
-
           // Use minimal controls
           this.$container.addClass('h5p-minimal');
           this.resizeControls();
@@ -1221,33 +1254,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Close all open control menus. Useful when modifying controls.
-   */
-  InteractiveVideo.prototype.closeControls = function () {
-
-    // Close pop-up menus
-    if (this.controls) {
-      if (this.controls.$bookmarks && this.controls.$bookmarks.hasClass('h5p-active')) {
-        this.controls.$bookmarks.click();
-      }
-      if (this.controls.$qualityButton && this.controls.$qualityButton.hasClass('h5p-active')) {
-        this.controls.$qualityButton.click();
-      }
-      if (this.controls.$playbackRateButton && this.controls.$playbackRateButton.hasClass('h5p-active')) {
-        this.controls.$playbackRateButton.click();
-      }      
-      if (this.controls.$more && this.controls.$more.hasClass('h5p-active')) {
-        this.controls.$more.click();
-      }
-    }
-  };
-
-  /**
    * Make sure that the jQuery UI scrollbar fits between the controls
    */
   InteractiveVideo.prototype.resizeControls = function () {
-    this.closeControls();
-
     var left = this.$controls.children('.h5p-controls-left').width();
     var right = this.$controls.children('.h5p-controls-right').width();
     if (left || right) {

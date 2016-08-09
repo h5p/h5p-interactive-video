@@ -144,7 +144,7 @@
       ]
     },
     {
-      "label": "Impostazioni per i pulsanti \"Mostra soluzione\" e \"Riprova\".",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Override \"Show Solution\" button",
@@ -169,6 +169,10 @@
               "label": "Disabled"
             }
           ]
+        },
+        {
+          "label": "Show bookmarks menu on load",
+          "description": "This function is not available on iPad when using YouTube as video source"
         }
       ]
     },

@@ -129,7 +129,7 @@
       ]
     },
     {
-      "label": "Innstillinger for \"Vis svar\" knapp og \"Prøv igjen\".",
+      "label": "Innstillinger for oppgave-oppførsel",
       "fields": [
         {
           "label": "Overstyr «Vis svar»-knapp",
@@ -154,6 +154,9 @@
               "label": "Deaktivert"
             }
           ]
+        },
+        {
+          "label": "Vis bokmerkemeny når interaktiv video åpnes"
         }
       ]
     },

@@ -130,7 +130,7 @@
       ]
     },
     {
-      "label": "Réglages des boutons \"Voir la correction\" et \"Recommencer\".",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Ecraser le bouton \"Voir la correction\"",
@@ -155,6 +155,10 @@
               "label": "Désactivé"
             }
           ]
+        },
+        {
+          "label": "Show bookmarks menu on load",
+          "description": "This function is not available on iPad when using YouTube as video source"
         }
       ]
     },

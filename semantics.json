@@ -313,7 +313,7 @@
   {
     "name": "override",
     "type": "group",
-    "label": "Settings for \"Show solution\" and \"Retry\" buttons",
+    "label": "Behavioural settings",
     "optional": true,
     "fields": [
       {
@@ -349,6 +349,13 @@
             "label": "Disabled"
           }
         ]
+      },
+      {
+        "name": "showBookmarksmenuOnLoad",
+        "type": "boolean",
+        "label": "Show bookmarks menu on load",
+        "default": false,
+        "description": "This function is not available on iPad when using YouTube as video source"
       }
     ]
   },
