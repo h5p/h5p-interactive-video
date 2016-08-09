@@ -128,7 +128,7 @@
       ]
     },
     {
-      "label": "Einstellungen für die Buttons \"Lösung anzeigen\" und \"Wiederholen\"",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Überschreiben des \"Lösungen anzeigen\" Buttons",
@@ -153,6 +153,10 @@
               "label": "Deakitivert"
             }
           ]
+        },
+        {
+          "label": "Show bookmarks menu on load",
+          "description": "This function is not available on iPad when using YouTube as video source"
         }
       ]
     },
