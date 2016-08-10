@@ -966,7 +966,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     /* Show bookmarks, except when youtube is used on iPad */
-    if (self.showBookmarksmenuOnLoad && !(isIpad() && self.video.getType() === 'youtube')) {
+    if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
       self.toggleBookmarksChooser(true);
     }
 

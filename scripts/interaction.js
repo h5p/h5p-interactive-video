@@ -702,7 +702,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
           });
 
-          if (library === 'H5P.GoToQuestion') {
+          if (instance.on !== undefined) {
             instance.on('chosen', function (event) {
               if (self.isButton()) {
                 // Close dialog
