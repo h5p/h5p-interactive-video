@@ -144,7 +144,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         case H5P.Video.ENDED:
           self.currentState = H5P.Video.ENDED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
-          self.timeUpdate(self.video.getCurrentTime());
+          self.timeUpdate(self.video.getCurrentTime(), 0);
           self.controls.$currentTime.html(self.controls.$totalTime.html());
 
           self.complete();
@@ -169,13 +169,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           self.currentState = H5P.Video.PLAYING;
           self.controls.$play.removeClass('h5p-pause').attr('title', self.l10n.pause);
-          self.timeUpdate(self.video.getCurrentTime());
+          self.timeUpdate(self.video.getCurrentTime(), 0);
           break;
 
         case H5P.Video.PAUSED:
           self.currentState = H5P.Video.PAUSED;
           self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
-          self.timeUpdate(self.video.getCurrentTime());
+          self.timeUpdate(self.video.getCurrentTime(), 0);
           break;
 
         case H5P.Video.BUFFERING:
@@ -188,7 +188,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.startUpdatingBufferBar();
 
           // Remove interactions while buffering
-          self.timeUpdate(-1);
+          self.timeUpdate(-1, 0);
           break;
       }
     });
@@ -960,7 +960,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.video.play();
         }
         else {
-          self.timeUpdate(ui.value);
+          self.timeUpdate(ui.value, 0);
         }
       }
     });
@@ -1375,8 +1375,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Makes sure to update all UI elements.
    *
    * @param {number} time
+   * @param {number} precision_time
    */
-  InteractiveVideo.prototype.timeUpdate = function (time) {
+  InteractiveVideo.prototype.timeUpdate = function (time, precision_time) {
     var self = this;
 
     // Scroll slider
@@ -1390,6 +1391,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
+    // Check every time if interactions have to be displayed or removed
+	if (precision_time <= 0) { 
+	  precision_time = time;
+	}
+	var precision_tenth = Math.floor(precision_time * 10) / 10;
+    self.toggleInteractions(precision_tenth);
+	
     // Some UI elements are updated every 10th of a second.
     var tenth = Math.floor(time * 10) / 10;
     if (tenth !== self.lastTenth) {
@@ -1404,7 +1412,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Some UI elements are updated every second.
     var second = Math.floor(time);
     if (second !== self.lastSecond) {
-      self.toggleInteractions(second);
 
       if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
         // Update elapsed time
@@ -1415,9 +1422,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     setTimeout(function () {
       if (self.currentState === H5P.Video.PLAYING) {
-        self.timeUpdate(self.video.getCurrentTime());
+        if (time !== self.video.getCurrentTime()) {
+		  precision_time = self.video.getCurrentTime();
+		}  
+		else {
+		  precision_time += 0.033333334;
+		}  
+		self.timeUpdate(self.video.getCurrentTime(), precision_time);
       }
-    }, 40); // 25 fps
+    }, 33); // used to be 40 for 25 fps, but 33 seems to be more adequate as is divisor for getcurrenttime() intervals
   };
 
   /**
@@ -1503,12 +1516,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Display and remove interactions for the given second.
-   * @param {number} second
+   * Display and remove interactions for the given timestamp.
+   * @param {number} timestamp
    */
-  InteractiveVideo.prototype.toggleInteractions = function (second) {
+  InteractiveVideo.prototype.toggleInteractions = function (timestamp) {
     for (var i = 0; i < this.interactions.length; i++) {
-      this.interactions[i].toggle(second);
+      this.interactions[i].toggle(timestamp);
       this.interactions[i].repositionToWrapper(this.$videoWrapper);
     }
   };
