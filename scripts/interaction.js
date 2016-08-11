@@ -702,21 +702,26 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
           });
 
-          if (instance.on !== undefined) {
-            instance.on('chosen', function (event) {
-              if (self.isButton()) {
-                // Close dialog
-                player.dnb.dialog.close();
-              }
-              if (player.currentState === H5P.Video.PAUSED ||
-                  player.currentState === H5P.Video.ENDED) {
-                // Start playing again
-                player.play();
-              }
+          var goto = function (event) {
+            if (self.isButton()) {
+              // Close dialog
+              player.dnb.dialog.close();
+            }
+            if (player.currentState === H5P.Video.PAUSED ||
+                player.currentState === H5P.Video.ENDED) {
+              // Start playing again
+              player.play();
+            }
 
-              // Jump to chosen timecode
-              player.seek(event.data);
-            });
+            // Jump to chosen timecode
+            player.seek(event.data);
+          };
+
+          if (library === 'H5P.IVHotspot') {
+            instance.on('goto', goto);
+          }
+          if (library === 'H5P.GoToQuestion') {
+            instance.on('chosen', goto);
           }
         }
       }

@@ -314,6 +314,11 @@
   overflow: hidden;
 }
 
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction {
+  box-shadow: none;
+  background: none;
+}
+
 .h5p-interactive-video .h5p-interaction.h5p-poster .h5p-interaction-outer {
   position: relative;
   top: 0;
@@ -331,6 +336,10 @@
   font-size: 0.875em;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.h5p-interactive-video .h5p-interaction-inner.h5p-ivhotspot {
+  height: 100%;
 }
 
 .h5p-interactive-video .h5p-interaction-inner.h5p-text {
