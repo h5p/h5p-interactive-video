@@ -317,6 +317,11 @@
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction {
   box-shadow: none;
   background: none;
+  overflow: visible;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction .h5p-interaction-outer {
+  overflow: visible;
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster .h5p-interaction-outer {
