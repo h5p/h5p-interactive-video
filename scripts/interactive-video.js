@@ -948,14 +948,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
         // Make sure splash screen is removed.
         self.removeSplash();
-        console.log("started sliding");
       },
       slide: function (e, ui) {
         // Update elapsed time
         self.video.seek(ui.value);
         self.updateInteractions(ui.value);
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
-        console.log("sliding !");
       },
       stop: function (e, ui) {
         self.currentState = self.lastState;
@@ -966,7 +964,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.timeUpdate(ui.value);
         }
-        console.log("stopped sliding");
       }
     });
 
