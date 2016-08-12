@@ -1257,3 +1257,9 @@
 .h5p-interactive-video .h5p-confirmation-dialog-background {
   z-index: 101;
 }
+.goto-clickable {
+  cursor: pointer;
+}
+.goto-clickable.visualize {
+  /* Add styling here when design is ready! */
+}
