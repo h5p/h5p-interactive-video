@@ -44,7 +44,11 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Anzeigezeit"
+                    "label": "Anzeigezeit",
+                    "fields": [
+                      {},
+                      {}
+                    ]
                   },
                   {
                     "label": "Video pausieren"
@@ -110,7 +114,63 @@
                         ]
                       }
                     ]
+                  },
+                  {
+                    "label": "Gehe zu bei Klick",
+                    "fields": [
+                      {
+                        "label": "Typ",
+                        "options": [
+                          {
+                            "label": "Timecode"
+                          },
+                          {
+                            "label": "Andere Website (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Gehe zu",
+                        "description": "Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protokoll",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(bezogen auf \"root\")"
+                              },
+                              {
+                                "label": "anderes"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualisieren"
+                      }
+                    ]
                   }
+                ]
+              }
+            },
+            {
+              "field": {
+                "fields": [
+                  {},
+                  {}
                 ]
               }
             }
@@ -119,7 +179,11 @@
         {
           "label": "Zusammenfassende Aufgabe",
           "fields": [
-            {},
+            {
+              "default": {
+                "params": {}
+              }
+            },
             {
               "label": "Anzeigen bei",
               "description": "Anzahl der Sekunden vor Ende des Videos."
@@ -170,7 +234,7 @@
         },
         {
           "label": "Titel zum Abspielen",
-          "default": "Abspielen"
+          "default": "Start"
         },
         {
           "label": "Titel zum Pausieren",
