@@ -314,6 +314,16 @@
   overflow: hidden;
 }
 
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction {
+  box-shadow: none;
+  background: none;
+  overflow: visible;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction .h5p-interaction-outer {
+  overflow: visible;
+}
+
 .h5p-interactive-video .h5p-interaction.h5p-poster .h5p-interaction-outer {
   position: relative;
   top: 0;
@@ -331,6 +341,10 @@
   font-size: 0.875em;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
+}
+
+.h5p-interactive-video .h5p-interaction-inner.h5p-ivhotspot {
+  height: 100%;
 }
 
 .h5p-interactive-video .h5p-interaction-inner.h5p-text {
@@ -1258,4 +1272,10 @@
 
 .h5p-interactive-video .h5p-confirmation-dialog-background {
   z-index: 101;
+}
+.goto-clickable {
+  cursor: pointer;
+}
+.goto-clickable.visualize {
+  /* Add styling here when design is ready! */
 }

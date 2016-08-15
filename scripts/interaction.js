@@ -49,6 +49,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Changes if interaction has moved from original position
     var isRepositioned = false;
 
+    // Does this interaction support click to go
+    var isGotoClickable = ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && parameters.goto.type !== undefined;
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -135,6 +138,23 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }, 0);
     };
 
+    var makeInteractionGotoClickable = function ($anchor) {
+      if (parameters.goto.type === 'timecode') {
+        $anchor.click(function () {
+          goto({data: parameters.goto.time});
+        });
+      }
+      else { // URL
+        var url = parameters.goto.url;
+        $anchor.attr({
+          href: (url.protocol !== 'other' ? url.protocol : '') + url.url,
+          target: '_blank'
+        });
+      }
+
+      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' visualize' : ''));
+    };
+
     /**
      * Opens button dialog.
      *
@@ -146,12 +166,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       // Create wrapper for dialog content
-      var $dialogContent = $('<div/>', {
+      var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-dialog-interaction h5p-frame'
       });
 
       // Attach instance to dialog and open
-      instance.attach($dialogContent);
+      instance.attach(isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent);
 
       // Open dialog
       player.dnb.dialog.open($dialogContent);
@@ -312,7 +332,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
 
-      $inner = $('<div/>', {
+      $inner = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
 
@@ -320,7 +340,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance.disableAutoPlay();
       }
 
-      instance.attach($inner);
+      instance.attach(isGotoClickable ? makeInteractionGotoClickable($inner) : $inner);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
@@ -662,6 +682,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    var goto = function (event) {
+      if (self.isButton()) {
+        // Close dialog
+        player.dnb.dialog.close();
+      }
+      if (player.currentState === H5P.Video.PAUSED ||
+          player.currentState === H5P.Video.ENDED) {
+        // Start playing again
+        player.play();
+      }
+
+      // Jump to chosen timecode
+      player.seek(event.data);
+    };
+
     /**
      * Create a new instance of the interaction.
      * Useful if the input parameters have changes.
@@ -702,21 +737,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
           });
 
+          if (library === 'H5P.IVHotspot') {
+            instance.on('goto', goto);
+          }
           if (library === 'H5P.GoToQuestion') {
-            instance.on('chosen', function (event) {
-              if (self.isButton()) {
-                // Close dialog
-                player.dnb.dialog.close();
-              }
-              if (player.currentState === H5P.Video.PAUSED ||
-                  player.currentState === H5P.Video.ENDED) {
-                // Start playing again
-                player.play();
-              }
-
-              // Jump to chosen timecode
-              player.seek(event.data);
-            });
+            instance.on('chosen', goto);
           }
         }
       }

@@ -649,7 +649,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       this.controls.$bookmarks.toggleClass('h5p-active', show);
       this.controls.$bookmarksChooser.toggleClass('h5p-show', show);
     }
-  }
+  };
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
@@ -815,7 +815,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     };
 
     var isAndroid = function () {
-      navigator.userAgent.indexOf('Android') !== -1
+      return navigator.userAgent.indexOf('Android') !== -1;
     };
 
     /**
@@ -998,6 +998,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       },
       slide: function (e, ui) {
         // Update elapsed time
+        self.video.seek(ui.value);
+        self.updateInteractions(ui.value);
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
       },
       stop: function (e, ui) {
@@ -1013,7 +1015,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     /* Show bookmarks, except when youtube is used on iPad */
-    if (self.showBookmarksmenuOnLoad && !(isIpad() && self.video.getType() === 'youtube')) {
+    if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
       self.toggleBookmarksChooser(true);
     }
 
@@ -1169,10 +1171,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.video.trigger('resize');
 
     var width;
+    var videoHeight;
     var controlsHeight = this.justVideo ? 0 : this.$controls.height();
     var containerHeight = this.$container.height();
     if (fullscreenOn) {
-      var videoHeight = this.$videoWrapper.height();
+      videoHeight = this.$videoWrapper.height();
 
       if (videoHeight + controlsHeight <= containerHeight) {
         this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
@@ -1476,6 +1479,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
+    self.updateInteractions(time);
+
+    setTimeout(function () {
+      if (self.currentState === H5P.Video.PLAYING) {
+        self.timeUpdate(self.video.getCurrentTime());
+      }
+    }, 40); // 25 fps
+  };
+
+  InteractiveVideo.prototype.updateInteractions = function (time) {
+    var self = this;
+
     // Some UI elements are updated every 10th of a second.
     var tenth = Math.floor(time * 10) / 10;
     if (tenth !== self.lastTenth) {
@@ -1498,12 +1513,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
     self.lastSecond = second;
-
-    setTimeout(function () {
-      if (self.currentState === H5P.Video.PLAYING) {
-        self.timeUpdate(self.video.getCurrentTime());
-      }
-    }, 40); // 25 fps
   };
 
   /**
@@ -1663,7 +1672,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Adding copyrights for poster
     var poster = self.options.video.poster;
     if (poster && poster.copyright !== undefined) {
-      var image = new H5P.MediaCopyright(poster.copyright, self.l10n)
+      var image = new H5P.MediaCopyright(poster.copyright, self.l10n);
       var imgSource = H5P.getPath(poster.path, self.contentId);
       image.setThumbnail(new H5P.Thumbnail(imgSource, poster.width, poster.height));
       info.addMedia(image);
