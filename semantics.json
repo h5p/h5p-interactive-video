@@ -271,18 +271,21 @@
                       "name": "type",
                       "label": "Type",
                       "type": "select",
+                      "widget": "selectToggleFields",
                       "options": [
                         {
                           "value": "timecode",
                           "label": "Timecode",
-                          "paths": [
-                            "../time",
-                            "../visuals"
+                          "hideFields": [
+                            "url"
                           ]
                         },
                         {
                           "value": "url",
-                          "label": "Another page (URL)"
+                          "label": "Another page (URL)",
+                          "hideFields": [
+                            "time"
+                          ]
                         }
                       ],
                       "optional": true
@@ -300,6 +303,7 @@
                       "type": "group",
                       "label": "URL",
                       "widget": "linkWidget",
+                      "optional": true,
                       "fields": [
                         {
                           "name": "protocol",
