@@ -693,8 +693,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.toggleBookmarksChooser(false);
         }
-        self.video.seek(bookmark.time);
         self.video.play();
+        self.video.seek(bookmark.time);
       });
 
     // Insert bookmark in the correct place.
