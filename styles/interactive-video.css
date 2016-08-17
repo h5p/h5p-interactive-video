@@ -565,7 +565,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.h5p-interactive-video .h5p-chooser.h5p-bookmarks {
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks {
   z-index: 1;
   left: 55px;
   max-width: 22px;
@@ -590,7 +590,7 @@
   -moz-transition-delay: 0s;
   transition-delay: 0s;
 }
-.h5p-interactive-video .h5p-chooser.h5p-bookmarks.h5p-show {
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show {
   transform: translateY(0%);
   max-width: 200px;
   left: 12px;
@@ -601,7 +601,7 @@
 }
 .h5p-interactive-video .h5p-chooser > h3 {
   margin: 0 0 8px 0;
-  padding: 8px 12px;
+  padding: 8px 24px 8px 12px;
   font-size: 19px;
   font-weight: normal;
   border-bottom: 1px solid #fbfbfb;
@@ -637,6 +637,28 @@
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks > ol > li:before {
   content: "\f02e";
+}
+.h5p-interactive-video .h5p-chooser-close-button {
+  cursor: pointer;
+  position: absolute;
+  top: .1em;
+  right: .1em;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  line-height: 1;
+}
+.h5p-interactive-video.h5p-minimal .h5p-chooser-close-button {
+  top: .3em;
+  right: .3em;
+  font-size: 130%;
+}
+.h5p-interactive-video .h5p-chooser-close-button:after {
+  font-family: 'H5PFontAwesome4';
+  content: "\f00d";
+}
+.h5p-interactive-video .h5p-chooser-close-button:hover {
+  color: #dbd7d1;
 }
 
 .h5p-interactive-video.h5p-minimal .h5p-chooser {
