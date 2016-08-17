@@ -571,9 +571,9 @@
   max-width: 22px;
   bottom: 36px;
   overflow-y: hidden;
-  -webkit-transition: max-width .4s, left .4s, opacity .4s linear .2s, transform .5s linear, visibility 1s;
-     -moz-transition: max-width .4s, left .4s, opacity .4s linear .2s, transform .5s linear, visibility 1s;
-          transition: max-width .4s, left .4s, opacity .4s linear .2s, transform .5s linear, visibility 1s;
+  -webkit-transition: max-width .2s, left .2s, opacity .2s linear .2s, transform .3s linear, visibility 1s;
+     -moz-transition: max-width .2s, left .2s, opacity .2s linear .2s, transform .3s linear, visibility 1s;
+          transition: max-width .2s, left .2s, opacity .2s linear .2s, transform .3s linear, visibility 1s;
   transform: translateY(100%);
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks * {
