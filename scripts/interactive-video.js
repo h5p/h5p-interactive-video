@@ -18,6 +18,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Keep track of content ID
     self.contentId = id;
 
+    self.isMinimal = false;
+
     // Insert default options
     self.options = $.extend({ // Deep is not used since editor uses references.
       video: {},
@@ -848,7 +850,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$qualityChooser.append($('<span>', {
       'class': 'h5p-chooser-close-button',
       click: function () {
-        if (self.isMobileView) {
+        if (self.isMinimal) {
           self.controls.$more.click();
         }
         else {
@@ -1152,6 +1154,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.resizeControls();
       }
     }
+
+    this.isMinimal = this.$container.hasClass('h5p-minimal');
 
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
