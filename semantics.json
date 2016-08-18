@@ -437,6 +437,12 @@
         "label": "Show bookmarks menu on load",
         "default": false,
         "description": "This function is not available on iPad when using YouTube as video source"
+      },
+      {
+        "name": "showRewind10",
+        "type": "boolean",
+        "label": "Show button for rewinding 10 seconds",
+        "default": false
       }
     ]
   },

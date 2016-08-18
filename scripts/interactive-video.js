@@ -52,8 +52,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
-    self.showBookmarksmenuOnLoad = (params.override !== undefined && params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
-
+    if (params.override !== undefined) {
+      self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
+      self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
+    }
     // Translated UI text defaults
     self.l10n = $.extend({
       interaction: 'Interaction',
@@ -773,15 +775,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
     
     // Add button for rewinding 10 seconds
-    self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
-      if (self.video.getCurrentTime() > 0) { // video will play otherwise
-        newTime = Math.max(self.video.getCurrentTime()-10, 0);
-        self.video.seek(newTime);
-        if (self.currentState == H5P.Video.PAUSED) {
-          self.timeUpdate(newTime);
+    
+    if (self.showRewind10) {
+      self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
+        if (self.video.getCurrentTime() > 0) { // video will play otherwise
+          newTime = Math.max(self.video.getCurrentTime()-10, 0);
+          self.video.seek(newTime);
+          if (self.currentState == H5P.Video.PAUSED) {
+            self.timeUpdate(newTime);
+          }
         }
-      }
-    });    
+      });
+    }
 
     /**
      * Wraps a specifc handler to do some generic operations each time the handler is triggered.
