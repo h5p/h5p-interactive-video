@@ -425,7 +425,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // add and show adaptivity button, hide continue button
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-          if (self.isButton() || player.isMobileView) {
+          if (self.isButton()) {
             player.dnb.dialog.close();
           }
           if (!adaptivity.allowOptOut) {
@@ -494,7 +494,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayType === 'button' || library === 'H5P.Nil' || player.isMobileView;
+      return parameters.displayType === 'button' || library === 'H5P.Nil' || (player.isMobileView && library !== 'H5P.IVHotspot');
     };
 
     /**
@@ -558,7 +558,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      if (self.isButton() || player.isMobileView) {
+      if (self.isButton()) {
         createButton();
         isShownAsButton = true;
       }
@@ -601,7 +601,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         $interaction.detach();
 
-        if (self.isButton() || player.isMobileView) {
+        if (self.isButton()) {
           createButton();
           isShownAsButton = true;
         } else {
