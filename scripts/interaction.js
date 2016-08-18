@@ -50,7 +50,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var isRepositioned = false;
 
     // Does this interaction support click to go
-    var isGotoClickable = ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && parameters.goto.type !== undefined;
+    var isGotoClickable = ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && parameters.goto.type;
 
     /**
      * Display the current interaction as a button on top of the video.
