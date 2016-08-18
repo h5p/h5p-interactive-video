@@ -15,8 +15,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Inheritance
     H5P.EventDispatcher.call(self);
 
-    self.isMinimal = false;
-
     // Keep track of content ID
     self.contentId = id;
 
@@ -850,7 +848,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$qualityChooser.append($('<span>', {
       'class': 'h5p-chooser-close-button',
       click: function () {
-        if (self.isMinimal) {
+        if (self.isMobileView) {
           self.controls.$more.click();
         }
         else {
@@ -1154,8 +1152,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.resizeControls();
       }
     }
-
-    this.isMinimal = this.$container.hasClass('h5p-minimal');
 
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
