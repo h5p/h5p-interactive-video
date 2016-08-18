@@ -18,6 +18,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Keep track of content ID
     self.contentId = id;
 
+    self.isMinimal = false;
+
     // Insert default options
     self.options = $.extend({ // Deep is not used since editor uses references.
       video: {},
@@ -707,8 +709,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.toggleBookmarksChooser(false);
         }
-        self.video.seek(bookmark.time);
         self.video.play();
+        self.video.seek(bookmark.time);
       });
 
     // Insert bookmark in the correct place.
@@ -839,6 +841,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         appendTo: self.$container
       });
 
+      // Adding close button to bookmarks-menu
+      self.controls.$bookmarksChooser.append($('<span>', {
+        'class': 'h5p-chooser-close-button',
+        click: function () {
+          self.toggleBookmarksChooser();
+        }
+      }));
+
       // Button for opening bookmark popup
       self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
         self.toggleBookmarksChooser();
@@ -863,6 +873,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       html: '<h3>' + self.l10n.quality + '</h3>',
       appendTo: self.$container
     });
+
+    // Adding close button to quality-menu
+    self.controls.$qualityChooser.append($('<span>', {
+      'class': 'h5p-chooser-close-button',
+      click: function () {
+        if (self.isMinimal) {
+          self.controls.$more.click();
+        }
+        else {
+          self.controls.$qualityButton.click();
+        }
+      }
+    }));
 
     // Button for opening video quality selection dialog
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
@@ -1222,6 +1245,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.resizeControls();
       }
     }
+
+    this.isMinimal = this.$container.hasClass('h5p-minimal');
 
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
