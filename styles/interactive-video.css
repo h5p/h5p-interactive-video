@@ -1282,6 +1282,11 @@
   transform: translateX(-50%);
 }
 
+.h5p-interactive-video .h5p-dialog.h5p-big[data-lib="H5P.Questionnaire"] .h5p-questionnaire-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
 .h5p-interactive-video .h5p-dialog[data-lib="H5P.Questionnaire"] .h5p-dialog-titlebar {
   background-color: #2269a9;
   border-bottom: 1px solid #2269a9;
