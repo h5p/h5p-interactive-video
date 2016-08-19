@@ -783,8 +783,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         if (self.video.getCurrentTime() > 0) { // video will play otherwise
           newTime = Math.max(self.video.getCurrentTime()-10, 0);
           self.video.seek(newTime);
-          if (self.currentState == H5P.Video.PAUSED) {
+          if (self.currentState === H5P.Video.PAUSED) {
             self.timeUpdate(newTime);
+          }
+          if (self.currentState === H5P.Video.ENDED) {
+            self.video.play();
           }
         }
       });
