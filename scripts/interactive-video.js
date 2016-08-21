@@ -781,7 +781,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (self.showRewind10) {
       self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
         if (self.video.getCurrentTime() > 0) { // video will play otherwise
-          newTime = Math.max(self.video.getCurrentTime()-10, 0);
+          var newTime = Math.max(self.video.getCurrentTime()-10, 0);
           self.video.seek(newTime);
           if (self.currentState === H5P.Video.PAUSED) {
             self.timeUpdate(newTime);
@@ -1013,7 +1013,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       value: 0,
       step: 0.01,
       orientation: 'horizontal',
-            range: 'min',
+      range: 'min',
       max: 0,
       start: function () {
         if (self.currentState === InteractiveVideo.SEEKING) {
@@ -1034,8 +1034,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
       },
       stop: function (e, ui) {
-        var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
-
         self.currentState = self.lastState;
         self.video.seek(ui.value);
         if (self.lastState === H5P.Video.PLAYING) {
@@ -1048,10 +1046,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
          * The IE11 for no reason jumps to a playback rate of 1 if the slider is moved.
          * It seems that you can fix this by setting a different speed than set briefly.
          */
+        var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
         if (isIE11) {
-         rate = self.video.getPlaybackRate();
-         self.video.setPlaybackRate(1); // This is where the workaround magic happens
-         self.video.setPlaybackRate(rate);
+          rate = self.video.getPlaybackRate();
+          self.video.setPlaybackRate(1); // This is where the workaround magic happens
+          self.video.setPlaybackRate(rate);
         }
       }
     });
