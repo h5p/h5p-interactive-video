@@ -1329,7 +1329,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
       }
-    } else {
+    }
+    else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
         if (this.dnb && this.dnb.dialog) {
@@ -1414,7 +1415,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (!hasDescription) {
       if (hasTitle && newFontSize < descriptionFontSizeThreshold) {
         newFontSize = descriptionFontSizeThreshold;
-      } else if (newFontSize < playFontSizeThreshold) {
+      }
+      else if (newFontSize < playFontSizeThreshold) {
         newFontSize = playFontSizeThreshold;
       }
     }
@@ -1422,20 +1424,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Determine if we should add mobile view
     if (containerWidth < staticMobileViewThreshold) {
       this.$splash.addClass('mobile');
-    } else {
+    }
+    else {
       this.$splash.removeClass('mobile');
     }
 
     // Minimum font sizes
     if (newFontSize * descriptionSizeEm < descriptionFontSizeThreshold) {
       $splashDescription.addClass('minimum-font-size');
-    } else {
+    }
+    else {
       $splashDescription.removeClass('minimum-font-size');
     }
 
     if (newFontSize * titleSizeEm < titleFontSizeThreshold) {
       $splashTitle.addClass('minimum-font-size');
-    } else {
+    }
+    else {
       $splashTitle.removeClass('minimum-font-size');
     }
 
