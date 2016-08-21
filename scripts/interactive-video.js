@@ -1034,6 +1034,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
       },
       stop: function (e, ui) {
+        var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
+
         self.currentState = self.lastState;
         self.video.seek(ui.value);
         if (self.lastState === H5P.Video.PLAYING) {
@@ -1046,7 +1048,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
          * The IE11 for no reason jumps to a playback rate of 1 if the slider is moved.
          * It seems that you can fix this by setting a different speed than set briefly.
          */
-        isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
         if (isIE11) {
          rate = self.video.getPlaybackRate();
          self.video.setPlaybackRate(1); // This is where the workaround magic happens
