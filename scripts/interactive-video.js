@@ -1048,7 +1048,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
          */
         var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
         if (isIE11) {
-          rate = self.video.getPlaybackRate();
+          var rate = self.video.getPlaybackRate();
           self.video.setPlaybackRate(1); // This is where the workaround magic happens
           self.video.setPlaybackRate(rate);
         }
