@@ -156,6 +156,49 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Create continue button for video
+     * @return {Element}
+     */
+    var createContinueVideoButton = function () {
+      var button = document.createElement('button');
+      button.innerHTML = player.l10n.continueWithVideo;
+      button.className = 'h5p-interaction-continue-button';
+      button.addEventListener('click', function () {
+        if (self.isButton()) {
+          player.dnb.dialog.close();
+        }
+        else {
+          if (player.isMobileView) {
+            player.dnb.dialog.close();
+          }
+          // Remove interaction posters
+          $interaction.detach();
+        }
+        player.play();
+      });
+
+      return button;
+    };
+
+    /**
+     * Add continue button to interaction
+     * @param {jQuery} $parent
+     */
+    var addContinueButton = function ($parent) {
+      if (library === 'H5P.Questionnaire') {
+
+        // Check if button already exists
+        if ($parent.find('.h5p-interaction-continue-button').length) {
+          return;
+        }
+
+        var button = createContinueVideoButton();
+        var $successScreen = $parent.find('.h5p-questionnaire-success');
+        $successScreen.get(0).appendChild(button);
+      }
+    };
+
+    /**
      * Opens button dialog.
      *
      * @private
@@ -171,7 +214,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // Attach instance to dialog and open
-      instance.attach(isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent);
+      var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
+      instance.attach($instanceParent);
+      addContinueButton($instanceParent);
 
       // Open dialog
       player.dnb.dialog.open($dialogContent);
@@ -340,7 +385,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance.disableAutoPlay();
       }
 
-      instance.attach(isGotoClickable ? makeInteractionGotoClickable($inner) : $inner);
+      var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($inner) : $inner;
+      instance.attach($instanceParent);
+      addContinueButton($instanceParent);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
