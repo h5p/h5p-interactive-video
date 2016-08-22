@@ -73,7 +73,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       summary: 'Summary',
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue',
-      more: 'More'
       continueWithVideo: 'Continue with video',
       more: 'More',
       playbackRate: 'Playback rate',
