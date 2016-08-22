@@ -276,6 +276,10 @@
           "default": "Weiter"
         },
         {
+          "label": "Standardbeschriftung für Weiter-mit-dem-Video-Button",
+          "default": "Weiter mit dem Video"
+        },
+        {
           "label": "Abspielgeschwindigkeit setzen",
           "default": "Abspielgeschwindigkeit"
         },

@@ -1323,3 +1323,25 @@
 .goto-clickable.visualize {
   /* Add styling here when design is ready! */
 }
+
+.h5p-interactive-video .h5p-interaction-continue-button {
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #252525;
+  border-radius: 0.5em;
+  padding: 0.6em 2em;
+  margin: 1em 0;
+  font-weight: 600;
+  font-size: 0.85em;
+  width: auto;
+  display: block;
+  align-self: center;
+  letter-spacing: 3px;
+}
+
+.h5p-interactive-video .h5p-interaction-continue-button:after {
+  font-family: "H5PFontAwesome4";
+  content: '\f144';
+  margin-left: 1.2em;
+}
