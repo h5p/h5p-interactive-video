@@ -17,56 +17,63 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
-            "name": "poster",
-            "type": "image",
-            "label": "Poster image",
-            "optional": true,
-            "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-          },
-          {
-            "name": "title",
-            "type": "text",
-            "label": "The title of this interactive video",
-            "maxLength": 60,
-            "default": "Interactive Video",
-            "description": "Used in summaries, statistics etc."
-          },
-          {
-            "name": "startScreenOptions",
+            "name": "advancedSettings",
             "type": "group",
-            "label": "Video start screen options",
-            "optional": true,
+            "label": "Advanced settings",
             "fields": [
               {
-                "name": "hideStartTitle",
-                "type": "boolean",
-                "label": "Hide title on video start screen",
-                "optional": true,
-                "default": false
+                "name": "title",
+                "type": "text",
+                "label": "The title of this interactive video",
+                "maxLength": 60,
+                "default": "Interactive Video",
+                "description": "Used in summaries, statistics etc."
               },
               {
-                "name": "shortStartDescription",
+                "name": "copyright",
                 "type": "text",
-                "label": "Short description (Optional)",
+                "widget": "html",
+                "enterMode": "p",
+                "label": "Video copyright information",
                 "optional": true,
-                "maxLength": 120,
-                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                "description": "Information regarding copyright of the video and elements used in the video.",
+                "tags": [
+                  "strong",
+                  "em",
+                  "del",
+                  "a"
+                ]
+              },
+              {
+                "name": "startScreenOptions",
+                "type": "group",
+                "label": "Video start screen options",
+                "optional": true,
+                "fields": [
+                  {
+                    "name": "poster",
+                    "type": "image",
+                    "label": "Poster image",
+                    "optional": true,
+                    "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  },
+                  {
+                    "name": "hideStartTitle",
+                    "type": "boolean",
+                    "label": "Hide title on video start screen",
+                    "optional": true,
+                    "default": false
+                  },
+                  {
+                    "name": "shortStartDescription",
+                    "type": "text",
+                    "label": "Short description (Optional)",
+                    "optional": true,
+                    "maxLength": 120,
+                    "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  }
+                ]
               }
-            ]
-          },
-          {
-            "name": "copyright",
-            "type": "text",
-            "widget": "html",
-            "enterMode": "p",
-            "label": "Video copyright information",
-            "optional": true,
-            "description": "Information regarding copyright of the video and elements used in the video.",
-            "tags": [
-              "strong",
-              "em",
-              "del",
-              "a"
             ]
           }
         ]
@@ -77,7 +84,7 @@
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
-        "poster": "video/poster",
+        "poster": "video/advancedSettings/startScreenOptions/poster",
         "fields": [
           {
             "name": "interactions",

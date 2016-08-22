@@ -22,20 +22,22 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Insert default options
     self.options = $.extend({ // Deep is not used since editor uses references.
-      video: {},
+      video: {
+        advancedSettings: {}
+      },
       assets: {}
     }, params.interactiveVideo);
 
     // Add default title
-    if (!self.options.video.title) {
-      self.options.video.title = 'Interactive Video';
+    if (!self.options.video.advancedSettings.title) {
+      self.options.video.advancedSettings.title = 'Interactive Video';
     }
 
     // Set default splash options
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, self.options.video.startScreenOptions);
+    }, self.options.video.advancedSettings.startScreenOptions);
 
     // Set overrides for interactions
     if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
@@ -99,7 +101,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       params: {
         sources: self.options.video.files,
         visuals: {
-          poster: self.options.video.poster,
+          poster: self.options.video.advancedSettings.startScreenOptions.poster,
           controls: self.justVideo,
           fit: false
         },
@@ -384,7 +386,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
               '<div class="h5p-splash-main-outer">' +
                 '<div class="h5p-splash-main-inner">' +
                   '<div class="h5p-splash-play-icon"></div>' +
-                  '<div class="h5p-splash-title">' + this.options.video.title + '</div>' +
+                  '<div class="h5p-splash-title">' + this.options.video.advancedSettings.title + '</div>' +
                 '</div>' +
               '</div>' +
             '</div>' +
@@ -1534,7 +1536,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @returns {string}
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.options.video.title);
+    return H5P.createTitle(this.options.video.advancedSettings.title);
   };
 
   /**
@@ -1605,12 +1607,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Adding info from copyright field
-    if (self.options.video.copyright !== undefined) {
-      info.addMedia(self.options.video.copyright);
+    if (self.options.video.advancedSettings.copyright !== undefined) {
+      info.addMedia(self.options.video.advancedSettings.copyright);
     }
 
     // Adding copyrights for poster
-    var poster = self.options.video.poster;
+    var poster = self.options.video.advancedSettings.startScreenOptions.poster;
     if (poster && poster.copyright !== undefined) {
       var image = new H5P.MediaCopyright(poster.copyright, self.l10n);
       var imgSource = H5P.getPath(poster.path, self.contentId);
