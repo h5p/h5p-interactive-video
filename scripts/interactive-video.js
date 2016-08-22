@@ -1042,16 +1042,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.timeUpdate(ui.value);
         }
-        /*
-         * The IE11 for no reason jumps to a playback rate of 1 if the slider is moved.
-         * It seems that you can fix this by setting a different speed than set briefly.
-         */
-        var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
-        if (isIE11) {
-          var rate = self.video.getPlaybackRate();
-          self.video.setPlaybackRate(1); // This is where the workaround magic happens
-          self.video.setPlaybackRate(rate);
-        }
       }
     });
 
@@ -1140,6 +1130,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var self = this;
 
     if (!this.video.getPlaybackRates) {
+      return;
+    }
+
+    /*
+     * The IE 11 for no reason jumps to a playback rate of 1 if the slider is
+     * moved or if you pause and restart the video. Until a workaround has been
+     * found, the playback rate chooser is deactivated for the IE 11.
+     */
+    var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
+    if (isIE11) {
       return;
     }
 
