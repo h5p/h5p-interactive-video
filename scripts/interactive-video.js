@@ -89,7 +89,21 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Detect whether to add interactivies or just display a plain video.
-    self.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+    self.justVideo = false;
+    if(navigator.userAgent.match(/iPhone|iPod/i)) {
+      // If iOS 10 - ok
+      self.justVideo = (navigator.userAgent.match(/(iPhone|iPod) OS 10/i) === null);
+      // TODO - should let user know that he/she should upgrade to iOS 10 is
+      // device supports upgrading to iOS 10.
+    }
+
+    // Initialize interactions
+    self.interactions = [];
+    if (self.options.assets.interactions) {
+      for (var i = 0; i < self.options.assets.interactions.length; i++) {
+        this.initInteraction(i);
+      }
+    }
 
     var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
@@ -227,14 +241,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.dnb.dialog.close();
       }
     });
-
-    // Initialize interactions
-    self.interactions = [];
-    if (self.options.assets.interactions) {
-      for (var i = 0; i < self.options.assets.interactions.length; i++) {
-        this.initInteraction(i);
-      }
-    }
   }
 
   // Inheritance
