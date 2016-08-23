@@ -11,28 +11,33 @@
               "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label": "الملصق"
-            },
-            {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
-            },
-            {
-              "label": "Video start screen options",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "The title of this interactive video",
+                  "default": "Interactive Video",
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "label": "معلومات حقوق النشر فيديو",
+                  "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
+                },
+                {
+                  "label": "Video start screen options",
+                  "fields": [
+                    {
+                      "label": "الملصق"
+                    },
+                    {
+                      "label": "Hide title on video start screen"
+                    },
+                    {
+                      "label": "Short description (Optional)",
+                      "description": "Optional. Display a short description text on the video start screen."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "معلومات حقوق النشر فيديو",
-              "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
             }
           ]
         },
