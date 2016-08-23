@@ -15,40 +15,45 @@
               "description": "Velg videofilene du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
             },
             {
-              "englishLabel": "Poster image",
-              "label": "Plakat",
-              "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-              "description": "TODO"
-            },
-            {
-              "englishLabel": "The title of this interactive video",
-              "label": "Tittel",
-              "englishDefault": "Interactive Video",
-              "default": "Interaktiv video",
-              "englishDescription": "Used in summaries, statistics etc.",
-              "description": "Brukes i oppsummeringer, statistikk o.l."
-            },
-            {
-              "englishLabel": "Video start screen options",
-              "label": "Video startskjerm innstillinger",
+              "label": "Avanserte innstillinger",
               "fields": [
                 {
-                  "englishLabel": "Hide title on video start screen",
-                  "label": "Skjul tittel på startskjerm"
+                  "englishLabel": "The title of this interactive video",
+                  "label": "Tittel",
+                  "englishDefault": "Interactive Video",
+                  "default": "Interaktiv video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Brukes i oppsummeringer, statistikk o.l."
                 },
                 {
-                  "englishLabel": "Short description (Optional)",
-                  "label": "Kort beskrivelse (Valgfri)",
-                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                  "englishLabel": "Video copyright information",
+                  "label": "Opphavsrettsinformasjon",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "Informasjon om opphavsrett for videoen og andre elementer brukt i interaksjonene."
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "Video startskjerm innstillinger",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "Plakat",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "TODO"
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "Skjul tittel på startskjerm"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "Kort beskrivelse (Valgfri)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "englishLabel": "Video copyright information",
-              "label": "Opphavsrettsinformasjon",
-              "englishDescription": "Information regarding copyright of the video and elements used in the video.",
-              "description": "Informasjon om opphavsrett for videoen og andre elementer brukt i interaksjonene."
             }
           ]
         },

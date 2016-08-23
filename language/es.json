@@ -11,27 +11,32 @@
               "description": "Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
             },
             {
-              "label": "Cartel"
-            },
-            {
-              "label": "Título",
-			  "description": "Utilizado en extractos, estadísticas, etc."
-            },
-            {
-              "label": "Ajuste de interacciones",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Ocultar el título al inicio del video"
+                  "label": "Título",
+                  "description": "Utilizado en extractos, estadísticas, etc."
                 },
                 {
-                  "label": "Descripción corta (Opcional)",
-                  "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                  "label": "Derechos de autor del video",
+                  "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
+                },
+                {
+                  "label": "Ajuste de interacciones",
+                  "fields": [
+                    {
+                      "label": "Cartel"
+                    },
+                    {
+                      "label": "Ocultar el título al inicio del video"
+                    },
+                    {
+                      "label": "Descripción corta (Opcional)",
+                      "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Derechos de autor del video",
-              "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
             }
           ]
         },

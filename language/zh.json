@@ -11,27 +11,32 @@
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
-              "label": "海报图片"
-            },
-            {
-              "label": "该交互式视频标题",
-              "description": "用于最后测试、统计。"
-            },
-            {
-              "label": "首帧显示项",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "视频首帧显示中隐藏标题。"
+                  "label": "该交互式视频标题",
+                  "description": "用于最后测试、统计。"
                 },
                 {
-                  "label": "简述 (可选)",
-                  "description": "选填。在视频首帧中展示的简短文字描述。"
+                  "label": "版权信息",
+                  "description": "展示视频及其中所用元素的版权信息。"
+                },
+                {
+                  "label": "首帧显示项",
+                  "fields": [
+                    {
+                      "label": "海报图片"
+                    },
+                    {
+                      "label": "视频首帧显示中隐藏标题。"
+                    },
+                    {
+                      "label": "简述 (可选)",
+                      "description": "选填。在视频首帧中展示的简短文字描述。"
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "版权信息",
-              "description": "展示视频及其中所用元素的版权信息。"
             }
           ]
         },

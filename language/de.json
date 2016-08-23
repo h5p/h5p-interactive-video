@@ -11,29 +11,34 @@
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Posterbild",
-              "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
-            },
-            {
-              "label": "Der Titel dieses interaktiven Videos",
-              "default": "Interaktives Video",
-              "description": "Wird in Zusammenfassungen, Statistiken, etc. verwendet"
-            },
-            {
-              "label": "Videooptionen für den Startbildschirm",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Titel auf Video-Startbildschirm ausblenden"
+                  "label": "Der Titel dieses interaktiven Videos",
+                  "default": "Interaktives Video",
+                  "description": "Wird in Zusammenfassungen, Statistiken, etc. verwendet"
                 },
                 {
-                  "label": "Kurze Beschreibung (optional)",
-                  "description": "Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
+                  "label": "Video-Urheberrechtsinformationen",
+                  "description": "Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
+                },
+                {
+                  "label": "Videooptionen für den Startbildschirm",
+                  "fields": [
+                    {
+                      "label": "Posterbild",
+                      "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
+                    },
+                    {
+                      "label": "Titel auf Video-Startbildschirm ausblenden"
+                    },
+                    {
+                      "label": "Kurze Beschreibung (optional)",
+                      "description": "Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Video-Urheberrechtsinformationen",
-              "description": "Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
             }
           ]
         },
@@ -271,7 +276,7 @@
         {
           "label": "Standardbeschriftung für Springen-Button",
           "default": "Weiter"
-        }        
+        }
       ]
     }
   ]
