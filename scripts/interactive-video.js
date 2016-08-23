@@ -1153,6 +1153,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var playbackRates = this.video.getPlaybackRates();
+
+    // don't enable playback rate chooser if only default rate can be chosen
+    if (playbackRates.length < 2) {
+      return;
+    }
+
     if (!playbackRates || this.controls.$playbackRateButton === undefined ||
         !this.controls.$playbackRateButton.hasClass('h5p-disabled')) {
       return;
