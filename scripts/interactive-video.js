@@ -22,11 +22,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Insert default options
     self.options = $.extend({ // Deep is not used since editor uses references.
-      video: {
-        advancedSettings: {}
-      },
+      video: {},
       assets: {}
     }, params.interactiveVideo);
+    self.options.video.advancedSettings = self.options.video.advancedSettings || {};
+    self.options.video.advancedSettings.startScreenOptions = self.options.video.advancedSettings.startScreenOptions || {};
 
     // Add default title
     if (!self.options.video.advancedSettings.title) {
