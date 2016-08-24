@@ -448,6 +448,12 @@
         "label": "Show bookmarks menu on load",
         "default": false,
         "description": "This function is not available on iPad when using YouTube as video source"
+      },
+      {
+        "name": "showRewind10",
+        "type": "boolean",
+        "label": "Show button for rewinding 10 seconds",
+        "default": false
       }
     ]
   },
@@ -540,6 +546,20 @@
         "type": "text",
         "label": "Default label for continue video button",
         "default": "Continue with video",
+        "optional": true
+      },
+      {
+        "name": "playbackRate",
+        "type": "text",
+        "label": "Set playback rate",
+        "default": "Playback Rate",
+        "optional": true
+      },
+      {
+        "name": "rewind10",
+        "type": "text",
+        "label": "Rewind 10 Seconds",
+        "default": "Rewind 10 Seconds",
         "optional": true
       }
     ]

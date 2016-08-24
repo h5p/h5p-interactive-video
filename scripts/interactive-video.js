@@ -56,8 +56,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
-    self.showBookmarksmenuOnLoad = (params.override !== undefined && params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
-
+    if (params.override !== undefined) {
+      self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
+      self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
+    }
     // Translated UI text defaults
     self.l10n = $.extend({
       interaction: 'Interaction',
@@ -72,7 +74,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       bookmarks: 'Bookmarks',
       defaultAdaptivitySeekLabel: 'Continue',
       continueWithVideo: 'Continue with video',
-      more: 'More'
+      more: 'More',
+      playbackRate: 'Playback rate',
+      rewind10: 'Rewind 10 seconds'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -175,6 +179,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             // Qualities might not be available until after play.
             self.addQualityChooser();
+            
+            self.addPlaybackRateChooser();
 
             // Make sure splash screen is removed.
             self.removeSplash();
@@ -219,6 +225,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
       }
     });
+    
+    self.video.on('playbackRateChange', function (event) {
+      var playbackRate = event.data;
+      if (self.controls.$playbackRateChooser) {
+        // Update playbackRate selector
+        self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
+      }
+    });    
 
     // Handle entering fullscreen
     self.on('enterFullScreen', function () {
@@ -770,6 +784,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.video.pause();
       }
     });
+    
+    // Add button for rewinding 10 seconds
+    
+    if (self.showRewind10) {
+      self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
+        if (self.video.getCurrentTime() > 0) { // video will play otherwise
+          var newTime = Math.max(self.video.getCurrentTime()-10, 0);
+          self.video.seek(newTime);
+          if (self.currentState === H5P.Video.PAUSED) {
+            self.timeUpdate(newTime);
+          }
+          if (self.currentState === H5P.Video.ENDED) {
+            self.video.play();
+          }
+        }
+      });
+    }
 
     /**
      * Wraps a specifc handler to do some generic operations each time the handler is triggered.
@@ -870,7 +901,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Button for opening video quality selection dialog
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
-
+    
     // Add volume button control (toggle mute)
     if (!isAndroid() && !isIpad()) {
       self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
@@ -883,8 +914,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.video.mute();
         }
       });
-    }
+    }    
 
+    // Add popup for selecting playback rate
+    self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-playbackRate',
+      html: '<h3>' + self.l10n.playbackRate + '</h3>',
+      appendTo: self.$container
+    });
+
+    // Button for opening video playback rate selection dialog
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));    
+    
     // Add more button for collapsing controls when there's little space
 
     // Add overlay for display controls inside
@@ -919,6 +960,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, true);
     $buttons = $buttons.add(self.controls.$qualityButtonMinimal);
 
+    // Playback rate
+    self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
+      if (!self.controls.$playbackRateButton.hasClass('h5p-disabled')) {
+        $buttons.addClass('h5p-hide');
+        self.controls.$playbackRateButton.click();
+      }
+    }, true);
+    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);    
+    
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
@@ -929,6 +979,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         if (self.controls.$qualityButton && self.controls.$qualityButton.hasClass('h5p-active')) {
           self.controls.$qualityButton.click();
         }
+        if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
+          self.controls.$playbackRateButton.click();
+        }        
         setTimeout(function () {
           $buttons.removeClass('h5p-hide');
         }, 150);
@@ -948,10 +1001,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
       else {
         self.controls.$qualityChooser.removeClass('h5p-show');
+        self.controls.$playbackRateChooser.removeClass('h5p-show');
       }
     });
 
     self.addQualityChooser();
+    self.addPlaybackRateChooser();
 
     // Add display for time elapsed and duration
     $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
@@ -967,7 +1022,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       value: 0,
       step: 0.01,
       orientation: 'horizontal',
-			range: 'min',
+      range: 'min',
       max: 0,
       start: function () {
         if (self.currentState === InteractiveVideo.SEEKING) {
@@ -1077,6 +1132,61 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeClass('h5p-disabled');
   };
 
+  /**
+   * Add a dialog for selecting video playback rate.
+   */
+  InteractiveVideo.prototype.addPlaybackRateChooser = function () {
+    var self = this;
+
+    if (!this.video.getPlaybackRates) {
+      return;
+    }
+
+    /*
+     * The IE 11 for no reason jumps to a playback rate of 1 if the slider is
+     * moved or if you pause and restart the video. Until a workaround has been
+     * found, the playback rate chooser is deactivated for the IE 11.
+     */
+    var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
+    if (isIE11) {
+      return;
+    }
+
+    var playbackRates = this.video.getPlaybackRates();
+
+    // don't enable playback rate chooser if only default rate can be chosen
+    if (playbackRates.length < 2) {
+      return;
+    }
+
+    if (!playbackRates || this.controls.$playbackRateButton === undefined ||
+        !this.controls.$playbackRateButton.hasClass('h5p-disabled')) {
+      return;
+    }
+
+    var currentPlaybackRate = this.video.getPlaybackRate();
+
+    var html = '';
+    for (var i = 0; i < playbackRates.length; i++) {
+      var playbackRate = playbackRates[i];
+      html += '<li role="button" tabIndex="1" playback-rate="' + playbackRate + '" class="' + (playbackRate === currentPlaybackRate ? 'h5p-selected' : '') + '">' + playbackRate + '</li>';
+    }
+
+    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$playbackRateChooser);
+    var $options = $list.children().click(function () {
+      self.video.setPlaybackRate($(this).attr('playback-rate'));
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
+      else {
+        self.controls.$playbackRateButton.click();
+      }
+    });
+
+    // Enable playback rate chooser button
+    this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeClass('h5p-disabled');
+  };  
+  
   /**
    * Create loop that constantly updates the buffer bar
    */
@@ -1244,7 +1354,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.dnb.dialog.closeOverlay();
         this.recreateCurrentInteractions();
       }
-    } else {
+    }
+    else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
         if (this.dnb && this.dnb.dialog) {
@@ -1329,7 +1440,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (!hasDescription) {
       if (hasTitle && newFontSize < descriptionFontSizeThreshold) {
         newFontSize = descriptionFontSizeThreshold;
-      } else if (newFontSize < playFontSizeThreshold) {
+      }
+      else if (newFontSize < playFontSizeThreshold) {
         newFontSize = playFontSizeThreshold;
       }
     }
@@ -1337,20 +1449,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Determine if we should add mobile view
     if (containerWidth < staticMobileViewThreshold) {
       this.$splash.addClass('mobile');
-    } else {
+    }
+    else {
       this.$splash.removeClass('mobile');
     }
 
     // Minimum font sizes
     if (newFontSize * descriptionSizeEm < descriptionFontSizeThreshold) {
       $splashDescription.addClass('minimum-font-size');
-    } else {
+    }
+    else {
       $splashDescription.removeClass('minimum-font-size');
     }
 
     if (newFontSize * titleSizeEm < titleFontSizeThreshold) {
       $splashTitle.addClass('minimum-font-size');
-    } else {
+    }
+    else {
       $splashTitle.removeClass('minimum-font-size');
     }
 
