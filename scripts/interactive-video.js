@@ -1100,6 +1100,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Resize the video to fit the wrapper.
    */
   InteractiveVideo.prototype.resize = function () {
+    // Not yet attached
+    if (!this.$container) {
+      return;
+    }
+
     var self = this;
     var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
