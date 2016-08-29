@@ -23,6 +23,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       };
     }
 
+    // Set defalut value for visuals:
+    parameters.visuals = $.extend({}, {
+      backgroundColor: 'rgb(255,255,255)',
+      boxShadow: true
+    }, parameters.visuals);
+
     // Find library name and title
     var library = action.library.split(' ')[0];
     var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
@@ -356,7 +362,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           left: parameters.x + '%',
           top: parameters.y + '%',
           width: (parameters.width ? parameters.width : 10) + 'em',
-          height: (parameters.height ? parameters.height : 10) + 'em'
+          height: (parameters.height ? parameters.height : 10) + 'em',
+          background: library !== 'H5P.IVHotspot' ? parameters.visuals.backgroundColor : '',
+          boxShadow: parameters.visuals.boxShadow === false ? 'none' : ''
         }
       });
 
