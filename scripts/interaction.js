@@ -196,7 +196,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         var button = createContinueVideoButton();
         var $successScreen = $parent.find('.h5p-questionnaire-success-center');
-        $successScreen.get(0).appendChild(button);
+        if ($successScreen.length) {
+          $successScreen.get(0).appendChild(button);
+        }
 
         instance.on('noSuccessScreen', function () {
           closeInteraction();
