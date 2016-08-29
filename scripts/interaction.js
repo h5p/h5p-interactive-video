@@ -157,6 +157,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' visualize' : ''));
     };
 
+    var closeInteraction = function () {
+      if (self.isButton()) {
+        player.dnb.dialog.close()
+      }
+      else {
+        $interaction.detach()
+      }
+    };
+
     /**
      * Create continue button for video
      * @return {Element}
@@ -166,16 +175,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       button.innerHTML = player.l10n.continueWithVideo;
       button.className = 'h5p-interaction-continue-button';
       button.addEventListener('click', function () {
-        if (self.isButton()) {
-          player.dnb.dialog.close();
-        }
-        else {
-          if (player.isMobileView) {
-            player.dnb.dialog.close();
-          }
-          // Remove interaction posters
-          $interaction.detach();
-        }
+        closeInteraction();
         player.play();
       });
 
@@ -195,8 +195,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
 
         var button = createContinueVideoButton();
-        var $successScreen = $parent.find('.h5p-questionnaire-success');
+        var $successScreen = $parent.find('.h5p-questionnaire-success-center');
         $successScreen.get(0).appendChild(button);
+
+        instance.on('noSuccessScreen', function () {
+          closeInteraction();
+          player.play();
+        });
       }
     };
 
