@@ -1317,10 +1317,19 @@
 .h5p-interactive-video .h5p-confirmation-dialog-background {
   z-index: 101;
 }
-.goto-clickable {
+.h5p-interactive-video .goto-clickable {
   cursor: pointer;
 }
-.goto-clickable.visualize {
+.h5p-interactive-video .goto-clickable.h5p-text {
+  cursor: pointer;
+  display: block;
+  margin: 0;
+  padding: 1em;
+  min-height: 100%;
+  text-decoration: none;
+  color: #313131;
+}
+.h5p-interactive-video .goto-clickable.visualize {
   /* Add styling here when design is ready! */
 }
 
