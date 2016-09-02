@@ -1329,10 +1329,69 @@
   text-decoration: none;
   color: #313131;
 }
-.h5p-interactive-video .goto-clickable.visualize {
-  /* Add styling here when design is ready! */
+.h5p-interactive-video .h5p-interaction.h5p-poster.goto-clickable-visualize .h5p-interaction-outer {
+  position: static;
 }
-
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
+  border: solid 2px #1d5cff;
+}
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
+  box-sizing: border-box;
+}
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  transition: border 0.3s, box-shadow 0.3s;
+}
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize:hover {
+  border-color: #003fdf;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize a:before,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:before {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 1.5em solid #1d5cff;
+  border-right: 1.5em solid transparent;
+  opacity: 0.8;
+  content: '';
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: none;
+}
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:before {
+  top: initial;
+}
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize a:after,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:after {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  top: 0.25em;
+  left: 0.25em;
+  font-family: 'H5PFontAwesome4';
+  font-size: 0.7em;
+  content: "\f08e";
+  color: #fff;
+  line-height: 1;
+  text-align: center;
+  vertical-align: baseline;
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: none;
+}
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:after {
+  top: 3.5em;
+}
+.h5p-interactive-video .h5p-dialog.h5p-big.goto-clickable-visualize[data-lib="H5P.Image"] .h5p-dialog-inner:after {
+  top: 0.25em;
+}
+.h5p-interactive-video .h5p-dialog.h5p-big[data-lib="H5P.Image"] .h5p-image.goto-clickable {
+  width: 100%;
+}
 .h5p-interactive-video .h5p-interaction-continue-button {
   cursor: pointer;
   text-transform: uppercase;
@@ -1348,7 +1407,6 @@
   letter-spacing: 3px;
   margin: 1em auto;
 }
-
 .h5p-interactive-video .h5p-interaction-continue-button:after {
   font-family: "H5PFontAwesome4";
   content: '\f144';

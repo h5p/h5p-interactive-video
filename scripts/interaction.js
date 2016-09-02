@@ -60,6 +60,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
                           parameters.goto &&
                           ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
 
+    if (isGotoClickable && parameters.goto.visualize) {
+      classes += ' goto-clickable-visualize';
+    }
+
+
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -160,7 +165,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' visualize' : ''));
+      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' goto-clickable-visualize' : ''));
     };
 
     var closeInteraction = function () {
@@ -234,6 +239,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
+      player.dnb.dialog.toggleClass('goto-clickable-visualize', isGotoClickable && parameters.goto.visualize);
 
       /**
        * Handle dialog closing once.

@@ -179,7 +179,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             // Qualities might not be available until after play.
             self.addQualityChooser();
-            
+
             self.addPlaybackRateChooser();
 
             // Make sure splash screen is removed.
@@ -225,14 +225,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
       }
     });
-    
+
     self.video.on('playbackRateChange', function (event) {
       var playbackRate = event.data;
       if (self.controls.$playbackRateChooser) {
         // Update playbackRate selector
         self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
       }
-    });    
+    });
 
     // Handle entering fullscreen
     self.on('enterFullScreen', function () {
@@ -784,9 +784,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.video.pause();
       }
     });
-    
+
     // Add button for rewinding 10 seconds
-    
+
     if (self.showRewind10) {
       self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
         if (self.video.getCurrentTime() > 0) { // video will play otherwise
@@ -901,7 +901,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Button for opening video quality selection dialog
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
-    
+
     // Add volume button control (toggle mute)
     if (!isAndroid() && !isIpad()) {
       self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
@@ -914,7 +914,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.video.mute();
         }
       });
-    }    
+    }
 
     // Add popup for selecting playback rate
     self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
@@ -924,8 +924,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Button for opening video playback rate selection dialog
-    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));    
-    
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+
     // Add more button for collapsing controls when there's little space
 
     // Add overlay for display controls inside
@@ -967,8 +967,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.controls.$playbackRateButton.click();
       }
     }, true);
-    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);    
-    
+    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);
+
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
@@ -981,7 +981,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
           self.controls.$playbackRateButton.click();
-        }        
+        }
         setTimeout(function () {
           $buttons.removeClass('h5p-hide');
         }, 150);
@@ -1185,8 +1185,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Enable playback rate chooser button
     this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeClass('h5p-disabled');
-  };  
-  
+  };
+
   /**
    * Create loop that constantly updates the buffer bar
    */
