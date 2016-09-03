@@ -23,6 +23,10 @@
                   "description": "Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
                 },
                 {
+                  "label": "Starte Video bei",
+                  "description": "Den Zeitcode im Format M:SS angeben"
+                },
+                {
                   "label": "Videooptionen für den Startbildschirm",
                   "fields": [
                     {

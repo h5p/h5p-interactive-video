@@ -112,7 +112,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     }
 
-    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    var startAt;
+    if (!!self.options.video.advancedSettings.startVideoAt) {
+      startAt = self.options.video.advancedSettings.startVideoAt;
+    }
+    else {
+      startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    }
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
