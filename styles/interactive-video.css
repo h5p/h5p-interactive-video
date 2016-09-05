@@ -774,6 +774,11 @@
   background: #981d99;
   transform: translateX(-50%);
 }
+
+.h5p-interactive-video .h5p-seekbar-interaction:hover {
+  background: #b83db9;
+}
+
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction,
@@ -793,24 +798,6 @@
 }
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction:hover {
   background: #21ada2;
-}
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-multichoice-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-summary-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-dragquestion-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-markthewords-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-dragtext-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-singlechoiceset-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-blanks-interaction {
-  background: #981d99;
-}
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-multichoice-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-summary-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-dragquestion-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-markthewords-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-dragtext-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-singlechoiceset-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-blanks-interaction:hover {
-  background: #b83db9;
 }
 
 .h5p-interactive-video .h5p-bookmark {
