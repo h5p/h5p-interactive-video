@@ -1362,6 +1362,7 @@
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
+
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize:hover {
   border-color: #003fdf;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
@@ -1380,6 +1381,13 @@
   z-index: 1;
   cursor: pointer;
   pointer-events: none;
+  transition: border-top-color 0.3s;
+}
+.h5p-interactive-video .h5p-poster .goto-clickable:focus:before {
+  border-top-color: #fff;
+}
+.h5p-interactive-video .h5p-poster .goto-clickable:focus:after {
+  color: #1d5cff;
 }
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:before {
   top: initial;
@@ -1401,6 +1409,7 @@
   z-index: 1;
   cursor: pointer;
   pointer-events: none;
+  transition: color 0.3s;
 }
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:after {
   top: 3.5em;

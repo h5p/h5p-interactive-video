@@ -151,6 +151,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         $anchor.click(function () {
           goto({data: parameters.goto.time});
         });
+        $anchor.attr({href: '#nowherespecial'});
       }
       else { // URL
         var url = parameters.goto.url;
@@ -398,8 +399,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $outer = $('<div>', {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
-
-
 
       $inner = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
