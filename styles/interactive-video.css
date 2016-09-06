@@ -1335,13 +1335,16 @@
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
   border: solid 2px #1d5cff;
+  transition: border 0.3s, box-shadow 0.3s;
 }
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
   box-sizing: border-box;
 }
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:hover {
+  border-color: #003fdf;
+}
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-  transition: border 0.3s, box-shadow 0.3s;
 }
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize:hover {
   border-color: #003fdf;
