@@ -56,14 +56,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var isRepositioned = false;
 
     // Does this interaction support click to go
-    var isGotoClickable = ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 &&
-                          parameters.goto &&
-                          ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
-
-    if (isGotoClickable && parameters.goto.visualize) {
-      classes += ' goto-clickable-visualize';
-    }
-
+    self.isGotoClickable = function () {
+      return ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
+    };
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -228,6 +223,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance.setActivityStarted();
       }
 
+      var isGotoClickable = self.isGotoClickable();
+
       // Create wrapper for dialog content
       var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-dialog-interaction h5p-frame'
@@ -369,8 +366,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var createPoster = function () {
+      var isGotoClickable = self.isGotoClickable();
+
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction h5p-poster ' + classes,
+        'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
@@ -399,6 +398,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $outer = $('<div>', {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
+
+
 
       $inner = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
