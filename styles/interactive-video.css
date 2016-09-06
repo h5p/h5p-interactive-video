@@ -774,14 +774,30 @@
   background: #981d99;
   transform: translateX(-50%);
 }
+
+.h5p-interactive-video .h5p-seekbar-interaction:hover {
+  background: #b83db9;
+}
+
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-iv-hotspot-interaction {
   background: #1d5cff;
+}
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-iv-hotspot-interaction:hover {
+  background: #3d7cff;
 }
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction {
   background: #018d82;
+}
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction:hover {
+  background: #21ada2;
 }
 
 .h5p-interactive-video .h5p-bookmark {
