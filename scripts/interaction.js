@@ -55,11 +55,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Changes if interaction has moved from original position
     var isRepositioned = false;
 
-    // Does this interaction support click to go
-    self.isGotoClickable = function () {
-      return ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
-    };
-
     /**
      * Display the current interaction as a button on top of the video.
      *
@@ -146,6 +141,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }, 0);
     };
 
+    /**
+     * Make interaction go to somewhere depending on interaction params
+     *
+     * @private
+     * @param {jQuery} $anchor Anchor element
+     * @return {JQuery} Anchor element with click functionality
+     */
     var makeInteractionGotoClickable = function ($anchor) {
       if (parameters.goto.type === 'timecode') {
         $anchor.click(function () {
@@ -164,6 +166,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' goto-clickable-visualize' : ''));
     };
 
+    /**
+     * Close interaction by closing dialog if the interaction is a button
+     * or through detaching the interaction otherwise
+     *
+     * @private
+     */
     var closeInteraction = function () {
       if (self.isButton()) {
         player.dnb.dialog.close()
@@ -175,6 +183,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     /**
      * Create continue button for video
+     *
+     * @private
      * @return {Element}
      */
     var createContinueVideoButton = function () {
@@ -191,6 +201,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     /**
      * Add continue button to interaction
+     *
+     * @private
      * @param {jQuery} $parent
      */
     var addContinueButton = function ($parent) {
@@ -265,6 +277,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       /**
        * Set dialog width of interaction and unregister dialog close listener
+       * @private
        */
       var setDialogWidth = function () {
         self.dialogWidth = player.dnb.dialog.getDialogWidth();
@@ -359,6 +372,28 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Set dialog size and position
         player.dnb.dialog.position($interaction, size);
       }
+    };
+
+    /**
+     * Got to a given time code provided by an event
+     *
+     * @private
+     * @param {Object} event
+     * @param {number} event.data
+     */
+    var goto = function (event) {
+      if (self.isButton()) {
+        // Close dialog
+        player.dnb.dialog.close();
+      }
+      if (player.currentState === H5P.Video.PAUSED ||
+        player.currentState === H5P.Video.ENDED) {
+        // Start playing again
+        player.play();
+      }
+
+      // Jump to chosen timecode
+      player.seek(event.data);
     };
 
     /**
@@ -535,6 +570,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
         instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
       }, 0);
+    };
+
+    /**
+     * Check if interaction support linking on click
+     *
+     * @return {boolean} True if interaction has functionality for linking on click
+     */
+    self.isGotoClickable = function () {
+      return ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
     };
 
     /**
@@ -761,21 +805,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         $interaction.detach();
         $interaction = undefined;
       }
-    };
-
-    var goto = function (event) {
-      if (self.isButton()) {
-        // Close dialog
-        player.dnb.dialog.close();
-      }
-      if (player.currentState === H5P.Video.PAUSED ||
-          player.currentState === H5P.Video.ENDED) {
-        // Start playing again
-        player.play();
-      }
-
-      // Jump to chosen timecode
-      player.seek(event.data);
     };
 
     /**
