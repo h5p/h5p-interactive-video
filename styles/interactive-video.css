@@ -1383,6 +1383,12 @@
   pointer-events: none;
   transition: border-top-color 0.3s;
 }
+
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize:hover a:before,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:hover:before {
+  border-top-color: #003fdf;
+}
+
 .h5p-interactive-video .h5p-poster .goto-clickable:focus:before {
   border-top-color: #fff;
 }
