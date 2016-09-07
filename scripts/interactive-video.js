@@ -573,10 +573,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Make sure the interaction does not overflow videowrapper.
       interaction.repositionToWrapper(self.$videoWrapper);
 
-      if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
-        self.video.pause();
-      }
+      // Determine source type
+      var isYouTube = (self.video.pressToPlay !== undefined);
 
+      // Consider pausing the playback
+      delayWork(isYouTube ? 100 : null, function () {
+        if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
+          self.video.pause();
+        }
+      });
+
+      // Position label on next tick
       setTimeout(function () {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
@@ -1814,6 +1821,21 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (fields[i].name === name) {
         return fields[i];
       }
+    }
+  };
+
+  /**
+   * Generic elseif for when to delay work or run straight away.
+   *
+   * @param {number} time null to carry out straight away
+   * @param {function} job what to do
+   */
+  var delayWork = function (time, job) {
+    if (time === null) {
+      job();
+    }
+    else {
+      setTimeout(job, time);
     }
   };
 
