@@ -197,9 +197,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           // Make sure we track buffering of the video.
           self.startUpdatingBufferBar();
-
-          // Remove interactions while buffering
-          self.timeUpdate(-1);
           break;
       }
     });
@@ -1712,6 +1709,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return; // Content has not been used
     }
 
+    console.log("reset task time update -1");
     this.seek(0); // Rewind
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
