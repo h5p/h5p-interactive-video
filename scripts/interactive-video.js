@@ -1019,6 +1019,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$bookmarksContainer = $('<div/>', {'class': 'h5p-bookmarks-container', appendTo: $slider});
 
     // Add seekbar/timeline
+    self.playTimeout = null;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1031,6 +1032,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
 
         self.lastState = (self.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : self.currentState);
+        clearTimeout(self.playTimeout);
         self.video.pause();
         self.currentState = InteractiveVideo.SEEKING;
 
@@ -1047,7 +1049,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.currentState = self.lastState;
         self.video.seek(ui.value);
         if (self.lastState === H5P.Video.PLAYING) {
-          self.video.play();
+          self.playTimeout = setTimeout(function () {
+            self.video.play();
+          }, 200);
         }
         else {
           self.timeUpdate(ui.value);
