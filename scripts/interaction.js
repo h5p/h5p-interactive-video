@@ -431,6 +431,26 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      // Interactions stops scaling down when IV should get smaller font-size
+      // than 16px, since this is the minimum. We must translate to percentage.
+      if (library === 'H5P.IVHotspot') {
+        // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
+        // We can not rely on measuring font size.
+        var widthRatio = player.width / player.fontSize;
+        var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
+
+        var height = parameters.height ? parameters.height : 10;
+        var width = parameters.width ? parameters.width : 10;
+
+        var percentageHeight = (height / heightRatio) * 100;
+        var percentageWidth = (width / widthRatio) * 100;
+
+        $interaction.css({
+          height: percentageHeight + '%',
+          width: percentageWidth + '%'
+        });
+      }
+
       $outer = $('<div>', {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
@@ -722,6 +742,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Recreate interactions. Useful when an interaction or view has changed.
      */
     self.reCreateInteraction = function () {
+
+      // Do not recreate IVHotspot since it should always be a poster
+      if (library === 'H5P.IVHotspot') {
+        return;
+      }
+
       // Only recreate existing interactions
       if ($interaction) {
         $interaction.detach();
