@@ -318,10 +318,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.fontSize = 16;
     this.width = 640; // parseInt($container.css('width')); // Get width in px
 
-    // interactions require parent $container, recreate with input
-    this.interactions.forEach(function (interaction) {
-      interaction.reCreate();
-    });
+    // 'video only' fallback has no interactions
+    if (this.interactions) {
+      // interactions require parent $container, recreate with input
+      this.interactions.forEach(function (interaction) {
+        interaction.reCreate();
+      });
+    }
 
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
