@@ -96,21 +96,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Detect whether to add interactivies or just display a plain video.
-    self.justVideo = false;
-    if(navigator.userAgent.match(/iPhone|iPod/i)) {
-      // If iOS 10 - ok
-      self.justVideo = (navigator.userAgent.match(/(iPhone|iPod) OS 10/i) === null);
-      // TODO - should let user know that he/she should upgrade to iOS 10 is
-      // device supports upgrading to iOS 10.
-    }
-
-    // Initialize interactions
-    self.interactions = [];
-    if (self.options.assets.interactions) {
-      for (var i = 0; i < self.options.assets.interactions.length; i++) {
-        this.initInteraction(i);
-      }
-    }
+    self.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
 
     var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
@@ -211,9 +197,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           // Make sure we track buffering of the video.
           self.startUpdatingBufferBar();
-
-          // Remove interactions while buffering
-          self.timeUpdate(-1);
           break;
       }
     });
@@ -258,6 +241,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.dnb.dialog.close();
       }
     });
+
+    // Initialize interactions
+    self.interactions = [];
+    if (self.options.assets.interactions) {
+      for (var i = 0; i < self.options.assets.interactions.length; i++) {
+        this.initInteraction(i);
+      }
+    }
   }
 
   // Inheritance
@@ -324,10 +315,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.fontSize = 16;
     this.width = 640; // parseInt($container.css('width')); // Get width in px
 
-    // interactions require parent $container, recreate with input
-    this.interactions.forEach(function (interaction) {
-      interaction.reCreate();
-    });
+    // 'video only' fallback has no interactions
+    if (this.interactions) {
+      // interactions require parent $container, recreate with input
+      this.interactions.forEach(function (interaction) {
+        interaction.reCreate();
+      });
+    }
 
     // Video with interactions
     this.$videoWrapper = $container.children('.h5p-video-wrapper');
@@ -573,10 +567,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Make sure the interaction does not overflow videowrapper.
       interaction.repositionToWrapper(self.$videoWrapper);
 
-      if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
-        self.video.pause();
-      }
+      // Determine source type
+      var isYouTube = (self.video.pressToPlay !== undefined);
 
+      // Consider pausing the playback
+      delayWork(isYouTube ? 100 : null, function () {
+        if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
+          self.video.pause();
+        }
+      });
+
+      // Position label on next tick
       setTimeout(function () {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
@@ -1018,6 +1019,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$bookmarksContainer = $('<div/>', {'class': 'h5p-bookmarks-container', appendTo: $slider});
 
     // Add seekbar/timeline
+    self.playTimeout = null;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1030,6 +1032,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
 
         self.lastState = (self.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : self.currentState);
+        clearTimeout(self.playTimeout);
         self.video.pause();
         self.currentState = InteractiveVideo.SEEKING;
 
@@ -1046,7 +1049,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.currentState = self.lastState;
         self.video.seek(ui.value);
         if (self.lastState === H5P.Video.PLAYING) {
-          self.video.play();
+          self.playTimeout = setTimeout(function () {
+            self.video.play();
+          }, 200);
         }
         else {
           self.timeUpdate(ui.value);
@@ -1708,6 +1713,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return; // Content has not been used
     }
 
+    console.log("reset task time update -1");
     this.seek(0); // Rewind
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
@@ -1814,6 +1820,21 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (fields[i].name === name) {
         return fields[i];
       }
+    }
+  };
+
+  /**
+   * Generic elseif for when to delay work or run straight away.
+   *
+   * @param {number} time null to carry out straight away
+   * @param {function} job what to do
+   */
+  var delayWork = function (time, job) {
+    if (time === null) {
+      job();
+    }
+    else {
+      setTimeout(job, time);
     }
   };
 
