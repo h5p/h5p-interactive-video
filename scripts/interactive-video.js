@@ -1019,7 +1019,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$bookmarksContainer = $('<div/>', {'class': 'h5p-bookmarks-container', appendTo: $slider});
 
     // Add seekbar/timeline
-    self.playTimeout = null;
+    self.hasPlayPromise = false;
+    self.hasQueuedPause = false;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1032,8 +1033,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
 
         self.lastState = (self.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : self.currentState);
-        clearTimeout(self.playTimeout);
-        self.video.pause();
+        if (self.hasPlayPromise) {
+          // Queue pause if play has not been resolved
+          self.hasQueuedPause = true;
+        }
+        else {
+          self.video.pause();
+        }
         self.currentState = InteractiveVideo.SEEKING;
 
         // Make sure splash screen is removed.
@@ -1048,10 +1054,30 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       stop: function (e, ui) {
         self.currentState = self.lastState;
         self.video.seek(ui.value);
-        if (self.lastState === H5P.Video.PLAYING) {
-          self.playTimeout = setTimeout(function () {
-            self.video.play();
-          }, 200);
+
+        if (self.hasPlayPromise) {
+          // Skip pausing when play promise is resolved
+          self.hasQueuedPause = false;
+        }
+        else if (self.lastState === H5P.Video.PLAYING) {
+          self.hasQueuedPause = false;
+          var play = self.video.play();
+
+          // Handle play as a Promise
+          if (play && play.then) {
+            self.hasPlayPromise = true;
+            play.then(function () {
+
+              // Pause at next cycle to not conflict with play
+              setTimeout(function () {
+                if (self.hasQueuedPause) {
+                  self.video.pause();
+                }
+                self.hasQueuedPause = false;
+                self.hasPlayPromise = false;
+              }, 0);
+            })
+          }
         }
         else {
           self.timeUpdate(ui.value);
