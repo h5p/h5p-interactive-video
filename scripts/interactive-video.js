@@ -211,7 +211,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     self.video.on('playbackRateChange', function (event) {
       var playbackRate = event.data;
-      if (self.controls.$playbackRateChooser) {
+      // Firefox fires a "ratechange" event immediately upon changing source, at this
+      // point controls has not been initialized, so we must check for controls
+      if (self.controls && self.controls.$playbackRateChooser) {
         // Update playbackRate selector
         self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
       }
