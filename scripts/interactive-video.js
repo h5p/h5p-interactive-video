@@ -1023,6 +1023,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Add seekbar/timeline
     self.hasPlayPromise = false;
     self.hasQueuedPause = false;
+    self.delayed = false;
+    self.delayTimeout;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1034,7 +1036,25 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           return; // Prevent double start on touch devies!
         }
 
-        self.lastState = (self.currentState === H5P.Video.ENDED ? H5P.Video.PLAYING : self.currentState);
+        if (!self.delayedState) {
+
+          // Set play state if video was ended
+          if (self.currentState === H5P.Video.ENDED) {
+            self.lastState = H5P.Video.PLAYING;
+          }
+          // Set current state if it is not buffering, otherwise keep last state
+          else if (self.currentState !== H5P.Video.BUFFERING || !self.lastState) {
+            self.lastState = self.currentState
+          }
+        }
+
+        // Delay state change to prevent double clicks registering
+        self.delayedState = true;
+        clearTimeout(self.delayTimeout);
+        self.delayTimeout = setTimeout(function () {
+          self.delayedState = false;
+        }, 200);
+
         if (self.hasPlayPromise) {
           // Queue pause if play has not been resolved
           self.hasQueuedPause = true;
@@ -1061,9 +1081,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           // Skip pausing when play promise is resolved
           self.hasQueuedPause = false;
         }
-        else if (self.lastState === H5P.Video.PLAYING) {
+        else if (self.lastState === H5P.Video.PLAYING || self.hasQueuedPause) {
           self.hasQueuedPause = false;
           var play = self.video.play();
+          self.hasQueuedPause = false;
 
           // Handle play as a Promise
           if (play && play.then) {
@@ -1072,13 +1093,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
               // Pause at next cycle to not conflict with play
               setTimeout(function () {
-                if (self.hasQueuedPause) {
+
+                // Pause on queue or on interactions without having to recreate them
+                if (self.hasQueuedPause || self.hasActivePauseInteraction()) {
                   self.video.pause();
                 }
-                self.hasQueuedPause = false;
                 self.hasPlayPromise = false;
               }, 0);
             })
+          }
+          else {
+            // Pause on interactions without having to recreate them
+            if (self.hasActivePauseInteraction()) {
+              self.video.pause();
+            }
           }
         }
         else {
@@ -1094,6 +1122,23 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add buffered status to seekbar
     self.controls.$buffered = $('<div/>', {'class': 'h5p-buffered', prependTo: self.controls.$slider});
+  };
+
+  /**
+   * Check if any active interactions should be paused
+   * @return {boolean} True if an interaction should be paused
+   */
+  InteractiveVideo.prototype.hasActivePauseInteraction = function () {
+    var hasActivePauseInteractions = false;
+    this.interactions.forEach(function (interaction) {
+
+      // Interaction is visible and should be paused
+      if (interaction.getElement() && interaction.pause()) {
+        hasActivePauseInteractions = true;
+      }
+    });
+
+    return hasActivePauseInteractions;
   };
 
   /**
@@ -1741,7 +1786,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return; // Content has not been used
     }
 
-    console.log("reset task time update -1");
     this.seek(0); // Rewind
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
