@@ -806,11 +806,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {number} height in ems
      */
     self.setSize = function (width, height) {
+
+      var isHotspot = (library === 'H5P.IVHotspot');
+      var emRatio = (player.width > player.$videoWrapper.width() ? player.width/player.$videoWrapper.width() : 1);
+
       if (width) {
-        parameters.width = width;
+        parameters.width = isHotspot ? emRatio * width : width;
       }
       if (height) {
-        parameters.height = height;
+        parameters.height = isHotspot ? emRatio * height : height;
       }
 
       H5P.trigger(instance, 'resize');
@@ -985,7 +989,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.repositionToWrapper = function ($wrapper) {
 
-      if ($interaction) {
+      if ($interaction && library !== 'H5P.IVHotspot') {
 
         // Reset positions
         if (isRepositioned) {
