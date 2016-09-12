@@ -1077,11 +1077,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.currentState = self.lastState;
         self.video.seek(ui.value);
 
+        var startPlaying = self.lastState === H5P.Video.PLAYING ||
+            self.lastState === H5P.Video.VIDEO_CUED || self.hasQueuedPause;
         if (self.hasPlayPromise) {
           // Skip pausing when play promise is resolved
           self.hasQueuedPause = false;
         }
-        else if (self.lastState === H5P.Video.PLAYING || self.hasQueuedPause) {
+        else if (startPlaying) {
           self.hasQueuedPause = false;
           var play = self.video.play();
           self.hasQueuedPause = false;
