@@ -174,10 +174,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var closeInteraction = function () {
       if (self.isButton()) {
-        player.dnb.dialog.close()
+        player.dnb.dialog.close();
       }
       else {
-        $interaction.detach()
+        $interaction.detach();
       }
     };
 
@@ -397,20 +397,50 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Get the dimensions for the current interaction
+     *
+     * @method getDimensions
+     * @return {Object}
+     */
+    var getDimensions = function () {
+      var height = parameters.height || 10;
+      var width = parameters.width || 10;
+
+      if (library !== 'H5P.IVHotspot') {
+        return {
+          height: height + 'em',
+          width: width + 'em'
+        };
+      }
+      else {
+        // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
+        // We can not rely on measuring font size.
+        var widthRatio = player.width / player.fontSize;
+        var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
+
+        return {
+          height: ((height / heightRatio) * 100) + '%',
+          width: ((width / widthRatio) * 100) + '%'
+        };
+      }
+    };
+
+    /**
      * Display the current interaction as a poster on top of the video.
      *
      * @private
      */
     var createPoster = function () {
       var isGotoClickable = self.isGotoClickable();
+      var dimensions = getDimensions();
 
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
-          width: (parameters.width ? parameters.width : 10) + 'em',
-          height: (parameters.height ? parameters.height : 10) + 'em',
+          width: dimensions.width,
+          height: dimensions.height,
           background: library !== 'H5P.IVHotspot' ? parameters.visuals.backgroundColor : '',
           boxShadow: parameters.visuals.boxShadow === false ? 'none' : ''
         }
@@ -429,26 +459,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             return false;
           });
         }
-      }
-
-      // Interactions stops scaling down when IV should get smaller font-size
-      // than 16px, since this is the minimum. We must translate to percentage.
-      if (library === 'H5P.IVHotspot') {
-        // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
-        // We can not rely on measuring font size.
-        var widthRatio = player.width / player.fontSize;
-        var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
-
-        var height = parameters.height ? parameters.height : 10;
-        var width = parameters.width ? parameters.width : 10;
-
-        var percentageHeight = (height / heightRatio) * 100;
-        var percentageWidth = (width / widthRatio) * 100;
-
-        $interaction.css({
-          height: percentageHeight + '%',
-          width: percentageWidth + '%'
-        });
       }
 
       $outer = $('<div>', {
@@ -817,6 +827,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         parameters.height = isHotspot ? emRatio * height : height;
       }
 
+      if (isHotspot) {
+        $interaction.css(getDimensions());
+      }
+
       H5P.trigger(instance, 'resize');
     };
 
@@ -998,20 +1012,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             'left': parameters.x + '%'
           });
 
-          // Reset dimensions
-          var height = '';
-          var width = '';
-
-          // Posters reset to standard dimensions
-          if (!self.isButton()) {
-            height = (parameters.height ? parameters.height : 10) + 'em';
-            width = (parameters.width ? parameters.width : 10) + 'em';
-          }
-
-          $interaction.css({
-            'height': height,
-            'width': width
-          });
+          $interaction.css(self.isButton() ? {
+            // Reset dimensions
+            height: '',
+            width: ''
+          } : getDimensions()); // Posters reset to standard dimensions
 
           isRepositioned = false;
         }

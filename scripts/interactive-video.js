@@ -1044,7 +1044,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           }
           // Set current state if it is not buffering, otherwise keep last state
           else if (self.currentState !== H5P.Video.BUFFERING || !self.lastState) {
-            self.lastState = self.currentState
+            self.lastState = self.currentState;
           }
         }
 
@@ -1100,7 +1100,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
                 }
                 self.hasPlayPromise = false;
               }, 0);
-            })
+            });
           }
           else {
             // Pause on interactions without having to recreate them
