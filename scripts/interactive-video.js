@@ -1077,6 +1077,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         self.currentState = self.lastState;
         self.video.seek(ui.value);
 
+        // Must recreate interactions because "continue" detaches them and they
+        // are not "re-updated" if they have only been detached (not completely removed)
+        self.recreateCurrentInteractions();
+
         var startPlaying = self.lastState === H5P.Video.PLAYING ||
             self.lastState === H5P.Video.VIDEO_CUED || self.hasQueuedPause;
         if (self.hasPlayPromise) {
