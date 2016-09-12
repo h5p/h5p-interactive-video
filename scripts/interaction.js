@@ -23,6 +23,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       };
     }
 
+    // Set defalut value for visuals:
+    parameters.visuals = $.extend({}, {
+      backgroundColor: 'rgb(255,255,255)',
+      boxShadow: true
+    }, parameters.visuals);
+
     // Find library name and title
     var library = action.library.split(' ')[0];
     var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
@@ -136,6 +142,91 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Make interaction go to somewhere depending on interaction params
+     *
+     * @private
+     * @param {jQuery} $anchor Anchor element
+     * @return {JQuery} Anchor element with click functionality
+     */
+    var makeInteractionGotoClickable = function ($anchor) {
+      if (parameters.goto.type === 'timecode') {
+        $anchor.click(function () {
+          goto({data: parameters.goto.time});
+        });
+        $anchor.attr({href: '#nowherespecial'});
+      }
+      else { // URL
+        var url = parameters.goto.url;
+        $anchor.attr({
+          href: (url.protocol !== 'other' ? url.protocol : '') + url.url,
+          target: '_blank'
+        });
+      }
+
+      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' goto-clickable-visualize' : ''));
+    };
+
+    /**
+     * Close interaction by closing dialog if the interaction is a button
+     * or through detaching the interaction otherwise
+     *
+     * @private
+     */
+    var closeInteraction = function () {
+      if (self.isButton()) {
+        player.dnb.dialog.close()
+      }
+      else {
+        $interaction.detach()
+      }
+    };
+
+    /**
+     * Create continue button for video
+     *
+     * @private
+     * @return {Element}
+     */
+    var createContinueVideoButton = function () {
+      var button = document.createElement('button');
+      button.innerHTML = player.l10n.continueWithVideo;
+      button.className = 'h5p-interaction-continue-button';
+      button.addEventListener('click', function () {
+        closeInteraction();
+        player.play();
+      });
+
+      return button;
+    };
+
+    /**
+     * Add continue button to interaction
+     *
+     * @private
+     * @param {jQuery} $parent
+     */
+    var addContinueButton = function ($parent) {
+      if (library === 'H5P.Questionnaire') {
+
+        // Check if button already exists
+        if ($parent.find('.h5p-interaction-continue-button').length) {
+          return;
+        }
+
+        var button = createContinueVideoButton();
+        var $successScreen = $parent.find('.h5p-questionnaire-success-center');
+        if ($successScreen.length) {
+          $successScreen.get(0).appendChild(button);
+        }
+
+        instance.on('noSuccessScreen', function () {
+          closeInteraction();
+          player.play();
+        });
+      }
+    };
+
+    /**
      * Opens button dialog.
      *
      * @private
@@ -145,17 +236,22 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance.setActivityStarted();
       }
 
+      var isGotoClickable = self.isGotoClickable();
+
       // Create wrapper for dialog content
-      var $dialogContent = $('<div/>', {
+      var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-dialog-interaction h5p-frame'
       });
 
       // Attach instance to dialog and open
-      instance.attach($dialogContent);
+      var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
+      instance.attach($instanceParent);
+      addContinueButton($instanceParent);
 
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
+      player.dnb.dialog.toggleClass('goto-clickable-visualize', isGotoClickable && parameters.goto.visualize);
 
       /**
        * Handle dialog closing once.
@@ -181,6 +277,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       /**
        * Set dialog width of interaction and unregister dialog close listener
+       * @private
        */
       var setDialogWidth = function () {
         self.dialogWidth = player.dnb.dialog.getDialogWidth();
@@ -278,18 +375,44 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Got to a given time code provided by an event
+     *
+     * @private
+     * @param {Object} event
+     * @param {number} event.data
+     */
+    var goto = function (event) {
+      if (self.isButton()) {
+        // Close dialog
+        player.dnb.dialog.close();
+      }
+      if (player.currentState === H5P.Video.PAUSED ||
+        player.currentState === H5P.Video.ENDED) {
+        // Start playing again
+        player.play();
+      }
+
+      // Jump to chosen timecode
+      player.seek(event.data);
+    };
+
+    /**
      * Display the current interaction as a poster on top of the video.
      *
      * @private
      */
     var createPoster = function () {
+      var isGotoClickable = self.isGotoClickable();
+
       $interaction = $('<div/>', {
-        'class': 'h5p-interaction h5p-poster ' + classes,
+        'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
         css: {
           left: parameters.x + '%',
           top: parameters.y + '%',
           width: (parameters.width ? parameters.width : 10) + 'em',
-          height: (parameters.height ? parameters.height : 10) + 'em'
+          height: (parameters.height ? parameters.height : 10) + 'em',
+          background: library !== 'H5P.IVHotspot' ? parameters.visuals.backgroundColor : '',
+          boxShadow: parameters.visuals.boxShadow === false ? 'none' : ''
         }
       });
 
@@ -308,11 +431,31 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       }
 
+      // Interactions stops scaling down when IV should get smaller font-size
+      // than 16px, since this is the minimum. We must translate to percentage.
+      if (library === 'H5P.IVHotspot') {
+        // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
+        // We can not rely on measuring font size.
+        var widthRatio = player.width / player.fontSize;
+        var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
+
+        var height = parameters.height ? parameters.height : 10;
+        var width = parameters.width ? parameters.width : 10;
+
+        var percentageHeight = (height / heightRatio) * 100;
+        var percentageWidth = (width / widthRatio) * 100;
+
+        $interaction.css({
+          height: percentageHeight + '%',
+          width: percentageWidth + '%'
+        });
+      }
+
       $outer = $('<div>', {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
 
-      $inner = $('<div/>', {
+      $inner = $(isGotoClickable ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
 
@@ -320,7 +463,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance.disableAutoPlay();
       }
 
-      instance.attach($inner);
+      var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($inner) : $inner;
+      instance.attach($instanceParent);
+      addContinueButton($instanceParent);
 
       // Trigger event listeners
       self.trigger('display', $interaction);
@@ -405,7 +550,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // add and show adaptivity button, hide continue button
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-          if (self.isButton() || player.isMobileView) {
+          if (self.isButton()) {
             player.dnb.dialog.close();
           }
           if (!adaptivity.allowOptOut) {
@@ -448,6 +593,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Check if interaction support linking on click
+     *
+     * @return {boolean} True if interaction has functionality for linking on click
+     */
+    self.isGotoClickable = function () {
+      return ['H5P.Text', 'H5P.Image'].indexOf(library) !== -1 && parameters.goto && ['timecode', 'url'].indexOf(parameters.goto.type) !== -1;
+    };
+
+    /**
      * Extract the current state of interactivity for serialization.
      *
      * @returns {Object}
@@ -474,7 +628,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayType === 'button' || library === 'H5P.Nil' || player.isMobileView;
+      return parameters.displayType === 'button' || library === 'H5P.Nil' || (player.isMobileView && library !== 'H5P.IVHotspot');
     };
 
     /**
@@ -503,6 +657,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         title: title,
         css: {
           left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
+        },
+        on: {
+          click: function () {
+            if (player.currentState === H5P.Video.PLAYING) {
+              player.seek(parameters.duration.from);
+            } else {
+              player.play(); // for updating the slider
+              player.seek(parameters.duration.from);
+              player.pause();
+            }
+          }
         }
       }).appendTo($container);
     };
@@ -538,7 +703,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Interaction already on display
       }
 
-      if (self.isButton() || player.isMobileView) {
+      if (self.isButton()) {
         createButton();
         isShownAsButton = true;
       }
@@ -577,11 +742,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Recreate interactions. Useful when an interaction or view has changed.
      */
     self.reCreateInteraction = function () {
+
+      // Do not recreate IVHotspot since it should always be a poster
+      if (library === 'H5P.IVHotspot') {
+        return;
+      }
+
       // Only recreate existing interactions
       if ($interaction) {
         $interaction.detach();
 
-        if (self.isButton() || player.isMobileView) {
+        if (self.isButton()) {
           createButton();
           isShownAsButton = true;
         } else {
@@ -635,11 +806,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {number} height in ems
      */
     self.setSize = function (width, height) {
+
+      var isHotspot = (library === 'H5P.IVHotspot');
+      var emRatio = (player.width > player.$videoWrapper.width() ? player.width/player.$videoWrapper.width() : 1);
+
       if (width) {
-        parameters.width = width;
+        parameters.width = isHotspot ? emRatio * width : width;
       }
       if (height) {
-        parameters.height = height;
+        parameters.height = isHotspot ? emRatio * height : height;
       }
 
       H5P.trigger(instance, 'resize');
@@ -702,21 +877,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
           });
 
+          if (library === 'H5P.IVHotspot') {
+            instance.on('goto', goto);
+          }
           if (library === 'H5P.GoToQuestion') {
-            instance.on('chosen', function (event) {
-              if (self.isButton()) {
-                // Close dialog
-                player.dnb.dialog.close();
-              }
-              if (player.currentState === H5P.Video.PAUSED ||
-                  player.currentState === H5P.Video.ENDED) {
-                // Start playing again
-                player.play();
-              }
-
-              // Jump to chosen timecode
-              player.seek(event.data);
-            });
+            instance.on('chosen', goto);
           }
         }
       }
@@ -824,7 +989,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.repositionToWrapper = function ($wrapper) {
 
-      if ($interaction) {
+      if ($interaction && library !== 'H5P.IVHotspot') {
 
         // Reset positions
         if (isRepositioned) {

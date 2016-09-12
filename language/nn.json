@@ -11,28 +11,33 @@
               "description": "Vel videofilane du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
             },
             {
-              "label": "Plakat"
-            },
-            {
-              "label": "Tittel",
-              "default": "Interaktiv video",
-              "description": "Brukes i oppsummeringer, statistikk o.l."
-            },
-            {
-              "label": "Video startskjerm innstillinger",
+              "label": "Avanserte innstillinger",
               "fields": [
                 {
-                  "label": "Skjul tittel på startskjerm"
+                  "label": "Tittel",
+                  "default": "Interaktiv video",
+                  "description": "Brukes i oppsummeringer, statistikk o.l."
                 },
                 {
-                  "label": "Kort beskrivelse (Valgfri)",
-                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                  "label": "Opphavsrettsinformasjon",
+                  "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
+                },
+                {
+                  "label": "Video startskjerm innstillinger",
+                  "fields": [
+                    {
+                      "label": "Plakat"
+                    },
+                    {
+                      "label": "Skjul tittel på startskjerm"
+                    },
+                    {
+                      "label": "Kort beskrivelse (Valgfri)",
+                      "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Opphavsrettsinformasjon",
-              "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
             }
           ]
         },
@@ -129,7 +134,7 @@
       ]
     },
     {
-      "label": "Innstillinger for \"Vis svar\" knapp og \"Prøv igjen\".",
+      "label": "Innstillinger for oppgave-oppførsel",
       "fields": [
         {
           "label": "Overstyr «Vis svar»-knapp",
@@ -154,6 +159,9 @@
               "label": "Deaktivert"
             }
           ]
+        },
+        {
+          "label": "Vis bokmerkemeny når interaktiv video åpnes"
         }
       ]
     },

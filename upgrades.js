@@ -88,7 +88,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         var i;
         parameters.l10n = {};
 
-        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel'];
+        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10'];
         for (i = 0; i < keys.length; i++) {
           var key = keys[i];
           if (parameters.hasOwnProperty(key)) {
@@ -138,6 +138,36 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
           delete parameters.override.overrideButtons;
           delete parameters.override.overrideShowSolutionButton;
           delete parameters.override.overrideRetry;
+        }
+
+        finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       *
+       * Groups start screen options under a group, hiding nonessential
+       * information.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      11: function (parameters, finished) {
+        var videoParams = parameters.interactiveVideo.video;
+        if (videoParams) {
+          videoParams.advancedSettings = {};
+
+          videoParams.startScreenOptions = videoParams.startScreenOptions || {};
+          videoParams.advancedSettings.startScreenOptions = videoParams.startScreenOptions;
+          videoParams.advancedSettings.startScreenOptions.poster = videoParams.poster;
+          videoParams.advancedSettings.title = videoParams.title;
+          videoParams.advancedSettings.copyright = videoParams.copyright;
+
+          // Remove old fields
+          delete videoParams.startScreenOptions;
+          delete videoParams.poster;
+          delete videoParams.title;
+          delete videoParams.copyright;
         }
 
         finished(null, parameters);

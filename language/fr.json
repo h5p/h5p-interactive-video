@@ -11,29 +11,34 @@
               "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label": "Image de la vidéo ",
-              "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
-            },
-            {
-              "label": "Titre de la vidéo interactive",
-              "default": "Vidéo interactive",
-              "description": "Utilisé dans les récapitulatifs, statistiques, etc."
-            },
-            {
-              "label": "Options de l'écran de lancement de la vidéo",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Cacher le titre sur l'écran de lancement de la vidéo"
+                  "label": "Titre de la vidéo interactive",
+                  "default": "Vidéo interactive",
+                  "description": "Utilisé dans les récapitulatifs, statistiques, etc."
                 },
                 {
-                  "label": "Courte description (en option)",
-                  "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                  "label": "Informations sur le copyright de la vidéo",
+                  "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
+                },
+                {
+                  "label": "Options de l'écran de lancement de la vidéo",
+                  "fields": [
+                    {
+                      "label": "Image de la vidéo ",
+                      "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
+                    },
+                    {
+                      "label": "Cacher le titre sur l'écran de lancement de la vidéo"
+                    },
+                    {
+                      "label": "Courte description (en option)",
+                      "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Informations sur le copyright de la vidéo",
-              "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
             }
           ]
         },
@@ -130,7 +135,7 @@
       ]
     },
     {
-      "label": "Réglages des boutons \"Voir la correction\" et \"Recommencer\".",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Ecraser le bouton \"Voir la correction\"",
@@ -155,6 +160,10 @@
               "label": "Désactivé"
             }
           ]
+        },
+        {
+          "label": "Show bookmarks menu on load",
+          "description": "This function is not available on iPad when using YouTube as video source"
         }
       ]
     },

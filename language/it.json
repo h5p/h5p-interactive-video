@@ -11,28 +11,33 @@
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
-              "label": "Poster"
-            },
-            {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
-            },
-            {
-              "label": "Video start screen options",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "The title of this interactive video",
+                  "default": "Interactive Video",
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "label": "Informazioni Copyright Video",
+                  "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
+                },
+                {
+                  "label": "Video start screen options",
+                  "fields": [
+                    {
+                      "label": "Poster"
+                    },
+                    {
+                      "label": "Hide title on video start screen"
+                    },
+                    {
+                      "label": "Short description (Optional)",
+                      "description": "Optional. Display a short description text on the video start screen."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Informazioni Copyright Video",
-              "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
             }
           ]
         },
@@ -144,7 +149,7 @@
       ]
     },
     {
-      "label": "Impostazioni per i pulsanti \"Mostra soluzione\" e \"Riprova\".",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Override \"Show Solution\" button",
@@ -169,6 +174,10 @@
               "label": "Disabled"
             }
           ]
+        },
+        {
+          "label": "Show bookmarks menu on load",
+          "description": "This function is not available on iPad when using YouTube as video source"
         }
       ]
     },
