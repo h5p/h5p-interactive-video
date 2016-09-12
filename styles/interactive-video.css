@@ -714,6 +714,8 @@
   height: 8px;
   cursor: pointer;
   border-radius: 0;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 .h5p-interactive-video .h5p-slider .ui-slider-range {
   color: #e2e2e2;
