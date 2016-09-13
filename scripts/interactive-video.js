@@ -663,7 +663,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       this.controls.$minimalOverlay.toggleClass('h5p-show', show);
       this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
       this.controls.$bookmarks.toggleClass('h5p-active', show);
-      this.controls.$bookmarksChooser.toggleClass('h5p-show', show);
+      this.controls.$bookmarksChooser.css({maxHeight: show ? this.controlsCss.maxHeight : '32px'}).toggleClass('h5p-show', show);
     }
   };
   /**
@@ -1367,7 +1367,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
-    var controlsCss = {
+    this.controlsCss = {
       bottom: '',
       maxHeight: popupControlsHeight + 'px'
     };
@@ -1381,13 +1381,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (videoHeight + controlsHeight <= containerHeight) {
         offsetBottom = controlsHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
       }
-      controlsCss.bottom = offsetBottom + 'px';
+      this.controlsCss.bottom = offsetBottom + 'px';
     }
 
     if (this.controls && this.controls.$minimalOverlay) {
-      this.controls.$minimalOverlay.css(controlsCss);
+      this.controls.$minimalOverlay.css(this.controlsCss);
     }
-    this.$container.find('.h5p-chooser').css(controlsCss);
+    this.$container.find('.h5p-chooser').css(this.controlsCss);
 
     // Resize start screen
     if (!this.editor) {

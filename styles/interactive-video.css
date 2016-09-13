@@ -583,10 +583,12 @@
   max-width: 22px;
   bottom: 36px;
   overflow-y: hidden;
-  -webkit-transition: max-width .15s, left .15s, opacity .15s linear .1s, transform .15s linear, visibility .25s;
-     -moz-transition: max-width .15s, left .15s, opacity .15s linear .1s, transform .15s linear, visibility .25s;
-          transition: max-width .15s, left .15s, opacity .15s linear .1s, transform .15s linear, visibility .25s;
-  transform: translateY(100%);
+  -webkit-transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
+     -moz-transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
+          transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
+}
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks:not(.h5p-show) {
+  bottom: 0px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks * {
   visibility: hidden;
