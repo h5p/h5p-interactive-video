@@ -251,7 +251,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
-      player.dnb.dialog.toggleClass('goto-clickable-visualize', isGotoClickable && parameters.goto.visualize);
+      player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
 
       /**
        * Handle dialog closing once.

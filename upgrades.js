@@ -153,21 +153,23 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * @params {function} finished
        */
       11: function (parameters, finished) {
-        var videoParams = parameters.interactiveVideo.video;
-        if (videoParams) {
-          videoParams.advancedSettings = {};
+        if (parameters.interactiveVideo) {
+          var videoParams = parameters.interactiveVideo.video;
+          if (videoParams) {
+            videoParams.advancedSettings = {};
 
-          videoParams.startScreenOptions = videoParams.startScreenOptions || {};
-          videoParams.advancedSettings.startScreenOptions = videoParams.startScreenOptions;
-          videoParams.advancedSettings.startScreenOptions.poster = videoParams.poster;
-          videoParams.advancedSettings.title = videoParams.title;
-          videoParams.advancedSettings.copyright = videoParams.copyright;
+            videoParams.startScreenOptions = videoParams.startScreenOptions || {};
+            videoParams.advancedSettings.startScreenOptions = videoParams.startScreenOptions;
+            videoParams.advancedSettings.startScreenOptions.poster = videoParams.poster;
+            videoParams.advancedSettings.title = videoParams.title;
+            videoParams.advancedSettings.copyright = videoParams.copyright;
 
-          // Remove old fields
-          delete videoParams.startScreenOptions;
-          delete videoParams.poster;
-          delete videoParams.title;
-          delete videoParams.copyright;
+            // Remove old fields
+            delete videoParams.startScreenOptions;
+            delete videoParams.poster;
+            delete videoParams.title;
+            delete videoParams.copyright;
+          }
         }
 
         finished(null, parameters);
