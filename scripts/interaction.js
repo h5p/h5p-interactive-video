@@ -434,7 +434,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var isGotoClickable = self.isGotoClickable();
       var dimensions = getDimensions();
 
-      console.log("parameters.goto.visualize", parameters.goto.visualize);
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
         css: {
