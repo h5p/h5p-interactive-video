@@ -176,7 +176,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
 
           if (parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
             var interactions = parameters.interactiveVideo.assets.interactions;
-            for (i = 0; i < interactions.length; i++) {
+            for (var i = 0; i < interactions.length; i++) {
               var interaction = interactions[i];
 
               // Set white background + boxShadow for images and textual posters:
