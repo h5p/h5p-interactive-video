@@ -367,7 +367,8 @@
                       "name": "boxShadow",
                       "type": "boolean",
                       "label": "Box shadow",
-                      "default": true
+                      "default": true,
+                      "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                     }
                   ]
                 },
