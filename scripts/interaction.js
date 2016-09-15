@@ -23,12 +23,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       };
     }
 
-    // Set defalut value for visuals:
-    parameters.visuals = $.extend({}, {
-      backgroundColor: 'rgb(255,255,255)',
-      boxShadow: true
-    }, parameters.visuals);
-
     // Find library name and title
     var library = action.library.split(' ')[0];
     var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
@@ -54,6 +48,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     // Changes if interaction has moved from original position
     var isRepositioned = false;
+
+    var getVisuals = function () {
+      return $.extend({}, {
+        backgroundColor: 'rgb(255,255,255)',
+        boxShadow: true
+      }, parameters.visuals);
+    };
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -433,6 +434,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var createPoster = function () {
       var isGotoClickable = self.isGotoClickable();
       var dimensions = getDimensions();
+      var visuals = getVisuals();
 
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
@@ -441,8 +443,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           top: parameters.y + '%',
           width: dimensions.width,
           height: dimensions.height,
-          background: library !== 'H5P.IVHotspot' ? parameters.visuals.backgroundColor : '',
-          boxShadow: parameters.visuals.boxShadow === false ? 'none' : ''
+          background: library !== 'H5P.IVHotspot' ? visuals.backgroundColor : '',
+          boxShadow: visuals.boxShadow === false ? 'none' : ''
         }
       });
 
