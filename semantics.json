@@ -450,7 +450,8 @@
                     {
                       "name": "visualize",
                       "type": "boolean",
-                      "label": "Visualize"
+                      "label": "Visualize",
+                      "description": "Show that interaction can be clicked by adding a border and an icon"
                     }
                   ]
                 }
