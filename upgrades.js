@@ -149,6 +149,9 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * Groups start screen options under a group, hiding nonessential
        * information.
        *
+       * Make existing posters have white background. I.e avoid existing posters
+       * getting the new default, which is full transparency.
+       *
        * @params {Object} parameters
        * @params {function} finished
        */
@@ -169,6 +172,22 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
             delete videoParams.poster;
             delete videoParams.title;
             delete videoParams.copyright;
+          }
+
+          if (parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+            var interactions = parameters.interactiveVideo.assets.interactions;
+            for (i = 0; i < interactions.length; i++) {
+              var interaction = interactions[i];
+
+              // Set white background + boxShadow for images and textual posters:
+              if(interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library &&
+                ['H5P.Text', 'H5P.Image', 'H5P.Link', 'H5P.Table'].indexOf(interaction.action.library.split(' ')[0]) !== -1) {
+                interaction.visuals = {
+                  backgroundColor: 'rgba(255,255,255,1)',
+                  boxShadow: true
+                };
+              }
+            }
           }
         }
 
