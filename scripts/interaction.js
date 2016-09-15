@@ -670,7 +670,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         },
         on: {
           click: function () {
-            if (player.currentState === H5P.Video.PLAYING) {
+            if (player.currentState === H5P.Video.VIDEO_CUED) {
+              player.play();
+              player.seek(parameters.duration.from);
+            }
+            else if (player.currentState === H5P.Video.PLAYING) {
               player.seek(parameters.duration.from);
             } else {
               player.play(); // for updating the slider
