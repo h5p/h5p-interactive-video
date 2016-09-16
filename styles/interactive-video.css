@@ -1378,6 +1378,8 @@
 
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
   box-sizing: border-box;
+  min-height: calc(2.5em - 1px);
+  height: auto;
 }
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:hover {
   border-color: #003fdf;
