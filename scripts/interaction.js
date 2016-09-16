@@ -148,9 +148,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var makeInteractionGotoClickable = function ($anchor) {
       if (parameters.goto.type === 'timecode') {
         $anchor.click(function () {
-          goto({data: parameters.goto.time});
-        });
-        $anchor.attr({href: '#nowherespecial'});
+          if (event.which === 1) {
+            goto({data: parameters.goto.time});
+          }
+        }).keypress(function (event) {
+          if (event.which === 32) {
+            goto({data: parameters.goto.time});
+          }
+        }).attr('role', 'button')
+          .attr('tabindex', '0');
       }
       else { // URL
         var url = parameters.goto.url;
@@ -236,7 +242,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var isGotoClickable = self.isGotoClickable();
 
       // Create wrapper for dialog content
-      var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
+      var $dialogContent = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
         'class': 'h5p-dialog-interaction h5p-frame'
       });
 
@@ -464,7 +470,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
 
-      $inner = $(isGotoClickable ? '<a>' : '<div>', {
+      $inner = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
 
