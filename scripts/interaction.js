@@ -28,11 +28,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
 
     // Detect custom html class for interaction.
-    var classes = parameters.className;
-    if (classes === undefined) {
-      var classParts = action.library.split(' ')[0].toLowerCase().split('.');
-      classes = classParts[0] + '-' + classParts[1] + '-interaction';
-    }
+    var classes;
 
     // Keep track of content instance
     var instance;
@@ -605,6 +601,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Determine css classes for interaction
+     * @return {string} Css classes string separated by space
+     */
+    var determineClasses = function () {
+      var classes = parameters.className;
+
+      if (classes === undefined) {
+        var classParts = action.library.split(' ')[0].toLowerCase().split('.');
+        classes = classParts[0] + '-' + classParts[1] + '-interaction';
+      }
+
+      if (parameters.goto && parameters.goto.type === 'timecode') {
+        classes += ' h5p-goto-timecode';
+      }
+
+      return classes;
+    };
+
+    /**
      * Check if interaction support linking on click
      *
      * @return {boolean} True if interaction has functionality for linking on click
@@ -854,6 +869,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Useful if the input parameters have changes.
      */
     self.reCreate = function () {
+      classes = determineClasses();
       if (library !== 'H5P.Nil') {
         action.params = action.params || {};
         action.params.overrideSettings = action.params.overrideSettings || {};
