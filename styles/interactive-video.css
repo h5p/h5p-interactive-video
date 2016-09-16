@@ -317,6 +317,10 @@
   overflow: hidden;
 }
 
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-box-shadow-disabled {
+  box-shadow: none;
+}
+
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction {
   box-shadow: none;
   background: none;
@@ -1367,6 +1371,10 @@
 }
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-box-shadow-disabled {
+  box-shadow: none;
 }
 
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize:hover {

@@ -439,10 +439,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           top: parameters.y + '%',
           width: dimensions.width,
           height: dimensions.height,
-          background: library !== 'H5P.IVHotspot' ? visuals.backgroundColor : '',
-          boxShadow: visuals.boxShadow === false ? 'none' : ''
+          background: library !== 'H5P.IVHotspot' ? visuals.backgroundColor : ''
         }
       });
+
+      if (visuals.boxShadow === false) {
+        $interaction.addClass('h5p-box-shadow-disabled');
+      }
 
       // Reset link interaction dimensions
       if (library === 'H5P.Link') {
