@@ -180,12 +180,20 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
               var interaction = interactions[i];
 
               // Set white background + boxShadow for images and textual posters:
-              if(interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library &&
-                ['H5P.Text', 'H5P.Image', 'H5P.Link', 'H5P.Table'].indexOf(interaction.action.library.split(' ')[0]) !== -1) {
-                interaction.visuals = {
-                  backgroundColor: 'rgba(255,255,255,1)',
-                  boxShadow: true
-                };
+              if(interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library) {
+                var lib = interaction.action.library.split(' ')[0];
+                if (['H5P.Text', 'H5P.Image', 'H5P.Table'].indexOf(lib) !== -1) {
+                  interaction.visuals = {
+                    backgroundColor: 'rgba(255,255,255,1)',
+                    boxShadow: true
+                  };
+                }
+                else if (lib === 'H5P.Link') {
+                  interaction.visuals = {
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    boxShadow: true
+                  }
+                }
               }
             }
           }
