@@ -786,21 +786,23 @@
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction {
   background: #1d5cff;
 }
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction:hover,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction:hover,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction:hover {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction:hover {
   background: #3d7cff;
 }
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode {
   background: #018d82;
 }
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction:hover {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode:hover {
   background: #21ada2;
 }
 
