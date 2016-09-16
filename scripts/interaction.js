@@ -160,7 +160,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' goto-clickable-visualize' : ''));
+      return $anchor.addClass('goto-clickable');
     };
 
     /**
@@ -249,6 +249,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
       player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
+      player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
 
       /**
        * Handle dialog closing once.
