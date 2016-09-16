@@ -549,7 +549,7 @@
       {
         "name": "showBookmarksmenuOnLoad",
         "type": "boolean",
-        "label": "Show bookmarks menu on load",
+        "label": "Start with bookmarks menu open",
         "default": false,
         "description": "This function is not available on iPad when using YouTube as video source"
       },
