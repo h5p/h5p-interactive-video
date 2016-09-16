@@ -15,6 +15,7 @@
               "description": "Velg videofilene du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
             },
             {
+              "englishLabel": "Advanced settings",
               "label": "Avanserte innstillinger",
               "fields": [
                 {
@@ -39,7 +40,7 @@
                       "englishLabel": "Poster image",
                       "label": "Plakat",
                       "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "TODO"
+                      "description": "Bildet vises før videoen spilles av. Virker ikke for YouTube videoer."
                     },
                     {
                       "englishLabel": "Hide title on video start screen",
@@ -94,11 +95,11 @@
                     "englishDescription": "Label displayed next to interaction icon.",
                     "description": "Ledetekst som vises ved siden av interaksjonsikonet."
                   },
-                  null,
-                  null,
-                  null,
-                  null,
-                  null,
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
                   {
                     "englishLabel": "Adaptivity",
                     "label": "Adaptivitet",
@@ -154,78 +155,134 @@
                     ]
                   },
                   {
-                    "englishLabel": "Go to on click",
-                    "label": "TODO",
+                    "englishLabel": "Visuals",
+                    "label": "Visning",
                     "fields": [
                       {
-                        "englishLabel": "Type",
-                        "label": "TODO",
-                        "options": [
-                          {
-                            "englishLabel": "Timecode",
-                            "label": "TODO"
-                          },
-                          {
-                            "englishLabel": "Another page (URL)",
-                            "label": "TODO"
-                          }
-                        ]
+                        "englishLabel": "Background color",
+                        "label": "Bakgrunnsfarge",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "englishLabel": "Go To",
-                        "label": "TODO",
-                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
-                        "description": "TODO"
+                        "englishLabel": "Box shadow",
+                        "label": "Skygge",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Legger til en subtil skygge rundt interaksjonen. Kan være fordelaktig å skru av når interaksjonen er helt usynlig."
                       },
                       {
                         "englishLabel": "URL",
-                        "label": "TODO",
+                        "label": "URL",
                         "fields": [
                           {
                             "englishLabel": "Protocol",
-                            "label": "TODO",
+                            "label": "Protocol",
                             "options": [
                               {
                                 "englishLabel": "http://",
-                                "label": "TODO"
+                                "label": "http://"
                               },
                               {
                                 "englishLabel": "https://",
-                                "label": "TODO"
+                                "label": "https://"
                               },
                               {
                                 "englishLabel": "(root relative)",
-                                "label": "TODO"
+                                "label": "(root relative)"
                               },
                               {
                                 "englishLabel": "other",
-                                "label": "TODO"
+                                "label": "other"
                               }
                             ]
                           },
                           {
                             "englishLabel": "URL",
-                            "label": "TODO"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
                         "englishLabel": "Visualize",
-                        "label": "TODO"
+                        "label": "Visualize"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Type",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Timecode"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Go To",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(root relative)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualize",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            null
+            {}
           ]
         },
         {
           "englishLabel": "Summary task",
           "label": "Oppsummeringsoppgave",
           "fields": [
-            null,
+            {},
             {
               "englishLabel": "Display at",
               "label": "Visningstid",
@@ -273,10 +330,14 @@
           ]
         },
         {
-          "englishLabel": "Show bookmarks menu on load",
+          "englishLabel": "Start with bookmarks menu open",
           "label": "Vis bokmerkemeny når interaktiv video åpnes",
           "englishDescription": "This function is not available on iPad when using YouTube as video source",
-          "description": "TODO"
+          "description": "Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Vis knapp for å spole tilbake 10 sekunder"
         }
       ]
     },
@@ -349,6 +410,24 @@
           "label": "Standard merkelapp for adaptivitetssøkeknappen",
           "englishDefault": "Continue",
           "default": "Fortsett"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Merkelapp for å fortsette videoen",
+          "englishDefault": "Continue with video",
+          "default": "Fortsett video"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Sett avspillingshastighet",
+          "englishDefault": "Playback Rate",
+          "default": "Avspillingshastighet"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Spol tilbake 10 sekund",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Spol tilbake 10 sekund"
         }
       ]
     }
