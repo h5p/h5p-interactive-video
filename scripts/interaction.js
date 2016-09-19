@@ -147,7 +147,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var makeInteractionGotoClickable = function ($anchor) {
       if (parameters.goto.type === 'timecode') {
-        $anchor.click(function () {
+        $anchor.click(function (event) {
           if (event.which === 1) {
             goto({data: parameters.goto.time});
           }
