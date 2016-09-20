@@ -331,7 +331,7 @@
 
 /* Use drop-shadow in case of transparent images */
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-image-interaction:not(.goto-clickable-visualize):not(.h5p-box-shadow-disabled) .h5p-image img {
-  filter: drop-shadow(0 0 0.625em rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 0 0.325em rgba(0, 0, 0, 0.25));
 }
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-image-interaction:not(.goto-clickable-visualize) {
   box-shadow: none;
