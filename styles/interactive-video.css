@@ -612,12 +612,13 @@
   max-width: 22px;
   bottom: 36px;
   overflow-y: hidden;
-  -webkit-transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
-     -moz-transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
-          transition: max-width .05s, left .05s, opacity .15s linear .1s, visibility .25s, max-height .15s linear;
+  -webkit-transition: bottom .15s, max-width .05s, left .05s, opacity .15s linear .1s, visibility .15s, max-height .15s linear;
+     -moz-transition: bottom .15s, max-width .05s, left .05s, opacity .15s linear .1s, visibility .15s, max-height .15s linear;
+          transition: bottom .15s, max-width .05s, left .05s, opacity .15s linear .1s, visibility .15s, max-height .15s linear;
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks:not(.h5p-show) {
-  bottom: 0px;
+  bottom: 0;
+  pointer-events: none;
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks * {
   visibility: hidden;
