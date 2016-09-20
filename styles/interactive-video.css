@@ -329,8 +329,20 @@
   overflow: hidden;
 }
 
+/* Use drop-shadow in case of transparent images */
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-image-interaction:not(.goto-clickable-visualize):not(.h5p-box-shadow-disabled) .h5p-image img {
+  filter: drop-shadow(0 0 0.625em rgba(0, 0, 0, 0.25));
+}
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-image-interaction:not(.goto-clickable-visualize) {
+  box-shadow: none;
+  overflow: visible;
+}
+
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-box-shadow-disabled {
   box-shadow: none;
+}
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-box-shadow-disabled .h5p-image img {
+  filter: none;
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction {
@@ -339,7 +351,8 @@
   overflow: visible;
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction .h5p-interaction-outer {
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-ivhotspot-interaction .h5p-interaction-outer,
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-transparent-interaction.h5p-image-interaction .h5p-interaction-outer {
   overflow: visible;
 }
 
