@@ -23,6 +23,10 @@
                   "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
                 },
                 {
+                  "label": "Start video at",
+                  "description": "Enter timecode in the format M:SS"
+                },				
+                {
                   "label": "Video start screen options",
                   "fields": [
                     {
