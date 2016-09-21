@@ -445,10 +445,23 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           left: parameters.x + '%',
           top: parameters.y + '%',
           width: dimensions.width,
-          height: dimensions.height,
-          background: library !== 'H5P.IVHotspot' ? visuals.backgroundColor : ''
+          height: dimensions.height
         }
       });
+
+      if (library !== 'H5P.IVHotspot') {
+        // Add background
+        $interaction.css('background', visuals.backgroundColor);
+
+        // Add transparency css
+        var backgroundColors = visuals.backgroundColor.split(',');
+        if (backgroundColors[3]) {
+          var opacity = parseFloat(backgroundColors[3].replace(')', ''));
+          if (opacity === 0) {
+            $interaction.addClass('h5p-transparent-interaction');
+          }
+        }
+      }
 
       if (visuals.boxShadow === false) {
         $interaction.addClass('h5p-box-shadow-disabled');
