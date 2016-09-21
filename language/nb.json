@@ -169,42 +169,6 @@
                         "label": "Skygge",
                         "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
                         "description": "Legger til en subtil skygge rundt interaksjonen. Kan være fordelaktig å skru av når interaksjonen er helt usynlig."
-                      },
-                      {
-                        "englishLabel": "URL",
-                        "label": "URL",
-                        "fields": [
-                          {
-                            "englishLabel": "Protocol",
-                            "label": "Protocol",
-                            "options": [
-                              {
-                                "englishLabel": "http://",
-                                "label": "http://"
-                              },
-                              {
-                                "englishLabel": "https://",
-                                "label": "https://"
-                              },
-                              {
-                                "englishLabel": "(root relative)",
-                                "label": "(root relative)"
-                              },
-                              {
-                                "englishLabel": "other",
-                                "label": "other"
-                              }
-                            ]
-                          },
-                          {
-                            "englishLabel": "URL",
-                            "label": "URL"
-                          }
-                        ]
-                      },
-                      {
-                        "englishLabel": "Visualize",
-                        "label": "Visualize"
                       }
                     ]
                   },
