@@ -614,14 +614,15 @@
 
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks {
   z-index: 1;
-  left: -10px;
+  width: 200px;
+  left: -34px;
   bottom: 36px;
   overflow-y: hidden;
   opacity: 0;
   transform: scaleX(0.2) translate(0, 36px);
-  -webkit-transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
-  -moz-transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
-  transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
+  -webkit-transition: transform 0.3s, opacity 0.3s, max-height 0.3s, left 0.3s;
+  -moz-transition: transform 0.3s, opacity 0.3s, max-height 0.3s, left 0.3s;
+  transition: transform 0.3s, opacity 0.3s, max-height 0.3s, left 0.3s;
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks:not(.h5p-show) {
   pointer-events: none;
@@ -651,6 +652,8 @@
   transition-delay: 0s;
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show {
+  width: 200px;
+  left: -10px;
   overflow-y: auto;
   opacity: 1;
   transform: scaleX(1) translate(10px, 0);
