@@ -413,7 +413,13 @@
   height: 36px;
   color: #fefefe;
   outline: 0;
+  transition: box-shadow 0.1s ease-out 0.3s;
 }
+.h5p-interactive-video .h5p-control.h5p-blink {
+  box-shadow: inset 0 0 2px 2px white;
+  transition: none;
+}
+
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
 }
@@ -608,20 +614,27 @@
 
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks {
   z-index: 1;
-  left: 55px;
-  max-width: 22px;
+  left: -10px;
   bottom: 36px;
   overflow-y: hidden;
-  -webkit-transition: bottom .15s, max-width .05s, left .05s, opacity .1s linear .05s, visibility .15s, max-height .15s linear;
-     -moz-transition: bottom .15s, max-width .05s, left .05s, opacity .1s linear .05s, visibility .15s, max-height .15s linear;
-          transition: bottom .15s, max-width .05s, left .05s, opacity .1s linear .05s, visibility .15s, max-height .15s linear;
+  opacity: 0;
+  transform: scaleX(0.2) translate(0, 36px);
+  -webkit-transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
+  -moz-transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
+  transition: transform 0.4s, opacity 0.4s, max-height 0.4s;
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks:not(.h5p-show) {
-  bottom: 0;
   pointer-events: none;
 }
-.h5p-interactive-video .h5p-chooser.h5p-bookmarks * {
-  visibility: hidden;
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show.h5p-transitioning {
+  overflow: hidden;
+}
+
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show {
+  overflow-y: auto;
+}
+.h5p-interactive-video .h5p-chooser.h5p-bookmarks.h5p-transitioning {
+  visibility: visible;
 }
 .h5p-interactive-video .h5p-chooser.h5p-quality {
   right: 12px;
@@ -638,10 +651,9 @@
   transition-delay: 0s;
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show {
-  transform: translateY(0%);
-  max-width: 200px;
-  left: 12px;
   overflow-y: auto;
+  opacity: 1;
+  transform: scaleX(1) translate(10px, 0);
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks.h5p-show * {
   visibility: visible;

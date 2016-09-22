@@ -663,12 +663,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
     if (this.controls.$bookmarks) {
       show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
+      var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
       this.controls.$more.toggleClass('h5p-active', show);
       this.controls.$minimalOverlay.toggleClass('h5p-show', show);
       this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
       this.controls.$bookmarks.toggleClass('h5p-active', show);
       this.controls.$bookmarksChooser.css({maxHeight: show ? this.controlsCss.maxHeight : '32px'}).toggleClass('h5p-show', show);
+
+      // Add classes if changing visibility
+      this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
+      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
   /**
@@ -873,6 +878,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
         self.toggleBookmarksChooser();
       });
+      self.controls.$bookmarksChooser.bind('transitionend', function () {
+        self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
+        self.controls.$bookmarks.removeClass('h5p-blink')
+      })
     }
 
     // Current time for minimal display
