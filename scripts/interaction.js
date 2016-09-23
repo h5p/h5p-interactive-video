@@ -23,22 +23,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       };
     }
 
-    // Set defalut value for visuals:
-    parameters.visuals = $.extend({}, {
-      backgroundColor: 'rgb(255,255,255)',
-      boxShadow: true
-    }, parameters.visuals);
-
     // Find library name and title
     var library = action.library.split(' ')[0];
     var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
 
     // Detect custom html class for interaction.
-    var classes = parameters.className;
-    if (classes === undefined) {
-      var classParts = action.library.split(' ')[0].toLowerCase().split('.');
-      classes = classParts[0] + '-' + classParts[1] + '-interaction';
-    }
+    var classes;
 
     // Keep track of content instance
     var instance;
@@ -54,6 +44,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     // Changes if interaction has moved from original position
     var isRepositioned = false;
+
+    var getVisuals = function () {
+      return $.extend({}, {
+        backgroundColor: 'rgb(255,255,255)',
+        boxShadow: true
+      }, parameters.visuals);
+    };
 
     /**
      * Display the current interaction as a button on top of the video.
@@ -150,10 +147,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var makeInteractionGotoClickable = function ($anchor) {
       if (parameters.goto.type === 'timecode') {
-        $anchor.click(function () {
-          goto({data: parameters.goto.time});
-        });
-        $anchor.attr({href: '#nowherespecial'});
+        $anchor.click(function (event) {
+          if (event.which === 1) {
+            goto({data: parameters.goto.time});
+          }
+        }).keypress(function (event) {
+          if (event.which === 32) {
+            goto({data: parameters.goto.time});
+          }
+        }).attr('role', 'button')
+          .attr('tabindex', '0');
       }
       else { // URL
         var url = parameters.goto.url;
@@ -163,7 +166,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         });
       }
 
-      return $anchor.addClass('goto-clickable ' + parameters.goto.type + (parameters.goto.visualize ? ' goto-clickable-visualize' : ''));
+      return $anchor.addClass('goto-clickable');
     };
 
     /**
@@ -239,7 +242,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var isGotoClickable = self.isGotoClickable();
 
       // Create wrapper for dialog content
-      var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
+      var $dialogContent = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
         'class': 'h5p-dialog-interaction h5p-frame'
       });
 
@@ -251,7 +254,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
-      player.dnb.dialog.toggleClass('goto-clickable-visualize', isGotoClickable && parameters.goto.visualize);
+      player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
+      player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
 
       /**
        * Handle dialog closing once.
@@ -433,6 +437,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     var createPoster = function () {
       var isGotoClickable = self.isGotoClickable();
       var dimensions = getDimensions();
+      var visuals = getVisuals();
 
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
@@ -440,11 +445,27 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           left: parameters.x + '%',
           top: parameters.y + '%',
           width: dimensions.width,
-          height: dimensions.height,
-          background: library !== 'H5P.IVHotspot' ? parameters.visuals.backgroundColor : '',
-          boxShadow: parameters.visuals.boxShadow === false ? 'none' : ''
+          height: dimensions.height
         }
       });
+
+      if (library !== 'H5P.IVHotspot') {
+        // Add background
+        $interaction.css('background', visuals.backgroundColor);
+
+        // Add transparency css
+        var backgroundColors = visuals.backgroundColor.split(',');
+        if (backgroundColors[3]) {
+          var opacity = parseFloat(backgroundColors[3].replace(')', ''));
+          if (opacity === 0) {
+            $interaction.addClass('h5p-transparent-interaction');
+          }
+        }
+      }
+
+      if (visuals.boxShadow === false) {
+        $interaction.addClass('h5p-box-shadow-disabled');
+      }
 
       // Reset link interaction dimensions
       if (library === 'H5P.Link') {
@@ -465,7 +486,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         'class': 'h5p-interaction-outer'
       }).appendTo($interaction);
 
-      $inner = $(isGotoClickable ? '<a>' : '<div>', {
+      $inner = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
         'class': 'h5p-interaction-inner h5p-frame'
       }).appendTo($outer);
 
@@ -603,6 +624,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Determine css classes for interaction
+     * @return {string} Css classes string separated by space
+     */
+    var determineClasses = function () {
+      var classes = parameters.className;
+
+      if (classes === undefined) {
+        var classParts = action.library.split(' ')[0].toLowerCase().split('.');
+        classes = classParts[0] + '-' + classParts[1] + '-interaction';
+      }
+
+      if (parameters.goto && parameters.goto.type === 'timecode') {
+        classes += ' h5p-goto-timecode';
+      }
+
+      return classes;
+    };
+
+    /**
      * Check if interaction support linking on click
      *
      * @return {boolean} True if interaction has functionality for linking on click
@@ -670,7 +710,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         },
         on: {
           click: function () {
-            if (player.currentState === H5P.Video.PLAYING) {
+            if (player.currentState === H5P.Video.VIDEO_CUED) {
+              player.play();
+              player.seek(parameters.duration.from);
+            }
+            else if (player.currentState === H5P.Video.PLAYING) {
               player.seek(parameters.duration.from);
             } else {
               player.play(); // for updating the slider
@@ -816,19 +860,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {number} height in ems
      */
     self.setSize = function (width, height) {
-
-      var isHotspot = (library === 'H5P.IVHotspot');
-      var emRatio = (player.width > player.$videoWrapper.width() ? player.width/player.$videoWrapper.width() : 1);
-
       if (width) {
-        parameters.width = isHotspot ? emRatio * width : width;
+        parameters.width = width;
       }
       if (height) {
-        parameters.height = isHotspot ? emRatio * height : height;
-      }
-
-      if (isHotspot) {
-        $interaction.css(getDimensions());
+        parameters.height = height;
       }
 
       H5P.trigger(instance, 'resize');
@@ -856,6 +892,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Useful if the input parameters have changes.
      */
     self.reCreate = function () {
+      classes = determineClasses();
       if (library !== 'H5P.Nil') {
         action.params = action.params || {};
         action.params.overrideSettings = action.params.overrideSettings || {};

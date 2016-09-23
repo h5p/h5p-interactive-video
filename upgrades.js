@@ -149,25 +149,54 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        * Groups start screen options under a group, hiding nonessential
        * information.
        *
+       * Make existing posters have white background. I.e avoid existing posters
+       * getting the new default, which is full transparency.
+       *
        * @params {Object} parameters
        * @params {function} finished
        */
       11: function (parameters, finished) {
-        var videoParams = parameters.interactiveVideo.video;
-        if (videoParams) {
-          videoParams.advancedSettings = {};
+        if (parameters.interactiveVideo) {
+          var videoParams = parameters.interactiveVideo.video;
+          if (videoParams) {
+            videoParams.advancedSettings = {};
 
-          videoParams.startScreenOptions = videoParams.startScreenOptions || {};
-          videoParams.advancedSettings.startScreenOptions = videoParams.startScreenOptions;
-          videoParams.advancedSettings.startScreenOptions.poster = videoParams.poster;
-          videoParams.advancedSettings.title = videoParams.title;
-          videoParams.advancedSettings.copyright = videoParams.copyright;
+            videoParams.startScreenOptions = videoParams.startScreenOptions || {};
+            videoParams.advancedSettings.startScreenOptions = videoParams.startScreenOptions;
+            videoParams.advancedSettings.startScreenOptions.poster = videoParams.poster;
+            videoParams.advancedSettings.title = videoParams.title;
+            videoParams.advancedSettings.copyright = videoParams.copyright;
 
-          // Remove old fields
-          delete videoParams.startScreenOptions;
-          delete videoParams.poster;
-          delete videoParams.title;
-          delete videoParams.copyright;
+            // Remove old fields
+            delete videoParams.startScreenOptions;
+            delete videoParams.poster;
+            delete videoParams.title;
+            delete videoParams.copyright;
+          }
+
+          if (parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
+            var interactions = parameters.interactiveVideo.assets.interactions;
+            for (var i = 0; i < interactions.length; i++) {
+              var interaction = interactions[i];
+
+              // Set white background + boxShadow for images and textual posters:
+              if(interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library) {
+                var lib = interaction.action.library.split(' ')[0];
+                if (['H5P.Text', 'H5P.Image', 'H5P.Table'].indexOf(lib) !== -1) {
+                  interaction.visuals = {
+                    backgroundColor: 'rgba(255,255,255,1)',
+                    boxShadow: true
+                  };
+                }
+                else if (lib === 'H5P.Link') {
+                  interaction.visuals = {
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    boxShadow: true
+                  }
+                }
+              }
+            }
+          }
         }
 
         finished(null, parameters);

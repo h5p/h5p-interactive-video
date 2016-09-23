@@ -96,7 +96,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Detect whether to add interactivies or just display a plain video.
-    self.justVideo = navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+    self.justVideo = false;
+    var iOSMatches = navigator.userAgent.match(/(iPhone|iPod) OS (\d*)_/i);
+    if(iOSMatches !== null && iOSMatches.length === 3) {
+      // If iOS < 10, let's play video only...
+      self.justVideo = iOSMatches[2] < 10;
+    }
 
     var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
@@ -658,12 +663,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
     if (this.controls.$bookmarks) {
       show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
+      var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
       this.controls.$more.toggleClass('h5p-active', show);
       this.controls.$minimalOverlay.toggleClass('h5p-show', show);
       this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
       this.controls.$bookmarks.toggleClass('h5p-active', show);
-      this.controls.$bookmarksChooser.toggleClass('h5p-show', show);
+      this.controls.$bookmarksChooser.css({maxHeight: show ? this.controlsCss.maxHeight : '32px'}).toggleClass('h5p-show', show);
+
+      // Add classes if changing visibility
+      this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
+      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
   /**
@@ -864,10 +874,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }));
 
+      if (self.showRewind10) {
+        self.controls.$bookmarksChooser.addClass('h5p-rewind-displacement');
+      }
+
       // Button for opening bookmark popup
       self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
         self.toggleBookmarksChooser();
       });
+      self.controls.$bookmarksChooser.bind('transitionend', function () {
+        self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
+        self.controls.$bookmarks.removeClass('h5p-blink')
+      })
     }
 
     // Current time for minimal display
@@ -1367,7 +1385,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Reset control popup calculations
     var popupControlsHeight = this.$videoWrapper.height();
-    var controlsCss = {
+    this.controlsCss = {
       bottom: '',
       maxHeight: popupControlsHeight + 'px'
     };
@@ -1381,13 +1399,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (videoHeight + controlsHeight <= containerHeight) {
         offsetBottom = controlsHeight + ((containerHeight - controlsHeight - videoHeight) / 2);
       }
-      controlsCss.bottom = offsetBottom + 'px';
+      this.controlsCss.bottom = offsetBottom + 'px';
     }
 
     if (this.controls && this.controls.$minimalOverlay) {
-      this.controls.$minimalOverlay.css(controlsCss);
+      this.controls.$minimalOverlay.css(this.controlsCss);
     }
-    this.$container.find('.h5p-chooser').css(controlsCss);
+    this.$container.find('.h5p-chooser').css(this.controlsCss);
 
     // Resize start screen
     if (!this.editor) {
