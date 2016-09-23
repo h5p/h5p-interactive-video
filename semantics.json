@@ -17,56 +17,63 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
-            "name": "poster",
-            "type": "image",
-            "label": "Poster image",
-            "optional": true,
-            "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-          },
-          {
-            "name": "title",
-            "type": "text",
-            "label": "The title of this interactive video",
-            "maxLength": 60,
-            "default": "Interactive Video",
-            "description": "Used in summaries, statistics etc."
-          },
-          {
-            "name": "startScreenOptions",
+            "name": "advancedSettings",
             "type": "group",
-            "label": "Video start screen options",
-            "optional": true,
+            "label": "Advanced settings",
             "fields": [
               {
-                "name": "hideStartTitle",
-                "type": "boolean",
-                "label": "Hide title on video start screen",
-                "optional": true,
-                "default": false
+                "name": "title",
+                "type": "text",
+                "label": "The title of this interactive video",
+                "maxLength": 60,
+                "default": "Interactive Video",
+                "description": "Used in summaries, statistics etc."
               },
               {
-                "name": "shortStartDescription",
+                "name": "copyright",
                 "type": "text",
-                "label": "Short description (Optional)",
+                "widget": "html",
+                "enterMode": "p",
+                "label": "Video copyright information",
                 "optional": true,
-                "maxLength": 120,
-                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                "description": "Information regarding copyright of the video and elements used in the video.",
+                "tags": [
+                  "strong",
+                  "em",
+                  "del",
+                  "a"
+                ]
+              },
+              {
+                "name": "startScreenOptions",
+                "type": "group",
+                "label": "Video start screen options",
+                "optional": true,
+                "fields": [
+                  {
+                    "name": "poster",
+                    "type": "image",
+                    "label": "Poster image",
+                    "optional": true,
+                    "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  },
+                  {
+                    "name": "hideStartTitle",
+                    "type": "boolean",
+                    "label": "Hide title on video start screen",
+                    "optional": true,
+                    "default": false
+                  },
+                  {
+                    "name": "shortStartDescription",
+                    "type": "text",
+                    "label": "Short description (Optional)",
+                    "optional": true,
+                    "maxLength": 120,
+                    "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  }
+                ]
               }
-            ]
-          },
-          {
-            "name": "copyright",
-            "type": "text",
-            "widget": "html",
-            "enterMode": "p",
-            "label": "Video copyright information",
-            "optional": true,
-            "description": "Information regarding copyright of the video and elements used in the video.",
-            "tags": [
-              "strong",
-              "em",
-              "del",
-              "a"
             ]
           }
         ]
@@ -77,7 +84,7 @@
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
-        "poster": "video/poster",
+        "poster": "video/advancedSettings/startScreenOptions/poster",
         "fields": [
           {
             "name": "interactions",
@@ -166,16 +173,18 @@
                     "H5P.Nil 1.0",
                     "H5P.Text 1.1",
                     "H5P.Table 1.1",
-                    "H5P.Link 1.1",
+                    "H5P.Link 1.2",
                     "H5P.Image 1.0",
                     "H5P.Summary 1.5",
-                    "H5P.SingleChoiceSet 1.4",
-                    "H5P.MultiChoice 1.7",
-                    "H5P.Blanks 1.6",
-                    "H5P.DragQuestion 1.6",
+                    "H5P.SingleChoiceSet 1.5",
+                    "H5P.MultiChoice 1.8",
+                    "H5P.Blanks 1.7",
+                    "H5P.DragQuestion 1.7",
                     "H5P.MarkTheWords 1.6",
                     "H5P.DragText 1.5",
-                    "H5P.GoToQuestion 1.0"
+                    "H5P.GoToQuestion 1.1",
+                    "H5P.IVHotspot 1.0",
+                    "H5P.Questionnaire 1.0"
                   ]
                 },
                 {
@@ -259,6 +268,193 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "name": "visuals",
+                  "label": "Visuals",
+                  "type": "group",
+                  "fields": [
+                    {
+                      "name": "backgroundColor",
+                      "type": "text",
+                      "label": "Background color",
+                      "widget": "colorSelector",
+                      "default": "rgb(255, 255, 255)",
+                      "spectrum": {
+                        "showInput": true,
+                        "showAlpha": true,
+                        "preferredFormat": "rgb",
+                        "showPalette": true,
+                        "palette": [
+                          [
+                            "rgba(0, 0, 0, 0)"
+                          ],
+                          [
+                            "rgb(67, 67, 67)",
+                            "rgb(102, 102, 102)",
+                            "rgb(204, 204, 204)",
+                            "rgb(217, 217, 217)",
+                            "rgb(255, 255, 255)"
+                          ],
+                          [
+                            "rgb(152, 0, 0)",
+                            "rgb(255, 0, 0)",
+                            "rgb(255, 153, 0)",
+                            "rgb(255, 255, 0)",
+                            "rgb(0, 255, 0)",
+                            "rgb(0, 255, 255)",
+                            "rgb(74, 134, 232)",
+                            "rgb(0, 0, 255)",
+                            "rgb(153, 0, 255)",
+                            "rgb(255, 0, 255)"
+                          ],
+                          [
+                            "rgb(230, 184, 175)",
+                            "rgb(244, 204, 204)",
+                            "rgb(252, 229, 205)",
+                            "rgb(255, 242, 204)",
+                            "rgb(217, 234, 211)",
+                            "rgb(208, 224, 227)",
+                            "rgb(201, 218, 248)",
+                            "rgb(207, 226, 243)",
+                            "rgb(217, 210, 233)",
+                            "rgb(234, 209, 220)",
+                            "rgb(221, 126, 107)",
+                            "rgb(234, 153, 153)",
+                            "rgb(249, 203, 156)",
+                            "rgb(255, 229, 153)",
+                            "rgb(182, 215, 168)",
+                            "rgb(162, 196, 201)",
+                            "rgb(164, 194, 244)",
+                            "rgb(159, 197, 232)",
+                            "rgb(180, 167, 214)",
+                            "rgb(213, 166, 189)",
+                            "rgb(204, 65, 37)",
+                            "rgb(224, 102, 102)",
+                            "rgb(246, 178, 107)",
+                            "rgb(255, 217, 102)",
+                            "rgb(147, 196, 125)",
+                            "rgb(118, 165, 175)",
+                            "rgb(109, 158, 235)",
+                            "rgb(111, 168, 220)",
+                            "rgb(142, 124, 195)",
+                            "rgb(194, 123, 160)",
+                            "rgb(166, 28, 0)",
+                            "rgb(204, 0, 0)",
+                            "rgb(230, 145, 56)",
+                            "rgb(241, 194, 50)",
+                            "rgb(106, 168, 79)",
+                            "rgb(69, 129, 142)",
+                            "rgb(60, 120, 216)",
+                            "rgb(61, 133, 198)",
+                            "rgb(103, 78, 167)",
+                            "rgb(166, 77, 121)",
+                            "rgb(91, 15, 0)",
+                            "rgb(102, 0, 0)",
+                            "rgb(120, 63, 4)",
+                            "rgb(127, 96, 0)",
+                            "rgb(39, 78, 19)",
+                            "rgb(12, 52, 61)",
+                            "rgb(28, 69, 135)",
+                            "rgb(7, 55, 99)",
+                            "rgb(32, 18, 77)",
+                            "rgb(76, 17, 48)"
+                          ]
+                        ]
+                      }
+                    },
+                    {
+                      "name": "boxShadow",
+                      "type": "boolean",
+                      "label": "Box shadow",
+                      "default": true,
+                      "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                    }
+                  ]
+                },
+                {
+                  "name": "goto",
+                  "label": "Go to on click",
+                  "type": "group",
+                  "fields": [
+                    {
+                      "name": "type",
+                      "label": "Type",
+                      "type": "select",
+                      "widget": "selectToggleFields",
+                      "options": [
+                        {
+                          "value": "timecode",
+                          "label": "Timecode",
+                          "hideFields": [
+                            "url"
+                          ]
+                        },
+                        {
+                          "value": "url",
+                          "label": "Another page (URL)",
+                          "hideFields": [
+                            "time"
+                          ]
+                        }
+                      ],
+                      "optional": true
+                    },
+                    {
+                      "name": "time",
+                      "type": "number",
+                      "widget": "timecode",
+                      "label": "Go To",
+                      "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                      "optional": true
+                    },
+                    {
+                      "name": "url",
+                      "type": "group",
+                      "label": "URL",
+                      "widget": "linkWidget",
+                      "optional": true,
+                      "fields": [
+                        {
+                          "name": "protocol",
+                          "type": "select",
+                          "label": "Protocol",
+                          "options": [
+                            {
+                              "value": "http://",
+                              "label": "http://"
+                            },
+                            {
+                              "value": "https://",
+                              "label": "https://"
+                            },
+                            {
+                              "value": "/",
+                              "label": "(root relative)"
+                            },
+                            {
+                              "value": "other",
+                              "label": "other"
+                            }
+                          ],
+                          "optional": true,
+                          "default": "http://"
+                        },
+                        {
+                          "name": "url",
+                          "type": "text",
+                          "label": "URL",
+                          "optional": true
+                        }
+                      ]
+                    },
+                    {
+                      "name": "visualize",
+                      "type": "boolean",
+                      "label": "Visualize",
+                      "description": "Show that interaction can be clicked by adding a border and an icon"
+                    }
+                  ]
                 }
               ]
             }
@@ -313,7 +509,7 @@
   {
     "name": "override",
     "type": "group",
-    "label": "Settings for \"Show solution\" and \"Retry\" buttons",
+    "label": "Behavioural settings",
     "optional": true,
     "fields": [
       {
@@ -349,6 +545,19 @@
             "label": "Disabled"
           }
         ]
+      },
+      {
+        "name": "showBookmarksmenuOnLoad",
+        "type": "boolean",
+        "label": "Start with bookmarks menu open",
+        "default": false,
+        "description": "This function is not available on iPad when using YouTube as video source"
+      },
+      {
+        "name": "showRewind10",
+        "type": "boolean",
+        "label": "Show button for rewinding 10 seconds",
+        "default": false
       }
     ]
   },
@@ -434,6 +643,27 @@
         "type": "text",
         "label": "Default label for adaptivity seek button",
         "default": "Continue",
+        "optional": true
+      },
+      {
+        "name": "continueWithVideo",
+        "type": "text",
+        "label": "Default label for continue video button",
+        "default": "Continue with video",
+        "optional": true
+      },
+      {
+        "name": "playbackRate",
+        "type": "text",
+        "label": "Set playback rate",
+        "default": "Playback Rate",
+        "optional": true
+      },
+      {
+        "name": "rewind10",
+        "type": "text",
+        "label": "Rewind 10 Seconds",
+        "default": "Rewind 10 Seconds",
         "optional": true
       }
     ]

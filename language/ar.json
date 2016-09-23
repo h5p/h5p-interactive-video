@@ -1,71 +1,98 @@
 {
   "semantics": [
     {
+      "englishLabel": "Interactive Video Editor",
       "label": "محرر الفيديو التفاعلي",
       "fields": [
         {
+          "englishLabel": "Upload/embed video",
           "label": "تحميل الفيديو",
           "fields": [
             {
+              "englishLabel": "Video files",
               "label": "ملفات الفيديو",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
               "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label": "الملصق"
-            },
-            {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
-            },
-            {
-              "label": "Video start screen options",
+              "englishLabel": "Advanced settings",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Hide title on video start screen"
+                  "englishLabel": "The title of this interactive video",
+                  "label": "The title of this interactive video",
+                  "englishDefault": "Interactive Video",
+                  "default": "Interactive Video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "englishLabel": "Video copyright information",
+                  "label": "معلومات حقوق النشر فيديو",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "Video start screen options",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "الملصق",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "Hide title on video start screen"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "Short description (Optional)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "Optional. Display a short description text on the video start screen."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "معلومات حقوق النشر فيديو",
-              "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
             }
           ]
         },
         {
+          "englishLabel": "Add interactions",
           "label": "إضافة التفاعلات",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "عرض الوقت",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "englishLabel": "Display time",
+                    "label": "عرض الوقت"
                   },
                   {
+                    "englishLabel": "Pause video",
                     "label": "إيقاف مؤقت"
                   },
                   {
+                    "englishLabel": "Display as",
                     "label": "Display as",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options": [
                       {
+                        "englishLabel": "Button",
                         "label": "Button"
                       },
                       {
+                        "englishLabel": "Poster",
                         "label": "Poster"
                       }
                     ]
                   },
                   {
+                    "englishLabel": "Label",
                     "label": "التسمية",
+                    "englishDescription": "Label displayed next to interaction icon.",
                     "description": "تسمية تظهر بجوار رمز التفاعل"
                   },
                   {},
@@ -74,69 +101,156 @@
                   {},
                   {},
                   {
+                    "englishLabel": "Adaptivity",
                     "label": "قابلية التكيف",
                     "fields": [
                       {
+                        "englishLabel": "Action on all correct",
                         "label": "إجراء بشأن كلها صحيحة",
                         "fields": [
                           {
+                            "englishLabel": "Seek to",
                             "label": "تحرك الي",
+                            "englishDescription": "Enter timecode in the format M:SS",
                             "description": "أدخل رمز الوقت في تنسيق M: SS"
                           },
                           {
+                            "englishLabel": "Allow the user to opt out and continue",
                             "label": "تسمح للمستخدم لاختيار التجاوز والاستمرار"
                           },
                           {
+                            "englishLabel": "Message",
                             "label": "رسالة"
                           },
                           {
+                            "englishLabel": "Label for seek button",
                             "label": "تسمية زر التحرك الي"
                           }
                         ]
                       },
                       {
+                        "englishLabel": "Action on wrong",
                         "label": "إجراء بشأن كلها خطاء",
                         "fields": [
                           {
+                            "englishLabel": "Seek to",
                             "label": "تحرك الي",
+                            "englishDescription": "Enter timecode in the format M:SS",
                             "description": "أدخل رمز الوقت في تنسيق M: SS"
                           },
                           {
+                            "englishLabel": "Allow the user to opt out and continue",
                             "label": "تسمح للمستخدم لاختيار التجاوز والاستمرار"
                           },
                           {
+                            "englishLabel": "Message",
                             "label": "رسالة"
                           },
                           {
+                            "englishLabel": "Label for seek button",
                             "label": "تسمية زر التحرك الي"
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Background color",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Box shadow",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Type",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Timecode"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Go To",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(root relative)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualize",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field": {
-                "fields": [
-                  {},
-                  {}
-                ]
-              }
-            }
+            {}
           ]
         },
         {
+          "englishLabel": "Summary task",
           "label": "ملخص النشاط",
           "fields": [
+            {},
             {
-              "default": {
-                "params": {}
-              }
-            },
-            {
+              "englishLabel": "Display at",
               "label": "عرض في",
+              "englishDescription": "Number of seconds before the video ends.",
               "description": "عدد الثواني قبل انتهاء الفيديو"
             }
           ]
@@ -144,69 +258,140 @@
       ]
     },
     {
-      "label": "إعدادات \"مشاهدة حل \" الزر، و\"إعادة المحاولة \".",
+      "englishLabel": "Behavioural settings",
+      "label": "Behavioural settings",
       "fields": [
         {
+          "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
+              "englishLabel": "Enabled",
               "label": "Enabled"
             },
             {
+              "englishLabel": "Disabled",
               "label": "Disabled"
             }
           ]
         },
         {
+          "englishLabel": "Override \"Retry\" button",
           "label": "Override \"Retry\" button",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
+              "englishLabel": "Enabled",
               "label": "Enabled"
             },
             {
+              "englishLabel": "Disabled",
               "label": "Disabled"
             }
           ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Show bookmarks menu on load",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "This function is not available on iPad when using YouTube as video source"
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Show button for rewinding 10 seconds"
         }
       ]
     },
     {
+      "englishLabel": "Localize",
       "label": "Localize",
       "fields": [
         {
-          "label": "عنوان التفاعل"
+          "englishLabel": "Interaction title",
+          "label": "عنوان التفاعل",
+          "englishDefault": "Interaction",
+          "default": "Interaction"
         },
         {
-          "label": "لقب التشغيل"
+          "englishLabel": "Play title",
+          "label": "لقب التشغيل",
+          "englishDefault": "Play",
+          "default": "Play"
         },
         {
-          "label": "عنوان إيقاف مؤقت"
+          "englishLabel": "Pause title",
+          "label": "عنوان إيقاف مؤقت",
+          "englishDefault": "Pause",
+          "default": "Pause"
         },
         {
-          "label": "عنوان كتم الصوت"
+          "englishLabel": "Mute title",
+          "label": "عنوان كتم الصوت",
+          "englishDefault": "Mute",
+          "default": "Mute"
         },
         {
-          "label": "عنوان عدم كتمان الصوت"
+          "englishLabel": "Unmute title",
+          "label": "عنوان عدم كتمان الصوت",
+          "englishDefault": "Unmute",
+          "default": "Unmute"
         },
         {
-          "label": "عنوان جودة الفيديو"
+          "englishLabel": "Video quality title",
+          "label": "عنوان جودة الفيديو",
+          "englishDefault": "Video Quality",
+          "default": "Video Quality"
         },
         {
-          "label": "عنوان ملء الشاشة"
+          "englishLabel": "Fullscreen title",
+          "label": "عنوان ملء الشاشة",
+          "englishDefault": "Fullscreen",
+          "default": "Fullscreen"
         },
         {
-          "label": "عنوان الخروج ملء الشاشة"
+          "englishLabel": "Exit fullscreen title",
+          "label": "عنوان الخروج ملء الشاشة",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Fullscreen"
         },
         {
-          "label": "عنوان الملخص"
+          "englishLabel": "Summary title",
+          "label": "عنوان الملخص",
+          "englishDefault": "Summary",
+          "default": "Summary"
         },
         {
-          "label": "عنوان الإشارات المرجعية"
+          "englishLabel": "Bookmarks title",
+          "label": "عنوان الإشارات المرجعية",
+          "englishDefault": "Bookmarks",
+          "default": "Bookmarks"
         },
         {
-          "label": "التسمية الافتراضية لقابلية التكيف زر السعى"
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "التسمية الافتراضية لقابلية التكيف زر السعى",
+          "englishDefault": "Continue",
+          "default": "Continue"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Default label for continue video button",
+          "englishDefault": "Continue with video",
+          "default": "Continue with video"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Set playback rate",
+          "englishDefault": "Playback Rate",
+          "default": "Playback Rate"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Rewind 10 Seconds",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
         }
       ]
     }

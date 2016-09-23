@@ -1,71 +1,98 @@
 {
   "semantics": [
     {
+      "englishLabel": "Interactive Video Editor",
       "label": "Editor Video Interattivo",
       "fields": [
         {
+          "englishLabel": "Upload/embed video",
           "label": "Carica video",
           "fields": [
             {
+              "englishLabel": "Video files",
               "label": "File Video",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
-              "label": "Poster"
-            },
-            {
-              "label": "The title of this interactive video",
-              "default": "Interactive Video",
-              "description": "Used in summaries, statistics etc."
-            },
-            {
-              "label": "Video start screen options",
+              "englishLabel": "Advanced settings",
+              "label": "Advanced settings",
               "fields": [
                 {
-                  "label": "Hide title on video start screen"
+                  "englishLabel": "The title of this interactive video",
+                  "label": "The title of this interactive video",
+                  "englishDefault": "Interactive Video",
+                  "default": "Interactive Video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "englishLabel": "Video copyright information",
+                  "label": "Informazioni Copyright Video",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "Video start screen options",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "Poster",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "Hide title on video start screen"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "Short description (Optional)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "Optional. Display a short description text on the video start screen."
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "label": "Informazioni Copyright Video",
-              "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
             }
           ]
         },
         {
+          "englishLabel": "Add interactions",
           "label": "Aggiungi interazioni",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Visualizza tempo",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "englishLabel": "Display time",
+                    "label": "Visualizza tempo"
                   },
                   {
+                    "englishLabel": "Pause video",
                     "label": "Pausa"
                   },
                   {
+                    "englishLabel": "Display as",
                     "label": "Display as",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options": [
                       {
+                        "englishLabel": "Button",
                         "label": "Button"
                       },
                       {
+                        "englishLabel": "Poster",
                         "label": "Poster"
                       }
                     ]
                   },
                   {
+                    "englishLabel": "Label",
                     "label": "Etchetta",
+                    "englishDescription": "Label displayed next to interaction icon.",
                     "description": "Etichetta visualizzata accanto all'icona interazione."
                   },
                   {},
@@ -74,69 +101,156 @@
                   {},
                   {},
                   {
+                    "englishLabel": "Adaptivity",
                     "label": "Adattabilità",
                     "fields": [
                       {
+                        "englishLabel": "Action on all correct",
                         "label": "Azione su Tutto corretto",
                         "fields": [
                           {
+                            "englishLabel": "Seek to",
                             "label": "Vai a",
+                            "englishDescription": "Enter timecode in the format M:SS",
                             "description": "Inserisci il timecode in formato M:SS"
                           },
                           {
+                            "englishLabel": "Allow the user to opt out and continue",
                             "label": "Consentire all'utente di uscire e continuare"
                           },
                           {
+                            "englishLabel": "Message",
                             "label": "Messaggio"
                           },
                           {
+                            "englishLabel": "Label for seek button",
                             "label": "Etichetta per pulsante Vai a"
                           }
                         ]
                       },
                       {
+                        "englishLabel": "Action on wrong",
                         "label": "Azione su Errato",
                         "fields": [
                           {
+                            "englishLabel": "Seek to",
                             "label": "Vai a",
+                            "englishDescription": "Enter timecode in the format M:SS",
                             "description": "Inserisci il timecode in formato M:SS"
                           },
                           {
+                            "englishLabel": "Allow the user to opt out and continue",
                             "label": "Consentire all'utente di uscire e continuare"
                           },
                           {
+                            "englishLabel": "Message",
                             "label": "Messaggio"
                           },
                           {
+                            "englishLabel": "Label for seek button",
                             "label": "Etichetta per pulsante Vai a"
                           }
                         ]
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Background color",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Box shadow",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Type",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Timecode"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Go To",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(root relative)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualize",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field": {
-                "fields": [
-                  {},
-                  {}
-                ]
-              }
-            }
+            {}
           ]
         },
         {
+          "englishLabel": "Summary task",
           "label": "Riepilogo attività",
           "fields": [
+            {},
             {
-              "default": {
-                "params": {}
-              }
-            },
-            {
+              "englishLabel": "Display at",
               "label": "Visualizza a",
+              "englishDescription": "Number of seconds before the video ends.",
               "description": "Numero di secondi prima della fine del video."
             }
           ]
@@ -144,69 +258,140 @@
       ]
     },
     {
-      "label": "Impostazioni per i pulsanti \"Mostra soluzione\" e \"Riprova\".",
+      "englishLabel": "Behavioural settings",
+      "label": "Behavioural settings",
       "fields": [
         {
+          "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
+              "englishLabel": "Enabled",
               "label": "Enabled"
             },
             {
+              "englishLabel": "Disabled",
               "label": "Disabled"
             }
           ]
         },
         {
+          "englishLabel": "Override \"Retry\" button",
           "label": "Override \"Retry\" button",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
+              "englishLabel": "Enabled",
               "label": "Enabled"
             },
             {
+              "englishLabel": "Disabled",
               "label": "Disabled"
             }
           ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Show bookmarks menu on load",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "This function is not available on iPad when using YouTube as video source"
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Show button for rewinding 10 seconds"
         }
       ]
     },
     {
+      "englishLabel": "Localize",
       "label": "Localize",
       "fields": [
         {
-          "label": "Titolo Interazione"
+          "englishLabel": "Interaction title",
+          "label": "Titolo Interazione",
+          "englishDefault": "Interaction",
+          "default": "Interaction"
         },
         {
-          "label": "Titolo Play"
+          "englishLabel": "Play title",
+          "label": "Titolo Play",
+          "englishDefault": "Play",
+          "default": "Play"
         },
         {
-          "label": "Titolo Pausa"
+          "englishLabel": "Pause title",
+          "label": "Titolo Pausa",
+          "englishDefault": "Pause",
+          "default": "Pause"
         },
         {
-          "label": "Titolo modalità muto"
+          "englishLabel": "Mute title",
+          "label": "Titolo modalità muto",
+          "englishDefault": "Mute",
+          "default": "Mute"
         },
         {
-          "label": "Titolo disattiva modalità muto"
+          "englishLabel": "Unmute title",
+          "label": "Titolo disattiva modalità muto",
+          "englishDefault": "Unmute",
+          "default": "Unmute"
         },
         {
-          "label": "Titolo qualità Video"
+          "englishLabel": "Video quality title",
+          "label": "Titolo qualità Video",
+          "englishDefault": "Video Quality",
+          "default": "Video Quality"
         },
         {
-          "label": "Titolo Schermo intero"
+          "englishLabel": "Fullscreen title",
+          "label": "Titolo Schermo intero",
+          "englishDefault": "Fullscreen",
+          "default": "Fullscreen"
         },
         {
-          "label": "Titolo Esci da Schermo intero"
+          "englishLabel": "Exit fullscreen title",
+          "label": "Titolo Esci da Schermo intero",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Exit Fullscreen"
         },
         {
-          "label": "Titolo Riepilogo"
+          "englishLabel": "Summary title",
+          "label": "Titolo Riepilogo",
+          "englishDefault": "Summary",
+          "default": "Summary"
         },
         {
-          "label": "Titolo Segnalibri"
+          "englishLabel": "Bookmarks title",
+          "label": "Titolo Segnalibri",
+          "englishDefault": "Bookmarks",
+          "default": "Bookmarks"
         },
         {
-          "label": "Etichetta predefinita per adattabilità pulsante Vai a"
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "Etichetta predefinita per adattabilità pulsante Vai a",
+          "englishDefault": "Continue",
+          "default": "Continue"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Default label for continue video button",
+          "englishDefault": "Continue with video",
+          "default": "Continue with video"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Set playback rate",
+          "englishDefault": "Playback Rate",
+          "default": "Playback Rate"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Rewind 10 Seconds",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
         }
       ]
     }
