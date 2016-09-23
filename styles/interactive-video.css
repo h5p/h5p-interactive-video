@@ -624,6 +624,11 @@
   -moz-transition: transform 0.3s, opacity 0.3s, max-height 0.3s, left 0.3s;
   transition: transform 0.3s, opacity 0.3s, max-height 0.3s, left 0.3s;
 }
+
+.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-rewind-displacement {
+  left: 8px;
+}
+
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks:not(.h5p-show) {
   pointer-events: none;
 }

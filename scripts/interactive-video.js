@@ -874,6 +874,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }));
 
+      if (self.showRewind10) {
+        self.controls.$bookmarksChooser.addClass('h5p-rewind-displacement');
+      }
+
       // Button for opening bookmark popup
       self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
         self.toggleBookmarksChooser();
