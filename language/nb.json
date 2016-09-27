@@ -33,6 +33,10 @@
                   "description": "Informasjon om opphavsrett for videoen og andre elementer brukt i interaksjonene."
                 },
                 {
+                  "label": "Start video at",
+                  "description": "Enter timecode in the format M:SS"
+                },				
+                {
                   "englishLabel": "Video start screen options",
                   "label": "Video startskjerm innstillinger",
                   "fields": [

@@ -45,6 +45,14 @@
                 ]
               },
               {
+                "name": "startVideoAt",
+                "type": "number",
+                "widget": "timecode",
+                "label": "Start video at",
+                "optional": true,
+                "description": "Enter timecode in the format M:SS"
+              },
+              {
                 "name": "startScreenOptions",
                 "type": "group",
                 "label": "Video start screen options",

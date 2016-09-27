@@ -33,6 +33,10 @@
                   "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
                 },
                 {
+                  "label": "Start video at",
+                  "description": "Enter timecode in the format M:SS"
+                },
+                  {
                   "englishLabel": "Video start screen options",
                   "label": "Ajuste de interacciones",
                   "fields": [
