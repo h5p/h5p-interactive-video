@@ -11,6 +11,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   function InteractiveVideo(params, id, contentData) {
     var self = this;
+    var startAt;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -103,7 +104,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.justVideo = iOSMatches[2] < 10;
     }
 
-    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    // set start time
+    startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    if (startAt === 0 && !!self.options.video.advancedSettings.startVideoAt) {
+      startAt = self.options.video.advancedSettings.startVideoAt;
+    }
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',

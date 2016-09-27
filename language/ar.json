@@ -33,6 +33,10 @@
                   "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
                 },
                 {
+                  "label": "Start video at",
+                  "description": "Enter timecode in the format M:SS"
+                },
+                {
                   "englishLabel": "Video start screen options",
                   "label": "Video start screen options",
                   "fields": [

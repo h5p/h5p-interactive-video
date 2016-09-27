@@ -33,6 +33,10 @@
                   "description": "展示视频及其中所用元素的版权信息。"
                 },
                 {
+                  "label": "Start video at",
+                  "description": "Enter timecode in the format M:SS"
+                },
+                {
                   "englishLabel": "Video start screen options",
                   "label": "首帧显示项",
                   "fields": [
