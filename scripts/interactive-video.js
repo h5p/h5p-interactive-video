@@ -1652,7 +1652,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.updateInteractions(time);
 
     setTimeout(function () {
-      if (self.currentState === H5P.Video.PLAYING) {
+      if (self.currentState === H5P.Video.PLAYING ||
+        (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
+      ) {
         self.timeUpdate(self.video.getCurrentTime());
       }
     }, 40); // 25 fps
