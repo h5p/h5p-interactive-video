@@ -60,6 +60,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (params.override !== undefined) {
       self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
       self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
+      self.preventSkipping = params.override.preventSkipping || false;
     }
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -653,7 +654,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
-    if (this.options.assets.bookmarks !== undefined) {
+    if (this.options.assets.bookmarks !== undefined && !this.preventSkipping) {
       for (var i = 0; i < this.options.assets.bookmarks.length; i++) {
         this.addBookmark(i);
       }
@@ -686,7 +687,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Puts a single cool narrow line around the slider / seek bar.
    *
    * @param {number} id
-   * @param {number} tenth
+   * @param {number} [tenth]
    * @returns {H5P.jQuery}
    */
   InteractiveVideo.prototype.addBookmark = function (id, tenth) {
@@ -784,6 +785,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
     var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
     var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
+    if (self.preventSkipping) {
+      $slider.addClass('disabled');
+    }
 
     // Keep track of all controls
     self.controls = {};
@@ -861,7 +865,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * Only available for controls.
      * @private
      */
-    var bookmarksEnabled = ((self.options.assets.bookmarks && self.options.assets.bookmarks.length) || self.editor);
+    var hasBookmarks = self.options.assets.bookmarks && self.options.assets.bookmarks.length;
+    var bookmarksEnabled = self.editor || (hasBookmarks && !self.preventSkipping);
 
     // Add bookmark controls
     if (bookmarksEnabled) {
@@ -1144,6 +1149,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
     });
+
+    // Disable slider
+    if (self.preventSkipping) {
+      self.controls.$slider.slider('disable');
+      self.controls.$slider.click(function () {
+        return false;
+      });
+    }
 
     /* Show bookmarks, except when youtube is used on iPad */
     if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {

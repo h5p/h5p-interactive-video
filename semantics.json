@@ -567,6 +567,13 @@
         "type": "boolean",
         "label": "Show button for rewinding 10 seconds",
         "default": false
+      },
+      {
+        "name": "preventSkipping",
+        "type": "boolean",
+        "default": false,
+        "label": "Prevent skipping forward in a video",
+        "description": "Enabling this options will disable user video navigation through default controls"
       }
     ]
   },
