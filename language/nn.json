@@ -33,7 +33,9 @@
                   "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
                 },
                 {
+                  "englishLabel": "Start video at",
                   "label": "Start video at",
+                  "englishDescription": "Enter timecode in the format M:SS",
                   "description": "Enter timecode in the format M:SS"
                 },
                 {
@@ -306,6 +308,12 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Prevent skipping forward in a video",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Enabling this options will disable user video navigation through default controls"
         }
       ]
     },
