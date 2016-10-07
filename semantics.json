@@ -186,6 +186,7 @@
                     "H5P.Summary 1.5",
                     "H5P.SingleChoiceSet 1.5",
                     "H5P.MultiChoice 1.8",
+                    "H5P.TrueFalse 1.0",
                     "H5P.Blanks 1.7",
                     "H5P.DragQuestion 1.7",
                     "H5P.MarkTheWords 1.6",
