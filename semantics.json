@@ -17,9 +17,9 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
-            "name": "advancedSettings",
+            "name": "startScreenOptions",
             "type": "group",
-            "label": "Advanced settings",
+            "label": "Start sreen options",
             "fields": [
               {
                 "name": "title",
@@ -53,34 +53,26 @@
                 "description": "Enter timecode in the format M:SS"
               },
               {
-                "name": "startScreenOptions",
-                "type": "group",
-                "label": "Video start screen options",
+                "name": "poster",
+                "type": "image",
+                "label": "Poster image",
                 "optional": true,
-                "fields": [
-                  {
-                    "name": "poster",
-                    "type": "image",
-                    "label": "Poster image",
-                    "optional": true,
-                    "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                  },
-                  {
-                    "name": "hideStartTitle",
-                    "type": "boolean",
-                    "label": "Hide title on video start screen",
-                    "optional": true,
-                    "default": false
-                  },
-                  {
-                    "name": "shortStartDescription",
-                    "type": "text",
-                    "label": "Short description (Optional)",
-                    "optional": true,
-                    "maxLength": 120,
-                    "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
-                  }
-                ]
+                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+              },
+              {
+                "name": "hideStartTitle",
+                "type": "boolean",
+                "label": "Hide title on video start screen",
+                "optional": true,
+                "default": false
+              },
+              {
+                "name": "shortStartDescription",
+                "type": "text",
+                "label": "Short description (Optional)",
+                "optional": true,
+                "maxLength": 120,
+                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
               }
             ]
           }
@@ -92,7 +84,7 @@
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
-        "poster": "video/advancedSettings/startScreenOptions/poster",
+        "poster": "video/startScreenOptions/poster",
         "fields": [
           {
             "name": "interactions",
