@@ -776,11 +776,25 @@
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
+
+.h5p-interactive-video .h5p-slider.disabled .ui-slider {
+  background: #000;
+}
+
 .h5p-interactive-video .h5p-slider .ui-slider-range {
   color: #e2e2e2;
   height: 9px;
   border-radius: 0;
 }
+.h5p-interactive-video .h5p-slider.disabled .ui-slider-range {
+  background: #4d4d4d;
+}
+
+.h5p-interactive-video .h5p-slider.disalbed .ui-slider.ui-state-disabled {
+  opacity: 1;
+  filter: none;
+}
+
 .h5p-interactive-video .h5p-slider .ui-slider-handle {
   cursor: pointer;
   top: -4px;
@@ -827,6 +841,10 @@
   background: #4d4d4d;
 }
 
+.h5p-interactive-video .h5p-slider.disabled .h5p-buffered {
+  background: #383838;
+}
+
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container {
   position: relative;
 }
@@ -841,6 +859,10 @@
   transform: translateX(-50%);
 }
 
+.h5p-interactive-video .h5p-seekbar-interaction.disabled {
+  background: #772278;
+}
+
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled):hover {
   background: #b83db9;
 }
@@ -850,6 +872,13 @@
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction {
   background: #1d5cff;
+}
+
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-image-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-text-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-link-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-table-interaction {
+  background: #224ebf;
 }
 
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-image-interaction:hover,
@@ -863,6 +892,13 @@
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode {
   background: #018d82;
 }
+
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode {
+  background: #0e7068;
+}
+
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-gotoquestion-interaction:hover,
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-ivhotspot-interaction:hover,
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-goto-timecode:hover {
