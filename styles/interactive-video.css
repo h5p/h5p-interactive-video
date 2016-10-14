@@ -451,6 +451,7 @@
   cursor: pointer;
 }
 
+.h5p-interactive-video .h5p-control.h5p-time,
 .h5p-interactive-video .h5p-control.h5p-slider.disabled .ui-slider-handle,
 .h5p-interactive-video .h5p-control.h5p-slider.disabled {
   cursor: default;
@@ -792,7 +793,12 @@
   border: 0;
   background: #fbfbfb;
 }
-.h5p-interactive-video .h5p-slider .ui-slider-handle:before {
+
+.h5p-interactive-video .h5p-slider.disabled .ui-slider-handle {
+  background: none;
+}
+
+.h5p-interactive-video .h5p-slider:not(.disabled) .ui-slider-handle:before {
   font-family: H5PInteractiveVideo;
   content: "\e001";
   font-size: 26px;
