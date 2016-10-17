@@ -787,7 +787,7 @@
   border-radius: 0;
 }
 .h5p-interactive-video .h5p-slider.disabled .ui-slider-range {
-  background: #4d4d4d;
+  background: #7a7a7a;
 }
 
 .h5p-interactive-video .h5p-slider.disalbed .ui-slider.ui-state-disabled {
@@ -839,10 +839,6 @@
   height: 8px;
   width: 0;
   background: #4d4d4d;
-}
-
-.h5p-interactive-video .h5p-slider.disabled .h5p-buffered {
-  background: #383838;
 }
 
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container {
