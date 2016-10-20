@@ -447,6 +447,10 @@
   cursor: pointer;
 }
 
+.h5p-interactive-video .h5p-control.h5p-disabled {
+  cursor: default;
+}
+
 .h5p-interactive-video .h5p-control.h5p-time,
 .h5p-interactive-video .h5p-control.h5p-slider.disabled .ui-slider-handle,
 .h5p-interactive-video .h5p-control.h5p-slider.disabled {
@@ -762,6 +766,7 @@
   padding: 14px 8px 12px;
   margin: 0;
   height: 10px;
+  cursor: default;
 }
 .h5p-interactive-video .h5p-slider .ui-slider {
   background: #0b0d0c;
@@ -849,6 +854,7 @@
   border-radius: 50%;
   background: #981d99;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 
 .h5p-interactive-video .h5p-seekbar-interaction.disabled {
