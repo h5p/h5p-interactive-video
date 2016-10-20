@@ -135,7 +135,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
+    /**
+     * Keep track if the video source is loaded.
+     * @private
+     */
+    var isLoaded = false;
+
+    // Handle video source loaded events (metadata)
     self.video.on('loaded', function (event) {
+      isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
@@ -149,7 +157,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var firstPlay = true;
     self.video.on('stateChange', function (event) {
 
-      if (!self.controls && self.oneSecondInPercentage !== undefined) {
+      if (!self.controls && isLoaded) {
         // Add controls if they're missing and 'loaded' has happened
         self.addControls();
         self.trigger('resize');
