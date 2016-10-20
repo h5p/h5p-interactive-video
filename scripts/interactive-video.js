@@ -696,7 +696,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Add classes if changing visibility
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
-      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
   /**
@@ -911,7 +910,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
-        self.controls.$bookmarks.removeClass('h5p-blink')
       })
     }
 
