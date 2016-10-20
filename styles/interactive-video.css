@@ -415,10 +415,6 @@
   outline: 0;
   transition: box-shadow 0.1s ease-out 0.3s;
 }
-.h5p-interactive-video .h5p-control.h5p-blink {
-  box-shadow: inset 0 0 2px 2px white;
-  transition: none;
-}
 
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
