@@ -30,36 +30,6 @@
                 "description": "Used in summaries, statistics etc."
               },
               {
-                "name": "copyright",
-                "type": "text",
-                "widget": "html",
-                "enterMode": "p",
-                "label": "Video copyright information",
-                "optional": true,
-                "description": "Information regarding copyright of the video and elements used in the video.",
-                "tags": [
-                  "strong",
-                  "em",
-                  "del",
-                  "a"
-                ]
-              },
-              {
-                "name": "startVideoAt",
-                "type": "number",
-                "widget": "timecode",
-                "label": "Start video at",
-                "optional": true,
-                "description": "Enter timecode in the format M:SS"
-              },
-              {
-                "name": "poster",
-                "type": "image",
-                "label": "Poster image",
-                "optional": true,
-                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-              },
-              {
                 "name": "hideStartTitle",
                 "type": "boolean",
                 "label": "Hide title on video start screen",
@@ -73,6 +43,36 @@
                 "optional": true,
                 "maxLength": 120,
                 "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+              },
+              {
+                "name": "poster",
+                "type": "image",
+                "label": "Poster image",
+                "optional": true,
+                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+              },
+              {
+                "name": "startVideoAt",
+                "type": "number",
+                "widget": "timecode",
+                "label": "Start video at",
+                "optional": true,
+                "description": "Enter timecode in the format M:SS"
+              },
+              {
+                "name": "copyright",
+                "type": "text",
+                "widget": "html",
+                "enterMode": "p",
+                "label": "Video copyright information",
+                "optional": true,
+                "description": "Information regarding copyright of the video and elements used in the video.",
+                "tags": [
+                  "strong",
+                  "em",
+                  "del",
+                  "a"
+                ]
               }
             ]
           }
