@@ -52,14 +52,6 @@
                 "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
               },
               {
-                "name": "startVideoAt",
-                "type": "number",
-                "widget": "timecode",
-                "label": "Start video at",
-                "optional": true,
-                "description": "Enter timecode in the format M:SS"
-              },
-              {
                 "name": "copyright",
                 "type": "text",
                 "widget": "html",
@@ -513,6 +505,14 @@
     "label": "Behavioural settings",
     "optional": true,
     "fields": [
+      {
+        "name": "startVideoAt",
+        "type": "number",
+        "widget": "timecode",
+        "label": "Start video at",
+        "optional": true,
+        "description": "Enter timecode in the format M:SS"
+      },
       {
         "name": "showSolutionButton",
         "type": "select",

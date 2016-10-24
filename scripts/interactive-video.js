@@ -106,8 +106,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // set start time
     startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-    if (startAt === 0 && !!self.options.video.startScreenOptions.startVideoAt) {
-      startAt = self.options.video.startScreenOptions.startVideoAt;
+    if (startAt === 0 && !!params.override.startVideoAt) {
+      startAt = params.override.startVideoAt;
     }
 
     // Start up the video player
