@@ -15,8 +15,8 @@
               "description": "Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Advanced settings",
+              "englishLabel": "Start screen options",
+              "label": "Start screen options",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,38 +27,26 @@
                   "description": "Utilizado en extractos, estadísticas, etc."
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Ocultar el título al inicio del video"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Descripción corta (Opcional)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Cartel",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "Derechos de autor del video",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
-                },
-                {
-                  "englishLabel": "Start video at",
-                  "label": "Start video at",
-                  "englishDescription": "Enter timecode in the format M:SS",
-                  "description": "Enter timecode in the format M:SS"
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "Ajuste de interacciones",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "Cartel",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "Ocultar el título al inicio del video"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "Descripción corta (Opcional)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
-                    }
-                  ]
                 }
               ]
             }
@@ -267,6 +255,12 @@
       "englishLabel": "Behavioural settings",
       "label": "Behavioural settings",
       "fields": [
+        {
+          "englishLabel": "Start video at",
+          "label": "Start video at",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
         {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",

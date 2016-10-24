@@ -27,38 +27,26 @@
                   "description": "用于最后测试、统计。"
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "视频首帧显示中隐藏标题。"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "简述 (可选)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "选填。在视频首帧中展示的简短文字描述。"
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "海报图片",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "版权信息",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "展示视频及其中所用元素的版权信息。"
-                },
-                {
-                  "englishLabel": "Start video at",
-                  "label": "Start video at",
-                  "englishDescription": "Enter timecode in the format M:SS",
-                  "description": "Enter timecode in the format M:SS"
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "首帧显示项",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "海报图片",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "视频首帧显示中隐藏标题。"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "简述 (可选)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "选填。在视频首帧中展示的简短文字描述。"
-                    }
-                  ]
                 }
               ]
             }
@@ -267,6 +255,12 @@
       "englishLabel": "Behavioural settings",
       "label": "Behavioural settings",
       "fields": [
+        {
+          "englishLabel": "Start video at",
+          "label": "Start video at",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
         {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",

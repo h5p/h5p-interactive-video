@@ -15,8 +15,8 @@
               "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Advanced settings",
+              "englishLabel": "Start screen options",
+              "label": "Start screen options",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,38 +27,26 @@
                   "description": "Utilisé dans les récapitulatifs, statistiques, etc."
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Cacher le titre sur l'écran de lancement de la vidéo"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Courte description (en option)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Image de la vidéo ",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "Informations sur le copyright de la vidéo",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
-                },
-                {
-                  "englishLabel": "Start video at",
-                  "label": "Start video at",
-                  "englishDescription": "Enter timecode in the format M:SS",
-                  "description": "Enter timecode in the format M:SS"
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "Options de l'écran de lancement de la vidéo",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "Image de la vidéo ",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "Cacher le titre sur l'écran de lancement de la vidéo"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "Courte description (en option)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
-                    }
-                  ]
                 }
               ]
             }
@@ -267,6 +255,12 @@
       "englishLabel": "Behavioural settings",
       "label": "Behavioural settings",
       "fields": [
+        {
+          "englishLabel": "Start video at",
+          "label": "Start video at",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
         {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Ecraser le bouton \"Voir la correction\"",
