@@ -129,7 +129,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
+    /**
+     * Keep track if the video source is loaded.
+     * @private
+     */
+    var isLoaded = false;
+
+    // Handle video source loaded events (metadata)
     self.video.on('loaded', function (event) {
+      isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
@@ -143,8 +151,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var firstPlay = true;
     self.video.on('stateChange', function (event) {
 
-      if (!self.controls) {
-        // Add controls if they're missing
+      if (!self.controls && isLoaded) {
+        // Add controls if they're missing and 'loaded' has happened
         self.addControls();
         self.trigger('resize');
       }
@@ -202,6 +210,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           // Make sure we track buffering of the video.
           self.startUpdatingBufferBar();
+
           break;
       }
     });
@@ -370,11 +379,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
 
-    if (this.currentState === InteractiveVideo.LOADED) {
-      if (!this.video.pressToPlay) {
+    if (!this.video.pressToPlay) {
+      if (this.currentState === InteractiveVideo.LOADED) {
+        // Add all controls
         this.addControls();
       }
+      else {
+        // Add splash to allow start playing before video load
+        // (play may be needed to trigger load incase preloaded="none" is default)
+        this.addSplash();
+      }
     }
+
+
     this.currentState = InteractiveVideo.ATTACHED;
   };
 
@@ -395,7 +412,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addSplash = function () {
     var that = this;
-    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play) {
+    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play || this.$splash) {
       return;
     }
 
@@ -1652,7 +1669,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.updateInteractions(time);
 
     setTimeout(function () {
-      if (self.currentState === H5P.Video.PLAYING) {
+      if (self.currentState === H5P.Video.PLAYING ||
+        (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
+      ) {
         self.timeUpdate(self.video.getCurrentTime());
       }
     }, 40); // 25 fps
