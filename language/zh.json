@@ -15,8 +15,8 @@
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Advanced settings",
+              "englishLabel": "Start screen options",
+              "label": "Start screen options",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",

@@ -257,7 +257,7 @@
       "fields": [
         {
           "englishLabel": "Start video at",
-          "label": "Start video at",
+          "label": "Begynn på",
           "englishDescription": "Enter timecode in the format M:SS",
           "description": "Enter timecode in the format M:SS"
         },

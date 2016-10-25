@@ -19,7 +19,7 @@
           {
             "name": "startScreenOptions",
             "type": "group",
-            "label": "Start sreen options",
+            "label": "Start screen options",
             "fields": [
               {
                 "name": "title",
