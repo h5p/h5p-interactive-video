@@ -11,6 +11,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   function InteractiveVideo(params, id, contentData) {
     var self = this;
+    var startAt;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -25,19 +26,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       video: {},
       assets: {}
     }, params.interactiveVideo);
-    self.options.video.advancedSettings = self.options.video.advancedSettings || {};
-    self.options.video.advancedSettings.startScreenOptions = self.options.video.advancedSettings.startScreenOptions || {};
+    self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
 
     // Add default title
-    if (!self.options.video.advancedSettings.title) {
-      self.options.video.advancedSettings.title = 'Interactive Video';
+    if (!self.options.video.startScreenOptions.title) {
+      self.options.video.startScreenOptions.title = 'Interactive Video';
     }
 
     // Set default splash options
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, self.options.video.advancedSettings.startScreenOptions);
+    }, self.options.video.startScreenOptions);
 
     // Set overrides for interactions
     if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
@@ -59,6 +59,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (params.override !== undefined) {
       self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
       self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
+      self.preventSkipping = params.override.preventSkipping || false;
     }
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -103,14 +104,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.justVideo = iOSMatches[2] < 10;
     }
 
-    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    // set start time
+    startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+    if (startAt === 0 && params.override && !!params.override.startVideoAt) {
+      startAt = params.override.startVideoAt;
+    }
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
       params: {
         sources: self.options.video.files,
         visuals: {
-          poster: self.options.video.advancedSettings.startScreenOptions.poster,
+          poster: self.options.video.startScreenOptions.poster,
           controls: self.justVideo,
           fit: false
         },
@@ -424,7 +430,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
               '<div class="h5p-splash-main-outer">' +
                 '<div class="h5p-splash-main-inner">' +
                   '<div class="h5p-splash-play-icon"></div>' +
-                  '<div class="h5p-splash-title">' + this.options.video.advancedSettings.title + '</div>' +
+                  '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
                 '</div>' +
               '</div>' +
             '</div>' +
@@ -664,7 +670,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
-    if (this.options.assets.bookmarks !== undefined) {
+    if (this.options.assets.bookmarks !== undefined && !this.preventSkipping) {
       for (var i = 0; i < this.options.assets.bookmarks.length; i++) {
         this.addBookmark(i);
       }
@@ -690,14 +696,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Add classes if changing visibility
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
-      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
    * @param {number} id
-   * @param {number} tenth
+   * @param {number} [tenth]
    * @returns {H5P.jQuery}
    */
   InteractiveVideo.prototype.addBookmark = function (id, tenth) {
@@ -795,6 +800,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
     var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
     var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
+    if (self.preventSkipping) {
+      $slider.addClass('disabled');
+    }
 
     // Keep track of all controls
     self.controls = {};
@@ -872,7 +880,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * Only available for controls.
      * @private
      */
-    var bookmarksEnabled = ((self.options.assets.bookmarks && self.options.assets.bookmarks.length) || self.editor);
+    var hasBookmarks = self.options.assets.bookmarks && self.options.assets.bookmarks.length;
+    var bookmarksEnabled = self.editor || (hasBookmarks && !self.preventSkipping);
 
     // Add bookmark controls
     if (bookmarksEnabled) {
@@ -901,7 +910,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
-        self.controls.$bookmarks.removeClass('h5p-blink')
       })
     }
 
@@ -1155,6 +1163,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
     });
+
+    // Disable slider
+    if (self.preventSkipping) {
+      self.controls.$slider.slider('disable');
+      self.controls.$slider.click(function () {
+        return false;
+      });
+    }
 
     /* Show bookmarks, except when youtube is used on iPad */
     if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
@@ -1783,7 +1799,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @returns {string}
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.options.video.advancedSettings.title);
+    return H5P.createTitle(this.options.video.startScreenOptions.title);
   };
 
   /**
@@ -1854,12 +1870,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Adding info from copyright field
-    if (self.options.video.advancedSettings.copyright !== undefined) {
-      info.addMedia(self.options.video.advancedSettings.copyright);
+    if (self.options.video.startScreenOptions.copyright !== undefined) {
+      info.addMedia(self.options.video.startScreenOptions.copyright);
     }
 
     // Adding copyrights for poster
-    var poster = self.options.video.advancedSettings.startScreenOptions.poster;
+    var poster = self.options.video.startScreenOptions.poster;
     if (poster && poster.copyright !== undefined) {
       var image = new H5P.MediaCopyright(poster.copyright, self.l10n);
       var imgSource = H5P.getPath(poster.path, self.contentId);

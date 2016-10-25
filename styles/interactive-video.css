@@ -415,10 +415,6 @@
   outline: 0;
   transition: box-shadow 0.1s ease-out 0.3s;
 }
-.h5p-interactive-video .h5p-control.h5p-blink {
-  box-shadow: inset 0 0 2px 2px white;
-  transition: none;
-}
 
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
@@ -450,6 +446,17 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.h5p-interactive-video .h5p-control.h5p-disabled {
+  cursor: default;
+}
+
+.h5p-interactive-video .h5p-control.h5p-time,
+.h5p-interactive-video .h5p-control.h5p-slider.disabled .ui-slider-handle,
+.h5p-interactive-video .h5p-control.h5p-slider.disabled {
+  cursor: default;
+}
+
 .h5p-interactive-video .h5p-control:before {
   position: absolute;
   font-family: 'H5PFontAwesome4';
@@ -759,6 +766,7 @@
   padding: 14px 8px 12px;
   margin: 0;
   height: 10px;
+  cursor: default;
 }
 .h5p-interactive-video .h5p-slider .ui-slider {
   background: #0b0d0c;
@@ -769,11 +777,25 @@
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
+
+.h5p-interactive-video .h5p-slider.disabled .ui-slider {
+  background: #000;
+}
+
 .h5p-interactive-video .h5p-slider .ui-slider-range {
   color: #e2e2e2;
   height: 9px;
   border-radius: 0;
 }
+.h5p-interactive-video .h5p-slider.disabled .ui-slider-range {
+  background: #7a7a7a;
+}
+
+.h5p-interactive-video .h5p-slider.disalbed .ui-slider.ui-state-disabled {
+  opacity: 1;
+  filter: none;
+}
+
 .h5p-interactive-video .h5p-slider .ui-slider-handle {
   cursor: pointer;
   top: -4px;
@@ -786,7 +808,12 @@
   border: 0;
   background: #fbfbfb;
 }
-.h5p-interactive-video .h5p-slider .ui-slider-handle:before {
+
+.h5p-interactive-video .h5p-slider.disabled .ui-slider-handle {
+  background: none;
+}
+
+.h5p-interactive-video .h5p-slider:not(.disabled) .ui-slider-handle:before {
   font-family: H5PInteractiveVideo;
   content: "\e001";
   font-size: 26px;
@@ -802,7 +829,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.h5p-interactive-video .h5p-slider .ui-slider-handle:hover:before {
+.h5p-interactive-video .h5p-slider:not(.disabled) .ui-slider-handle:hover:before {
   color: #dbd7d1;
 }
 
@@ -827,9 +854,14 @@
   border-radius: 50%;
   background: #981d99;
   transform: translateX(-50%);
+  cursor: pointer;
 }
 
-.h5p-interactive-video .h5p-seekbar-interaction:hover {
+.h5p-interactive-video .h5p-seekbar-interaction.disabled {
+  background: #772278;
+}
+
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled):hover {
   background: #b83db9;
 }
 
@@ -839,10 +871,18 @@
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction {
   background: #1d5cff;
 }
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-text-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-link-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-table-interaction:hover {
+
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-image-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-text-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-link-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.disabled.h5p-table-interaction {
+  background: #224ebf;
+}
+
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-image-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-text-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-link-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-table-interaction:hover {
   background: #3d7cff;
 }
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction,
@@ -850,9 +890,16 @@
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode {
   background: #018d82;
 }
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction:hover,
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode:hover {
+
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-gotoquestion-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction,
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode {
+  background: #0e7068;
+}
+
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-gotoquestion-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-ivhotspot-interaction:hover,
+.h5p-interactive-video .h5p-seekbar-interaction:not(.disabled).h5p-goto-timecode:hover {
   background: #21ada2;
 }
 

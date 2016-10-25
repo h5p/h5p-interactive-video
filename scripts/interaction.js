@@ -701,15 +701,24 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Skip "sub titles"
       }
 
+      var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
+      if (player.preventSkipping) {
+        seekbarClasses += ' disabled';
+      }
+
       // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
       $('<div/>', {
-        'class': 'h5p-seekbar-interaction ' + classes,
+        'class': seekbarClasses,
         title: title,
         css: {
           left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
         },
         on: {
           click: function () {
+            if (player.preventSkipping) {
+              return;
+            }
+
             if (player.currentState === H5P.Video.VIDEO_CUED) {
               player.play();
               player.seek(parameters.duration.from);

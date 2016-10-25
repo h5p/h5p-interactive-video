@@ -15,8 +15,8 @@
               "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Advanced settings",
+              "englishLabel": "Start screen options",
+              "label": "Start screen options",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,32 +27,26 @@
                   "description": "Used in summaries, statistics etc."
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Hide title on video start screen"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Short description (Optional)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Optional. Display a short description text on the video start screen."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Poster",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "Informazioni Copyright Video",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "Video start screen options",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "Poster",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "Hide title on video start screen"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "Short description (Optional)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "Optional. Display a short description text on the video start screen."
-                    }
-                  ]
                 }
               ]
             }
@@ -262,6 +256,12 @@
       "label": "Behavioural settings",
       "fields": [
         {
+          "englishLabel": "Start video at",
+          "label": "Start video at",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -302,6 +302,12 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Prevent skipping forward in a video",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Enabling this options will disable user video navigation through default controls"
         }
       ]
     },

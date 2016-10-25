@@ -15,8 +15,8 @@
               "description": "Vel videofilane du ønsker å bruke i din interaktive video. For best mulig browserstøtte bør du ihvertfall laste opp en versjon av videoen i både webm og mp4 format."
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Avanserte innstillinger",
+              "englishLabel": "Start screen options",
+              "label": "Startskjerm alternativer",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,32 +27,26 @@
                   "description": "Brukes i oppsummeringer, statistikk o.l."
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Skjul tittel på startskjerm"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Kort beskrivelse (Valgfri)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Plakat",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "Opphavsrettsinformasjon",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "Video startskjerm innstillinger",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "Plakat",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "Skjul tittel på startskjerm"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "Kort beskrivelse (Valgfri)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
-                    }
-                  ]
                 }
               ]
             }
@@ -262,6 +256,12 @@
       "label": "Innstillinger for oppgave-oppførsel",
       "fields": [
         {
+          "englishLabel": "Start video at",
+          "label": "Begynn på",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Overstyr «Vis svar»-knapp",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -302,6 +302,12 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Unngå at brukere hopper over innhold i video",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         }
       ]
     },
