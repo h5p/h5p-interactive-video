@@ -717,8 +717,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (!self.$preventSkippingMessage) {
       self.$preventSkippingMessage = $('<div>', {
         'class': 'h5p-prevent-skipping-message',
-        html: self.l10n.navDisabled,
         appendTo: self.controls.$bookmarksContainer
+      });
+
+      self.$preventSkippingMessageText = $('<div>', {
+        'class': 'h5p-prevent-skipping-message-text',
+        html: self.l10n.navDisabled,
+        appendTo: self.$preventSkippingMessage
       });
     }
 

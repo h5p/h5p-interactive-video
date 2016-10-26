@@ -939,8 +939,19 @@
 .h5p-interactive-video .h5p-prevent-skipping-message {
   bottom: 25px;
   transform: translateX(-1.1em);
-  white-space: nowrap;
+}
+
+.h5p-interactive-video .h5p-prevent-skipping-message-text {
+  max-width: 17.5em;
   line-height: 30px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.h5p-interactive-video.h5p-minimal .h5p-prevent-skipping-message-text {
+  max-width: 9.5em;
 }
 
 .h5p-interactive-video.h5p-fullscreen .h5p-prevent-skipping-message,
