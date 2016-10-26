@@ -673,6 +673,13 @@
         "label": "Rewind 10 Seconds",
         "default": "Rewind 10 Seconds",
         "optional": true
+      },
+      {
+        "name": "navDisabled",
+        "type": "text",
+        "label": "Navigation is disabled text",
+        "default": "Navigation is disabled",
+        "optional": true
       }
     ]
   }

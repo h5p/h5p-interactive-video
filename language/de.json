@@ -398,6 +398,12 @@
           "label": "10 Sekunden zurückspringen",
           "englishDefault": "Rewind 10 Seconds",
           "default": "10 Sekunden zurück"
+        },
+        {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Navigation is disabled text",
+          "englishDefault": "Navigation is disabled",
+          "default": "Navigation is disabled"
         }
       ]
     }
