@@ -1,0 +1,399 @@
+{
+  "semantics": [
+    {
+      "englishLabel": "Interactive Video Editor",
+      "label": "交互式视频编辑器",
+      "fields": [
+        {
+          "englishLabel": "Upload/embed video",
+          "label": "上传/嵌入视频",
+          "fields": [
+            {
+              "englishLabel": "Video files",
+              "label": "视频文件",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
+            },
+            {
+              "englishLabel": "Advanced settings",
+              "label": "Advanced settings",
+              "fields": [
+                {
+                  "englishLabel": "The title of this interactive video",
+                  "label": "该交互式视频标题",
+                  "englishDefault": "Interactive Video",
+                  "default": "Interactive Video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "用于最后测试、统计。"
+                },
+                {
+                  "englishLabel": "Video copyright information",
+                  "label": "版权信息",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "展示视频及其中所用元素的版权信息。"
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "首帧显示项",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "海报图片",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "视频首帧显示中隐藏标题。"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "简述 (可选)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "选填。在视频首帧中展示的简短文字描述。"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "englishLabel": "Add interactions",
+          "label": "添加交互",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "englishLabel": "Display time",
+                    "label": "显示时间"
+                  },
+                  {
+                    "englishLabel": "Pause video",
+                    "label": "暂停视频"
+                  },
+                  {
+                    "englishLabel": "Display as",
+                    "label": "显示为",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "<b>按钮</b> 默认收起，需用户点击才能显示。<b>海报</b> 交互式内容整体在视频上展开显示",
+                    "options": [
+                      {
+                        "englishLabel": "Button",
+                        "label": "按钮"
+                      },
+                      {
+                        "englishLabel": "Poster",
+                        "label": "海报"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Label",
+                    "label": "文字",
+                    "englishDescription": "Label displayed next to interaction icon.",
+                    "description": "跟交互式图标对应的文字。"
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "englishLabel": "Adaptivity",
+                    "label": "适应性",
+                    "fields": [
+                      {
+                        "englishLabel": "Action on all correct",
+                        "label": "全部答对后的动作",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "跳转到时间",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "时间点的格式是 M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "允许用户关闭并继续播放"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "消息"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "进度按钮文本"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Action on wrong",
+                        "label": "答错后的动作",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "跳转到时间",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "时间点的格式是 M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "允许用户关闭并继续播放"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "消息"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "进度按钮文本"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Background color",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Box shadow",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Type",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Timecode"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Go To",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(root relative)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualize",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {}
+          ]
+        },
+        {
+          "englishLabel": "Summary task",
+          "label": "课后小结",
+          "fields": [
+            {},
+            {
+              "englishLabel": "Display at",
+              "label": "显示于",
+              "englishDescription": "Number of seconds before the video ends.",
+              "description": "视频结束前的多少秒."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "englishLabel": "Behavioural settings",
+      "label": "Behavioural settings",
+      "fields": [
+        {
+          "englishLabel": "Override \"Show Solution\" button",
+          "label": "Override \"Show Solution\" button",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Enabled"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Override \"Retry\" button",
+          "label": "Override \"Retry\" button",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Enabled"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Show bookmarks menu on load",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "This function is not available on iPad when using YouTube as video source"
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Show button for rewinding 10 seconds"
+        }
+      ]
+    },
+    {
+      "englishLabel": "Localize",
+      "label": "本地化",
+      "fields": [
+        {
+          "englishLabel": "Interaction title",
+          "label": "交互式视频",
+          "englishDefault": "Interaction",
+          "default": "Interaction"
+        },
+        {
+          "englishLabel": "Play title",
+          "label": "播放的提示",
+          "englishDefault": "Play",
+          "default": "Play"
+        },
+        {
+          "englishLabel": "Pause title",
+          "label": "暂停的提示",
+          "englishDefault": "Pause",
+          "default": "Pause"
+        },
+        {
+          "englishLabel": "Mute title",
+          "label": "静音的提示",
+          "englishDefault": "Mute",
+          "default": "Mute"
+        },
+        {
+          "englishLabel": "Unmute title",
+          "label": "取消静音的提示",
+          "englishDefault": "Unmute",
+          "default": "Unmute"
+        },
+        {
+          "englishLabel": "Video quality title",
+          "label": "视频质量的提示",
+          "englishDefault": "Video Quality",
+          "default": "Video Quality"
+        },
+        {
+          "englishLabel": "Fullscreen title",
+          "label": "全屏的提示",
+          "englishDefault": "Fullscreen",
+          "default": "Fullscreen"
+        },
+        {
+          "englishLabel": "Exit fullscreen title",
+          "label": "退出全屏的提示",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Exit Fullscreen"
+        },
+        {
+          "englishLabel": "Summary title",
+          "label": "小结认为的提示",
+          "englishDefault": "Summary",
+          "default": "Summary"
+        },
+        {
+          "englishLabel": "Bookmarks title",
+          "label": "书签的提示",
+          "englishDefault": "Bookmarks",
+          "default": "Bookmarks"
+        },
+        {
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "进度按钮的缺省文本",
+          "englishDefault": "Continue",
+          "default": "Continue"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Default label for continue video button",
+          "englishDefault": "Continue with video",
+          "default": "Continue with video"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Set playback rate",
+          "englishDefault": "Playback Rate",
+          "default": "Playback Rate"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Rewind 10 Seconds",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
+        }
+      ]
+    }
+  ]
+}
