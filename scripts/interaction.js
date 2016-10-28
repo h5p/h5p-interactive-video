@@ -518,10 +518,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $target
      */
     var adaptivity = function ($target) {
-
-      var adaptivity, fullScore;
+      var adaptivity, fullScore, requireCompletion, showContrinueButton = true;
       if (parameters.adaptivity) {
         fullScore = self.score >= self.maxScore;
+        requireCompletion = !!parameters.adaptivity.requireCompletion;
+        showContrinueButton = !requireCompletion || fullScore;
 
         // Determine adaptivity
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
@@ -551,9 +552,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               }
             });
           }
-          else {
-            instance.showButton('iv-continue');
-          }
+
+          // show or hide the continue-button, based on requiring completion
+          instance[showContrinueButton ? 'showButton' : 'hideButton']('iv-continue');
         }
 
         return;
