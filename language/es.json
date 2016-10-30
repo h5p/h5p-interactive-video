@@ -145,6 +145,10 @@
                             "label": "Etiqueta para el botón de búsqueda"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

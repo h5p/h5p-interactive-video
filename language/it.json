@@ -145,6 +145,10 @@
                             "label": "Etichetta per pulsante Vai a"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

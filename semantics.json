@@ -259,6 +259,11 @@
                           "label": "Label for seek button"
                         }
                       ]
+                    },
+                    {
+                      "name": "requireCompletion",
+                      "type": "boolean",
+                      "label": "Require full score for task before proceeding"
                     }
                   ]
                 },

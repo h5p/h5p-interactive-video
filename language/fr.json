@@ -145,6 +145,10 @@
                             "label": "Intitulé du bouton de reprise"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

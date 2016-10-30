@@ -145,6 +145,10 @@
                             "label": "进度按钮文本"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

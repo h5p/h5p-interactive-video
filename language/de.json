@@ -145,6 +145,10 @@
                             "label": "Beschriftung für den Springen-Button"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

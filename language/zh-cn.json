@@ -15,7 +15,7 @@
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
-              "englishLabel": "Advanced settings",
+              "englishLabel": "Start screen options",
               "label": "Advanced settings",
               "fields": [
                 {
@@ -27,32 +27,26 @@
                   "description": "用于最后测试、统计。"
                 },
                 {
-                  "englishLabel": "Video copyright information",
-                  "label": "版权信息",
-                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
-                  "description": "展示视频及其中所用元素的版权信息。"
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "版权信息"
                 },
                 {
-                  "englishLabel": "Video start screen options",
+                  "englishLabel": "Short description (Optional)",
                   "label": "首帧显示项",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "海报图片",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "视频首帧显示中隐藏标题。"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "简述 (可选)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "选填。在视频首帧中展示的简短文字描述。"
-                    }
-                  ]
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "TODO"
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "TODO",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "TODO"
+                },
+                {
+                  "englishLabel": "Video copyright information",
+                  "label": "TODO",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "TODO"
                 }
               ]
             }
@@ -151,6 +145,10 @@
                             "label": "进度按钮文本"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },
@@ -262,25 +260,15 @@
       "label": "Behavioural settings",
       "fields": [
         {
-          "englishLabel": "Override \"Show Solution\" button",
+          "englishLabel": "Start video at",
           "label": "Override \"Show Solution\" button",
-          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options": [
-            {
-              "englishLabel": "Enabled",
-              "label": "Enabled"
-            },
-            {
-              "englishLabel": "Disabled",
-              "label": "Disabled"
-            }
-          ]
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
         },
         {
-          "englishLabel": "Override \"Retry\" button",
+          "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Retry\" button",
-          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
@@ -294,14 +282,36 @@
           ]
         },
         {
-          "englishLabel": "Start with bookmarks menu open",
+          "englishLabel": "Override \"Retry\" button",
           "label": "Show bookmarks menu on load",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "This function is not available on iPad when using YouTube as video source",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "TODO"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "TODO"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Show button for rewinding 10 seconds",
           "englishDescription": "This function is not available on iPad when using YouTube as video source",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "description": "TODO"
         },
         {
           "englishLabel": "Show button for rewinding 10 seconds",
-          "label": "Show button for rewinding 10 seconds"
+          "label": "TODO"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "TODO",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "TODO"
         }
       ]
     },

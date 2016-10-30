@@ -145,6 +145,10 @@
                             "label": "Merkelapp for spoleknappen"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },

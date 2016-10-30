@@ -145,6 +145,10 @@
                             "label": "تسمية زر التحرك الي"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding"
                       }
                     ]
                   },
