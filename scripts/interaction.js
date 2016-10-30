@@ -664,6 +664,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Get duration of interaction
+     * @return {{from: number, to: number}}
+     */
+    self.getDuration = function () {
+      return {
+        from: parameters.duration.from,
+        to: parameters.duration.to
+      }
+    };
+
+    /**
+     * Get requires completion settings
+     * @return {boolean} True if interaction requires completion
+     */
+    self.getRequiresCompletion = function () {
+      return parameters.adaptivity && parameters.adaptivity.requireCompletion;
+    };
+
+    /**
      * Checks to see if the interaction should pause the video.
      *
      * @returns {boolean}

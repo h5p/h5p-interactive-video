@@ -526,7 +526,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Set max value for adaptive seeking timecodes
       var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
       for (var i = 0; i < adaptivityFields.length; i++) {
-        findField('seekTo', adaptivityFields[i].fields).max = duration;
+        if (adaptivityFields[i].fields) {
+          findField('seekTo', adaptivityFields[i].fields).max = duration;
+        }
       }
     }
 
