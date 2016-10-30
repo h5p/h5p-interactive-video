@@ -402,6 +402,12 @@
           "label": "Rewind 10 Seconds",
           "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
+        },
+        {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Navigation is disabled text",
+          "englishDefault": "Navigation is disabled",
+          "default": "Navigation is disabled"
         }
       ]
     }

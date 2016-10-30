@@ -402,6 +402,12 @@
           "label": "Spol tilbake 10 sekund",
           "englishDefault": "Rewind 10 Seconds",
           "default": "Spol tilbake 10 sekund"
+        },
+        {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Navigasjon er ikke tillatt tekst",
+          "englishDefault": "Navigation is disabled",
+          "default": "Navigasjon er ikke tillatt"
         }
       ]
     }

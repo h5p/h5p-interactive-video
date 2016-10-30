@@ -77,7 +77,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       continueWithVideo: 'Continue with video',
       more: 'More',
       playbackRate: 'Playback rate',
-      rewind10: 'Rewind 10 seconds'
+      rewind10: 'Rewind 10 seconds',
+      navDisabled: 'Navigation is disabled'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -700,6 +701,55 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
     }
   };
+
+  /**
+   * Show message saying that skipping in the video is not allowed.
+   *
+   * @param {number} offsetX offset in pixels from left side of the seek bar
+   */
+  InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
+    var self = this;
+
+    // Already displaying message
+    if (self.preventSkippingWarningTimeout) {
+      return;
+    }
+
+    // Create DOM element if not existing
+    if (!self.$preventSkippingMessage) {
+      self.$preventSkippingMessage = $('<div>', {
+        'class': 'h5p-prevent-skipping-message',
+        appendTo: self.controls.$bookmarksContainer
+      });
+
+      self.$preventSkippingMessageText = $('<div>', {
+        'class': 'h5p-prevent-skipping-message-text',
+        html: self.l10n.navDisabled,
+        appendTo: self.$preventSkippingMessage
+      });
+    }
+
+    // Move element to offset position
+    self.$preventSkippingMessage.css('left', offsetX);
+
+    // Show message
+    setTimeout(function () {
+      self.$preventSkippingMessage.addClass('h5p-show');
+    }, 0);
+
+    // Wait for a while before removing message
+    self.preventSkippingWarningTimeout = setTimeout(function () {
+
+      // Remove message
+      self.$preventSkippingMessage.removeClass('h5p-show');
+
+      // Wait a while before allowing to display warning again.
+      setTimeout(function () {
+        self.preventSkippingWarningTimeout = undefined;
+      }, 500);
+    }, 2000);
+  };
+
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
@@ -1169,7 +1219,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Disable slider
     if (self.preventSkipping) {
       self.controls.$slider.slider('disable');
-      self.controls.$slider.click(function () {
+      self.controls.$slider.click(function (e) {
+        self.showPreventSkippingMessage(e.offsetX);
         return false;
       });
     }
