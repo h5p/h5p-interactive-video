@@ -263,7 +263,8 @@
                     {
                       "name": "requireCompletion",
                       "type": "boolean",
-                      "label": "Require full score for task before proceeding"
+                      "label": "Require full score for task before proceeding",
+                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                     }
                   ]
                 },
