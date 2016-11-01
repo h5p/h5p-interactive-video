@@ -573,6 +573,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
+   * Sets if the play button should be disabled or not
+   *
+   * @private
+   * @param {Boolean} disabled Disable play button
+   */
+  InteractiveVideo.prototype.setPlayButtonDisabled = function(disabled){
+    this.controls.$play[disabled ? 'addClass' : 'removeClass']('h5p-disabled');
+  };
+
+  /**
    * Initialize interaction at the given index.
    *
    * @param {number} index
@@ -593,9 +603,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var interaction = new Interaction(parameters, self, previousState);
+
+    // handle display event
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
+
+      // if requires completion, disable play button if not full score
+      if(interaction.getRequiresCompletion()){
+        self.setPlayButtonDisabled(!interaction.hasFullScore());
+      }
 
       // Make sure the interaction does not overflow videowrapper.
       interaction.repositionToWrapper(self.$videoWrapper);
@@ -615,7 +632,28 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
     });
+
+    // if requires completion
+    if(interaction.getRequiresCompletion()){
+      // enable play button after removing interaction
+      interaction.on('remove', function () {
+        self.setPlayButtonDisabled(!interaction.hasFullScore());
+      });
+
+      // enable play button after answering with full score
+      interaction.on('question-finished', function(){
+        self.setPlayButtonDisabled(!interaction.hasFullScore());
+      });
+    }
+
+    // handle xAPI event
     interaction.on('xAPI', function(event) {
+      // toggle enable play button
+      if(interaction.getRequiresCompletion()){
+        self.setPlayButtonDisabled(!interaction.hasFullScore());
+      }
+
+      // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
         if (interaction.isMainSummary()) {
@@ -861,7 +899,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-      if (self.controls.$play.hasClass('h5p-pause')) {
+      if (self.controls.$play.hasClass('h5p-pause') && !self.controls.$play.hasClass('h5p-disabled')) {
 
         // Auto toggle fullscreen on play if on a small device
         var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;

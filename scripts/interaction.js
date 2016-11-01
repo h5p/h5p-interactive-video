@@ -180,8 +180,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.dnb.dialog.close();
       }
       else {
+        if (player.isMobileView) {
+          player.dnb.dialog.close();
+        }
+
         $interaction.detach();
       }
+
+      self.trigger('remove', $interaction);
     };
 
     /**
@@ -518,11 +524,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $target
      */
     var adaptivity = function ($target) {
-      var adaptivity, fullScore, requireCompletion, showContinueButton = true;
+      var adaptivity, fullScore, showContinueButton = true;
       if (parameters.adaptivity) {
-        fullScore = self.score >= self.maxScore;
-        requireCompletion = !!parameters.adaptivity.requireCompletion;
-        showContinueButton = !requireCompletion || fullScore;
+        fullScore = self.hasFullScore();
+        showContinueButton = !self.getRequiresCompletion() || fullScore;
 
         // Determine adaptivity
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
@@ -534,17 +539,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           if (!instance.hasButton('iv-continue')) {
             // Register continue button
             instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-              if (self.isButton()) {
-                // Close dialog
-                player.dnb.dialog.close();
-              }
-              else {
-                if (player.isMobileView) {
-                  player.dnb.dialog.close();
-                }
-                // Remove interaction posters
-                $interaction.detach();
-              }
+              closeInteraction();
 
               // Do not play if player is at the end, state 0 = ENDED
               if (player.currentState !== 0) {
@@ -677,10 +672,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     /**
      * Get requires completion settings
+     *
      * @return {boolean} True if interaction requires completion
      */
     self.getRequiresCompletion = function () {
-      return parameters.adaptivity && parameters.adaptivity.requireCompletion;
+      return !!parameters.adaptivity && !!parameters.adaptivity.requireCompletion;
     };
 
     /**
@@ -945,6 +941,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
             self.trigger(event);
           });
+
           instance.on('question-finished', function () {
             adaptivity();
           });
@@ -979,6 +976,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       dnbElement = newDnbElement;
       return true;
+    };
+
+    /**
+     * Returns true if the user has full score on this interaction
+     *
+     * @returns {boolean}
+     */
+    self.hasFullScore = function(){
+      return self.score >= self.maxScore;
     };
 
     /**
