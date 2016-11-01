@@ -180,14 +180,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         player.dnb.dialog.close();
       }
       else {
-        if (player.isMobileView) {
-          player.dnb.dialog.close();
-        }
-
         $interaction.detach();
       }
-
-      self.trigger('remove', $interaction);
     };
 
     /**
@@ -524,10 +518,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $target
      */
     var adaptivity = function ($target) {
-      var adaptivity, fullScore, showContinueButton = true;
+
+      var adaptivity, fullScore;
       if (parameters.adaptivity) {
-        fullScore = self.hasFullScore();
-        showContinueButton = !self.getRequiresCompletion() || fullScore;
+        fullScore = self.score >= self.maxScore;
 
         // Determine adaptivity
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
@@ -539,7 +533,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           if (!instance.hasButton('iv-continue')) {
             // Register continue button
             instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-              closeInteraction();
+              if (self.isButton()) {
+                // Close dialog
+                player.dnb.dialog.close();
+              }
+              else {
+                if (player.isMobileView) {
+                  player.dnb.dialog.close();
+                }
+                // Remove interaction posters
+                $interaction.detach();
+              }
 
               // Do not play if player is at the end, state 0 = ENDED
               if (player.currentState !== 0) {
@@ -547,9 +551,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
               }
             });
           }
-
-          // show or hide the continue-button, based on requiring completion
-          instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
+          else {
+            instance.showButton('iv-continue');
+          }
         }
 
         return;
@@ -660,26 +664,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
-     * Get duration of interaction
-     * @return {{from: number, to: number}}
-     */
-    self.getDuration = function () {
-      return {
-        from: parameters.duration.from,
-        to: parameters.duration.to
-      }
-    };
-
-    /**
-     * Get requires completion settings
-     *
-     * @return {boolean} True if interaction requires completion
-     */
-    self.getRequiresCompletion = function () {
-      return !!parameters.adaptivity && !!parameters.adaptivity.requireCompletion;
-    };
-
-    /**
      * Checks to see if the interaction should pause the video.
      *
      * @returns {boolean}
@@ -717,24 +701,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Skip "sub titles"
       }
 
-      var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
-      if (player.preventSkipping) {
-        seekbarClasses += ' disabled';
-      }
-
       // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
       $('<div/>', {
-        'class': seekbarClasses,
+        'class': 'h5p-seekbar-interaction ' + classes,
         title: title,
         css: {
           left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
         },
         on: {
           click: function () {
-            if (player.preventSkipping) {
-              return;
-            }
-
             if (player.currentState === H5P.Video.VIDEO_CUED) {
               player.play();
               player.seek(parameters.duration.from);
@@ -941,7 +916,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
             self.trigger(event);
           });
-
           instance.on('question-finished', function () {
             adaptivity();
           });
@@ -976,15 +950,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       dnbElement = newDnbElement;
       return true;
-    };
-
-    /**
-     * Returns true if the user has full score on this interaction
-     *
-     * @returns {boolean}
-     */
-    self.hasFullScore = function(){
-      return self.score >= self.maxScore;
     };
 
     /**

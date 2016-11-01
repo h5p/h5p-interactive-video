@@ -11,7 +11,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   function InteractiveVideo(params, id, contentData) {
     var self = this;
-    var startAt;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -26,18 +25,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       video: {},
       assets: {}
     }, params.interactiveVideo);
-    self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
+    self.options.video.advancedSettings = self.options.video.advancedSettings || {};
+    self.options.video.advancedSettings.startScreenOptions = self.options.video.advancedSettings.startScreenOptions || {};
 
     // Add default title
-    if (!self.options.video.startScreenOptions.title) {
-      self.options.video.startScreenOptions.title = 'Interactive Video';
+    if (!self.options.video.advancedSettings.title) {
+      self.options.video.advancedSettings.title = 'Interactive Video';
     }
 
     // Set default splash options
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, self.options.video.startScreenOptions);
+    }, self.options.video.advancedSettings.startScreenOptions);
 
     // Set overrides for interactions
     if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
@@ -59,7 +59,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     if (params.override !== undefined) {
       self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
       self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
-      self.preventSkipping = params.override.preventSkipping || false;
     }
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -78,7 +77,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       more: 'More',
       playbackRate: 'Playback rate',
       rewind10: 'Rewind 10 seconds',
-      navDisabled: 'Navigation is disabled'
+      language: 'Change language',
+      captions: 'Hide captions',
+      nocaptions: 'Show captions'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -105,19 +106,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.justVideo = iOSMatches[2] < 10;
     }
 
-    // set start time
-    startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-    if (startAt === 0 && params.override && !!params.override.startVideoAt) {
-      startAt = params.override.startVideoAt;
-    }
-
+    var startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
       params: {
         sources: self.options.video.files,
         visuals: {
-          poster: self.options.video.startScreenOptions.poster,
+          poster: self.options.video.advancedSettings.startScreenOptions.poster,
           controls: self.justVideo,
           fit: false
         },
@@ -136,15 +132,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
-    /**
-     * Keep track if the video source is loaded.
-     * @private
-     */
-    var isLoaded = false;
-
-    // Handle video source loaded events (metadata)
     self.video.on('loaded', function (event) {
-      isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
@@ -158,8 +146,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var firstPlay = true;
     self.video.on('stateChange', function (event) {
 
-      if (!self.controls && isLoaded) {
-        // Add controls if they're missing and 'loaded' has happened
+      if (!self.controls) {
+        // Add controls if they're missing
         self.addControls();
         self.trigger('resize');
       }
@@ -187,6 +175,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
             self.addQualityChooser();
 
             self.addPlaybackRateChooser();
+
+            self.addLanguageChooser();
 
             // Make sure splash screen is removed.
             self.removeSplash();
@@ -217,7 +207,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           // Make sure we track buffering of the video.
           self.startUpdatingBufferBar();
-
           break;
       }
     });
@@ -237,6 +226,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (self.controls && self.controls.$playbackRateChooser) {
         // Update playbackRate selector
         self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
+      }
+    });
+
+    self.video.on('languageChange', function (event) {
+      var languageRate = event.data;
+      if (self.controls && self.controls.$languageChooser) {
+        // Update language selector
+        self.controls.$languageChooser.find('li').removeClass('h5p-selected').filter('[language="' + language + '"]').addClass('h5p-selected');
       }
     });
 
@@ -386,19 +383,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
 
-    if (!this.video.pressToPlay) {
-      if (this.currentState === InteractiveVideo.LOADED) {
-        // Add all controls
+    if (this.currentState === InteractiveVideo.LOADED) {
+      if (!this.video.pressToPlay) {
         this.addControls();
       }
-      else {
-        // Add splash to allow start playing before video load
-        // (play may be needed to trigger load incase preloaded="none" is default)
-        this.addSplash();
-      }
     }
-
-
     this.currentState = InteractiveVideo.ATTACHED;
   };
 
@@ -419,7 +408,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addSplash = function () {
     var that = this;
-    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play || this.$splash) {
+    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play) {
       return;
     }
 
@@ -431,7 +420,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
               '<div class="h5p-splash-main-outer">' +
                 '<div class="h5p-splash-main-inner">' +
                   '<div class="h5p-splash-play-icon"></div>' +
-                  '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
+                  '<div class="h5p-splash-title">' + this.options.video.advancedSettings.title + '</div>' +
                 '</div>' +
               '</div>' +
             '</div>' +
@@ -527,9 +516,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Set max value for adaptive seeking timecodes
       var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
       for (var i = 0; i < adaptivityFields.length; i++) {
-        if (adaptivityFields[i].fields) {
-          findField('seekTo', adaptivityFields[i].fields).max = duration;
-        }
+        findField('seekTo', adaptivityFields[i].fields).max = duration;
       }
     }
 
@@ -573,16 +560,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Sets if the play button should be disabled or not
-   *
-   * @private
-   * @param {Boolean} disabled Disable play button
-   */
-  InteractiveVideo.prototype.setPlayButtonDisabled = function(disabled){
-    this.controls.$play[disabled ? 'addClass' : 'removeClass']('h5p-disabled');
-  };
-
-  /**
    * Initialize interaction at the given index.
    *
    * @param {number} index
@@ -603,16 +580,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var interaction = new Interaction(parameters, self, previousState);
-
-    // handle display event
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
-
-      // if requires completion, disable play button if not full score
-      if(interaction.getRequiresCompletion()){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      }
 
       // Make sure the interaction does not overflow videowrapper.
       interaction.repositionToWrapper(self.$videoWrapper);
@@ -632,28 +602,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
     });
-
-    // if requires completion
-    if(interaction.getRequiresCompletion()){
-      // enable play button after removing interaction
-      interaction.on('remove', function () {
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      });
-
-      // enable play button after answering with full score
-      interaction.on('question-finished', function(){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      });
-    }
-
-    // handle xAPI event
     interaction.on('xAPI', function(event) {
-      // toggle enable play button
-      if(interaction.getRequiresCompletion()){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      }
-
-      // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
         if (interaction.isMainSummary()) {
@@ -711,7 +660,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addBookmarks = function () {
     this.bookmarksMap = {};
-    if (this.options.assets.bookmarks !== undefined && !this.preventSkipping) {
+    if (this.options.assets.bookmarks !== undefined) {
       for (var i = 0; i < this.options.assets.bookmarks.length; i++) {
         this.addBookmark(i);
       }
@@ -737,62 +686,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Add classes if changing visibility
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
+      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
-
-  /**
-   * Show message saying that skipping in the video is not allowed.
-   *
-   * @param {number} offsetX offset in pixels from left side of the seek bar
-   */
-  InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
-    var self = this;
-
-    // Already displaying message
-    if (self.preventSkippingWarningTimeout) {
-      return;
-    }
-
-    // Create DOM element if not existing
-    if (!self.$preventSkippingMessage) {
-      self.$preventSkippingMessage = $('<div>', {
-        'class': 'h5p-prevent-skipping-message',
-        appendTo: self.controls.$bookmarksContainer
-      });
-
-      self.$preventSkippingMessageText = $('<div>', {
-        'class': 'h5p-prevent-skipping-message-text',
-        html: self.l10n.navDisabled,
-        appendTo: self.$preventSkippingMessage
-      });
-    }
-
-    // Move element to offset position
-    self.$preventSkippingMessage.css('left', offsetX);
-
-    // Show message
-    setTimeout(function () {
-      self.$preventSkippingMessage.addClass('h5p-show');
-    }, 0);
-
-    // Wait for a while before removing message
-    self.preventSkippingWarningTimeout = setTimeout(function () {
-
-      // Remove message
-      self.$preventSkippingMessage.removeClass('h5p-show');
-
-      // Wait a while before allowing to display warning again.
-      setTimeout(function () {
-        self.preventSkippingWarningTimeout = undefined;
-      }, 500);
-    }, 2000);
-  };
-
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
    * @param {number} id
-   * @param {number} [tenth]
+   * @param {number} tenth
    * @returns {H5P.jQuery}
    */
   InteractiveVideo.prototype.addBookmark = function (id, tenth) {
@@ -890,16 +791,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
     var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
     var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
-    if (self.preventSkipping) {
-      $slider.addClass('disabled');
-    }
 
     // Keep track of all controls
     self.controls = {};
 
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-      if (self.controls.$play.hasClass('h5p-pause') && !self.controls.$play.hasClass('h5p-disabled')) {
+      if (self.controls.$play.hasClass('h5p-pause')) {
 
         // Auto toggle fullscreen on play if on a small device
         var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
@@ -970,8 +868,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * Only available for controls.
      * @private
      */
-    var hasBookmarks = self.options.assets.bookmarks && self.options.assets.bookmarks.length;
-    var bookmarksEnabled = self.editor || (hasBookmarks && !self.preventSkipping);
+    var bookmarksEnabled = ((self.options.assets.bookmarks && self.options.assets.bookmarks.length) || self.editor);
 
     // Add bookmark controls
     if (bookmarksEnabled) {
@@ -1000,6 +897,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
+        self.controls.$bookmarks.removeClass('h5p-blink')
       })
     }
 
@@ -1062,6 +960,30 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Button for opening video playback rate selection dialog
     self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
 
+
+    // Add captions control (toggle captions)
+
+    self.controls.$captions = self.createButton('captions', 'h5p-control', $right, function () {
+      if (self.controls.$captions.hasClass('h5p-nocaptions')) {
+        self.controls.$captions.removeClass('h5p-nocaptions').attr('title', self.l10n.captions);
+        self.video.showcaptions();
+      }
+      else {
+        self.controls.$captions.addClass('h5p-nocaptions').attr('title', self.l10n.nocaptions);
+        self.video.removecaptions();
+      }
+    });
+
+    // Add popup for selecting language
+    self.controls.$languageChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-language',
+      html: '<h3>' + self.l10n.language + '</h3>',
+      appendTo: self.$container
+    });
+
+    // Button for opening language selection dialog
+    self.controls.$languageButton = self.createButton('language', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$languageButton', '$languageChooser'));
+
     // Add more button for collapsing controls when there's little space
 
     // Add overlay for display controls inside
@@ -1105,6 +1027,24 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, true);
     $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);
 
+    // Captions
+    self.controls.$captionsButtonMinimal = self.createButton('captions', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
+      if (!self.controls.$captionsButton.hasClass('h5p-disabled')) {
+        $buttons.addClass('h5p-hide');
+        self.controls.$captionsButton.click();
+      }
+    }, true);
+    $buttons = $buttons.add(self.controls.$captionsButtonMinimal);
+
+    // Language
+    self.controls.$languageButtonMinimal = self.createButton('language', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
+      if (!self.controls.$languageButton.hasClass('h5p-disabled')) {
+        $buttons.addClass('h5p-hide');
+        self.controls.$languagaButton.click();
+      }
+    }, true);
+    $buttons = $buttons.add(self.controls.$languageButtonMinimal);
+
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
@@ -1118,6 +1058,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
           self.controls.$playbackRateButton.click();
         }
+        if (self.controls.$languageButton && self.controls.$languageButton.hasClass('h5p-active')) {
+          self.controls.$languageButton.click();
+        }        
         setTimeout(function () {
           $buttons.removeClass('h5p-hide');
         }, 150);
@@ -1138,11 +1081,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       else {
         self.controls.$qualityChooser.removeClass('h5p-show');
         self.controls.$playbackRateChooser.removeClass('h5p-show');
+        self.controls.$languageChooser.removeClass('h5p-show');          
       }
     });
 
     self.addQualityChooser();
     self.addPlaybackRateChooser();
+    self.addlanguageChooser();    
 
     // Add display for time elapsed and duration
     $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
@@ -1253,15 +1198,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       }
     });
-
-    // Disable slider
-    if (self.preventSkipping) {
-      self.controls.$slider.slider('disable');
-      self.controls.$slider.click(function (e) {
-        self.showPreventSkippingMessage(e.offsetX);
-        return false;
-      });
-    }
 
     /* Show bookmarks, except when youtube is used on iPad */
     if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
@@ -1411,6 +1347,52 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Enable playback rate chooser button
     this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeClass('h5p-disabled');
+  };
+
+
+  /**
+   * Add a dialog for selecting language.
+   */
+  InteractiveVideo.prototype.addlanguageChooser = function () {
+    var self = this;
+
+    if (!this.video.getLanguages) {
+      return;
+    }
+
+    var languages = this.video.getLanguages();
+
+    // don't enable playback rate chooser if only default rate can be chosen
+    if (languages.length < 2) {
+      return;
+    }
+
+    if (!languages || this.controls.$languagesButton === undefined ||
+        !this.controls.$languageButton.hasClass('h5p-disabled')) {
+      return;
+    }
+
+    var currentLanguage = this.video.getLanguage();
+
+    var html = '';
+    for (var i = 0; i < languages.length; i++) {
+      var language = languages[i];
+      html += '<li role="button" tabIndex="1" language="' + language + '" class="' + (language === currentLanguage ? 'h5p-selected' : '') + '">' + language + '</li>';
+    }
+
+    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$languageChooser);
+    var $options = $list.children().click(function () {
+      self.video.setLanguage($(this).attr('language'));
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
+      else {
+        self.controls.$languageButton.click();
+      }
+    });
+
+    // Enable playback rate chooser button
+    this.controls.$languageButton.add(this.controls.$languageButtonMinimal).removeClass('h5p-disabled');
   };
 
   /**
@@ -1890,7 +1872,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @returns {string}
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.options.video.startScreenOptions.title);
+    return H5P.createTitle(this.options.video.advancedSettings.title);
   };
 
   /**
@@ -1961,12 +1943,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Adding info from copyright field
-    if (self.options.video.startScreenOptions.copyright !== undefined) {
-      info.addMedia(self.options.video.startScreenOptions.copyright);
+    if (self.options.video.advancedSettings.copyright !== undefined) {
+      info.addMedia(self.options.video.advancedSettings.copyright);
     }
 
     // Adding copyrights for poster
-    var poster = self.options.video.startScreenOptions.poster;
+    var poster = self.options.video.advancedSettings.startScreenOptions.poster;
     if (poster && poster.copyright !== undefined) {
       var image = new H5P.MediaCopyright(poster.copyright, self.l10n);
       var imgSource = H5P.getPath(poster.path, self.contentId);

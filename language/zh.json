@@ -15,8 +15,8 @@
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
-              "englishLabel": "Start screen options",
-              "label": "Start screen options",
+              "englishLabel": "Advanced settings",
+              "label": "Advanced settings",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,26 +27,32 @@
                   "description": "用于最后测试、统计。"
                 },
                 {
-                  "englishLabel": "Hide title on video start screen",
-                  "label": "视频首帧显示中隐藏标题。"
-                },
-                {
-                  "englishLabel": "Short description (Optional)",
-                  "label": "简述 (可选)",
-                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                  "description": "选填。在视频首帧中展示的简短文字描述。"
-                },
-                {
-                  "englishLabel": "Poster image",
-                  "label": "海报图片",
-                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
                   "englishLabel": "Video copyright information",
                   "label": "版权信息",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "展示视频及其中所用元素的版权信息。"
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "首帧显示项",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "海报图片",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "视频首帧显示中隐藏标题。"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "简述 (可选)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "选填。在视频首帧中展示的简短文字描述。"
+                    }
+                  ]
                 }
               ]
             }
@@ -145,12 +151,6 @@
                             "label": "进度按钮文本"
                           }
                         ]
-                      },
-                      {
-                        "englishLabel": "Require full score for task before proceeding",
-                        "label": "Require full score for task before proceeding",
-                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -262,12 +262,6 @@
       "label": "Behavioural settings",
       "fields": [
         {
-          "englishLabel": "Start video at",
-          "label": "Start video at",
-          "englishDescription": "Enter timecode in the format M:SS",
-          "description": "Enter timecode in the format M:SS"
-        },
-        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -308,12 +302,6 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
-        },
-        {
-          "englishLabel": "Prevent skipping forward in a video",
-          "label": "Prevent skipping forward in a video",
-          "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Enabling this options will disable user video navigation through default controls"
         }
       ]
     },
@@ -404,12 +392,6 @@
           "label": "Rewind 10 Seconds",
           "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
-        },
-        {
-          "englishLabel": "Navigation is disabled text",
-          "label": "Navigation is disabled text",
-          "englishDefault": "Navigation is disabled",
-          "default": "Navigation is disabled"
         }
       ]
     }

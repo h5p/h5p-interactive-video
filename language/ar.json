@@ -15,8 +15,8 @@
               "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "englishLabel": "Start screen options",
-              "label": "Start screen options",
+              "englishLabel": "Advanced settings",
+              "label": "Advanced settings",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,26 +27,32 @@
                   "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "englishLabel": "Hide title on video start screen",
-                  "label": "Hide title on video start screen"
-                },
-                {
-                  "englishLabel": "Short description (Optional)",
-                  "label": "Short description (Optional)",
-                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                  "description": "Optional. Display a short description text on the video start screen."
-                },
-                {
-                  "englishLabel": "Poster image",
-                  "label": "الملصق",
-                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
                   "englishLabel": "Video copyright information",
                   "label": "معلومات حقوق النشر فيديو",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "Video start screen options",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "الملصق",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "Hide title on video start screen"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "Short description (Optional)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "Optional. Display a short description text on the video start screen."
+                    }
+                  ]
                 }
               ]
             }
@@ -145,12 +151,6 @@
                             "label": "تسمية زر التحرك الي"
                           }
                         ]
-                      },
-                      {
-                        "englishLabel": "Require full score for task before proceeding",
-                        "label": "Require full score for task before proceeding",
-                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -262,12 +262,6 @@
       "label": "Behavioural settings",
       "fields": [
         {
-          "englishLabel": "Start video at",
-          "label": "Start video at",
-          "englishDescription": "Enter timecode in the format M:SS",
-          "description": "Enter timecode in the format M:SS"
-        },
-        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -308,12 +302,6 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
-        },
-        {
-          "englishLabel": "Prevent skipping forward in a video",
-          "label": "Prevent skipping forward in a video",
-          "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Enabling this options will disable user video navigation through default controls"
         }
       ]
     },
@@ -404,12 +392,6 @@
           "label": "Rewind 10 Seconds",
           "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
-        },
-        {
-          "englishLabel": "Navigation is disabled text",
-          "label": "Navigation is disabled text",
-          "englishDefault": "Navigation is disabled",
-          "default": "Navigation is disabled"
         }
       ]
     }
