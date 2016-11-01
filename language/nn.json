@@ -148,7 +148,9 @@
                       },
                       {
                         "englishLabel": "Require full score for task before proceeding",
-                        "label": "Require full score for task before proceeding"
+                        "label": "Krev alt rett for å fortsette",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "Dette altnerativet fungerer best når \"Unngå at brukere hopper over innhold i video\" alternativet er på."
                       }
                     ]
                   },
