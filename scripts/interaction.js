@@ -265,6 +265,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if(self.getRequiresCompletion() && !self.hasFullScore()){
         player.dnb.dialog.hideCloseButton();
         player.dnb.dialog.disableOverlay = true;
+
+        // selects the overlay, and adds warning on click
+        var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+        $dialogWrapper.click(function(){
+          if(!self.hasFullScore()){
+            showWarningMask(player.$container);
+          }
+        });
       }
 
       // Open dialog
@@ -446,16 +454,57 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    /**
+     * Show a mask behind the interaction to prevent the user from clicking the video or controls
+     *
+     * @param $interaction
+     */
     var showOverlayMask = function($interaction){
       $interaction.css('zIndex', 52);
       player.$videoWrapper.addClass('h5p-disable-opt-out');
       player.dnb.dialog.openOverlay();
+
+      // selects the overlay, and adds warning on click
+      var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+      $dialogWrapper.click(function(){
+        if(!self.hasFullScore()){
+          showWarningMask(player.$container);
+        }
+      });
     };
 
+    /**
+     * Hides the mask behind the interaction
+     * @param $interaction
+     */
     var hideOverlayMask = function($interaction){
       player.dnb.dialog.closeOverlay();
       $interaction.css('zIndex', '');
       player.$videoWrapper.removeClass('h5p-disable-opt-out');
+    };
+
+    /**
+     * Shows the warning mask
+     *
+     * @param $container
+     */
+    var showWarningMask = function($container){
+      var text = 'You need to answer all the questions correctly before continuing.';
+      var backText = 'Back';
+
+      var $mask = $(
+        '<div class="h5p-warning-mask">' +
+          '<div class="h5p-warning-mask-wrapper">' +
+            '<div class="h5p-warning-mask-content">' + text + '</div>' +
+            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + backText + '</button>' +
+          '</div>' +
+        '</div>'
+      ).click(function () {
+        $mask.remove();
+      });
+
+      $mask.appendTo($container);
+      $mask.show();
     };
 
     /**
