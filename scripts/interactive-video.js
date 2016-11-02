@@ -573,16 +573,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
-   * Sets if the play button should be disabled or not
-   *
-   * @private
-   * @param {Boolean} disabled Disable play button
-   */
-  InteractiveVideo.prototype.setPlayButtonDisabled = function(disabled){
-    this.controls.$play[disabled ? 'addClass' : 'removeClass']('h5p-disabled');
-  };
-
-  /**
    * Initialize interaction at the given index.
    *
    * @param {number} index
@@ -609,11 +599,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
 
-      // if requires completion, disable play button if not full score
-      if(interaction.getRequiresCompletion()){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      }
-
       // Make sure the interaction does not overflow videowrapper.
       interaction.repositionToWrapper(self.$videoWrapper);
 
@@ -633,26 +618,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }, 0);
     });
 
-    // if requires completion
-    if(interaction.getRequiresCompletion()){
-      // enable play button after removing interaction
-      interaction.on('remove', function () {
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      });
-
-      // enable play button after answering with full score
-      interaction.on('question-finished', function(){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      });
-    }
-
     // handle xAPI event
     interaction.on('xAPI', function(event) {
-      // toggle enable play button
-      if(interaction.getRequiresCompletion()){
-        self.setPlayButtonDisabled(!interaction.hasFullScore());
-      }
-
       // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');

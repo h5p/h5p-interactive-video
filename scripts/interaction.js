@@ -85,6 +85,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }
       });
 
+      // if requires completion -> open dialog right away
+      if(self.getRequiresCompletion() && !self.hasFullScore() && player.editor === undefined){
+        openDialog();
+      }
+
       // Touch area for button
       $('<div/>', {
         'class': 'h5p-touch-area'
@@ -257,11 +262,17 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($instanceParent);
       addContinueButton($instanceParent);
 
+      if(self.getRequiresCompletion() && !self.hasFullScore()){
+        player.dnb.dialog.hideCloseButton();
+        player.dnb.dialog.disableOverlay = true;
+      }
+
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
       player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
       player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
+
 
       /**
        * Handle dialog closing once.
@@ -435,6 +446,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    var showOverlayMask = function($interaction){
+      $interaction.css('zIndex', 52);
+      player.$videoWrapper.addClass('h5p-disable-opt-out');
+      player.dnb.dialog.openOverlay();
+    };
+
+    var hideOverlayMask = function($interaction){
+      player.dnb.dialog.closeOverlay();
+      $interaction.css('zIndex', '');
+      player.$videoWrapper.removeClass('h5p-disable-opt-out');
+    };
+
     /**
      * Display the current interaction as a poster on top of the video.
      *
@@ -507,6 +530,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Trigger event listeners
       self.trigger('display', $interaction);
 
+      if(self.getRequiresCompletion() && player.editor === undefined && !self.hasFullScore()){
+        showOverlayMask($interaction);
+      }
+
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
@@ -533,6 +560,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
       }
 
+      // if no adaptivity branching
       if (!adaptivity || adaptivity.seekTo === undefined) {
         // Add continue button if no adaptivity
         if (instance.hasButton !== undefined) {
@@ -550,6 +578,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
           // show or hide the continue-button, based on requiring completion
           instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
+
+          // if requires completing, full score
+          if(self.getRequiresCompletion() && fullScore){
+            hideOverlayMask($interaction)
+          }
         }
 
         return;
@@ -565,9 +598,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.dnb.dialog.hideCloseButton();
         }
         else {
-          $interaction.css('zIndex', 52);
-          player.$videoWrapper.addClass('h5p-disable-opt-out');
-          player.dnb.dialog.openOverlay();
+          showOverlayMask($interaction);
         }
       }
 
@@ -580,11 +611,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           if (self.isButton()) {
             player.dnb.dialog.close();
           }
-          if (!adaptivity.allowOptOut) {
+          if (!adaptivity.allowOptOut || self.getRequiresCompletion()) {
             if (!self.isButton()) {
-              player.dnb.dialog.closeOverlay();
-              $interaction.css('zIndex', '');
-              player.$videoWrapper.removeClass('h5p-disable-opt-out');
+              hideOverlayMask($interaction);
             }
           }
 
