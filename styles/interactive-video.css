@@ -529,12 +529,6 @@
 .h5p-interactive-video .h5p-minimal-overlay .h5p-playbackRate:before {
   content: "\f0e4"; /* fa-tachometer */
 }
-.h5p-interactive-video .h5p-captions:before {
-  content: "\f20a"; /* fa-cc */
-}
-.h5p-interactive-video .h5p-nocaptions:before {
-  content: "\f20a"; /* fa-cc */
-}
 .h5p-interactive-video .h5p-control.h5p-language:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-language:before {
   content: "\f1ab"; /* fa-language */
