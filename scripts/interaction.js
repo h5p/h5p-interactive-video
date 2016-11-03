@@ -489,14 +489,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param $container
      */
     var showWarningMask = function($container){
-      var text = 'You need to answer all the questions correctly before continuing.';
-      var backText = 'Back';
-
       var $mask = $(
         '<div class="h5p-warning-mask">' +
           '<div class="h5p-warning-mask-wrapper">' +
-            '<div class="h5p-warning-mask-content">' + text + '</div>' +
-            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + backText + '</button>' +
+            '<div class="h5p-warning-mask-content">' + player.l10n.requiresCompletionWarning + '</div>' +
+            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + player.l10n.back + '</button>' +
           '</div>' +
         '</div>'
       ).click(function () {

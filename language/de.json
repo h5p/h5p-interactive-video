@@ -410,6 +410,18 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, bevor Sie fortfahren",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Sie müssen alle Fragen richtig beantworten, bevor Sie fortfahren."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Zurück-Button",
+          "englishDefault": "Back",
+          "default": "Zurück"
         }
       ]
     }

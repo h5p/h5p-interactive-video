@@ -78,7 +78,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       more: 'More',
       playbackRate: 'Playback rate',
       rewind10: 'Rewind 10 seconds',
-      navDisabled: 'Navigation is disabled'
+      navDisabled: 'Navigation is disabled',
+      requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
+      back: 'Back'
     }, params.l10n);
 
     // Make it possible to restore from previous state

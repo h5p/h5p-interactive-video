@@ -410,6 +410,18 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "محذرا من أن المستخدم يجب أن يجيب على السؤال بشكل صحيح قبل المتابعة",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "تحتاج إلى الإجابة على جميع الأسئلة بشكل صحيح قبل المتابعة."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "زر العودة",
+          "englishDefault": "Back",
+          "default": "الى الخلف"
         }
       ]
     }
