@@ -26,19 +26,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       video: {},
       assets: {}
     }, params.interactiveVideo);
-    self.options.video.advancedSettings = self.options.video.advancedSettings || {};
-    self.options.video.advancedSettings.startScreenOptions = self.options.video.advancedSettings.startScreenOptions || {};
+    self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
 
     // Add default title
-    if (!self.options.video.advancedSettings.title) {
-      self.options.video.advancedSettings.title = 'Interactive Video';
+    if (!self.options.video.startScreenOptions.title) {
+      self.options.video.startScreenOptions.title = 'Interactive Video';
     }
 
     // Set default splash options
     self.startScreenOptions = $.extend({
       hideStartTitle: false,
       shortStartDescription: ''
-    }, self.options.video.advancedSettings.startScreenOptions);
+    }, self.options.video.startScreenOptions);
 
     // Set overrides for interactions
     if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
@@ -78,7 +77,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       continueWithVideo: 'Continue with video',
       more: 'More',
       playbackRate: 'Playback rate',
-      rewind10: 'Rewind 10 seconds'
+      rewind10: 'Rewind 10 seconds',
+      navDisabled: 'Navigation is disabled',
+      requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
+      back: 'Back'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -107,8 +109,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // set start time
     startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-    if (startAt === 0 && !!self.options.video.advancedSettings.startVideoAt) {
-      startAt = self.options.video.advancedSettings.startVideoAt;
+    if (startAt === 0 && params.override && !!params.override.startVideoAt) {
+      startAt = params.override.startVideoAt;
     }
 
     // Start up the video player
@@ -117,7 +119,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       params: {
         sources: self.options.video.files,
         visuals: {
-          poster: self.options.video.advancedSettings.startScreenOptions.poster,
+          poster: self.options.video.startScreenOptions.poster,
           controls: self.justVideo,
           fit: false
         },
@@ -136,7 +138,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
+    /**
+     * Keep track if the video source is loaded.
+     * @private
+     */
+    var isLoaded = false;
+
+    // Handle video source loaded events (metadata)
     self.video.on('loaded', function (event) {
+      isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
@@ -150,8 +160,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var firstPlay = true;
     self.video.on('stateChange', function (event) {
 
-      if (!self.controls) {
-        // Add controls if they're missing
+      if (!self.controls && isLoaded) {
+        // Add controls if they're missing and 'loaded' has happened
         self.addControls();
         self.trigger('resize');
       }
@@ -209,6 +219,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
           // Make sure we track buffering of the video.
           self.startUpdatingBufferBar();
+
           break;
       }
     });
@@ -377,11 +388,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
 
-    if (this.currentState === InteractiveVideo.LOADED) {
-      if (!this.video.pressToPlay) {
+    if (!this.video.pressToPlay) {
+      if (this.currentState === InteractiveVideo.LOADED) {
+        // Add all controls
         this.addControls();
       }
+      else {
+        // Add splash to allow start playing before video load
+        // (play may be needed to trigger load incase preloaded="none" is default)
+        this.addSplash();
+      }
     }
+
+
     this.currentState = InteractiveVideo.ATTACHED;
   };
 
@@ -402,7 +421,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.addSplash = function () {
     var that = this;
-    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play) {
+    if (this.editor !== undefined || this.video.pressToPlay || !this.video.play || this.$splash) {
       return;
     }
 
@@ -414,7 +433,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
               '<div class="h5p-splash-main-outer">' +
                 '<div class="h5p-splash-main-inner">' +
                   '<div class="h5p-splash-play-icon"></div>' +
-                  '<div class="h5p-splash-title">' + this.options.video.advancedSettings.title + '</div>' +
+                  '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
                 '</div>' +
               '</div>' +
             '</div>' +
@@ -510,7 +529,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Set max value for adaptive seeking timecodes
       var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
       for (var i = 0; i < adaptivityFields.length; i++) {
-        findField('seekTo', adaptivityFields[i].fields).max = duration;
+        if (adaptivityFields[i].fields) {
+          findField('seekTo', adaptivityFields[i].fields).max = duration;
+        }
       }
     }
 
@@ -565,7 +586,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     if (self.override) {
       // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, self.override);
+      var compatibilityLayer = {};
+      if (parameters.adaptivity && parameters.adaptivity.requireCompletion) {
+        compatibilityLayer.enableRetry = true;
+      }
+      H5P.jQuery.extend(parameters.action.params.behaviour, self.override, compatibilityLayer);
     }
 
     var previousState;
@@ -574,6 +599,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var interaction = new Interaction(parameters, self, previousState);
+
+    // handle display event
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
@@ -586,7 +613,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Consider pausing the playback
       delayWork(isYouTube ? 100 : null, function () {
-        if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
+        var isPlaying = self.currentState === H5P.Video.PLAYING ||
+            self.currentState === H5P.Video.BUFFERING;
+        if (isPlaying && interaction.pause()) {
           self.video.pause();
         }
       });
@@ -596,7 +625,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
     });
+
+    // handle xAPI event
     interaction.on('xAPI', function(event) {
+      // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
         if (interaction.isMainSummary()) {
@@ -680,9 +712,57 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Add classes if changing visibility
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
-      this.controls.$bookmarks.toggleClass('h5p-blink', hiding);
     }
   };
+
+  /**
+   * Show message saying that skipping in the video is not allowed.
+   *
+   * @param {number} offsetX offset in pixels from left side of the seek bar
+   */
+  InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
+    var self = this;
+
+    // Already displaying message
+    if (self.preventSkippingWarningTimeout) {
+      return;
+    }
+
+    // Create DOM element if not existing
+    if (!self.$preventSkippingMessage) {
+      self.$preventSkippingMessage = $('<div>', {
+        'class': 'h5p-prevent-skipping-message',
+        appendTo: self.controls.$bookmarksContainer
+      });
+
+      self.$preventSkippingMessageText = $('<div>', {
+        'class': 'h5p-prevent-skipping-message-text',
+        html: self.l10n.navDisabled,
+        appendTo: self.$preventSkippingMessage
+      });
+    }
+
+    // Move element to offset position
+    self.$preventSkippingMessage.css('left', offsetX);
+
+    // Show message
+    setTimeout(function () {
+      self.$preventSkippingMessage.addClass('h5p-show');
+    }, 0);
+
+    // Wait for a while before removing message
+    self.preventSkippingWarningTimeout = setTimeout(function () {
+
+      // Remove message
+      self.$preventSkippingMessage.removeClass('h5p-show');
+
+      // Wait a while before allowing to display warning again.
+      setTimeout(function () {
+        self.preventSkippingWarningTimeout = undefined;
+      }, 500);
+    }, 2000);
+  };
+
   /**
    * Puts a single cool narrow line around the slider / seek bar.
    *
@@ -794,7 +874,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-      if (self.controls.$play.hasClass('h5p-pause')) {
+      if (self.controls.$play.hasClass('h5p-pause') && !self.controls.$play.hasClass('h5p-disabled')) {
 
         // Auto toggle fullscreen on play if on a small device
         var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
@@ -895,7 +975,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
-        self.controls.$bookmarks.removeClass('h5p-blink')
       })
     }
 
@@ -1153,7 +1232,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Disable slider
     if (self.preventSkipping) {
       self.controls.$slider.slider('disable');
-      self.controls.$slider.click(function () {
+      self.controls.$slider.click(function (e) {
+        self.showPreventSkippingMessage(e.offsetX);
         return false;
       });
     }
@@ -1671,7 +1751,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.updateInteractions(time);
 
     setTimeout(function () {
-      if (self.currentState === H5P.Video.PLAYING) {
+      if (self.currentState === H5P.Video.PLAYING ||
+        (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
+      ) {
         self.timeUpdate(self.video.getCurrentTime());
       }
     }, 40); // 25 fps
@@ -1771,6 +1853,104 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return this.getUsersMaxScore();
   };
 
+
+  /**
+   * Show a mask behind the interaction to prevent the user from clicking the video or controls
+   *
+   * @param $interaction
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.showOverlayMask = function(){
+    var self = this;
+
+    self.$videoWrapper.addClass('h5p-disable-opt-out');
+    self.dnb.dialog.openOverlay();
+
+    var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+    $dialogWrapper.click(function(){
+      if(self.hasUncompletedRequiredInteractions()){
+        self.showWarningMask();
+      }
+    });
+  };
+
+  /**
+   * Hides the mask behind the interaction
+   * @param $interaction
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.hideOverlayMask = function(){
+    var self = this;
+
+    self.dnb.dialog.closeOverlay();
+    self.$videoWrapper.removeClass('h5p-disable-opt-out');
+
+    return self.$container.find('.h5p-dialog-wrapper');
+  };
+
+
+  /**
+   * Shows the warning mask.
+   * player.$mask is shared by all interactions
+   *
+   * @param $container
+   */
+  InteractiveVideo.prototype.showWarningMask = function(){
+    var self = this;
+
+    // create mask if doesn't exist
+    if(!self.$mask) {
+      self.$mask = $(
+        '<div class="h5p-warning-mask">' +
+          '<div class="h5p-warning-mask-wrapper">' +
+            '<div class="h5p-warning-mask-content">' + self.l10n.requiresCompletionWarning + '</div>' +
+            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + self.l10n.back + '</button>' +
+          '</div>' +
+        '</div>'
+      ).click(function () {
+        self.$mask.hide();
+      }).appendTo(self.$container);
+    }
+
+    self.$mask.show();
+  };
+
+  /**
+   * Returns true if there are visible interactions that require completed
+   * and the user doesn't have full score
+   *
+   * @returns {boolean} If any required interaction is not completed
+   */
+  InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function(){
+    var self = this;
+
+    return self.getVisibleInteractions().some(function(interaction){
+      return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+    });
+  };
+
+  /**
+   * Returns an array of interactions currently visible
+   *
+   * @return {H5P.Interaction[]} visible interactions
+   */
+  InteractiveVideo.prototype.getVisibleInteractions = function() {
+    return this.interactions.filter(function(interaction){
+      return interaction.isVisible();
+    });
+  };
+
+  /**
+   * Returns true if there is at least one visible interaction
+   *
+   * @return {Boolean} Return true if there is at least one visible interaction
+   */
+  InteractiveVideo.prototype.hasVisibleInteractions = function() {
+    return this.interactions.some(function(interaction){
+      return interaction.isVisible();
+    });
+  };
+
   /**
    * Implements showSolutions from the question type contract
    */
@@ -1783,7 +1963,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @returns {string}
    */
   InteractiveVideo.prototype.getTitle = function() {
-    return H5P.createTitle(this.options.video.advancedSettings.title);
+    return H5P.createTitle(this.options.video.startScreenOptions.title);
   };
 
   /**
@@ -1854,12 +2034,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Adding info from copyright field
-    if (self.options.video.advancedSettings.copyright !== undefined) {
-      info.addMedia(self.options.video.advancedSettings.copyright);
+    if (self.options.video.startScreenOptions.copyright !== undefined) {
+      info.addMedia(self.options.video.startScreenOptions.copyright);
     }
 
     // Adding copyrights for poster
-    var poster = self.options.video.advancedSettings.startScreenOptions.poster;
+    var poster = self.options.video.startScreenOptions.poster;
     if (poster && poster.copyright !== undefined) {
       var image = new H5P.MediaCopyright(poster.copyright, self.l10n);
       var imgSource = H5P.getPath(poster.path, self.contentId);

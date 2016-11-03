@@ -2,51 +2,51 @@
   "semantics": [
     {
       "englishLabel": "Interactive Video Editor",
-      "label": "Editor Video Interattivo",
+      "label": "交互式视频编辑器",
       "fields": [
         {
           "englishLabel": "Upload/embed video",
-          "label": "Carica video",
+          "label": "上传/嵌入视频",
           "fields": [
             {
               "englishLabel": "Video files",
-              "label": "File Video",
+              "label": "视频文件",
               "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
-              "description": "Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
+              "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
               "englishLabel": "Start screen options",
-              "label": "Start screen options",
+              "label": "Advanced settings",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
-                  "label": "The title of this interactive video",
+                  "label": "该交互式视频标题",
                   "englishDefault": "Interactive Video",
                   "default": "Interactive Video",
                   "englishDescription": "Used in summaries, statistics etc.",
-                  "description": "Used in summaries, statistics etc."
+                  "description": "用于最后测试、统计。"
                 },
                 {
                   "englishLabel": "Hide title on video start screen",
-                  "label": "Hide title on video start screen"
+                  "label": "视频首帧显示中隐藏标题。"
                 },
                 {
                   "englishLabel": "Short description (Optional)",
-                  "label": "Short description (Optional)",
+                  "label": "简述 (可选)",
                   "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                  "description": "Optional. Display a short description text on the video start screen."
+                  "description": "选填。在视频首帧中展示的简短文字描述。"
                 },
                 {
                   "englishLabel": "Poster image",
-                  "label": "Poster",
+                  "label": "海报图片",
                   "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
                   "englishLabel": "Video copyright information",
-                  "label": "Informazioni Copyright Video",
+                  "label": "版权信息",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
-                  "description": "Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
+                  "description": "展示视频及其中所用元素的版权信息。"
                 }
               ]
             }
@@ -54,40 +54,40 @@
         },
         {
           "englishLabel": "Add interactions",
-          "label": "Aggiungi interazioni",
+          "label": "添加交互",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
                     "englishLabel": "Display time",
-                    "label": "Visualizza tempo"
+                    "label": "显示时间"
                   },
                   {
                     "englishLabel": "Pause video",
-                    "label": "Pausa"
+                    "label": "暂停视频"
                   },
                   {
                     "englishLabel": "Display as",
-                    "label": "Display as",
+                    "label": "显示为",
                     "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "<b>按钮</b> 默认收起，需用户点击才能显示。<b>海报</b> 交互式内容整体在视频上展开显示",
                     "options": [
                       {
                         "englishLabel": "Button",
-                        "label": "Button"
+                        "label": "按钮"
                       },
                       {
                         "englishLabel": "Poster",
-                        "label": "Poster"
+                        "label": "海报"
                       }
                     ]
                   },
                   {
                     "englishLabel": "Label",
-                    "label": "Etchetta",
+                    "label": "文字",
                     "englishDescription": "Label displayed next to interaction icon.",
-                    "description": "Etichetta visualizzata accanto all'icona interazione."
+                    "description": "跟交互式图标对应的文字。"
                   },
                   {},
                   {},
@@ -96,53 +96,53 @@
                   {},
                   {
                     "englishLabel": "Adaptivity",
-                    "label": "Adattabilità",
+                    "label": "适应性",
                     "fields": [
                       {
                         "englishLabel": "Action on all correct",
-                        "label": "Azione su Tutto corretto",
+                        "label": "全部答对后的动作",
                         "fields": [
                           {
                             "englishLabel": "Seek to",
-                            "label": "Vai a",
+                            "label": "跳转到时间",
                             "englishDescription": "Enter timecode in the format M:SS",
-                            "description": "Inserisci il timecode in formato M:SS"
+                            "description": "时间点的格式是 M:SS"
                           },
                           {
                             "englishLabel": "Allow the user to opt out and continue",
-                            "label": "Consentire all'utente di uscire e continuare"
+                            "label": "允许用户关闭并继续播放"
                           },
                           {
                             "englishLabel": "Message",
-                            "label": "Messaggio"
+                            "label": "消息"
                           },
                           {
                             "englishLabel": "Label for seek button",
-                            "label": "Etichetta per pulsante Vai a"
+                            "label": "进度按钮文本"
                           }
                         ]
                       },
                       {
                         "englishLabel": "Action on wrong",
-                        "label": "Azione su Errato",
+                        "label": "答错后的动作",
                         "fields": [
                           {
                             "englishLabel": "Seek to",
-                            "label": "Vai a",
+                            "label": "跳转到时间",
                             "englishDescription": "Enter timecode in the format M:SS",
-                            "description": "Inserisci il timecode in formato M:SS"
+                            "description": "时间点的格式是 M:SS"
                           },
                           {
                             "englishLabel": "Allow the user to opt out and continue",
-                            "label": "Consentire all'utente di uscire e continuare"
+                            "label": "允许用户关闭并继续播放"
                           },
                           {
                             "englishLabel": "Message",
-                            "label": "Messaggio"
+                            "label": "消息"
                           },
                           {
                             "englishLabel": "Label for seek button",
-                            "label": "Etichetta per pulsante Vai a"
+                            "label": "进度按钮文本"
                           }
                         ]
                       },
@@ -244,14 +244,14 @@
         },
         {
           "englishLabel": "Summary task",
-          "label": "Riepilogo attività",
+          "label": "课后小结",
           "fields": [
             {},
             {
               "englishLabel": "Display at",
-              "label": "Visualizza a",
+              "label": "显示于",
               "englishDescription": "Number of seconds before the video ends.",
-              "description": "Numero di secondi prima della fine del video."
+              "description": "视频结束前的多少秒."
             }
           ]
         }
@@ -263,13 +263,13 @@
       "fields": [
         {
           "englishLabel": "Start video at",
-          "label": "Start video at",
+          "label": "Override \"Show Solution\" button",
           "englishDescription": "Enter timecode in the format M:SS",
-          "description": "Enter timecode in the format M:SS"
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
         },
         {
           "englishLabel": "Override \"Show Solution\" button",
-          "label": "Override \"Show Solution\" button",
+          "label": "Override \"Retry\" button",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
@@ -319,71 +319,71 @@
     },
     {
       "englishLabel": "Localize",
-      "label": "Localize",
+      "label": "本地化",
       "fields": [
         {
           "englishLabel": "Interaction title",
-          "label": "Titolo Interazione",
+          "label": "交互式视频",
           "englishDefault": "Interaction",
           "default": "Interaction"
         },
         {
           "englishLabel": "Play title",
-          "label": "Titolo Play",
+          "label": "播放的提示",
           "englishDefault": "Play",
           "default": "Play"
         },
         {
           "englishLabel": "Pause title",
-          "label": "Titolo Pausa",
+          "label": "暂停的提示",
           "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "englishLabel": "Mute title",
-          "label": "Titolo modalità muto",
+          "label": "静音的提示",
           "englishDefault": "Mute",
           "default": "Mute"
         },
         {
           "englishLabel": "Unmute title",
-          "label": "Titolo disattiva modalità muto",
+          "label": "取消静音的提示",
           "englishDefault": "Unmute",
           "default": "Unmute"
         },
         {
           "englishLabel": "Video quality title",
-          "label": "Titolo qualità Video",
+          "label": "视频质量的提示",
           "englishDefault": "Video Quality",
           "default": "Video Quality"
         },
         {
           "englishLabel": "Fullscreen title",
-          "label": "Titolo Schermo intero",
+          "label": "全屏的提示",
           "englishDefault": "Fullscreen",
           "default": "Fullscreen"
         },
         {
           "englishLabel": "Exit fullscreen title",
-          "label": "Titolo Esci da Schermo intero",
+          "label": "退出全屏的提示",
           "englishDefault": "Exit Fullscreen",
           "default": "Exit Fullscreen"
         },
         {
           "englishLabel": "Summary title",
-          "label": "Titolo Riepilogo",
+          "label": "小结认为的提示",
           "englishDefault": "Summary",
           "default": "Summary"
         },
         {
           "englishLabel": "Bookmarks title",
-          "label": "Titolo Segnalibri",
+          "label": "书签的提示",
           "englishDefault": "Bookmarks",
           "default": "Bookmarks"
         },
         {
           "englishLabel": "Default label for adaptivity seek button",
-          "label": "Etichetta predefinita per adattabilità pulsante Vai a",
+          "label": "进度按钮的缺省文本",
           "englishDefault": "Continue",
           "default": "Continue"
         },
@@ -413,15 +413,15 @@
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
-          "label": "Attenzione che l'utente deve rispondere alla domanda in modo corretto prima di continuare",
+          "label": "Warning that the user must answer the question correctly before continuing",
           "englishDefault": "You need to answer all the questions correctly before continuing.",
-          "default": "È necessario rispondere correttamente a tutte le domande prima di continuare."
+          "default": "You need to answer all the questions correctly before continuing."
         },
         {
           "englishLabel": "Back button",
-          "label": "Tasto indietro",
+          "label": "Back button",
           "englishDefault": "Back",
-          "default": "Indietro"
+          "default": "Back"
         }
       ]
     }
