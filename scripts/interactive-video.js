@@ -609,7 +609,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Consider pausing the playback
       delayWork(isYouTube ? 100 : null, function () {
-        if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
+        var isPlaying = self.currentState === H5P.Video.PLAYING ||
+            self.currentState === H5P.Video.BUFFERING;
+        if (isPlaying && interaction.pause()) {
           self.video.pause();
         }
       });
