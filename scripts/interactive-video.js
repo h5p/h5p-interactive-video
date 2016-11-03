@@ -1847,6 +1847,42 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return this.getUsersMaxScore();
   };
 
+
+  /**
+   * Show a mask behind the interaction to prevent the user from clicking the video or controls
+   *
+   * @param $interaction
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.showOverlayMask = function(){
+    var self = this;
+
+    self.$videoWrapper.addClass('h5p-disable-opt-out');
+    self.dnb.dialog.openOverlay();
+
+    var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+    $dialogWrapper.click(function(){
+      if(self.hasUncompletedRequiredInteractions()){
+        self.showWarningMask();
+      }
+    });
+  };
+
+  /**
+   * Hides the mask behind the interaction
+   * @param $interaction
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.hideOverlayMask = function(){
+    var self = this;
+
+    self.dnb.dialog.closeOverlay();
+    self.$videoWrapper.removeClass('h5p-disable-opt-out');
+
+    return self.$container.find('.h5p-dialog-wrapper');
+  };
+
+
   /**
    * Shows the warning mask.
    * player.$mask is shared by all interactions
@@ -1871,6 +1907,42 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     self.$mask.show();
+  };
+
+  /**
+   * Returns true if there are visible interactions that require completed
+   * and the user doesn't have full score
+   *
+   * @returns {boolean} If any required interaction is not completed
+   */
+  InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function(){
+    var self = this;
+
+    return self.getVisibleInteractions().some(function(interaction){
+      return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+    });
+  };
+
+  /**
+   * Returns an array of interactions currently visible
+   *
+   * @return {H5P.Interaction[]} visible interactions
+   */
+  InteractiveVideo.prototype.getVisibleInteractions = function() {
+    return this.interactions.filter(function(interaction){
+      return interaction.isVisible();
+    });
+  };
+
+  /**
+   * Returns true if there is at least one visible interaction
+   *
+   * @return {Boolean} Return true if there is at least one visible interaction
+   */
+  InteractiveVideo.prototype.hasVisibleInteractions = function() {
+    return this.interactions.some(function(interaction){
+      return interaction.isVisible();
+    });
   };
 
   /**

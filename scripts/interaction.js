@@ -45,6 +45,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     // Changes if interaction has moved from original position
     var isRepositioned = false;
 
+    var isVisible = false;
+
     var getVisuals = function () {
       return $.extend({}, {
         backgroundColor: 'rgb(255,255,255)',
@@ -193,6 +195,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       self.trigger('remove', $interaction);
+
+      // hide mask if
+      if(!player.hasUncompletedRequiredInteractions()){
+        hideOverlayMask($interaction);
+      }
     };
 
     /**
@@ -461,26 +468,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     var showOverlayMask = function($interaction){
       $interaction.css('zIndex', 52);
-      player.$videoWrapper.addClass('h5p-disable-opt-out');
-      player.dnb.dialog.openOverlay();
+      player.showOverlayMask();
 
-      // selects the overlay, and adds warning on click
-      var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
-      $dialogWrapper.click(function(){
-        if(!self.hasFullScore()){
-          player.showWarningMask();
-        }
-      });
     };
+
 
     /**
      * Hides the mask behind the interaction
      * @param $interaction
      */
     var hideOverlayMask = function($interaction){
-      player.dnb.dialog.closeOverlay();
-      $interaction.css('zIndex', '');
-      player.$videoWrapper.removeClass('h5p-disable-opt-out');
+      if($interaction){
+        $interaction.css('zIndex', '');
+      }
+      player.hideOverlayMask();
     };
 
     /**
@@ -806,6 +807,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * If the interaction should be visible at this time
+     *
+     * @return {boolean}
+     */
+    self.isVisible = function(){
+      return isVisible;
+    };
+
+    /**
      * Display or remove the interaction depending on the video time.
      *
      * @param {number} second video time
@@ -814,6 +824,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.toggle = function (second) {
       second = Math.floor(second);
       if (second < parameters.duration.from || second > parameters.duration.to) {
+        isVisible = false;
+
         if ($interaction) {
           // Remove interaction from display
           if (dnbElement) {
@@ -827,6 +839,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             player.editor.hideInteractionTitle();
             isHovered = false;
           }
+
+          // if there are no uncompleted interactions, hide the mask
+          if(!player.hasUncompletedRequiredInteractions()){
+            hideOverlayMask();
+          }
+
           self.remove();
         }
         return;
@@ -835,6 +853,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
+
+      // set that this is visible
+      isVisible = true;
 
       if (self.isButton()) {
         createButton();
