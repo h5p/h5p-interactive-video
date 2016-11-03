@@ -586,7 +586,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     if (self.override) {
       // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, self.override);
+      var compatibilityLayer = {};
+      if (parameters.adaptivity && parameters.adaptivity.requireCompletion) {
+        compatibilityLayer.enableRetry = true;
+      }
+      H5P.jQuery.extend(parameters.action.params.behaviour, self.override, compatibilityLayer);
     }
 
     var previousState;
