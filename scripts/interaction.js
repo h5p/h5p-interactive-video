@@ -574,9 +574,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Adds adaptivity or continue button to exercies.
      *
      * @private
-     * @param {H5P.jQuery} $target
      */
-    var adaptivity = function ($target) {
+    var adaptivity = function () {
       var adaptivity, fullScore, showContinueButton = true;
       if (parameters.adaptivity) {
         fullScore = self.hasFullScore();
@@ -1059,7 +1058,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.hasFullScore = function(){
-      return self.score >= self.maxScore;
+      return instance.getScore() >= instance.getMaxScore();
     };
 
     /**
