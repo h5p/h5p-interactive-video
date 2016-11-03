@@ -270,7 +270,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
         $dialogWrapper.click(function(){
           if(!self.hasFullScore()){
-            showWarningMask(player.$container);
+            player.showWarningMask();
           }
         });
       }
@@ -468,7 +468,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
       $dialogWrapper.click(function(){
         if(!self.hasFullScore()){
-          showWarningMask(player.$container);
+          player.showWarningMask();
         }
       });
     };
@@ -481,27 +481,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       player.dnb.dialog.closeOverlay();
       $interaction.css('zIndex', '');
       player.$videoWrapper.removeClass('h5p-disable-opt-out');
-    };
-
-    /**
-     * Shows the warning mask
-     *
-     * @param $container
-     */
-    var showWarningMask = function($container){
-      var $mask = $(
-        '<div class="h5p-warning-mask">' +
-          '<div class="h5p-warning-mask-wrapper">' +
-            '<div class="h5p-warning-mask-content">' + player.l10n.requiresCompletionWarning + '</div>' +
-            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + player.l10n.back + '</button>' +
-          '</div>' +
-        '</div>'
-      ).click(function () {
-        $mask.remove();
-      });
-
-      $mask.appendTo($container);
-      $mask.show();
     };
 
     /**

@@ -1848,6 +1848,32 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
+   * Shows the warning mask.
+   * player.$mask is shared by all interactions
+   *
+   * @param $container
+   */
+  InteractiveVideo.prototype.showWarningMask = function(){
+    var self = this;
+
+    // create mask if doesn't exist
+    if(!self.$mask) {
+      self.$mask = $(
+        '<div class="h5p-warning-mask">' +
+          '<div class="h5p-warning-mask-wrapper">' +
+            '<div class="h5p-warning-mask-content">' + self.l10n.requiresCompletionWarning + '</div>' +
+            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + self.l10n.back + '</button>' +
+          '</div>' +
+        '</div>'
+      ).click(function () {
+        self.$mask.hide();
+      }).appendTo(self.$container);
+    }
+
+    self.$mask.show();
+  };
+
+  /**
    * Implements showSolutions from the question type contract
    */
   InteractiveVideo.prototype.showSolutions = function() {
