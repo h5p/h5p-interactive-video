@@ -1005,6 +1005,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
+        // Getting initial score from instance (if it has previous state)
+        if(hasScoreData(instance)){
+          self.score = instance.getScore();
+          self.maxScore = instance.getMaxScore();
+        }
+
         // Set adaptivity if question is finished on attach
         if (instance.on) {
 
@@ -1042,6 +1048,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+
+    /**
+     * Returns true if the object passed in has the getScore and getMaxScore
+     *
+     * @param obj Object to check
+     * @returns {boolean} If the object has getScore and getMaxScore
+     */
+    var hasScoreData = function (obj){
+      return (
+        (typeof obj !== typeof undefined) &&
+        (typeof obj.getScore === 'function') &&
+        (typeof obj.getMaxScore === 'function')
+      );
+    };
+
     /**
      * Set dnb element for interaction, connecting it to a dialog/form
      *
@@ -1062,7 +1083,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.hasFullScore = function(){
-      return instance.getScore() >= instance.getMaxScore();
+      return self.score >= self.maxScore;
     };
 
     /**
