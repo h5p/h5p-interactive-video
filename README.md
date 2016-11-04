@@ -1,6 +1,6 @@
 # H5P Interactive Video
 
-Put texts, tasks and other medias on top of your video.
+Put texts, tasks and other media on top of your video.
 
 [See it in action on H5P.org](https://h5p.org/interactive-video)
 
