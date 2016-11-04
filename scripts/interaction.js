@@ -582,7 +582,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         showContinueButton = !self.getRequiresCompletion() || fullScore;
 
         // Determine adaptivity
-        adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
+        if(fullScore){
+          adaptivity = parameters.adaptivity.correct;
+        } else if(!fullScore && !self.getRequiresCompletion()){
+          adaptivity = parameters.adaptivity.wrong;
+        }
       }
 
       // if no adaptivity branching
