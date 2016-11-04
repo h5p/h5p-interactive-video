@@ -1572,7 +1572,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
-        if (this.dnb && this.dnb.dialog) {
+        if (this.dnb && this.dnb.dialog && !this.hasUncompletedRequiredInteractions()) {
           this.dnb.dialog.close();
         }
         this.$container.removeClass('mobile');
@@ -1927,7 +1927,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Returns true if there are visible interactions that require completed
    * and the user doesn't have full score
    *
-   * @returns {boolean} If any required interaction is not completed
+   * @returns {boolean} If any required interaction is not completed with full score
    */
   InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function(){
     var self = this;
