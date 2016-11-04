@@ -92,9 +92,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Initial state
     self.lastState = H5P.Video.ENDED;
     
-    self.captionsInitialized = false;
-    self.hasCaptions = false;
-
+    self.languagesInitialized = false;
+    
     // Listen for resize events to make sure we cover our container.
     self.on('resize', function () {
       self.resize();
@@ -147,11 +146,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // We need to initialize some stuff the first time the video plays
     var firstPlay = true;
     self.video.on('stateChange', function (event) {
-      // prepare captions - might be necessary for some players
-      if (!self.captionsInitialized) {
-        self.video.initCaptions({'captions':'captions'});
-        self.captionsInitialized = true;
-    }
 
       if (!self.controls) {
         // Add controls if they're missing
@@ -183,7 +177,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             self.addPlaybackRateChooser();
 
-            self.addLanguageChooser();
+            // prepare captions - might be necessary for some players
+            self.video.initCaptions();
+
+            // Languages will not be available until after play.
+            //self.addLanguageChooser();
 
             // Make sure splash screen is removed.
             self.removeSplash();
@@ -245,13 +243,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     self.video.on('apiChange', function (event) {
-      // Here we can check for 'captions' in the array returned by self.video.getOptions());
-      // It should be there if there are any captions for this video
-        
-      var options = self.video.getOptions();
-      self.hasCaptions = (options.indexOf('captions') > 0) ? true : false;
-        
-      // maybe we could reload the captions module here?
+      self.addLanguageChooser();
     });
 
     // Handle entering fullscreen
@@ -1096,7 +1088,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     self.addQualityChooser();
     self.addPlaybackRateChooser();
-    self.addLanguageChooser();    
+    self.addLanguageChooser(); 
 
     // Add display for time elapsed and duration
     $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
@@ -1364,7 +1356,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.addLanguageChooser = function () {
     var self = this;
 
-    if (!this.video.getLanguages) {
+    if (self.languagesInitialized || !this.video.getLanguages) {
       return;
     }
 
@@ -1374,6 +1366,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
+    // TODO: Think if this is a good general solution next to YouTube
     languages[languages.length] = {'languageCode': '', 'displayName': self.l10n.nocaptions};
 
     var currentLanguage = this.video.getLanguage();
@@ -1398,6 +1391,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Enable quality chooser button
     this.controls.$languageButton.add(this.controls.$languageButtonMinimal).removeClass('h5p-disabled');
+    self.languagesInitialized = true;
   };
 
   /**
