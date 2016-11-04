@@ -1557,7 +1557,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
-        this.dnb.dialog.closeOverlay();
+
+        // should not close overlay for required interactions, but still show dialog
+        if(this.hasUncompletedRequiredInteractions()) {
+          var $dialog = $('.h5p-dialog', this.$container);
+          $dialog.show();
+        } else {
+          this.dnb.dialog.closeOverlay();
+        }
+
         this.recreateCurrentInteractions();
       }
     }
