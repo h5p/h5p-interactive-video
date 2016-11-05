@@ -886,7 +886,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Display or remove the interaction depending on the video time.
      *
      * @param {number} second video time
-     * @returns {H5P.jQuery} interaction button or container
+     * @returns {H5P.jQuery|undefined} interaction button or container
      */
     self.toggle = function (second) {
       second = Math.floor(second);

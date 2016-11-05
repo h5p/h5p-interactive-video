@@ -1865,7 +1865,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   /**
    * Show a mask behind the interaction to prevent the user from clicking the video or controls
    *
-   * @param $interaction
    * @return {jQuery} the dialog wrapper element
    */
   InteractiveVideo.prototype.showOverlayMask = function(){
@@ -1884,7 +1883,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
    * Hides the mask behind the interaction
-   * @param $interaction
    * @return {jQuery} the dialog wrapper element
    */
   InteractiveVideo.prototype.hideOverlayMask = function(){
@@ -1899,9 +1897,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
    * Shows the warning mask.
-   * player.$mask is shared by all interactions
-   *
-   * @param $container
+   * The mask is shared by all interactions
    */
   InteractiveVideo.prototype.showWarningMask = function(){
     var self = this;
@@ -1940,21 +1936,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   /**
    * Returns an array of interactions currently visible
    *
-   * @return {H5P.Interaction[]} visible interactions
+   * @return {H5P.InteractiveVideoInteraction[]} visible interactions
    */
   InteractiveVideo.prototype.getVisibleInteractions = function() {
     return this.interactions.filter(function(interaction){
-      return interaction.isVisible();
-    });
-  };
-
-  /**
-   * Returns true if there is at least one visible interaction
-   *
-   * @return {Boolean} Return true if there is at least one visible interaction
-   */
-  InteractiveVideo.prototype.hasVisibleInteractions = function() {
-    return this.interactions.some(function(interaction){
       return interaction.isVisible();
     });
   };
