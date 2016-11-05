@@ -1093,7 +1093,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
         // Getting initial score from instance (if it has previous state)
-        if(hasScoreData(instance)){
+        if (action.userDatas && hasScoreData(instance)) {
           self.score = instance.getScore();
           self.maxScore = instance.getMaxScore();
         }
