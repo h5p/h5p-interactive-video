@@ -128,11 +128,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       // if requires completion -> open dialog right away
       if(self.getRequiresCompletion()
-        && !self.hasFullScore()
         && player.editor === undefined
         && player.currentState !== H5P.InteractiveVideo.SEEKING
       ){
-        openDialog();
+        openDialog(true);
       }
 
       // Touch area for button
@@ -296,8 +295,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Opens button dialog.
      *
      * @private
+     * @param {boolean} [checkScore] Check score before showing dialog
      */
-    var openDialog = function () {
+    var openDialog = function (checkScore) {
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
       }
@@ -314,7 +314,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($instanceParent);
       addContinueButton($instanceParent);
 
-      if(self.getRequiresCompletion() && !self.hasFullScore()){
+      // Some content types does not get score until they are attached.
+      // Re-check score after attaching to dialog
+      self.score = instance.getScore();
+      self.maxScore = instance.getMaxScore();
+
+      if(self.getRequiresCompletion()){
+        if (checkScore && self.hasFullScore()) {
+          return;
+        }
+
         player.dnb.dialog.hideCloseButton();
         player.dnb.dialog.disableOverlay = true;
 
