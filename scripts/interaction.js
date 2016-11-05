@@ -47,6 +47,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     var isVisible = false;
 
+    this.on('open-dialog', function () {
+      openDialog();
+    });
+
+    this.on('show-mask', function () {
+      showOverlayMask(this.getElement());
+    });
+
     var getVisuals = function () {
       return $.extend({}, {
         backgroundColor: 'rgb(255,255,255)',
@@ -183,11 +191,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @private
      */
     var closeInteraction = function () {
+      var closeDialog = !player.hasUncompletedRequiredInteractions();
       if (self.isButton()) {
-        player.dnb.dialog.close();
+        if (closeDialog) {
+          player.dnb.dialog.close();
+        }
       }
       else {
-        if (player.isMobileView) {
+        if (player.isMobileView && closeDialog) {
           player.dnb.dialog.close();
         }
 
@@ -196,8 +207,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       self.trigger('remove', $interaction);
 
-      // hide mask if
-      if(!player.hasUncompletedRequiredInteractions()){
+      if (closeDialog) {
         hideOverlayMask($interaction);
       }
     };
@@ -597,21 +607,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             // Register continue button
             instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
               closeInteraction();
-
-              // Do not play if player is at the end, state 0 = ENDED
-              if (player.currentState !== 0) {
-                player.play();
-              }
+              continueWithVideo();
             });
           }
 
           // show or hide the continue-button, based on requiring completion
           instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
-
-          // if requires completing, full score
-          if(self.getRequiresCompletion() && fullScore){
-            hideOverlayMask($interaction)
-          }
         }
 
         return;
@@ -637,13 +638,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // add and show adaptivity button, hide continue button
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-          if (self.isButton()) {
-            player.dnb.dialog.close();
-          }
-          if (!adaptivity.allowOptOut || self.getRequiresCompletion()) {
-            if (!self.isButton()) {
-              hideOverlayMask($interaction);
-            }
+          closeInteraction();
+
+          if (!self.getRequiresCompletion() && !adaptivity.allowOptOut) {
+            hideOverlayMask($interaction);
           }
 
           // Reset interaction
@@ -652,11 +650,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             instance.hideButton('iv-adaptivity-' + adaptivityId);
           }
 
-          // Remove interaction
           self.remove();
-          player.pause();
-          player.seek(adaptivity.seekTo);
-          player.play();
+          continueWithVideo(adaptivity.seekTo);
         }
       ).showButton('iv-adaptivity-' + adaptivityId, 1)
         .hideButton('check-answer', 1)
@@ -675,6 +670,67 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
         instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
       }, 0);
+    };
+
+    /**
+     * Continue with video unless a interaction intercepts this.
+     * @param {number} [seekTo] Where the video should continue from
+     */
+    var continueWithVideo = function (seekTo) {
+      var needsAnswer = getInteractionsThatNeedsAnswer();
+
+      // Make user answer posters first
+      var posters = needsAnswer.filter(function (interaction) {
+        return !interaction.isButton();
+      });
+      if (posters.length) {
+        needsAnswer = posters;
+      }
+      else if (needsAnswer.length) {
+        // Show dialog. Do not use DnB because it only shows dialog when closing an overlay.
+        player.$container.find('.h5p-dialog-wrapper .h5p-dialog')
+          .show();
+      }
+
+      // Open first of interactions that needs answer
+      if (needsAnswer.length) {
+        var nextInteraction = needsAnswer[0];
+
+        if (nextInteraction.isButton()) {
+          // if requires completion -> open dialog right away
+          nextInteraction.trigger('open-dialog');
+        }
+        else {
+          nextInteraction.trigger('show-mask');
+        }
+        player.pause();
+        return;
+      }
+
+      if (player.currentState !== player.video.ENDED) {
+        if (seekTo) {
+          player.pause();
+          player.seek(seekTo);
+        }
+        player.play();
+      }
+    };
+
+    /**
+     * Interactions that needs answer are interactions that are visible,
+     * requires completion and does not have full score.
+     *
+     * @return {Array.<H5P.InteractiveVideoInteraction>}
+     *    Interactions that needs answer
+     */
+    var getInteractionsThatNeedsAnswer = function () {
+      return player.getVisibleInteractions()
+        .filter(function (interaction) {
+          return interaction !== self;
+        })
+        .filter(function (interaction) {
+          return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+        });
     };
 
     /**
