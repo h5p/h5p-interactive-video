@@ -1,11 +1,19 @@
 H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
+   * @typedef {Object} InteractiveVideoParameters
+   * @property {Object} interactiveVideo View parameters
+   * @property {Object} override Override settings
+   * @property {number} startVideoAt Time-code to start video
+   */
+
+  /**
    * Initialize a new interactive video.
    *
    * @class H5P.InteractiveVideo
    * @extends H5P.EventDispatcher
-   * @param {Object} params
+   * @property {Object|undefined} editor Set when editing
+   * @param {InteractiveVideoParameters} params
    * @param {number} id
    * @param {Object} contentData
    */
@@ -45,14 +53,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       if (params.override.showSolutionButton) {
         // Force "Show solution" button to be on or off for all interactions
-        self.override.enableSolutionsButton =
-            (params.override.showSolutionButton === 'on' ? true : false);
+        self.override.enableSolutionsButton = params.override.showSolutionButton === 'on';
       }
 
       if (params.override.retryButton) {
         // Force "Retry" button to be on or off for all interactions
-        self.override.enableRetry =
-            (params.override.retryButton === 'on' ? true : false);
+        self.override.enableRetry = params.override.retryButton === 'on';
       }
     }
 
@@ -129,7 +135,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Listen for video events
     if (self.justVideo) {
-      self.video.on('loaded', function (event) {
+      self.video.on('loaded', function () {
         // Make sure it fits
         self.trigger('resize');
       });
@@ -145,13 +151,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var isLoaded = false;
 
     // Handle video source loaded events (metadata)
-    self.video.on('loaded', function (event) {
+    self.video.on('loaded', function () {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
 
-    self.video.on('error', function (event) {
+    self.video.on('error', function () {
       // Make sure splash screen is removed so the error is visible.
       self.removeSplash();
     });
@@ -283,7 +289,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   /**
    * Returns the current state of the interactions
    *
-   * @returns {Object}
+   * @returns {Object|undefined}
    */
   InteractiveVideo.prototype.getCurrentState = function () {
     var self = this;
@@ -508,8 +514,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Prepares the IV for playing.
    */
   InteractiveVideo.prototype.loaded = function () {
-    var that = this;
-
     // Get duration
     var duration = this.video.getDuration();
 
@@ -578,7 +582,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Initialize interaction at the given index.
    *
    * @param {number} index
-   * @returns {Interaction}
+   * @returns {H5P.InteractiveVideoInteraction}
    */
   InteractiveVideo.prototype.initInteraction = function (index) {
     var self = this;
@@ -697,7 +701,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Toggle bookmarks menu
    *
    * @method toggleBookmarksChooser
-   * @param  {boolean}               show
+   * @param {boolean} [show] Forces toggle state if set
    */
   InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
     if (this.controls.$bookmarks) {
@@ -909,7 +913,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * Wraps a specifc handler to do some generic operations each time the handler is triggered.
      *
      * @private
-     * @param {function} action
+     * @param {string} button Name of controls button
+     * @param {string} menu Name of controls menu
      */
     var createPopupMenuHandler = function (button, menu) {
       return function () {
@@ -1132,7 +1137,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.hasPlayPromise = false;
     self.hasQueuedPause = false;
     self.delayed = false;
-    self.delayTimeout;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1275,6 +1279,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {string} extraClass
    * @param {H5P.jQuery} $target
    * @param {function} handler
+   * @param {boolean} [text] Determines if button should set text or title
    */
   InteractiveVideo.prototype.createButton = function (type, extraClass, $target, handler, text) {
     var self = this;
@@ -1323,7 +1328,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
-    var $options = $list.children().click(function () {
+    $list.children().click(function () {
       self.video.setQuality($(this).attr('data-quality'));
       if (self.controls.$more.hasClass('h5p-active')) {
         self.controls.$more.click();
@@ -1378,7 +1383,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$playbackRateChooser);
-    var $options = $list.children().click(function () {
+    $list.children().click(function () {
       self.video.setPlaybackRate($(this).attr('playback-rate'));
       if (self.controls.$more.hasClass('h5p-active')) {
         self.controls.$more.click();

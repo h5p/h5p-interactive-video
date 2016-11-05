@@ -1,11 +1,42 @@
 H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
   /**
+   * @typedef {Object} Parameters Interaction settings
+   * @property {Object} action Library
+   * @property {string|undefined} contentName Title of library
+   * @property {Object} visuals Visual parameters
+   * @property {string} [label] Button label
+   * @property {string} className Class applied to interaction element
+   * @property {Object} [goto] On click action
+   * @property {Object} [goto.visualize] Interaction display settings
+   * @property {Object} [adaptivity] Settings for navigation when interaction is answered
+   * @property {Adaptivity} [adaptivity.correct] Adaptivity when user gives correct answer
+   * @property {Adaptivity} [adaptivity.wrong] Adaptivity when user gives wrong answer
+   * @property {number} x Horizontal position
+   * @property {number} y Vertical position
+   * @property {number} height
+   * @property {number} width
+   * @property {Object} duration
+   * @property {number} duration.from Time-code when interaction will be showed
+   * @property {number} duration.to Time-code when interaction will be hidden
+   * @property {boolean} pause True if video should be paused when interaction is displayed
+   * @property {string} displayType The way the interaction will be displayed, e.g. "button".
+   * @property {boolean} mainSummary True if this interaction is the built-in summary of Interactive Video.
+   */
+
+  /**
+   * @typedef {Object} Adaptivity Settings for navigation when an interaction is answered
+   * @property {number|undefined} seekTo Time-code the player will be taken to
+   * @property {string} label Label for adaptivity button
+   * @property {boolean} allowOptOut User is not forced to follow the adaptivity
+   */
+
+  /**
    * Keeps control of interactions in the interactive video.
    *
    * @class H5P.InteractiveVideoInteraction
    * @extends H5P.EventDispatcher
-   * @param {Object} parameters describes action behavior
+   * @param {Parameters} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
    * @param {Object} previousState
    */
@@ -1033,10 +1064,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     /**
      * Removes interaction from display.
-     *
-     * @param {boolean} [updateSize] Used when re-creating element
      */
-    self.remove = function (updateSize) {
+    self.remove = function () {
       if ($interaction) {
         // Let others reach to the hiding of this interaction
         self.trigger('domHidden', {
