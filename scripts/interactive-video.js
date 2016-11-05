@@ -1219,7 +1219,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           else {
             // Pause on interactions without having to recreate them
             if (self.hasActivePauseInteraction()) {
-              self.video.pause();
+              // YouTube needs to play after seek to not get stuck buffering.
+              self.video.play();
+              setTimeout(function () {
+                self.video.pause();
+              }, 50);
             }
           }
         }
