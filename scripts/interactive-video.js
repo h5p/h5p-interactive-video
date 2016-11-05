@@ -262,7 +262,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.resizeInteractions();
 
       // Close dialog
-      if (self.dnb && self.dnb.dialog) {
+      if (self.dnb && self.dnb.dialog && !self.hasUncompletedRequiredInteractions()) {
         self.dnb.dialog.close();
       }
     });
