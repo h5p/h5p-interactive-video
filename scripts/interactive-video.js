@@ -1983,6 +1983,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       this.interactions[i].toggle(second);
       this.interactions[i].repositionToWrapper(this.$videoWrapper);
     }
+
+    // Wait until all interactions has been toggled before determining mask visibility
+    if (!this.hasUncompletedRequiredInteractions()) {
+      this.hideOverlayMask();
+    }
   };
 
   /**

@@ -96,7 +96,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       });
 
       // if requires completion -> open dialog right away
-      if(self.getRequiresCompletion() && !self.hasFullScore() && player.editor === undefined){
+      if(self.getRequiresCompletion()
+        && !self.hasFullScore()
+        && player.editor === undefined
+        && player.currentState !== H5P.InteractiveVideo.SEEKING
+      ){
         openDialog();
       }
 
@@ -566,7 +570,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Trigger event listeners
       self.trigger('display', $interaction);
 
-      if(self.getRequiresCompletion() && player.editor === undefined && !self.hasFullScore()){
+      if(self.getRequiresCompletion()
+        && player.currentState !== H5P.InteractiveVideo.SEEKING
+        && player.editor === undefined
+        && !self.hasFullScore())
+      {
         showOverlayMask($interaction);
       }
 
@@ -898,12 +906,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             player.editor.hideInteractionTitle();
             isHovered = false;
           }
-
-          // if there are no uncompleted interactions, hide the mask
-          if(!player.hasUncompletedRequiredInteractions()){
-            hideOverlayMask();
-          }
-
           self.remove();
         }
         return;
