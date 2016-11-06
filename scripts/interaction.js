@@ -319,11 +319,11 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       self.score = instance.getScore();
       self.maxScore = instance.getMaxScore();
 
-      if(self.getRequiresCompletion()){
-        if (checkScore && self.hasFullScore()) {
-          return;
-        }
-
+      if (self.hasFullScore() && checkScore) {
+        // Skip opening dialog if re-calculation yields full score
+        return;
+      }
+      else if(self.getRequiresCompletion() && !self.hasFullScore()){
         player.dnb.dialog.hideCloseButton();
         player.dnb.dialog.disableOverlay = true;
 
