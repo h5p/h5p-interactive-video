@@ -15,16 +15,16 @@ Upload a poster image (any file type) | Poster is shown before the video is play
 
 (It's easier to create all the interactions before saving the video) 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Create a bookmark     | The bookmark can be jumped to when the video is played | |
-Create a label        | Label is shown at the time specified 
-Create some text that pauses the video and sends user to a url | Text is shown time specified, satisfies description 
-Create a table        | Table is visible
-Create a link         | Link sends user to specified destination
-Create an image as a button | Image is shown as a button 
-Create an image as a poster | Image is shown as a poster
-Create a Summary Task (last tab) | Text is shown as specified
+Test Case Description                 | Acceptance Criteria                                    | Results | Comments
+------------------------------------- | -------------------------------------------------------| --------| --------
+Create a bookmark                     | The bookmark can be jumped to when the video is played |         |
+Create a label                        | Label is shown at the time specified                   | 
+Create some text to send user to url  | Text is shown time specified, satisfies description    |
+Create a table                        | Table is visible                                       |
+Create a link                         | Link sends user to specified destination               |
+Create an image as a button           | Image is shown as a button                             |
+Create an image as a poster           | Image is shown as a poster                             |
+Create a Summary Task (last tab)      | Text is shown as specified                             |
 
 
 
