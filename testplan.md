@@ -2,29 +2,29 @@
 
 ## Uploading/embedding 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Create empty IV       | Error message :"Video is missing sources." is shown |         | 
-Upload mp4 file  			| No errors shown
-Replace mp4 file with webm file | No errors shown
-Replace mp4 file with a youtube link | No errors shown 
-Upload a poster image (any file type) | Poster is shown before the video is played
+Test Case Description                 | Acceptance Criteria                                 | Results | Comments
+------------------------------------- | ----------------------------------------------------| --------| --------
+Create empty IV                       | Error message :"Video is missing sources." is shown | Pass    |  
+Upload mp4 file  		                  | No errors shown                                     | Pass    |
+Replace mp4 file with webm file       | No errors shown                                     | Pass    |
+Replace mp4 file with a youtube link  | No errors shown                                     | Pass    |
+Upload a poster image (any file type) | Poster is shown before the video is played          | Pass    |
 
 
 ## Static changes
 
-(It's easier to create all the interactions before 'saving' the video) 
+(It's easier to create all the interactions before saving the video) 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Create a bookmark     | The bookmark can be jumped to when the video is played
-Create a label        | Label is shown at the time specified
-Create some text that pauses the video and sends user to a url | Text is shown time specified, satisfies description 
-Create a table        | Table is visible
-Create a link         | Link sends user to specified destination
-Create an image as a button | Image is shown as a button 
-Create an image as a poster | Image is shown as a poster
-Create a Summary Task (last tab) | Text is shown as specified
+Test Case Description                 | Acceptance Criteria                                    | Results | Comments
+------------------------------------- | -------------------------------------------------------| --------| --------
+Create a bookmark                     | The bookmark can be jumped to when the video is played | Pass    |
+Create a label                        | Label is shown at the time specified                   | Pass    |
+Create some text to send user to url  | Text is shown time specified, satisfies description    | Pass    |
+Create a table                        | Table is visible                                       | Pass    |
+Create a link                         | Link sends user to specified destination               | Pass    |
+Create an image as a button           | Image is shown as a button                             | FAIL    | Button appears but clicking does nothing. Console error log: ```js_w4Q9Ct7qfqMM_eXOSuItUCXZ0cYGS_2jckN4lDHbI0o.js:23322 Uncaught TypeError: instance.getScore is not a function(…)```
+Create an image as a poster           | Image is shown as a poster                             | Pass    |
+Create a Summary Task (last tab)      | Text is shown as specified                             | Pass    |
 
 
 
