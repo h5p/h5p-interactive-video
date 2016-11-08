@@ -62,6 +62,16 @@ Test action on all correct/wrong for 'Drag & drop'        | Buttons are displaye
 Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time |         |
 Test action on all correct/wrong for 'Drag text'          | Buttons are displayed, and will seek to correct time |         | 
 
+
+## Require completion (all types except Statements)
+
+Test Case Description                                     | Acceptance Criteria                         | Results | Comments
+--------------------------------------------------------- | --------------------------------------------| --------| --------
+Set wrong adaptivity, and choose "require completion"     | Wrong adaptivity is not shown
+Add two "required completion" interactions at same second | 
+Click outside "require completion" interaction            | Mask with warning should display in front
+Turn on fullscreen before entering interaction. Scale screen to mobile size, and then  to normal | Mask over video and controls should remain
+
 ## Behavioral Settings
 
 
