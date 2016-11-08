@@ -704,7 +704,6 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           continueWithVideo(adaptivity.seekTo);
         }
       ).showButton('iv-adaptivity-' + adaptivityId, 1)
-        .showButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
         .hideButton('check-answer', 1)
         .hideButton('show-solution', 1)
         .hideButton('try-again', 1);
