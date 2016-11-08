@@ -22,7 +22,7 @@ Create a label                        | Label is shown at the time specified    
 Create some text to send user to url  | Text is shown time specified, satisfies description    | Pass    |
 Create a table                        | Table is visible                                       | Pass    |
 Create a link                         | Link sends user to specified destination               | Pass    |
-Create an image as a button           | Image is shown as a button                             | FAIL    | Button appears but clicking does nothing. Console error log: ```Uncaught TypeError: instance.getScore is not a function(…)```
+Create an image as a button           | Image is shown as a button                             | Pass    | 
 Create an image as a poster           | Image is shown as a poster                             | Pass    |
 Create a Summary Task (last tab)      | Text is shown as specified                             | Pass    |
 
