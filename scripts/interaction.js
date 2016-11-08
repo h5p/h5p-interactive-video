@@ -758,7 +758,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       if (player.currentState !== player.video.ENDED) {
-        if (seekTo) {
+        if (seekTo !== undefined) {
           player.pause();
           player.seek(seekTo);
         }
