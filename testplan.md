@@ -2,23 +2,23 @@
 
 ## Uploading/embedding 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Create empty IV       | Error message :"Video is missing sources." is shown |   Pass    |  
-Upload mp4 file  			| No errors shown | Pass
-Replace mp4 file with webm file | No errors shown | Pass
-Replace mp4 file with a youtube link | No errors shown | Pass
-Upload a poster image (any file type) | Poster is shown before the video is played | Pass
+Test Case Description                 | Acceptance Criteria                                 | Results | Comments
+------------------------------------- | ----------------------------------------------------| --------| --------
+Create empty IV                       | Error message :"Video is missing sources." is shown | Pass    |  
+Upload mp4 file  		                  | No errors shown                                     | Pass    |
+Replace mp4 file with webm file       | No errors shown                                     | Pass    |
+Replace mp4 file with a youtube link  | No errors shown                                     | Pass    |
+Upload a poster image (any file type) | Poster is shown before the video is played          | Pass    |
 
 
 ## Static changes
 
-(It's easier to create all the interactions before 'saving' the video) 
+(It's easier to create all the interactions before saving the video) 
 
 Test Case Description | Acceptance Criteria | Results | Comments
 --------------------- | --------------------| --------| --------
-Create a bookmark     | The bookmark can be jumped to when the video is played
-Create a label        | Label is shown at the time specified
+Create a bookmark     | The bookmark can be jumped to when the video is played | |
+Create a label        | Label is shown at the time specified 
 Create some text that pauses the video and sends user to a url | Text is shown time specified, satisfies description 
 Create a table        | Table is visible
 Create a link         | Link sends user to specified destination
