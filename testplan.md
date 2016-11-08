@@ -59,7 +59,7 @@ Test action on all correct/wrong for 'Multiple Choice'    | Buttons are displaye
 Test action on all correct/wrong for 'True false'         | Buttons are displayed, and will seek to correct time | Pass    |
 Test action on all correct/wrong for 'Fill in the Blanks' | Buttons are displayed, and will seek to correct time | Pass    |
 Test action on all correct/wrong for 'Drag & drop'        | Buttons are displayed, and will seek to correct time | Pass    |
-Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time | FAIL    | Adaptive buttons are not shown 
+Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time | FAIL    | Text is not shown on correct button 
 Test action on all correct/wrong for 'Drag text'          | Buttons are displayed, and will seek to correct time |         | 
 
 ## Behavioral Settings
