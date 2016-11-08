@@ -35,19 +35,19 @@ Check to see if the following can be added, testing their functionality is out o
 Do not delete interactive content, they will be necessary for the final test cases.
 
 
-Test Case Description        | Acceptance Criteria               | Results | Comments
----------------------------- | ----------------------------------| --------| --------
-Create 'statements'          | 'statements' statements are shown | Pass    |
-Create a 'Single Choice Set' | 'Single Choice Set' is shown      | Pass    |
-Create 'Multiple Choice'     | 'Multiple Choice' is shown        | Pass    |
-Create 'True false'          | 'True False' is shown             | Pass    |
-Create 'Fill in the Blanks'  | 'Fill in the Blanks' is shown     | Pass    | 
-Create 'Drag and Drop'       | 'Drag and Drop' is shown          | Pass    |
-Create 'Mark the Words'      | 'Mark the Words' is shown         | Pass    |
-Create 'Drag Text'           | 'Drag Text' is shown              | Pass    |
-Create 'Questionnaire'       | 'Questionnaire' is shown          | Pass    |
-Create 'Crossroads' and set each option to a different time | Clicking on options takes users to specified times
-Create 'Navigation hotspot'  | Clicking on hotspot takes users to specified time
+Test Case Description        | Acceptance Criteria                               | Results | Comments
+---------------------------- | --------------------------------------------------| --------| --------
+Create 'statements'          | 'statements' statements are shown                 | Pass    |
+Create a 'Single Choice Set' | 'Single Choice Set' is shown                      | Pass    |
+Create 'Multiple Choice'     | 'Multiple Choice' is shown                        | Pass    |
+Create 'True false'          | 'True False' is shown                             | Pass    |
+Create 'Fill in the Blanks'  | 'Fill in the Blanks' is shown                     | Pass    | 
+Create 'Drag and Drop'       | 'Drag and Drop' is shown                          | Pass    |
+Create 'Mark the Words'      | 'Mark the Words' is shown                         | Pass    |
+Create 'Drag Text'           | 'Drag Text' is shown                              | Pass    |
+Create 'Questionnaire'       | 'Questionnaire' is shown                          | Pass    |
+Create 'Crossroads' and set each option to a different time | Clicking on options takes users to specified times | Pass
+Create 'Navigation hotspot'  | Clicking on hotspot takes users to specified time | Pass
 
 ## Adaptivity
 
