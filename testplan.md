@@ -4,11 +4,11 @@
 
 Test Case Description | Acceptance Criteria | Results | Comments
 --------------------- | --------------------| --------| --------
-Create empty IV       | Error message :"Video is missing sources." is shown |         | 
-Upload mp4 file  			| No errors shown
-Replace mp4 file with webm file | No errors shown
-Replace mp4 file with a youtube link | No errors shown 
-Upload a poster image (any file type) | Poster is shown before the video is played
+Create empty IV       | Error message :"Video is missing sources." is shown |   Pass    |  
+Upload mp4 file  			| No errors shown | Pass
+Replace mp4 file with webm file | No errors shown | Pass
+Replace mp4 file with a youtube link | No errors shown | Pass
+Upload a poster image (any file type) | Poster is shown before the video is played | Pass
 
 
 ## Static changes
