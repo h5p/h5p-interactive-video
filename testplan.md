@@ -65,9 +65,9 @@ Test action on all correct/wrong for 'Drag text'          | Buttons are displaye
 ## Behavioral Settings
 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Set override "Show Solution" button to 'Disabled'| "Show Solution" button not visible for any sub content types
-Set overrride "Retry" button to 'Disabled' | "Retry" button is disabled for all content types
-Enable "Start with bookmarks menu open" | Bookmarks menu is visible at the start
-Enable "Show button for rewinding ..." | Button for rewinding is visible
+Test Case Description                            | Acceptance Criteria                                          | Results | Comments
+------------------------------------------------ | -------------------------------------------------------------| --------| --------
+Set override "Show Solution" button to 'Disabled'| "Show Solution" button not visible for any sub content types | 
+Set overrride "Retry" button to 'Disabled'       | "Retry" button is disabled for all content types             |
+Enable "Start with bookmarks menu open"          | Bookmarks menu is visible at the start                       | Pass    |
+Enable "Show button for rewinding ..."           | Button for rewinding is visible                              | Pass    |
