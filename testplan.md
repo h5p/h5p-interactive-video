@@ -35,19 +35,19 @@ Check to see if the following can be added, testing their functionality is out o
 Do not delete interactive content, they will be necessary for the final test cases.
 
 
-Test Case Description | Acceptance Criteria | Results | Comments
---------------------- | --------------------| --------| --------
-Create 'statements'   | 'statements' statements are shown | Pass |
-Create a 'Single Choice Set'   | 'Single Choice Set' is shown | Pass |
-Create 'Multiple Choice'   | 'Multiple Choice' is shown | Pass |
-Create 'True false'   | 'True False' is shown
-Create 'Fill in the Blanks'   | 'Fill in the Blanks' is shown
-Create 'Drag and Drop' | 'Drag and Drop' is shown 
-Create 'Mark the Words' | 'Mark the Words' is shown
-Create 'Drag Text' | 'Drag Text' is shown 
-Create 'Questionnaire' | 'Questionnaire' is shown 
+Test Case Description        | Acceptance Criteria               | Results | Comments
+---------------------------- | ----------------------------------| --------| --------
+Create 'statements'          | 'statements' statements are shown | Pass    |
+Create a 'Single Choice Set' | 'Single Choice Set' is shown      | Pass    |
+Create 'Multiple Choice'     | 'Multiple Choice' is shown        | Pass    |
+Create 'True false'          | 'True False' is shown             | Pass    |
+Create 'Fill in the Blanks'  | 'Fill in the Blanks' is shown     | Pass    | 
+Create 'Drag and Drop'       | 'Drag and Drop' is shown          | Pass    |
+Create 'Mark the Words'      | 'Mark the Words' is shown         | Pass    |
+Create 'Drag Text'           | 'Drag Text' is shown              | Pass    |
+Create 'Questionnaire'       | 'Questionnaire' is shown          |
 Create 'Crossroads' and set each option to a different time | Clicking on options takes users to specified times
-Create 'Navigation hotspot' | Clicking on hotspot takes users to specified time
+Create 'Navigation hotspot'  | Clicking on hotspot takes users to specified time
 
 ## Adaptivity
 
@@ -56,10 +56,10 @@ Test Case Description                                     | Acceptance Criteria 
 Test action on all correct/wrong for 'Statements'         | Buttons are displayed, and will seek to correct time | Pass    |
 Test action on all correct/wrong for 'Single Choice Set'  | Buttons are displayed, and will seek to correct time | Pass    |
 Test action on all correct/wrong for 'Multiple Choice'    | Buttons are displayed, and will seek to correct time | Pass    |
-Test action on all correct/wrong for 'True false'         | Buttons are displayed, and will seek to correct time |         |
-Test action on all correct/wrong for 'Fill in the Blanks' | Buttons are displayed, and will seek to correct time |         |
-Test action on all correct/wrong for 'Drag & drop'        | Buttons are displayed, and will seek to correct time |         |
-Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'True false'         | Buttons are displayed, and will seek to correct time | Pass    |
+Test action on all correct/wrong for 'Fill in the Blanks' | Buttons are displayed, and will seek to correct time | Pass    |
+Test action on all correct/wrong for 'Drag & drop'        | Buttons are displayed, and will seek to correct time | Pass    |
+Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time | FAIL    | Text is not shown on correct button 
 Test action on all correct/wrong for 'Drag text'          | Buttons are displayed, and will seek to correct time |         | 
 
 ## Behavioral Settings
