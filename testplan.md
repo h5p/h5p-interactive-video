@@ -48,6 +48,18 @@ Create 'Questionnaire' | 'Questionnaire' is shown
 Create 'Crossroads' and set each option to a different time | Clicking on options takes users to specified times
 Create 'Navigation hotspot' | Clicking on hotspot takes users to specified time
 
+## Adaptivity
+
+Test Case Description                                     | Acceptance Criteria                         | Results | Comments
+--------------------------------------------------------- | --------------------------------------------| --------| --------
+Test action on all correct/wrong for 'Statements'         | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Single Choice Set'  | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Multiple Choice'    | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Fill in the Blanks' | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Drag & drop'        | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Drag text'          | Buttons are displayed, and will seek to correct time |         | 
+
 ## Behavioral Settings
 
 
