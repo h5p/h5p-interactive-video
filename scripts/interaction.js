@@ -316,8 +316,10 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       // Some content types does not get score until they are attached.
       // Re-check score after attaching to dialog
-      self.score = instance.getScore();
-      self.maxScore = instance.getMaxScore();
+      if (hasScoreData(instance)) {
+        self.score = instance.getScore();
+        self.maxScore = instance.getMaxScore();
+      }
 
       if (self.hasFullScore() && checkScore) {
         // Skip opening dialog if re-calculation yields full score
