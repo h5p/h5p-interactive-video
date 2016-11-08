@@ -37,9 +37,9 @@ Do not delete interactive content, they will be necessary for the final test cas
 
 Test Case Description | Acceptance Criteria | Results | Comments
 --------------------- | --------------------| --------| --------
-Create 'statements'   | 'statements' statements are shown
-Create a 'Single Choice Set'   | 'Single Choice Set' is shown
-Create 'Multiple Choice'   | 'Multiple Choice' is shown
+Create 'statements'   | 'statements' statements are shown | Pass |
+Create a 'Single Choice Set'   | 'Single Choice Set' is shown | Pass |
+Create 'Multiple Choice'   | 'Multiple Choice' is shown | Pass |
 Create 'Fill in the Blanks'   | 'Fill in the Blanks' is shown
 Create 'Drag and Drop' | 'Drag and Drop' is shown 
 Create 'Mark the Words' | 'Mark the Words' is shown
@@ -52,9 +52,9 @@ Create 'Navigation hotspot' | Clicking on hotspot takes users to specified time
 
 Test Case Description                                     | Acceptance Criteria                         | Results | Comments
 --------------------------------------------------------- | --------------------------------------------| --------| --------
-Test action on all correct/wrong for 'Statements'         | Buttons are displayed, and will seek to correct time |         |
-Test action on all correct/wrong for 'Single Choice Set'  | Buttons are displayed, and will seek to correct time |         |
-Test action on all correct/wrong for 'Multiple Choice'    | Buttons are displayed, and will seek to correct time |         |
+Test action on all correct/wrong for 'Statements'         | Buttons are displayed, and will seek to correct time | Pass    |
+Test action on all correct/wrong for 'Single Choice Set'  | Buttons are displayed, and will seek to correct time | Pass    |
+Test action on all correct/wrong for 'Multiple Choice'    | Buttons are displayed, and will seek to correct time | Pass    |
 Test action on all correct/wrong for 'Fill in the Blanks' | Buttons are displayed, and will seek to correct time |         |
 Test action on all correct/wrong for 'Drag & drop'        | Buttons are displayed, and will seek to correct time |         |
 Test action on all correct/wrong for 'Mark the Words'     | Buttons are displayed, and will seek to correct time |         |
