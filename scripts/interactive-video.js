@@ -182,9 +182,6 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
             // prepare captions - might be necessary for some players
             self.video.initCaptions();
 
-            // Languages will not be available until after play.
-            //self.addLanguageChooser();
-
             // Make sure splash screen is removed.
             self.removeSplash();
 
@@ -957,29 +954,6 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
     // Button for opening video quality selection dialog
     self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
 
-    // Add volume button control (toggle mute)
-    if (!isAndroid() && !isIpad()) {
-      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function() {
-        if (self.controls.$volume.hasClass('h5p-muted')) {
-          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
-          self.video.unMute();
-        } else {
-          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
-          self.video.mute();
-        }
-      });
-    }
-
-    // Add popup for selecting playback rate
-    self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
-      'class': 'h5p-chooser h5p-playbackRate',
-      html: '<h3>' + self.l10n.playbackRate + '</h3>',
-      appendTo: self.$container
-    });
-
-    // Button for opening video playback rate selection dialog
-    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
-
     // Add popup for selecting language
     self.controls.$languageChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-language',
@@ -1002,7 +976,28 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
     // Button for opening language selection dialog
     self.controls.$languageButton = self.createButton('language', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$languageButton', '$languageChooser'));
 
+    // Add popup for selecting playback rate
+    self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-playbackRate',
+      html: '<h3>' + self.l10n.playbackRate + '</h3>',
+      appendTo: self.$container
+    });
 
+    // Button for opening video playback rate selection dialog
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+
+    // Add volume button control (toggle mute)
+    if (!isAndroid() && !isIpad()) {
+      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function() {
+        if (self.controls.$volume.hasClass('h5p-muted')) {
+          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+          self.video.unMute();
+        } else {
+          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+          self.video.mute();
+        }
+      });
+    }
 
     // Add more button for collapsing controls when there's little space
 
@@ -1095,8 +1090,8 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
     });
 
     self.addQualityChooser();
-    self.addPlaybackRateChooser();
     self.addLanguageChooser();
+    self.addPlaybackRateChooser();
 
     // Add display for time elapsed and duration
     $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
