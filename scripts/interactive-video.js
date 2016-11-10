@@ -931,6 +931,19 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
       });
     }
 
+    // Add volume button control (toggle mute)
+    if (!isAndroid() && !isIpad()) {
+      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function() {
+        if (self.controls.$volume.hasClass('h5p-muted')) {
+          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+          self.video.unMute();
+        } else {
+          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+          self.video.mute();
+        }
+      });
+    }
+
     // TODO: Do not add until qualities are present?
     // Add popup for selecting video quality
     self.controls.$qualityChooser = H5P.jQuery('<div/>', {
@@ -985,19 +998,6 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
 
     // Button for opening video playback rate selection dialog
     self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
-
-    // Add volume button control (toggle mute)
-    if (!isAndroid() && !isIpad()) {
-      self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function() {
-        if (self.controls.$volume.hasClass('h5p-muted')) {
-          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
-          self.video.unMute();
-        } else {
-          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
-          self.video.mute();
-        }
-      });
-    }
 
     // Add more button for collapsing controls when there's little space
 
