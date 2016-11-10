@@ -392,6 +392,18 @@
           "label": "10 Sekunden zurückspringen",
           "englishDefault": "Rewind 10 Seconds",
           "default": "10 Sekunden zurück"
+        },
+        {
+          "englishLabel": "Language",
+          "label": "Sprache",
+          "englishDefault": "Language",
+          "optional": true
+        },
+        {
+          "englishLabel": "no captions",
+          "label": "keine Untertitel",
+          "englishDefault": "no captions",
+          "optional": true
         }
       ]
     }

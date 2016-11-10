@@ -665,6 +665,20 @@
         "label": "Rewind 10 Seconds",
         "default": "Rewind 10 Seconds",
         "optional": true
+      },
+      {
+        "name": "language",
+        "type": "text",
+        "label": "Language",
+        "default": "Language",
+        "optional": true
+      },
+      {
+        "name": "nocaptions",
+        "type": "text",
+        "label": "no captions",
+        "default": "no captions",
+        "optional": true
       }
     ]
   }

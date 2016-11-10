@@ -392,6 +392,18 @@
           "label": "Spol tilbake 10 sekund",
           "englishDefault": "Rewind 10 Seconds",
           "default": "Spol tilbake 10 sekund"
+        },
+        {
+          "englishLabel": "Language",
+          "label": "Language",
+          "englishDefault": "Language",
+          "optional": true
+        },
+        {
+          "englishLabel": "no captions",
+          "label": "no captions",
+          "englishDefault": "no captions",
+          "optional": true
         }
       ]
     }
