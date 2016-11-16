@@ -145,6 +145,12 @@
                             "label": "Intitulé du bouton de reprise"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -404,6 +410,18 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Avertissement que l'utilisateur doit répondre correctement à la question avant de continuer",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Vous devez répondre correctement à toutes les questions avant de continuer."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Bouton Retour",
+          "englishDefault": "Back",
+          "default": "Retour"
         }
       ]
     }

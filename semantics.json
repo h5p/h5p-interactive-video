@@ -259,6 +259,12 @@
                           "label": "Label for seek button"
                         }
                       ]
+                    },
+                    {
+                      "name": "requireCompletion",
+                      "type": "boolean",
+                      "label": "Require full score for task before proceeding",
+                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                     }
                   ]
                 },
@@ -679,6 +685,20 @@
         "type": "text",
         "label": "Navigation is disabled text",
         "default": "Navigation is disabled",
+        "optional": true
+      },
+      {
+        "name": "requiresCompletionWarning",
+        "type": "text",
+        "label": "Warning that the user must answer the question correctly before continuing",
+        "default": "You need to answer all the questions correctly before continuing.",
+        "optional": true
+      },
+      {
+        "name": "back",
+        "type": "text",
+        "label": "Back button",
+        "default": "Back",
         "optional": true
       }
     ]

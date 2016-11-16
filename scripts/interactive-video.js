@@ -1,11 +1,19 @@
 H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
   /**
+   * @typedef {Object} InteractiveVideoParameters
+   * @property {Object} interactiveVideo View parameters
+   * @property {Object} override Override settings
+   * @property {number} startVideoAt Time-code to start video
+   */
+
+  /**
    * Initialize a new interactive video.
    *
    * @class H5P.InteractiveVideo
    * @extends H5P.EventDispatcher
-   * @param {Object} params
+   * @property {Object|undefined} editor Set when editing
+   * @param {InteractiveVideoParameters} params
    * @param {number} id
    * @param {Object} contentData
    */
@@ -45,14 +53,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       if (params.override.showSolutionButton) {
         // Force "Show solution" button to be on or off for all interactions
-        self.override.enableSolutionsButton =
-            (params.override.showSolutionButton === 'on' ? true : false);
+        self.override.enableSolutionsButton = params.override.showSolutionButton === 'on';
       }
 
       if (params.override.retryButton) {
         // Force "Retry" button to be on or off for all interactions
-        self.override.enableRetry =
-            (params.override.retryButton === 'on' ? true : false);
+        self.override.enableRetry = params.override.retryButton === 'on';
       }
     }
 
@@ -78,7 +84,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       more: 'More',
       playbackRate: 'Playback rate',
       rewind10: 'Rewind 10 seconds',
-      navDisabled: 'Navigation is disabled'
+      navDisabled: 'Navigation is disabled',
+      requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
+      back: 'Back'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -127,7 +135,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Listen for video events
     if (self.justVideo) {
-      self.video.on('loaded', function (event) {
+      self.video.on('loaded', function () {
         // Make sure it fits
         self.trigger('resize');
       });
@@ -143,13 +151,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var isLoaded = false;
 
     // Handle video source loaded events (metadata)
-    self.video.on('loaded', function (event) {
+    self.video.on('loaded', function () {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
     });
 
-    self.video.on('error', function (event) {
+    self.video.on('error', function () {
       // Make sure splash screen is removed so the error is visible.
       self.removeSplash();
     });
@@ -260,7 +268,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.resizeInteractions();
 
       // Close dialog
-      if (self.dnb && self.dnb.dialog) {
+      if (self.dnb && self.dnb.dialog && !self.hasUncompletedRequiredInteractions()) {
         self.dnb.dialog.close();
       }
     });
@@ -281,7 +289,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   /**
    * Returns the current state of the interactions
    *
-   * @returns {Object}
+   * @returns {Object|undefined}
    */
   InteractiveVideo.prototype.getCurrentState = function () {
     var self = this;
@@ -506,8 +514,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Prepares the IV for playing.
    */
   InteractiveVideo.prototype.loaded = function () {
-    var that = this;
-
     // Get duration
     var duration = this.video.getDuration();
 
@@ -527,7 +533,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Set max value for adaptive seeking timecodes
       var adaptivityFields = findField('adaptivity', interactions.field.fields).fields;
       for (var i = 0; i < adaptivityFields.length; i++) {
-        findField('seekTo', adaptivityFields[i].fields).max = duration;
+        if (adaptivityFields[i].fields) {
+          findField('seekTo', adaptivityFields[i].fields).max = duration;
+        }
       }
     }
 
@@ -574,7 +582,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Initialize interaction at the given index.
    *
    * @param {number} index
-   * @returns {Interaction}
+   * @returns {H5P.InteractiveVideoInteraction}
    */
   InteractiveVideo.prototype.initInteraction = function (index) {
     var self = this;
@@ -582,7 +590,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     if (self.override) {
       // Extend interaction parameters
-      H5P.jQuery.extend(parameters.action.params.behaviour, self.override);
+      var compatibilityLayer = {};
+      if (parameters.adaptivity && parameters.adaptivity.requireCompletion) {
+        compatibilityLayer.enableRetry = true;
+      }
+      H5P.jQuery.extend(parameters.action.params.behaviour, self.override, compatibilityLayer);
     }
 
     var previousState;
@@ -591,6 +603,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var interaction = new Interaction(parameters, self, previousState);
+
+    // handle display event
     interaction.on('display', function (event) {
       var $interaction = event.data;
       $interaction.appendTo(self.$overlay);
@@ -603,7 +617,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
       // Consider pausing the playback
       delayWork(isYouTube ? 100 : null, function () {
-        if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
+        var isPlaying = self.currentState === H5P.Video.PLAYING ||
+            self.currentState === H5P.Video.BUFFERING;
+        if (isPlaying && interaction.pause()) {
           self.video.pause();
         }
       });
@@ -613,7 +629,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
     });
+
+    // handle xAPI event
     interaction.on('xAPI', function(event) {
+      // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
         if (interaction.isMainSummary()) {
@@ -682,7 +701,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Toggle bookmarks menu
    *
    * @method toggleBookmarksChooser
-   * @param  {boolean}               show
+   * @param {boolean} [show] Forces toggle state if set
    */
   InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
     if (this.controls.$bookmarks) {
@@ -859,7 +878,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-      if (self.controls.$play.hasClass('h5p-pause')) {
+      if (self.controls.$play.hasClass('h5p-pause') && !self.controls.$play.hasClass('h5p-disabled')) {
 
         // Auto toggle fullscreen on play if on a small device
         var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
@@ -894,7 +913,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * Wraps a specifc handler to do some generic operations each time the handler is triggered.
      *
      * @private
-     * @param {function} action
+     * @param {string} button Name of controls button
+     * @param {string} menu Name of controls menu
      */
     var createPopupMenuHandler = function (button, menu) {
       return function () {
@@ -1117,7 +1137,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.hasPlayPromise = false;
     self.hasQueuedPause = false;
     self.delayed = false;
-    self.delayTimeout;
     self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
       value: 0,
       step: 0.01,
@@ -1204,7 +1223,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           else {
             // Pause on interactions without having to recreate them
             if (self.hasActivePauseInteraction()) {
-              self.video.pause();
+              // YouTube needs to play after seek to not get stuck buffering.
+              self.video.play();
+              setTimeout(function () {
+                self.video.pause();
+              }, 50);
             }
           }
         }
@@ -1256,6 +1279,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {string} extraClass
    * @param {H5P.jQuery} $target
    * @param {function} handler
+   * @param {boolean} [text] Determines if button should set text or title
    */
   InteractiveVideo.prototype.createButton = function (type, extraClass, $target, handler, text) {
     var self = this;
@@ -1304,7 +1328,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
-    var $options = $list.children().click(function () {
+    $list.children().click(function () {
       self.video.setQuality($(this).attr('data-quality'));
       if (self.controls.$more.hasClass('h5p-active')) {
         self.controls.$more.click();
@@ -1359,7 +1383,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$playbackRateChooser);
-    var $options = $list.children().click(function () {
+    $list.children().click(function () {
       self.video.setPlaybackRate($(this).attr('playback-rate'));
       if (self.controls.$more.hasClass('h5p-active')) {
         self.controls.$more.click();
@@ -1542,14 +1566,22 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       if (!this.isMobileView) {
         this.$container.addClass('mobile');
         this.isMobileView = true;
-        this.dnb.dialog.closeOverlay();
+
+        // should not close overlay for required interactions, but still show dialog
+        if(this.hasUncompletedRequiredInteractions()) {
+          var $dialog = $('.h5p-dialog', this.$container);
+          $dialog.show();
+        } else {
+          this.dnb.dialog.closeOverlay();
+        }
+
         this.recreateCurrentInteractions();
       }
     }
     else {
       if (this.isMobileView) {
         // Close dialog because we can not know if it will turn into a poster
-        if (this.dnb && this.dnb.dialog) {
+        if (this.dnb && this.dnb.dialog && !this.hasUncompletedRequiredInteractions()) {
           this.dnb.dialog.close();
         }
         this.$container.removeClass('mobile');
@@ -1838,6 +1870,89 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return this.getUsersMaxScore();
   };
 
+
+  /**
+   * Show a mask behind the interaction to prevent the user from clicking the video or controls
+   *
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.showOverlayMask = function(){
+    var self = this;
+
+    self.$videoWrapper.addClass('h5p-disable-opt-out');
+    self.dnb.dialog.openOverlay();
+
+    var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+    $dialogWrapper.click(function(){
+      if(self.hasUncompletedRequiredInteractions()){
+        self.showWarningMask();
+      }
+    });
+  };
+
+  /**
+   * Hides the mask behind the interaction
+   * @return {jQuery} the dialog wrapper element
+   */
+  InteractiveVideo.prototype.hideOverlayMask = function(){
+    var self = this;
+
+    self.dnb.dialog.closeOverlay();
+    self.$videoWrapper.removeClass('h5p-disable-opt-out');
+
+    return self.$container.find('.h5p-dialog-wrapper');
+  };
+
+
+  /**
+   * Shows the warning mask.
+   * The mask is shared by all interactions
+   */
+  InteractiveVideo.prototype.showWarningMask = function(){
+    var self = this;
+
+    // create mask if doesn't exist
+    if(!self.$mask) {
+      self.$mask = $(
+        '<div class="h5p-warning-mask">' +
+          '<div class="h5p-warning-mask-wrapper">' +
+            '<div class="h5p-warning-mask-content">' + self.l10n.requiresCompletionWarning + '</div>' +
+            '<button type="button" class="h5p-joubelui-button h5p-button-back">' + self.l10n.back + '</button>' +
+          '</div>' +
+        '</div>'
+      ).click(function () {
+        self.$mask.hide();
+      }).appendTo(self.$container);
+    }
+
+    self.$mask.show();
+  };
+
+  /**
+   * Returns true if there are visible interactions that require completed
+   * and the user doesn't have full score
+   *
+   * @returns {boolean} If any required interaction is not completed with full score
+   */
+  InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function(){
+    var self = this;
+
+    return self.getVisibleInteractions().some(function(interaction){
+      return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+    });
+  };
+
+  /**
+   * Returns an array of interactions currently visible
+   *
+   * @return {H5P.InteractiveVideoInteraction[]} visible interactions
+   */
+  InteractiveVideo.prototype.getVisibleInteractions = function() {
+    return this.interactions.filter(function(interaction){
+      return interaction.isVisible();
+    });
+  };
+
   /**
    * Implements showSolutions from the question type contract
    */
@@ -1861,6 +1976,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     for (var i = 0; i < this.interactions.length; i++) {
       this.interactions[i].toggle(second);
       this.interactions[i].repositionToWrapper(this.$videoWrapper);
+    }
+
+    // Wait until all interactions has been toggled before determining mask visibility
+    if (!this.hasUncompletedRequiredInteractions()) {
+      this.hideOverlayMask();
     }
   };
 

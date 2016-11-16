@@ -145,6 +145,12 @@
                             "label": "Merkelapp for spoleknappen"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Krev alt rett for å fortsette",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "Dette altnerativet fungerer best når \"Unngå at brukere hopper over innhold i video\" alternativet er på."
                       }
                     ]
                   },
@@ -404,6 +410,18 @@
           "label": "Navigasjon er ikke tillatt tekst",
           "englishDefault": "Navigation is disabled",
           "default": "Navigasjon er ikke tillatt"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Du må svare korrekt på alle spørsmålene før du kan fortsette."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Tilbakeknapp",
+          "englishDefault": "Back",
+          "default": "Tilbake"
         }
       ]
     }
