@@ -108,7 +108,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Detect whether to add interactivies or just display a plain video.
     self.justVideo = false;
     var iOSMatches = navigator.userAgent.match(/(iPhone|iPod) OS (\d*)_/i);
-    if(iOSMatches !== null && iOSMatches.length === 3) {
+    if (iOSMatches !== null && iOSMatches.length === 3) {
       // If iOS < 10, let's play video only...
       self.justVideo = iOSMatches[2] < 10;
     }
@@ -631,7 +631,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // handle xAPI event
-    interaction.on('xAPI', function(event) {
+    interaction.on('xAPI', function (event) {
       // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
@@ -660,7 +660,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    *   true if this interactive video has a summary
    *   false otherwise
    */
-  InteractiveVideo.prototype.hasMainSummary = function() {
+  InteractiveVideo.prototype.hasMainSummary = function () {
     var summary = this.options.summary;
     return !(summary === undefined ||
         summary.displayAt === undefined ||
@@ -980,7 +980,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
-      })
+      });
     }
 
     // Current time for minimal display
@@ -1568,7 +1568,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         this.isMobileView = true;
 
         // should not close overlay for required interactions, but still show dialog
-        if(this.hasUncompletedRequiredInteractions()) {
+        if (this.hasUncompletedRequiredInteractions()) {
           var $dialog = $('.h5p-dialog', this.$container);
           $dialog.show();
         } else {
@@ -1808,7 +1808,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    *
    * @public
    */
-  InteractiveVideo.prototype.complete = function() {
+  InteractiveVideo.prototype.complete = function () {
     // Skip for editor
     if (this.editor) {
       return;
@@ -1826,7 +1826,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Gets the users score
    * @returns {number}
    */
-  InteractiveVideo.prototype.getUsersScore = function() {
+  InteractiveVideo.prototype.getUsersScore = function () {
     var score = 0;
 
     for (var i = 0; i < this.interactions.length; i++) {
@@ -1842,7 +1842,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Gets the users max score
    * @returns {number}
    */
-  InteractiveVideo.prototype.getUsersMaxScore = function() {
+  InteractiveVideo.prototype.getUsersMaxScore = function () {
     var maxScore = 0;
 
     for (var i = 0; i < this.interactions.length; i++) {
@@ -1858,7 +1858,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Implements getScore from the question type contract
    * @returns {number}
    */
-  InteractiveVideo.prototype.getScore = function() {
+  InteractiveVideo.prototype.getScore = function () {
     return this.getUsersScore();
   };
 
@@ -1866,7 +1866,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Implements getMaxScore from the question type contract
    * @returns {number}
    */
-  InteractiveVideo.prototype.getMaxScore = function() {
+  InteractiveVideo.prototype.getMaxScore = function () {
     return this.getUsersMaxScore();
   };
 
@@ -1876,15 +1876,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    *
    * @return {jQuery} the dialog wrapper element
    */
-  InteractiveVideo.prototype.showOverlayMask = function(){
+  InteractiveVideo.prototype.showOverlayMask = function () {
     var self = this;
 
     self.$videoWrapper.addClass('h5p-disable-opt-out');
     self.dnb.dialog.openOverlay();
 
     var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
-    $dialogWrapper.click(function(){
-      if(self.hasUncompletedRequiredInteractions()){
+    $dialogWrapper.click(function () {
+      if (self.hasUncompletedRequiredInteractions()) {
         self.showWarningMask();
       }
     });
@@ -1894,7 +1894,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Hides the mask behind the interaction
    * @return {jQuery} the dialog wrapper element
    */
-  InteractiveVideo.prototype.hideOverlayMask = function(){
+  InteractiveVideo.prototype.hideOverlayMask = function () {
     var self = this;
 
     self.dnb.dialog.closeOverlay();
@@ -1908,11 +1908,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Shows the warning mask.
    * The mask is shared by all interactions
    */
-  InteractiveVideo.prototype.showWarningMask = function(){
+  InteractiveVideo.prototype.showWarningMask = function () {
     var self = this;
 
     // create mask if doesn't exist
-    if(!self.$mask) {
+    if (!self.$mask) {
       self.$mask = $(
         '<div class="h5p-warning-mask">' +
           '<div class="h5p-warning-mask-wrapper">' +
@@ -1980,7 +1980,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Implements getTitle from the question type contract
    * @returns {string}
    */
-  InteractiveVideo.prototype.getTitle = function() {
+  InteractiveVideo.prototype.getTitle = function () {
     return H5P.createTitle(this.options.video.startScreenOptions.title);
   };
 
