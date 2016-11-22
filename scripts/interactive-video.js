@@ -1932,13 +1932,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Returns true if there are visible interactions that require completed
    * and the user doesn't have full score
    *
+   * @param {number} second
    * @returns {boolean} If any required interaction is not completed with full score
    */
-  InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function(){
+  InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function (second) {
     var self = this;
 
-    return self.getVisibleInteractions().some(function(interaction){
-      return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+    // Find interactions
+    var interactions = (second !== undefined ?
+        self.getVisibleInteractionsAt(second) : self.getVisibleInteractions());
+
+    return interactions.some(function (interaction) {
+      return interaction.getRequiresCompletion () && !interaction.hasFullScore();
     });
   };
 
@@ -1947,16 +1952,27 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    *
    * @return {H5P.InteractiveVideoInteraction[]} visible interactions
    */
-  InteractiveVideo.prototype.getVisibleInteractions = function() {
-    return this.interactions.filter(function(interaction){
+  InteractiveVideo.prototype.getVisibleInteractions = function () {
+    return this.interactions.filter(function (interaction) {
       return interaction.isVisible();
+    });
+  };
+
+  /**
+   * Returns an array of interactions currently visible
+   *
+   * @return {H5P.InteractiveVideoInteraction[]} visible interactions
+   */
+  InteractiveVideo.prototype.getVisibleInteractionsAt = function (second) {
+    return this.interactions.filter(function (interaction) {
+      return interaction.visibleAt(second);
     });
   };
 
   /**
    * Implements showSolutions from the question type contract
    */
-  InteractiveVideo.prototype.showSolutions = function() {
+  InteractiveVideo.prototype.showSolutions = function () {
     // Intentionally left empty. Function makes IV pop up in CP summary
   };
 

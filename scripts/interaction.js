@@ -224,8 +224,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var closeInteraction = function () {
-      var closeDialog = !player.hasUncompletedRequiredInteractions();
+    var closeInteraction = function (seekTo) {
+      var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
       if (self.isButton()) {
         if (closeDialog) {
           player.dnb.dialog.close();
@@ -688,11 +688,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // add and show adaptivity button, hide continue button
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-          closeInteraction();
-
-          if (!self.getRequiresCompletion() && !adaptivity.allowOptOut) {
-            hideOverlayMask($interaction);
-          }
+          closeInteraction(adaptivity.seekTo);
 
           // Reset interaction
           if (!fullScore && instance.resetTask) {
@@ -920,8 +916,18 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @return {boolean}
      */
-    self.isVisible = function(){
+    self.isVisible = function () {
       return isVisible;
+    };
+
+    /**
+     * Check if the interaction is visible at the given second
+     *
+     * @param {number} second
+     * @return {boolean}
+     */
+    self.visibleAt = function (second) {
+      return !(second < parameters.duration.from || second > parameters.duration.to);
     };
 
     /**
@@ -932,7 +938,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      */
     self.toggle = function (second) {
       second = Math.floor(second);
-      if (second < parameters.duration.from || second > parameters.duration.to) {
+      if (!self.visibleAt(second)) {
         isVisible = false;
 
         if ($interaction) {
