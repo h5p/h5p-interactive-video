@@ -644,7 +644,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Determine adaptivity
         if(fullScore){
           adaptivity = parameters.adaptivity.correct;
-        } else if(!fullScore && !self.getRequiresCompletion()){
+        } else if(!fullScore){
           adaptivity = parameters.adaptivity.wrong;
         }
       }
