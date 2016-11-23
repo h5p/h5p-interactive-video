@@ -600,7 +600,7 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
       var isYouTube = (self.video.pressToPlay !== undefined);
 
       // Consider pausing the playback
-      delayWork(isYouTube ? 100 : null, function()  {
+      delayWork(isYouTube ? 100 : null, function()  {
         if (self.currentState === H5P.Video.PLAYING && interaction.pause()) {
           self.video.pause();
         }
@@ -2027,7 +2027,7 @@ H5P.InteractiveVideo = (function($, EventDispatcher, DragNBar, Interaction) {
    * @param {number} time null to carry out straight away
    * @param {function} job what to do
    */
-  var delayWork = function(time, job)  {
+  var delayWork = function(time, job)  {
     if (time === null) {
       job();
     } else {
