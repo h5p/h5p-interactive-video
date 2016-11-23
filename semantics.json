@@ -17,9 +17,9 @@
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
-            "name": "advancedSettings",
+            "name": "startScreenOptions",
             "type": "group",
-            "label": "Advanced settings",
+            "label": "Start screen options",
             "fields": [
               {
                 "name": "title",
@@ -28,6 +28,28 @@
                 "maxLength": 60,
                 "default": "Interactive Video",
                 "description": "Used in summaries, statistics etc."
+              },
+              {
+                "name": "hideStartTitle",
+                "type": "boolean",
+                "label": "Hide title on video start screen",
+                "optional": true,
+                "default": false
+              },
+              {
+                "name": "shortStartDescription",
+                "type": "text",
+                "label": "Short description (Optional)",
+                "optional": true,
+                "maxLength": 120,
+                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+              },
+              {
+                "name": "poster",
+                "type": "image",
+                "label": "Poster image",
+                "optional": true,
+                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
               },
               {
                 "name": "copyright",
@@ -43,36 +65,6 @@
                   "del",
                   "a"
                 ]
-              },
-              {
-                "name": "startScreenOptions",
-                "type": "group",
-                "label": "Video start screen options",
-                "optional": true,
-                "fields": [
-                  {
-                    "name": "poster",
-                    "type": "image",
-                    "label": "Poster image",
-                    "optional": true,
-                    "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                  },
-                  {
-                    "name": "hideStartTitle",
-                    "type": "boolean",
-                    "label": "Hide title on video start screen",
-                    "optional": true,
-                    "default": false
-                  },
-                  {
-                    "name": "shortStartDescription",
-                    "type": "text",
-                    "label": "Short description (Optional)",
-                    "optional": true,
-                    "maxLength": 120,
-                    "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
-                  }
-                ]
               }
             ]
           }
@@ -84,7 +76,7 @@
         "label": "Add interactions",
         "widget": "interactiveVideo",
         "video": "video/files",
-        "poster": "video/advancedSettings/startScreenOptions/poster",
+        "poster": "video/startScreenOptions/poster",
         "fields": [
           {
             "name": "interactions",
@@ -176,8 +168,9 @@
                     "H5P.Link 1.2",
                     "H5P.Image 1.0",
                     "H5P.Summary 1.5",
-                    "H5P.SingleChoiceSet 1.5",
+                    "H5P.SingleChoiceSet 1.6",
                     "H5P.MultiChoice 1.8",
+                    "H5P.TrueFalse 1.0",
                     "H5P.Blanks 1.7",
                     "H5P.DragQuestion 1.7",
                     "H5P.MarkTheWords 1.6",
@@ -266,6 +259,12 @@
                           "label": "Label for seek button"
                         }
                       ]
+                    },
+                    {
+                      "name": "requireCompletion",
+                      "type": "boolean",
+                      "label": "Require full score for task before proceeding",
+                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                     }
                   ]
                 },
@@ -513,6 +512,14 @@
     "optional": true,
     "fields": [
       {
+        "name": "startVideoAt",
+        "type": "number",
+        "widget": "timecode",
+        "label": "Start video at",
+        "optional": true,
+        "description": "Enter timecode in the format M:SS"
+      },
+      {
         "name": "showSolutionButton",
         "type": "select",
         "label": "Override \"Show Solution\" button",
@@ -558,6 +565,13 @@
         "type": "boolean",
         "label": "Show button for rewinding 10 seconds",
         "default": false
+      },
+      {
+        "name": "preventSkipping",
+        "type": "boolean",
+        "default": false,
+        "label": "Prevent skipping forward in a video",
+        "description": "Enabling this options will disable user video navigation through default controls"
       }
     ]
   },
@@ -667,6 +681,27 @@
         "optional": true
       },
       {
+        "name": "navDisabled",
+        "type": "text",
+        "label": "Navigation is disabled text",
+        "default": "Navigation is disabled",
+        "optional": true
+      },
+      {
+        "name": "requiresCompletionWarning",
+        "type": "text",
+        "label": "Warning that the user must answer the question correctly before continuing",
+        "default": "You need to answer all the questions correctly before continuing.",
+        "optional": true
+      },
+      {
+        "name": "back",
+        "type": "text",
+        "label": "Back button",
+        "default": "Back",
+        "optional": true
+      },
+      {
         "name": "language",
         "type": "text",
         "label": "Language",
@@ -674,7 +709,7 @@
         "optional": true
       },
       {
-        "name": "nocaptions",
+        "name": "noCaptions",
         "type": "text",
         "label": "no captions",
         "default": "no captions",

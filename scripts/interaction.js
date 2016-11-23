@@ -1,11 +1,42 @@
 H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
   /**
+   * @typedef {Object} Parameters Interaction settings
+   * @property {Object} action Library
+   * @property {string|undefined} contentName Title of library
+   * @property {Object} visuals Visual parameters
+   * @property {string} [label] Button label
+   * @property {string} className Class applied to interaction element
+   * @property {Object} [goto] On click action
+   * @property {Object} [goto.visualize] Interaction display settings
+   * @property {Object} [adaptivity] Settings for navigation when interaction is answered
+   * @property {Adaptivity} [adaptivity.correct] Adaptivity when user gives correct answer
+   * @property {Adaptivity} [adaptivity.wrong] Adaptivity when user gives wrong answer
+   * @property {number} x Horizontal position
+   * @property {number} y Vertical position
+   * @property {number} height
+   * @property {number} width
+   * @property {Object} duration
+   * @property {number} duration.from Time-code when interaction will be showed
+   * @property {number} duration.to Time-code when interaction will be hidden
+   * @property {boolean} pause True if video should be paused when interaction is displayed
+   * @property {string} displayType The way the interaction will be displayed, e.g. "button".
+   * @property {boolean} mainSummary True if this interaction is the built-in summary of Interactive Video.
+   */
+
+  /**
+   * @typedef {Object} Adaptivity Settings for navigation when an interaction is answered
+   * @property {number|undefined} seekTo Time-code the player will be taken to
+   * @property {string} label Label for adaptivity button
+   * @property {boolean} allowOptOut User is not forced to follow the adaptivity
+   */
+
+  /**
    * Keeps control of interactions in the interactive video.
    *
    * @class H5P.InteractiveVideoInteraction
    * @extends H5P.EventDispatcher
-   * @param {Object} parameters describes action behavior
+   * @param {Parameters} parameters describes action behavior
    * @param {H5P.InteractiveVideo} player instance
    * @param {Object} previousState
    */
@@ -44,6 +75,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     // Changes if interaction has moved from original position
     var isRepositioned = false;
+
+    var isVisible = false;
+
+    this.on('open-dialog', function () {
+      openDialog();
+    });
+
+    this.on('show-mask', function () {
+      showOverlayMask(this.getElement());
+    });
 
     var getVisuals = function () {
       return $.extend({}, {
@@ -84,6 +125,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           }
         }
       });
+
+      // if requires completion -> open dialog right away
+      if (self.getRequiresCompletion() &&
+          player.editor === undefined &&
+          player.currentState !== H5P.InteractiveVideo.SEEKING) {
+        openDialog(true);
+      }
 
       // Touch area for button
       $('<div/>', {
@@ -175,12 +223,25 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @private
      */
-    var closeInteraction = function () {
+    var closeInteraction = function (seekTo) {
+      var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
       if (self.isButton()) {
-        player.dnb.dialog.close();
+        if (closeDialog) {
+          player.dnb.dialog.close();
+        }
       }
       else {
+        if (player.isMobileView && closeDialog) {
+          player.dnb.dialog.close();
+        }
+
         $interaction.detach();
+      }
+
+      self.trigger('remove', $interaction);
+
+      if (closeDialog) {
+        hideOverlayMask($interaction);
       }
     };
 
@@ -233,8 +294,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Opens button dialog.
      *
      * @private
+     * @param {boolean} [checkScore] Check score before showing dialog
      */
-    var openDialog = function () {
+    var openDialog = function (checkScore) {
       if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
         instance.setActivityStarted();
       }
@@ -251,11 +313,36 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       instance.attach($instanceParent);
       addContinueButton($instanceParent);
 
+      // Some content types does not get score until they are attached.
+      // Re-check score after attaching to dialog
+      if (hasScoreData(instance)) {
+        self.score = instance.getScore();
+        self.maxScore = instance.getMaxScore();
+      }
+
+      if (self.hasFullScore() && checkScore) {
+        // Skip opening dialog if re-calculation yields full score
+        return;
+      }
+      else if (self.getRequiresCompletion() && !self.hasFullScore()) {
+        player.dnb.dialog.hideCloseButton();
+        player.dnb.dialog.disableOverlay = true;
+
+        // selects the overlay, and adds warning on click
+        var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+        $dialogWrapper.click(function () {
+          if (!self.hasFullScore()) {
+            player.showWarningMask();
+          }
+        });
+      }
+
       // Open dialog
       player.dnb.dialog.open($dialogContent);
       player.dnb.dialog.addLibraryClass(library);
       player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
       player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
+
 
       /**
        * Handle dialog closing once.
@@ -430,6 +517,29 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Show a mask behind the interaction to prevent the user from clicking the video or controls
+     *
+     * @param $interaction
+     */
+    var showOverlayMask = function ($interaction) {
+      $interaction.css('zIndex', 52);
+      player.showOverlayMask();
+
+    };
+
+
+    /**
+     * Hides the mask behind the interaction
+     * @param $interaction
+     */
+    var hideOverlayMask = function ($interaction) {
+      if ($interaction) {
+        $interaction.css('zIndex', '');
+      }
+      player.hideOverlayMask();
+    };
+
+    /**
      * Display the current interaction as a poster on top of the video.
      *
      * @private
@@ -501,6 +611,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Trigger event listeners
       self.trigger('display', $interaction);
 
+      if (self.getRequiresCompletion() &&
+          player.currentState !== H5P.InteractiveVideo.SEEKING &&
+          player.editor === undefined &&
+          !self.hasFullScore()) {
+        showOverlayMask($interaction);
+      }
+
       setTimeout(function () {
         H5P.trigger(instance, 'resize');
       }, 0);
@@ -515,45 +632,35 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * Adds adaptivity or continue button to exercies.
      *
      * @private
-     * @param {H5P.jQuery} $target
      */
-    var adaptivity = function ($target) {
-
-      var adaptivity, fullScore;
+    var adaptivity = function () {
+      var adaptivity, fullScore, showContinueButton = true;
       if (parameters.adaptivity) {
-        fullScore = self.score >= self.maxScore;
+        fullScore = self.hasFullScore();
+        showContinueButton = !self.getRequiresCompletion() || fullScore;
 
         // Determine adaptivity
-        adaptivity = (fullScore ? parameters.adaptivity.correct : parameters.adaptivity.wrong);
+        if (fullScore) {
+          adaptivity = parameters.adaptivity.correct;
+        } else if (!fullScore) {
+          adaptivity = parameters.adaptivity.wrong;
+        }
       }
 
+      // if no adaptivity branching
       if (!adaptivity || adaptivity.seekTo === undefined) {
         // Add continue button if no adaptivity
         if (instance.hasButton !== undefined) {
           if (!instance.hasButton('iv-continue')) {
             // Register continue button
             instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-              if (self.isButton()) {
-                // Close dialog
-                player.dnb.dialog.close();
-              }
-              else {
-                if (player.isMobileView) {
-                  player.dnb.dialog.close();
-                }
-                // Remove interaction posters
-                $interaction.detach();
-              }
-
-              // Do not play if player is at the end, state 0 = ENDED
-              if (player.currentState !== 0) {
-                player.play();
-              }
+              closeInteraction();
+              continueWithVideo();
             });
           }
-          else {
-            instance.showButton('iv-continue');
-          }
+
+          // show or hide the continue-button, based on requiring completion
+          instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
         }
 
         return;
@@ -569,9 +676,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
           player.dnb.dialog.hideCloseButton();
         }
         else {
-          $interaction.css('zIndex', 52);
-          player.$videoWrapper.addClass('h5p-disable-opt-out');
-          player.dnb.dialog.openOverlay();
+          showOverlayMask($interaction);
         }
       }
 
@@ -581,16 +686,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // add and show adaptivity button, hide continue button
       instance.hideButton('iv-continue')
         .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-          if (self.isButton()) {
-            player.dnb.dialog.close();
-          }
-          if (!adaptivity.allowOptOut) {
-            if (!self.isButton()) {
-              player.dnb.dialog.closeOverlay();
-              $interaction.css('zIndex', '');
-              player.$videoWrapper.removeClass('h5p-disable-opt-out');
-            }
-          }
+          closeInteraction(adaptivity.seekTo);
 
           // Reset interaction
           if (!fullScore && instance.resetTask) {
@@ -598,11 +694,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             instance.hideButton('iv-adaptivity-' + adaptivityId);
           }
 
-          // Remove interaction
           self.remove();
-          player.pause();
-          player.seek(adaptivity.seekTo);
-          player.play();
+          continueWithVideo(adaptivity.seekTo);
         }
       ).showButton('iv-adaptivity-' + adaptivityId, 1)
         .hideButton('check-answer', 1)
@@ -621,6 +714,67 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
         instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
       }, 0);
+    };
+
+    /**
+     * Continue with video unless a interaction intercepts this.
+     * @param {number} [seekTo] Where the video should continue from
+     */
+    var continueWithVideo = function (seekTo) {
+      var needsAnswer = getInteractionsThatNeedsAnswer();
+
+      // Make user answer posters first
+      var posters = needsAnswer.filter(function (interaction) {
+        return !interaction.isButton();
+      });
+      if (posters.length) {
+        needsAnswer = posters;
+      }
+      else if (needsAnswer.length) {
+        // Show dialog. Do not use DnB because it only shows dialog when closing an overlay.
+        player.$container.find('.h5p-dialog-wrapper .h5p-dialog')
+          .show();
+      }
+
+      // Open first of interactions that needs answer
+      if (needsAnswer.length) {
+        var nextInteraction = needsAnswer[0];
+
+        if (nextInteraction.isButton()) {
+          // if requires completion -> open dialog right away
+          nextInteraction.trigger('open-dialog');
+        }
+        else {
+          nextInteraction.trigger('show-mask');
+        }
+        player.pause();
+        return;
+      }
+
+      if (player.currentState !== player.video.ENDED) {
+        if (seekTo !== undefined) {
+          player.pause();
+          player.seek(seekTo);
+        }
+        player.play();
+      }
+    };
+
+    /**
+     * Interactions that needs answer are interactions that are visible,
+     * requires completion and does not have full score.
+     *
+     * @return {Array.<H5P.InteractiveVideoInteraction>}
+     *    Interactions that needs answer
+     */
+    var getInteractionsThatNeedsAnswer = function () {
+      return player.getVisibleInteractions()
+        .filter(function (interaction) {
+          return interaction !== self;
+        })
+        .filter(function (interaction) {
+          return interaction.getRequiresCompletion() && !interaction.hasFullScore();
+        });
     };
 
     /**
@@ -664,6 +818,26 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * Get duration of interaction
+     * @return {{from: number, to: number}}
+     */
+    self.getDuration = function () {
+      return {
+        from: parameters.duration.from,
+        to: parameters.duration.to
+      };
+    };
+
+    /**
+     * Get requires completion settings
+     *
+     * @return {boolean} True if interaction requires completion
+     */
+    self.getRequiresCompletion = function () {
+      return !!parameters.adaptivity && !!parameters.adaptivity.requireCompletion;
+    };
+
+    /**
      * Checks to see if the interaction should pause the video.
      *
      * @returns {boolean}
@@ -686,7 +860,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      *
      * @returns {boolean}
      */
-    self.isMainSummary = function() {
+    self.isMainSummary = function () {
       return parameters.mainSummary === true;
     };
 
@@ -701,15 +875,24 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         return; // Skip "sub titles"
       }
 
+      var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
+      if (player.preventSkipping) {
+        seekbarClasses += ' disabled';
+      }
+
       // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
       $('<div/>', {
-        'class': 'h5p-seekbar-interaction ' + classes,
+        'class': seekbarClasses,
         title: title,
         css: {
           left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
         },
         on: {
           click: function () {
+            if (player.preventSkipping) {
+              return;
+            }
+
             if (player.currentState === H5P.Video.VIDEO_CUED) {
               player.play();
               player.seek(parameters.duration.from);
@@ -727,14 +910,35 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+     * If the interaction should be visible at this time
+     *
+     * @return {boolean}
+     */
+    self.isVisible = function () {
+      return isVisible;
+    };
+
+    /**
+     * Check if the interaction is visible at the given second
+     *
+     * @param {number} second
+     * @return {boolean}
+     */
+    self.visibleAt = function (second) {
+      return !(second < parameters.duration.from || second > parameters.duration.to);
+    };
+
+    /**
      * Display or remove the interaction depending on the video time.
      *
      * @param {number} second video time
-     * @returns {H5P.jQuery} interaction button or container
+     * @returns {H5P.jQuery|undefined} interaction button or container
      */
     self.toggle = function (second) {
       second = Math.floor(second);
-      if (second < parameters.duration.from || second > parameters.duration.to) {
+      if (!self.visibleAt(second)) {
+        isVisible = false;
+
         if ($interaction) {
           // Remove interaction from display
           if (dnbElement) {
@@ -756,6 +960,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       if ($interaction) {
         return; // Interaction already on display
       }
+
+      // set that this is visible
+      isVisible = true;
 
       if (self.isButton()) {
         createButton();
@@ -785,6 +992,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       return $interaction;
     };
 
+    /**
+     * TODO
+     */
     self.setTitle = function (customTitle) {
       if ($interaction) {
         $interaction.attr('aria-label', customTitle);
@@ -816,6 +1026,9 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+    /**
+     * TODO
+     */
     self.resizeInteraction = function () {
       if (library !== 'H5P.Nil') {
         H5P.trigger(instance, 'resize');
@@ -872,10 +1085,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
     /**
      * Removes interaction from display.
-     *
-     * @param {boolean} [updateSize] Used when re-creating element
      */
-    self.remove = function (updateSize) {
+    self.remove = function () {
       if ($interaction) {
         // Let others reach to the hiding of this interaction
         self.trigger('domHidden', {
@@ -902,6 +1113,12 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
         instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
+        // Getting initial score from instance (if it has previous state)
+        if (action.userDatas && hasScoreData(instance)) {
+          self.score = instance.getScore();
+          self.maxScore = instance.getMaxScore();
+        }
+
         // Set adaptivity if question is finished on attach
         if (instance.on) {
 
@@ -916,6 +1133,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
             }
             self.trigger(event);
           });
+
           instance.on('question-finished', function () {
             adaptivity();
           });
@@ -938,6 +1156,21 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
     };
 
+
+    /**
+     * Returns true if the object passed in has the getScore and getMaxScore
+     *
+     * @param obj Object to check
+     * @returns {boolean} If the object has getScore and getMaxScore
+     */
+    var hasScoreData = function (obj) {
+      return (
+        (typeof obj !== typeof undefined) &&
+        (typeof obj.getScore === 'function') &&
+        (typeof obj.getMaxScore === 'function')
+      );
+    };
+
     /**
      * Set dnb element for interaction, connecting it to a dialog/form
      *
@@ -950,6 +1183,15 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
       dnbElement = newDnbElement;
       return true;
+    };
+
+    /**
+     * Returns true if the user has full score on this interaction
+     *
+     * @returns {boolean}
+     */
+    self.hasFullScore = function () {
+      return self.score >= self.maxScore;
     };
 
     /**

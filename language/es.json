@@ -15,8 +15,8 @@
               "description": "Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
             },
             {
-              "englishLabel": "Advanced settings",
-              "label": "Advanced settings",
+              "englishLabel": "Start screen options",
+              "label": "Start screen options",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -27,32 +27,26 @@
                   "description": "Utilizado en extractos, estadísticas, etc."
                 },
                 {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Ocultar el título al inicio del video"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Descripción corta (Opcional)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Cartel",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                },
+                {
                   "englishLabel": "Video copyright information",
                   "label": "Derechos de autor del video",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
                   "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
-                },
-                {
-                  "englishLabel": "Video start screen options",
-                  "label": "Ajuste de interacciones",
-                  "fields": [
-                    {
-                      "englishLabel": "Poster image",
-                      "label": "Cartel",
-                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                      "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                    },
-                    {
-                      "englishLabel": "Hide title on video start screen",
-                      "label": "Ocultar el título al inicio del video"
-                    },
-                    {
-                      "englishLabel": "Short description (Optional)",
-                      "label": "Descripción corta (Opcional)",
-                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                      "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
-                    }
-                  ]
                 }
               ]
             }
@@ -151,6 +145,12 @@
                             "label": "Etiqueta para el botón de búsqueda"
                           }
                         ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Require full score for task before proceeding",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -262,6 +262,12 @@
       "label": "Behavioural settings",
       "fields": [
         {
+          "englishLabel": "Start video at",
+          "label": "Start video at",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Override \"Show Solution\" button",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -302,6 +308,12 @@
         {
           "englishLabel": "Show button for rewinding 10 seconds",
           "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Prevent skipping forward in a video",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Enabling this options will disable user video navigation through default controls"
         }
       ]
     },
@@ -394,16 +406,34 @@
           "default": "Rewind 10 Seconds"
         },
         {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Navigation is disabled text",
+          "englishDefault": "Navigation is disabled",
+          "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Advertencia de que el usuario debe responder a la pregunta correctamente antes de continuar",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Debe responder correctamente a todas las preguntas antes de continuar."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Botón de retroceso",
+          "englishDefault": "Back",
+          "default": "Retroceso"
+        },
+        {
           "englishLabel": "Language",
           "label": "Language",
           "englishDefault": "Language",
-          "optional": true
+          "default": "Language"
         },
         {
           "englishLabel": "no captions",
           "label": "no captions",
           "englishDefault": "no captions",
-          "optional": true
+          "default": "no captions"
         }
       ]
     }

@@ -410,6 +410,30 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "You need to answer all the questions correctly before continuing."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Back button",
+          "englishDefault": "Back",
+          "default": "Back"
+        },
+        {
+          "englishLabel": "Language",
+          "label": "Language",
+          "englishDefault": "Language",
+          "default": "Language"
+        },
+        {
+          "englishLabel": "no captions",
+          "label": "no captions",
+          "englishDefault": "no captions",
+          "default": "no captions"
         }
       ]
     }

@@ -88,7 +88,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         var i;
         parameters.l10n = {};
 
-        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10', 'language', 'nocaptions'];
+        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10', 'language', 'noCaptions'];
         for (i = 0; i < keys.length; i++) {
           var key = keys[i];
           if (parameters.hasOwnProperty(key)) {
@@ -197,6 +197,41 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
               }
             }
           }
+        }
+
+        finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       *
+       * Rename "Advanced settings: Interactive video" to "Start screen options"
+       * Remove the group inside it that says "Video start screen options" and
+       * puts options directly under the parent.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      12: function (parameters, finished) {
+
+        function moveOldStartScreenOptions(video) {
+          // Rename Advanced settings
+          video.startScreenOptions = video.advancedSettings;
+
+          // Remove old advanced settings
+          delete video.advancedSettings;
+
+          // Move old start screen options to parent
+          video.startScreenOptions.poster = video.startScreenOptions.startScreenOptions.poster;
+          video.startScreenOptions.hideStartTitle = video.startScreenOptions.startScreenOptions.hideStartTitle;
+          video.startScreenOptions.shortStartDescription = video.startScreenOptions.startScreenOptions.shortStartDescription;
+
+          delete video.startScreenOptions.startScreenOptions;
+
+        }
+
+        if(parameters.interactiveVideo && parameters.interactiveVideo.video){
+          moveOldStartScreenOptions(parameters.interactiveVideo.video);
         }
 
         finished(null, parameters);
