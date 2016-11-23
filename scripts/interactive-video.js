@@ -2140,5 +2140,59 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
   };
 
+  /**
+   * Get xAPI data.
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  InteractiveVideo.prototype.getXAPIData = function(){
+    var self = this;
+    var xAPIEvent = this.createXAPIEventTemplate('answered');
+    addQuestionToXAPI(xAPIEvent); 
+ 
+    var childrenData = getXAPIDataFromChildren(self.interactions);
+    return {
+      statement: xAPIEvent.data.statement,
+      children: childrenData
+    }
+  };
+
+  /**
+   * Add the question itself to the definition part of an xAPIEvent
+   */
+  var addQuestionToXAPI = function(xAPIEvent) {
+    var definition = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
+    H5P.jQuery.extend(definition, getxAPIDefinition());
+  };
+
+  /**
+   * Generate xAPI object definition used in xAPI statements.
+   * @return {Object}
+   */
+  var getxAPIDefinition = function () {
+    var definition = {};
+
+    definition.interactionType = 'compound';
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+    definition.description = {
+      'en-US': ''  
+    };
+
+    return definition;
+  };
+
+  /**
+   * Get xAPI data from instances within a content type
+   *
+   * @param {Object} H5P instances
+   * @returns {array}  
+   */
+  var getXAPIDataFromChildren = function(children) {
+    return children.map(function(child) {
+       return child.getXAPIData(); 
+    });
+  }
+
   return InteractiveVideo;
 })(H5P.jQuery, H5P.EventDispatcher, H5P.DragNBar, H5P.InteractiveVideoInteraction);

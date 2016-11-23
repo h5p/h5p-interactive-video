@@ -1234,6 +1234,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     };
 
     /**
+      * Get xAPI data.
+      * Contract used by report rendering engine.
+      *
+      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+     * @returns {Object} xAPI Data   
+     */ 
+    self.getXAPIData = function () {
+      if (instance && (instance.getXAPIData instanceof Function ||
+                       typeof instance.getXAPIData === 'function')) {
+        return instance.getXAPIData();
+      }
+    }
+
+    /**
      * Returns unique content id
      * @returns {String} Sub content Id
      */
