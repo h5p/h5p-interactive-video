@@ -2160,8 +2160,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.prototype.getXAPIData = function(){
     var self = this;
     var xAPIEvent = this.createXAPIEventTemplate('answered');
-    addQuestionToXAPI(xAPIEvent); 
- 
+    addQuestionToXAPI(xAPIEvent);
+    xAPIEvent.setScoredResult(self.getScore(),
+      self.getMaxScore(),
+      self,
+      true,
+      self.getScore() === self.getMaxScore()
+    );
+
     var childrenData = getXAPIDataFromChildren(self.interactions);
     return {
       statement: xAPIEvent.data.statement,
@@ -2187,7 +2193,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     definition.interactionType = 'compound';
     definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
     definition.description = {
-      'en-US': ''  
+      'en-US': ''
     };
 
     return definition;
@@ -2197,11 +2203,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * Get xAPI data from instances within a content type
    *
    * @param {Object} H5P instances
-   * @returns {array}  
+   * @returns {array}
    */
   var getXAPIDataFromChildren = function(children) {
     return children.map(function(child) {
-       return child.getXAPIData(); 
+       return child.getXAPIData();
     });
   }
 
