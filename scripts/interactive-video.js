@@ -1467,10 +1467,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       !this.controls.$languageButton.hasClass('h5p-disabled')) {
       return;
     }
-    languages[languages.length] = {
-      'languageCode': '',
-      'displayName': self.l10n.noCaptions
-    };
+    languages = [{'languageCode': '', 'displayName': self.l10n.noCaptions}].concat(languages);
     var currentLanguage = this.video.getLanguage();
     var html = '';
     for (var i = 0; i < languages.length; i++) {
