@@ -520,6 +520,14 @@
         "description": "Enter timecode in the format M:SS"
       },
       {
+        "name": "loop",
+        "type": "boolean",
+        "label": "Loop the video",
+        "default": false,
+        "optional": true,
+        "description": "Check if video should run in a loop"
+      },
+      {
         "name": "showSolutionButton",
         "type": "select",
         "label": "Override \"Show Solution\" button",
