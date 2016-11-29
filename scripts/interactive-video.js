@@ -121,7 +121,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // determine if video should be looped
-    loopVideo = (params.override && !!params.override.loop) ? true : false;
+    loopVideo = params.override && !!params.override.loop;
 
     // Start up the video player
     self.video = H5P.newRunnable({
