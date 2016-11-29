@@ -2078,7 +2078,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   InteractiveVideo.humanizeTime = function (seconds) {
     // H5P.Timer works with milliseconds
     var timecode = H5P.Timer.toTimecode(seconds * 1000);
-    return timecode.substring(0, timecode.length-2);
+    return timecode.substring(0, timecode.lastIndexOf('.'));
   };
 
   /**
