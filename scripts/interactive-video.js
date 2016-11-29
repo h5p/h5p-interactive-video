@@ -616,7 +616,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var isYouTube = (self.video.pressToPlay !== undefined);
 
       // Consider pausing the playback
-      delayWork(isYouTube ? 100 : null, function () {
+      delayWork(isYouTube ? 100 : null, function () {
         var isPlaying = self.currentState === H5P.Video.PLAYING ||
             self.currentState === H5P.Video.BUFFERING;
         if (isPlaying && interaction.pause()) {
@@ -2076,31 +2076,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @returns {string}
    */
   InteractiveVideo.humanizeTime = function (seconds) {
-    var minutes = Math.floor(seconds / 60);
-    var hours = Math.floor(minutes / 60);
-
-    minutes = minutes % 60;
-    seconds = Math.floor(seconds % 60);
-
-    var time = '';
-
-    if (hours !== 0) {
-      time += hours + ':';
-
-      if (minutes < 10) {
-        time += '0';
-      }
-    }
-
-    time += minutes + ':';
-
-    if (seconds < 10) {
-      time += '0';
-    }
-
-    time += seconds;
-
-    return time;
+    // H5P.Timer works with milliseconds
+    var timecode = H5P.Timer.toTimecode(seconds * 1000);
+    return timecode.substring(0, timecode.length-2);
   };
 
   /**
@@ -2126,7 +2104,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {number} time null to carry out straight away
    * @param {function} job what to do
    */
-  var delayWork = function (time, job) {
+  var delayWork = function (time, job) {
     if (time === null) {
       job();
     }
