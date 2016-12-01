@@ -487,10 +487,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.5"
+              "H5P.Summary 1.6"
             ],
             "default": {
-              "library": "H5P.Summary 1.5",
+              "library": "H5P.Summary 1.6",
               "params": {}
             }
           },
