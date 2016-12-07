@@ -167,8 +167,8 @@
                     "H5P.Table 1.1",
                     "H5P.Link 1.2",
                     "H5P.Image 1.0",
-                    "H5P.Summary 1.5",
-                    "H5P.SingleChoiceSet 1.6",
+                    "H5P.Summary 1.6",
+                    "H5P.SingleChoiceSet 1.7",
                     "H5P.MultiChoice 1.9",
                     "H5P.TrueFalse 1.0",
                     "H5P.Blanks 1.7",
@@ -487,10 +487,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.5"
+              "H5P.Summary 1.6"
             ],
             "default": {
-              "library": "H5P.Summary 1.5",
+              "library": "H5P.Summary 1.6",
               "params": {}
             }
           },

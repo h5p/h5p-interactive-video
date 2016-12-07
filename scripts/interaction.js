@@ -1125,13 +1125,19 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
           // Handle question/task finished
           instance.on('xAPI', function (event) {
-            if ((event.getMaxScore() && event.getScore() !== null) &&
-                event.getVerb() === 'completed' ||
-                event.getVerb() === 'answered') {
+            var parents = event.getVerifiedStatementValue(['context', 'contextActivities', 'parent']) || [];
+            var interactiveVideoId = event.getContentXAPIId(player);
+            var isCompletedOrAnswered = event.getVerb() === 'completed' || event.getVerb() === 'answered';
+            var isInteractiveVideoParent = parents.some(function(parent){
+              return parent.id === interactiveVideoId;
+            });
+
+            if (isInteractiveVideoParent && isCompletedOrAnswered && (event.getMaxScore() && event.getScore() !== null)) {
               self.score = event.getScore();
               self.maxScore = event.getMaxScore();
               adaptivity();
             }
+
             self.trigger(event);
           });
 
@@ -1243,6 +1249,20 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
 
       return undefined;
     };
+
+    /**
+      * Get xAPI data.
+      * Contract used by report rendering engine.
+      *
+      * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+     * @returns {Object} xAPI Data   
+     */ 
+    self.getXAPIData = function () {
+      if (instance && (instance.getXAPIData instanceof Function ||
+                       typeof instance.getXAPIData === 'function')) {
+        return instance.getXAPIData();
+      }
+    }
 
     /**
      * Returns unique content id
