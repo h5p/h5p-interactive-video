@@ -303,17 +303,20 @@
           "englishLabel": "Start with bookmarks menu open",
           "label": "Show bookmarks menu on load",
           "englishDescription": "This function is not available on iPad when using YouTube as video source",
-          "description": "Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
+          "description": "Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube",
+          "default": false
         },
         {
           "englishLabel": "Show button for rewinding 10 seconds",
-          "label": "Afficher le bouton pour revenir en arrière de 10 secondes"
+          "label": "Afficher le bouton pour revenir en arrière de 10 secondes",
+          "default": false
         },
         {
           "englishLabel": "Prevent skipping forward in a video",
           "label": "Empêcher de sauter en avant dans la vidéo",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video"
+          "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video",
+          "default": false
         }
       ]
     },
