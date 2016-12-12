@@ -988,7 +988,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$currentTime = $time.find('.h5p-current');
 
     // Add fullscreen button
-    if (!self.editor && H5P.canHasFullScreen !== false) {
+    if (!self.editor && H5P.fullscreenSupported !== false) {
       self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
         self.toggleFullScreen();
       });
@@ -2172,7 +2172,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return {
       statement: xAPIEvent.data.statement,
       children: childrenData
-    }
+    };
   };
 
   /**
@@ -2209,7 +2209,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return children.map(function(child) {
        return child.getXAPIData();
     });
-  }
+  };
 
   return InteractiveVideo;
 })(H5P.jQuery, H5P.EventDispatcher, H5P.DragNBar, H5P.InteractiveVideoInteraction);
