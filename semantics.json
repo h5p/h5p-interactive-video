@@ -4,27 +4,32 @@
     "type": "group",
     "widget": "wizard",
     "label": "Interactive Video Editor",
+    "importance": "high",
     "fields": [
       {
         "name": "video",
         "type": "group",
         "label": "Upload/embed video",
+        "importance": "high",
         "fields": [
           {
             "name": "files",
             "type": "video",
             "label": "Video files",
+            "importance": "high",
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
           },
           {
             "name": "startScreenOptions",
             "type": "group",
             "label": "Start screen options",
+            "importance": "low",
             "fields": [
               {
                 "name": "title",
                 "type": "text",
                 "label": "The title of this interactive video",
+                "importance": "low",
                 "maxLength": 60,
                 "default": "Interactive Video",
                 "description": "Used in summaries, statistics etc."
@@ -33,6 +38,7 @@
                 "name": "hideStartTitle",
                 "type": "boolean",
                 "label": "Hide title on video start screen",
+                "importance": "low",
                 "optional": true,
                 "default": false
               },
@@ -40,6 +46,7 @@
                 "name": "shortStartDescription",
                 "type": "text",
                 "label": "Short description (Optional)",
+                "importance": "low",
                 "optional": true,
                 "maxLength": 120,
                 "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
@@ -48,6 +55,7 @@
                 "name": "poster",
                 "type": "image",
                 "label": "Poster image",
+                "importance": "low",
                 "optional": true,
                 "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
               },
@@ -57,6 +65,7 @@
                 "widget": "html",
                 "enterMode": "p",
                 "label": "Video copyright information",
+                "importance": "low",
                 "optional": true,
                 "description": "Information regarding copyright of the video and elements used in the video.",
                 "tags": [
@@ -74,6 +83,7 @@
         "name": "assets",
         "type": "group",
         "label": "Add interactions",
+        "importance": "high",
         "widget": "interactiveVideo",
         "video": "video/files",
         "poster": "video/startScreenOptions/poster",
@@ -90,6 +100,7 @@
                   "type": "group",
                   "widget": "duration",
                   "label": "Display time",
+                  "importance": "low",
                   "fields": [
                     {
                       "name": "from",
@@ -104,11 +115,13 @@
                 {
                   "name": "pause",
                   "label": "Pause video",
+                  "importance": "low",
                   "type": "boolean"
                 },
                 {
                   "name": "displayType",
                   "label": "Display as",
+                  "importance": "low",
                   "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                   "type": "select",
                   "widget": "imageRadioButtonGroup",
@@ -129,6 +142,7 @@
                   "type": "text",
                   "widget": "html",
                   "label": "Label",
+                  "importance": "low",
                   "description": "Label displayed next to interaction icon.",
                   "optional": true,
                   "enterMode": "p",
@@ -139,28 +153,33 @@
                 {
                   "name": "x",
                   "type": "number",
+                  "importance": "low",
                   "widget": "none"
                 },
                 {
                   "name": "y",
                   "type": "number",
+                  "importance": "low",
                   "widget": "none"
                 },
                 {
                   "name": "width",
                   "type": "number",
                   "widget": "none",
+                  "importance": "low",
                   "optional": true
                 },
                 {
                   "name": "height",
                   "type": "number",
                   "widget": "none",
+                  "importance": "low",
                   "optional": true
                 },
                 {
                   "name": "action",
                   "type": "library",
+                  "importance": "low",
                   "options": [
                     "H5P.Nil 1.0",
                     "H5P.Text 1.1",
@@ -184,6 +203,7 @@
                   "name": "adaptivity",
                   "type": "group",
                   "label": "Adaptivity",
+                  "importance": "low",
                   "optional": true,
                   "fields": [
                     {
@@ -271,6 +291,7 @@
                 {
                   "name": "visuals",
                   "label": "Visuals",
+                  "importance": "low",
                   "type": "group",
                   "fields": [
                     {
@@ -374,6 +395,7 @@
                 {
                   "name": "goto",
                   "label": "Go to on click",
+                  "importance": "low",
                   "type": "group",
                   "fields": [
                     {
@@ -460,6 +482,7 @@
           },
           {
             "name": "bookmarks",
+            "importance": "low",
             "type": "list",
             "field": {
               "name": "bookmark",
@@ -482,6 +505,7 @@
         "name": "summary",
         "type": "group",
         "label": "Summary task",
+        "importance": "high",
         "fields": [
           {
             "name": "task",
@@ -509,6 +533,7 @@
     "name": "override",
     "type": "group",
     "label": "Behavioural settings",
+    "importance": "low",
     "optional": true,
     "fields": [
       {
@@ -516,6 +541,7 @@
         "type": "number",
         "widget": "timecode",
         "label": "Start video at",
+        "importance": "low",
         "optional": true,
         "description": "Enter timecode in the format M:SS"
       },
@@ -523,6 +549,7 @@
         "name": "showSolutionButton",
         "type": "select",
         "label": "Override \"Show Solution\" button",
+        "importance": "low",
         "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
         "optional": true,
         "options": [
@@ -540,6 +567,7 @@
         "name": "retryButton",
         "type": "select",
         "label": "Override \"Retry\" button",
+        "importance": "low",
         "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
         "optional": true,
         "options": [
@@ -557,6 +585,7 @@
         "name": "showBookmarksmenuOnLoad",
         "type": "boolean",
         "label": "Start with bookmarks menu open",
+        "importance": "low",
         "default": false,
         "description": "This function is not available on iPad when using YouTube as video source"
       },
@@ -564,6 +593,7 @@
         "name": "showRewind10",
         "type": "boolean",
         "label": "Show button for rewinding 10 seconds",
+        "importance": "low",
         "default": false
       },
       {
@@ -571,6 +601,7 @@
         "type": "boolean",
         "default": false,
         "label": "Prevent skipping forward in a video",
+        "importance": "low",
         "description": "Enabling this options will disable user video navigation through default controls"
       }
     ]
@@ -579,6 +610,7 @@
     "name": "l10n",
     "type": "group",
     "label": "Localize",
+    "importance": "low",
     "common": true,
     "optional": true,
     "fields": [
@@ -586,6 +618,7 @@
         "name": "interaction",
         "type": "text",
         "label": "Interaction title",
+        "importance": "low",
         "default": "Interaction",
         "optional": true
       },
@@ -593,6 +626,7 @@
         "name": "play",
         "type": "text",
         "label": "Play title",
+        "importance": "low",
         "default": "Play",
         "optional": true
       },
@@ -600,6 +634,7 @@
         "name": "pause",
         "type": "text",
         "label": "Pause title",
+        "importance": "low",
         "default": "Pause",
         "optional": true
       },
@@ -607,6 +642,7 @@
         "name": "mute",
         "type": "text",
         "label": "Mute title",
+        "importance": "low",
         "default": "Mute",
         "optional": true
       },
@@ -614,6 +650,7 @@
         "name": "unmute",
         "type": "text",
         "label": "Unmute title",
+        "importance": "low",
         "default": "Unmute",
         "optional": true
       },
@@ -621,6 +658,7 @@
         "name": "quality",
         "type": "text",
         "label": "Video quality title",
+        "importance": "low",
         "default": "Video Quality",
         "optional": true
       },
@@ -628,6 +666,7 @@
         "name": "fullscreen",
         "type": "text",
         "label": "Fullscreen title",
+        "importance": "low",
         "default": "Fullscreen",
         "optional": true
       },
@@ -635,6 +674,7 @@
         "name": "exitFullscreen",
         "type": "text",
         "label": "Exit fullscreen title",
+        "importance": "low",
         "default": "Exit Fullscreen",
         "optional": true
       },
@@ -642,6 +682,7 @@
         "name": "summary",
         "type": "text",
         "label": "Summary title",
+        "importance": "low",
         "default": "Summary",
         "optional": true
       },
@@ -649,6 +690,7 @@
         "name": "bookmarks",
         "type": "text",
         "label": "Bookmarks title",
+        "importance": "low",
         "default": "Bookmarks",
         "optional": true
       },
@@ -656,6 +698,7 @@
         "name": "defaultAdaptivitySeekLabel",
         "type": "text",
         "label": "Default label for adaptivity seek button",
+        "importance": "low",
         "default": "Continue",
         "optional": true
       },
@@ -663,6 +706,7 @@
         "name": "continueWithVideo",
         "type": "text",
         "label": "Default label for continue video button",
+        "importance": "low",
         "default": "Continue with video",
         "optional": true
       },
@@ -670,6 +714,7 @@
         "name": "playbackRate",
         "type": "text",
         "label": "Set playback rate",
+        "importance": "low",
         "default": "Playback Rate",
         "optional": true
       },
@@ -677,6 +722,7 @@
         "name": "rewind10",
         "type": "text",
         "label": "Rewind 10 Seconds",
+        "importance": "low",
         "default": "Rewind 10 Seconds",
         "optional": true
       },
@@ -684,6 +730,7 @@
         "name": "navDisabled",
         "type": "text",
         "label": "Navigation is disabled text",
+        "importance": "low",
         "default": "Navigation is disabled",
         "optional": true
       },
@@ -691,6 +738,7 @@
         "name": "requiresCompletionWarning",
         "type": "text",
         "label": "Warning that the user must answer the question correctly before continuing",
+        "importance": "low",
         "default": "You need to answer all the questions correctly before continuing.",
         "optional": true
       },
@@ -698,6 +746,7 @@
         "name": "back",
         "type": "text",
         "label": "Back button",
+        "importance": "low",
         "default": "Back",
         "optional": true
       }
