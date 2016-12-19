@@ -20,6 +20,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   function InteractiveVideo(params, id, contentData) {
     var self = this;
     var startAt;
+    var loopVideo;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -119,6 +120,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       startAt = params.override.startVideoAt;
     }
 
+    // determine if video should be looped
+    loopVideo = params.override && !!params.override.loop;
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
@@ -185,6 +189,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.controls.$currentTime.html(self.controls.$totalTime.html());
 
           self.complete();
+
+          if (loopVideo) {
+            self.video.play();
+            // we must check the parameter because the video might have started at previousState.progress
+            var loopTime = (params.override && !!params.override.startVideoAt) ? params.override.startVideoAt : 0;
+            self.video.seek(loopTime);
+          }
+
           break;
 
         case H5P.Video.PLAYING:
@@ -616,7 +628,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var isYouTube = (self.video.pressToPlay !== undefined);
 
       // Consider pausing the playback
-      delayWork(isYouTube ? 100 : null, function () {
+      delayWork(isYouTube ? 100 : null, function () {
         var isPlaying = self.currentState === H5P.Video.PLAYING ||
             self.currentState === H5P.Video.BUFFERING;
         if (isPlaying && interaction.pause()) {
@@ -2142,7 +2154,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {number} time null to carry out straight away
    * @param {function} job what to do
    */
-  var delayWork = function (time, job) {
+  var delayWork = function (time, job) {
     if (time === null) {
       job();
     }
