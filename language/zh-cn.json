@@ -263,9 +263,15 @@
       "fields": [
         {
           "englishLabel": "Start video at",
-          "label": "Override \"Show Solution\" button",
+          "label": "Start video at",
           "englishDescription": "Enter timecode in the format M:SS",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
+          "englishLabel": "Loop the video",
+          "label": "Loop the video",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Check if video should run in a loop"
         },
         {
           "englishLabel": "Override \"Show Solution\" button",

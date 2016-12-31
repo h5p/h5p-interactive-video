@@ -20,6 +20,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   function InteractiveVideo(params, id, contentData) {
     var self = this;
     var startAt;
+    var loopVideo;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -124,6 +125,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       startAt = params.override.startVideoAt;
     }
 
+    // determine if video should be looped
+    loopVideo = params.override && !!params.override.loop;
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
@@ -190,6 +194,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.controls.$currentTime.html(self.controls.$totalTime.html());
 
           self.complete();
+
+          if (loopVideo) {
+            self.video.play();
+            // we must check the parameter because the video might have started at previousState.progress
+            var loopTime = (params.override && !!params.override.startVideoAt) ? params.override.startVideoAt : 0;
+            self.video.seek(loopTime);
+          }
+
           break;
 
         case H5P.Video.PLAYING:
@@ -1008,7 +1020,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$currentTime = $time.find('.h5p-current');
 
     // Add fullscreen button
-    if (!self.editor && H5P.canHasFullScreen !== false) {
+    if (!self.editor && H5P.fullscreenSupported !== false) {
       self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
         self.toggleFullScreen();
       });
@@ -2243,6 +2255,66 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     else {
       setTimeout(job, time);
     }
+  };
+
+  /**
+   * Get xAPI data.
+   * Contract used by report rendering engine.
+   *
+   * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
+   */
+  InteractiveVideo.prototype.getXAPIData = function(){
+    var self = this;
+    var xAPIEvent = this.createXAPIEventTemplate('answered');
+    addQuestionToXAPI(xAPIEvent);
+    xAPIEvent.setScoredResult(self.getScore(),
+      self.getMaxScore(),
+      self,
+      true,
+      self.getScore() === self.getMaxScore()
+    );
+
+    var childrenData = getXAPIDataFromChildren(self.interactions);
+    return {
+      statement: xAPIEvent.data.statement,
+      children: childrenData
+    };
+  };
+
+  /**
+   * Add the question itself to the definition part of an xAPIEvent
+   */
+  var addQuestionToXAPI = function(xAPIEvent) {
+    var definition = xAPIEvent.getVerifiedStatementValue(['object', 'definition']);
+    H5P.jQuery.extend(definition, getxAPIDefinition());
+  };
+
+  /**
+   * Generate xAPI object definition used in xAPI statements.
+   * @return {Object}
+   */
+  var getxAPIDefinition = function () {
+    var definition = {};
+
+    definition.interactionType = 'compound';
+    definition.type = 'http://adlnet.gov/expapi/activities/cmi.interaction';
+    definition.description = {
+      'en-US': ''
+    };
+
+    return definition;
+  };
+
+  /**
+   * Get xAPI data from instances within a content type
+   *
+   * @param {Object} H5P instances
+   * @returns {array}
+   */
+  var getXAPIDataFromChildren = function(children) {
+    return children.map(function(child) {
+       return child.getXAPIData();
+    });
   };
 
   return InteractiveVideo;
