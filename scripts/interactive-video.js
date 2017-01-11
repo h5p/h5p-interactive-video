@@ -67,6 +67,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
       self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
       self.preventSkipping = params.override.preventSkipping || false;
+      self.deactivateSound = params.override.deactivateSound || false;
     }
     // Translated UI text defaults
     self.l10n = $.extend({
@@ -86,6 +87,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       playbackRate: 'Playback rate',
       rewind10: 'Rewind 10 seconds',
       navDisabled: 'Navigation is disabled',
+      sndDisabled: 'Sound is disabled',
       requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
       back: 'Back'
     }, params.l10n);
@@ -1039,15 +1041,21 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Add volume button control (toggle mute)
     if (!isAndroid() && !isIpad()) {
       self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
-        if (self.controls.$volume.hasClass('h5p-muted')) {
-          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
-          self.video.unMute();
-        }
-        else {
-          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
-          self.video.mute();
+        if (!self.deactivateSound) {
+          if (self.controls.$volume.hasClass('h5p-muted')) {
+            self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+            self.video.unMute();
+          }
+          else {
+            self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+            self.video.mute();
+          }
         }
       });
+      if (self.deactivateSound) {
+        self.controls.$volume.addClass('h5p-muted h5p-disabled').attr('title', self.l10n.sndDisabled);
+        self.video.mute();
+      }
     }
 
     // Add popup for selecting playback rate

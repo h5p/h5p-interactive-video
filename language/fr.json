@@ -323,6 +323,10 @@
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
           "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video",
           "default": false
+        },
+        {
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -419,6 +423,10 @@
           "label": "Text de navigation désactivée",
           "englishDefault": "Navigation is disabled",
           "default": "La navigation est désactivée"
+        },
+        {
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled",
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",

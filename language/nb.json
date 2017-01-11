@@ -320,6 +320,10 @@
           "label": "Unngå at brukere hopper over innhold i video",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
           "description": "Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
+        },
+        {
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -416,6 +420,10 @@
           "label": "Navigasjon er ikke tillatt tekst",
           "englishDefault": "Navigation is disabled",
           "default": "Navigasjon er ikke tillatt"
+        },
+        {
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled",
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
