@@ -148,14 +148,14 @@
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Gehe zu",
+                        "description": "Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Protokoll",
                             "options": [
                               {
                                 "label": "http://"
@@ -164,10 +164,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(relativ zum Hauptordner)"
                               },
                               {
-                                "label": "other"
+                                "label": "anderes"
                               }
                             ]
                           },
@@ -243,8 +243,8 @@
           "label": "Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls"
+          "label": "Vorwärtsspringen im Video verhindern",
+          "description": "Wenn aktiviert, kann der Nutzer die Navigationselemente für das Video nicht mehr verwenden"
         }
       ]
     },
@@ -308,8 +308,8 @@
           "default": "10 Sekunden zurück"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "HInweistext für deaktivierte Navigation",
+          "default": "Navigation ist deaktiviert"
         },
         {
           "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, bevor Sie fortfahren",
