@@ -20,6 +20,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   function InteractiveVideo(params, id, contentData) {
     var self = this;
     var startAt;
+    var loopVideo;
 
     // Inheritance
     H5P.EventDispatcher.call(self);
@@ -119,6 +120,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       startAt = params.override.startVideoAt;
     }
 
+    // determine if video should be looped
+    loopVideo = params.override && !!params.override.loop;
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.2',
@@ -185,6 +189,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.controls.$currentTime.html(self.controls.$totalTime.html());
 
           self.complete();
+
+          if (loopVideo) {
+            self.video.play();
+            // we must check the parameter because the video might have started at previousState.progress
+            var loopTime = (params.override && !!params.override.startVideoAt) ? params.override.startVideoAt : 0;
+            self.video.seek(loopTime);
+          }
+
           break;
 
         case H5P.Video.PLAYING:
@@ -616,7 +628,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var isYouTube = (self.video.pressToPlay !== undefined);
 
       // Consider pausing the playback
-      delayWork(isYouTube ? 100 : null, function () {
+      delayWork(isYouTube ? 100 : null, function () {
         var isPlaying = self.currentState === H5P.Video.PLAYING ||
             self.currentState === H5P.Video.BUFFERING;
         if (isPlaying && interaction.pause()) {
@@ -635,8 +647,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
-        if (interaction.isMainSummary()) {
-          self.complete();
+        // IV is complete if:
+        // - The event is sent from the "main" summary
+        // - The event sent is not an child of a sub content (grandchild)
+        if (interaction.isMainSummary() && event.isFromChild()) {
+          // Send completed after summary's answered
+          setTimeout(function () {
+            self.complete();
+          }, 0);
         }
       }
       if (event.data.statement.context.extensions === undefined) {
@@ -988,7 +1006,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     self.controls.$currentTime = $time.find('.h5p-current');
 
     // Add fullscreen button
-    if (!self.editor && H5P.canHasFullScreen !== false) {
+    if (!self.editor && H5P.fullscreenSupported !== false) {
       self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
         self.toggleFullScreen();
       });
@@ -1814,12 +1832,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
-    if (!this.isCompleted) {
+    if (!this.completedSent) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
       this.triggerXAPIScored(this.getUsersScore(), this.getUsersMaxScore(), 'completed');
     }
-    this.isCompleted = true;
+    this.completedSent = true;
   };
 
   /**
@@ -2142,7 +2160,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {number} time null to carry out straight away
    * @param {function} job what to do
    */
-  var delayWork = function (time, job) {
+  var delayWork = function (time, job) {
     if (time === null) {
       job();
     }
@@ -2172,7 +2190,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return {
       statement: xAPIEvent.data.statement,
       children: childrenData
-    }
+    };
   };
 
   /**
@@ -2209,7 +2227,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     return children.map(function(child) {
        return child.getXAPIData();
     });
-  }
+  };
 
   return InteractiveVideo;
 })(H5P.jQuery, H5P.EventDispatcher, H5P.DragNBar, H5P.InteractiveVideoInteraction);
