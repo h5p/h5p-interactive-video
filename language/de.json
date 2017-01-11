@@ -11,7 +11,7 @@
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Start screen options",
+              "label": "Einstellungen für den Startbildschirm",
               "fields": [
                 {
                   "label": "Der Titel dieses interaktiven Videos",
@@ -44,7 +44,11 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Anzeigezeit"
+                    "label": "Anzeigezeit",
+                    "fields": [
+                      {},
+                      {}
+                    ]
                   },
                   {
                     "label": "Video pausieren"
@@ -59,7 +63,8 @@
                       {
                         "label": "Poster"
                       }
-                    ]
+                    ],
+                    "default": "button"
                   },
                   {
                     "label": "Beschriftung",
@@ -110,8 +115,8 @@
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Volle Punktzahl erforderlich machen, um fortfahren zu können",
+                        "description": "Diese Option sollte in Verbindung mit \"Vorwärts springen verhindern\" benutzt werden."
                       }
                     ]
                   },
@@ -129,16 +134,16 @@
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Gehe zu bei Klick",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Typ",
                         "options": [
                           {
                             "label": "Timecode"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Andere Seite (URL)"
                           }
                         ]
                       },
