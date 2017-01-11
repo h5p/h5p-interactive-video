@@ -667,8 +667,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // update state
       if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
         event.setVerb('answered');
-        if (interaction.isMainSummary()) {
-          self.complete();
+        // IV is complete if:
+        // - The event is sent from the "main" summary
+        // - The event sent is not an child of a sub content (grandchild)
+        if (interaction.isMainSummary() && event.isFromChild()) {
+          // Send completed after summary's answered
+          setTimeout(function () {
+            self.complete();
+          }, 0);
         }
       }
       if (event.data.statement.context.extensions === undefined) {
@@ -1920,12 +1926,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       return;
     }
 
-    if (!this.isCompleted) {
+    if (!this.completedSent) {
       // Post user score. Max score is based on how many of the questions the user
       // actually answered
       this.triggerXAPIScored(this.getUsersScore(), this.getUsersMaxScore(), 'completed');
     }
-    this.isCompleted = true;
+    this.completedSent = true;
   };
 
   /**
