@@ -757,6 +757,20 @@
         "importance": "low",
         "default": "Back",
         "optional": true
+      },
+      {
+        "name": "language",
+        "type": "text",
+        "label": "Language",
+        "default": "Language",
+        "optional": true
+      },
+      {
+        "name": "noCaptions",
+        "type": "text",
+        "label": "no captions",
+        "default": "no captions",
+        "optional": true
       }
     ]
   }

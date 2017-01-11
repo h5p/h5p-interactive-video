@@ -87,7 +87,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       rewind10: 'Rewind 10 seconds',
       navDisabled: 'Navigation is disabled',
       requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
-      back: 'Back'
+      back: 'Back',
+      language: 'Language',
+      noCaptions: 'no captions'
     }, params.l10n);
 
     // Make it possible to restore from previous state
@@ -100,6 +102,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Initial state
     self.lastState = H5P.Video.ENDED;
+
+    // Indicates if languages for captions have been initialized yet
+    self.languagesInitialized = false;
 
     // Listen for resize events to make sure we cover our container.
     self.on('resize', function () {
@@ -208,6 +213,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
             self.addPlaybackRateChooser();
 
+            // prepare captions - might be necessary for some players
+            self.video.initCaptions();
+
             // Make sure splash screen is removed.
             self.removeSplash();
 
@@ -250,6 +258,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     });
 
+    self.video.on('languageChange', function (event) {
+      var language = event.data;
+      if (self.controls.$languageChooser) {
+        // Update language selector
+        self.controls.$languageChooser.find('li').removeClass('h5p-selected').filter('[language="' + language + '"]').addClass('h5p-selected');
+      }
+    });
+
     self.video.on('playbackRateChange', function (event) {
       var playbackRate = event.data;
       // Firefox fires a "ratechange" event immediately upon changing source, at this
@@ -258,6 +274,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         // Update playbackRate selector
         self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
       }
+    });
+
+    self.video.on('apiChange', function (event) {
+      self.addLanguageChooser();
     });
 
     // Handle entering fullscreen
@@ -1050,6 +1070,29 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
     }
 
+    // Add popup for selecting language
+    self.controls.$languageChooser = H5P.jQuery('<div/>', {
+       'class': 'h5p-chooser h5p-language',
+       html: '<h3>' + self.l10n.language + '</h3>',
+       appendTo: self.$container
+    });
+
+    // Adding close button to language-menu
+    self.controls.$languageChooser.append($('<span>', {
+      'class': 'h5p-chooser-close-button',
+      click: function() {
+        if (self.isMinimal) {
+          self.controls.$more.click();
+        }
+        else {
+          self.controls.$languageButton.click();
+        }
+      }
+    }));
+
+    // Button for opening language selection dialog
+    self.controls.$languageButton = self.createButton('language', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$languageButton', '$languageChooser'));
+
     // Add popup for selecting playback rate
     self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-playbackRate',
@@ -1103,6 +1146,15 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }, true);
     $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);
 
+    // Language
+    self.controls.$languageButtonMinimal = self.createButton('language', 'h5p-minimal-button h5p-disabled', $minimalWrap, function() {
+      if (!self.controls.$languageButton.hasClass('h5p-disabled')) {
+        $buttons.addClass('h5p-hide');
+        self.controls.$languageButton.click();
+      }
+    }, true);
+    $buttons = $buttons.add(self.controls.$languageButtonMinimal);
+
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
       if  (self.controls.$more.hasClass('h5p-active')) {
@@ -1115,6 +1167,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
         if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
           self.controls.$playbackRateButton.click();
+        }
+        if (self.controls.$languageButton && self.controls.$languageButton.hasClass('h5p-active')) {
+          self.controls.$languageButton.click();
         }
         setTimeout(function () {
           $buttons.removeClass('h5p-hide');
@@ -1136,10 +1191,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       else {
         self.controls.$qualityChooser.removeClass('h5p-show');
         self.controls.$playbackRateChooser.removeClass('h5p-show');
+        self.controls.$languageChooser.removeClass('h5p-show');
       }
     });
 
     self.addQualityChooser();
+    self.addLanguageChooser();
     self.addPlaybackRateChooser();
 
     // Add display for time elapsed and duration
@@ -1416,6 +1473,42 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   };
 
   /**
+   * Add a dialog for selecting language.
+   */
+  InteractiveVideo.prototype.addLanguageChooser = function () {
+    var self = this;
+    if (self.languagesInitialized || !this.video.getLanguages) {
+      return;
+    }
+    var languages = this.video.getLanguages();
+    if (!languages || this.controls.$languageButton === undefined ||
+      !this.controls.$languageButton.hasClass('h5p-disabled')) {
+      return;
+    }
+    languages = [{'languageCode': '', 'displayName': self.l10n.noCaptions}].concat(languages);
+    var currentLanguage = this.video.getLanguage();
+    var html = '';
+    for (var i = 0; i < languages.length; i++) {
+      var language = languages[i];
+      html += '<li role="button" tabIndex="1" language="' + language.languageCode + '" class="' + (language.languageCode === currentLanguage ? 'h5p-selected' : '') + '">' + language.displayName + '</li>';
+    }
+    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$languageChooser);
+    var $options = $list.children().click(function() {
+      self.video.setLanguage($(this).attr('language'));
+      self.video.trigger('languageChange', $(this).attr('language'));
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
+      else {
+        self.controls.$languageButton.click();
+      }
+    });
+    // Enable language chooser button
+    this.controls.$languageButton.add(this.controls.$languageButtonMinimal).removeClass('h5p-disabled');
+    self.languagesInitialized = true;
+  };
+
+  /**
    * Create loop that constantly updates the buffer bar
    */
   InteractiveVideo.prototype.startUpdatingBufferBar = function () {
@@ -1589,7 +1682,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         if (this.hasUncompletedRequiredInteractions()) {
           var $dialog = $('.h5p-dialog', this.$container);
           $dialog.show();
-        } else {
+        }
+        else {
           this.dnb.dialog.closeOverlay();
         }
 

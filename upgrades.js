@@ -88,7 +88,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         var i;
         parameters.l10n = {};
 
-        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10'];
+        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10', 'language', 'noCaptions'];
         for (i = 0; i < keys.length; i++) {
           var key = keys[i];
           if (parameters.hasOwnProperty(key)) {

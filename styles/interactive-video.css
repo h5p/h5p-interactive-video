@@ -536,6 +536,10 @@
 .h5p-interactive-video .h5p-minimal-overlay .h5p-playbackRate:before {
   content: "\f0e4"; /* fa-tachometer */
 }
+.h5p-interactive-video .h5p-control.h5p-language:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-language:before {
+  content: "\f20a"; /* fa-cc */
+}
 .h5p-interactive-video .h5p-fullscreen:before {
   content: "\f065";
 }
@@ -556,6 +560,7 @@
 .h5p-interactive-video.h5p-minimal .h5p-time,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-quality,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-playbackRate,
+.h5p-interactive-video.h5p-minimal .h5p-control.h5p-language,
 .h5p-interactive-video .h5p-more,
 .h5p-interactive-video .h5p-simple-time {
   display: none;
@@ -653,6 +658,9 @@
   right: 12px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-playbackRate {
+  right: 12px;
+}
+.h5p-interactive-video .h5p-chooser.h5p-language {
   right: 12px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-show {
