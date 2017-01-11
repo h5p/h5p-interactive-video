@@ -5,7 +5,7 @@
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 14,
-  "patchVersion": 0,
+  "patchVersion": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel AS",
   "embedTypes": [
@@ -15,7 +15,7 @@
   "fullscreen": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 12 
+    "minorVersion": 12
   },
   "preloadedJs": [
     {
