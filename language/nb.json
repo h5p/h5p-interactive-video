@@ -265,13 +265,13 @@
           "englishLabel": "Start video at",
           "label": "Begynn på",
           "englishDescription": "Enter timecode in the format M:SS",
-          "description": "Enter timecode in the format M:SS"
+          "description": "Legg inn tidskode i formatet M:SS"
         },
         {
           "englishLabel": "Loop the video",
-          "label": "Loop the video",
+          "label": "Kjør video i loop",
           "englishDescription": "Check if video should run in a loop",
-          "description": "Check if video should run in a loop"
+          "description": "Slå på for å kjøre video i loop"
         },
         {
           "englishLabel": "Override \"Show Solution\" button",
