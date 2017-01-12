@@ -200,11 +200,11 @@
       "fields": [
         {
           "label": "Begynn på",
-          "description": "Enter timecode in the format M:SS"
+          "description": "Legg inn tidskode i formatet M:SS"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Kjør video i loop",
+          "description": "Slå på for å kjøre video i loop"
         },
         {
           "label": "Overstyr «Vis svar»-knapp",
