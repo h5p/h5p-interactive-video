@@ -595,7 +595,7 @@
         "label": "Start with bookmarks menu open",
         "importance": "low",
         "default": false,
-        "description": "This function is not available on iPad when using YouTube as video source"
+        "description": "This function is not available on iPad when using YouTube as video source."
       },
       {
         "name": "showRewind10",
@@ -610,7 +610,15 @@
         "default": false,
         "label": "Prevent skipping forward in a video",
         "importance": "low",
-        "description": "Enabling this options will disable user video navigation through default controls"
+        "description": "Enabling this options will disable user video navigation through default controls."
+      },
+      {
+        "name": "deactivateSound",
+        "type": "boolean",
+        "default": false,
+        "label": "Deactivate sound",
+        "importance": "low",
+        "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
       }
     ]
   },
@@ -740,6 +748,14 @@
         "label": "Navigation is disabled text",
         "importance": "low",
         "default": "Navigation is disabled",
+        "optional": true
+      },
+      {
+        "name": "sndDisabled",
+        "type": "text",
+        "label": "Sound is disabled text",
+        "importance": "low",
+        "default": "Sound is disabled",
         "optional": true
       },
       {

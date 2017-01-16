@@ -320,6 +320,12 @@
           "label": "Prevent skipping forward in a video",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
           "description": "Enabling this options will disable user video navigation through default controls"
+        },
+        {
+          "label": "Deactivate sound",
+          "englishLabel": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -416,6 +422,12 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Sound is disabled text",
+          "englishDefault": "Sound is disabled",
+          "default": "Sound is disabled"
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",

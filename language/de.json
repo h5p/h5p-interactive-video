@@ -148,37 +148,37 @@
                       },
                       {
                         "englishLabel": "Require full score for task before proceeding",
-                        "label": "Volle Punktzahl zum Weitermachen nötig",
+                        "label": "Require full score for task before proceeding",
                         "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
-                        "description": "Für bestmögliche Funktion sollte diese Option zusammen mit \"Springen im Video verbieten\" benutzt werden."
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
                     "englishLabel": "Visuals",
-                    "label": "Visuelles",
+                    "label": "Gehe zu bei Klick",
                     "fields": [
                       {
                         "englishLabel": "Background color",
-                        "label": "Hintergrundfarbe",
+                        "label": "Typ",
                         "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
                         "englishLabel": "Box shadow",
-                        "label": "Schatten des Kastens",
+                        "label": "Gehe zu",
                         "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
-                        "description": "Fügt einen dezenten Schatten um die Interaktion. Sollte für komplett transparente Interaktionen deaktivert werden."
+                        "description": "Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
                       }
                     ]
                   },
                   {
                     "englishLabel": "Go to on click",
-                    "label": "Gehe zu bei Klick",
+                    "label": "Go to on click",
                     "fields": [
                       {
                         "englishLabel": "Type",
-                        "label": "Typ",
+                        "label": "Type",
                         "options": [
                           {
                             "englishLabel": "Timecode",
@@ -186,15 +186,15 @@
                           },
                           {
                             "englishLabel": "Another page (URL)",
-                            "label": "Andere Seite (URL)"
+                            "label": "Another page (URL)"
                           }
                         ]
                       },
                       {
                         "englishLabel": "Go To",
-                        "label": "Gehe zu",
+                        "label": "Go To",
                         "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
-                        "description": "Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
                         "englishLabel": "URL",
@@ -202,7 +202,7 @@
                         "fields": [
                           {
                             "englishLabel": "Protocol",
-                            "label": "Protokoll",
+                            "label": "Protocol",
                             "options": [
                               {
                                 "englishLabel": "http://",
@@ -214,11 +214,11 @@
                               },
                               {
                                 "englishLabel": "(root relative)",
-                                "label": "(relativ zum Hauptverzeichnis)"
+                                "label": "(root relative)"
                               },
                               {
                                 "englishLabel": "other",
-                                "label": "anderes"
+                                "label": "other"
                               }
                             ]
                           },
@@ -230,9 +230,9 @@
                       },
                       {
                         "englishLabel": "Visualize",
-                        "label": "Visualisieren",
+                        "label": "Visualize",
                         "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
-                        "description": "Zeigt mit einem Rahmen und einem Icon, dass die Interaktion angeklickt werden kann."
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
@@ -317,9 +317,15 @@
         },
         {
           "englishLabel": "Prevent skipping forward in a video",
-          "label": "Springen im Video verbieten",
+          "label": "Prevent skipping forward in a video",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Dieser Option verhindert, dass der Nutzer über die Bedienelemente im Video springen kann."
+          "description": "Enabling this options will disable user video navigation through default controls"
+        },
+        {
+          "englishLabel": "Deactivate sound",
+          "label": "Ton deaktivieren",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "description": "Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
         }
       ]
     },
@@ -413,9 +419,15 @@
         },
         {
           "englishLabel": "Navigation is disabled text",
-          "label": "Hinweistext auf deaktivierte Navigation",
+          "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
-          "default": "Navigation ist deaktiviert"
+          "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Hinweis auf deaktivierten Ton",
+          "englishDefault": "Sound is disabled",
+          "default": "Ton ist deaktiviert"
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
