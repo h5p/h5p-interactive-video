@@ -322,9 +322,9 @@
           "description": "Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
-          "label": "Deactivate sound",
+          "label": "Deaktiver lyd",
           "englishLabel": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "description": "Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette.",
           "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
