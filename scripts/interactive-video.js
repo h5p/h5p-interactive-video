@@ -1054,8 +1054,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       });
       if (self.deactivateSound) {
         self.controls.$volume.addClass('h5p-muted h5p-disabled').attr('title', self.l10n.sndDisabled);
-        self.video.mute();
       }
+    }
+
+    if (self.deactivateSound) {
+      self.video.mute();
     }
 
     // Add popup for selecting playback rate
