@@ -8,7 +8,7 @@ Put texts, tasks and other media on top of your video.
 
 Translators, make sure to read through the [tips for language contributors](https://h5p.org/contributing). A good approach is to check that the updated language file matches the structure of the [norwegian translation](language/nn.json).  
 
-Developers, take a look at the [developer guide](https://h5p.org/developers) which has information on [coding guidelines](https://h5p.org/code-style), [api-references](https://h5p.org/documentation/api/H5P.html) and much more. Before submitting pull-requests, please consider [testing your code thoroughly](testplan.md) to speed up the review process.
+Developers, take a look at the [developer guide](https://h5p.org/developers) which has information on [coding guidelines](https://h5p.org/code-style), [api-references](https://h5p.org/documentation/api/H5P.html) and much more. Before submitting pull-requests, please consider [testing your code thoroughly](https://github.com/h5p/h5p-interactive-video/wiki/Interactive-Video-Testplan-(November-2106-Release)) to speed up the review process.
 
 
 ## License

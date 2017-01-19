@@ -4,7 +4,7 @@
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 13,
+  "minorVersion": 14,
   "patchVersion": 0,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel AS",
@@ -15,7 +15,7 @@
   "fullscreen": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 9
+    "minorVersion": 12
   },
   "preloadedJs": [
     {
@@ -61,12 +61,12 @@
     {
       "machineName": "H5PEditor.Wizard",
       "majorVersion": 1,
-      "minorVersion": 0
+      "minorVersion": 1
     },
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 13
+      "minorVersion": 14
     }
   ]
 }

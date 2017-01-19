@@ -16,7 +16,7 @@
             },
             {
               "englishLabel": "Start screen options",
-              "label": "Start screen options",
+              "label": "Options de l'écran de démarrage",
               "fields": [
                 {
                   "englishLabel": "The title of this interactive video",
@@ -259,13 +259,19 @@
     },
     {
       "englishLabel": "Behavioural settings",
-      "label": "Behavioural settings",
+      "label": "Options générales",
       "fields": [
         {
           "englishLabel": "Start video at",
-          "label": "Start video at",
+          "label": "Démarrer la vidéo à",
           "englishDescription": "Enter timecode in the format M:SS",
-          "description": "Enter timecode in the format M:SS"
+          "description": "Veuillez saisir le temps au format M:SS"
+        },
+        {
+          "englishLabel": "Loop the video",
+          "label": "Loop the video",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Check if video should run in a loop"
         },
         {
           "englishLabel": "Override \"Show Solution\" button",
@@ -303,17 +309,26 @@
           "englishLabel": "Start with bookmarks menu open",
           "label": "Show bookmarks menu on load",
           "englishDescription": "This function is not available on iPad when using YouTube as video source",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "description": "Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube",
+          "default": false
         },
         {
           "englishLabel": "Show button for rewinding 10 seconds",
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Afficher le bouton pour revenir en arrière de 10 secondes",
+          "default": false
         },
         {
           "englishLabel": "Prevent skipping forward in a video",
-          "label": "Prevent skipping forward in a video",
+          "label": "Empêcher de sauter en avant dans la vidéo",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Enabling this options will disable user video navigation through default controls"
+          "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video",
+          "default": false
+        },
+        {
+          "label": "Deactivate sound",
+          "englishLabel": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -389,9 +404,9 @@
         },
         {
           "englishLabel": "Default label for continue video button",
-          "label": "Default label for continue video button",
+          "label": "Texte par défaut du bouton de reprise",
           "englishDefault": "Continue with video",
-          "default": "Continue with video"
+          "default": "Continuer avec la vidéo"
         },
         {
           "englishLabel": "Set playback rate",
@@ -401,15 +416,21 @@
         },
         {
           "englishLabel": "Rewind 10 Seconds",
-          "label": "Rewind 10 Seconds",
+          "label": "Revenir en arrière de 10 secondes",
           "englishDefault": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "default": "Revenir en arrière de 10 secondes"
         },
         {
           "englishLabel": "Navigation is disabled text",
-          "label": "Navigation is disabled text",
+          "label": "Text de navigation désactivée",
           "englishDefault": "Navigation is disabled",
-          "default": "Navigation is disabled"
+          "default": "La navigation est désactivée"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Sound is disabled text",
+          "englishDefault": "Sound is disabled",
+          "default": "Sound is disabled"
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",

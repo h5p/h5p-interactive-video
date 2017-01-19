@@ -268,6 +268,12 @@
           "description": "Den Zeitcode im Format M:SS angeben"
         },
         {
+          "englishLabel": "Loop the video",
+          "label": "Video in einer Schleife laufen lassen",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Wählen, wenn das Video in einer Schleife laufen soll"
+        },
+        {
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Überschreiben des \"Lösungen anzeigen\"-Buttons",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
@@ -314,6 +320,12 @@
           "label": "Prevent skipping forward in a video",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
           "description": "Enabling this options will disable user video navigation through default controls"
+        },
+        {
+          "englishLabel": "Deactivate sound",
+          "label": "Ton deaktivieren",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "description": "Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
         }
       ]
     },
@@ -410,6 +422,12 @@
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Hinweis auf deaktivierten Ton",
+          "englishDefault": "Sound is disabled",
+          "default": "Ton ist deaktiviert"
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
