@@ -514,7 +514,7 @@
               "H5P.Summary 1.7"
             ],
             "default": {
-              "library": "H5P.Summary 1.6",
+              "library": "H5P.Summary 1.7",
               "params": {}
             }
           },
