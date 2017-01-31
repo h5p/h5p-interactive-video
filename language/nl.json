@@ -1,0 +1,447 @@
+{
+  "semantics": [
+    {
+      "englishLabel": "Interactive Video Editor",
+      "label": "Editor Interactieve Video",
+      "fields": [
+        {
+          "englishLabel": "Upload/embed video",
+          "label": "Video uploaden/inbedden",
+          "fields": [
+            {
+              "englishLabel": "Video files",
+              "label": "Videobestand",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "description": "Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
+            },
+            {
+              "englishLabel": "Start screen options",
+              "label": "Opties voor beginscherm",
+              "fields": [
+                {
+                  "englishLabel": "The title of this interactive video",
+                  "label": "Titel",
+                  "englishDefault": "Interactive Video",
+                  "default": "Interactieve Video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Gebruikt in samenvattingen, statistieken, enz."
+                },
+                {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Titel verbergen aan het begin van de video"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Korte beschrijving (Optioneel)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube video's."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Poster",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube video's."
+                },
+                {
+                  "englishLabel": "Video copyright information",
+                  "label": "Copyright informatie voor de video",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "englishLabel": "Add interactions",
+          "label": "Interacties toevoegen",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "englishLabel": "Display time",
+                    "label": "Toon duur"
+                  },
+                  {
+                    "englishLabel": "Pause video",
+                    "label": "Pauzeren"
+                  },
+                  {
+                    "englishLabel": "Display as",
+                    "label": "Tonen als",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video.",
+                    "options": [
+                      {
+                        "englishLabel": "Button",
+                        "label": "Knop"
+                      },
+                      {
+                        "englishLabel": "Poster",
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Label",
+                    "label": "Label",
+                    "englishDescription": "Label displayed next to interaction icon.",
+                    "description": "Label met beschrijving getoond naast het icoon van de interactie."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "englishLabel": "Adaptivity",
+                    "label": "Adaptiviteit",
+                    "fields": [
+                      {
+                        "englishLabel": "Action on all correct",
+                        "label": "Actie wanneer alles correct is",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Ga naar",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Voer de tijdcode in als M:SS format"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Toestaan dat de gebruiker geen antwoord geeft en doorgaat"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Melding"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Label voor zoekknop"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Action on wrong",
+                        "label": "Actie wanneer een incorrect antwoord wordt gegeven",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Ga naar",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Voer de tijdcode in als M:SS format"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Toestaan dat de gebruiker geen antwoord geeft en doorgaat"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Melding"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Label voor zoekknop"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Vereis 100% score voor de taak om verder te gaan",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "Voor de beste functionaliteit moet deze optie gebruikt worden samen met de optie \"Voorkom vooruitbladeren in video\" van Interactieve Video."
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Achtergrondkleur",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Schaduw om box",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Voegt een subtiele schadow toe rond de interactie. Voor volledig transparante interacties kun je dit uitschakelen"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Ga naar na klikken",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Type",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Tijdocde"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Andere pagina (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Ga naar",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(relatief aan root)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "anders"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualiseer",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Toon dat de interactie kan worden aangeklikt door er een rand en een icoon aan toe te voegen"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {}
+          ]
+        },
+        {
+          "englishLabel": "Summary task",
+          "label": "Samenvatting van de taak",
+          "fields": [
+            {},
+            {
+              "englishLabel": "Display at",
+              "label": "Tonen op",
+              "englishDescription": "Number of seconds before the video ends.",
+              "description": "Aantal seconden voordat de video eindigt."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "englishLabel": "Behavioural settings",
+      "label": "Gedragsinstellingen",
+      "fields": [
+        {
+          "englishLabel": "Start video at",
+          "label": "Begin video op",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Voer de tijdcode in als M:SS format"
+        },
+        {
+          "englishLabel": "Loop the video",
+          "label": "Video in loop tonen",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Aanvinken als de video in een loop getoond moet worden"
+        },
+        {
+          "englishLabel": "Override \"Show Solution\" button",
+          "label": "\"Toon oplossing\" knop instellen",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Ingeschakeld"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Override \"Retry\" button",
+          "label": "\"Opnieuw proberen\" knop instellen",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Ingeschakeld"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Toon bladwijzermenu bij laden",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Toon knop om 10 seconden terug te spoelen"
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Voorkom vooruitbladeren in een video",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
+        },
+        {
+          "label": "Deactivate sound",
+          "englishLabel": "Geluid uitschakelen",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "englishDescription": "Door dit in te schakelen wordt het geluid van de video uitgeschakeld en wordt voorkomen dat het geluid wordt aangezet."
+        }
+      ]
+    },
+    {
+      "englishLabel": "Localize",
+      "label": "Localiseren",
+      "fields": [
+        {
+          "englishLabel": "Interaction title",
+          "label": "Titel van de activiteit",
+          "englishDefault": "Interaction",
+          "default": "Interactie"
+        },
+        {
+          "englishLabel": "Play title",
+          "label": "Afspelen titel",
+          "englishDefault": "Play",
+          "default": "Play"
+        },
+        {
+          "englishLabel": "Pause title",
+          "label": "Pauzeren titel",
+          "englishDefault": "Pause",
+          "default": "Pauzeren"
+        },
+        {
+          "englishLabel": "Mute title",
+          "label": "Geluid uitschakelen",
+          "englishDefault": "Mute",
+          "default": "Geluid uitschakelen"
+        },
+        {
+          "englishLabel": "Unmute title",
+          "label": "Geluid inschakelen",
+          "englishDefault": "Unmute",
+          "default": "Geluid inschakelen"
+        },
+        {
+          "englishLabel": "Video quality title",
+          "label": "Videokwaliteit",
+          "englishDefault": "Video Quality",
+          "default": "Videokwaliteit"
+        },
+        {
+          "englishLabel": "Fullscreen title",
+          "label": "Volledig scherm",
+          "englishDefault": "Fullscreen",
+          "default": "Volledig scherm"
+        },
+        {
+          "englishLabel": "Exit fullscreen title",
+          "label": "Volledig scherm verlaten",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Volledig scherm verlaten"
+        },
+        {
+          "englishLabel": "Summary title",
+          "label": "Samenvatting",
+          "englishDefault": "Summary",
+          "default": "Samenvatting"
+        },
+        {
+          "englishLabel": "Bookmarks title",
+          "label": "Bladwijzers",
+          "englishDefault": "Bookmarks",
+          "default": "Bladwijzers"
+        },
+        {
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "Standaardlabel voor zoekknop",
+          "englishDefault": "Continue",
+          "default": "Doorgaan"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Standaardknop om door te gaan met afspelen van video",
+          "englishDefault": "Continue with video",
+          "default": "Doorgaan met afspelen"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Afspeelsnelheid instellen",
+          "englishDefault": "Playback Rate",
+          "default": "Afspeelsnelheid"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "10 seconden terug",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "10 seconden terug"
+        },
+        {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Tekst navigatie uitgeschakeld",
+          "englishDefault": "Navigation is disabled",
+          "default": "Navigatie is uitgeschakeld"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Tekst geluid uitgeschakeld",
+          "englishDefault": "Sound is disabled",
+          "default": "Geluid is uitgeschakeld"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Terugknop",
+          "englishDefault": "Back",
+          "default": "Terug"
+        }
+      ]
+    }
+  ]
+}
