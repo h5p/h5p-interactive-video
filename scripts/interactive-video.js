@@ -1207,6 +1207,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
         // Make sure splash screen is removed.
         self.removeSplash();
+
+        // Make overlay visible to catch mouseup/move events.
+        self.$overlay.addClass('h5p-visible');
       },
       slide: function (e, ui) {
         // Update elapsed time
@@ -1263,6 +1266,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         else {
           self.timeUpdate(ui.value);
         }
+
+        // Done catching mouse events
+        self.$overlay.removeClass('h5p-visible');
       }
     });
 
