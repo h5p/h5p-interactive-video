@@ -4,7 +4,7 @@
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 14,
+  "minorVersion": 15,
   "patchVersion": 0,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel AS",
@@ -49,7 +49,7 @@
     {
       "machineName": "H5P.DragNBar",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 4
     },
     {
       "machineName": "H5P.FontIcons",
@@ -66,7 +66,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 14
+      "minorVersion": 15
     }
   ]
 }
