@@ -1,0 +1,450 @@
+{
+  "semantics": [
+    {
+      "englishLabel": "Interactive Video Editor",
+      "label": "Vuorovaikutteisen videon muokkain",
+      "fields": [
+        {
+          "englishLabel": "Upload/embed video",
+          "label": "Lähetä/upota video",
+          "fields": [
+            {
+              "englishLabel": "Video files",
+              "label": "Videotiedostot",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "description": "Valitse videotiedostot, joita haluat käyttää vuorovaikutteisessa videossasi. Jotta varmistaisit parhaimman toiminnallisuuden eri selaimissa niin lisää videosta versiot mp4 ja webm -muodossa"
+            },
+            {
+              "englishLabel": "Start screen options",
+              "label": "Aloitusnäkymän valinnat",
+              "fields": [
+                {
+                  "englishLabel": "The title of this interactive video",
+                  "label": "Vuorovaikutteisen videon otsikko",
+                  "englishDefault": "Interactive Video",
+                  "default": "Vuorovaikutteinen video",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Käytetään tiivistelmissä, tilastoisssa jne."
+                },
+                {
+                  "englishLabel": "Hide title on video start screen",
+                  "label": "Älä näytä otsikkoa videon aloitusnäkymässä"
+                },
+                {
+                  "englishLabel": "Short description (Optional)",
+                  "label": "Lyhyt kuvaus (Ei pakollinen)",
+                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                  "description": "Näytä lyhyt kuvausteksti videon aloitusnäkymässä (Ei pakollinen). Ei toimi YouTube-videoissa."
+                },
+                {
+                  "englishLabel": "Poster image",
+                  "label": "Videon esittelykuva",
+                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                  "description": "Esittelykuva näkyy käyttäjälle ennen videon käynnistämistä. Ei toimi YouTube-videoissa."
+                },
+                {
+                  "englishLabel": "Video copyright information",
+                  "label": "Videon tekijänoikeustiedot",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "Tietoa videon ja sisällytettyjen osien tekijänoikeuksista"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "englishLabel": "Add interactions",
+          "label": "Lisää toiminto",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "englishLabel": "Display time",
+                    "label": "Näyttöaika"
+                  },
+                  {
+                    "englishLabel": "Pause video",
+                    "label": "Pysäytä video"
+                  },
+                  {
+                    "englishLabel": "Display as",
+                    "label": "Näytä muodossa",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "<b>Nappula</b> : luhistettu vuorovaikutteinen toiminta, jonka saa auki klikkaamalla. <b>Kortti</b> : laajennettu vuorovaikutteinen toiminta, joka näkyy videon päällä",
+                    "options": [
+                      {
+                        "englishLabel": "Button",
+                        "label": "Nappula"
+                      },
+                      {
+                        "englishLabel": "Poster",
+                        "label": "Kortti"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Label",
+                    "label": "Nappulan nimike",
+                    "englishDescription": "Label displayed next to interaction icon.",
+                    "description": "Nimike näkyy vuorovaikutteisen kuvakkeen vieressä."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "englishLabel": "Adaptivity",
+                    "label": "Ketju",
+                    "fields": [
+                      {
+                        "englishLabel": "Action on all correct",
+                        "label": "Toiminto, kun kaikki oikein",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Mene kohtaan",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Anna aika muodossa M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Salli käyttäjän lopettaa ja jatkaa"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Viesti"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Nimike hakunappulalle"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Action on wrong",
+                        "label": "Toiminto, kun väärin",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Mene kohtaan",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Anna aika muodossa M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Salli käyttäjän lopettaa ja jatkaa"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Viesti"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Nimike hakunappulalle"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Require full score for task before proceeding",
+                        "label": "Vaadi täydet pisteet tehtävästä ennen jatkamista",
+                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                        "description": "Parhaimman toiminnallisuuden varmistamiseksi tätä toimintoa on suositeltavaa käyttää vuorovaikutteisen videon \"Estä videossa eteenpäin hyppiminen\" toiminnon kanssa."
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Ulkoasu",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Taustaväri",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Varjo",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Lisää kevyen varjostuksen vuorovaikutteisen toiminnan ympärille. Tämä on hyvä olla pois päältä täysin läpinäkyvissä toiminnoissa."
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Mene kohtaan klikkaamalla",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Tyyppi",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Aika"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Toinen sivu (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Mene kohtaan",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "Kohdeaika, jonne käyttäjä viedään toiminnan klikkaamisen jälkeen. Anna aika muodossa M:SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protokolla",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(suhteessa juurikansioon)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "muu"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Korosta",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Korosta toiminnan klikattavuutta reunalla ja kuvakkeella"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {}
+          ]
+        },
+        {
+          "englishLabel": "Summary task",
+          "label": "Tiivistelmä",
+          "fields": [
+            {},
+            {
+              "englishLabel": "Display at",
+              "label": "Näytä kohdassa",
+              "englishDescription": "Number of seconds before the video ends.",
+              "description": "Sekuntien määrä ennen videon päättymistä."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "englishLabel": "Behavioural settings",
+      "label": "Yleiset valinnat",
+      "fields": [
+        {
+          "englishLabel": "Start video at",
+          "label": "Aloita video kohdasta",
+          "englishDescription": "Enter timecode in the format M:SS",
+          "description": "Anna aika muodossa M:SS"
+        },
+        {
+          "englishLabel": "Loop the video",
+          "label": "Toista videota loputtomasti",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Valitse, jos videon pitää toistua loputtomasti"
+        },
+        {
+          "englishLabel": "Override \"Show Solution\" button",
+          "label": "Ohita nappula \"Näytä vastaus\"",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Tämä valinta määrittää näkyykö \"Näytä vastaus\" -nappula kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Päällä"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Pois päältä"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Override \"Retry\" button",
+          "label": "Ohita nappula \"Yritä uudelleen\"",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Tämä valinta määrittää näkyykö \"Yritä uudelleen\" -nappula kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Päällä"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Pois päältä"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Aloita kirjanmerkkilista avoinna",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "Tämä toiminto ei ole saatavilla iPadissa, kun videonlähteenä on YouTube.",
+          "default": false
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Näytä 10 sekuntia taaksepäin palauttava nappi",
+          "default": false
+        },
+        {
+          "englishLabel": "Prevent skipping forward in a video",
+          "label": "Estä videossa eteenpäin hyppiminen",
+          "englishDescription": "Enabling this options will disable user video navigation through default controls",
+          "description": "Tämä valinta estää videolla siirtymisen sen oletusohjaimilla",
+          "default": false
+        },
+        {
+          "label": "Poista ääni käytöstä",
+          "englishLabel": "Deactivate sound",
+          "description": "Tämä toiminto poistaa äänen käytöstä ja estää sen kytkemisen päälle",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        }
+      ]
+    },
+    {
+      "englishLabel": "Localize",
+      "label": "Käyttöliittymän kääntäminen",
+      "fields": [
+        {
+          "englishLabel": "Interaction title",
+          "label": "Vuorovaikutteisen toiminnan otsikko",
+          "englishDefault": "Interaction",
+          "default": "Toiminta"
+        },
+        {
+          "englishLabel": "Play title",
+          "label": "Otsikko \"Käynnistä\"",
+          "englishDefault": "Play",
+          "default": "Käynnistä"
+        },
+        {
+          "englishLabel": "Pause title",
+          "label": "Otsikko \"Pysäytä\"",
+          "englishDefault": "Pause",
+          "default": "Pysäytä"
+        },
+        {
+          "englishLabel": "Mute title",
+          "label": "Otsikko \"Mykistä\"",
+          "englishDefault": "Mute",
+          "default": "Mykistä"
+        },
+        {
+          "englishLabel": "Unmute title",
+          "label": "Otsikko \"Ääni päälle\"",
+          "englishDefault": "Unmute",
+          "default": "Ääni päälle"
+        },
+        {
+          "englishLabel": "Video quality title",
+          "label": "Otsikko \"Videon laatu\"",
+          "englishDefault": "Video Quality",
+          "default": "Videon laatu"
+        },
+        {
+          "englishLabel": "Fullscreen title",
+          "label": "Otsikko \"Koko ruutuun\"",
+          "englishDefault": "Fullscreen",
+          "default": "Koko ruutuun"
+        },
+        {
+          "englishLabel": "Exit fullscreen title",
+          "label": "Otsikko \"Poistu koko ruudulta\"",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Poistu koko ruudulta"
+        },
+        {
+          "englishLabel": "Summary title",
+          "label": "Otsikko tiivistelmälle",
+          "englishDefault": "Summary",
+          "default": "Tiivistelmä"
+        },
+        {
+          "englishLabel": "Bookmarks title",
+          "label": "Otsikko napille \"Kirjanmerkit\"",
+          "englishDefault": "Bookmarks",
+          "default": "Kirjanmerkit"
+        },
+        {
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "Oletusnimike ketjun etsinapille",
+          "englishDefault": "Continue",
+          "default": "Jatka"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Oletusnimike napille videon jatkamiseksi",
+          "englishDefault": "Continue with video",
+          "default": "Jatka"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Aseta toistonopeus",
+          "englishDefault": "Playback Rate",
+          "default": "Toistonopeus"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Kelaa taaksepäin 10 sekuntia",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Kelaa taaksepäin 10 sekuntia"
+        },
+        {
+          "englishLabel": "Navigation is disabled text",
+          "label": "Oletusteksti kun videon ohjaaminen on pois päältä",
+          "englishDefault": "Navigation is disabled",
+          "default": "Videon ohjaaminen on pois päältä"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Oletusteksti kun ääni on pois päältä",
+          "englishDefault": "Sound is disabled",
+          "default": "Ääni on pois päältä"
+        },
+        {
+          "englishLabel": "Warning that the user must answer the question correctly before continuing",
+          "label": "Varoitus kun käyttäjän täytyy vastata kysymykseen oikein jatkaakseen",
+          "englishDefault": "You need to answer all the questions correctly before continuing.",
+          "default": "Sinun täytyy vastata kysymyksiin oikein jatkaaksesi"
+        },
+        {
+          "englishLabel": "Back button",
+          "label": "Paluunappi",
+          "englishDefault": "Back",
+          "default": "Palaa"
+        }
+      ]
+    }
+  ]
+}
