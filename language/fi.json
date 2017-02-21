@@ -2,7 +2,7 @@
   "semantics": [
     {
       "englishLabel": "Interactive Video Editor",
-      "label": "Vuorovaikutteisen videon muokkain",
+      "label": "Vuorovaikutteisen videon muokkaus",
       "fields": [
         {
           "englishLabel": "Upload/embed video",
@@ -24,7 +24,7 @@
                   "englishDefault": "Interactive Video",
                   "default": "Vuorovaikutteinen video",
                   "englishDescription": "Used in summaries, statistics etc.",
-                  "description": "Käytetään tiivistelmissä, tilastoisssa jne."
+                  "description": "Käytetään yhteenvedossa, tilastoisssa jne."
                 },
                 {
                   "englishLabel": "Hide title on video start screen",
@@ -46,7 +46,7 @@
                   "englishLabel": "Video copyright information",
                   "label": "Videon tekijänoikeustiedot",
                   "englishDescription": "Information regarding copyright of the video and elements used in the video.",
-                  "description": "Tietoa videon ja sisällytettyjen osien tekijänoikeuksista"
+                  "description": "Tietoa videon ja sisältyvien osien tekijänoikeuksista"
                 }
               ]
             }
@@ -54,7 +54,7 @@
         },
         {
           "englishLabel": "Add interactions",
-          "label": "Lisää toiminto",
+          "label": "Lisää vuorovaikutteinen toiminto",
           "fields": [
             {
               "field": {
@@ -110,7 +110,7 @@
                           },
                           {
                             "englishLabel": "Allow the user to opt out and continue",
-                            "label": "Salli käyttäjän lopettaa ja jatkaa"
+                            "label": "Salli käyttäjän jättää aktiviteetti tekemättä ja jatkaa videon katselua"
                           },
                           {
                             "englishLabel": "Message",
@@ -118,7 +118,7 @@
                           },
                           {
                             "englishLabel": "Label for seek button",
-                            "label": "Nimike hakunappulalle"
+                            "label": "Nimike hakupainikkeelle"
                           }
                         ]
                       },
@@ -134,7 +134,7 @@
                           },
                           {
                             "englishLabel": "Allow the user to opt out and continue",
-                            "label": "Salli käyttäjän lopettaa ja jatkaa"
+                            "label": "Salli käyttäjän jättää aktiviteetti tekemättä ja jatkaa videon katselua"
                           },
                           {
                             "englishLabel": "Message",
@@ -142,7 +142,7 @@
                           },
                           {
                             "englishLabel": "Label for seek button",
-                            "label": "Nimike hakunappulalle"
+                            "label": "Nimike hakupainikkeelle"
                           }
                         ]
                       },
@@ -232,7 +232,7 @@
                         "englishLabel": "Visualize",
                         "label": "Korosta",
                         "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
-                        "description": "Korosta toiminnan klikattavuutta reunalla ja kuvakkeella"
+                        "description": "Korosta toiminnan klikattavuutta reunaviivalla ja kuvakkeella"
                       }
                     ]
                   }
@@ -244,7 +244,7 @@
         },
         {
           "englishLabel": "Summary task",
-          "label": "Tiivistelmä",
+          "label": "Yhteenveto",
           "fields": [
             {},
             {
@@ -277,7 +277,7 @@
           "englishLabel": "Override \"Show Solution\" button",
           "label": "Ohita nappula \"Näytä vastaus\"",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "description": "Tämä valinta määrittää näkyykö \"Näytä vastaus\" -nappula kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
+          "description": "Tämä valinta määrittää näkyykö \"Näytä vastaus\" -painike kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
           "options": [
             {
               "englishLabel": "Enabled",
@@ -293,7 +293,7 @@
           "englishLabel": "Override \"Retry\" button",
           "label": "Ohita nappula \"Yritä uudelleen\"",
           "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "description": "Tämä valinta määrittää näkyykö \"Yritä uudelleen\" -nappula kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
+          "description": "Tämä valinta määrittää näkyykö \"Yritä uudelleen\" -painike kaikissa kysymyksissä, onko se pois päältä kaikissa tai voiko sen valita kysymyskohtaisesti.",
           "options": [
             {
               "englishLabel": "Enabled",
@@ -386,9 +386,9 @@
         },
         {
           "englishLabel": "Summary title",
-          "label": "Otsikko tiivistelmälle",
+          "label": "Otsikko yhteenvedolle",
           "englishDefault": "Summary",
-          "default": "Tiivistelmä"
+          "default": "Yhteenveto"
         },
         {
           "englishLabel": "Bookmarks title",
@@ -398,13 +398,13 @@
         },
         {
           "englishLabel": "Default label for adaptivity seek button",
-          "label": "Oletusnimike ketjun etsinapille",
+          "label": "Oletusnimike ketjun hakupainikkeelle",
           "englishDefault": "Continue",
           "default": "Jatka"
         },
         {
           "englishLabel": "Default label for continue video button",
-          "label": "Oletusnimike napille videon jatkamiseksi",
+          "label": "Oletusnimike painikkeelle videon jatkamiseksi",
           "englishDefault": "Continue with video",
           "default": "Jatka"
         },
@@ -434,13 +434,13 @@
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
-          "label": "Varoitus kun käyttäjän täytyy vastata kysymykseen oikein jatkaakseen",
+          "label": "Varoitus, että käyttäjän täytyy vastata kysymykseen oikein jatkaakseen",
           "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "Sinun täytyy vastata kysymyksiin oikein jatkaaksesi"
         },
         {
           "englishLabel": "Back button",
-          "label": "Paluunappi",
+          "label": "Paluupainike",
           "englishDefault": "Back",
           "default": "Palaa"
         }
