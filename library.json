@@ -7,7 +7,7 @@
   "minorVersion": 15,
   "patchVersion": 0,
   "machineName": "H5P.InteractiveVideo",
-  "author": "Joubel AS",
+  "author": "Joubel",
   "embedTypes": [
     "iframe"
   ],
