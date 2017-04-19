@@ -313,12 +313,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    * @param {H5P.Video.LabelValue[]} tracks
    */
   InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
+    var self = this;
+    
     // Add option to turn off captions
-    event.data.unshift(new H5P.Video.LabelValue('Off', 'off'));
+    tracks.unshift(new H5P.Video.LabelValue('Off', 'off'));
 
     if (self.captionsTrackSelector) {
       // Captions track selector already exists, simply update with new options
-      self.captionsTrackSelector.updateOptions(event.data)
+      self.captionsTrackSelector.updateOptions(tracks)
       return;
     }
 
@@ -326,11 +328,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var currentTrack = self.video.getCaptionsTrack();
     if (!currentTrack) {
       // Set default off when no track is selected
-      currentTrack = event.data[0];
+      currentTrack = tracks[0];
     }
 
     // Create new track selector
-    self.captionsTrackSelector = new InteractiveVideo.SelectorControl('captions', event.data, currentTrack, self.l10n);
+    self.captionsTrackSelector = new InteractiveVideo.SelectorControl('captions', tracks, currentTrack, self.l10n);
     self.captionsTrackSelector.on('select', function (event) {
       self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
     });
