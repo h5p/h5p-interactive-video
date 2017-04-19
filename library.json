@@ -23,6 +23,9 @@
     },
     {
       "path": "scripts/interactive-video.js"
+    },
+    {
+      "path": "scripts/selector-control.js"
     }
   ],
   "preloadedCss": [

@@ -679,6 +679,22 @@
         "optional": true
       },
       {
+        "name": "captions",
+        "type": "text",
+        "label": "Video captions title",
+        "importance": "low",
+        "default": "Captions",
+        "optional": true
+      },
+      {
+        "name": "close",
+        "type": "text",
+        "label": "Close button text",
+        "importance": "low",
+        "default": "Close",
+        "optional": true
+      },
+      {
         "name": "fullscreen",
         "type": "text",
         "label": "Fullscreen title",
