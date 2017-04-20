@@ -49,6 +49,44 @@
                   "description": "ビデオの著作権とビデオ内で使用されている要素に関する情報。"
                 }
               ]
+            },
+            {
+              "englishLabel": "Text tracks (subtitles, captions and descriptions)",
+              "fields": [
+                {
+                  "englishLabel": "Available text tracks",
+                  "englishEntity": "Track",
+                  "field": {
+                    "englishLabel": "Track",
+                    "fields": [
+                      {
+                        "englishLabel": "Track label"
+                      },
+                      {
+                        "englishLabel": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                        "options": [
+                          {
+                            "englishLabel": "Subtitles"
+                          },
+                          {
+                            "englishLabel": "Captions"
+                          },
+                          {
+                            "englishLabel": "Descriptions"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Source language, must be defined for subtitles",
+                        "englishDescription": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                      },
+                      {
+                        "englishLabel": "Track source (WebVTT file)"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
@@ -368,6 +406,14 @@
           "label": "ビデオ品質のタイトル",
           "englishDefault": "Video Quality",
           "default": "ビデオ品質"
+        },
+        {
+          "englishLabel": "Video captions title",
+          "englishDefault": "Captions"
+        },
+        {
+          "englishLabel": "Close button text",
+          "englishDefault": "Close"
         },
         {
           "englishLabel": "Fullscreen title",
