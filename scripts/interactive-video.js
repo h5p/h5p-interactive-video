@@ -129,7 +129,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Start up the video player
     self.video = H5P.newRunnable({
-      library: 'H5P.Video 1.2',
+      library: 'H5P.Video 1.3',
       params: {
         sources: self.options.video.files,
         visuals: {
@@ -137,7 +137,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           controls: self.justVideo,
           fit: false
         },
-        startAt: startAt
+        startAt: startAt,
+        a11y: self.options.video.textTracks
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -314,7 +315,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
    */
   InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     var self = this;
-    
+
     // Add option to turn off captions
     tracks.unshift(new H5P.Video.LabelValue('Off', 'off'));
 

@@ -76,6 +76,75 @@
                 ]
               }
             ]
+          },
+          {
+            "name": "textTracks",
+            "type": "group",
+            "label": "Text tracks (subtitles, captions and descriptions)",
+            "importance": "medium",
+            "fields": [
+              {
+                "name": "videoTrack",
+                "type": "list",
+                "label": "Available text tracks",
+                "importance": "low",
+                "optional": true,
+                "entity": "Track",
+                "min": 0,
+                "defaultNum": 1,
+                "field": {
+                  "name": "track",
+                  "type": "group",
+                  "label": "Track",
+                  "importance": "low",
+                  "expanded": false,
+                  "fields": [
+                    {
+                      "name": "label",
+                      "type": "text",
+                      "label": "Track label",
+                      "importance": "low",
+                      "optional": true
+                    },
+                    {
+                      "name": "kind",
+                      "type": "select",
+                      "label": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                      "importance": "low",
+                      "default": "subtitles",
+                      "options": [
+                        {
+                          "value": "subtitles",
+                          "label": "Subtitles"
+                        },
+                        {
+                          "value": "captions",
+                          "label": "Captions"
+                        },
+                        {
+                          "value": "descriptions",
+                          "label": "Descriptions"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "srcLang",
+                      "type": "text",
+                      "label": "Source language, must be defined for subtitles",
+                      "importance": "low",
+                      "default": "en",
+                      "description": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                    },
+                    {
+                      "name": "track",
+                      "type": "file",
+                      "label": "Track source (WebVTT file)",
+                      "importance": "low"
+                    }
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
