@@ -81,7 +81,7 @@
             "name": "textTracks",
             "type": "group",
             "label": "Text tracks (subtitles, captions and descriptions)",
-            "importance": "medium",
+            "importance": "low",
             "fields": [
               {
                 "name": "videoTrack",
