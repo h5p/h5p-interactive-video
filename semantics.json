@@ -18,7 +18,8 @@
             "label": "Video files",
             "importance": "high",
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
-            "extraAttributes": ["metadata"]
+            "extraAttributes": ["metadata"],
+            "enableCustomQualityLabel": true
           },
           {
             "name": "startScreenOptions",
