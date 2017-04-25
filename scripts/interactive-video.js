@@ -577,6 +577,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.addBookmarks();
 
     this.trigger('controls');
+
+    // 360
+    var self = this;
+    var $video = self.$videoWrapper.children('video');
+    if ($video.length) {
+      var video = $video[0];
+      self.threesixty = new H5P.ThreeSixty(video, {width: video.videoWidth, height: video.videoHeight},
+                                                  {width: video.clientWidth, height: video.clientHeight},
+                                           true);
+      $(self.threesixty.element).insertAfter($video);
+      $video.detach();
+      $(self.threesixty.cssElement).insertAfter(self.threesixty.element);
+    }
   };
 
   /**
