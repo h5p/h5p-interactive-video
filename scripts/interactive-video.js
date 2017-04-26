@@ -585,11 +585,18 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var video = $video[0];
       self.threesixty = new H5P.ThreeSixty(video, {width: video.videoWidth, height: video.videoHeight},
                                                   {width: video.clientWidth, height: video.clientHeight},
-                                           true);
+                                           videoNeedsUpdate);
       $(self.threesixty.element).insertAfter($video);
       $video.detach();
       $(self.threesixty.cssElement).insertAfter(self.threesixty.element);
     }
+  };
+
+  /**
+   * Callback use in ThreeSixty to determine if video should be redrawn.
+   */
+  var videoNeedsUpdate = function (video) {
+    return video.readyState === video.HAVE_ENOUGH_DATA;
   };
 
   /**
