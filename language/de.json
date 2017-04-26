@@ -409,11 +409,15 @@
         },
         {
           "englishLabel": "Video captions title",
-          "englishDefault": "Captions"
+          "label": "Titel für Video-Untertitel",
+          "englishDefault": "Captions",
+          "default": "Video-Untertitel"
         },
         {
           "englishLabel": "Close button text",
-          "englishDefault": "Close"
+          "label": "Text für Schließen-Button",
+          "englishDefault": "Close",
+          "default": "Schließen"
         },
         {
           "englishLabel": "Fullscreen title",
