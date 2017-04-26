@@ -1096,6 +1096,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         }, {'bubbles': true, 'external': true});
         $interaction.detach();
         $interaction = undefined;
+        self.trigger('hide');
       }
     };
 
@@ -1255,8 +1256,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       * Contract used by report rendering engine.
       *
       * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
-     * @returns {Object} xAPI Data   
-     */ 
+     * @returns {Object} xAPI Data
+     */
     self.getXAPIData = function () {
       if (instance && (instance.getXAPIData instanceof Function ||
                        typeof instance.getXAPIData === 'function')) {

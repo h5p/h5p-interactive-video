@@ -583,12 +583,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var $video = self.$videoWrapper.children('video');
     if ($video.length) {
       var video = $video[0];
-      self.threesixty = new H5P.ThreeSixty(video, {width: video.videoWidth, height: video.videoHeight},
-                                                  {width: video.clientWidth, height: video.clientHeight},
-                                           videoNeedsUpdate);
-      $(self.threesixty.element).insertAfter($video);
+      self.threeSixty = new H5P.ThreeSixty(video, video.videoWidth / video.videoHeight, videoNeedsUpdate);
+      $(self.threeSixty.element).insertAfter($video);
       $video.detach();
-      $(self.threesixty.cssElement).insertAfter(self.threesixty.element);
     }
   };
 
@@ -717,7 +714,16 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       setTimeout(function () {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
+
+      if (self.threeSixty) {
+        interaction.threeSixtyElement = self.threeSixty.add($interaction[0]);
+      }
     });
+    if (self.threeSixty) {
+      interaction.on('hide', function () {
+        self.threeSixty.remove(interaction.threeSixtyElement);
+      });
+    }
 
     // handle xAPI event
     interaction.on('xAPI', function (event) {
@@ -1550,6 +1556,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       height: ''
     });
     this.video.trigger('resize');
+    if (self.threeSixty) {
+      self.threeSixty.resize();
+    }
 
     var width;
     var videoHeight;
@@ -1637,6 +1646,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     this.resizeInteractions();
+
   };
 
   /**
