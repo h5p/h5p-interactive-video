@@ -53,11 +53,6 @@
       "machineName": "H5P.DragNBar",
       "majorVersion": 1,
       "minorVersion": 4
-    },
-    {
-      "machineName": "H5P.FontIcons",
-      "majorVersion": 1,
-      "minorVersion": 0
     }
   ],
   "editorDependencies": [
