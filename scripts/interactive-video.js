@@ -576,8 +576,6 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Add bookmarks
     this.addBookmarks();
 
-    this.trigger('controls');
-
     // 360
     var self = this;
     var $video = self.$videoWrapper.children('video');
@@ -587,6 +585,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       $(self.threeSixty.element).insertAfter($video);
       $video.detach();
     }
+
+    this.trigger('controls');
   };
 
   /**
@@ -715,15 +715,17 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
 
-      if (self.threeSixty) {
-        interaction.threeSixtyElement = self.threeSixty.add($interaction[0]);
+      if (self.threeSixty && !interaction.threeSixtyElement) {
+        var position = interaction.getPosition();
+        interaction.threeSixtyElement = self.threeSixty.add($interaction[0], {yaw: position.x, pitch: position.y}, !!self.editor);
       }
     });
-    if (self.threeSixty) {
-      interaction.on('hide', function () {
+    interaction.on('hide', function () {
+      if (self.threeSixty) {
         self.threeSixty.remove(interaction.threeSixtyElement);
-      });
-    }
+        delete interaction.threeSixtyElement;
+      }
+    });
 
     // handle xAPI event
     interaction.on('xAPI', function (event) {

@@ -105,8 +105,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         role: 'button',
         'class': 'h5p-interaction ' + classes + hiddenClass,
         css: {
-          left: parameters.x + '%',
-          top: parameters.y + '%',
+          left: (self.threeSixtyElement ? 0 : parameters.x) + '%',
+          top: (self.threeSixtyElement ? 0 : parameters.y) + '%',
           width: '',
           height: ''
         },
@@ -239,6 +239,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       }
 
       self.trigger('remove', $interaction);
+      self.trigger('hide');
 
       if (closeDialog) {
         hideOverlayMask($interaction);
@@ -552,8 +553,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       $interaction = $('<div/>', {
         'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
         css: {
-          left: parameters.x + '%',
-          top: parameters.y + '%',
+          left: (self.threeSixtyElement ? 0 : parameters.x) + '%',
+          top: (self.threeSixtyElement ? 0 : parameters.y) + '%',
           width: dimensions.width,
           height: dimensions.height
         }
@@ -1016,6 +1017,7 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       // Only recreate existing interactions
       if ($interaction) {
         $interaction.detach();
+        self.trigger('hide');
 
         if (self.isButton()) {
           createButton();
@@ -1061,10 +1063,24 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
     self.setPosition = function (x, y) {
       parameters.x = x;
       parameters.y = y;
-      $interaction.css({
-        'left': x + '%',
-        'top': y + '%'
-      });
+      if (!self.threeSixtyElement) {
+        $interaction.css({
+          'left': x + '%',
+          'top': y + '%'
+        });
+      }
+    };
+
+    /**
+     * Get element position parameters.
+     *
+     * @return {Object} Position
+     */
+    self.getPosition = function () {
+      return {
+        x: parameters.x,
+        y: parameters.y
+      };
     };
 
     /**
@@ -1309,8 +1325,8 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
         // Reset positions
         if (isRepositioned) {
           $interaction.css({
-            'top': parameters.y + '%',
-            'left': parameters.x + '%'
+            'top': (self.threeSixtyElement ? 0 : parameters.y) + '%',
+            'left': (self.threeSixtyElement ? 0 : parameters.x) + '%'
           });
 
           $interaction.css(self.isButton() ? {
