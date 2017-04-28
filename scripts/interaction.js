@@ -1319,52 +1319,52 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $wrapper
      */
     self.repositionToWrapper = function ($wrapper) {
+      if (!$interaction || library === 'H5P.IVHotspot' || self.threeSixtyElement) {
+        return;
+      }
 
-      if ($interaction && library !== 'H5P.IVHotspot') {
+      // Reset positions
+      if (isRepositioned) {
+        $interaction.css({
+          'top': parameters.y + '%',
+          'left': parameters.x + '%'
+        });
 
-        // Reset positions
-        if (isRepositioned) {
-          $interaction.css({
-            'top': (self.threeSixtyElement ? 0 : parameters.y) + '%',
-            'left': (self.threeSixtyElement ? 0 : parameters.x) + '%'
-          });
+        $interaction.css(self.isButton() ? {
+          // Reset dimensions
+          height: '',
+          width: ''
+        } : getDimensions()); // Posters reset to standard dimensions
 
-          $interaction.css(self.isButton() ? {
-            // Reset dimensions
-            height: '',
-            width: ''
-          } : getDimensions()); // Posters reset to standard dimensions
+        isRepositioned = false;
+      }
 
-          isRepositioned = false;
+      // Check if button overflows parent
+      if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
+        var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
+
+        // We must reduce interaction height
+        if (newTop < 0) {
+          newTop = 0;
+          var newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
+          $interaction.css('height', newHeight + 'em');
+        }
+        $interaction.css('top', newTop + '%');
+        isRepositioned = true;
+      }
+
+      if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
+        var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+
+        // We must reduce interaction width
+        if (newLeft < 0) {
+          newLeft = 0;
+          var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
+          $interaction.css('width', newWidth + 'em');
         }
 
-        // Check if button overflows parent
-        if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
-          var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
-
-          // We must reduce interaction height
-          if (newTop < 0) {
-            newTop = 0;
-            var newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
-            $interaction.css('height', newHeight + 'em');
-          }
-          $interaction.css('top', newTop + '%');
-          isRepositioned = true;
-        }
-
-        if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
-          var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
-
-          // We must reduce interaction width
-          if (newLeft < 0) {
-            newLeft = 0;
-            var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
-            $interaction.css('width', newWidth + 'em');
-          }
-
-          $interaction.css('left', newLeft + '%');
-          isRepositioned = true;
-        }
+        $interaction.css('left', newLeft + '%');
+        isRepositioned = true;
       }
     };
 
