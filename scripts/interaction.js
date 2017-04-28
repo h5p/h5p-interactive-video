@@ -1381,6 +1381,13 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       self.reCreate();
     };
 
+    /**
+     * Determine if interaction should be positioned in 360 world
+     */
+    self.isThreeSixty = function () {
+      return parameters.threeSixty;
+    };
+
     // Create instance of content
     self.reCreate();
   }

@@ -577,13 +577,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     this.addBookmarks();
 
     // 360
-    var self = this;
-    var $video = self.$videoWrapper.children('video');
-    if ($video.length) {
-      var video = $video[0];
-      self.threeSixty = new H5P.ThreeSixty(video, video.videoWidth / video.videoHeight, videoNeedsUpdate);
-      $(self.threeSixty.element).insertAfter($video);
-      $video.detach();
+    if (this.options.video.threeSixty) {
+      var $video = this.$videoWrapper.children('video');
+      if ($video.length) {
+        var video = $video[0];
+        this.threeSixty = new H5P.ThreeSixty(video, video.videoWidth / video.videoHeight, videoNeedsUpdate);
+        $(this.threeSixty.element).insertAfter($video);
+        $video.detach();
+      }
     }
 
     this.trigger('controls');
@@ -715,13 +716,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         interaction.positionLabel(self.$videoWrapper.width());
       }, 0);
 
-      if (self.threeSixty && !interaction.threeSixtyElement) {
+      if (self.threeSixty && interaction.isThreeSixty() && !interaction.threeSixtyElement) {
         var position = interaction.getPosition();
         interaction.threeSixtyElement = self.threeSixty.add($interaction[0], {yaw: position.x, pitch: position.y}, !!self.editor);
       }
     });
     interaction.on('hide', function () {
-      if (self.threeSixty) {
+      if (interaction.threeSixtyElement) {
         self.threeSixty.remove(interaction.threeSixtyElement);
         delete interaction.threeSixtyElement;
       }

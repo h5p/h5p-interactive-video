@@ -18,7 +18,9 @@
             "label": "Video files",
             "importance": "high",
             "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
-            "extraAttributes": ["metadata"],
+            "extraAttributes": [
+              "metadata"
+            ],
             "enableCustomQualityLabel": true
           },
           {
@@ -147,6 +149,14 @@
                 }
               }
             ]
+          },
+          {
+            "name": "threeSixty",
+            "type": "boolean",
+            "default": false,
+            "label": "Enable 360 mode",
+            "importance": "low",
+            "description": "Allows you to look around 360 videos"
           }
         ]
       },
@@ -547,6 +557,14 @@
                       "description": "Show that interaction can be clicked by adding a border and an icon"
                     }
                   ]
+                },
+                {
+                  "name": "threeSixty",
+                  "type": "boolean",
+                  "default": false,
+                  "label": "Enable 360 mode",
+                  "importance": "low",
+                  "description": "Allows you to position the interaction in the 360 world"
                 }
               ]
             }
