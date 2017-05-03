@@ -75,8 +75,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       play: 'Play',
       pause: 'Pause',
       mute: 'Mute',
-      quality: 'Video quality',
       unmute: 'Unmute',
+      quality: 'Video quality',
+      captions: 'Captions',
+      close: 'Close',
       fullscreen: 'Fullscreen',
       exitFullscreen: 'Exit fullscreen',
       summary: 'Summary',
@@ -127,7 +129,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Start up the video player
     self.video = H5P.newRunnable({
-      library: 'H5P.Video 1.2',
+      library: 'H5P.Video 1.3',
       params: {
         sources: self.options.video.files,
         visuals: {
@@ -135,7 +137,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           controls: self.justVideo,
           fit: false
         },
-        startAt: startAt
+        startAt: startAt,
+        a11y: self.options.video.textTracks
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -287,6 +290,11 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       }
     });
 
+    // Handle video captions loaded
+    self.video.on('captions', function (event) {
+      self.setCaptionTracks(event.data);
+    });
+
     // Initialize interactions
     self.interactions = [];
     if (self.options.assets.interactions) {
@@ -299,6 +307,53 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
   // Inheritance
   InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
   InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+  /**
+   * Set caption tracks for current interactive video
+   *
+   * @param {H5P.Video.LabelValue[]} tracks
+   */
+  InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
+    var self = this;
+
+    // Add option to turn off captions
+    tracks.unshift(new H5P.Video.LabelValue('Off', 'off'));
+
+    if (self.captionsTrackSelector) {
+      // Captions track selector already exists, simply update with new options
+      self.captionsTrackSelector.updateOptions(tracks)
+      return;
+    }
+
+    // Determine current captions track
+    var currentTrack = self.video.getCaptionsTrack();
+    if (!currentTrack) {
+      // Set default off when no track is selected
+      currentTrack = tracks[0];
+    }
+
+    // Create new track selector
+    self.captionsTrackSelector = new InteractiveVideo.SelectorControl('captions', tracks, currentTrack, self.l10n);
+    self.captionsTrackSelector.on('select', function (event) {
+      self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
+    });
+    self.captionsTrackSelector.on('close', function (event) {
+      if (self.controls.$more.hasClass('h5p-active')) {
+        self.controls.$more.click();
+      }
+    });
+    self.captionsTrackSelector.on('open', function (event) {
+      self.controls.$overlayButtons.addClass('h5p-hide');
+    });
+
+    // Insert popup and button
+    $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter(self.controls.$qualityChooser);
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
+    $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
+
+    self.resizeControls();
+  };
 
   /**
    * Returns the current state of the interactions
@@ -1086,12 +1141,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Add buttons to wrapper
-    var $buttons = H5P.jQuery([]);
+    self.controls.$overlayButtons = H5P.jQuery([]);
 
     // Bookmarks
     if (bookmarksEnabled) {
-      $buttons = $buttons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
-        $buttons.addClass('h5p-hide');
+      self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
+        self.controls.$overlayButtons.addClass('h5p-hide');
         self.toggleBookmarksChooser(true);
       }, true));
     }
@@ -1099,20 +1154,20 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Quality
     self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
       if (!self.controls.$qualityButton.hasClass('h5p-disabled')) {
-        $buttons.addClass('h5p-hide');
+        self.controls.$overlayButtons.addClass('h5p-hide');
         self.controls.$qualityButton.click();
       }
     }, true);
-    $buttons = $buttons.add(self.controls.$qualityButtonMinimal);
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
 
     // Playback rate
     self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
       if (!self.controls.$playbackRateButton.hasClass('h5p-disabled')) {
-        $buttons.addClass('h5p-hide');
+        self.controls.$overlayButtons.addClass('h5p-hide');
         self.controls.$playbackRateButton.click();
       }
     }, true);
-    $buttons = $buttons.add(self.controls.$playbackRateButtonMinimal);
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
 
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
@@ -1128,7 +1183,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
           self.controls.$playbackRateButton.click();
         }
         setTimeout(function () {
-          $buttons.removeClass('h5p-hide');
+          self.controls.$overlayButtons.removeClass('h5p-hide');
         }, 150);
       }
       else {

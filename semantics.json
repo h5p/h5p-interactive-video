@@ -17,7 +17,9 @@
             "type": "video",
             "label": "Video files",
             "importance": "high",
-            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats."
+            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+            "extraAttributes": ["metadata"],
+            "enableCustomQualityLabel": true
           },
           {
             "name": "startScreenOptions",
@@ -74,6 +76,75 @@
                   "del",
                   "a"
                 ]
+              }
+            ]
+          },
+          {
+            "name": "textTracks",
+            "type": "group",
+            "label": "Text tracks (subtitles, captions and descriptions)",
+            "importance": "low",
+            "fields": [
+              {
+                "name": "videoTrack",
+                "type": "list",
+                "label": "Available text tracks",
+                "importance": "low",
+                "optional": true,
+                "entity": "Track",
+                "min": 0,
+                "defaultNum": 1,
+                "field": {
+                  "name": "track",
+                  "type": "group",
+                  "label": "Track",
+                  "importance": "low",
+                  "expanded": false,
+                  "fields": [
+                    {
+                      "name": "label",
+                      "type": "text",
+                      "label": "Track label",
+                      "importance": "low",
+                      "optional": true
+                    },
+                    {
+                      "name": "kind",
+                      "type": "select",
+                      "label": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                      "importance": "low",
+                      "default": "subtitles",
+                      "options": [
+                        {
+                          "value": "subtitles",
+                          "label": "Subtitles"
+                        },
+                        {
+                          "value": "captions",
+                          "label": "Captions"
+                        },
+                        {
+                          "value": "descriptions",
+                          "label": "Descriptions"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "srcLang",
+                      "type": "text",
+                      "label": "Source language, must be defined for subtitles",
+                      "importance": "low",
+                      "default": "en",
+                      "description": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                    },
+                    {
+                      "name": "track",
+                      "type": "file",
+                      "label": "Track source (WebVTT file)",
+                      "importance": "low"
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -191,7 +262,7 @@
                     "H5P.MultiChoice 1.9",
                     "H5P.TrueFalse 1.1",
                     "H5P.Blanks 1.7",
-                    "H5P.DragQuestion 1.9",
+                    "H5P.DragQuestion 1.10",
                     "H5P.MarkTheWords 1.6",
                     "H5P.DragText 1.5",
                     "H5P.GoToQuestion 1.2",
@@ -676,6 +747,22 @@
         "label": "Video quality title",
         "importance": "low",
         "default": "Video Quality",
+        "optional": true
+      },
+      {
+        "name": "captions",
+        "type": "text",
+        "label": "Video captions title",
+        "importance": "low",
+        "default": "Captions",
+        "optional": true
+      },
+      {
+        "name": "close",
+        "type": "text",
+        "label": "Close button text",
+        "importance": "low",
+        "default": "Close",
         "optional": true
       },
       {
