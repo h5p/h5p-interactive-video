@@ -15,7 +15,7 @@
   "fullscreen": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 12
+    "minorVersion": 13
   },
   "preloadedJs": [
     {
@@ -59,7 +59,7 @@
     {
       "machineName": "H5PEditor.Wizard",
       "majorVersion": 1,
-      "minorVersion": 1
+      "minorVersion": 2
     },
     {
       "machineName": "H5PEditor.InteractiveVideo",
