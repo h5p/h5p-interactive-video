@@ -107,13 +107,15 @@
                       "name": "label",
                       "type": "text",
                       "label": "Track label",
+		                  "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
                       "importance": "low",
+		                  "default": "Subtitles",
                       "optional": true
                     },
                     {
                       "name": "kind",
                       "type": "select",
-                      "label": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                      "label": "Type of text track",
                       "importance": "low",
                       "default": "subtitles",
                       "options": [
@@ -137,7 +139,7 @@
                       "label": "Source language, must be defined for subtitles",
                       "importance": "low",
                       "default": "en",
-                      "description": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                      "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                     },
                     {
                       "name": "track",
