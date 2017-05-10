@@ -49,6 +49,44 @@
                   "description": "Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
                 }
               ]
+            },
+            {
+              "englishLabel": "Text tracks (subtitles, captions and descriptions)",
+              "fields": [
+                {
+                  "englishLabel": "Available text tracks",
+                  "englishEntity": "Track",
+                  "field": {
+                    "englishLabel": "Track",
+                    "fields": [
+                      {
+                        "englishLabel": "Track label"
+                      },
+                      {
+                        "englishLabel": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                        "options": [
+                          {
+                            "englishLabel": "Subtitles"
+                          },
+                          {
+                            "englishLabel": "Captions"
+                          },
+                          {
+                            "englishLabel": "Descriptions"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Source language, must be defined for subtitles",
+                        "englishDescription": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                      },
+                      {
+                        "englishLabel": "Track source (WebVTT file)"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           ]
         },
@@ -148,19 +186,19 @@
                       },
                       {
                         "englishLabel": "Require full score for task before proceeding",
-                        "label": "Require full score for task before proceeding",
+                        "label": "Volle Punktzahl erforderlich machen, um fortfahren zu können",
                         "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description": "Diese Option sollte in Verbindung mit \"Vorwärts springen verhindern\" benutzt werden."
                       }
                     ]
                   },
                   {
                     "englishLabel": "Visuals",
-                    "label": "Gehe zu bei Klick",
+                    "label": "Visuelles",
                     "fields": [
                       {
                         "englishLabel": "Background color",
-                        "label": "Typ",
+                        "label": "Hintergrundfarbe",
                         "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
@@ -174,11 +212,11 @@
                   },
                   {
                     "englishLabel": "Go to on click",
-                    "label": "Go to on click",
+                    "label": "Gehe zu bei Klick",
                     "fields": [
                       {
                         "englishLabel": "Type",
-                        "label": "Type",
+                        "label": "Typ",
                         "options": [
                           {
                             "englishLabel": "Timecode",
@@ -186,15 +224,15 @@
                           },
                           {
                             "englishLabel": "Another page (URL)",
-                            "label": "Another page (URL)"
+                            "label": "Andere Seite (URL)"
                           }
                         ]
                       },
                       {
                         "englishLabel": "Go To",
-                        "label": "Go To",
+                        "label": "Gehe zu",
                         "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description": "Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
                       },
                       {
                         "englishLabel": "URL",
@@ -202,7 +240,7 @@
                         "fields": [
                           {
                             "englishLabel": "Protocol",
-                            "label": "Protocol",
+                            "label": "Protokoll",
                             "options": [
                               {
                                 "englishLabel": "http://",
@@ -214,11 +252,11 @@
                               },
                               {
                                 "englishLabel": "(root relative)",
-                                "label": "(root relative)"
+                                "label": "(relativ zum Hauptverzeichnis)"
                               },
                               {
                                 "englishLabel": "other",
-                                "label": "other"
+                                "label": "anderes"
                               }
                             ]
                           },
@@ -230,9 +268,9 @@
                       },
                       {
                         "englishLabel": "Visualize",
-                        "label": "Visualize",
+                        "label": "Visualisieren",
                         "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "description": "Zeigt mit einem Rahmen und Icon an, dass eine Interaktion anklickbar ist"
                       }
                     ]
                   }
@@ -266,6 +304,12 @@
           "label": "Starte Video bei",
           "englishDescription": "Enter timecode in the format M:SS",
           "description": "Den Zeitcode im Format M:SS angeben"
+        },
+        {
+          "englishLabel": "Loop the video",
+          "label": "Video in einer Schleife laufen lassen",
+          "englishDescription": "Check if video should run in a loop",
+          "description": "Wählen, wenn das Video in einer Schleife laufen soll"
         },
         {
           "englishLabel": "Override \"Show Solution\" button",
@@ -311,15 +355,21 @@
         },
         {
           "englishLabel": "Prevent skipping forward in a video",
-          "label": "Prevent skipping forward in a video",
+          "label": "Springen im Video verhindern",
           "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "Enabling this options will disable user video navigation through default controls"
+          "description": "Mit dieser Option wird verhindert, dass der Nutzer die Bedienelemente zum Navigieren verwenden kann"
+        },
+        {
+          "englishLabel": "Deactivate sound",
+          "label": "Ton deaktivieren",
+          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+          "description": "Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
         }
       ]
     },
     {
       "englishLabel": "Localize",
-      "label": "Lokalisieren",
+      "label": "Sprache anpassen",
       "fields": [
         {
           "englishLabel": "Interaction title",
@@ -358,6 +408,18 @@
           "default": "Video-Qualität"
         },
         {
+          "englishLabel": "Video captions title",
+          "label": "Titel für Video-Untertitel",
+          "englishDefault": "Captions",
+          "default": "Video-Untertitel"
+        },
+        {
+          "englishLabel": "Close button text",
+          "label": "Text für Schließen-Button",
+          "englishDefault": "Close",
+          "default": "Schließen"
+        },
+        {
           "englishLabel": "Fullscreen title",
           "label": "Titel für den Vollbildmodus",
           "englishDefault": "Fullscreen",
@@ -371,7 +433,7 @@
         },
         {
           "englishLabel": "Summary title",
-          "label": "Titel für Zusammenfassungen",
+          "label": "Titel für die Zusammenfassung",
           "englishDefault": "Summary",
           "default": "Zusammenfassung"
         },
@@ -407,15 +469,21 @@
         },
         {
           "englishLabel": "Navigation is disabled text",
-          "label": "Navigation is disabled text",
+          "label": "Text für deaktivierte Navigation",
           "englishDefault": "Navigation is disabled",
-          "default": "Navigation is disabled"
+          "default": "Navigation ist deaktiviert"
+        },
+        {
+          "englishLabel": "Sound is disabled text",
+          "label": "Hinweis auf deaktivierten Ton",
+          "englishDefault": "Sound is disabled",
+          "default": "Ton ist deaktiviert"
         },
         {
           "englishLabel": "Warning that the user must answer the question correctly before continuing",
-          "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, bevor Sie fortfahren",
+          "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, um weitermachen zu können",
           "englishDefault": "You need to answer all the questions correctly before continuing.",
-          "default": "Sie müssen alle Fragen richtig beantworten, bevor Sie fortfahren."
+          "default": "Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
         },
         {
           "englishLabel": "Back button",
