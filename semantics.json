@@ -210,7 +210,14 @@
                       "label": "Poster"
                     }
                   ],
-                  "default": "button"
+                  "default": "poster"
+                },
+                {
+                  "name": "buttonOnMobile",
+                  "label": "Turn into button on small screens",
+                  "importance": "low",
+                  "type": "boolean",
+                  "default": "true"
                 },
                 {
                   "name": "label",
