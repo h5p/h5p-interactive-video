@@ -217,7 +217,7 @@
                   "label": "Turn into button on small screens",
                   "importance": "low",
                   "type": "boolean",
-                  "default": "true"
+                  "default": false
                 },
                 {
                   "name": "label",
