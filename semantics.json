@@ -210,7 +210,7 @@
                       "label": "Poster"
                     }
                   ],
-                  "default": "poster"
+                  "default": "button"
                 },
                 {
                   "name": "buttonOnMobile",

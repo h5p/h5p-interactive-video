@@ -845,7 +845,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayType === 'button' || library === 'H5P.Nil' || (player.isMobileView && parameters.buttonOnMobile && library !== 'H5P.IVHotspot');
+      if (parameters.displayType === 'button' || library === 'H5P.Nil') {
+        return true;
+      }
+      else if (player.isMobileView && library !== 'H5P.IVHotspot') {
+        if (library === 'H5P.Image' && parameters.buttonOnMobile === false) {
+          return false;
+        }
+        return true;
+      }
+      return false;
     };
 
     /**
