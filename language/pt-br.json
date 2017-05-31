@@ -1,0 +1,399 @@
+{
+  "semantics": [
+    {
+      "englishLabel": "Interactive Video Editor",
+      "label": "Vídeo Interativo",
+      "fields": [
+        {
+          "englishLabel": "Upload/embed video",
+          "label": "Enviar vídeo",
+          "fields": [
+            {
+              "englishLabel": "Video files",
+              "label": "Arquivos de vídeo",
+              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "description": "Selecione os arquivos de vídeo que deseja usar em seu vídeo interativo. Para maior apoio nos browsers, utilize pelo menos vídeos nos formatos webm ou mp4."
+            },
+            {
+              "englishLabel": "Advanced settings",
+              "label": "Configurações avançadas",
+              "fields": [
+                {
+                  "englishLabel": "The title of this interactive video",
+                  "label": "Título do vídeo interativo",
+                  "englishDefault": "Interactive Video",
+                  "default": "Vídeo Interativo",
+                  "englishDescription": "Used in summaries, statistics etc.",
+                  "description": "Utilizado em sumários, estatísticas etc."
+                },
+                {
+                  "englishLabel": "Video copyright information",
+                  "label": "Informações de Copyright do vídeo",
+                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
+                  "description": "Informações sobre direitos de reprodução do vídeo e elementos utilizados no vídeo."
+                },
+                {
+                  "englishLabel": "Video start screen options",
+                  "label": "Opções da tela incial do vídeo",
+                  "fields": [
+                    {
+                      "englishLabel": "Poster image",
+                      "label": "Imagem de exibição",
+                      "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                      "description": "Imagem  de exibição antes do usuário lançar o vídeo. Não funciona para vídeos do YouTube."
+                    },
+                    {
+                      "englishLabel": "Hide title on video start screen",
+                      "label": "Esconder título na tela inicial do vídeo"
+                    },
+                    {
+                      "englishLabel": "Short description (Optional)",
+                      "label": "Breve descrição (Opcional)",
+                      "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                      "description": "Opcional. Exibe um breve descrição do vídeo na tela inicial do vídeo. Não funciona para vídeos do YouTube."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "englishLabel": "Add interactions",
+          "label": "Adicionar interações",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "englishLabel": "Display time",
+                    "label": "Exibir tempo"
+                  },
+                  {
+                    "englishLabel": "Pause video",
+                    "label": "Pausar"
+                  },
+                  {
+                    "englishLabel": "Display as",
+                    "label": "Exibir como",
+                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "<b>Button</b> é uma interação em colapso o usuário deve pressionar para abrir. <b>Poster</b> é uma interação ampliada exibida diretamente na parte superior do vídeo",
+                    "options": [
+                      {
+                        "englishLabel": "Button",
+                        "label": "Botão"
+                      },
+                      {
+                        "englishLabel": "Poster",
+                        "label": "Imagem de exibição"
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Label",
+                    "label": "Etiqueta",
+                    "englishDescription": "Label displayed next to interaction icon.",
+                    "description": "Rótulo exibido próximo ao ícone de interação"
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "englishLabel": "Adaptivity",
+                    "label": "Adaptabilidade",
+                    "fields": [
+                      {
+                        "englishLabel": "Action on all correct",
+                        "label": "Ação para todas corretas",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Buscar por",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Inserir o tempo de destino no formato M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Permitir que o usuário opte por sair e continuar"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Mensagem"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Etiqueta para o botão de busca"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Action on wrong",
+                        "label": "Ação se errar",
+                        "fields": [
+                          {
+                            "englishLabel": "Seek to",
+                            "label": "Buscar por",
+                            "englishDescription": "Enter timecode in the format M:SS",
+                            "description": "Inserir o tempo no formato M:SS"
+                          },
+                          {
+                            "englishLabel": "Allow the user to opt out and continue",
+                            "label": "Permitir que o usuário opte por sair e continuar"
+                          },
+                          {
+                            "englishLabel": "Message",
+                            "label": "Mensagem"
+                          },
+                          {
+                            "englishLabel": "Label for seek button",
+                            "label": "Etiqueta para o botão de busca (Ir para) "
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Visuals",
+                    "label": "Visuais",
+                    "fields": [
+                      {
+                        "englishLabel": "Background color",
+                        "label": "Cor de fundo",
+                        "englishDefault": "rgb(255, 255, 255)",
+                        "default": "rgb(255, 255, 255)"
+                      },
+                      {
+                        "englishLabel": "Box shadow",
+                        "label": "Sombrear caixa de interação",
+                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                        "description": "Adiciona uma sombra sutil em torno da interação. Você pode querer desativar este para interações completamente transparentes."
+                      }
+                    ]
+                  },
+                  {
+                    "englishLabel": "Go to on click",
+                    "label": "Ir para no clique",
+                    "fields": [
+                      {
+                        "englishLabel": "Type",
+                        "label": "Tipo",
+                        "options": [
+                          {
+                            "englishLabel": "Timecode",
+                            "label": "Timecode"
+                          },
+                          {
+                            "englishLabel": "Another page (URL)",
+                            "label": "Outra página(URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Go To",
+                        "label": "Ir para",
+                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
+                        "description": "No tempo inserido o usuário será levado pressionando o botão de acesso. Digite timecode no formato M: SS."
+                      },
+                      {
+                        "englishLabel": "URL",
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "englishLabel": "Protocol",
+                            "label": "Protocolo",
+                            "options": [
+                              {
+                                "englishLabel": "http://",
+                                "label": "http://"
+                              },
+                              {
+                                "englishLabel": "https://",
+                                "label": "https://"
+                              },
+                              {
+                                "englishLabel": "(root relative)",
+                                "label": "(root relativo)"
+                              },
+                              {
+                                "englishLabel": "other",
+                                "label": "outro"
+                              }
+                            ]
+                          },
+                          {
+                            "englishLabel": "URL",
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "englishLabel": "Visualize",
+                        "label": "Visualize",
+                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
+                        "description": "Mostrar que a interação pode ser clicada, adicionando uma borda e um ícone"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {}
+          ]
+        },
+        {
+          "englishLabel": "Summary task",
+          "label": "Tarefa de resumo",
+          "fields": [
+            {},
+            {
+              "englishLabel": "Display at",
+              "label": "Revelar em",
+              "englishDescription": "Number of seconds before the video ends.",
+              "description": "Número de segundos antes do final do vídeo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "englishLabel": "Behavioural settings",
+      "label": "Configurações de comportamento",
+      "fields": [
+        {
+          "englishLabel": "Override \"Show Solution\" button",
+          "label": "Sobrepor \"Mostrar Solução\" botão",
+          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Essa opção determina se o botão \"Mostrar Solução\" será mostrado para todas as questões, desativado para todas ou configurado para cada questão individualmente.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Ativado"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Override \"Retry\" button",
+          "label": "Sobrepor \"Tentar Novamente\" botão",
+          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description": "Essa opção determina se o botão \"Retry\" será mostrado para todas as questões, desativado para todas ou configurado para cada questão individualmente.",
+          "options": [
+            {
+              "englishLabel": "Enabled",
+              "label": "Ativado"
+            },
+            {
+              "englishLabel": "Disabled",
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "englishLabel": "Start with bookmarks menu open",
+          "label": "Começar abrindo menu de favoritos",
+          "englishDescription": "This function is not available on iPad when using YouTube as video source",
+          "description": "Esta função não está disponível no iPad ao utilizar o YouTube como fonte de vídeo"
+        },
+        {
+          "englishLabel": "Show button for rewinding 10 seconds",
+          "label": "Mostrar botão para retroceder 10 segundos"
+        }
+      ]
+    },
+    {
+      "englishLabel": "Localize",
+      "label": "Localize",
+      "fields": [
+        {
+          "englishLabel": "Interaction title",
+          "label": "Título de interação",
+          "englishDefault": "Interaction",
+          "default": "Interação"
+        },
+        {
+          "englishLabel": "Play title",
+          "label": "Título Play",
+          "englishDefault": "Play",
+          "default": "Play"
+        },
+        {
+          "englishLabel": "Pause title",
+          "label": "Pausar Título",
+          "englishDefault": "Pause",
+          "default": "Pausar"
+        },
+        {
+          "englishLabel": "Mute title",
+          "label": "Mute título",
+          "englishDefault": "Mute",
+          "default": "Mute"
+        },
+        {
+          "englishLabel": "Unmute title",
+          "label": "Título desativar opção Mute",
+          "englishDefault": "Unmute",
+          "default": "Unmute"
+        },
+        {
+          "englishLabel": "Video quality title",
+          "label": "título de qualidade de vídeo",
+          "englishDefault": "Video Quality",
+          "default": "Qualidade de Vídeo"
+        },
+        {
+          "englishLabel": "Fullscreen title",
+          "label": "Título Tela Cheia",
+          "englishDefault": "Fullscreen",
+          "default": "Tela Cheia"
+        },
+        {
+          "englishLabel": "Exit fullscreen title",
+          "label": "Sair do modo tela cheia",
+          "englishDefault": "Exit Fullscreen",
+          "default": "Sair tela cheia"
+        },
+        {
+          "englishLabel": "Summary title",
+          "label": "Título resumo",
+          "englishDefault": "Summary",
+          "default": "Resumo"
+        },
+        {
+          "englishLabel": "Bookmarks title",
+          "label": "Título Favoritos",
+          "englishDefault": "Bookmarks",
+          "default": "Favoritos"
+        },
+        {
+          "englishLabel": "Default label for adaptivity seek button",
+          "label": "Etiqueta padrão para adaptabilidade do botão procurar",
+          "englishDefault": "Continue",
+          "default": "Continuar"
+        },
+        {
+          "englishLabel": "Default label for continue video button",
+          "label": "Etiqueta padrão para o botão de continuar vídeo",
+          "englishDefault": "Continue with video",
+          "default": "Continuar com o vídeo"
+        },
+        {
+          "englishLabel": "Set playback rate",
+          "label": "Ajustar a taxa de reprodução",
+          "englishDefault": "Playback Rate",
+          "default": "Taxa de Reprodução"
+        },
+        {
+          "englishLabel": "Rewind 10 Seconds",
+          "label": "Retroceder 10 segundos",
+          "englishDefault": "Rewind 10 Seconds",
+          "default": "Retroceder 10 segundos"
+        }
+      ]
+    }
+  ]
+}
