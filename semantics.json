@@ -213,6 +213,13 @@
                   "default": "button"
                 },
                 {
+                  "name": "buttonOnMobile",
+                  "label": "Turn into button on small screens",
+                  "importance": "low",
+                  "type": "boolean",
+                  "default": false
+                },
+                {
                   "name": "label",
                   "type": "text",
                   "widget": "html",
