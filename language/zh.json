@@ -11,7 +11,7 @@
             {
               "englishLabel": "Add a video",
               "label": "视频文件",
-              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {

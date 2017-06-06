@@ -11,7 +11,7 @@
             {
               "englishLabel": "Add a video",
               "label": "Legg til en video",
-              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
               "description": "Klikk under for å legge til en video du ønsker å bruke i din interaktive video. Du kan legge til en videolenke eller laste opp videofiler. Det er mulig å legge til flere versioner av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesere bør du legge til i hvert fall en version i webm og mp4 format."
             },
             {
