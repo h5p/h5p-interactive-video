@@ -9,9 +9,9 @@
           "label": "Video hochladen/einbetten",
           "fields": [
             {
-              "englishLabel": "Video files",
+              "englishLabel": "Add a video",
               "label": "Videodateien",
-              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {

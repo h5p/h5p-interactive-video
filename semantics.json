@@ -15,9 +15,9 @@
           {
             "name": "files",
             "type": "video",
-            "label": "Video files",
+            "label": "Add a video",
             "importance": "high",
-            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+            "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
             "extraAttributes": [
               "metadata"
             ],
