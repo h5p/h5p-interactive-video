@@ -9,9 +9,9 @@
           "label": "上传/嵌入视频",
           "fields": [
             {
-              "englishLabel": "Video files",
+              "englishLabel": "Add a video",
               "label": "视频文件",
-              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+              "englishDescription": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
               "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
             },
             {
@@ -256,7 +256,7 @@
                               },
                               {
                                 "englishLabel": "other",
-                                "label": "other"
+                                "label": "其他"
                               }
                             ]
                           },
@@ -297,7 +297,7 @@
     },
     {
       "englishLabel": "Behavioural settings",
-      "label": "Behavioural settings",
+      "label": "行为设定",
       "fields": [
         {
           "englishLabel": "Start video at",
@@ -307,23 +307,23 @@
         },
         {
           "englishLabel": "Loop the video",
-          "label": "Loop the video",
+          "label": "循环播放视频",
           "englishDescription": "Check if video should run in a loop",
           "description": "Check if video should run in a loop"
         },
         {
           "englishLabel": "Override \"Show Solution\" button",
-          "label": "Override \"Retry\" button",
+          "label": "覆盖 \"重试\" 按钮",
           "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
               "englishLabel": "Enabled",
-              "label": "Enabled"
+              "label": "已启用"
             },
             {
               "englishLabel": "Disabled",
-              "label": "Disabled"
+              "label": "已禁用"
             }
           ]
         },
@@ -335,11 +335,11 @@
           "options": [
             {
               "englishLabel": "Enabled",
-              "label": "Enabled"
+              "label": "已启用"
             },
             {
               "englishLabel": "Disabled",
-              "label": "Disabled"
+              "label": "已禁用"
             }
           ]
         },
@@ -443,31 +443,31 @@
           "englishLabel": "Default label for adaptivity seek button",
           "label": "进度按钮的缺省文本",
           "englishDefault": "Continue",
-          "default": "Continue"
+          "default": "继续"
         },
         {
           "englishLabel": "Default label for continue video button",
           "label": "Default label for continue video button",
           "englishDefault": "Continue with video",
-          "default": "Continue with video"
+          "default": "继续播放视频"
         },
         {
           "englishLabel": "Set playback rate",
-          "label": "Set playback rate",
+          "label": "设置播放速率",
           "englishDefault": "Playback Rate",
-          "default": "Playback Rate"
+          "default": "播放速率"
         },
         {
           "englishLabel": "Rewind 10 Seconds",
-          "label": "Rewind 10 Seconds",
+          "label": "回放10秒",
           "englishDefault": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "default": "回放10秒"
         },
         {
           "englishLabel": "Navigation is disabled text",
           "label": "Navigation is disabled text",
           "englishDefault": "Navigation is disabled",
-          "default": "Navigation is disabled"
+          "default": "导航已禁用"
         },
         {
           "englishLabel": "Sound is disabled text",
@@ -483,9 +483,9 @@
         },
         {
           "englishLabel": "Back button",
-          "label": "Back button",
+          "label": "后退按钮",
           "englishDefault": "Back",
-          "default": "Back"
+          "default": "后退"
         }
       ]
     }

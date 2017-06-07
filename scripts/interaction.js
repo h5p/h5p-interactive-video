@@ -498,22 +498,14 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
       var height = parameters.height || 10;
       var width = parameters.width || 10;
 
-      if (library !== 'H5P.IVHotspot') {
-        return {
-          height: height + 'em',
-          width: width + 'em'
-        };
-      }
-      else {
-        // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
-        // We can not rely on measuring font size.
-        var widthRatio = player.width / player.fontSize;
-        var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
+      // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
+      // We can not rely on measuring font size.
+      var widthRatio = player.width / player.fontSize;
+      var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
 
-        return {
-          height: ((height / heightRatio) * 100) + '%',
-          width: ((width / widthRatio) * 100) + '%'
-        };
+      return {
+        height: ((height / heightRatio) * 100) + '%',
+        width: ((width / widthRatio) * 100) + '%'
       }
     };
 
@@ -854,7 +846,16 @@ H5P.InteractiveVideoInteraction = (function ($, EventDispatcher) {
      * @returns {boolean}
      */
     self.isButton = function () {
-      return parameters.displayType === 'button' || library === 'H5P.Nil' || (player.isMobileView && library !== 'H5P.IVHotspot');
+      if (parameters.displayType === 'button' || library === 'H5P.Nil') {
+        return true;
+      }
+      else if (player.isMobileView && library !== 'H5P.IVHotspot') {
+        if (library === 'H5P.Image' && parameters.buttonOnMobile === false) {
+          return false;
+        }
+        return true;
+      }
+      return false;
     };
 
     /**

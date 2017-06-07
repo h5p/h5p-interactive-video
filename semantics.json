@@ -15,9 +15,9 @@
           {
             "name": "files",
             "type": "video",
-            "label": "Video files",
+            "label": "Add a video",
             "importance": "high",
-            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
+            "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
             "extraAttributes": [
               "metadata"
             ],
@@ -107,13 +107,15 @@
                       "name": "label",
                       "type": "text",
                       "label": "Track label",
+                      "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
                       "importance": "low",
+                      "default": "Subtitles",
                       "optional": true
                     },
                     {
                       "name": "kind",
                       "type": "select",
-                      "label": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                      "label": "Type of text track",
                       "importance": "low",
                       "default": "subtitles",
                       "options": [
@@ -137,7 +139,7 @@
                       "label": "Source language, must be defined for subtitles",
                       "importance": "low",
                       "default": "en",
-                      "description": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                      "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                     },
                     {
                       "name": "track",
@@ -219,6 +221,13 @@
                   "default": "button"
                 },
                 {
+                  "name": "buttonOnMobile",
+                  "label": "Turn into button on small screens",
+                  "importance": "low",
+                  "type": "boolean",
+                  "default": false
+                },
+                {
                   "name": "label",
                   "type": "text",
                   "widget": "html",
@@ -272,7 +281,7 @@
                     "H5P.MultiChoice 1.9",
                     "H5P.TrueFalse 1.1",
                     "H5P.Blanks 1.7",
-                    "H5P.DragQuestion 1.9",
+                    "H5P.DragQuestion 1.10",
                     "H5P.MarkTheWords 1.6",
                     "H5P.DragText 1.5",
                     "H5P.GoToQuestion 1.2",

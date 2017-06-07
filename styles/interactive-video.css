@@ -867,6 +867,7 @@
 
 .h5p-interactive-video .h5p-seekbar-interaction.disabled {
   background: #772278;
+  cursor: default;
 }
 
 .h5p-interactive-video .h5p-seekbar-interaction:not(.disabled):hover {
