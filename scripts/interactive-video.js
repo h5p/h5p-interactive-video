@@ -28,6 +28,9 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     // Keep track of content ID
     self.contentId = id;
 
+    // Create dynamic ids
+    self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
+
     self.isMinimal = false;
 
     // Insert default options
@@ -251,7 +254,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       var quality = event.data;
       if (self.controls.$qualityChooser) {
         // Update quality selector
-        self.controls.$qualityChooser.find('li').removeClass('h5p-selected').filter('[data-quality="' + quality + '"]').addClass('h5p-selected');
+        self.controls.$qualityChooser.find('li').attr('aria-checked', 'false').filter('[data-quality="' + quality + '"]').attr('aria-checked', 'true');
       }
     });
 
@@ -261,7 +264,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // point controls has not been initialized, so we must check for controls
       if (self.controls && self.controls.$playbackRateChooser) {
         // Update playbackRate selector
-        self.controls.$playbackRateChooser.find('li').removeClass('h5p-selected').filter('[playback-rate="' + playbackRate + '"]').addClass('h5p-selected');
+        self.controls.$playbackRateChooser.find('li').attr('aria-checked', 'false').filter('[playback-rate="' + playbackRate + '"]').attr('aria-checked', 'true');
       }
     });
 
@@ -333,12 +336,12 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Create new track selector
-    self.captionsTrackSelector = new InteractiveVideo.SelectorControl('captions', tracks, currentTrack, self.l10n);
+    self.captionsTrackSelector = new InteractiveVideo.SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n);
     self.captionsTrackSelector.on('select', function (event) {
       self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
     });
     self.captionsTrackSelector.on('close', function (event) {
-      if (self.controls.$more.hasClass('h5p-active')) {
+      if (self.controls.$more.attr('aria-expanded') === 'true') {
         self.controls.$more.click();
       }
     });
@@ -783,11 +786,28 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
       var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
-      this.controls.$more.toggleClass('h5p-active', show);
-      this.controls.$minimalOverlay.toggleClass('h5p-show', show);
-      this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
-      this.controls.$bookmarks.toggleClass('h5p-active', show);
-      this.controls.$bookmarksChooser.css({maxHeight: show ? this.controlsCss.maxHeight : '32px'}).toggleClass('h5p-show', show);
+      if(show) {
+        this.controls.$more.attr('aria-expanded', 'true');
+        this.controls.$minimalOverlay.addClass('h5p-show');
+        this.controls.$minimalOverlay.find('.h5p-minimal-button').addClass('h5p-hide');
+        this.controls.$bookmarks.attr('aria-expanded', 'true');
+        this.controls.$bookmarksChooser
+          .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+          .addClass('h5p-show');
+        this.controls.$bookmarksChooser.find('[tabindex="0"]').focus();
+      }
+      else {
+        this.controls.$more.attr('aria-expanded', 'false');
+        this.controls.$minimalOverlay.removeClass('h5p-show');
+        this.controls.$minimalOverlay.find('.h5p-minimal-button').removeClass('h5p-hide');
+        this.controls.$bookmarks.attr('aria-expanded', 'false');
+
+        this.controls.$bookmarksChooser
+          .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+          .removeClass('h5p-show');
+
+        this.controls.$bookmarks.focus();
+      }
 
       // Add classes if changing visibility
       this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
@@ -879,19 +899,19 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Creat list if non-existent (note that it isn't allowed to have empty lists in HTML)
     if (self.controls.$bookmarksList === undefined) {
-      self.controls.$bookmarksList = $('<ol></ol>')
+      self.controls.$bookmarksList = $('<ul role="menu" aria-describedby="' + self.bookmarksMenuId + '"></ul>')
         .insertAfter(self.controls.$bookmarksChooser.find('h3'));
     }
 
     // Create list element for bookmark
-    var $li = $('<li role="button" tabindex="1">' + bookmark.label + '</li>')
+    var $li = $('<li role="menuitem" tabindex="0">' + bookmark.label + '</li>')
       .click(function () {
         if (self.currentState !== H5P.Video.PLAYING) {
           $bookmark.mouseover().mouseout();
           setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
         }
 
-        if (self.controls.$more.hasClass('h5p-active')) {
+        if (self.controls.$more.attr('aria-expanded') === 'true') {
           self.controls.$more.click();
         }
         else {
@@ -953,7 +973,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
 
     // Add play button/pause button
     self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-      if (self.controls.$play.hasClass('h5p-pause') && !self.controls.$play.hasClass('h5p-disabled')) {
+      var disabled = (self.controls.$play.attr('disabled') === 'disabled');
+      if (self.controls.$play.hasClass('h5p-pause') && !disabled) {
 
         // Auto toggle fullscreen on play if on a small device
         var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
@@ -990,24 +1011,32 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
      * @private
      * @param {string} button Name of controls button
      * @param {string} menu Name of controls menu
+     *
+     * @return {function}
      */
     var createPopupMenuHandler = function (button, menu) {
       return function () {
         var $button = self.controls[button];
-        if ($button.hasClass('h5p-disabled')) {
+        var $menu = self.controls[menu];
+        var isDisabled = $button.attr('disabled') === 'disabled';
+        var isExpanded = $button.attr('aria-expanded') === 'true';
+
+        if (isDisabled) {
           return; // Not active
         }
 
-        var $menu = self.controls[menu];
-        if (!$button.hasClass('h5p-active')) {
-          // Opening
-          $button.addClass('h5p-active');
-          $menu.addClass('h5p-show');
+        if (isExpanded) {
+          // Closing
+          $button.attr('aria-expanded', 'false');
+          $menu.removeClass('h5p-show');
+          $button.focus();
         }
         else {
-          // Closing
-          $button.removeClass('h5p-active');
-          $menu.removeClass('h5p-show');
+          // Opening
+          $button.attr('aria-expanded', 'true');
+          $menu.addClass('h5p-show');
+          var $checked = $menu.find('[aria-checked="true"]');
+          $checked.focus();
         }
       };
     };
@@ -1033,7 +1062,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       // Popup dialog for choosing bookmarks
       self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
         'class': 'h5p-chooser h5p-bookmarks',
-        html: '<h3>' + self.l10n.bookmarks + '</h3>',
+        html: '<h3 id="' + self.bookmarksMenuId + '">' + self.l10n.bookmarks + '</h3>',
         appendTo: self.$container
       });
 
@@ -1053,6 +1082,8 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
         self.toggleBookmarksChooser();
       });
+      self.controls.$bookmarks.attr('aria-haspopup', 'true');
+      self.controls.$bookmarks.attr('aria-expanded', 'false');
       self.controls.$bookmarksChooser.bind('transitionend', function () {
         self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
       });
@@ -1091,7 +1122,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }));
 
     // Button for opening video quality selection dialog
-    self.controls.$qualityButton = self.createButton('quality', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
+    self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
+    self.controls.$qualityButton.attr('disabled', 'disabled');
+    self.controls.$qualityButton.attr('aria-haspopup', 'true');
+    self.controls.$qualityButton.attr('aria-expanded', 'false');
 
     // Add volume button control (toggle mute)
     if (!isAndroid() && !isIpad()) {
@@ -1108,7 +1142,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
         }
       });
       if (self.deactivateSound) {
-        self.controls.$volume.addClass('h5p-muted h5p-disabled').attr('title', self.l10n.sndDisabled);
+        self.controls.$volume
+          .addClass('h5p-muted')
+          .attr('disabled', 'disabled')
+          .attr('title', self.l10n.sndDisabled);
       }
     }
 
@@ -1124,7 +1161,10 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Button for opening video playback rate selection dialog
-    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control h5p-disabled', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+    self.controls.$playbackRateButton.attr('disabled', 'disabled');
+    self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
+    self.controls.$playbackRateButton.attr('aria-expanded', 'false');
 
     // Add more button for collapsing controls when there's little space
 
@@ -1152,34 +1192,38 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     // Quality
-    self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
-      if (!self.controls.$qualityButton.hasClass('h5p-disabled')) {
+    self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button', $minimalWrap, function () {
+      var disabled = self.controls.$qualityButton.attr('disabled') === 'disabled';
+      if (!disabled) {
         self.controls.$overlayButtons.addClass('h5p-hide');
         self.controls.$qualityButton.click();
       }
     }, true);
+    self.controls.$qualityButtonMinimal.attr('disabled', 'disabled');
     self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
 
     // Playback rate
-    self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button h5p-disabled', $minimalWrap, function () {
-      if (!self.controls.$playbackRateButton.hasClass('h5p-disabled')) {
+    self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
+      var disabled = self.controls.$playbackRateButton.attr('disabled') === 'disabled';
+      if (!disabled) {
         self.controls.$overlayButtons.addClass('h5p-hide');
         self.controls.$playbackRateButton.click();
       }
     }, true);
+    self.controls.$playbackRateButtonMinimal.attr('disabled', 'disabled');
     self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
 
     // Add control for displaying overlay with buttons
     self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
-      if  (self.controls.$more.hasClass('h5p-active')) {
+      if  (self.controls.$more.attr('aria-expanded') === 'true') {
         // Close overlay
         self.controls.$minimalOverlay.removeClass('h5p-show');
-        self.controls.$more.removeClass('h5p-active');
+        self.controls.$more.attr('aria-expanded', 'false');
         self.toggleBookmarksChooser(false);
-        if (self.controls.$qualityButton && self.controls.$qualityButton.hasClass('h5p-active')) {
+        if (self.controls.$qualityButton && self.controls.$qualityButton.attr('aria-expanded') === 'true') {
           self.controls.$qualityButton.click();
         }
-        if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.hasClass('h5p-active')) {
+        if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.attr('aria-expanded') === 'true') {
           self.controls.$playbackRateButton.click();
         }
         setTimeout(function () {
@@ -1189,7 +1233,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
       else {
         // Open overlay
         self.controls.$minimalOverlay.addClass('h5p-show');
-        self.controls.$more.addClass('h5p-active');
+        self.controls.$more.attr('aria-expanded', 'true');
 
         // Make sure splash screen is removed.
         self.removeSplash();
@@ -1404,8 +1448,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     var qualities = this.video.getQualities();
-    if (!qualities || this.controls.$qualityButton === undefined ||
-        !this.controls.$qualityButton.hasClass('h5p-disabled')) {
+    if (!qualities || this.controls.$qualityButton === undefined || !(this.controls.$qualityButton.attr('disabled') === 'disabled')) {
       return;
     }
 
@@ -1414,13 +1457,14 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var html = '';
     for (var i = 0; i < qualities.length; i++) {
       var quality = qualities[i];
-      html += '<li role="button" tabIndex="1" data-quality="' + quality.name + '" class="' + (quality.name === currentQuality ? 'h5p-selected' : '') + '">' + quality.label + '</li>';
+      html += '<li role="menuitemradio" tabIndex="1" data-quality="' + quality.name + '" aria-checked="' + (quality.name === currentQuality).toString() + '">' + quality.label + '</li>';
     }
 
-    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$qualityChooser);
+    var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$qualityChooser);
+
     $list.children().click(function () {
       self.video.setQuality($(this).attr('data-quality'));
-      if (self.controls.$more.hasClass('h5p-active')) {
+      if (self.controls.$more.attr('aria-expanded') === 'true') {
         self.controls.$more.click();
       }
       else {
@@ -1429,7 +1473,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Enable quality chooser button
-    this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeClass('h5p-disabled');
+    this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeAttr('disabled');
   };
 
   /**
@@ -1460,7 +1504,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     }
 
     if (!playbackRates || this.controls.$playbackRateButton === undefined ||
-        !this.controls.$playbackRateButton.hasClass('h5p-disabled')) {
+        !(this.controls.$playbackRateButton.attr('disabled') === 'disabled')) {
       return;
     }
 
@@ -1469,13 +1513,13 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     var html = '';
     for (var i = 0; i < playbackRates.length; i++) {
       var playbackRate = playbackRates[i];
-      html += '<li role="button" tabIndex="1" playback-rate="' + playbackRate + '" class="' + (playbackRate === currentPlaybackRate ? 'h5p-selected' : '') + '">' + playbackRate + '</li>';
+      html += '<li role="menuitemradio" tabindex="0" playback-rate="' + playbackRate + '" aria-checked="' + (playbackRate === currentPlaybackRate).toString() + '">' + playbackRate + '</li>';
     }
 
-    var $list = $('<ol>' + html + '</ol>').appendTo(this.controls.$playbackRateChooser);
+    var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$playbackRateChooser);
     $list.children().click(function () {
       self.video.setPlaybackRate($(this).attr('playback-rate'));
-      if (self.controls.$more.hasClass('h5p-active')) {
+      if (self.controls.$more.attr('aria-expanded') === 'true') {
         self.controls.$more.click();
       }
       else {
@@ -1484,7 +1528,7 @@ H5P.InteractiveVideo = (function ($, EventDispatcher, DragNBar, Interaction) {
     });
 
     // Enable playback rate chooser button
-    this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeClass('h5p-disabled');
+    this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeAttr('disabled');
   };
 
   /**
