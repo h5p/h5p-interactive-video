@@ -1,3 +1,6 @@
+import Controls from 'h5p-lib-controls/src/scripts/controls';
+import Keyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
+
 /**
  * Enum for button types
  *
@@ -17,11 +20,18 @@ const ButtonType = {
 * @param {string} name Use to identify this control
 * @param {H5P.Video.LabelValue[]} options To select from
 * @param {H5P.Video.LabelValue} selectedOption Default selected option
+* @param {string} menuItemType the string to use with role="[menuItemType]". Can be menuitem, menuitemradio, menuitemcheckbox
 * @param {l10n} l10n Translations
 */
 const SelectorControl = function (name, options, selectedOption, menuItemType, l10n) {
   /** @alias H5P.InteractiveVideo.SelectorControl# */
-  var self = this;
+  const self = this;
+  const controls = new Controls([new Keyboard()]);
+  const allItems = [];
+
+  const getOptionByElement = element => {
+    return allItems.filter(item => item.element === element)[0];
+  };
 
   // Inheritance
   H5P.EventDispatcher.call(self);
@@ -48,6 +58,19 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     }
   };
 
+  var handleSelect = function (element, option) {
+    // New option selected
+    selectedOption = option;
+    list.querySelectorAll('[aria-checked="true"]').forEach(function(element) {
+      element.setAttribute('aria-checked', 'false');
+    });
+
+    element.setAttribute('aria-checked', 'true');
+    toggle();
+
+    self.trigger('select', option);
+  };
+
   /**
    * @private
    * @param {H5P.Video.LabelValue} option
@@ -56,22 +79,19 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   var createOption = function (option) {
     var isSelected = option.value === selectedOption.value;
 
-    var result = button(null, ButtonType.TEXT, option.label, function () {
-      // New option selected
-      selectedOption = option;
-      list.querySelectorAll('[aria-checked="true"]').forEach(function(element) {
-        element.setAttribute('aria-checked', 'false');
-      });
-
-      this.setAttribute('aria-checked', 'true');
-      toggle();
-
-      self.trigger('select', option);
+    var element = button(null, ButtonType.TEXT, option.label, function() {
+      handleSelect(this, option);
     }, 'li', menuItemType);
 
-    result.setAttribute('aria-checked', isSelected.toString());
+    allItems.push({
+      option: option,
+      element: element
+    });
 
-    return result;
+    element.setAttribute('aria-checked', isSelected.toString());
+    controls.addElement(element);
+
+    return element;
   };
 
   /**
@@ -97,6 +117,9 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     // Add new list of options to popup
     self.popup.appendChild(list);
   };
+
+  // handle keyboard select
+  controls.on('select', event => handleSelect(event.element, getOptionByElement(event.element)));
 
   // Create the popup which will contain the list of options
   self.popup = element('h5p-chooser h5p-' + name, '<h3>' + l10n[name] + '</h3>');

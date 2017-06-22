@@ -326,7 +326,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
 
   if (self.captionsTrackSelector) {
     // Captions track selector already exists, simply update with new options
-    self.captionsTrackSelector.updateOptions(tracks)
+    self.captionsTrackSelector.updateOptions(tracks);
     return;
   }
 
