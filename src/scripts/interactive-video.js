@@ -931,7 +931,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   }
 
   // Create list element for bookmark
-  var $li = $('<li role="menuitem" tabindex="0">' + bookmark.label + '</li>')
+  var $li = $('<li role="menuitem">' + bookmark.label + '</li>')
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keypress(e => {
       if(e.which === 32 || e.which === 13){
@@ -1089,9 +1089,16 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
     // Adding close button to bookmarks-menu
     self.controls.$bookmarksChooser.append($('<span>', {
+      'role': 'button',
       'class': 'h5p-chooser-close-button',
-      click: function () {
-        self.toggleBookmarksChooser();
+      'tabindex': '0',
+      'title': self.l10n.close,
+      click: () => self.toggleBookmarksChooser(),
+      keypress: event => {
+        if (event.which === 32 || event.which === 13) {
+          self.toggleBookmarksChooser();
+          event.preventDefault();
+        }
       }
     }));
 
@@ -1129,15 +1136,26 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     appendTo: self.$container
   });
 
+  const closeQualityMenu = () => {
+    if (self.isMinimal) {
+      self.controls.$more.click();
+    }
+    else {
+      self.controls.$qualityButton.click();
+    }
+  };
+
     // Adding close button to quality-menu
   self.controls.$qualityChooser.append($('<span>', {
+    'role': 'button',
     'class': 'h5p-chooser-close-button',
-    click: function () {
-      if (self.isMinimal) {
-        self.controls.$more.click();
-      }
-      else {
-        self.controls.$qualityButton.click();
+    'tabindex': '0',
+    'title': self.l10n.close,
+    click: () => closeQualityMenu(),
+    keypress: event => {
+      if (event.which === 32 || event.which === 13) {
+        closeQualityMenu();
+        event.preventDefault();
       }
     }
   }));
