@@ -27,11 +27,9 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   /** @alias H5P.InteractiveVideo.SelectorControl# */
   const self = this;
   const controls = new Controls([new Keyboard()]);
-  const allItems = [];
+  controls.on('close', () => hide());
 
-  const getOptionByElement = element => {
-    return allItems.filter(item => item.element === element)[0];
-  };
+  const allItems = [];
 
   // Inheritance
   H5P.EventDispatcher.call(self);
@@ -39,25 +37,36 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   // Presents the available options
   var list;
 
+  const show = () => {
+    self.control.setAttribute('aria-expanded', 'true');
+    self.popup.classList.add('h5p-show');
+    self.trigger('open');
+    self.popup.querySelector('li[tabindex="0"]').focus();
+  };
+
+  const hide = () => {
+    self.control.setAttribute('aria-expanded', 'false');
+    self.control.focus();
+    self.popup.classList.remove('h5p-show');
+    self.trigger('close');
+  };
+
+
   /**
    * Toggle show/hide popup
    * @private
    */
   var toggle = function () {
     var isExpanded = self.control.getAttribute('aria-expanded') === 'true';
-
-    if(isExpanded) {
-      self.control.setAttribute('aria-expanded', 'false');
-      self.popup.classList.remove('h5p-show');
-      self.trigger('close');
-    }
-    else {
-      self.control.setAttribute('aria-expanded', 'true');
-      self.popup.classList.add('h5p-show');
-      self.trigger('open');
-    }
+    isExpanded ? hide() : show();
   };
 
+  /**
+   * Handles an item being selected
+   *
+   * @param {Element} element
+   * @param {Event} option
+   */
   var handleSelect = function (element, option) {
     // New option selected
     selectedOption = option;
@@ -66,8 +75,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     });
 
     element.setAttribute('aria-checked', 'true');
-    toggle();
-
+    hide();
     self.trigger('select', option);
   };
 
@@ -90,6 +98,13 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
 
     element.setAttribute('aria-checked', isSelected.toString());
     controls.addElement(element);
+
+    if(isSelected) {
+      element.setAttribute('tabindex', '0');
+    }
+    else {
+      element.removeAttribute('tabindex');
+    }
 
     return element;
   };
@@ -117,9 +132,6 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     // Add new list of options to popup
     self.popup.appendChild(list);
   };
-
-  // handle keyboard select
-  controls.on('select', event => handleSelect(event.element, getOptionByElement(event.element)));
 
   // Create the popup which will contain the list of options
   self.popup = element('h5p-chooser h5p-' + name, '<h3>' + l10n[name] + '</h3>');

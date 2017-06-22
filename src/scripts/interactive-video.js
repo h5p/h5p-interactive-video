@@ -1,4 +1,7 @@
 import SelectorControl from './selector-control';
+import Controls from 'h5p-lib-controls/src/scripts/controls';
+import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
+
 import Interaction from './interaction';
 const $ = H5P.jQuery;
 
@@ -575,6 +578,10 @@ InteractiveVideo.prototype.addControls = function () {
   });
   this.controls.$currentTime.html(InteractiveVideo.humanizeTime(0));
 
+  // Add keyboard controls for Bookmarks
+  this.bookmarkMenuKeyboardControls = new Controls([new UIKeyboard()]);
+  this.bookmarkMenuKeyboardControls.on('close', () =>  this.toggleBookmarksChooser(false));
+
   // Add dots above seeking line.
   this.addSliderInteractions();
 
@@ -784,7 +791,7 @@ InteractiveVideo.prototype.addBookmarks = function () {
  * @param {boolean} [show] Forces toggle state if set
  */
 InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
-  if (this.controls.$bookmarks) {
+  if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
@@ -792,23 +799,23 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
       this.controls.$more.attr('aria-expanded', 'true');
       this.controls.$minimalOverlay.addClass('h5p-show');
       this.controls.$minimalOverlay.find('.h5p-minimal-button').addClass('h5p-hide');
-      this.controls.$bookmarks.attr('aria-expanded', 'true');
+      this.controls.$bookmarksButton.attr('aria-expanded', 'true');
       this.controls.$bookmarksChooser
         .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
         .addClass('h5p-show');
-      this.controls.$bookmarksChooser.find('[tabindex="0"]').focus();
+      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
     }
     else {
       this.controls.$more.attr('aria-expanded', 'false');
       this.controls.$minimalOverlay.removeClass('h5p-show');
       this.controls.$minimalOverlay.find('.h5p-minimal-button').removeClass('h5p-hide');
-      this.controls.$bookmarks.attr('aria-expanded', 'false');
+      this.controls.$bookmarksButton.attr('aria-expanded', 'false');
 
       this.controls.$bookmarksChooser
         .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
         .removeClass('h5p-show');
 
-      this.controls.$bookmarks.focus();
+      this.controls.$bookmarksButton.focus();
     }
 
     // Add classes if changing visibility
@@ -864,6 +871,24 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
   }, 2000);
 };
 
+InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
+  var self = this;
+
+  if (self.currentState !== H5P.Video.PLAYING) {
+    $bookmark.mouseover().mouseout();
+    setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
+  }
+
+  if (self.controls.$more.attr('aria-expanded') === 'true') {
+    self.controls.$more.click();
+  }
+  else {
+    self.toggleBookmarksChooser(false);
+  }
+  self.video.play();
+  self.video.seek(bookmark.time);
+};
+
 /**
  * Puts a single cool narrow line around the slider / seek bar.
  *
@@ -907,21 +932,16 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 
   // Create list element for bookmark
   var $li = $('<li role="menuitem" tabindex="0">' + bookmark.label + '</li>')
-    .click(function () {
-      if (self.currentState !== H5P.Video.PLAYING) {
-        $bookmark.mouseover().mouseout();
-        setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
+    .click(() => self.onBookmarkSelect($bookmark, bookmark))
+    .keypress(e => {
+      if(e.which === 32 || e.which === 13){
+        self.onBookmarkSelect($bookmark, bookmark)
       }
 
-      if (self.controls.$more.attr('aria-expanded') === 'true') {
-        self.controls.$more.click();
-      }
-      else {
-        self.toggleBookmarksChooser(false);
-      }
-      self.video.play();
-      self.video.seek(bookmark.time);
+      e.stopPropagation();
     });
+
+  self.bookmarkMenuKeyboardControls.addElement($li.get(0));
 
   // Insert bookmark in the correct place.
   var $next = self.controls.$bookmarksList.children(':eq(' + id + ')');
@@ -1037,8 +1057,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         // Opening
         $button.attr('aria-expanded', 'true');
         $menu.addClass('h5p-show');
-        var $checked = $menu.find('[aria-checked="true"]');
-        $checked.focus();
+        $menu.find('[tabindex="0"]').focus();
       }
     };
   };
@@ -1081,11 +1100,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }
 
     // Button for opening bookmark popup
-    self.controls.$bookmarks = self.createButton('bookmarks', 'h5p-control', $left, function () {
+    self.controls.$bookmarksButton = self.createButton('bookmarks', 'h5p-control', $left, function () {
       self.toggleBookmarksChooser();
     });
-    self.controls.$bookmarks.attr('aria-haspopup', 'true');
-    self.controls.$bookmarks.attr('aria-expanded', 'false');
+    self.controls.$bookmarksButton.attr('aria-haspopup', 'true');
+    self.controls.$bookmarksButton.attr('aria-expanded', 'false');
     self.controls.$bookmarksChooser.bind('transitionend', function () {
       self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
     });
@@ -1110,7 +1129,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     appendTo: self.$container
   });
 
-  // Adding close button to quality-menu
+    // Adding close button to quality-menu
   self.controls.$qualityChooser.append($('<span>', {
     'class': 'h5p-chooser-close-button',
     click: function () {
@@ -1427,10 +1446,11 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
       click: function () {
         handler.call(this);
       },
-      keypress: function () {
+      keypress: function (event) {
         if (event.which === 32) { // Space
           handler.call(this);
         }
+        event.stopPropagation();
       }
     },
     appendTo: $target
@@ -1444,6 +1464,8 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
  */
 InteractiveVideo.prototype.addQualityChooser = function () {
   var self = this;
+  self.qualityMenuKeyboardControls = new Controls([new UIKeyboard()]);
+  self.qualityMenuKeyboardControls.on('close', () => self.controls.$qualityButton.click());
 
   if (!this.video.getQualities) {
     return;
@@ -1459,23 +1481,55 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   var html = '';
   for (var i = 0; i < qualities.length; i++) {
     var quality = qualities[i];
-    html += '<li role="menuitemradio" tabIndex="1" data-quality="' + quality.name + '" aria-checked="' + (quality.name === currentQuality).toString() + '">' + quality.label + '</li>';
+    html += '<li role="menuitemradio" data-quality="' + quality.name + '" aria-checked="' + (quality.name === currentQuality).toString() + '">' + quality.label + '</li>';
   }
 
   var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$qualityChooser);
 
-  $list.children().click(function () {
-    self.video.setQuality($(this).attr('data-quality'));
-    if (self.controls.$more.attr('aria-expanded') === 'true') {
-      self.controls.$more.click();
-    }
-    else {
-      self.controls.$qualityButton.click();
-    }
+  $list.children()
+    .click(function() {
+      const quality = $(this).attr('data-quality');
+      self.updateQuality(quality)
+    })
+    .keypress(function(e) {
+      if(e.which === 32 || e.which === 13) {
+        const quality = $(this).attr('data-quality');
+        self.updateQuality(quality)
+      }
+
+      e.stopPropagation();
+    });
+
+  const menuElements = $list.find('li').get();
+  menuElements.forEach((el, index) => {
+    self.qualityMenuKeyboardControls.addElement(el);
+
+    // updates tabindex based on if it's selected
+    const isSelected = el.getAttribute('aria-checked') === 'true';
+    toggleTabIndex(el, isSelected);
   });
 
   // Enable quality chooser button
   this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeAttr('disabled');
+};
+
+
+
+/**
+ * Updates the quality of the video, and toggles menus
+ *
+ * @param {string} quality
+ */
+InteractiveVideo.prototype.updateQuality = function (quality) {
+  var self = this;
+  self.video.setQuality(quality);
+  if (self.controls.$more.attr('aria-expanded') === 'true') {
+    self.controls.$more.click();
+  }
+  else {
+    self.controls.$qualityButton.click();
+    self.controls.$qualityButton.focus();
+  }
 };
 
 /**
@@ -1484,6 +1538,8 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 InteractiveVideo.prototype.addPlaybackRateChooser = function () {
   var self = this;
 
+  this.playbackRateMenuKeyboardControls = new Controls([new UIKeyboard()]);
+  this.playbackRateMenuKeyboardControls.on('close', () => self.controls.$playbackRateButton.click());
   if (!this.video.getPlaybackRates) {
     return;
   }
@@ -1515,22 +1571,47 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
   var html = '';
   for (var i = 0; i < playbackRates.length; i++) {
     var playbackRate = playbackRates[i];
-    html += '<li role="menuitemradio" tabindex="0" playback-rate="' + playbackRate + '" aria-checked="' + (playbackRate === currentPlaybackRate).toString() + '">' + playbackRate + '</li>';
+    html += '<li role="menuitemradio" playback-rate="' + playbackRate + '" aria-checked="' + (playbackRate === currentPlaybackRate).toString() + '">' + playbackRate + '</li>';
   }
 
   var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$playbackRateChooser);
-  $list.children().click(function () {
-    self.video.setPlaybackRate($(this).attr('playback-rate'));
-    if (self.controls.$more.attr('aria-expanded') === 'true') {
-      self.controls.$more.click();
-    }
-    else {
-      self.controls.$playbackRateButton.click();
-    }
+
+  $list.children()
+    .click(function() {
+      const rate = $(this).attr('playback-rate');
+      self.updatePlaybackRate(rate);
+    })
+    .keypress(function(e) {
+      if(e.which === 32 || e.which === 13){
+        const rate = $(this).attr('playback-rate');
+        self.updatePlaybackRate(rate);
+      }
+      e.stopPropagation();
+    });
+
+  // add keyboard controls
+  $list.find('li').get().forEach(el => {
+    this.playbackRateMenuKeyboardControls.addElement(el);
+
+    // updates tabindex based on if it's selected
+    const isSelected = el.getAttribute('aria-checked') === 'true';
+    toggleTabIndex(el, isSelected);
   });
 
   // Enable playback rate chooser button
   this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeAttr('disabled');
+};
+
+InteractiveVideo.prototype.updatePlaybackRate = function (rate) {
+  var self = this;
+
+  self.video.setPlaybackRate(rate);
+  if (self.controls.$more.attr('aria-expanded') === 'true') {
+    self.controls.$more.click();
+  }
+  else {
+    self.controls.$playbackRateButton.click();
+  }
 };
 
 /**
@@ -2253,6 +2334,21 @@ InteractiveVideo.humanizeTime = function (seconds) {
   time += seconds;
 
   return time;
+};
+
+/**
+ * Sets tabindex="0" if selected removes attribute otherwise
+ *
+ * @param {element} el
+ * @param {boolean} isSelected
+ */
+var toggleTabIndex = function(el, isSelected){
+  if(isSelected) {
+    el.setAttribute('tabindex', '0');
+  }
+  else {
+    el.removeAttribute('tabindex');
+  }
 };
 
 /**
