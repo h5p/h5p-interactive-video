@@ -878,6 +878,27 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Update video when user interacts with dot
+   */
+  self.selectDot = function () {
+    if (player.preventSkipping) {
+      return;
+    }
+
+    if (player.currentState === H5P.Video.VIDEO_CUED) {
+      player.play();
+      player.seek(parameters.duration.from);
+    }
+    else if (player.currentState === H5P.Video.PLAYING) {
+      player.seek(parameters.duration.from);
+    } else {
+      player.play(); // for updating the slider
+      player.seek(parameters.duration.from);
+      player.pause();
+    }
+  };
+
+  /**
    * Create dot for displaying above the video timeline.
    * Append to given container.
    *
@@ -899,21 +920,10 @@ function Interaction(parameters, player, previousState) {
         left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
       },
       on: {
-        click: function () {
-          if (player.preventSkipping) {
-            return;
-          }
-
-          if (player.currentState === H5P.Video.VIDEO_CUED) {
-            player.play();
-            player.seek(parameters.duration.from);
-          }
-          else if (player.currentState === H5P.Video.PLAYING) {
-            player.seek(parameters.duration.from);
-          } else {
-            player.play(); // for updating the slider
-            player.seek(parameters.duration.from);
-            player.pause();
+        click: self.selectDot,
+        keypress: event => {
+          if(event.which === 13 || event.which === 32) {
+            self.selectDot();
           }
         }
       }
