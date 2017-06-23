@@ -22,10 +22,12 @@ const ButtonType = {
 * @param {H5P.Video.LabelValue} selectedOption Default selected option
 * @param {string} menuItemType the string to use with role="[menuItemType]". Can be menuitem, menuitemradio, menuitemcheckbox
 * @param {l10n} l10n Translations
+* @param {string} contentId
 */
-const SelectorControl = function (name, options, selectedOption, menuItemType, l10n) {
+const SelectorControl = function (name, options, selectedOption, menuItemType, l10n, contentId) {
   /** @alias H5P.InteractiveVideo.SelectorControl# */
   const self = this;
+  const id = `interactive-video-${contentId}-menu-${name}`;
   const controls = new Controls([new Keyboard()]);
   controls.on('close', () => hide());
 
@@ -97,6 +99,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     });
 
     element.setAttribute('aria-checked', isSelected.toString());
+    element.setAttribute('aria-describedby', id);
     controls.addElement(element);
 
     if(isSelected) {
@@ -134,7 +137,8 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   };
 
   // Create the popup which will contain the list of options
-  self.popup = element('h5p-chooser h5p-' + name, '<h3>' + l10n[name] + '</h3>');
+  self.popup = element('h5p-chooser h5p-' + name, `<h3 id="${id}">${l10n[name]}</h3>`);
+  self.popup.setAttribute('role', 'dialog');
 
   // Add a close button inside the popup
   var closeButton = button('h5p-chooser-close-button', ButtonType.ICON, l10n.close, toggle, 'div', 'button');

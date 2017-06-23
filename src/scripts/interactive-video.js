@@ -35,6 +35,9 @@ function InteractiveVideo(params, id, contentData) {
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
+  self.qualityMenuId = 'interactive-video-' + this.contentId + '-quality-chooser';
+  self.captionsMenuId = 'interactive-video-' + this.contentId + '-captions-chooser';
+  self.playbackRateMenuId = 'interactive-video-' + this.contentId + '-playback-rate-chooser';
 
   self.isMinimal = false;
 
@@ -926,12 +929,12 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 
   // Creat list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$bookmarksList === undefined) {
-    self.controls.$bookmarksList = $('<ul role="menu" aria-describedby="' + self.bookmarksMenuId + '"></ul>')
+    self.controls.$bookmarksList = $('<ul role="menu"></ul>')
       .insertAfter(self.controls.$bookmarksChooser.find('h3'));
   }
 
   // Create list element for bookmark
-  var $li = $('<li role="menuitem">' + bookmark.label + '</li>')
+  var $li = $(`<li role="menuitem" aria-describedby="${self.bookmarksMenuId}">${bookmark.label}</li>`)
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keypress(e => {
       if(e.which === 32 || e.which === 13){
@@ -1083,7 +1086,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     // Popup dialog for choosing bookmarks
     self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-bookmarks',
-      html: '<h3 id="' + self.bookmarksMenuId + '">' + self.l10n.bookmarks + '</h3>',
+      'role': 'dialog',
+      html: `<h3 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h3>`,
       appendTo: self.$container
     });
 
@@ -1132,7 +1136,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add popup for selecting video quality
   self.controls.$qualityChooser = H5P.jQuery('<div/>', {
     'class': 'h5p-chooser h5p-quality',
-    html: '<h3>' + self.l10n.quality + '</h3>',
+    'role': 'dialog',
+    html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
     appendTo: self.$container
   });
 
@@ -1195,7 +1200,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add popup for selecting playback rate
   self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
     'class': 'h5p-chooser h5p-playbackRate',
-    html: '<h3>' + self.l10n.playbackRate + '</h3>',
+    'role': 'dialog',
+    html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
     appendTo: self.$container
   });
 
@@ -1499,10 +1505,11 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   var html = '';
   for (var i = 0; i < qualities.length; i++) {
     var quality = qualities[i];
-    html += '<li role="menuitemradio" data-quality="' + quality.name + '" aria-checked="' + (quality.name === currentQuality).toString() + '">' + quality.label + '</li>';
+    const isChecked = quality.name === currentQuality;
+    html += `<li role="menuitemradio" data-quality="${quality.name}" aria-checked="${isChecked}" aria-describedby="${self.qualityMenuId}">${quality.label}</li>`;
   }
 
-  var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$qualityChooser);
+  var $list = $(`<ul role="menu">${html}</ul>`).appendTo(this.controls.$qualityChooser);
 
   $list.children()
     .click(function() {
@@ -1589,7 +1596,8 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
   var html = '';
   for (var i = 0; i < playbackRates.length; i++) {
     var playbackRate = playbackRates[i];
-    html += '<li role="menuitemradio" playback-rate="' + playbackRate + '" aria-checked="' + (playbackRate === currentPlaybackRate).toString() + '">' + playbackRate + '</li>';
+    var isSelected = (playbackRate === currentPlaybackRate);
+    html += `<li role="menuitemradio" playback-rate="${playbackRate}" aria-checked="${isSelected}" aria-describedby="${self.playbackRateMenuId}">${playbackRate}</li>`;
   }
 
   var $list = $('<ul role="menu">' + html + '</ul>').appendTo(this.controls.$playbackRateChooser);
