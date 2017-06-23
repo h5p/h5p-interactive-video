@@ -2,11 +2,20 @@ import SelectorControl from './selector-control';
 import Interaction from './interaction';
 const $ = H5P.jQuery;
 
+const SECONDS_IN_MINUTE = 60;
+const MINUTES_IN_HOUR = 60;
+
 /**
  * @typedef {Object} InteractiveVideoParameters
  * @property {Object} interactiveVideo View parameters
  * @property {Object} override Override settings
  * @property {number} startVideoAt Time-code to start video
+ */
+/**
+ * @typedef {object} Time
+ * @property {number} seconds
+ * @property {number} minutes
+ * @property {number} hours
  */
 
 /**
@@ -93,7 +102,10 @@ function InteractiveVideo(params, id, contentData) {
     navDisabled: 'Navigation is disabled',
     sndDisabled: 'Sound is disabled',
     requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
-    back: 'Back'
+    back: 'Back',
+    hours: 'Hours',
+    minutes: 'Minutes',
+    seconds: 'Seconds'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -1233,7 +1245,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       $(event.target).find('.ui-slider-handle')
         .attr('role', 'slider')
         .attr('aria-valuemin', '0')
-        .attr('aria-valuemax', '100')
+        .attr('aria-valuemax',  self.video.getDuration().toString())
+        .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
         .attr('aria-valuenow', '0');
         //.attr('aria-controls', this.videoPlayerId);
     },
@@ -1858,7 +1871,12 @@ InteractiveVideo.prototype.timeUpdate = function (time) {
   // Scroll slider
   if (time >= 0) {
     try {
+      const sliderHandle = self.controls.$slider.find('.ui-slider-handle');
+      const timePassedText = InteractiveVideo.formatTimeForA11y(time, self.l10n);
+
       self.controls.$slider.slider('option', 'value', time);
+      sliderHandle.attr('aria-valuetext', timePassedText);
+      sliderHandle.attr('aria-valuenow', time.toString());
     }
     catch (err) {
       // Prevent crashing when changing lib. Exit function
@@ -1877,6 +1895,11 @@ InteractiveVideo.prototype.timeUpdate = function (time) {
   }, 40); // 25 fps
 };
 
+/**
+ * Updates interactions
+ *
+ * @param {number} time
+ */
 InteractiveVideo.prototype.updateInteractions = function (time) {
   var self = this;
 
@@ -2193,32 +2216,59 @@ InteractiveVideo.ATTACHED = 6;
  * @returns {string}
  */
 InteractiveVideo.humanizeTime = function (seconds) {
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
+  const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
+  let result = '';
 
-  minutes = minutes % 60;
-  seconds = Math.floor(seconds % 60);
+  if (time.hours !== 0) {
+    result += time.hours + ':';
 
-  var time = '';
-
-  if (hours !== 0) {
-    time += hours + ':';
-
-    if (minutes < 10) {
-      time += '0';
+    if (time.minutes < 10) {
+      result += '0';
     }
   }
 
-  time += minutes + ':';
+  result += time.minutes + ':';
 
-  if (seconds < 10) {
-    time += '0';
+  if (time.seconds < 10) {
+    result += '0';
   }
 
-  time += seconds;
+  result += time.seconds;
 
-  return time;
+  return result;
 };
+
+/**
+ * Returns a string for reading out time passed
+ *
+ * @param {number} seconds
+ * @param {object} labels
+ * @return {string}
+ */
+InteractiveVideo.formatTimeForA11y = function(seconds, labels) {
+  const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
+  const hoursText = time.hours > 0 ? `${time.hours} ${labels.hours}, ` : '';
+
+  return `${hoursText}${time.minutes} ${labels.minutes}, ${time.seconds} ${labels.seconds}`;
+};
+
+/**
+ * Takes seconds as a number, and splits it into seconds,
+ * minutes and hours
+ *
+ * @param {number} seconds
+ * @return {Time}
+ */
+InteractiveVideo.secondsToMinutesAndHours = function(seconds) {
+  const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
+
+  return {
+    seconds: Math.floor(seconds % SECONDS_IN_MINUTE),
+    minutes: minutes % MINUTES_IN_HOUR,
+    hours: Math.floor(minutes / MINUTES_IN_HOUR)
+  };
+};
+
 
 /**
  * Look for field with the given name in the given collection.

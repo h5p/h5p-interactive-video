@@ -871,6 +871,30 @@
         "importance": "low",
         "default": "Back",
         "optional": true
+      },
+      {
+        "name": "hours",
+        "type": "text",
+        "label": "Passed time hours",
+        "importance": "low",
+        "default": "Hours",
+        "optional": true
+      },
+      {
+        "name": "minutes",
+        "type": "text",
+        "label": "Passed time minutes",
+        "importance": "low",
+        "default": "Minutes",
+        "optional": true
+      },
+      {
+        "name": "seconds",
+        "type": "text",
+        "label": "Passed time seconds",
+        "importance": "low",
+        "default": "Seconds",
+        "optional": true
       }
     ]
   }
