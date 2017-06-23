@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "The title of this interactive video",
-                  "englishDefault": "Interactive Video",
                   "default": "Interactive Video",
                   "description": "Used in summaries, statistics etc."
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "Titolo Interazione",
-          "englishDefault": "Interaction",
           "default": "Interaction"
         },
         {
           "label": "Titolo Play",
-          "englishDefault": "Play",
           "default": "Play"
         },
         {
           "label": "Titolo Pausa",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "Titolo modalità muto",
-          "englishDefault": "Mute",
           "default": "Mute"
         },
         {
           "label": "Titolo disattiva modalità muto",
-          "englishDefault": "Unmute",
           "default": "Unmute"
         },
         {
           "label": "Titolo qualità Video",
-          "englishDefault": "Video Quality",
           "default": "Video Quality"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "Titolo Schermo intero",
-          "englishDefault": "Fullscreen",
           "default": "Fullscreen"
         },
         {
           "label": "Titolo Esci da Schermo intero",
-          "englishDefault": "Exit Fullscreen",
           "default": "Exit Fullscreen"
         },
         {
           "label": "Titolo Riepilogo",
-          "englishDefault": "Summary",
           "default": "Summary"
         },
         {
           "label": "Titolo Segnalibri",
-          "englishDefault": "Bookmarks",
           "default": "Bookmarks"
         },
         {
           "label": "Etichetta predefinita per adattabilità pulsante Vai a",
-          "englishDefault": "Continue",
           "default": "Continue"
         },
         {
           "label": "Default label for continue video button",
-          "englishDefault": "Continue with video",
           "default": "Continue with video"
         },
         {
           "label": "Set playback rate",
-          "englishDefault": "Playback Rate",
           "default": "Playback Rate"
         },
         {
           "label": "Rewind 10 Seconds",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
         },
         {
           "label": "Navigation is disabled text",
-          "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
         },
         {
           "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
           "default": "Sound is disabled"
         },
         {
           "label": "Attenzione che l'utente deve rispondere alla domanda in modo corretto prima di continuare",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "È necessario rispondere correttamente a tutte le domande prima di continuare."
         },
         {
           "label": "Tasto indietro",
-          "englishDefault": "Back",
           "default": "Indietro"
         }
       ]

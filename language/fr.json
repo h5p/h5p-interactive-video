@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "Titre de la vidéo interactive",
-                  "englishDefault": "Interactive Video",
                   "default": "Vidéo interactive",
                   "description": "Utilisé dans les récapitulatifs, statistiques, etc."
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -277,98 +275,76 @@
       "fields": [
         {
           "label": "Intitulé de l'activité",
-          "englishDefault": "Interaction",
           "default": "Activité"
         },
         {
           "label": "Intitulé \"Jouer\"",
-          "englishDefault": "Play",
           "default": "Jouer"
         },
         {
           "label": "Intitulé \"Pause\"",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "Intitulé \"Couper le son\"",
-          "englishDefault": "Mute",
           "default": "Couper le son"
         },
         {
           "label": "Intitulé \"Remettre le son\"",
-          "englishDefault": "Unmute",
           "default": "Rétablir le son"
         },
         {
           "label": "Intitulé \"Qualité de la vidéo\"",
-          "englishDefault": "Video Quality",
           "default": "Qualité de la vidéo"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "Intitulé \"Plein écran\"",
-          "englishDefault": "Fullscreen",
           "default": "Plein écran"
         },
         {
           "label": "Intitulé \"Sortir du plein écran\"",
-          "englishDefault": "Exit Fullscreen",
           "default": "Sortir du plein écran"
         },
         {
           "label": "Intitulé du récapitulatif",
-          "englishDefault": "Summary",
           "default": "Récapitulatif"
         },
         {
           "label": "Intitulé du bouton \"Signets\"",
-          "englishDefault": "Bookmarks",
           "default": "Signets"
         },
         {
           "label": "Texte par défaut du bouton de reprise",
-          "englishDefault": "Continue",
           "default": "Continuer"
         },
         {
           "label": "Texte par défaut du bouton de reprise",
-          "englishDefault": "Continue with video",
           "default": "Continuer avec la vidéo"
         },
         {
           "label": "Set playback rate",
-          "englishDefault": "Playback Rate",
           "default": "Playback Rate"
         },
         {
           "label": "Revenir en arrière de 10 secondes",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "Revenir en arrière de 10 secondes"
         },
         {
           "label": "Text de navigation désactivée",
-          "englishDefault": "Navigation is disabled",
           "default": "La navigation est désactivée"
         },
         {
           "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
           "default": "Sound is disabled"
         },
         {
           "label": "Avertissement que l'utilisateur doit répondre correctement à la question avant de continuer",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "Vous devez répondre correctement à toutes les questions avant de continuer."
         },
         {
           "label": "Bouton Retour",
-          "englishDefault": "Back",
           "default": "Retour"
         }
       ]

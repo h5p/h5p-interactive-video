@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "The title of this interactive video",
-                  "englishDefault": "Interactive Video",
                   "default": "Interactive Video",
                   "description": "Used in summaries, statistics etc."
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "عنوان التفاعل",
-          "englishDefault": "Interaction",
           "default": "Interaction"
         },
         {
           "label": "لقب التشغيل",
-          "englishDefault": "Play",
           "default": "Play"
         },
         {
           "label": "عنوان إيقاف مؤقت",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "عنوان كتم الصوت",
-          "englishDefault": "Mute",
           "default": "Mute"
         },
         {
           "label": "عنوان عدم كتمان الصوت",
-          "englishDefault": "Unmute",
           "default": "Unmute"
         },
         {
           "label": "عنوان جودة الفيديو",
-          "englishDefault": "Video Quality",
           "default": "Video Quality"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "عنوان ملء الشاشة",
-          "englishDefault": "Fullscreen",
           "default": "Fullscreen"
         },
         {
           "label": "عنوان الخروج ملء الشاشة",
-          "englishDefault": "Exit Fullscreen",
           "default": "Fullscreen"
         },
         {
           "label": "عنوان الملخص",
-          "englishDefault": "Summary",
           "default": "Summary"
         },
         {
           "label": "عنوان الإشارات المرجعية",
-          "englishDefault": "Bookmarks",
           "default": "Bookmarks"
         },
         {
           "label": "التسمية الافتراضية لقابلية التكيف زر السعى",
-          "englishDefault": "Continue",
           "default": "Continue"
         },
         {
           "label": "Default label for continue video button",
-          "englishDefault": "Continue with video",
           "default": "Continue with video"
         },
         {
           "label": "Set playback rate",
-          "englishDefault": "Playback Rate",
           "default": "Playback Rate"
         },
         {
           "label": "Rewind 10 Seconds",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
         },
         {
           "label": "Navigation is disabled text",
-          "englishDefault": "Navigation is disabled",
           "default": "Navigation is disabled"
         },
         {
           "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
           "default": "Sound is disabled"
         },
         {
           "label": "محذرا من أن المستخدم يجب أن يجيب على السؤال بشكل صحيح قبل المتابعة",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "تحتاج إلى الإجابة على جميع الأسئلة بشكل صحيح قبل المتابعة."
         },
         {
           "label": "زر العودة",
-          "englishDefault": "Back",
           "default": "الى الخلف"
         }
       ]

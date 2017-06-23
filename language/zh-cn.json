@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "该交互式视频标题",
-                  "englishDefault": "Interactive Video",
                   "default": "Interactive Video",
                   "description": "用于最后测试、统计。"
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "交互式视频",
-          "englishDefault": "Interaction",
           "default": "Interaction"
         },
         {
           "label": "播放的提示",
-          "englishDefault": "Play",
           "default": "Play"
         },
         {
           "label": "暂停的提示",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "静音的提示",
-          "englishDefault": "Mute",
           "default": "Mute"
         },
         {
           "label": "取消静音的提示",
-          "englishDefault": "Unmute",
           "default": "Unmute"
         },
         {
           "label": "视频质量的提示",
-          "englishDefault": "Video Quality",
           "default": "Video Quality"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "全屏的提示",
-          "englishDefault": "Fullscreen",
           "default": "Fullscreen"
         },
         {
           "label": "退出全屏的提示",
-          "englishDefault": "Exit Fullscreen",
           "default": "Exit Fullscreen"
         },
         {
           "label": "小结认为的提示",
-          "englishDefault": "Summary",
           "default": "Summary"
         },
         {
           "label": "书签的提示",
-          "englishDefault": "Bookmarks",
           "default": "Bookmarks"
         },
         {
           "label": "进度按钮的缺省文本",
-          "englishDefault": "Continue",
           "default": "继续"
         },
         {
           "label": "Default label for continue video button",
-          "englishDefault": "Continue with video",
           "default": "继续播放视频"
         },
         {
           "label": "设置播放速率",
-          "englishDefault": "Playback Rate",
           "default": "播放速率"
         },
         {
           "label": "回放10秒",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "回放10秒"
         },
         {
           "label": "Navigation is disabled text",
-          "englishDefault": "Navigation is disabled",
           "default": "导航已禁用"
         },
         {
           "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
           "default": "Sound is disabled"
         },
         {
           "label": "Warning that the user must answer the question correctly before continuing",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "You need to answer all the questions correctly before continuing."
         },
         {
           "label": "后退按钮",
-          "englishDefault": "Back",
           "default": "后退"
         }
       ]

@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "Der Titel dieses interaktiven Videos",
-                  "englishDefault": "Interactive Video",
                   "default": "Interaktives Video",
                   "description": "Wird in Zusammenfassungen, Statistiken, etc. verwendet"
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Hintergrundfarbe",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,102 +272,82 @@
       "fields": [
         {
           "label": "Interaktionstitel",
-          "englishDefault": "Interaction",
           "default": "Interaktion"
         },
         {
           "label": "Titel zum Abspielen",
-          "englishDefault": "Play",
           "default": "Start"
         },
         {
           "label": "Titel zum Pausieren",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "Titel zum Stummschalten",
-          "englishDefault": "Mute",
           "default": "Stumm"
         },
         {
           "label": "Titel, um Stummmodus aufzuheben",
-          "englishDefault": "Unmute",
           "default": "Stummschaltung aufheben"
         },
         {
           "label": "Titel für die Videoqualität",
-          "englishDefault": "Video Quality",
           "default": "Video-Qualität"
         },
         {
           "label": "Titel für Video-Untertitel",
-          "englishDefault": "Captions",
           "default": "Video-Untertitel"
         },
         {
           "label": "Text für Schließen-Button",
-          "englishDefault": "Close",
           "default": "Schließen"
         },
         {
           "label": "Titel für den Vollbildmodus",
-          "englishDefault": "Fullscreen",
           "default": "Vollbildmodus"
         },
         {
           "label": "Titel zum Verlassen des Vollbildmodus",
-          "englishDefault": "Exit Fullscreen",
           "default": "Vollbildmodus verlassen"
         },
         {
           "label": "Titel für die Zusammenfassung",
-          "englishDefault": "Summary",
           "default": "Zusammenfassung"
         },
         {
           "label": "Titel für Lesezeichen",
-          "englishDefault": "Bookmarks",
           "default": "Lesezeichen"
         },
         {
           "label": "Standardbeschriftung für Springen-Button",
-          "englishDefault": "Continue",
           "default": "Weiter"
         },
         {
           "label": "Standardbeschriftung für Weiter-mit-dem-Video-Button",
-          "englishDefault": "Continue with video",
           "default": "Weiter mit dem Video"
         },
         {
           "label": "Abspielgeschwindigkeit setzen",
-          "englishDefault": "Playback Rate",
           "default": "Abspielgeschwindigkeit"
         },
         {
           "label": "10 Sekunden zurückspringen",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "10 Sekunden zurück"
         },
         {
           "label": "Text für deaktivierte Navigation",
-          "englishDefault": "Navigation is disabled",
           "default": "Navigation ist deaktiviert"
         },
         {
           "label": "Hinweis auf deaktivierten Ton",
-          "englishDefault": "Sound is disabled",
           "default": "Ton ist deaktiviert"
         },
         {
           "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, um weitermachen zu können",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
         },
         {
           "label": "Zurück-Button",
-          "englishDefault": "Back",
           "default": "Zurück"
         }
       ]

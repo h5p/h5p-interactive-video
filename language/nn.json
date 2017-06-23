@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "Tittel",
-                  "englishDefault": "Interactive Video",
                   "default": "Interaktiv video",
                   "description": "Brukes i oppsummeringer, statistikk o.l."
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "Interaksjonstittel",
-          "englishDefault": "Interaction",
           "default": "Interaksjon"
         },
         {
           "label": "Spel av-tittel",
-          "englishDefault": "Play",
           "default": "Spel av"
         },
         {
           "label": "Pause-tittel",
-          "englishDefault": "Pause",
           "default": "Pause"
         },
         {
           "label": "Lyd av-tittel",
-          "englishDefault": "Mute",
           "default": "Lyd av"
         },
         {
           "label": "Lyd på-tittel",
-          "englishDefault": "Unmute",
           "default": "Lyd på"
         },
         {
           "label": "Videokvalitetstittel",
-          "englishDefault": "Video Quality",
           "default": "Videokvalitet"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "Fullskjermstittel",
-          "englishDefault": "Fullscreen",
           "default": "Fullskjerm"
         },
         {
           "label": "Avslutt fullskjerm-tittel",
-          "englishDefault": "Exit Fullscreen",
           "default": "Avslutt fullskjerm"
         },
         {
           "label": "Oppsummeringstittel",
-          "englishDefault": "Summary",
           "default": "Oppsummering"
         },
         {
           "label": "Bokmerketittel",
-          "englishDefault": "Bookmarks",
           "default": "Bokmerker"
         },
         {
           "label": "Standard merkelapp for adaptivitetssøkeknappen",
-          "englishDefault": "Continue",
           "default": "Continue"
         },
         {
           "label": "Default label for continue video button",
-          "englishDefault": "Continue with video",
           "default": "Continue with video"
         },
         {
           "label": "Set playback rate",
-          "englishDefault": "Playback Rate",
           "default": "Playback Rate"
         },
         {
           "label": "Rewind 10 Seconds",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "Rewind 10 Seconds"
         },
         {
           "label": "Navigasjon er ikke tillatt tekst",
-          "englishDefault": "Navigation is disabled",
           "default": "Navigasjon er ikke tillatt"
         },
         {
           "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
           "default": "Sound is disabled"
         },
         {
           "label": "Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
           "label": "Tilbakeknapp",
-          "englishDefault": "Back",
           "default": "Tilbake"
         }
       ]

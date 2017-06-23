@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "このインタラクティブビデオのタイトル",
-                  "englishDefault": "Interactive Video",
                   "default": "インタラクティブビデオ",
                   "description": "概要や統計などで用いられる。"
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "背景色",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "インタラクションのタイトル",
-          "englishDefault": "Interaction",
           "default": "インタラクション"
         },
         {
           "label": "再生のタイトル",
-          "englishDefault": "Play",
           "default": "再生"
         },
         {
           "label": "一時停止のタイトル",
-          "englishDefault": "Pause",
           "default": "一時停止"
         },
         {
           "label": "ミュートのタイトル",
-          "englishDefault": "Mute",
           "default": "ミュート"
         },
         {
           "label": "ミュートを解除のタイトル",
-          "englishDefault": "Unmute",
           "default": "ミュートを解除"
         },
         {
           "label": "ビデオ品質のタイトル",
-          "englishDefault": "Video Quality",
           "default": "ビデオ品質"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "フルスクリーンのタイトル",
-          "englishDefault": "Fullscreen",
           "default": "フルスクリーン"
         },
         {
           "label": "フルスクリーン解除のタイトル",
-          "englishDefault": "Exit Fullscreen",
           "default": "フルスクリーン解除"
         },
         {
           "label": "概要のタイトル",
-          "englishDefault": "Summary",
           "default": "概要"
         },
         {
           "label": "ブックマークのタイトル",
-          "englishDefault": "Bookmarks",
           "default": "ブックマーク"
         },
         {
           "label": "適用シークボタンの既定ラベル",
-          "englishDefault": "Continue",
           "default": "続行"
         },
         {
           "label": "ビデを続行ボタンの既定のラベル",
-          "englishDefault": "Continue with video",
           "default": "ビデオを続行"
         },
         {
           "label": "再生速度を設定",
-          "englishDefault": "Playback Rate",
           "default": "再生速度"
         },
         {
           "label": "10秒巻き戻し",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "10秒巻き戻し"
         },
         {
           "label": "ナビゲーションが無効",
-          "englishDefault": "Navigation is disabled",
           "default": "ナビゲーションが無効"
         },
         {
           "label": "サウンドが無効",
-          "englishDefault": "Sound is disabled",
           "default": "サウンドが無効"
         },
         {
           "label": "続行する前にユーザーが設問に正解しなければならないことを警告",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "続行する前に、すべての設問に正しく解答する必要があります。"
         },
         {
           "label": "戻るボタン",
-          "englishDefault": "Back",
           "default": "戻る"
         }
       ]

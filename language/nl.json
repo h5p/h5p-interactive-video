@@ -15,7 +15,6 @@
               "fields": [
                 {
                   "label": "Titel",
-                  "englishDefault": "Interactive Video",
                   "default": "Interactieve Video",
                   "description": "Gebruikt in samenvattingen, statistieken, enz."
                 },
@@ -141,7 +140,6 @@
                     "fields": [
                       {
                         "label": "Achtergrondkleur",
-                        "englishDefault": "rgb(255, 255, 255)",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
@@ -274,98 +272,76 @@
       "fields": [
         {
           "label": "Titel van de activiteit",
-          "englishDefault": "Interaction",
           "default": "Interactie"
         },
         {
           "label": "Afspelen titel",
-          "englishDefault": "Play",
           "default": "Play"
         },
         {
           "label": "Pauzeren titel",
-          "englishDefault": "Pause",
           "default": "Pauzeren"
         },
         {
           "label": "Geluid uitschakelen",
-          "englishDefault": "Mute",
           "default": "Geluid uitschakelen"
         },
         {
           "label": "Geluid inschakelen",
-          "englishDefault": "Unmute",
           "default": "Geluid inschakelen"
         },
         {
           "label": "Videokwaliteit",
-          "englishDefault": "Video Quality",
           "default": "Videokwaliteit"
         },
-        {
-          "englishDefault": "Captions"
-        },
-        {
-          "englishDefault": "Close"
-        },
+        {},
+        {},
         {
           "label": "Volledig scherm",
-          "englishDefault": "Fullscreen",
           "default": "Volledig scherm"
         },
         {
           "label": "Volledig scherm verlaten",
-          "englishDefault": "Exit Fullscreen",
           "default": "Volledig scherm verlaten"
         },
         {
           "label": "Samenvatting",
-          "englishDefault": "Summary",
           "default": "Samenvatting"
         },
         {
           "label": "Bladwijzers",
-          "englishDefault": "Bookmarks",
           "default": "Bladwijzers"
         },
         {
           "label": "Standaardlabel voor zoekknop",
-          "englishDefault": "Continue",
           "default": "Doorgaan"
         },
         {
           "label": "Standaardknop om door te gaan met afspelen van video",
-          "englishDefault": "Continue with video",
           "default": "Doorgaan met afspelen"
         },
         {
           "label": "Afspeelsnelheid instellen",
-          "englishDefault": "Playback Rate",
           "default": "Afspeelsnelheid"
         },
         {
           "label": "10 seconden terug",
-          "englishDefault": "Rewind 10 Seconds",
           "default": "10 seconden terug"
         },
         {
           "label": "Tekst navigatie uitgeschakeld",
-          "englishDefault": "Navigation is disabled",
           "default": "Navigatie is uitgeschakeld"
         },
         {
           "label": "Tekst geluid uitgeschakeld",
-          "englishDefault": "Sound is disabled",
           "default": "Geluid is uitgeschakeld"
         },
         {
           "label": "Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
           "default": "Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
         },
         {
           "label": "Terugknop",
-          "englishDefault": "Back",
           "default": "Terug"
         }
       ]
