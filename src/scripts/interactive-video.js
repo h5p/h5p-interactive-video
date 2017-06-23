@@ -1,4 +1,6 @@
 import SelectorControl from './selector-control';
+import Controls from 'h5p-lib-controls/src/scripts/controls';
+import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
 const $ = H5P.jQuery;
 
@@ -769,9 +771,16 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
   this.controls.$interactionsContainer.children().remove();
 
   // Add new dots
-  for (var i = 0; i < this.interactions.length; i++) {
-    this.interactions[i].addDot(this.controls.$interactionsContainer);
-  }
+  this.interactions
+    .sort((a, b) =>  a.getDuration().from - b.getDuration().from)
+    .forEach(interaction => {
+      const $menuitem = interaction.addDot();
+
+      if($menuitem !== undefined) {
+        $menuitem.appendTo(this.controls.$interactionsContainer);
+        this.interactionKeyboardControls.addElement($menuitem.get(0))
+      }
+    });
 };
 
 /**
@@ -1226,6 +1235,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
   self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current'));
   self.controls.$totalTime = $time.find('.h5p-total');
+
+  self.interactionKeyboardControls = new Controls([new UIKeyboard()]);
 
   // Add containers for objects that will be displayed around the seekbar
   self.controls.$interactionsContainer = $('<div/>', {

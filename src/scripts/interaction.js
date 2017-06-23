@@ -1,3 +1,4 @@
+import striptags from 'striptags';
 const $ = H5P.jQuery;
 
 /**
@@ -22,6 +23,7 @@ const $ = H5P.jQuery;
  * @property {boolean} pause True if video should be paused when interaction is displayed
  * @property {string} displayType The way the interaction will be displayed, e.g. "button".
  * @property {boolean} mainSummary True if this interaction is the built-in summary of Interactive Video.
+ * @property {string} libraryTitle Clear text name of the library used in the interaction
  */
 
 /**
@@ -30,6 +32,14 @@ const $ = H5P.jQuery;
  * @property {string} label Label for adaptivity button
  * @property {boolean} allowOptOut User is not forced to follow the adaptivity
  */
+
+/**
+ * Returns true if parameter is a non empty string
+ *
+ * @param {string} text
+ * @returns {boolean}
+ */
+const nonEmptyString = text => text !== undefined && typeof text === 'string' && text.length > 0;
 
 /**
  * Keeps control of interactions in the interactive video.
@@ -56,7 +66,8 @@ function Interaction(parameters, player, previousState) {
 
   // Find library name and title
   var library = action.library.split(' ')[0];
-  var title = (action.params.contentName !== undefined ? action.params.contentName : player.l10n.interaction);
+  var title = [action.params.contentName, striptags(parameters.label), parameters.libraryTitle, player.l10n.interaction]
+    .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
   var classes;
@@ -870,9 +881,9 @@ function Interaction(parameters, player, previousState) {
    * Create dot for displaying above the video timeline.
    * Append to given container.
    *
-   * @param {H5P.jQuery} $container
+   * @returns {H5P.jQuery|undefined}
    */
-  self.addDot = function ($container) {
+  self.addDot = function () {
     if (library === 'H5P.Nil') {
       return; // Skip "sub titles"
     }
@@ -880,9 +891,8 @@ function Interaction(parameters, player, previousState) {
     var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
 
     // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
-    const menuitem = $('<div/>', {
+    const $menuitem = $('<div/>', {
       'role': 'menuitem',
-      'tabindex': 0,
       'class': seekbarClasses,
       title: title,
       css: {
@@ -910,10 +920,10 @@ function Interaction(parameters, player, previousState) {
     });
 
     if (player.preventSkipping) {
-      menuitem.attr('disabled', 'disabled');
+      $menuitem.attr('disabled', 'disabled');
     }
 
-    menuitem.appendTo($container);
+    return $menuitem;
   };
 
   /**

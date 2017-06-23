@@ -259,6 +259,13 @@
                   "optional": true
                 },
                 {
+                  "name": "libraryTitle",
+                  "type": "text",
+                  "importance": "low",
+                  "optional": true,
+                  "widget": "none"
+                },
+                {
                   "name": "action",
                   "type": "library",
                   "importance": "low",
