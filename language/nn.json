@@ -1,56 +1,77 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Interaktiv Video Editor",
-      "fields": [
+      "label":"Interaktiv Video Editor",
+      "fields":[
         {
-          "label": "Last opp video",
-          "fields": [
+          "label":"Last opp video",
+          "fields":[
             {
-              "label": "Legg til ein video",
-              "description": "Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
+              "label":"Legg til ein video",
+              "description":"Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
             },
             {
-              "label": "Startskjerm alternativer",
-              "fields": [
+              "label":"Startskjerm alternativer",
+              "fields":[
                 {
-                  "label": "Tittel",
-                  "englishDefault": "Interactive Video",
-                  "default": "Interaktiv video",
-                  "description": "Brukes i oppsummeringer, statistikk o.l."
+                  "label":"Tittel",
+                  "default":"Interaktiv video",
+                  "description":"Brukes i oppsummeringer, statistikk o.l."
                 },
                 {
-                  "label": "Skjul tittel på startskjerm"
+                  "label":"Skjul tittel på startskjerm"
                 },
                 {
-                  "label": "Kort beskrivelse (Valgfri)",
-                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
+                  "label":"Kort beskrivelse (Valgfri)",
+                  "description":"Valgfri. Viser en kort beskrivelse når en video lastes."
                 },
                 {
-                  "label": "Plakat",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label":"Plakat",
+                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label": "Opphavsrettsinformasjon",
-                  "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
+                  "label":"Opphavsrettsinformasjon",
+                  "description":"Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
                 }
               ]
             },
             {
-              "fields": [
+              "label":"Text tracks (subtitles, captions and descriptions)",
+              "fields":[
                 {
-                  "field": {
-                    "fields": [
-                      {},
+                  "label":"Available text tracks",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Track",
+                    "fields":[
                       {
-                        "options": [
-                          {},
-                          {},
-                          {}
+                        "label":"Track label",
+                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default":"Subtitles"
+                      },
+                      {
+                        "label":"Type of text track",
+                        "default":"subtitles",
+                        "options":[
+                          {
+                            "label":"Subtitles"
+                          },
+                          {
+                            "label":"Captions"
+                          },
+                          {
+                            "label":"Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label":"Source language, must be defined for subtitles",
+                        "default":"en",
+                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label":"Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -59,314 +80,340 @@
           ]
         },
         {
-          "label": "Legg til interaksjonar",
-          "fields": [
+          "label":"Legg til interaksjonar",
+          "fields":[
             {
-              "field": {
-                "fields": [
+              "field":{
+                "fields":[
                   {
-                    "label": "Visningstid"
-                  },
-                  {
-                    "label": "Pause video"
-                  },
-                  {
-                    "label": "Vis som",
-                    "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
-                    "options": [
+                    "label":"Visningstid",
+                    "fields":[
                       {
-                        "label": "Knapp"
+                        
                       },
                       {
-                        "label": "Plakat"
+                        
                       }
                     ]
                   },
                   {
-                    "label": "Ledetekst",
-                    "description": "Ledetekst som vises ved sida av interaksjonsikonet."
+                    "label":"Pause video"
                   },
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
                   {
-                    "label": "Adaptivitet",
-                    "fields": [
+                    "label":"Vis som",
+                    "description":"<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
+                    "options":[
                       {
-                        "label": "Når oppgaven er besvart korrekt",
-                        "fields": [
+                        "label":"Knapp"
+                      },
+                      {
+                        "label":"Plakat"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"Ledetekst"
+                  },
+                  {
+                    "label":"Label",
+                    "description":"Label displayed next to interaction icon."
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"Visuals",
+                    "fields":[
+                      {
+                        "label":"Background color",
+                        "fields":[
                           {
-                            "label": "Spol til",
-                            "description": "Skriv inn tidskoden på formatet M:SS"
+                            "label":"Seek to",
+                            "description":"Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "Tillat at brukeren kan avbryte oppgaven og fortsette"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Beskjed"
+                            "label":"Message"
                           },
                           {
-                            "label": "Merkelapp for spoleknappen"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Når oppgaven er besvart feil",
-                        "fields": [
+                        "label":"Box shadow",
+                        "fields":[
                           {
-                            "label": "Spol til",
-                            "description": "Skriv inn tidskoden på formatet M:SS"
+                            "label":"Seek to",
+                            "description":"Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "Tillat at brukeren kan avbryte oppgaven og fortsette"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Beskjed"
+                            "label":"Message"
                           },
                           {
-                            "label": "Merkelapp for spoleknappen"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Krev alt rett for å fortsette",
-                        "description": "Dette altnerativet fungerer best når \"Unngå at brukere hopper over innhold i video\" alternativet er på."
+                        "label":"Require full score for task before proceeding",
+                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
-                    "fields": [
+                    "label":"Go to on click",
+                    "fields":[
                       {
-                        "label": "Background color",
-                        "englishDefault": "rgb(255, 255, 255)",
-                        "default": "rgb(255, 255, 255)"
+                        "label":"Type",
+                        "default":"rgb(255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
-                    "fields": [
+                    "label":"Go to on click",
+                    "fields":[
                       {
-                        "label": "Type",
-                        "options": [
+                        "label":"Type",
+                        "options":[
                           {
-                            "label": "Timecode"
+                            "label":"Timecode"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label":"Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label": "URL",
-                        "fields": [
+                        "label":"URL",
+                        "fields":[
                           {
-                            "label": "Protocol",
-                            "options": [
+                            "label":"Protocol",
+                            "options":[
                               {
-                                "label": "http://"
+                                "label":"http://"
                               },
                               {
-                                "label": "https://"
+                                "label":"https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label":"(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label":"other"
                               }
-                            ]
+                            ],
+                            "default":"http://"
                           },
                           {
-                            "label": "URL"
+                            "label":"URL"
                           }
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Visualize",
+                        "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {}
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "Oppsummeringsoppgave",
-          "fields": [
-            {},
+          "label":"Oppsummeringsoppgave",
+          "fields":[
             {
-              "label": "Visningstid",
-              "description": "Antall sekunder før videoen slutter."
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"Visningstid",
+              "description":"Antall sekunder før videoen slutter."
             }
           ]
         }
       ]
     },
     {
-      "label": "Innstillinger for oppgave-oppførsel",
-      "fields": [
+      "label":"Innstillinger for oppgave-oppførsel",
+      "fields":[
         {
-          "label": "Begynn på",
-          "description": "Enter timecode in the format M:SS"
+          "label":"Begynn på",
+          "description":"Enter timecode in the format M:SS"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label": "Overstyr «Vis svar»-knapp",
-          "description": "Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
-          "options": [
+          "label":"Overstyr «Vis svar»-knapp",
+          "description":"Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options":[
             {
-              "label": "Aktivert"
+              "label":"Aktivert"
             },
             {
-              "label": "Deaktivert"
+              "label":"Deaktivert"
             }
           ]
         },
         {
-          "label": "Overstyr «Prøv igjen»-knapp",
-          "description": "Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
-          "options": [
+          "label":"Overstyr «Prøv igjen»-knapp",
+          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options":[
             {
-              "label": "Aktivert"
+              "label":"Aktivert"
             },
             {
-              "label": "Deaktivert"
+              "label":"Deaktivert"
             }
           ]
         },
         {
-          "label": "Vis bokmerkemeny når interaktiv video åpnes",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label": "Unngå at brukere hopper over innhold i video",
-          "description": "Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
+          "label":"Unngå at brukere hopper over innhold i video",
+          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
-          "label": "Deaktiver lyd",
-          "description": "Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "label":"Deaktiver lyd",
+          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
         }
       ]
     },
     {
-      "label": "Lokaliser",
-      "fields": [
+      "label":"Lokaliser",
+      "fields":[
         {
-          "label": "Interaksjonstittel",
-          "englishDefault": "Interaction",
-          "default": "Interaksjon"
+          "label":"Interaksjonstittel",
+          "default":"Interaksjon"
         },
         {
-          "label": "Spel av-tittel",
-          "englishDefault": "Play",
-          "default": "Spel av"
+          "label":"Spel av-tittel",
+          "default":"Spel av"
         },
         {
-          "label": "Pause-tittel",
-          "englishDefault": "Pause",
-          "default": "Pause"
+          "label":"Pause-tittel",
+          "default":"Pause"
         },
         {
-          "label": "Lyd av-tittel",
-          "englishDefault": "Mute",
-          "default": "Lyd av"
+          "label":"Lyd av-tittel",
+          "default":"Lyd av"
         },
         {
-          "label": "Lyd på-tittel",
-          "englishDefault": "Unmute",
-          "default": "Lyd på"
+          "label":"Lyd på-tittel",
+          "default":"Lyd på"
         },
         {
-          "label": "Videokvalitetstittel",
-          "englishDefault": "Video Quality",
-          "default": "Videokvalitet"
+          "label":"Videokvalitetstittel",
+          "default":"Videokvalitet"
         },
         {
-          "englishDefault": "Captions"
+          "label":"Video captions title",
+          "default":"Captions"
         },
         {
-          "englishDefault": "Close"
+          "label":"Close button text",
+          "default":"Close"
         },
         {
-          "label": "Fullskjermstittel",
-          "englishDefault": "Fullscreen",
-          "default": "Fullskjerm"
+          "label":"Fullskjermstittel",
+          "default":"Fullskjerm"
         },
         {
-          "label": "Avslutt fullskjerm-tittel",
-          "englishDefault": "Exit Fullscreen",
-          "default": "Avslutt fullskjerm"
+          "label":"Avslutt fullskjerm-tittel",
+          "default":"Avslutt fullskjerm"
         },
         {
-          "label": "Oppsummeringstittel",
-          "englishDefault": "Summary",
-          "default": "Oppsummering"
+          "label":"Oppsummeringstittel",
+          "default":"Oppsummering"
         },
         {
-          "label": "Bokmerketittel",
-          "englishDefault": "Bookmarks",
-          "default": "Bokmerker"
+          "label":"Bokmerketittel",
+          "default":"Bokmerker"
         },
         {
-          "label": "Standard merkelapp for adaptivitetssøkeknappen",
-          "englishDefault": "Continue",
-          "default": "Continue"
+          "label":"Standard merkelapp for adaptivitetssøkeknappen",
+          "default":"Continue"
         },
         {
-          "label": "Default label for continue video button",
-          "englishDefault": "Continue with video",
-          "default": "Continue with video"
+          "label":"Default label for continue video button",
+          "default":"Continue with video"
         },
         {
-          "label": "Set playback rate",
-          "englishDefault": "Playback Rate",
-          "default": "Playback Rate"
+          "label":"Set playback rate",
+          "default":"Playback Rate"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "englishDefault": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label":"Rewind 10 Seconds",
+          "default":"Rewind 10 Seconds"
         },
         {
-          "label": "Navigasjon er ikke tillatt tekst",
-          "englishDefault": "Navigation is disabled",
-          "default": "Navigasjon er ikke tillatt"
+          "label":"Navigasjon er ikke tillatt tekst",
+          "default":"Navigasjon er ikke tillatt"
         },
         {
-          "label": "Sound is disabled text",
-          "englishDefault": "Sound is disabled",
-          "default": "Sound is disabled"
+          "label":"Sound is disabled text",
+          "default":"Sound is disabled"
         },
         {
-          "label": "Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
-          "default": "Du må svare korrekt på alle spørsmålene før du kan fortsette."
+          "label":"Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
+          "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
-          "label": "Tilbakeknapp",
-          "englishDefault": "Back",
-          "default": "Tilbake"
+          "label":"Tilbakeknapp",
+          "default":"Tilbake"
         }
       ]
     }
