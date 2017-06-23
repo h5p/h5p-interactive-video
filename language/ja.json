@@ -1,56 +1,77 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "インタラクティブビデオエディタ",
-      "fields": [
+      "label":"インタラクティブビデオエディタ",
+      "fields":[
         {
-          "label": "アップロード/埋め込みビデオ",
-          "fields": [
+          "label":"アップロード/埋め込みビデオ",
+          "fields":[
             {
-              "label": "ビデオファイル",
-              "description": "インタラクティブビデオで使用したいビデオファイルを選択してください。確実にブラウザに最適にするには、少なくともwebmとmp4形式のビデオを追加してください。"
+              "label":"ビデオファイル",
+              "description":"インタラクティブビデオで使用したいビデオファイルを選択してください。確実にブラウザに最適にするには、少なくともwebmとmp4形式のビデオを追加してください。"
             },
             {
-              "label": "画面オプションを開始",
-              "fields": [
+              "label":"画面オプションを開始",
+              "fields":[
                 {
-                  "label": "このインタラクティブビデオのタイトル",
-                  "englishDefault": "Interactive Video",
-                  "default": "インタラクティブビデオ",
-                  "description": "概要や統計などで用いられる。"
+                  "label":"このインタラクティブビデオのタイトル",
+                  "default":"インタラクティブビデオ",
+                  "description":"概要や統計などで用いられる。"
                 },
                 {
-                  "label": "ビデオスタート画面でタイトルを非表示"
+                  "label":"ビデオスタート画面でタイトルを非表示"
                 },
                 {
-                  "label": "簡単な説明（オプション）",
-                  "description": "オプション。ビデオスタート画面で簡単な説明を表示してください。YouTubeビデオでは動作しません。"
+                  "label":"簡単な説明（オプション）",
+                  "description":"オプション。ビデオスタート画面で簡単な説明を表示してください。YouTubeビデオでは動作しません。"
                 },
                 {
-                  "label": "ポスター画像",
-                  "description": "ユーザーがビデオを起動する前に表示される画像。YouTubeビデオでは動作しません。"
+                  "label":"ポスター画像",
+                  "description":"ユーザーがビデオを起動する前に表示される画像。YouTubeビデオでは動作しません。"
                 },
                 {
-                  "label": "ビデオ著作権情報",
-                  "description": "ビデオの著作権とビデオ内で使用されている要素に関する情報。"
+                  "label":"ビデオ著作権情報",
+                  "description":"ビデオの著作権とビデオ内で使用されている要素に関する情報。"
                 }
               ]
             },
             {
-              "fields": [
+              "label":"Text tracks (subtitles, captions and descriptions)",
+              "fields":[
                 {
-                  "field": {
-                    "fields": [
-                      {},
+                  "label":"Available text tracks",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Track",
+                    "fields":[
                       {
-                        "options": [
-                          {},
-                          {},
-                          {}
+                        "label":"Track label",
+                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default":"Subtitles"
+                      },
+                      {
+                        "label":"Type of text track",
+                        "default":"subtitles",
+                        "options":[
+                          {
+                            "label":"Subtitles"
+                          },
+                          {
+                            "label":"Captions"
+                          },
+                          {
+                            "label":"Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label":"Source language, must be defined for subtitles",
+                        "default":"en",
+                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label":"Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -59,314 +80,340 @@
           ]
         },
         {
-          "label": "インタラクションを追加",
-          "fields": [
+          "label":"インタラクションを追加",
+          "fields":[
             {
-              "field": {
-                "fields": [
+              "field":{
+                "fields":[
                   {
-                    "label": "表示時間"
-                  },
-                  {
-                    "label": "ビデオを一時停止"
-                  },
-                  {
-                    "label": "表示",
-                    "description": "<b>ボタン</b>は、ユーザーが開くために押す必要のある折りたたまれたインタラクションです。 <b>ポスター</b>は、ビデオ上に直接表示される拡張インタラクションです",
-                    "options": [
+                    "label":"表示時間",
+                    "fields":[
                       {
-                        "label": "ボタン"
+                        
                       },
                       {
-                        "label": "ポスター"
+                        
                       }
                     ]
                   },
                   {
-                    "label": "ラベル",
-                    "description": "インタラクションアイコンのとなりにラベルが表示されます。"
+                    "label":"ビデオを一時停止"
                   },
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
                   {
-                    "label": "適応性",
-                    "fields": [
+                    "label":"表示",
+                    "description":"<b>ボタン</b>は、ユーザーが開くために押す必要のある折りたたまれたインタラクションです。 <b>ポスター</b>は、ビデオ上に直接表示される拡張インタラクションです",
+                    "options":[
                       {
-                        "label": "すべての正解に対する操作",
-                        "fields": [
+                        "label":"ボタン"
+                      },
+                      {
+                        "label":"ポスター"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"ラベル"
+                  },
+                  {
+                    "label":"Label",
+                    "description":"Label displayed next to interaction icon."
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"ビジュアル",
+                    "fields":[
+                      {
+                        "label":"背景色",
+                        "fields":[
                           {
-                            "label": "シーク",
-                            "description": "M:SS形式でタイムコードを入力"
+                            "label":"Seek to",
+                            "description":"Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "ユーザにオプトアウトと継続を許可"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "メッセージ"
+                            "label":"Message"
                           },
                           {
-                            "label": "シークボタンのラベル"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "間違った操作",
-                        "fields": [
+                        "label":"ボックスシャドー",
+                        "fields":[
                           {
-                            "label": "シーク",
-                            "description": "M:SS形式でタイムコードを入力"
+                            "label":"Seek to",
+                            "description":"Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "ユーザにオプトアウトと継続を許可"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "メッセージ"
+                            "label":"Message"
                           },
                           {
-                            "label": "シークボタンのラベル"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "続行する前にタスクの満点が必要",
-                        "description": "最も機能的にするには、このオプションをインタラクティブビデオの\"ビデオ内で前方にスキップしない\"オプションと組み合わせて使用する必要があります。"
+                        "label":"Require full score for task before proceeding",
+                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label": "ビジュアル",
-                    "fields": [
+                    "label":"クリックしてください",
+                    "fields":[
                       {
-                        "label": "背景色",
-                        "englishDefault": "rgb(255, 255, 255)",
-                        "default": "rgb(255, 255, 255)"
+                        "label":"タイプ",
+                        "default":"rgb(255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
                       },
                       {
-                        "label": "ボックスシャドー",
-                        "description": "インタラクションの周りにわずかな影を追加。 完全に透明なインタラクションにはこれを無効に。"
+                        "label":"行く",
+                        "description":"ユーザーがホットスポットを押したときに移るターゲットの時間。M：SSの形式でタイムコードを入力してください。"
                       }
                     ]
                   },
                   {
-                    "label": "クリックしてください",
-                    "fields": [
+                    "label":"Go to on click",
+                    "fields":[
                       {
-                        "label": "タイプ",
-                        "options": [
+                        "label":"Type",
+                        "options":[
                           {
-                            "label": "タイムコード"
+                            "label":"Timecode"
                           },
                           {
-                            "label": "別のページ(URL)"
+                            "label":"Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "行く",
-                        "description": "ユーザーがホットスポットを押したときに移るターゲットの時間。M：SSの形式でタイムコードを入力してください。"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label": "URL",
-                        "fields": [
+                        "label":"URL",
+                        "fields":[
                           {
-                            "label": "プロトコル",
-                            "options": [
+                            "label":"Protocol",
+                            "options":[
                               {
-                                "label": "http://"
+                                "label":"http://"
                               },
                               {
-                                "label": "https://"
+                                "label":"https://"
                               },
                               {
-                                "label": "(ルート 相対)"
+                                "label":"(root relative)"
                               },
                               {
-                                "label": "その他"
+                                "label":"other"
                               }
-                            ]
+                            ],
+                            "default":"http://"
                           },
                           {
-                            "label": "URL"
+                            "label":"URL"
                           }
                         ]
                       },
                       {
-                        "label": "可視化",
-                        "description": "境界線とアイコンを追加してインタラクションをクリックできることを示してください"
+                        "label":"Visualize",
+                        "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {}
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "タスクの概要",
-          "fields": [
-            {},
+          "label":"タスクの概要",
+          "fields":[
             {
-              "label": "ここで表示",
-              "description": "ビデオが終了するまでの秒数"
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"ここで表示",
+              "description":"ビデオが終了するまでの秒数"
             }
           ]
         }
       ]
     },
     {
-      "label": "動作設定",
-      "fields": [
+      "label":"動作設定",
+      "fields":[
         {
-          "label": "ここでビデオを開始",
-          "description": "M:SS形式でタイムコードを入寮k"
+          "label":"ここでビデオを開始",
+          "description":"M:SS形式でタイムコードを入寮k"
         },
         {
-          "label": "ビデオをループ",
-          "description": "ビデオをループで実行する必要があるかどうかを確認"
+          "label":"ビデオをループ",
+          "description":"ビデオをループで実行する必要があるかどうかを確認"
         },
         {
-          "label": "\"正解を表示\"ボタンを上書き",
-          "description": "このオプションは、すべての質問に対して\"正解を表示\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
-          "options": [
+          "label":"\"正解を表示\"ボタンを上書き",
+          "description":"このオプションは、すべての質問に対して\"正解を表示\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
+          "options":[
             {
-              "label": "有効"
+              "label":"有効"
             },
             {
-              "label": "無効"
+              "label":"無効"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "このオプションは、すべての質問に対して\"リトライ\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
-          "options": [
+          "label":"Override \"Retry\" button",
+          "description":"このオプションは、すべての質問に対して\"リトライ\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
+          "options":[
             {
-              "label": "有効"
+              "label":"有効"
             },
             {
-              "label": "無効"
+              "label":"無効"
             }
           ]
         },
         {
-          "label": "ブックマークメニューを開いて開始",
-          "description": "ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
+          "label":"ブックマークメニューを開いて開始",
+          "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "label": "10秒巻き戻すボタンを表示"
+          "label":"10秒巻き戻すボタンを表示"
         },
         {
-          "label": "ビデオで前方にスキップしないようにする",
-          "description": "このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
+          "label":"ビデオで前方にスキップしないようにする",
+          "description":"このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
         },
         {
-          "label": "サウンド無効",
-          "description": "このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "label":"サウンド無効",
+          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
         }
       ]
     },
     {
-      "label": "ローカライズ",
-      "fields": [
+      "label":"ローカライズ",
+      "fields":[
         {
-          "label": "インタラクションのタイトル",
-          "englishDefault": "Interaction",
-          "default": "インタラクション"
+          "label":"インタラクションのタイトル",
+          "default":"インタラクション"
         },
         {
-          "label": "再生のタイトル",
-          "englishDefault": "Play",
-          "default": "再生"
+          "label":"再生のタイトル",
+          "default":"再生"
         },
         {
-          "label": "一時停止のタイトル",
-          "englishDefault": "Pause",
-          "default": "一時停止"
+          "label":"一時停止のタイトル",
+          "default":"一時停止"
         },
         {
-          "label": "ミュートのタイトル",
-          "englishDefault": "Mute",
-          "default": "ミュート"
+          "label":"ミュートのタイトル",
+          "default":"ミュート"
         },
         {
-          "label": "ミュートを解除のタイトル",
-          "englishDefault": "Unmute",
-          "default": "ミュートを解除"
+          "label":"ミュートを解除のタイトル",
+          "default":"ミュートを解除"
         },
         {
-          "label": "ビデオ品質のタイトル",
-          "englishDefault": "Video Quality",
-          "default": "ビデオ品質"
+          "label":"ビデオ品質のタイトル",
+          "default":"ビデオ品質"
         },
         {
-          "englishDefault": "Captions"
+          "label":"Video captions title",
+          "default":"Captions"
         },
         {
-          "englishDefault": "Close"
+          "label":"Close button text",
+          "default":"Close"
         },
         {
-          "label": "フルスクリーンのタイトル",
-          "englishDefault": "Fullscreen",
-          "default": "フルスクリーン"
+          "label":"フルスクリーンのタイトル",
+          "default":"フルスクリーン"
         },
         {
-          "label": "フルスクリーン解除のタイトル",
-          "englishDefault": "Exit Fullscreen",
-          "default": "フルスクリーン解除"
+          "label":"フルスクリーン解除のタイトル",
+          "default":"フルスクリーン解除"
         },
         {
-          "label": "概要のタイトル",
-          "englishDefault": "Summary",
-          "default": "概要"
+          "label":"概要のタイトル",
+          "default":"概要"
         },
         {
-          "label": "ブックマークのタイトル",
-          "englishDefault": "Bookmarks",
-          "default": "ブックマーク"
+          "label":"ブックマークのタイトル",
+          "default":"ブックマーク"
         },
         {
-          "label": "適用シークボタンの既定ラベル",
-          "englishDefault": "Continue",
-          "default": "続行"
+          "label":"適用シークボタンの既定ラベル",
+          "default":"続行"
         },
         {
-          "label": "ビデを続行ボタンの既定のラベル",
-          "englishDefault": "Continue with video",
-          "default": "ビデオを続行"
+          "label":"ビデを続行ボタンの既定のラベル",
+          "default":"ビデオを続行"
         },
         {
-          "label": "再生速度を設定",
-          "englishDefault": "Playback Rate",
-          "default": "再生速度"
+          "label":"再生速度を設定",
+          "default":"再生速度"
         },
         {
-          "label": "10秒巻き戻し",
-          "englishDefault": "Rewind 10 Seconds",
-          "default": "10秒巻き戻し"
+          "label":"10秒巻き戻し",
+          "default":"10秒巻き戻し"
         },
         {
-          "label": "ナビゲーションが無効",
-          "englishDefault": "Navigation is disabled",
-          "default": "ナビゲーションが無効"
+          "label":"ナビゲーションが無効",
+          "default":"ナビゲーションが無効"
         },
         {
-          "label": "サウンドが無効",
-          "englishDefault": "Sound is disabled",
-          "default": "サウンドが無効"
+          "label":"サウンドが無効",
+          "default":"サウンドが無効"
         },
         {
-          "label": "続行する前にユーザーが設問に正解しなければならないことを警告",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
-          "default": "続行する前に、すべての設問に正しく解答する必要があります。"
+          "label":"続行する前にユーザーが設問に正解しなければならないことを警告",
+          "default":"続行する前に、すべての設問に正しく解答する必要があります。"
         },
         {
-          "label": "戻るボタン",
-          "englishDefault": "Back",
-          "default": "戻る"
+          "label":"戻るボタン",
+          "default":"戻る"
         }
       ]
     }
