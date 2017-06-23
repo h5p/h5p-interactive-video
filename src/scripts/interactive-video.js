@@ -505,7 +505,8 @@ InteractiveVideo.prototype.addSplash = function () {
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
       '<div class="h5p-splash-outer">' +
-        '<div class="h5p-splash" role="button" tabindex="1" title="' + this.l10n.play + '">' +
+        '<div class="h5p-splash" role="button" tabindex="0" ' +
+              'aria-label="' + this.l10n.play + '" title="' + this.l10n.play + '">' +
           '<div class="h5p-splash-main">' +
             '<div class="h5p-splash-main-outer">' +
               '<div class="h5p-splash-main-inner">' +
@@ -539,6 +540,9 @@ InteractiveVideo.prototype.addSplash = function () {
     if (code === 32) {
       that.video.play();
       e.preventDefault();
+
+      // Focus pause button
+      that.$controls.find('.h5p-play').focus();
     }
   });
 
