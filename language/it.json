@@ -40,7 +40,6 @@
               "fields":[
                 {
                   "label":"Available text tracks",
-                  "entity":"Track",
                   "field":{
                     "label":"Track",
                     "fields":[
@@ -51,7 +50,6 @@
                       },
                       {
                         "label":"Type of text track",
-                        "default":"subtitles",
                         "options":[
                           {
                             "label":"Subtitles"
@@ -66,7 +64,6 @@
                       },
                       {
                         "label":"Source language, must be defined for subtitles",
-                        "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -109,8 +106,7 @@
                       {
                         "label":"Poster"
                       }
-                    ],
-                    "default":"button"
+                    ]
                   },
                   {
                     "label":"Etchetta"
@@ -184,7 +180,6 @@
                     "fields":[
                       {
                         "label":"Type",
-                        "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
@@ -220,19 +215,18 @@
                             "label":"Protocol",
                             "options":[
                               {
-                                "label":"http://"
+                                
                               },
                               {
-                                "label":"https://"
+                                
                               },
                               {
-                                "label":"(root relative)"
+                                
                               },
                               {
-                                "label":"other"
+                                
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
                             "label":"URL"
