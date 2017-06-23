@@ -1,21 +1,18 @@
-(function (InteractiveVideo, EventDispatcher) {
-
 /**
  * Makes it easy to create popup controls for videos
  *
- * @class H5P.InteractiveVideo.SelectorControl
+ * @class SelectorControl
  * @extends H5P.EventDispatcher
  * @param {string} name Use to identify this control
  * @param {H5P.Video.LabelValue[]} options To select from
  * @param {H5P.Video.LabelValue} selectedOption Default selected option
  * @param {l10n} l10n Translations
  */
-InteractiveVideo.SelectorControl = function (name, options, selectedOption, l10n) {
-  /** @alias H5P.InteractiveVideo.SelectorControl# */
+const SelectorControl = function (name, options, selectedOption, l10n) {
   var self = this;
 
   // Inheritance
-  EventDispatcher.call(self);
+  H5P.EventDispatcher.call(self);
 
   // Presents the available options
   var list;
@@ -89,8 +86,8 @@ InteractiveVideo.SelectorControl = function (name, options, selectedOption, l10n
 };
 
 // Inheritance
-InteractiveVideo.SelectorControl.prototype = Object.create(EventDispatcher.prototype);
-InteractiveVideo.SelectorControl.prototype.constructor = InteractiveVideo.SelectorControl;
+SelectorControl.prototype = Object.create(H5P.EventDispatcher.prototype);
+SelectorControl.prototype.constructor = SelectorControl;
 
 // Button types
 var ICON = 0;
@@ -144,4 +141,4 @@ var button = function (className, type, label, handler, tag) {
   return button;
 };
 
-})(H5P.InteractiveVideo, H5P.EventDispatcher);
+export default SelectorControl;
