@@ -1229,6 +1229,15 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     orientation: 'horizontal',
     range: 'min',
     max: 0,
+    create: function (event, ui) {
+      $(event.target).find('.ui-slider-handle')
+        .attr('role', 'slider')
+        .attr('aria-valuemin', '0')
+        .attr('aria-valuemax', '100')
+        .attr('aria-valuenow', '0');
+        //.attr('aria-controls', this.videoPlayerId);
+    },
+
     start: function () {
       if (self.currentState === InteractiveVideo.SEEKING) {
         return; // Prevent double start on touch devies!
