@@ -959,7 +959,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
   var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
   if (self.preventSkipping) {
-    $slider.addClass('disabled');
+    $slider.attr('disabled', 'disabled');
   }
 
   // Keep track of all controls
@@ -1228,8 +1228,16 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$totalTime = $time.find('.h5p-total');
 
   // Add containers for objects that will be displayed around the seekbar
-  self.controls.$interactionsContainer = $('<div/>', {'class': 'h5p-interactions-container', appendTo: $slider});
-  self.controls.$bookmarksContainer = $('<div/>', {'class': 'h5p-bookmarks-container', appendTo: $slider});
+  self.controls.$interactionsContainer = $('<div/>', {
+    'role': 'menu',
+    'class': 'h5p-interactions-container',
+    appendTo: $slider
+  });
+
+  self.controls.$bookmarksContainer = $('<div/>', {
+    'class': 'h5p-bookmarks-container',
+    appendTo: $slider
+  });
 
   // Add seekbar/timeline
   self.hasPlayPromise = false;

@@ -878,12 +878,11 @@ function Interaction(parameters, player, previousState) {
     }
 
     var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
-    if (player.preventSkipping) {
-      seekbarClasses += ' disabled';
-    }
 
     // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
-    $('<div/>', {
+    const menuitem = $('<div/>', {
+      'role': 'menuitem',
+      'tabindex': 0,
       'class': seekbarClasses,
       title: title,
       css: {
@@ -908,7 +907,13 @@ function Interaction(parameters, player, previousState) {
           }
         }
       }
-    }).appendTo($container);
+    });
+
+    if (player.preventSkipping) {
+      menuitem.attr('disabled', 'disabled');
+    }
+
+    menuitem.appendTo($container);
   };
 
   /**
