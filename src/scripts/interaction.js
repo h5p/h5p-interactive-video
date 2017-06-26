@@ -1,4 +1,4 @@
-import striptags from 'striptags';
+import stripTags from 'strip-tags';
 const $ = H5P.jQuery;
 
 /**
@@ -66,7 +66,7 @@ function Interaction(parameters, player, previousState) {
 
   // Find library name and title
   var library = action.library.split(' ')[0];
-  var title = [action.params.contentName, striptags(parameters.label), parameters.libraryTitle, player.l10n.interaction]
+  var title = [action.params.contentName, stripTags(parameters.label), parameters.libraryTitle, player.l10n.interaction]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
@@ -150,6 +150,8 @@ function Interaction(parameters, player, previousState) {
     }).appendTo($interaction);
 
     $('<div/>', {
+      'role': 'button',
+      'tabindex': '0',
       'class': 'h5p-interaction-button',
       'aria-label': title
     }).appendTo($interaction);
@@ -896,6 +898,13 @@ function Interaction(parameters, player, previousState) {
       player.seek(parameters.duration.from);
       player.pause();
     }
+
+    // wait for interaction to be created
+    setTimeout(() => {
+      if($interaction) {
+        $interaction.focus()
+      }
+    }, 10);
   };
 
   /**

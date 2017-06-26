@@ -778,7 +778,10 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 
       if($menuitem !== undefined) {
         $menuitem.appendTo(this.controls.$interactionsContainer);
-        this.interactionKeyboardControls.addElement($menuitem.get(0))
+
+        if(!this.preventSkipping) {
+          this.interactionKeyboardControls.addElement($menuitem.get(0))
+        }
       }
     });
 };
@@ -1424,8 +1427,8 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
       click: function () {
         handler.call(this);
       },
-      keypress: function () {
-        if (event.which === 32) { // Space
+      keypress: function (event) {
+        if (event.which === 32 || event.which === 13) { // Space or Enter
           handler.call(this);
         }
       }

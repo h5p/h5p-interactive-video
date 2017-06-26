@@ -31,8 +31,8 @@
     "file-loader": "^0.11.2",
     "h5p-lib-controls": "0.0.9",
     "h5p-sdk": "^0.1.0",
-    "resolve-url-loader": "^2.0.3",
-    "striptags": "^3.0.1",
+    "resolve-url-loader": "^2.1.0",
+    "strip-tags": "^0.1.1",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.0.0"
