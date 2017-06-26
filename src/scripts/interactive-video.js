@@ -1243,7 +1243,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Add containers for objects that will be displayed around the seekbar
   self.controls.$interactionsContainer = $('<div/>', {
-    'role': 'menu',
+    'role': 'menubar',
     'class': 'h5p-interactions-container',
     appendTo: $slider
   });

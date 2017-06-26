@@ -1,5 +1,7 @@
-import stripTags from 'strip-tags';
 const $ = H5P.jQuery;
+
+const stripTags = str => $(`<div>${str}</div>`).text();
+
 
 /**
  * @typedef {Object} Parameters Interaction settings
