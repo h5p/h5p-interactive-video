@@ -936,7 +936,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   // Create list element for bookmark
   var $li = $(`<li role="menuitem" aria-describedby="${self.bookmarksMenuId}">${bookmark.label}</li>`)
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
-    .keypress(e => {
+    .keydown(e => {
       if(e.which === 32 || e.which === 13){
         self.onBookmarkSelect($bookmark, bookmark)
       }
@@ -1098,7 +1098,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'tabindex': '0',
       'title': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
-      keypress: event => {
+      keydown: event => {
         if (event.which === 32 || event.which === 13) {
           self.toggleBookmarksChooser();
           event.preventDefault();
@@ -1157,7 +1157,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'tabindex': '0',
     'title': self.l10n.close,
     click: () => closeQualityMenu(),
-    keypress: event => {
+    keydown: event => {
       if (event.which === 32 || event.which === 13) {
         closeQualityMenu();
         event.preventDefault();
@@ -1516,7 +1516,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
       const quality = $(this).attr('data-quality');
       self.updateQuality(quality)
     })
-    .keypress(function(e) {
+    .keydown(function(e) {
       if(e.which === 32 || e.which === 13) {
         const quality = $(this).attr('data-quality');
         self.updateQuality(quality)
@@ -1607,7 +1607,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
       const rate = $(this).attr('playback-rate');
       self.updatePlaybackRate(rate);
     })
-    .keypress(function(e) {
+    .keydown(function(e) {
       if(e.which === 32 || e.which === 13){
         const rate = $(this).attr('playback-rate');
         self.updatePlaybackRate(rate);

@@ -64,6 +64,20 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   };
 
   /**
+   * Recommended approach for iterating over NodeList
+   * @see {@link https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/}
+   *
+   * @param {array|NodeList} array
+   * @param {function} callback
+   * @param {object} scope
+   */
+  const forEach = function (array, callback, scope) {
+    for (let i = 0; i < array.length; i++) {
+      callback.call(scope, array[i], i); // passes back stuff we need
+    }
+  };
+
+  /**
    * Handles an item being selected
    *
    * @param {Element} element
@@ -72,9 +86,9 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   var handleSelect = function (element, option) {
     // New option selected
     selectedOption = option;
-    list.querySelectorAll('[aria-checked="true"]').forEach(function(element) {
-      element.setAttribute('aria-checked', 'false');
-    });
+    const elements = list.querySelectorAll('[aria-checked="true"]');
+
+    forEach(elements, element => element.setAttribute('aria-checked', 'false'), this);
 
     element.setAttribute('aria-checked', 'true');
     hide();
@@ -120,7 +134,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   self.updateOptions = function (newOptions) {
     if (list) {
       // Remove old list
-      list.remove();
+      list.parentNode.removeChild(list);
     }
 
     // Create a new list
@@ -199,7 +213,7 @@ var button = function (className, type, label, handler, tag, role) {
   button.addEventListener('click', function (event) {
     handler.call(button, event);
   }, false);
-  button.addEventListener('keypress', function (event) {
+  button.addEventListener('keydown', function (event) {
     if (event.which === 32 || event.which === 13) {
       event.preventDefault();
       handler.call(button, event);
