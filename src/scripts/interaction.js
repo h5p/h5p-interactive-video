@@ -930,9 +930,10 @@ function Interaction(parameters, player, previousState) {
       },
       on: {
         click: self.selectDot,
-        keypress: event => {
+        keydown: event => {
           if(event.which === 13 || event.which === 32) {
             self.selectDot();
+            return false;
           }
         }
       }
