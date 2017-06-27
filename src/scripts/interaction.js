@@ -1,6 +1,21 @@
 const $ = H5P.jQuery;
 
-const stripTags = str => $(`<div>${str}</div>`).text();
+
+/**
+ * Returns true if parameter is a non empty string
+ *
+ * @param {string} text
+ * @returns {boolean}
+ */
+const nonEmptyString = text => ((text !== undefined) && (typeof text === 'string') && (text.length > 0));
+
+/**
+ * Strip away html tags
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+const stripTags = str => nonEmptyString(str) ? $(`<div>${str}</div>`).text() : undefined;
 
 
 /**
@@ -34,14 +49,6 @@ const stripTags = str => $(`<div>${str}</div>`).text();
  * @property {string} label Label for adaptivity button
  * @property {boolean} allowOptOut User is not forced to follow the adaptivity
  */
-
-/**
- * Returns true if parameter is a non empty string
- *
- * @param {string} text
- * @returns {boolean}
- */
-const nonEmptyString = text => text !== undefined && typeof text === 'string' && text.length > 0;
 
 /**
  * Keeps control of interactions in the interactive video.
