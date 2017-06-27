@@ -343,6 +343,18 @@
         {
           "label": "Tilbakeknapp",
           "default": "Tilbake"
+        },
+        {
+          "label": "Passert tid i timer",
+          "default": "Timer"
+        },
+        {
+          "label": "Passert tid i minutter",
+          "default": "Minutter"
+        },
+        {
+          "label": "Passert tid i sekunder",
+          "default": "Sekunder"
         }
       ]
     }

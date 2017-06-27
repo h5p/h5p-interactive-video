@@ -392,6 +392,18 @@
         {
           "label": "Back button",
           "default": "Back"
+        },
+        {
+          "label": "Passed time hours",
+          "default": "Hours"
+        },
+        {
+          "label": "Passed time minutes",
+          "default": "Minutes"
+        },
+        {
+          "label": "Passed time seconds",
+          "default": "Seconds"
         }
       ]
     }

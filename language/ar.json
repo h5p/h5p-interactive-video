@@ -343,6 +343,18 @@
         {
           "label": "زر العودة",
           "default": "الى الخلف"
+        },
+        {
+          "label": "Passed time hours",
+          "default": "Hours"
+        },
+        {
+          "label": "Passed time minutes",
+          "default": "Minutes"
+        },
+        {
+          "label": "Passed time seconds",
+          "default": "Seconds"
         }
       ]
     }

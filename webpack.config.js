@@ -11,7 +11,6 @@ var config = {
   entry: {
     dist: './src/entries/dist.js'
   },
-  devtool: isDev ? 'inline-source-map' : 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'h5p-interactive-video.js'
@@ -39,5 +38,9 @@ var config = {
   },
   plugins: [extractStyles]
 };
+
+if(isDev) {
+  config.devtool = 'inline-source-map';
+}
 
 module.exports = config;

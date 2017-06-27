@@ -343,6 +343,18 @@
         {
           "label": "戻るボタン",
           "default": "戻る"
+        },
+        {
+          "label": "Passed time hours",
+          "default": "Hours"
+        },
+        {
+          "label": "Passed time minutes",
+          "default": "Minutes"
+        },
+        {
+          "label": "Passed time seconds",
+          "default": "Seconds"
         }
       ]
     }
