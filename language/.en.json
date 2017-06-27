@@ -1,55 +1,77 @@
 {
   "semantics": [
     {
-      "label": "Editor de video interactivo",
+      "label": "Interactive Video Editor",
       "fields": [
         {
-          "label": "Subir/Insertar video",
+          "label": "Upload/embed video",
           "fields": [
             {
-              "label": "Archivo de video",
-              "description": "Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
+              "label": "Add a video",
+              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
               "label": "Start screen options",
               "fields": [
                 {
-                  "label": "Título",
+                  "label": "The title of this interactive video",
                   "default": "Interactive Video",
-                  "description": "Utilizado en extractos, estadísticas, etc."
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "Ocultar el título al inicio del video"
+                  "label": "Hide title on video start screen"
                 },
                 {
-                  "label": "Descripción corta (Opcional)",
-                  "description": "Opcional. Presentar un texto descriptivo corto al inicio del video."
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label": "Cartel",
+                  "label": "Poster image",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label": "Derechos de autor del video",
-                  "description": "Información relacionada con los derechos de autor del video y de los elementos usados en el video."
+                  "label": "Video copyright information",
+                  "description": "Information regarding copyright of the video and elements used in the video."
                 }
               ]
             },
             {
+              "label": "Text tracks (subtitles, captions and descriptions)",
               "fields": [
                 {
+                  "label": "Available text tracks",
+                  "entity": "Track",
                   "field": {
+                    "label": "Track",
                     "fields": [
-                      {},
                       {
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
+                      },
+                      {
+                        "label": "Type of text track",
+                        "default": "subtitles",
                         "options": [
-                          {},
-                          {},
-                          {}
+                          {
+                            "label": "Subtitles"
+                          },
+                          {
+                            "label": "Captions"
+                          },
+                          {
+                            "label": "Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label": "Source language, must be defined for subtitles",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label": "Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -58,32 +80,40 @@
           ]
         },
         {
-          "label": "Agregar una interacción",
+          "label": "Add interactions",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Mostar duración"
-                  },
-                  {
-                    "label": "Pause"
-                  },
-                  {
-                    "label": "Mostras como",
-                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe preseionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
-                    "options": [
-                      {
-                        "label": "Botón"
-                      },
-                      {
-                        "label": "Cartel"
-                      }
+                    "label": "Display time",
+                    "fields": [
+                      {},
+                      {}
                     ]
                   },
                   {
-                    "label": "Etiqueta",
-                    "description": "Etiqueta descriptiva adjunta al ícono de interacción."
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ],
+                    "default": "button"
+                  },
+                  {
+                    "label": "Turn into button on small screens"
+                  },
+                  {
+                    "label": "Label",
+                    "description": "Label displayed next to interaction icon."
                   },
                   {},
                   {},
@@ -91,41 +121,41 @@
                   {},
                   {},
                   {
-                    "label": "Adaptabilidad",
+                    "label": "Adaptivity",
                     "fields": [
                       {
-                        "label": "Acción cuando todo es correcto",
+                        "label": "Action on all correct",
                         "fields": [
                           {
-                            "label": "Ir a",
-                            "description": "Introduzca el código de tiempo en formato M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "Permitir al usuario optar por no responder y proseguir"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Mensaje"
+                            "label": "Message"
                           },
                           {
-                            "label": "Etiqueta para el botón de búsqueda"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Acción en caso de respuesta incorrecta",
+                        "label": "Action on wrong",
                         "fields": [
                           {
-                            "label": "Ir a",
-                            "description": "Introduzca el código de tiempo en formato M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "Permitir al usuario optar por no responder y proseguir"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Mensaje"
+                            "label": "Message"
                           },
                           {
-                            "label": "Etiqueta para el botón de búsqueda"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
@@ -140,7 +170,8 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "default": "rgb(255, 255, 255)",
+                        "spectrum": {}
                       },
                       {
                         "label": "Box shadow",
@@ -179,12 +210,13 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "https://"
+                                "label": "(root relative)"
                               },
                               {
                                 "label": "other"
                               }
-                            ]
+                            ],
+                            "default": "http://"
                           },
                           {
                             "label": "URL"
@@ -200,16 +232,27 @@
                 ]
               }
             },
-            {}
+            {
+              "field": {
+                "fields": [
+                  {},
+                  {}
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "Resúmen del ejercicio",
+          "label": "Summary task",
           "fields": [
-            {},
             {
-              "label": "Mostrar en",
-              "description": "Número de segundos antes de que termine el video."
+              "default": {
+                "params": {}
+              }
+            },
+            {
+              "label": "Display at",
+              "description": "Number of seconds before the video ends."
             }
           ]
         }
@@ -251,15 +294,15 @@
           ]
         },
         {
-          "label": "Show bookmarks menu on load",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
         },
         {
           "label": "Show button for rewinding 10 seconds"
         },
         {
           "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls"
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
           "label": "Deactivate sound",
@@ -268,52 +311,58 @@
       ]
     },
     {
-      "label": "Localizar",
+      "label": "Localize",
       "fields": [
         {
-          "label": "Título de la actividad",
+          "label": "Interaction title",
           "default": "Interaction"
         },
         {
-          "label": "Reproducir",
+          "label": "Play title",
           "default": "Play"
         },
         {
-          "label": "Pausar",
+          "label": "Pause title",
           "default": "Pause"
         },
         {
-          "label": "Silenciar",
+          "label": "Mute title",
           "default": "Mute"
         },
         {
-          "label": "Habilitar sonido",
+          "label": "Unmute title",
           "default": "Unmute"
         },
         {
-          "label": "Calidad del video",
+          "label": "Video quality title",
           "default": "Video Quality"
         },
-        {},
-        {},
         {
-          "label": "Pantalla completa",
+          "label": "Video captions title",
+          "default": "Captions"
+        },
+        {
+          "label": "Close button text",
+          "default": "Close"
+        },
+        {
+          "label": "Fullscreen title",
           "default": "Fullscreen"
         },
         {
-          "label": "Salir de pantalla completa",
+          "label": "Exit fullscreen title",
           "default": "Exit Fullscreen"
         },
         {
-          "label": "Resumen",
+          "label": "Summary title",
           "default": "Summary"
         },
         {
-          "label": "Marcadores",
+          "label": "Bookmarks title",
           "default": "Bookmarks"
         },
         {
-          "label": "Etiqueta por defecto del botón de búsqueda",
+          "label": "Default label for adaptivity seek button",
           "default": "Continue"
         },
         {
@@ -337,12 +386,12 @@
           "default": "Sound is disabled"
         },
         {
-          "label": "Advertencia de que el usuario debe responder a la pregunta correctamente antes de continuar",
-          "default": "Debe responder correctamente a todas las preguntas antes de continuar."
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "You need to answer all the questions correctly before continuing."
         },
         {
-          "label": "Botón de retroceso",
-          "default": "Retroceso"
+          "label": "Back button",
+          "default": "Back"
         }
       ]
     }
