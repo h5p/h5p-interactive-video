@@ -107,7 +107,9 @@ function InteractiveVideo(params, id, contentData) {
     back: 'Back',
     hours: 'Hours',
     minutes: 'Minutes',
-    seconds: 'Seconds'
+    seconds: 'Seconds',
+    currentTime: 'Current time:',
+    totalTime: 'Total time:'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -207,7 +209,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.ENDED;
         self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
         self.timeUpdate(self.video.getCurrentTime());
-        self.controls.$currentTime.html(self.controls.$totalTime.html());
+        self.controls.$currentTime.html(self.controls.$totalTime.find('.human-time').html());
 
         self.complete();
 
@@ -573,14 +575,17 @@ InteractiveVideo.prototype.addSplash = function () {
  * Update and show controls for the interactive video.
  */
 InteractiveVideo.prototype.addControls = function () {
+  const self = this;
   // Display splash screen
   this.addSplash();
 
   this.attachControls(this.$controls.show());
 
-  var duration = this.video.getDuration();
-  var time = InteractiveVideo.humanizeTime(duration);
-  this.controls.$totalTime.html(time);
+  const duration = this.video.getDuration();
+  const humanTime = InteractiveVideo.humanizeTime(duration);
+  const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
+  this.controls.$totalTime.find('.human-time').html(humanTime);
+  this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
 
   // Set correct margins for timeline
@@ -1089,8 +1094,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   // Current time for minimal display
-  var $time = $('<div class="h5p-control h5p-simple-time"><span class="h5p-current">0:00</span></div>').appendTo($left);
-  self.controls.$currentTime = $time.find('.h5p-current');
+  var $time = $('<div class="h5p-control h5p-simple-time"><time class="h5p-current"><span class="human-time">0:00</span></time></div>').appendTo($left);
+  self.controls.$currentTime = $time.find('.h5p-current').find('human-time');
+  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('hidden-but-read');
 
   // Add fullscreen button
   if (!self.editor && H5P.fullscreenSupported !== false) {
@@ -1239,8 +1245,26 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.addPlaybackRateChooser();
 
   // Add display for time elapsed and duration
-  $time = $('<div class="h5p-control h5p-time"><span class="h5p-current">0:00</span> / <span class="h5p-total">0:00</span></div>').appendTo($right);
-  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current'));
+  const textStartTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
+  const textFullTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
+
+  $time = $(`<div class="h5p-control h5p-time">
+    <time class="h5p-current">
+      <span class="hidden-but-read">${self.l10n.currentTime} ${textStartTime}</span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>
+    <span>
+      <span class=hidden-but-read> of </span>
+      <span aria-hidden="true"> / </span>   
+    </span>
+    <time class="h5p-total">
+      <span class="hidden-but-read">${self.l10n.totalTime} ${textFullTime}</span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>
+  </div>`).appendTo($right);
+
+  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current').find('.human-time'));
+  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('.hidden-but-read');
   self.controls.$totalTime = $time.find('.h5p-total');
 
   self.interactionKeyboardControls = new Controls([new UIKeyboard()]);
@@ -1316,11 +1340,34 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       // Make overlay visible to catch mouseup/move events.
       self.$overlay.addClass('h5p-visible');
     },
-    slide: function (e, ui) {
+    slide: function (event, ui) {
+      const isKeyboardNav = event.key === 'ArrowRight' || event.key === 'ArrowLeft';
+      const continueHandlingEvents = !isKeyboardNav;
+      let time = ui.value;
+
+      if(isKeyboardNav) {
+        const endTime = self.video.getDuration();
+        const currentTime = self.video.getCurrentTime();
+        const step = endTime / 20;
+
+        time = (event.key === 'ArrowRight') ?
+          Math.min(currentTime + step, endTime) :
+          Math.max(currentTime - step, 0);
+
+        self.timeUpdate(time);
+      }
+
       // Update elapsed time
-      self.video.seek(ui.value);
-      self.updateInteractions(ui.value);
-      self.controls.$currentTime.html(InteractiveVideo.humanizeTime(ui.value));
+      self.video.seek(time);
+      self.updateInteractions(time);
+
+      const humanTime = InteractiveVideo.humanizeTime(time);
+      const a11yTime = InteractiveVideo.formatTimeForA11y(time, self.l10n);
+
+      self.controls.$currentTime.html(humanTime);
+      self.controls.$currentTimeA11y.html(`${self.l10n.currentTime} ${a11yTime}`);
+
+      return continueHandlingEvents;
     },
     stop: function (e, ui) {
       self.currentState = self.lastState;

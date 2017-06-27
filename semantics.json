@@ -902,6 +902,22 @@
         "importance": "low",
         "default": "Seconds",
         "optional": true
+      },
+      {
+        "name": "currentTime",
+        "type": "text",
+        "label": "Label for current time",
+        "importance": "low",
+        "default": "Current time:",
+        "optional": true
+      },
+      {
+        "name": "totalTime",
+        "type": "text",
+        "label": "Label for total time",
+        "importance": "low",
+        "default": "Total time:",
+        "optional": true
       }
     ]
   }

@@ -356,6 +356,14 @@
         {
           "label": "Passert tid i sekunder",
           "default": "Sekunder"
+        },
+        {
+          "label": "Tittel for passert tid",
+          "default": "Passert tid:"
+        },
+        {
+          "label": "Tittel for full tid",
+          "default": "Full tid:"
         }
       ]
     }
