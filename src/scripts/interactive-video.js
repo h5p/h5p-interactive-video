@@ -6,6 +6,7 @@ const $ = H5P.jQuery;
 
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
+const KEYBOARD_STEP_LENGTH_SECONDS = 5;
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -1348,11 +1349,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       if(isKeyboardNav) {
         const endTime = self.video.getDuration();
         const currentTime = self.video.getCurrentTime();
-        const step = endTime / 20;
 
         time = (event.key === 'ArrowRight') ?
-          Math.min(currentTime + step, endTime) :
-          Math.max(currentTime - step, 0);
+          Math.min(currentTime + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
+          Math.max(currentTime - KEYBOARD_STEP_LENGTH_SECONDS, 0);
 
         self.timeUpdate(time);
       }
