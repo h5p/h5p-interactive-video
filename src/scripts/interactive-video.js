@@ -1039,6 +1039,15 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   /**
+   * Closes the More menu if it is expanded
+   */
+  const closeMoreMenuIfExpanded = function(){
+    if(self.controls.$more.attr('aria-expanded') === 'true') {
+      self.controls.$more.click();
+    }
+  };
+
+  /**
    * Wraps a specifc handler to do some generic operations each time the handler is triggered.
    *
    * @private
@@ -1063,6 +1072,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         $button.attr('aria-expanded', 'false');
         $menu.removeClass('h5p-show');
         $button.focus();
+
+        closeMoreMenuIfExpanded();
       }
       else {
         // Opening
@@ -1280,30 +1291,42 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
 
+  /**
+   * Closes the minimal button overlay
+   */
+  const closeOverlay = () => {
+    self.controls.$minimalOverlay.removeClass('h5p-show');
+    self.controls.$more.attr('aria-expanded', 'false');
+    self.controls.$more.focus();
+    self.toggleBookmarksChooser(false);
+    if (self.controls.$qualityButton && self.controls.$qualityButton.attr('aria-expanded') === 'true') {
+      self.controls.$qualityButton.click();
+    }
+    if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.attr('aria-expanded') === 'true') {
+      self.controls.$playbackRateButton.click();
+    }
+    setTimeout(function () {
+      self.controls.$overlayButtons.removeClass('h5p-hide');
+    }, 150);
+  };
+
   // Add control for displaying overlay with buttons
   self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
-    if  (self.controls.$more.attr('aria-expanded') === 'true') {
-      // Close overlay
-      self.controls.$minimalOverlay.removeClass('h5p-show');
-      self.controls.$more.attr('aria-expanded', 'false');
-      self.toggleBookmarksChooser(false);
-      if (self.controls.$qualityButton && self.controls.$qualityButton.attr('aria-expanded') === 'true') {
-        self.controls.$qualityButton.click();
-      }
-      if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.attr('aria-expanded') === 'true') {
-        self.controls.$playbackRateButton.click();
-      }
-      setTimeout(function () {
-        self.controls.$overlayButtons.removeClass('h5p-hide');
-      }, 150);
+    const isExpanded = self.controls.$more.attr('aria-expanded') === 'true';
+
+    if (isExpanded) {
+      closeOverlay();
     }
     else {
       // Open overlay
       self.controls.$minimalOverlay.addClass('h5p-show');
       self.controls.$more.attr('aria-expanded', 'true');
-
       // Make sure splash screen is removed.
       self.removeSplash();
+
+      setTimeout(() => {
+        self.controls.$minimalOverlay.find('[tabindex="0"]').focus();
+      }, 150);
     }
 
     // Make sure sub menus are closed
@@ -1315,6 +1338,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.controls.$playbackRateChooser.removeClass('h5p-show');
     }
   });
+
+  // close overlay on ESC
+  self.minimalMenuKeyboardControls.on('close', () => closeOverlay());
 
   self.addQualityChooser();
   self.addPlaybackRateChooser();
@@ -1492,10 +1518,11 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
       click: function () {
         handler.call(this);
       },
-      keypress: function (event) {
-        if (event.which === 32) { // Space
+      keydown: function (event) {
+        if (event.which === 32 || event.which === 13) { // Space or enter
           handler.call(this);
         }
+        event.preventDefault();
         event.stopPropagation();
       }
     },
