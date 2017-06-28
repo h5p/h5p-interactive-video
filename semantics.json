@@ -259,6 +259,13 @@
                   "optional": true
                 },
                 {
+                  "name": "libraryTitle",
+                  "type": "text",
+                  "importance": "low",
+                  "optional": true,
+                  "widget": "none"
+                },
+                {
                   "name": "action",
                   "type": "library",
                   "importance": "low",
@@ -278,7 +285,7 @@
                     "H5P.DragText 1.5",
                     "H5P.GoToQuestion 1.2",
                     "H5P.IVHotspot 1.2",
-                    "H5P.Questionnaire 1.1"
+                    "H5P.Questionnaire 1.2"
                   ]
                 },
                 {
@@ -870,6 +877,46 @@
         "label": "Back button",
         "importance": "low",
         "default": "Back",
+        "optional": true
+      },
+      {
+        "name": "hours",
+        "type": "text",
+        "label": "Passed time hours",
+        "importance": "low",
+        "default": "Hours",
+        "optional": true
+      },
+      {
+        "name": "minutes",
+        "type": "text",
+        "label": "Passed time minutes",
+        "importance": "low",
+        "default": "Minutes",
+        "optional": true
+      },
+      {
+        "name": "seconds",
+        "type": "text",
+        "label": "Passed time seconds",
+        "importance": "low",
+        "default": "Seconds",
+        "optional": true
+      },
+      {
+        "name": "currentTime",
+        "type": "text",
+        "label": "Label for current time",
+        "importance": "low",
+        "default": "Current time:",
+        "optional": true
+      },
+      {
+        "name": "totalTime",
+        "type": "text",
+        "label": "Label for total time",
+        "importance": "low",
+        "default": "Total time:",
         "optional": true
       }
     ]

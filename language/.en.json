@@ -1,55 +1,77 @@
 {
   "semantics": [
     {
-      "label": "交互式视频编辑器",
+      "label": "Interactive Video Editor",
       "fields": [
         {
-          "label": "上传/嵌入视频",
+          "label": "Upload/embed video",
           "fields": [
             {
-              "label": "视频文件",
-              "description": "请选择你想添加交互式的原视频。为了确保最佳状态，请至少添加一个 webm 或者 mp4 格式。"
+              "label": "Add a video",
+              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
               "label": "Start screen options",
               "fields": [
                 {
-                  "label": "该交互式视频标题",
+                  "label": "The title of this interactive video",
                   "default": "Interactive Video",
-                  "description": "用于最后测试、统计。"
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label": "视频首帧显示中隐藏标题。"
+                  "label": "Hide title on video start screen"
                 },
                 {
-                  "label": "简述 (可选)",
-                  "description": "选填。在视频首帧中展示的简短文字描述。"
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label": "海报图片",
+                  "label": "Poster image",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label": "版权信息",
-                  "description": "展示视频及其中所用元素的版权信息。"
+                  "label": "Video copyright information",
+                  "description": "Information regarding copyright of the video and elements used in the video."
                 }
               ]
             },
             {
+              "label": "Text tracks (subtitles, captions and descriptions)",
               "fields": [
                 {
+                  "label": "Available text tracks",
+                  "entity": "Track",
                   "field": {
+                    "label": "Track",
                     "fields": [
-                      {},
                       {
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
+                      },
+                      {
+                        "label": "Type of text track",
+                        "default": "subtitles",
                         "options": [
-                          {},
-                          {},
-                          {}
+                          {
+                            "label": "Subtitles"
+                          },
+                          {
+                            "label": "Captions"
+                          },
+                          {
+                            "label": "Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label": "Source language, must be defined for subtitles",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label": "Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -58,32 +80,40 @@
           ]
         },
         {
-          "label": "添加交互",
+          "label": "Add interactions",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "显示时间"
-                  },
-                  {
-                    "label": "暂停视频"
-                  },
-                  {
-                    "label": "显示为",
-                    "description": "<b>按钮</b> 默认收起，需用户点击才能显示。<b>海报</b> 交互式内容整体在视频上展开显示",
-                    "options": [
-                      {
-                        "label": "按钮"
-                      },
-                      {
-                        "label": "海报"
-                      }
+                    "label": "Display time",
+                    "fields": [
+                      {},
+                      {}
                     ]
                   },
                   {
-                    "label": "文字",
-                    "description": "跟交互式图标对应的文字。"
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ],
+                    "default": "button"
+                  },
+                  {
+                    "label": "Turn into button on small screens"
+                  },
+                  {
+                    "label": "Label",
+                    "description": "Label displayed next to interaction icon."
                   },
                   {},
                   {},
@@ -92,41 +122,41 @@
                   {},
                   {},
                   {
-                    "label": "适应性",
+                    "label": "Adaptivity",
                     "fields": [
                       {
-                        "label": "全部答对后的动作",
+                        "label": "Action on all correct",
                         "fields": [
                           {
-                            "label": "跳转到时间",
-                            "description": "时间点的格式是 M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "允许用户关闭并继续播放"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "消息"
+                            "label": "Message"
                           },
                           {
-                            "label": "进度按钮文本"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "答错后的动作",
+                        "label": "Action on wrong",
                         "fields": [
                           {
-                            "label": "跳转到时间",
-                            "description": "时间点的格式是 M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": "允许用户关闭并继续播放"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "消息"
+                            "label": "Message"
                           },
                           {
-                            "label": "进度按钮文本"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
@@ -141,7 +171,8 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "default": "rgb(255, 255, 255)",
+                        "spectrum": {}
                       },
                       {
                         "label": "Box shadow",
@@ -185,7 +216,8 @@
                               {
                                 "label": "other"
                               }
-                            ]
+                            ],
+                            "default": "http://"
                           },
                           {
                             "label": "URL"
@@ -201,16 +233,27 @@
                 ]
               }
             },
-            {}
+            {
+              "field": {
+                "fields": [
+                  {},
+                  {}
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "课后小结",
+          "label": "Summary task",
           "fields": [
-            {},
             {
-              "label": "显示于",
-              "description": "视频结束前的多少秒."
+              "default": {
+                "params": {}
+              }
+            },
+            {
+              "label": "Display at",
+              "description": "Number of seconds before the video ends."
             }
           ]
         }
@@ -252,15 +295,15 @@
           ]
         },
         {
-          "label": "Show bookmarks menu on load",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
         },
         {
           "label": "Show button for rewinding 10 seconds"
         },
         {
           "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls"
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
           "label": "Deactivate sound",
@@ -269,52 +312,58 @@
       ]
     },
     {
-      "label": "本地化",
+      "label": "Localize",
       "fields": [
         {
-          "label": "交互式视频",
+          "label": "Interaction title",
           "default": "Interaction"
         },
         {
-          "label": "播放的提示",
+          "label": "Play title",
           "default": "Play"
         },
         {
-          "label": "暂停的提示",
+          "label": "Pause title",
           "default": "Pause"
         },
         {
-          "label": "静音的提示",
+          "label": "Mute title",
           "default": "Mute"
         },
         {
-          "label": "取消静音的提示",
+          "label": "Unmute title",
           "default": "Unmute"
         },
         {
-          "label": "视频质量的提示",
+          "label": "Video quality title",
           "default": "Video Quality"
         },
-        {},
-        {},
         {
-          "label": "全屏的提示",
+          "label": "Video captions title",
+          "default": "Captions"
+        },
+        {
+          "label": "Close button text",
+          "default": "Close"
+        },
+        {
+          "label": "Fullscreen title",
           "default": "Fullscreen"
         },
         {
-          "label": "退出全屏的提示",
+          "label": "Exit fullscreen title",
           "default": "Exit Fullscreen"
         },
         {
-          "label": "小结认为的提示",
+          "label": "Summary title",
           "default": "Summary"
         },
         {
-          "label": "书签的提示",
+          "label": "Bookmarks title",
           "default": "Bookmarks"
         },
         {
-          "label": "进度按钮的缺省文本",
+          "label": "Default label for adaptivity seek button",
           "default": "Continue"
         },
         {

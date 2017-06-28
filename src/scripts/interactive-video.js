@@ -5,6 +5,10 @@ import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
 const $ = H5P.jQuery;
 
+
+const SECONDS_IN_MINUTE = 60;
+const MINUTES_IN_HOUR = 60;
+
 /**
  * @typedef {Object} InteractiveVideoParameters
  * @property {Object} interactiveVideo View parameters
@@ -445,6 +449,13 @@ InteractiveVideo.prototype.attach = function ($container) {
     $container.children(':not(.h5p-video-wrapper)').remove();
     return;
   }
+  // read speaker
+  this.$read = $('<div/>', {
+    'aria-live': 'polite',
+    'class': 'hidden-but-read',
+    appendTo: $container
+  });
+  this.readText = null;
 
   // Controls
   this.$controls = $container.children('.h5p-controls').hide();
@@ -890,7 +901,7 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
     setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
   }
 
-  if (self.controls.$more.attr('aria-expanded') === 'true') {
+  if (self.controls.$more.attr('aria-expanded') === 'true' && self.$container.hasClass('h5p-minimal')) {
     self.controls.$more.click();
   }
   else {
@@ -898,6 +909,9 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
   }
   self.video.play();
   self.video.seek(bookmark.time);
+
+  const l11yTime = InteractiveVideo.formatTimeForA11y(bookmark.time, self.l10n);
+  setTimeout(() => self.read(`${self.l10n.currentTime} ${l11yTime}`), 150);
 };
 
 /**
@@ -1040,11 +1054,18 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   /**
    * Closes the More menu if it is expanded
+   *
+   * @return {boolean} if it was closed
    */
   const closeMoreMenuIfExpanded = function(){
-    if(self.controls.$more.attr('aria-expanded') === 'true') {
+    const isExpanded = self.$container.hasClass('h5p-minimal') &&
+      self.controls.$more.attr('aria-expanded') === 'true';
+
+    if(isExpanded) {
       self.controls.$more.click();
     }
+
+    return isExpanded;
   };
 
   /**
@@ -2328,6 +2349,35 @@ InteractiveVideo.prototype.resetTask = function () {
   }
 };
 
+/**
+ * Force readspeaker to read text. Useful when you have to use
+ * setTimeout for animations.
+ */
+InteractiveVideo.prototype.read = function (content) {
+  const self = this;
+
+  if (!self.$read) {
+    return; // Not ready yet
+  }
+
+  if (self.readText) {
+    // Combine texts if called multiple times
+    self.readText += (self.readText.substr(-1, 1) === '.' ? ' ' : '. ') + content
+  }
+  else {
+    console.log('reading', content);
+    self.readText = content;
+  }
+
+  // Set text
+  self.$read.html(self.readText);
+
+  setTimeout(() => {
+    // Stop combining when done reading
+    self.readText = null;
+    self.$read.html('');
+  }, 100);
+};
 
 /**
  * Gather copyright information for the current content.
@@ -2384,31 +2434,57 @@ InteractiveVideo.ATTACHED = 6;
  * @returns {string}
  */
 InteractiveVideo.humanizeTime = function (seconds) {
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
+  const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
+  let result = '';
 
-  minutes = minutes % 60;
-  seconds = Math.floor(seconds % 60);
+  if (time.hours !== 0) {
+    result += time.hours + ':';
 
-  var time = '';
-
-  if (hours !== 0) {
-    time += hours + ':';
-
-    if (minutes < 10) {
-      time += '0';
+    if (time.minutes < 10) {
+      result += '0';
     }
   }
 
-  time += minutes + ':';
+  result += time.minutes + ':';
 
-  if (seconds < 10) {
-    time += '0';
+  if (time.seconds < 10) {
+    result += '0';
   }
 
-  time += seconds;
+  result += time.seconds;
 
-  return time;
+  return result;
+};
+
+/**
+ * Returns a string for reading out time passed
+ *
+ * @param {number} seconds
+ * @param {object} labels
+ * @return {string}
+ */
+InteractiveVideo.formatTimeForA11y = function(seconds, labels) {
+  const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
+  const hoursText = time.hours > 0 ? `${time.hours} ${labels.hours}, ` : '';
+
+  return `${hoursText}${time.minutes} ${labels.minutes}, ${time.seconds} ${labels.seconds}`;
+};
+
+/**
+ * Takes seconds as a number, and splits it into seconds,
+ * minutes and hours
+ *
+ * @param {number} seconds
+ * @return {Time}
+ */
+InteractiveVideo.secondsToMinutesAndHours = function(seconds) {
+  const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
+
+  return {
+    seconds: Math.floor(seconds % SECONDS_IN_MINUTE),
+    minutes: minutes % MINUTES_IN_HOUR,
+    hours: Math.floor(minutes / MINUTES_IN_HOUR)
+  };
 };
 
 /**
