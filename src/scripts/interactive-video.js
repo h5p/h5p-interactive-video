@@ -344,7 +344,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   }
 
   // Create new track selector
-  self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n);
+  self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n, self.contentId);
   self.captionsTrackSelector.on('select', function (event) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
@@ -362,6 +362,8 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
+
+  self.minimalMenuKeyboardControls.insertElementAt(self.captionsTrackSelector.overlayControl, 2);
 
   self.resizeControls();
 };
@@ -753,13 +755,13 @@ InteractiveVideo.prototype.initInteraction = function (index) {
 InteractiveVideo.prototype.hasMainSummary = function () {
   var summary = this.options.summary;
   return !(summary === undefined ||
-  summary.displayAt === undefined ||
-  summary.task === undefined ||
-  summary.task.params === undefined ||
-  summary.task.params.summaries === undefined ||
-  !summary.task.params.summaries.length ||
-  summary.task.params.summaries[0].summary === undefined ||
-  !summary.task.params.summaries[0].summary.length);
+    summary.displayAt === undefined ||
+    summary.task === undefined ||
+    summary.task.params === undefined ||
+    summary.task.params.summaries === undefined ||
+    !summary.task.params.summaries.length ||
+    summary.task.params.summaries[0].summary === undefined ||
+    !summary.task.params.summaries[0].summary.length);
 };
 
 /**
@@ -874,6 +876,12 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
   }, 2000);
 };
 
+/**
+ * Update video to jump to position of selected bookmark
+ *
+ * @param {jQuery} $bookmark
+ * @param {object} bookmark
+ */
 InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
   var self = this;
 
@@ -1221,19 +1229,27 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Use wrapper to center controls
   var $minimalWrap = H5P.jQuery('<div/>', {
+    'role': 'menu',
     'class': 'h5p-minimal-wrap',
     appendTo: self.controls.$minimalOverlay
   });
+
+  self.minimalMenuKeyboardControls = new Controls([new UIKeyboard()]);
 
   // Add buttons to wrapper
   self.controls.$overlayButtons = H5P.jQuery([]);
 
   // Bookmarks
   if (bookmarksEnabled) {
-    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
+    self.controls.$bookmarkButtonMinimal = self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
       self.controls.$overlayButtons.addClass('h5p-hide');
       self.toggleBookmarksChooser(true);
-    }, true));
+    }, true);
+    self.controls.$bookmarkButtonMinimal.attr('role', 'menuitem');
+    self.controls.$bookmarkButtonMinimal.attr('tabindex', '-1');
+
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$bookmarkButtonMinimal);
+    self.minimalMenuKeyboardControls.addElement(self.controls.$bookmarkButtonMinimal.get(0));
   }
 
   // Quality
@@ -1244,8 +1260,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.controls.$qualityButton.click();
     }
   }, true);
+  self.controls.$qualityButtonMinimal.attr('role', 'menuitem');
+  self.controls.$qualityButtonMinimal.attr('tabindex', '-1');
   self.controls.$qualityButtonMinimal.attr('disabled', 'disabled');
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
+  self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
 
   // Playback rate
   self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
@@ -1255,8 +1274,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.controls.$playbackRateButton.click();
     }
   }, true);
+  self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
+  self.controls.$playbackRateButtonMinimal.attr('tabindex', '-1');
   self.controls.$playbackRateButtonMinimal.attr('disabled', 'disabled');
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
+  self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
 
   // Add control for displaying overlay with buttons
   self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {

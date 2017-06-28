@@ -162,7 +162,8 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   self.control = button('h5p-control h5p-' + name, ButtonType.ICON, l10n[name], toggle, 'div', 'button');
   self.control.setAttribute('aria-haspopup', 'true');
   // Create button for overlay controls
-  self.overlayControl = button('h5p-minimal-button h5p-' + name, ButtonType.TEXT, l10n[name], toggle, 'div', 'button');
+  self.overlayControl = button('h5p-minimal-button h5p-' + name, ButtonType.TEXT, l10n[name], toggle, 'div', 'menuitem');
+  self.overlayControl.tabIndex = '-1';
 
   // Generate initial options
   self.updateOptions(options);
