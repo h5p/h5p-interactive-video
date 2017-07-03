@@ -1546,9 +1546,9 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
       keydown: function (event) {
         if (event.which === 32 || event.which === 13) { // Space or enter
           handler.call(this);
+          event.preventDefault();
+          event.stopPropagation();
         }
-        event.preventDefault();
-        event.stopPropagation();
       }
     },
     appendTo: $target

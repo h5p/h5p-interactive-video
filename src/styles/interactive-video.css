@@ -415,7 +415,10 @@
   outline: 0;
   transition: box-shadow 0.1s ease-out 0.3s;
 }
-
+.h5p-interactive-video .h5p-control:focus {
+  outline: 2px solid #179fff;
+  outline-offset: -4px;
+}
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
 }

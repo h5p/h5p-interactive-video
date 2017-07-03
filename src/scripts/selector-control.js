@@ -164,6 +164,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   // Create button for overlay controls
   self.overlayControl = button('h5p-minimal-button h5p-' + name, ButtonType.TEXT, l10n[name], toggle, 'div', 'menuitem');
   self.overlayControl.tabIndex = '-1';
+  self.overlayControl.classList.add('h5p-hide');
 
   // Generate initial options
   self.updateOptions(options);
