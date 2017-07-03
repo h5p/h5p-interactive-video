@@ -373,13 +373,11 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
 
   // Insert popup and button
   $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter(self.controls.$qualityChooser);
-  $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
+  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
 
   self.minimalMenuKeyboardControls.insertElementAt(self.captionsTrackSelector.overlayControl, 2);
-
-  self.resizeControls();
 };
 
 /**
@@ -603,12 +601,6 @@ InteractiveVideo.prototype.addControls = function () {
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
-
-  // Set correct margins for timeline
-  this.controls.$slider.parent().css({
-    marginLeft: this.$controls.children('.h5p-controls-left').width(),
-    marginRight: this.$controls.children('.h5p-controls-right').width()
-  });
   this.controls.$currentTime.html(InteractiveVideo.humanizeTime(0));
 
   // Add keyboard controls for Bookmarks
@@ -1047,8 +1039,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // The controls consist of three different sections:
   var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
-  var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
   var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
+  var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
+
   if (self.preventSkipping) {
     $slider.attr('disabled', 'disabled');
   }
@@ -1200,156 +1193,32 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   // Current time for minimal display
-  var $time = $('<div class="h5p-control h5p-simple-time"><time class="h5p-current"><span class="human-time">0:00</span></time></div>').appendTo($left);
-  self.controls.$currentTime = $time.find('.h5p-current').find('human-time');
-  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('hidden-but-read');
+  var $simpleTime = $('<div class="h5p-control h5p-simple-time"><time class="h5p-current"><span class="human-time">0:00</span></time></div>').appendTo($left);
+  self.controls.$currentTime = $simpleTime.find('.h5p-current').find('human-time');
+  self.controls.$currentTimeA11y = $simpleTime.find('.h5p-current').find('hidden-but-read');
 
-  // Add fullscreen button
-  if (!self.editor && H5P.fullscreenSupported !== false) {
-    self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
-      self.toggleFullScreen();
-    });
-  }
+  // Add display for time elapsed and duration
+  const textStartTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
+  const textFullTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
 
-  // TODO: Do not add until qualities are present?
-  // Add popup for selecting video quality
-  self.controls.$qualityChooser = H5P.jQuery('<div/>', {
-    'class': 'h5p-chooser h5p-quality',
-    'role': 'dialog',
-    html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
-    appendTo: self.$container
-  });
+  const $time = $(`<div class="h5p-control h5p-time">
+    <time class="h5p-current">
+      <span class="hidden-but-read">${self.l10n.currentTime} ${textStartTime}</span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>
+    <span>
+      <span class=hidden-but-read> of </span>
+      <span aria-hidden="true"> / </span>   
+    </span>
+    <time class="h5p-total">
+      <span class="hidden-but-read">${self.l10n.totalTime} ${textFullTime}</span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>
+  </div>`).appendTo($right);
 
-  const closeQualityMenu = () => {
-    if (self.isMinimal) {
-      self.controls.$more.click();
-    }
-    else {
-      self.controls.$qualityButton.click();
-    }
-  };
-
-    // Adding close button to quality-menu
-  self.controls.$qualityChooser.append($('<span>', {
-    'role': 'button',
-    'class': 'h5p-chooser-close-button',
-    'tabindex': '0',
-    'title': self.l10n.close,
-    click: () => closeQualityMenu(),
-    keydown: event => {
-      if (event.which === 32 || event.which === 13) {
-        closeQualityMenu();
-        event.preventDefault();
-      }
-    }
-  }));
-
-  // Button for opening video quality selection dialog
-  self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
-  self.controls.$qualityButton.attr('disabled', 'disabled');
-  self.controls.$qualityButton.attr('aria-haspopup', 'true');
-  self.controls.$qualityButton.attr('aria-expanded', 'false');
-
-  // Add volume button control (toggle mute)
-  if (!isAndroid() && !isIpad()) {
-    self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
-      if (!self.deactivateSound) {
-        if (self.controls.$volume.hasClass('h5p-muted')) {
-          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
-          self.video.unMute();
-        }
-        else {
-          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
-          self.video.mute();
-        }
-      }
-    });
-    if (self.deactivateSound) {
-      self.controls.$volume
-        .addClass('h5p-muted')
-        .attr('disabled', 'disabled')
-        .attr('title', self.l10n.sndDisabled);
-    }
-  }
-
-  if (self.deactivateSound) {
-    self.video.mute();
-  }
-
-  // Add popup for selecting playback rate
-  self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
-    'class': 'h5p-chooser h5p-playbackRate',
-    'role': 'dialog',
-    html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
-    appendTo: self.$container
-  });
-
-  // Button for opening video playback rate selection dialog
-  self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
-  self.controls.$playbackRateButton.attr('disabled', 'disabled');
-  self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
-  self.controls.$playbackRateButton.attr('aria-expanded', 'false');
-
-  // Add more button for collapsing controls when there's little space
-
-  // Add overlay for display controls inside
-  self.controls.$minimalOverlay = H5P.jQuery('<div/>', {
-    'class': 'h5p-minimal-overlay',
-    appendTo: self.$container
-  });
-
-  // Use wrapper to center controls
-  var $minimalWrap = H5P.jQuery('<div/>', {
-    'role': 'menu',
-    'class': 'h5p-minimal-wrap',
-    appendTo: self.controls.$minimalOverlay
-  });
-
-  self.minimalMenuKeyboardControls = new Controls([new UIKeyboard()]);
-
-  // Add buttons to wrapper
-  self.controls.$overlayButtons = H5P.jQuery([]);
-
-  // Bookmarks
-  if (bookmarksEnabled) {
-    self.controls.$bookmarkButtonMinimal = self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
-      self.controls.$overlayButtons.addClass('h5p-hide');
-      self.toggleBookmarksChooser(true);
-    }, true);
-    self.controls.$bookmarkButtonMinimal.attr('role', 'menuitem');
-    self.controls.$bookmarkButtonMinimal.attr('tabindex', '-1');
-
-    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$bookmarkButtonMinimal);
-    self.minimalMenuKeyboardControls.addElement(self.controls.$bookmarkButtonMinimal.get(0));
-  }
-
-  // Quality
-  self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button', $minimalWrap, function () {
-    var disabled = self.controls.$qualityButton.attr('disabled') === 'disabled';
-    if (!disabled) {
-      self.controls.$overlayButtons.addClass('h5p-hide');
-      self.controls.$qualityButton.click();
-    }
-  }, true);
-  self.controls.$qualityButtonMinimal.attr('role', 'menuitem');
-  self.controls.$qualityButtonMinimal.attr('tabindex', '-1');
-  self.controls.$qualityButtonMinimal.attr('disabled', 'disabled');
-  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
-  self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
-
-  // Playback rate
-  self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
-    var disabled = self.controls.$playbackRateButton.attr('disabled') === 'disabled';
-    if (!disabled) {
-      self.controls.$overlayButtons.addClass('h5p-hide');
-      self.controls.$playbackRateButton.click();
-    }
-  }, true);
-  self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
-  self.controls.$playbackRateButtonMinimal.attr('tabindex', '-1');
-  self.controls.$playbackRateButtonMinimal.attr('disabled', 'disabled');
-  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
-  self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
+  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current').find('.human-time'));
+  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('.hidden-but-read');
+  self.controls.$totalTime = $time.find('.h5p-total');
 
   /**
    * Closes the minimal button overlay
@@ -1399,34 +1268,155 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }
   });
 
+  // Add popup for selecting playback rate
+  self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
+    'class': 'h5p-chooser h5p-playbackRate',
+    'role': 'dialog',
+    html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
+    appendTo: self.$container
+  });
+
+  // Button for opening video playback rate selection dialog
+  self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+  self.controls.$playbackRateButton.attr('disabled', 'disabled');
+  self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
+  self.controls.$playbackRateButton.attr('aria-expanded', 'false');
+
+  // Add volume button control (toggle mute)
+  if (!isAndroid() && !isIpad()) {
+    self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
+      if (!self.deactivateSound) {
+        if (self.controls.$volume.hasClass('h5p-muted')) {
+          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+          self.video.unMute();
+        }
+        else {
+          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+          self.video.mute();
+        }
+      }
+    });
+    if (self.deactivateSound) {
+      self.controls.$volume
+        .addClass('h5p-muted')
+        .attr('disabled', 'disabled')
+        .attr('title', self.l10n.sndDisabled);
+    }
+  }
+
+  if (self.deactivateSound) {
+    self.video.mute();
+  }
+
+  // TODO: Do not add until qualities are present?
+  // Add popup for selecting video quality
+  self.controls.$qualityChooser = H5P.jQuery('<div/>', {
+    'class': 'h5p-chooser h5p-quality',
+    'role': 'dialog',
+    html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
+    appendTo: self.$container
+  });
+
+  const closeQualityMenu = () => {
+    if (self.isMinimal) {
+      self.controls.$more.click();
+    }
+    else {
+      self.controls.$qualityButton.click();
+    }
+  };
+
+  // Adding close button to quality-menu
+  self.controls.$qualityChooser.append($('<span>', {
+    'role': 'button',
+    'class': 'h5p-chooser-close-button',
+    'tabindex': '0',
+    'title': self.l10n.close,
+    click: () => closeQualityMenu(),
+    keydown: event => {
+      if (event.which === 32 || event.which === 13) {
+        closeQualityMenu();
+        event.preventDefault();
+      }
+    }
+  }));
+
+  // Button for opening video quality selection dialog
+  self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
+  self.controls.$qualityButton.attr('disabled', 'disabled');
+  self.controls.$qualityButton.attr('aria-haspopup', 'true');
+  self.controls.$qualityButton.attr('aria-expanded', 'false');
+
+  // Add fullscreen button
+  if (!self.editor && H5P.fullscreenSupported !== false) {
+    self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
+      self.toggleFullScreen();
+    });
+  }
+
+  // Add overlay for display controls inside
+  self.controls.$minimalOverlay = H5P.jQuery('<div/>', {
+    'class': 'h5p-minimal-overlay',
+    appendTo: self.$container
+  });
+
+  // Use wrapper to center controls
+  var $minimalWrap = H5P.jQuery('<div/>', {
+    'role': 'menu',
+    'class': 'h5p-minimal-wrap',
+    appendTo: self.controls.$minimalOverlay
+  });
+
+  self.minimalMenuKeyboardControls = new Controls([new UIKeyboard()]);
   // close overlay on ESC
   self.minimalMenuKeyboardControls.on('close', () => closeOverlay());
 
+  // Add buttons to wrapper
+  self.controls.$overlayButtons = H5P.jQuery([]);
+
+  // Bookmarks
+  if (bookmarksEnabled) {
+    self.controls.$bookmarkButtonMinimal = self.createButton('bookmarks', 'h5p-minimal-button', $minimalWrap, function () {
+      self.controls.$overlayButtons.addClass('h5p-hide');
+      self.toggleBookmarksChooser(true);
+    }, true);
+    self.controls.$bookmarkButtonMinimal.attr('role', 'menuitem');
+    self.controls.$bookmarkButtonMinimal.attr('tabindex', '-1');
+
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$bookmarkButtonMinimal);
+    self.minimalMenuKeyboardControls.addElement(self.controls.$bookmarkButtonMinimal.get(0));
+  }
+
+  // Quality
+  self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button', $minimalWrap, function () {
+    var disabled = self.controls.$qualityButton.attr('disabled') === 'disabled';
+    if (!disabled) {
+      self.controls.$overlayButtons.addClass('h5p-hide');
+      self.controls.$qualityButton.click();
+    }
+  }, true);
+  self.controls.$qualityButtonMinimal.attr('role', 'menuitem');
+  self.controls.$qualityButtonMinimal.attr('tabindex', '-1');
+  self.controls.$qualityButtonMinimal.attr('disabled', 'disabled');
+  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
+  self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
+
+  // Playback rate
+  self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
+    var disabled = self.controls.$playbackRateButton.attr('disabled') === 'disabled';
+    if (!disabled) {
+      self.controls.$overlayButtons.addClass('h5p-hide');
+      self.controls.$playbackRateButton.click();
+    }
+  }, true);
+  self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
+  self.controls.$playbackRateButtonMinimal.attr('tabindex', '-1');
+  self.controls.$playbackRateButtonMinimal.attr('disabled', 'disabled');
+  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
+  self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
+
   self.addQualityChooser();
   self.addPlaybackRateChooser();
-
-  // Add display for time elapsed and duration
-  const textStartTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
-  const textFullTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
-
-  $time = $(`<div class="h5p-control h5p-time">
-    <time class="h5p-current">
-      <span class="hidden-but-read">${self.l10n.currentTime} ${textStartTime}</span>
-      <span class="human-time" aria-hidden="true">0:00</span>
-    </time>
-    <span>
-      <span class=hidden-but-read> of </span>
-      <span aria-hidden="true"> / </span>   
-    </span>
-    <time class="h5p-total">
-      <span class="hidden-but-read">${self.l10n.totalTime} ${textFullTime}</span>
-      <span class="human-time" aria-hidden="true">0:00</span>
-    </time>
-  </div>`).appendTo($right);
-
-  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current').find('.human-time'));
-  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('.hidden-but-read');
-  self.controls.$totalTime = $time.find('.h5p-total');
 
   self.interactionKeyboardControls = new Controls([new UIKeyboard()]);
 
@@ -1847,11 +1837,6 @@ InteractiveVideo.prototype.resize = function () {
   var self = this;
   var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
-  // Resize the controls the first time we're visible
-  if (!this.justVideo && this.controlsSized === undefined) {
-    this.resizeControls();
-  }
-
   this.$videoWrapper.css({
     marginTop: '',
     marginLeft: '',
@@ -1898,13 +1883,11 @@ InteractiveVideo.prototype.resize = function () {
       if (!this.$container.hasClass('h5p-minimal')) {
         // Use minimal controls
         this.$container.addClass('h5p-minimal');
-        this.resizeControls();
       }
     }
     else if (this.$container.hasClass('h5p-minimal')) {
       // Use normal controls
       this.$container.removeClass('h5p-minimal');
-      this.resizeControls();
     }
   }
 
@@ -1946,23 +1929,6 @@ InteractiveVideo.prototype.resize = function () {
   }
 
   this.resizeInteractions();
-};
-
-/**
- * Make sure that the jQuery UI scrollbar fits between the controls
- */
-InteractiveVideo.prototype.resizeControls = function () {
-  var left = this.$controls.children('.h5p-controls-left').width();
-  var right = this.$controls.children('.h5p-controls-right').width();
-  if (left || right) {
-    this.controlsSized = true;
-
-    // Set correct margins for timeline
-    this.controls.$slider.parent().css({
-      marginLeft: left,
-      marginRight: right
-    });
-  }
 };
 
 /**
@@ -2618,38 +2584,6 @@ var toggleTabIndex = function(el, isSelected){
     el.removeAttribute('tabindex');
   }
 };
-
-/**
- * Returns a string for reading out time passed
- *
- * @param {number} seconds
- * @param {object} labels
- * @return {string}
- */
-InteractiveVideo.formatTimeForA11y = function(seconds, labels) {
-  const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
-  const hoursText = time.hours > 0 ? `${time.hours} ${labels.hours}, ` : '';
-
-  return `${hoursText}${time.minutes} ${labels.minutes}, ${time.seconds} ${labels.seconds}`;
-};
-
-/**
- * Takes seconds as a number, and splits it into seconds,
- * minutes and hours
- *
- * @param {number} seconds
- * @return {Time}
- */
-InteractiveVideo.secondsToMinutesAndHours = function(seconds) {
-  const minutes = Math.floor(seconds / SECONDS_IN_MINUTE);
-
-  return {
-    seconds: Math.floor(seconds % SECONDS_IN_MINUTE),
-    minutes: minutes % MINUTES_IN_HOUR,
-    hours: Math.floor(minutes / MINUTES_IN_HOUR)
-  };
-};
-
 
 /**
  * Look for field with the given name in the given collection.

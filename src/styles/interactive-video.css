@@ -61,7 +61,7 @@
   display: block;
   width: 100%;
   height: auto;
-	color: #fff;
+  color: #fff;
 }
 .h5p-interactive-video .h5p-video::-internal-media-controls-overlay-cast-button {
   display: none; /* No chromecast support */
@@ -407,12 +407,17 @@
   font-size: 16px;
   height: 36px;
   background: #2c2c2c;
+  display: flex;
 }
 .h5p-interactive-video .h5p-control {
-  display: block;
+  display: inline-block;
   height: 36px;
   color: #fefefe;
   outline: 0;
+  width: 36px;
+  margin-right: 6px;
+  text-decoration: none;
+  cursor: pointer;
   transition: box-shadow 0.1s ease-out 0.3s;
 }
 .h5p-interactive-video .h5p-control:focus {
@@ -422,32 +427,15 @@
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
 }
-.h5p-interactive-video .h5p-controls-left {
-  float: left;
-  overflow: hidden;
-}
-.h5p-interactive-video .h5p-controls-left .h5p-control {
-  float: left;
+.h5p-interactive-video .h5p-control:focus {
+  outline: 2px solid #179fff;
+  outline-offset: -4px;
 }
 .h5p-interactive-video .h5p-controls-left .h5p-control:first-child {
   margin: 0 4px 0 8px;
 }
-.h5p-interactive-video .h5p-controls-right {
-  float: right;
-  overflow: hidden;
-}
-.h5p-interactive-video .h5p-controls-right .h5p-control {
-  float: right;
-}
 .h5p-interactive-video .h5p-controls-right .h5p-control:first-child {
   margin-right: 6px;
-}
-
-.h5p-interactive-video .h5p-control {
-  width: 36px;
-  margin-right: 6px;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .h5p-interactive-video [disabled].h5p-control {
@@ -506,7 +494,6 @@
   color: #bababa
 }
 .h5p-interactive-video .h5p-control:hover:before,
-.h5p-interactive-video .h5p-control:focus:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:hover {
   color: #dbd7d1;
 }
@@ -574,7 +561,7 @@
 .h5p-interactive-video.h5p-minimal .h5p-simple-time,
 .h5p-interactive-video.h5p-minimal .h5p-more,
 .h5p-interactive-video.h5p-minimal .h5p-simple-time {
-  display: block;
+  display: inline-block;
 }
 
 .h5p-interactive-video .h5p-minimal-overlay {
@@ -777,6 +764,12 @@
   padding: 0 8px;
   line-height: 36px;
 }
+.h5p-interactive-video .h5p-time {
+  float: left;
+}
+.h5p-interactive-video .h5p-simple-time {
+  float: right;
+}
 .h5p-interactive-video .h5p-time .h5p-current,
 .h5p-interactive-video .h5p-simple-time .h5p-current {
   color: #fff;
@@ -788,6 +781,7 @@
   margin: 0;
   height: 10px;
   cursor: default;
+  flex: 1;
 }
 .h5p-interactive-video .h5p-slider .ui-slider {
   background: #0b0d0c;
@@ -1154,7 +1148,7 @@
   right: 0.5em;
   cursor: pointer;
   padding: 0.25em 0.5em;
-        outline: none;
+  outline: none;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
   font-family: 'H5PFontAwesome4';
