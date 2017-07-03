@@ -526,23 +526,24 @@ InteractiveVideo.prototype.addSplash = function () {
 
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
-    '<div class="h5p-splash-outer">' +
-    '<div class="h5p-splash" role="button" tabindex="1" title="' + this.l10n.play + '">' +
-    '<div class="h5p-splash-main">' +
-    '<div class="h5p-splash-main-outer">' +
-    '<div class="h5p-splash-main-inner">' +
-    '<div class="h5p-splash-play-icon"></div>' +
-    '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '<div class="h5p-splash-footer">' +
-    '<div class="h5p-splash-footer-holder">' +
-    '<div class="h5p-splash-description">' + that.startScreenOptions.shortStartDescription + '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
+      '<div class="h5p-splash-outer">' +
+        '<div class="h5p-splash" role="button" tabindex="0" ' +
+              'aria-label="' + this.l10n.play + '" title="' + this.l10n.play + '">' +
+          '<div class="h5p-splash-main">' +
+            '<div class="h5p-splash-main-outer">' +
+              '<div class="h5p-splash-main-inner">' +
+                '<div class="h5p-splash-play-icon"></div>' +
+                '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="h5p-splash-footer">' +
+            '<div class="h5p-splash-footer-holder">' +
+              '<div class="h5p-splash-description">' + that.startScreenOptions.shortStartDescription + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
     '</div>')
     .click(function () {
       that.video.play();
@@ -557,10 +558,13 @@ InteractiveVideo.prototype.addSplash = function () {
   // Add play functionality and title to play icon
   $('.h5p-splash', this.$splash).keydown(function (e) {
     var code = e.which;
-    // 32 = Space
-    if (code === 32) {
+    // 32 = Space, 13 = enter
+    if (code === 32 || code === 13) {
       that.video.play();
       e.preventDefault();
+
+      // Focus pause button
+      that.$controls.find('.h5p-play').focus();
     }
   });
 
