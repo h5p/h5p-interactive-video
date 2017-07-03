@@ -855,21 +855,32 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
       html: self.l10n.navDisabled,
       appendTo: self.$preventSkippingMessage
     });
+
+    self.$preventSkippingMessageTextA11y = $('<div>', {
+      'class': 'hidden-but-read',
+      html: self.l10n.navDisabled,
+      appendTo: self.controls.$slider
+    });
   }
+
 
   // Move element to offset position
   self.$preventSkippingMessage.css('left', offsetX);
 
   // Show message
   setTimeout(function () {
-    self.$preventSkippingMessage.addClass('h5p-show');
+    self.$preventSkippingMessage
+      .addClass('h5p-show')
+      .attr('aria-hidden', 'false');
   }, 0);
 
   // Wait for a while before removing message
   self.preventSkippingWarningTimeout = setTimeout(function () {
 
     // Remove message
-    self.$preventSkippingMessage.removeClass('h5p-show');
+    self.$preventSkippingMessage
+      .removeClass('h5p-show')
+      .attr('aria-hidden', 'true');
 
     // Wait a while before allowing to display warning again.
     setTimeout(function () {
@@ -1293,13 +1304,20 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     range: 'min',
     max: 0,
     create: function (event, ui) {
-      $(event.target).find('.ui-slider-handle')
+      const $handle = $(event.target).find('.ui-slider-handle');
+
+      $handle
         .attr('role', 'slider')
         .attr('aria-valuemin', '0')
         .attr('aria-valuemax',  self.video.getDuration().toString())
         .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
         .attr('aria-valuenow', '0');
-        //.attr('aria-controls', this.videoPlayerId);
+
+      if (self.preventSkipping) {
+        $handle
+          .attr('disabled', 'disabled')
+          .attr('aria-hidden', 'true');
+      }
     },
 
     start: function () {
@@ -1994,7 +2012,8 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
 
     if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
       // Update elapsed time
-      self.controls.$currentTime.html(InteractiveVideo.humanizeTime(second < 0 ? 0 : second));
+      self.controls.$currentTime.html(InteractiveVideo.humanizeTime(Math.max(second, 0)));
+      self.controls.$currentTimeA11y.html(InteractiveVideo.formatTimeForA11y(Math.max(second, 0), self.l10n));
     }
   }
   self.lastSecond = second;
