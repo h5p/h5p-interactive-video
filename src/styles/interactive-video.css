@@ -438,13 +438,13 @@
   margin-right: 6px;
 }
 
-.h5p-interactive-video [disabled].h5p-control {
+.h5p-interactive-video [aria-disabled="true"].h5p-control {
   cursor: default;
 }
 
 .h5p-interactive-video .h5p-control.h5p-time,
-.h5p-interactive-video [disabled].h5p-control.h5p-slider .ui-slider-handle,
-.h5p-interactive-video [disabled].h5p-control.h5p-slider {
+.h5p-interactive-video [aria-disabled="true"].h5p-control.h5p-slider .ui-slider-handle,
+.h5p-interactive-video [aria-disabled="true"].h5p-control.h5p-slider {
   cursor: default;
 }
 
@@ -501,11 +501,11 @@
   outline: 2px solid #179fff;
   outline-offset: 5px;
 }
-.h5p-interactive-video [disabled].h5p-control:before,
-.h5p-interactive-video .h5p-minimal-overlay [disabled].h5p-minimal-button {
+.h5p-interactive-video [aria-disabled="true"].h5p-control:before,
+.h5p-interactive-video .h5p-minimal-overlay [aria-disabled="true"].h5p-minimal-button {
   color: #606060;
 }
-.h5p-interactive-video .h5p-minimal-overlay [disabled].h5p-minimal-button {
+.h5p-interactive-video .h5p-minimal-overlay [aria-disabled="true"].h5p-minimal-button {
   color: #747474;
 }
 .h5p-interactive-video .h5p-play:before {
@@ -791,7 +791,7 @@
   touch-action: manipulation;
 }
 
-.h5p-interactive-video [disabled].h5p-slider .ui-slider {
+.h5p-interactive-video [aria-disabled="true"].h5p-slider .ui-slider {
   background: #000;
 }
 
@@ -800,11 +800,11 @@
   height: 9px;
   border-radius: 0;
 }
-.h5p-interactive-video [disabled].h5p-slider .ui-slider-range {
+.h5p-interactive-video [aria-disabled="true"].h5p-slider .ui-slider-range {
   background: #7a7a7a;
 }
 
-.h5p-interactive-video [disabled].h5p-slider .ui-slider.ui-state-disabled {
+.h5p-interactive-video [aria-disabled="true"].h5p-slider .ui-slider.ui-state-disabled {
   opacity: 1;
   filter: none;
 }
@@ -827,11 +827,11 @@
   outline-offset: 4px;
 }
 
-.h5p-interactive-video [disabled].h5p-slider .ui-slider-handle {
+.h5p-interactive-video [aria-disabled="true"].h5p-slider .ui-slider-handle {
   background: none;
 }
 
-.h5p-interactive-video :not([disabled]).h5p-slider .ui-slider-handle:before {
+.h5p-interactive-video :not([aria-disabled="true"]).h5p-slider .ui-slider-handle:before {
   font-family: H5PInteractiveVideo;
   content: "\e001";
   font-size: 26px;
@@ -847,7 +847,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.h5p-interactive-video :not([disabled]).h5p-slider .ui-slider-handle:hover:before {
+.h5p-interactive-video :not([aria-disabled="true"]).h5p-slider .ui-slider-handle:hover:before {
   color: #dbd7d1;
 }
 

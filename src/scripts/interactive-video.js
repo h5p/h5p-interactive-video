@@ -1074,7 +1074,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
   if (self.preventSkipping) {
-    $slider.attr('disabled', 'disabled');
+    $slider.attr('aria-disabled', 'true');
   }
 
   // Keep track of all controls
@@ -1082,7 +1082,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Add play button/pause button
   self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-    var disabled = (self.controls.$play.attr('disabled') === 'disabled');
+    var disabled = (self.controls.$play.attr('aria-disabled') === 'true');
     if (self.controls.$play.hasClass('h5p-pause') && !disabled) {
 
       // Auto toggle fullscreen on play if on a small device
@@ -1143,7 +1143,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     return function () {
       var $button = self.controls[button];
       var $menu = self.controls[menu];
-      var isDisabled = $button.attr('disabled') === 'disabled';
+      var isDisabled = $button.attr('aria-disabled') === 'true';
       var isExpanded = $button.attr('aria-expanded') === 'true';
 
       if (isDisabled) {
@@ -1308,7 +1308,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Button for opening video playback rate selection dialog
   self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
-  self.controls.$playbackRateButton.attr('disabled', 'disabled');
+  self.controls.$playbackRateButton.attr('aria-disabled', 'true');
   self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
   self.controls.$playbackRateButton.attr('aria-expanded', 'false');
 
@@ -1343,7 +1343,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
-        .attr('disabled', 'disabled')
+        .attr('aria-disabled', 'true')
         .attr('title', self.l10n.sndDisabled);
     }
   }
@@ -1386,7 +1386,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Button for opening video quality selection dialog
   self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
-  self.controls.$qualityButton.attr('disabled', 'disabled');
+  self.controls.$qualityButton.attr('aria-disabled', 'true');
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
   self.controls.$qualityChooser.insertAfter(self.controls.$qualityButton);
@@ -1434,7 +1434,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Quality
   self.controls.$qualityButtonMinimal = self.createButton('quality', 'h5p-minimal-button', $minimalWrap, function () {
-    var disabled = self.controls.$qualityButton.attr('disabled') === 'disabled';
+    var disabled = self.controls.$qualityButton.attr('aria-disabled') === 'true';
     if (!disabled) {
       self.controls.$overlayButtons.addClass('h5p-hide');
       self.controls.$qualityButton.click();
@@ -1442,13 +1442,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }, true);
   self.controls.$qualityButtonMinimal.attr('role', 'menuitem');
   self.controls.$qualityButtonMinimal.attr('tabindex', '-1');
-  self.controls.$qualityButtonMinimal.attr('disabled', 'disabled');
+  self.controls.$qualityButtonMinimal.attr('aria-disabled', 'true');
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
 
   // Playback rate
   self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
-    var disabled = self.controls.$playbackRateButton.attr('disabled') === 'disabled';
+    var disabled = self.controls.$playbackRateButton.attr('aria-disabled') === 'true';
     if (!disabled) {
       self.controls.$overlayButtons.addClass('h5p-hide');
       self.controls.$playbackRateButton.click();
@@ -1456,7 +1456,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }, true);
   self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
   self.controls.$playbackRateButtonMinimal.attr('tabindex', '-1');
-  self.controls.$playbackRateButtonMinimal.attr('disabled', 'disabled');
+  self.controls.$playbackRateButtonMinimal.attr('aria-disabled', 'true');
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
 
@@ -1499,7 +1499,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
       if (self.preventSkipping) {
         $handle
-          .attr('disabled', 'disabled')
+          .attr('aria-disabled', 'true')
           .attr('aria-hidden', 'true');
       }
     },
@@ -1707,7 +1707,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   }
 
   var qualities = this.video.getQualities();
-  if (!qualities || this.controls.$qualityButton === undefined || !(this.controls.$qualityButton.attr('disabled') === 'disabled')) {
+  if (!qualities || this.controls.$qualityButton === undefined || !(this.controls.$qualityButton.attr('aria-disabled') === 'true')) {
     return;
   }
 
@@ -1746,7 +1746,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   });
 
   // Enable quality chooser button
-  this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeAttr('disabled');
+  this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal).removeAttr('aria-disabled');
 };
 
 
@@ -1798,7 +1798,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
   }
 
   if (!playbackRates || this.controls.$playbackRateButton === undefined ||
-    !(this.controls.$playbackRateButton.attr('disabled') === 'disabled')) {
+    !(this.controls.$playbackRateButton.attr('aria-disabled') === 'true')) {
     return;
   }
 
@@ -1836,7 +1836,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
   });
 
   // Enable playback rate chooser button
-  this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeAttr('disabled');
+  this.controls.$playbackRateButton.add(this.controls.$playbackRateButtonMinimal).removeAttr('aria-disabled');
 };
 
 InteractiveVideo.prototype.updatePlaybackRate = function (rate) {
