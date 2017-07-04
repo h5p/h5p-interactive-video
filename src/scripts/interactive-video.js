@@ -403,8 +403,8 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   });
 
   // Insert popup and button
-  $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter(self.controls.$qualityChooser);
   $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
 
@@ -1190,7 +1190,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'class': 'h5p-chooser h5p-bookmarks',
       'role': 'dialog',
       html: `<h3 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h3>`,
-      appendTo: self.$container
     });
 
     // Adding close button to bookmarks-menu
@@ -1218,6 +1217,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
     self.controls.$bookmarksButton.attr('aria-haspopup', 'true');
     self.controls.$bookmarksButton.attr('aria-expanded', 'false');
+    self.controls.$bookmarksChooser.insertAfter(self.controls.$bookmarksButton);
     self.controls.$bookmarksChooser.bind('transitionend', function () {
       self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
     });
@@ -1304,7 +1304,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'class': 'h5p-chooser h5p-playbackRate',
     'role': 'dialog',
     html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
-    appendTo: self.$container
   });
 
   // Button for opening video playback rate selection dialog
@@ -1312,6 +1311,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$playbackRateButton.attr('disabled', 'disabled');
   self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
   self.controls.$playbackRateButton.attr('aria-expanded', 'false');
+
+  self.controls.$playbackRateChooser.insertAfter(self.controls.$playbackRateButton);
 
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
@@ -1357,7 +1358,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'class': 'h5p-chooser h5p-quality',
     'role': 'dialog',
     html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
-    appendTo: self.$container
   });
 
   const closeQualityMenu = () => {
@@ -1389,6 +1389,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityButton.attr('disabled', 'disabled');
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
+
+
 
   // Add fullscreen button
   if (!self.editor && H5P.fullscreenSupported !== false) {
