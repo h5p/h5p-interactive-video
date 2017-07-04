@@ -356,6 +356,14 @@
         {
           "label": "Passert tid i sekunder",
           "default": "Sekunder"
+        },
+        {
+          "label": "Label for current time",
+          "default": "Current time:"
+        },
+        {
+          "label": "Label for total time",
+          "default": "Total time:"
         }
       ]
     }

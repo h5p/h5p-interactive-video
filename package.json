@@ -24,6 +24,7 @@
     "babel-core": "^6.23.1",
     "babel-loader": "^7.1.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
@@ -31,7 +32,7 @@
     "file-loader": "^0.11.2",
     "h5p-lib-controls": "0.0.10",
     "resolve-url-loader": "^2.1.0",
-    "style-loader": "^0.18.2",
+    "style-loader": "^0 .18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.0.0"
   }

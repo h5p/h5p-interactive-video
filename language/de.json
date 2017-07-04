@@ -362,6 +362,14 @@
         {
           "label": "Passed time seconds",
           "default": "Seconds"
+        },
+        {
+          "label": "Label for current time",
+          "default": "Current time:"
+        },
+        {
+          "label": "Label for total time",
+          "default": "Total time:"
         }
       ]
     }

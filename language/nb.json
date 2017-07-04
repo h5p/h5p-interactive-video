@@ -364,6 +364,14 @@
         {
           "label": "Tittel for full tid",
           "default": "Full tid:"
+        },
+        {
+          "label": "Label for current time",
+          "default": "Current time:"
+        },
+        {
+          "label": "Label for total time",
+          "default": "Total time:"
         }
       ]
     }
