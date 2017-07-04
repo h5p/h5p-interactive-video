@@ -462,7 +462,7 @@ InteractiveVideo.prototype.attach = function ($container) {
   }
   this.$container = $container;
 
-  $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div class="h5p-controls"></div>');
+  $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div role="toolbar" class="h5p-controls"></div>');
 
   // Font size is now hardcoded, since some browsers (At least Android
   // native browser) will have scaled down the original CSS font size by the
@@ -1389,7 +1389,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityButton.attr('disabled', 'disabled');
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
-
+  self.controls.$qualityChooser.insertAfter(self.controls.$qualityButton);
 
 
   // Add fullscreen button
