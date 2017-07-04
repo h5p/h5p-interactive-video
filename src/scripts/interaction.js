@@ -949,7 +949,7 @@ function Interaction(parameters, player, previousState) {
     });
 
     if (player.preventSkipping) {
-      $menuitem.attr('disabled', 'disabled');
+      $menuitem.attr('aria-disabled', 'true');
     }
 
     return $menuitem;
