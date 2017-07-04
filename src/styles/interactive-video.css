@@ -697,7 +697,6 @@
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"]:focus {
   outline: 2px solid #179fff;
-  outline-offset: 2px;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"]:before {
   left: 12px;
@@ -740,7 +739,6 @@
 
 .h5p-interactive-video .h5p-chooser-close-button:focus {
   outline: 2px solid #179fff;
-  outline-offset: 2px;
 }
 
 .h5p-interactive-video.h5p-minimal .h5p-chooser {
