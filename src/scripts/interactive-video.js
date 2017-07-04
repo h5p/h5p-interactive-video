@@ -214,7 +214,10 @@ function InteractiveVideo(params, id, contentData) {
     switch (state) {
       case H5P.Video.ENDED:
         self.currentState = H5P.Video.ENDED;
-        self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+        self.controls.$play
+          .addClass('h5p-pause')
+          .attr('title', self.l10n.play);
+
         self.timeUpdate(self.video.getCurrentTime());
         self.controls.$currentTime.html(self.controls.$totalTime.find('.human-time').html());
 
@@ -249,13 +252,27 @@ function InteractiveVideo(params, id, contentData) {
         }
 
         self.currentState = H5P.Video.PLAYING;
-        self.controls.$play.removeClass('h5p-pause').attr('title', self.l10n.pause);
+        self.controls.$play
+          .removeClass('h5p-pause')
+          .attr('title', self.l10n.pause);
+
+        // refocus for re-read button title by screen reader
+        self.controls.$play.blur();
+        self.controls.$play.focus();
+
         self.timeUpdate(self.video.getCurrentTime());
         break;
 
       case H5P.Video.PAUSED:
         self.currentState = H5P.Video.PAUSED;
-        self.controls.$play.addClass('h5p-pause').attr('title', self.l10n.play);
+        self.controls.$play
+          .addClass('h5p-pause')
+          .attr('title', self.l10n.play);
+
+        // refocus for re-read button title by screen reader
+        self.controls.$play.blur();
+        self.controls.$play.focus();
+
         self.timeUpdate(self.video.getCurrentTime());
         break;
 
@@ -294,7 +311,14 @@ function InteractiveVideo(params, id, contentData) {
   self.on('enterFullScreen', function () {
     self.hasFullScreen = true;
     self.$container.parent('.h5p-content').css('height', '100%');
-    self.controls.$fullscreen.addClass('h5p-exit').attr('title', self.l10n.exitFullscreen);
+    self.controls.$fullscreen
+      .addClass('h5p-exit')
+      .attr('title', self.l10n.exitFullscreen);
+
+    // refocus for re-read button title by screen reader
+    self.controls.$fullscreen.blur();
+    self.controls.$fullscreen.focus();
+
     self.resizeInteractions();
   });
 
@@ -306,7 +330,14 @@ function InteractiveVideo(params, id, contentData) {
 
     self.hasFullScreen = false;
     self.$container.parent('.h5p-content').css('height', '');
-    self.controls.$fullscreen.removeClass('h5p-exit').attr('title', self.l10n.fullscreen);
+    self.controls.$fullscreen
+      .removeClass('h5p-exit')
+      .attr('title', self.l10n.fullscreen);
+
+    // refocus for re-read button title by screen reader
+    self.controls.$fullscreen.blur();
+    self.controls.$fullscreen.focus();
+
     self.resizeInteractions();
 
     // Close dialog
@@ -1285,15 +1316,27 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
     self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
+      const $muteButton = self.controls.$volume;
+
       if (!self.deactivateSound) {
-        if (self.controls.$volume.hasClass('h5p-muted')) {
-          self.controls.$volume.removeClass('h5p-muted').attr('title', self.l10n.mute);
+        if ($muteButton.hasClass('h5p-muted')) {
+          $muteButton
+            .removeClass('h5p-muted')
+            .attr('title', self.l10n.mute);
+
           self.video.unMute();
         }
         else {
-          self.controls.$volume.addClass('h5p-muted').attr('title', self.l10n.unmute);
+          $muteButton
+            .addClass('h5p-muted')
+            .attr('title', self.l10n.unmute);
+
           self.video.mute();
         }
+
+        // refocus for reread button title by screen reader
+        $muteButton.blur();
+        $muteButton.focus();
       }
     });
     if (self.deactivateSound) {
