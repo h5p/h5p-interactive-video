@@ -1454,7 +1454,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }
   }, true);
   self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
-  self.setDisabled(self.controls.$playbackRateButtonMinimal)
+  self.setDisabled(self.controls.$playbackRateButtonMinimal);
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
 
@@ -1540,7 +1540,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.$overlay.addClass('h5p-visible');
     },
     slide: function (event, ui) {
-      const isKeyboardNav = event.key === 'ArrowRight' || event.key === 'ArrowLeft';
+      const arrowKeys = ['Right', 'Left', 'ArrowRight', 'ArrowLeft'];
+      const isKeyboardNav = arrowKeys.indexOf(event.key) !== -1;
       const continueHandlingEvents = !isKeyboardNav;
       let time = ui.value;
 
@@ -1548,7 +1549,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         const endTime = self.video.getDuration();
         const currentTime = self.video.getCurrentTime();
 
-        time = (event.key === 'ArrowRight') ?
+        time = (event.key.indexOf('Right') !== -1) ?
           Math.min(currentTime + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
           Math.max(currentTime - KEYBOARD_STEP_LENGTH_SECONDS, 0);
 
