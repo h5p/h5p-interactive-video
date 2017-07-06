@@ -1696,3 +1696,10 @@
   height:1px;
   overflow:hidden;
 }
+
+.h5p-iv-hotkey-instructions {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

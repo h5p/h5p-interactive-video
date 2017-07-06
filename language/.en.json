@@ -413,6 +413,22 @@
         {
           "label": "Label for total time",
           "default": "Total time:"
+        },
+        {
+          "label": "Text for explaining navigation hotkey",
+          "default": "Use key 'k' for starting and stopping video at any time"
+        },
+        {
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "Interaction appeared:"
+        },
+        {
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "Multiple interactions appeared."
+        },
+        {
+          "label": "Video is paused announcement",
+          "default": "Video is paused"
         }
       ]
     }
