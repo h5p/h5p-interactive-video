@@ -225,7 +225,7 @@ function Interaction(parameters, player, previousState) {
         if (event.which === 32) {
           goto({data: parameters.goto.time});
         }
-      }).attr('role', 'button')
+      }).attr('href', '#')
         .attr('tabindex', '0');
     }
     else { // URL
@@ -326,7 +326,7 @@ function Interaction(parameters, player, previousState) {
     var isGotoClickable = self.isGotoClickable();
 
     // Create wrapper for dialog content
-    var $dialogContent = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
+    var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
 
@@ -610,7 +610,7 @@ function Interaction(parameters, player, previousState) {
       'class': 'h5p-interaction-outer'
     }).appendTo($interaction);
 
-    $inner = $(isGotoClickable && parameters.goto.type === 'url' ? '<a>' : '<div>', {
+    $inner = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-interaction-inner h5p-frame'
     }).appendTo($outer);
 
