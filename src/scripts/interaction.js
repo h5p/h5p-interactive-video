@@ -317,12 +317,36 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Wraps tabbing around if trying to exit a list of elements
+   *
+   * @param {jQuery} $elementList
+   * @param {KeyboardEvent} event
+   */
+  const preventTabbingOutOfElementList = ($elementList, event) => {
+    const isCurrent = $element => event.target === $element.get(0);
+    const tabKeyPressed = event.which === 9;
+    const $first = $elementList.first();
+    const $last = $elementList.last();
+
+    if (tabKeyPressed && event.shiftKey && isCurrent($first)){
+      $last.focus();
+      event.preventDefault();
+    }
+    else if (tabKeyPressed && isCurrent($last)) {
+      $first.focus();
+      event.preventDefault();
+    }
+  };
+
+  /**
    * Opens button dialog.
    *
    * @private
    * @param {boolean} [checkScore] Check score before showing dialog
    */
   var openDialog = function (checkScore) {
+    const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+
     if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
       instance.setActivityStarted();
     }
@@ -333,6 +357,16 @@ function Interaction(parameters, player, previousState) {
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
+
+    if(self.getRequiresCompletion()){
+      $dialogWrapper.keydown(event => {
+        const $elements = $dialogWrapper
+          .find('[tabindex="0"], button, input')
+          .filter(':visible');
+
+        preventTabbingOutOfElementList($elements, event);
+      });
+    }
 
     // Attach instance to dialog and open
     var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
@@ -355,10 +389,14 @@ function Interaction(parameters, player, previousState) {
       player.dnb.dialog.disableOverlay = true;
 
       // selects the overlay, and adds warning on click
-      var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
       $dialogWrapper.click(function () {
         if (!self.hasFullScore()) {
-          player.showWarningMask();
+          const $mask = player.showWarningMask();
+
+          // on close, focus on last button
+          $mask
+            .find('.h5p-button-back')
+            .click(() => $dialogContent.find('button').last().focus());
         }
       });
     }
@@ -730,8 +768,11 @@ function Interaction(parameters, player, previousState) {
 
     // Wait for any modifications Question does to feedback and buttons
     setTimeout(function () {
-      // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
-      instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
+      // Strip adaptivity message of p tags
+      const message = adaptivity.message.replace('<p>', '').replace('</p>', '');
+      // Set adaptivity message and hide interaction flow controls
+      instance.updateFeedbackContent(message, true);
+      instance.read(message);
     }, 0);
   };
 

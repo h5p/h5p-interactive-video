@@ -2366,25 +2366,32 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
 /**
  * Shows the warning mask.
  * The mask is shared by all interactions
+ *
+ * @returns {jQuery}
  */
 InteractiveVideo.prototype.showWarningMask = function () {
-  var self = this;
+  const self = this;
+  const warningTextId = `interactive-video-${self.contentId}-completion-warning-text`;
 
   // create mask if doesn't exist
   if (!self.$mask) {
     self.$mask = $(
-      '<div class="h5p-warning-mask">' +
-      '<div class="h5p-warning-mask-wrapper">' +
-      '<div class="h5p-warning-mask-content">' + self.l10n.requiresCompletionWarning + '</div>' +
-      '<button type="button" class="h5p-joubelui-button h5p-button-back">' + self.l10n.back + '</button>' +
-      '</div>' +
-      '</div>'
+      `<div class="h5p-warning-mask" role="alertdialog" aria-describedby="${warningTextId}">
+        <div class="h5p-warning-mask-wrapper">
+          <div id="${warningTextId}" class="h5p-warning-mask-content">${self.l10n.requiresCompletionWarning}</div>
+          <button type="button" class="h5p-joubelui-button h5p-button-back">${self.l10n.back}</button>
+        </div>
+      </div>`
     ).click(function () {
       self.$mask.hide();
-    }).appendTo(self.$container);
+    })
+    .appendTo(self.$container);
   }
 
   self.$mask.show();
+  self.$mask.find('.h5p-button-back').focus();
+
+  return self.$mask;
 };
 
 /**
