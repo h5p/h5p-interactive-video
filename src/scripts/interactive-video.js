@@ -2,11 +2,14 @@ import SelectorControl from './selector-control';
 import Controls from 'h5p-lib-controls/src/scripts/controls';
 import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
+import Accessibility from './accessibility';
 const $ = H5P.jQuery;
 
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
+
+const START_STOP_VIDEO_KEYCODE = 75; // 'K' to start/stop, same as youtube
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -116,7 +119,11 @@ function InteractiveVideo(params, id, contentData) {
     minutes: 'Minutes',
     seconds: 'Seconds',
     currentTime: 'Current time:',
-    totalTime: 'Total time:'
+    totalTime: 'Total time:',
+    navigationHotkeyInstructions: 'Use key \'k\' for starting and stopping video at any time',
+    singleInteractionAnnouncement: 'Interaction appeared:',
+    multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
+    videoPausedAnnouncement: 'Video was paused'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -327,6 +334,8 @@ function InteractiveVideo(params, id, contentData) {
       this.initInteraction(i);
     }
   }
+
+  self.accessibility = new Accessibility(self.l10n);
 }
 
 // Inheritance
@@ -509,6 +518,18 @@ InteractiveVideo.prototype.attach = function ($container) {
     }
   }
 
+  // Make sure navigation hotkey works for container
+  $container.attr('tabindex', '-1');
+  $container.on('keyup', (e) => {
+    var hasPlayButton = that.controls && that.controls.$play;
+    var startVideoKeycode = e.which === START_STOP_VIDEO_KEYCODE;
+    if (hasPlayButton && startVideoKeycode) {
+      that.controls.$play.click();
+    }
+  });
+
+  this.$container.prepend($(this.accessibility.getHotkeyInstructor()));
+  this.$container.append($(this.accessibility.getInteractionAnnouncer()));
 
   this.currentState = InteractiveVideo.ATTACHED;
 };
@@ -2430,6 +2451,8 @@ InteractiveVideo.prototype.toggleInteractions = function (second) {
     this.interactions[i].toggle(second);
     this.interactions[i].repositionToWrapper(this.$videoWrapper);
   }
+
+  this.accessibility.announceInteractions(this.interactions);
 };
 
 /**
