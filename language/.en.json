@@ -416,7 +416,7 @@
         },
         {
           "label": "Text for explaining navigation hotkey",
-          "default": "Use key 'k' for starting and stopping video at any time"
+          "default": "Use key k for starting and stopping video at any time"
         },
         {
           "label": "Text explaining that a single interaction with a name has come into view",
