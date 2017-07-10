@@ -953,7 +953,9 @@ function Interaction(parameters, player, previousState) {
     });
 
     if (player.preventSkipping) {
-      $menuitem.attr('aria-disabled', 'true');
+      $menuitem
+        .attr('aria-disabled', 'true')
+        .attr('tabindex', '-1');
     }
 
     return $menuitem;
