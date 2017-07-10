@@ -230,7 +230,11 @@ function Interaction(parameters, player, previousState) {
     }
     else { // URL
       var url = parameters.goto.url;
-      $anchor.attr({
+      $anchor.keypress(function (event) {
+        if (event.which === 32) {
+          this.click();
+        }
+      }).attr({
         href: (url.protocol !== 'other' ? url.protocol : '') + url.url,
         target: '_blank'
       });
