@@ -44,6 +44,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Keep track of content ID
   self.contentId = id;
+  self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
@@ -2371,7 +2372,7 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
  */
 InteractiveVideo.prototype.showWarningMask = function () {
   const self = this;
-  const warningTextId = `interactive-video-${self.contentId}-completion-warning-text`;
+  const warningTextId = `interactive-video-${self.contentId}-${self.instanceIndex}-completion-warning-text`;
 
   // create mask if doesn't exist
   if (!self.$mask) {
@@ -2721,6 +2722,22 @@ var delayWork = function (time, job) {
   else {
     setTimeout(job, time);
   }
+};
+
+/**
+ * Use a global counter to separate instances of IV,
+ * to maintain unique ids.
+ *
+ * Note that ids does not have to be unique across iframes.
+ *
+ * @return {number}
+ */
+const getAndIncrementGlobalCounter = () => {
+  if (window.interactiveVideoCounter === undefined) {
+    window.interactiveVideoCounter = 0;
+  }
+
+  return window.interactiveVideoCounter++;
 };
 
 /**
