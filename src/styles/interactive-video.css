@@ -94,6 +94,11 @@
   outline: none;
 }
 
+.h5p-interactive-video [role="button"].h5p-interaction:focus {
+  outline: 2px solid #179fff;
+  outline-offset: 8px;
+}
+
 /* Touch area bigger than actual button */
 .h5p-interactive-video .h5p-interaction .h5p-touch-area {
   width: 2.5em;
