@@ -94,8 +94,9 @@
   outline: none;
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-poster:focus,
-.h5p-interactive-video [role="button"].h5p-interaction:focus {
+.h5p-interactive-video .h5p-interaction:focus,
+.h5p-interactive-video .h5p-interaction .h5p-image:focus,
+.h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus {
   outline: 2px solid #179fff;
   outline-offset: 8px;
 }
@@ -332,7 +333,6 @@
   background: #fff;
   box-shadow: 0 0 0.625em 0 rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 /* Use drop-shadow in case of transparent images */
@@ -374,6 +374,7 @@
 
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
+  display: block;
   width: 100%;
   height: auto;
   font-size: 0.875em;
