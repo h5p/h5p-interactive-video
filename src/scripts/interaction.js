@@ -613,7 +613,6 @@ function Interaction(parameters, player, previousState) {
   var showOverlayMask = function ($interaction) {
     $interaction.css('zIndex', 52);
     player.showOverlayMask();
-
   };
 
 
@@ -639,6 +638,9 @@ function Interaction(parameters, player, previousState) {
     var visuals = getVisuals();
 
     $interaction = $('<div/>', {
+      'role': 'group',
+      'aria-label': player.l10n.interaction,
+      'tabindex': '-1',
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
       css: {
         left: parameters.x + '%',
@@ -705,6 +707,7 @@ function Interaction(parameters, player, previousState) {
         player.editor === undefined &&
         !self.hasFullScore()) {
       showOverlayMask($interaction);
+      $interaction.focus();
     }
 
     setTimeout(function () {
