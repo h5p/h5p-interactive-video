@@ -29,6 +29,7 @@ export default class Accessibility {
     const announcer = document.createElement('div');
     announcer.classList.add('h5p-iv-interactions-announcer');
     announcer.setAttribute('aria-live', 'polite');
+    announcer.setAttribute('aria-hidden', 'true');
     this.interactionsAnnouncer = announcer;
 
     // Hot key instructions

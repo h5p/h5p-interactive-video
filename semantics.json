@@ -924,7 +924,7 @@
         "type": "text",
         "label": "Text for explaining navigation hotkey",
         "importance": "low",
-        "default": "Use key 'k' for starting and stopping video at any time",
+        "default": "Use key k for starting and stopping video at any time",
         "optional": true
       },
       {
