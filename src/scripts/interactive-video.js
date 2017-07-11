@@ -242,8 +242,6 @@ function InteractiveVideo(params, id, contentData) {
 
       case H5P.Video.PLAYING:
         if (firstPlay) {
-          firstPlay = false;
-
           // Qualities might not be available until after play.
           self.addQualityChooser();
 
@@ -256,7 +254,9 @@ function InteractiveVideo(params, id, contentData) {
           self.startUpdatingBufferBar();
 
           // Remove bookmarkchooser
-          self.toggleBookmarksChooser(false);
+          self.toggleBookmarksChooser(false, firstPlay);
+
+          firstPlay = false;
         }
 
         self.currentState = H5P.Video.PLAYING;
@@ -881,8 +881,9 @@ InteractiveVideo.prototype.addBookmarks = function () {
  *
  * @method toggleBookmarksChooser
  * @param {boolean} [show] Forces toggle state if set
+ * @param {boolean} [firstPlay] If first time
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show = false, firstPlay = false) {
   if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
@@ -907,7 +908,9 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
         .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
         .removeClass('h5p-show');
 
-      this.controls.$bookmarksButton.focus();
+      if (!firstPlay) {
+        this.controls.$bookmarksButton.focus();
+      }
     }
 
     // Add classes if changing visibility
@@ -2338,9 +2341,11 @@ InteractiveVideo.prototype.getMaxScore = function () {
 /**
  * Show a mask behind the interaction to prevent the user from clicking the video or controls
  *
+ * @param {H5P.jQuery} $interaction
+ *
  * @return {jQuery} the dialog wrapper element
  */
-InteractiveVideo.prototype.showOverlayMask = function () {
+InteractiveVideo.prototype.showOverlayMask = function ($interaction) {
   var self = this;
 
   self.$videoWrapper.addClass('h5p-disable-opt-out');
@@ -2352,6 +2357,22 @@ InteractiveVideo.prototype.showOverlayMask = function () {
       self.showWarningMask();
     }
   });
+
+  // add focus trap
+  self.$container.focusin(event => self.focusIfNotSelfOrChildElement($interaction, $(event.target)));
+};
+
+/**
+ * Force the focus to be on a boundary or child elements of
+ * that boundry.
+ *
+ * @param {jQuery} $boundary
+ * @param {jQuery} $focusedElement
+ */
+InteractiveVideo.prototype.focusIfNotSelfOrChildElement = ($boundary, $focusedElement) => {
+  if (!isSameElementOrChild($boundary, $focusedElement)) {
+    $boundary.focus();
+  }
 };
 
 /**
@@ -2363,6 +2384,9 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
 
   self.dnb.dialog.closeOverlay();
   self.$videoWrapper.removeClass('h5p-disable-opt-out');
+
+  // remove focus trap
+  self.$container.off('focusin', '**');
 
   return self.$container.find('.h5p-dialog-wrapper');
 };
@@ -2559,7 +2583,6 @@ InteractiveVideo.prototype.read = function (content) {
     self.readText += (self.readText.substr(-1, 1) === '.' ? ' ' : '. ') + content
   }
   else {
-    console.log('reading', content);
     self.readText = content;
   }
 
@@ -2790,6 +2813,18 @@ var getxAPIDefinition = function () {
   };
 
   return definition;
+};
+
+/**
+ * Returns true if the child element is contained by the parent
+ * or is the same element as the parent
+ *
+ * @param {jQuery} $parent
+ * @param {jQuery} $child
+ * @return {boolean}
+ */
+const isSameElementOrChild = ($parent, $child) => {
+  return $parent.is($child) || $.contains($parent.get(0), $child.get(0));
 };
 
 /**

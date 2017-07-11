@@ -616,7 +616,7 @@ function Interaction(parameters, player, previousState) {
    */
   var showOverlayMask = function ($interaction) {
     $interaction.css('zIndex', 52);
-    player.showOverlayMask();
+    player.showOverlayMask($interaction);
   };
 
 
