@@ -616,7 +616,7 @@ function Interaction(parameters, player, previousState) {
    */
   var showOverlayMask = function ($interaction) {
     $interaction.css('zIndex', 52);
-    player.showOverlayMask($interaction);
+    player.showOverlayMask();
   };
 
 
@@ -965,8 +965,7 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
-   * Returns true if this interaction is only
-   * a label
+   * Returns true if this interaction is only a label
    *
    * @return {boolean}
    */

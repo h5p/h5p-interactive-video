@@ -2341,11 +2341,9 @@ InteractiveVideo.prototype.getMaxScore = function () {
 /**
  * Show a mask behind the interaction to prevent the user from clicking the video or controls
  *
- * @param {H5P.jQuery} $interaction
- *
  * @return {jQuery} the dialog wrapper element
  */
-InteractiveVideo.prototype.showOverlayMask = function ($interaction) {
+InteractiveVideo.prototype.showOverlayMask = function () {
   var self = this;
 
   self.$videoWrapper.addClass('h5p-disable-opt-out');
@@ -2358,25 +2356,48 @@ InteractiveVideo.prototype.showOverlayMask = function ($interaction) {
     }
   });
 
-  // add focus trap
-  self.$container.focusin(event => self.focusIfNotSelfOrChildElement($interaction, $(event.target)));
+  self.toggleFocusTrap();
 };
 
 /**
- * Force the focus to be on a boundary or child elements of
- * that boundry.
+ * If there are visible required interactions, trap focus
+ * within them.
+ */
+InteractiveVideo.prototype.toggleFocusTrap = function () {
+  const requiredInteractions = this.getVisibleInteractions()
+    .filter(interaction => interaction.getRequiresCompletion() && !interaction.hasFullScore());
+
+  if (requiredInteractions.length > 0) {
+    this.$container
+      .off('focusin')
+      .on('focusin', event => this.trapFocusInInteractions(requiredInteractions, $(event.target)));
+  }
+  else {
+    this.$container.off('focusin', '**');
+  }
+};
+
+/**
+ * Trap the focus within a list of interactions
  *
- * @param {jQuery} $boundary
+ * @param {H5P.InteractiveVideoInteraction[]} requiredInteractions
  * @param {jQuery} $focusedElement
  */
-InteractiveVideo.prototype.focusIfNotSelfOrChildElement = ($boundary, $focusedElement) => {
-  if (!isSameElementOrChild($boundary, $focusedElement)) {
-    $boundary.focus();
+InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteractions, $focusedElement) {
+  const focusIsInsideInteraction = requiredInteractions
+    .some(interaction => {
+      const $interaction = interaction.getElement();
+      return isSameElementOrChild($interaction, $focusedElement)
+    });
+
+  if (!focusIsInsideInteraction) {
+    requiredInteractions[0].getElement().focus();
   }
 };
 
 /**
  * Hides the mask behind the interaction
+ *
  * @return {jQuery} the dialog wrapper element
  */
 InteractiveVideo.prototype.hideOverlayMask = function () {
@@ -2384,9 +2405,7 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
 
   self.dnb.dialog.closeOverlay();
   self.$videoWrapper.removeClass('h5p-disable-opt-out');
-
-  // remove focus trap
-  self.$container.off('focusin', '**');
+  self.toggleFocusTrap();
 
   return self.$container.find('.h5p-dialog-wrapper');
 };
@@ -2461,7 +2480,7 @@ InteractiveVideo.prototype.removeDisabled = $element => {
  * Returns true if there are visible interactions that require completed
  * and the user doesn't have full score
  *
- * @param {number} second
+ * @param {number} [second]
  * @returns {boolean} If any required interaction is not completed with full score
  */
 InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function (second) {
