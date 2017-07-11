@@ -257,8 +257,10 @@ function InteractiveVideo(params, id, contentData) {
           .attr('title', self.l10n.pause);
 
         // refocus for re-read button title by screen reader
-        self.controls.$play.blur();
-        self.controls.$play.focus();
+        if (self.controls.$play.is(":focus")) {
+          self.controls.$play.blur();
+          self.controls.$play.focus();
+        }
 
         self.timeUpdate(self.video.getCurrentTime());
         break;
@@ -270,8 +272,10 @@ function InteractiveVideo(params, id, contentData) {
           .attr('title', self.l10n.play);
 
         // refocus for re-read button title by screen reader
-        self.controls.$play.blur();
-        self.controls.$play.focus();
+        if (self.controls.$play.is(":focus")) {
+          self.controls.$play.blur();
+          self.controls.$play.focus();
+        }
 
         self.timeUpdate(self.video.getCurrentTime());
         break;
