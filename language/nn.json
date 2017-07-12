@@ -11,7 +11,7 @@
               "description":"Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
             },
             {
-              "label":"Startskjerm alternativer",
+              "label":"Start screen options - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"Tittel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions)",
+              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -135,10 +135,13 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    
+                  },
+                  {
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -156,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -180,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -414,6 +417,26 @@
         {
           "label":"Tilbakeknapp",
           "default":"Tilbake"
+        },
+        {
+          "label":"Passed time hours",
+          "default":"Hours"
+        },
+        {
+          "label":"Passed time minutes",
+          "default":"Minutes"
+        },
+        {
+          "label":"Passed time seconds",
+          "default":"Seconds"
+        },
+        {
+          "label":"Label for current time",
+          "default":"Current time:"
+        },
+        {
+          "label":"Label for total time",
+          "default":"Total time:"
         }
       ]
     }
