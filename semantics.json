@@ -26,7 +26,7 @@
           {
             "name": "startScreenOptions",
             "type": "group",
-            "label": "Start screen options",
+            "label": "Start screen options - not supported for YouTube videos",
             "importance": "low",
             "fields": [
               {
@@ -84,7 +84,7 @@
           {
             "name": "textTracks",
             "type": "group",
-            "label": "Text tracks (subtitles, captions and descriptions)",
+            "label": "Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
             "importance": "low",
             "fields": [
               {
