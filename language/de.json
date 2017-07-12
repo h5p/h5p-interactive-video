@@ -11,7 +11,7 @@
               "description":"Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label":"Start screen options",
+              "label":"Start screen options - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"Der Titel dieses interaktiven Videos",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions)",
+              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -135,10 +135,13 @@
                     
                   },
                   {
-                    "label":"Visuelles",
+                    
+                  },
+                  {
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Hintergrundfarbe",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -156,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Gehe zu",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -180,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Gehe zu bei Klick",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Typ",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Gehe zu",
-                        "description":"Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -414,6 +417,26 @@
         {
           "label":"Zurück-Button",
           "default":"Zurück"
+        },
+        {
+          "label":"Passed time hours",
+          "default":"Hours"
+        },
+        {
+          "label":"Passed time minutes",
+          "default":"Minutes"
+        },
+        {
+          "label":"Passed time seconds",
+          "default":"Seconds"
+        },
+        {
+          "label":"Label for current time",
+          "default":"Current time:"
+        },
+        {
+          "label":"Label for total time",
+          "default":"Total time:"
         }
       ]
     }
