@@ -9,7 +9,9 @@ const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
 
-const START_STOP_VIDEO_KEYCODE = 75; // 'K' to start/stop, same as youtube
+const KEY_CODE_ENTER = 13;
+const KEY_CODE_SPACE = 32;
+const KEY_CODE_K = 75; // 'K' to start/stop, same as youtube
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -554,11 +556,11 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
-  $container.on('keyup', (e) => {
-    var hasPlayButton = that.controls && that.controls.$play;
-    var startVideoKeycode = e.which === START_STOP_VIDEO_KEYCODE;
+  $container.on('keyup', e => {
+    const hasPlayButton = that.controls && that.controls.$play;
+    const startVideoKeyCode = (e.which === KEY_CODE_K);
 
-    if (hasPlayButton && startVideoKeycode) {
+    if (hasPlayButton && startVideoKeyCode) {
       if (this.hasUncompletedRequiredInteractions()) {
         const $currentFocus = $(document.activeElement);
         const $mask = this.showWarningMask();
@@ -631,8 +633,7 @@ InteractiveVideo.prototype.addSplash = function () {
   // Add play functionality and title to play icon
   $('.h5p-splash', this.$splash).keydown(function (e) {
     var code = e.which;
-    // 32 = Space, 13 = enter
-    if (code === 32 || code === 13) {
+    if (code === KEY_CODE_SPACE || code === KEY_CODE_ENTER) {
       that.video.play();
       e.preventDefault();
 
@@ -1057,7 +1058,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   var $li = $(`<li role="menuitem" aria-describedby="${self.bookmarksMenuId}">${bookmark.label}</li>`)
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keydown(e => {
-      if(e.which === 32 || e.which === 13){
+      if(e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER){
         self.onBookmarkSelect($bookmark, bookmark)
       }
 
@@ -1238,7 +1239,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'title': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
-        if (event.which === 32 || event.which === 13) {
+        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
           self.toggleBookmarksChooser();
           event.preventDefault();
         }
@@ -1416,7 +1417,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'title': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
-      if (event.which === 32 || event.which === 13) {
+      if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
         closeQualityMenu();
         event.preventDefault();
       }
@@ -1715,7 +1716,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
         handler.call(this);
       },
       keydown: function (event) {
-        if (event.which === 32 || event.which === 13) { // Space or enter
+        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) { // Space or enter
           handler.call(this);
           event.preventDefault();
           event.stopPropagation();
@@ -1762,7 +1763,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
       self.updateQuality(quality)
     })
     .keydown(function(e) {
-      if(e.which === 32 || e.which === 13) {
+      if(e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
         const quality = $(this).attr('data-quality');
         self.updateQuality(quality)
       }
@@ -1853,7 +1854,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
       self.updatePlaybackRate(rate);
     })
     .keydown(function(e) {
-      if(e.which === 32 || e.which === 13){
+      if(e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER){
         const rate = $(this).attr('playback-rate');
         self.updatePlaybackRate(rate);
       }
