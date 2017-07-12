@@ -11,7 +11,7 @@
               "description":"حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label":"Start screen options",
+              "label":"Start screen options - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"The title of this interactive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions)",
+              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -135,10 +135,13 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    
+                  },
+                  {
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -156,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -180,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -414,6 +417,26 @@
         {
           "label":"زر العودة",
           "default":"الى الخلف"
+        },
+        {
+          "label":"Passed time hours",
+          "default":"Hours"
+        },
+        {
+          "label":"Passed time minutes",
+          "default":"Minutes"
+        },
+        {
+          "label":"Passed time seconds",
+          "default":"Seconds"
+        },
+        {
+          "label":"Label for current time",
+          "default":"Current time:"
+        },
+        {
+          "label":"Label for total time",
+          "default":"Total time:"
         }
       ]
     }
