@@ -243,7 +243,7 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
+                        "label":"Aperçu",
                         "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
@@ -367,8 +367,8 @@
           "default":"Captions"
         },
         {
-          "label":"Close button text",
-          "default":"Close"
+          "label":"Texte pour le bouton \"Fermer\"",
+          "default":"Fermer"
         },
         {
           "label":"Intitulé \"Plein écran\"",
@@ -428,7 +428,7 @@
         },
         {
           "label":"Passed time seconds",
-          "default":"Seconds"
+          "default":"Secondes"
         },
         {
           "label":"Label for current time",
