@@ -11,7 +11,7 @@
               "description":"Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Options d’écran de départ - non pris en charge pour les vidéos YouTube",
               "fields":[
                 {
                   "label":"Titre de la vidéo interactive",
@@ -116,7 +116,7 @@
                     "label":"Intitulé du bouton"
                   },
                   {
-                    "label":"Label",
+                    "label":"Étiquette",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -186,7 +186,7 @@
                     "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Couleur d'arrière-plan",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -208,19 +208,19 @@
                             "label":"Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Autre page (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
+                        "label":"Aller à",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protocole",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,10 +229,10 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(relatif)"
                               },
                               {
-                                "label":"other"
+                                "label":"autre"
                               }
                             ],
                             "default":"http://"
@@ -291,8 +291,8 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Vidéo en boucle",
+          "description":"Vérifier si la vidéo doit s’exécuter en boucle"
         },
         {
           "label":"Ecraser le bouton \"Voir la correction\"",
@@ -330,7 +330,7 @@
           "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
-          "label":"Deactivate sound",
+          "label":"Désactiver le son",
           "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
@@ -436,7 +436,7 @@
         },
         {
           "label":"Label for total time",
-          "default":"Total time:"
+          "default":"Temps total :"
         }
       ]
     }
