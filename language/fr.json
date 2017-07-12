@@ -47,17 +47,17 @@
                       {
                         "label":"Track label",
                         "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "default":"Sous-titres"
                       },
                       {
                         "label":"Type of text track",
-                        "default":"subtitles",
+                        "default":"sous-titres",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Sous-titres"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Légendes"
                           },
                           {
                             "label":"Descriptions"
@@ -145,10 +145,10 @@
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Autoriser l’utilisateur à se retirer et continuer"
                           },
                           {
                             "label":"Message"
@@ -159,11 +159,11 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Action sur mauvaise réponse",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -199,7 +199,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Au clic, aller vers",
                     "fields":[
                       {
                         "label":"Type",
@@ -420,7 +420,7 @@
         },
         {
           "label":"Passed time hours",
-          "default":"Hours"
+          "default":"Heures"
         },
         {
           "label":"Passed time minutes",
