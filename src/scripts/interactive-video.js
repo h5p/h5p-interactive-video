@@ -557,8 +557,16 @@ InteractiveVideo.prototype.attach = function ($container) {
   $container.on('keyup', (e) => {
     var hasPlayButton = that.controls && that.controls.$play;
     var startVideoKeycode = e.which === START_STOP_VIDEO_KEYCODE;
+
     if (hasPlayButton && startVideoKeycode) {
-      that.controls.$play.click();
+      if (this.hasUncompletedRequiredInteractions()) {
+        const $currentFocus = $(document.activeElement);
+        const $mask = this.showWarningMask();
+        $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
+      }
+      else {
+        that.controls.$play.click();
+      }
     }
   });
 
@@ -2390,7 +2398,9 @@ InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteracti
       return isSameElementOrChild($interaction, $focusedElement)
     });
 
-  if (!focusIsInsideInteraction) {
+  const focusIsInsideWarningMask = this.$mask ? isSameElementOrChild(this.$mask, $focusedElement) : false;
+
+  if (!focusIsInsideInteraction && !focusIsInsideWarningMask) {
     requiredInteractions[0].getElement().focus();
   }
 };
@@ -2843,7 +2853,7 @@ var getxAPIDefinition = function () {
  * @return {boolean}
  */
 const isSameElementOrChild = ($parent, $child) => {
-  return $parent.is($child) || $.contains($parent.get(0), $child.get(0));
+  return $parent !== undefined && $parent.is($child) || $.contains($parent.get(0), $child.get(0));
 };
 
 /**
