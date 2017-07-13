@@ -2854,7 +2854,8 @@ var getxAPIDefinition = function () {
  * @return {boolean}
  */
 const isSameElementOrChild = ($parent, $child) => {
-  return $parent !== undefined && $parent.is($child) || $.contains($parent.get(0), $child.get(0));
+  return $parent !== undefined && $child !== undefined
+    && ($parent.is($child) || $.contains($parent.get(0), $child.get(0)));
 };
 
 /**
