@@ -152,6 +152,9 @@ function InteractiveVideo(params, id, contentData) {
   // determine if video should be looped
   loopVideo = params.override && !!params.override.loop;
 
+  // determine if video should play automatically
+  this.autoplay = params.override && !!params.override.autoplay;
+
   // Start up the video player
   self.video = H5P.newRunnable({
     library: 'H5P.Video 1.3',
@@ -544,6 +547,10 @@ InteractiveVideo.prototype.attach = function ($container) {
 
 
   this.currentState = InteractiveVideo.ATTACHED;
+
+  if (this.autoplay) {
+    that.video.play();
+  }
 };
 
 /**

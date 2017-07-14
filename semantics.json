@@ -635,6 +635,14 @@
         "description": "Enter timecode in the format M:SS"
       },
       {
+        "name": "autoplay",
+        "type": "boolean",
+        "label": "Auto-play video",
+        "default": false,
+        "optional": true,
+        "description": "Start playing the video automatically"
+      },
+      {
         "name": "loop",
         "type": "boolean",
         "label": "Loop the video",
