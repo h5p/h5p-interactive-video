@@ -419,24 +419,24 @@
           "default":"戻る"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"合格時間　時",
+          "default":"時"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"合格時間　分",
+          "default":"分"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"合格時間　秒",
+          "default":"秒"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"現在時刻のラベル",
+          "default":"現在時刻:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"トータル時間のラベル",
+          "default":"トータル時間:"
         }
       ]
     }
