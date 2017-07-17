@@ -36,36 +36,36 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"テキストトラック （字幕、キャプションおよび説明） - YouTubeビデオでサポートされていません",
               "fields":[
                 {
-                  "label":"Available text tracks",
+                  "label":"利用可能なテキストトラック",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"トラック",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label":"トラックラベル",
+                        "description":"もし複数のトラックを提供しユーザーがトラックを選択しなければならない場合に用いられます。例えば「スペイン語字幕」はスペイン語字幕トラックのラベルになり得ます。",
+                        "default":"字幕"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"テキストトラックのタイプ",
+                        "default":"字幕",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"字幕"
                           },
                           {
-                            "label":"Captions"
+                            "label":"キャプション"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"説明"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"字幕のソース言語を定義する必要があります。",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
