@@ -178,23 +178,23 @@
                       },
                       {
                         "label":"続行する前にタスクのフルスコアが必要",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description":"最高の機能性を得るには、このオプションをインタラクティブビデオの「ビデオ内でのスキップするのを防ぐ」オプションと併用する必要があります。"
                       }
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"外観",
                     "fields":[
                       {
-                        "label":"Background color",
-                        "default":"rgb(255, 255, 255)",
+                        "label":"背景色",
+                        "default":"rgb (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"ボックスシャドウ",
+                        "description":"インタラクションの周りにわずかな影を追加します。完全に透明なインタラクションには無効にした方がいいかもしれません。"
                       }
                     ]
                   },
