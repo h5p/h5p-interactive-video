@@ -67,10 +67,10 @@
                       {
                         "label":"字幕のソース言語を定義する必要があります。",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"トラックソース（WebVTT ファイル）"
                       }
                     ]
                   }
@@ -116,8 +116,8 @@
                     "label":"小さな画面のボタンに戻る"
                   },
                   {
-                    "label":"Label",
-                    "description":"Label displayed next to interaction icon."
+                    "label":"ラベル",
+                    "description":"インタラクションアイコンの次に表示されるらべる。"
                   },
                   {
                     
@@ -138,14 +138,14 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"適応性",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"全問正解に対する動作",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"検索",
+                            "description":"M:SS 形式でタイムコードを入力"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
