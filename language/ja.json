@@ -199,28 +199,28 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"クリック時の行先",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"タイプ",
                         "options":[
                           {
-                            "label":"Timecode"
+                            "label":"タイムコード"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"別ページ (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"移動",
+                        "description":"ユーザーがホットスポットを押したときに得られるターゲット時間。タイムコードを M:SS の形式で入力してください。"
                       },
                       {
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"プロトコル",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,10 +229,10 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"（ルート相対）"
                               },
                               {
-                                "label":"other"
+                                "label":"その他"
                               }
                             ],
                             "default":"http://"
@@ -243,7 +243,7 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
+                        "label":"可視化",
                         "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
