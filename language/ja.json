@@ -244,7 +244,7 @@
                       },
                       {
                         "label":"可視化",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "description":"境界線とアイコンを追加してインタラクションがクリックできることを示します"
                       }
                     ]
                   }
@@ -307,7 +307,7 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
+          "label":"「リトライ」ボタンを上書き",
           "description":"このオプションは、すべての設問に対して「リトライ」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options":[
             {
@@ -363,12 +363,12 @@
           "default":"ビデオ品質"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label":"ビデオのキャプションタイトル",
+          "default":"キャプション"
         },
         {
-          "label":"Close button text",
-          "default":"Close"
+          "label":"閉じるボタンのテキスト",
+          "default":"閉じる"
         },
         {
           "label":"フルスクリーンのタイトル",
