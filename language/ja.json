@@ -148,36 +148,36 @@
                             "description":"M:SS 形式でタイムコードを入力"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"ユーザーに取り止めと継続を許可"
                           },
                           {
-                            "label":"Message"
+                            "label":"メッセージ"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"検索ボタンのラベル"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"まちがえに対する動作",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"検索",
+                            "description":"M:SS 形式でタイムコードを入力"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"ユーザーに取り止めと継続を許可"
                           },
                           {
-                            "label":"Message"
+                            "label":"メッセージ"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"検索ボタンのラベル"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
+                        "label":"続行する前にタスクのフルスコアが必要",
                         "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
