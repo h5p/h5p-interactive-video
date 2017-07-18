@@ -1,13 +1,13 @@
 {
   "semantics":[
     {
-      "label":"Interactive Video Editor",
+      "label":"Interaktív videó szerkesztő",
       "fields":[
         {
-          "label":"Upload/embed video",
+          "label":"Feltöltés/beágyazás videó",
           "fields":[
             {
-              "label":"Add a video",
+              "label":"Videó hozzáadása",
               "description":"Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
@@ -15,14 +15,14 @@
               "fields":[
                 {
                   "label":"The title of this interactive video",
-                  "default":"Interactive Video",
+                  "default":"Interaktív videó",
                   "description":"Used in summaries, statistics etc."
                 },
                 {
                   "label":"Hide title on video start screen"
                 },
                 {
-                  "label":"Short description (Optional)",
+                  "label":"Rövid leírás (nem kötelező)",
                   "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
@@ -54,13 +54,13 @@
                         "default":"subtitles",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Feliratok"
                           },
                           {
                             "label":"Captions"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Leírás"
                           }
                         ]
                       },
@@ -100,7 +100,7 @@
                     "label":"Pause video"
                   },
                   {
-                    "label":"Display as",
+                    "label":"Megjelenítés mint",
                     "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options":[
                       {
