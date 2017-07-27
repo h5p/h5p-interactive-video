@@ -843,7 +843,7 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
         $menuitem.appendTo(this.controls.$interactionsContainer);
 
         if(!this.preventSkipping) {
-          this.interactionKeyboardControls.addElement($menuitem.get(0))
+          this.interactionKeyboardControls.addElement($menuitem.get(0));
         }
       }
     });
@@ -1032,7 +1032,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keydown(e => {
       if(e.which === 32 || e.which === 13){
-        self.onBookmarkSelect($bookmark, bookmark)
+        self.onBookmarkSelect($bookmark, bookmark);
       }
 
       e.stopPropagation();
@@ -1251,7 +1251,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     </time>
     <span>
       <span class=hidden-but-read> of </span>
-      <span aria-hidden="true"> / </span>   
+      <span aria-hidden="true"> / </span>
     </span>
     <time class="h5p-total">
       <span class="hidden-but-read">${self.l10n.totalTime} ${textFullTime}</span>
@@ -1733,12 +1733,12 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   $list.children()
     .click(function() {
       const quality = $(this).attr('data-quality');
-      self.updateQuality(quality)
+      self.updateQuality(quality);
     })
     .keydown(function(e) {
       if(e.which === 32 || e.which === 13) {
         const quality = $(this).attr('data-quality');
-        self.updateQuality(quality)
+        self.updateQuality(quality);
       }
 
       e.stopPropagation();
@@ -2532,10 +2532,9 @@ InteractiveVideo.prototype.read = function (content) {
 
   if (self.readText) {
     // Combine texts if called multiple times
-    self.readText += (self.readText.substr(-1, 1) === '.' ? ' ' : '. ') + content
+    self.readText += (self.readText.substr(-1, 1) === '.' ? ' ' : '. ') + content;
   }
   else {
-    console.log('reading', content);
     self.readText = content;
   }
 

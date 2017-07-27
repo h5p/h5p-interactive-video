@@ -210,7 +210,7 @@ var button = function (className, type, label, handler, tag, role) {
   button.tabIndex = 0;
   button.setAttribute('role', role);
   if (type === ButtonType.ICON) {
-    button.title = label
+    button.title = label;
   }
   button.addEventListener('click', function (event) {
     handler.call(button, event);

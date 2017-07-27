@@ -531,7 +531,7 @@ function Interaction(parameters, player, previousState) {
     return {
       height: ((height / heightRatio) * 100) + '%',
       width: ((width / widthRatio) * 100) + '%'
-    }
+    };
   };
 
   /**
@@ -915,7 +915,7 @@ function Interaction(parameters, player, previousState) {
     // wait for interaction to be created
     setTimeout(() => {
       if($interaction) {
-        $interaction.focus()
+        $interaction.focus();
       }
     }, 10);
   };
@@ -1309,7 +1309,7 @@ function Interaction(parameters, player, previousState) {
                      typeof instance.getXAPIData === 'function')) {
       return instance.getXAPIData();
     }
-  }
+  };
 
   /**
    * Returns unique content id
