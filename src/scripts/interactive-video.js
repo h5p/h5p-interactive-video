@@ -355,6 +355,13 @@ function InteractiveVideo(params, id, contentData) {
 
   // Handle video captions loaded
   self.video.on('captions', function (event) {
+    if (!self.controls) {
+      // Video is loaded but there are no controls
+      self.addControls();
+      self.trigger('resize');
+    }
+
+    // Add captions selector
     self.setCaptionTracks(event.data);
   });
 
