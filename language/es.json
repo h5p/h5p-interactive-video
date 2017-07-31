@@ -27,7 +27,7 @@
                 },
                 {
                   "label":"Cartel",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "description":"La imagen que se muestra antes de que el usuario pulse play. No funciona para vídeos de YouTube."
                 },
                 {
                   "label":"Derechos de autor del video",
@@ -36,41 +36,41 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Pistas de texto (subtítulos, títulos y descripciones) - no funciona para vídeos de You Tube",
               "fields":[
                 {
-                  "label":"Available text tracks",
+                  "label":"Pistas de texto disponibles",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Pista",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label":"Etiqueta de pista",
+                        "description":"Se usa si ofreces múltiples pistas y el usuario tiene que elegir una. Por ejemplo \"Subtítulos español\" podría ser la etiqueta para una pista con subtítulos en ese idioma.",
+                        "default":"Subtítulos"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"Tipo de pista de texto",
+                        "default":"subtítulos",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Subtítulos"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Títulos"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Descripciones"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Idioma fuente, debe definirse para los subtítulos",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"Debe ser una etiqueta de idioma válida de BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"Origen de la pista (archivo WebVTT)"
                       }
                     ]
                   }
@@ -116,8 +116,8 @@
                     "label":"Etiqueta"
                   },
                   {
-                    "label":"Label",
-                    "description":"Label displayed next to interaction icon."
+                    "label":"Etiqueta",
+                    "description":"Etiqueta que aparece junto al icono de interacción."
                   },
                   {
                     
@@ -138,46 +138,46 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Adaptabilidad",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Acción en todas las correctas",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Buscar",
+                            "description":"Introduzca el código de tiempo en el formato M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Permitir al usuario no responder y seguir"
                           },
                           {
-                            "label":"Message"
+                            "label":"Mensaje"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Etiqueta para el botón de Buscar"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Acción para incorrecta",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Buscar",
+                            "description":"Introduzca el código de tiempo en el formato M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Permitir al usuario no responder y seguir"
                           },
                           {
-                            "label":"Message"
+                            "label":"Mensaje"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Etiqueta para el botón de Buscar"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
+                        "label":"Requerir puntuación máxima para la tarea antes de seguir",
                         "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
