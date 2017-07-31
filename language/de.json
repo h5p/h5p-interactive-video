@@ -145,13 +145,13 @@
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Timecode im Format M:SS eingeben"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Nachricht"
                           },
                           {
                             "label":"Label for seek button"
@@ -163,13 +163,13 @@
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Timecode im Format M:SS eingeben"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Nachricht"
                           },
                           {
                             "label":"Label for seek button"
@@ -177,7 +177,7 @@
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
+                        "label":"Zum Fortsetzen der Aufgabe volle Punktzahl benötigt",
                         "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
@@ -186,15 +186,15 @@
                     "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Hintergrundfarbe",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Schatten anzeigen",
+                        "description":"Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
                       }
                     ]
                   },
@@ -202,25 +202,25 @@
                     "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Typ",
                         "options":[
                           {
                             "label":"Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Andere Seite (URL)"
                           }
                         ]
                       },
                       {
                         "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"Die Zeit, die bei Anklicken des Hotspots angesprungen wird. Timecode im Format M:SS eingeben."
                       },
                       {
-                        "label":"URL",
+                        "label":"URLs",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protokoll",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(relativ zum Hauptverzeichnis)"
                               },
                               {
                                 "label":"other"
