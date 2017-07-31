@@ -36,22 +36,22 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Textspuren (Untertitel und Beschreibungen) - für YouTube-Videos nicht unterstützt",
               "fields":[
                 {
-                  "label":"Available text tracks",
+                  "label":"Verfügbare Textspuren",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Spur",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label":"Spurbezeichnung",
+                        "description":"Benutzt, wenn Sie mehrere Spuren anbieten und der Benutzer eine Spur auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
+                        "default":"Untertitel"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"Art der Textspur",
+                        "default":"Untertitel",
                         "options":[
                           {
                             "label":"Subtitles"
