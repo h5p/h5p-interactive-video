@@ -11,7 +11,7 @@
               "description":"Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Optionen für den Startbildschirm - nicht unterstützt bei YouTube-Videos",
               "fields":[
                 {
                   "label":"Der Titel dieses interaktiven Videos",
