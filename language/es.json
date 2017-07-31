@@ -178,42 +178,42 @@
                       },
                       {
                         "label":"Requerir puntuación máxima para la tarea antes de seguir",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description":"Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un vídeo\" del vídeo interactivo."
                       }
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Efectos visuales",
                     "fields":[
                       {
-                        "label":"Background color",
-                        "default":"rgb(255, 255, 255)",
+                        "label":"Color del fondo",
+                        "default":"rgb (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Sombra de caja",
+                        "description":"Agrega una sombra sutil alrededor de la interacción. Usted puede desactivar esto si prefiere interacciones totalmente transparentes"
                       }
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Ir a al hacer click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Tipo",
                         "options":[
                           {
-                            "label":"Timecode"
+                            "label":"Código de tiempo"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Otra página (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
+                        "label":"Ir a",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
