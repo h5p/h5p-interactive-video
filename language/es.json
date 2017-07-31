@@ -8,13 +8,13 @@
           "fields":[
             {
               "label":"Añadir un vídeo",
-              "description":"Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
+              "description":"Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4."
             },
             {
               "label":"Opciones de pantalla de inicio - no funcionan para vídeos de YouTube",
               "fields":[
                 {
-                  "label":"Título",
+                  "label":"Título de este vídeo interactivo",
                   "default":"Vídeo interactivo",
                   "description":"Utilizado en extractos, estadísticas, etc."
                 },
@@ -23,15 +23,15 @@
                 },
                 {
                   "label":"Descripción corta (Opcional)",
-                  "description":"Opcional. Presentar un texto descriptivo corto al inicio del video."
+                  "description":"Opcional. Mostrar un texto con una breve descripción en la pantalla inicial del vídeo. No funciona para vídeos de YouTube."
                 },
                 {
-                  "label":"Cartel",
+                  "label":"Imagen de póster",
                   "description":"La imagen que se muestra antes de que el usuario pulse play. No funciona para vídeos de YouTube."
                 },
                 {
                   "label":"Derechos de autor del video",
-                  "description":"Información relacionada con los derechos de autor del video y de los elementos usados en el video."
+                  "description":"Información relacionada con los derechos de autor del vídeo y de los elementos usados en el mismo."
                 }
               ]
             },
@@ -97,10 +97,10 @@
                     ]
                   },
                   {
-                    "label":"Pause"
+                    "label":"Pausar vídeo"
                   },
                   {
-                    "label":"Mostras como",
+                    "label":"Mostrar como",
                     "description":"<b>Botón</b> es una interacción colapsada que el usuario debe preseionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
                     "options":[
                       {
@@ -232,7 +232,7 @@
                                 "label":"(raíz relativa)"
                               },
                               {
-                                "label":"other"
+                                "label":"Otro"
                               }
                             ],
                             "default":"http://"
@@ -243,8 +243,8 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Visualizar",
+                        "description":"Mostrar que se puede hacer clic en la interacción añadiendo un borde y un icono"
                       }
                     ]
                   }
@@ -284,30 +284,30 @@
       ]
     },
     {
-      "label":"Behavioural settings",
+      "label":"Ajustes de comportamiento",
       "fields":[
         {
-          "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "label":"Iniciar vídeo en",
+          "description":"Introduzca el código de tiempo en el formato M:SS"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Repetir vídeo",
+          "description":"Compruebe si el vídeo debe mostrarse en un bucle"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Ocultar el botón \"Mostrar solución\"",
+          "description":"Esta opción determina si el botón \"Mostrar solución\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Habilitado"
             },
             {
-              "label":"Disabled"
+              "label":"Desactivado"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
+          "label":"Ocultar el botón de \"Reintentar\"",
           "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
