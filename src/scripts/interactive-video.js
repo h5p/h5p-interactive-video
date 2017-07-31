@@ -1795,16 +1795,6 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
     return;
   }
 
-  /*
-   * The IE 11 for no reason jumps to a playback rate of 1 if the slider is
-   * moved or if you pause and restart the video. Until a workaround has been
-   * found, the playback rate chooser is deactivated for the IE 11.
-   */
-  var isIE11 = navigator.userAgent.match(/Trident.*rv[ :]*11\./) ? true : false;
-  if (isIE11) {
-    return;
-  }
-
   var playbackRates = this.video.getPlaybackRates();
 
   // don't enable playback rate chooser if only default rate can be chosen
