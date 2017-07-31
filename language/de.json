@@ -54,23 +54,23 @@
                         "default":"Untertitel",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Untertitel"
                           },
                           {
                             "label":"Captions"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Beschreibungen"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Ausgangssprache, muss für Untertitel definiert werden",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"Muss ein gültiges BCP 47 Sprachtag sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"Quelldatei der Spur (WebVTT-Datei)"
                       }
                     ]
                   }
@@ -116,7 +116,7 @@
                     "label":"Beschriftung"
                   },
                   {
-                    "label":"Label",
+                    "label":"Beschriftung",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
