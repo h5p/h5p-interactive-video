@@ -11,11 +11,11 @@
               "description":"Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Opciones de pantalla de inicio - no funcionan para vídeos de YouTube",
               "fields":[
                 {
                   "label":"Título",
-                  "default":"Interactive Video",
+                  "default":"Vídeo interactivo",
                   "description":"Utilizado en extractos, estadísticas, etc."
                 },
                 {
