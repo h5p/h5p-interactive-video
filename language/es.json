@@ -7,7 +7,7 @@
           "label":"Subir/Insertar video",
           "fields":[
             {
-              "label":"Archivo de video",
+              "label":"Añadir un vídeo",
               "description":"Seleccione los archivos de video que desea utilizar en su video interactivo. Para garantizar el máximo soporte entre navegadores, cuando menos agregue una versión del video en formatos webm y mp4."
             },
             {
@@ -214,13 +214,13 @@
                       },
                       {
                         "label":"Ir a",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"El punto del vídeo al que moverá el usuario al pulsar el hotspot. Introduzca el código de tiempo en el formato M:SS."
                       },
                       {
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protocolo",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(raíz relativa)"
                               },
                               {
                                 "label":"other"
@@ -424,19 +424,19 @@
         },
         {
           "label":"Passed time minutes",
-          "default":"Minutes"
+          "default":"Minutos"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Tiempo transcurrido segundos",
+          "default":"Segundos"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"Etiqueta de tiempo actual",
+          "default":"Hora actual:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Etiqueta de tiempo total",
+          "default":"Tiempo total:"
         }
       ]
     }
