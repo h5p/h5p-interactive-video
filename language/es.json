@@ -308,13 +308,13 @@
         },
         {
           "label":"Ocultar el botón de \"Reintentar\"",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description":"Esta opción determina si el botón \"Reintentar\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Habilitado"
             },
             {
-              "label":"Disabled"
+              "label":"Deshabilitado"
             }
           ]
         },
@@ -323,15 +323,15 @@
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label":"Prevent skipping forward in a video",
+          "label":"Evitar saltar hacia adelante en un vídeo",
           "description":"Enabling this options will disable user video navigation through default controls"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Desactivar sonido",
+          "description":"Habilitar esta opción desactiva el sonido del vídeo y evitar que se active."
         }
       ]
     },
@@ -340,75 +340,75 @@
       "fields":[
         {
           "label":"Título de la actividad",
-          "default":"Interaction"
+          "default":"Interacción"
         },
         {
           "label":"Reproducir",
-          "default":"Play"
+          "default":"Reproducir"
         },
         {
           "label":"Pausar",
-          "default":"Pause"
+          "default":"Pausa"
         },
         {
           "label":"Silenciar",
-          "default":"Mute"
+          "default":"Silenciar"
         },
         {
           "label":"Habilitar sonido",
-          "default":"Unmute"
+          "default":"Activar sonido"
         },
         {
           "label":"Calidad del video",
-          "default":"Video Quality"
+          "default":"Calidad de vídeo"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label":"Nombre de los títulos del vídeo",
+          "default":"Títulos"
         },
         {
-          "label":"Close button text",
-          "default":"Close"
+          "label":"Texto del botón cerrar",
+          "default":"Cerrar"
         },
         {
           "label":"Pantalla completa",
-          "default":"Fullscreen"
+          "default":"Pantalla completa"
         },
         {
           "label":"Salir de pantalla completa",
-          "default":"Exit Fullscreen"
+          "default":"Salir de pantalla completa"
         },
         {
           "label":"Resumen",
-          "default":"Summary"
+          "default":"Resumen"
         },
         {
           "label":"Marcadores",
-          "default":"Bookmarks"
+          "default":"Marcadores"
         },
         {
           "label":"Etiqueta por defecto del botón de búsqueda",
-          "default":"Continue"
+          "default":"Continuar"
         },
         {
-          "label":"Default label for continue video button",
-          "default":"Continue with video"
+          "label":"Etiqueta por defecto para el botón de continuar vídeo",
+          "default":"Continuar con el vídeo"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label":"Establecer la velocidad de reproducción",
+          "default":"Velocidad de reproducción"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label":"Retroceder 10 segundos",
+          "default":"Retroceder 10 segundos"
         },
         {
-          "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "label":"Texto para navegación deshabilitada",
+          "default":"La navegación está deshabilitada"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label":"Texto para el sonido deshabilitado",
+          "default":"E sonido está deshabilitado"
         },
         {
           "label":"Advertencia de que el usuario debe responder a la pregunta correctamente antes de continuar",
@@ -419,11 +419,11 @@
           "default":"Retroceso"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Tiempo transcurrido (horas)",
+          "default":"Horas"
         },
         {
-          "label":"Passed time minutes",
+          "label":"Tiempo transcurrido (minutos)",
           "default":"Minutos"
         },
         {
