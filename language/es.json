@@ -107,7 +107,7 @@
                         "label":"Botón"
                       },
                       {
-                        "label":"Usuario que publica"
+                        "label":"Cartel"
                       }
                     ],
                     "default":"button"
@@ -162,7 +162,7 @@
                         "label":"Acción para incorrecta",
                         "fields":[
                           {
-                            "label":"Buscar",
+                            "label":"Ir a",
                             "description":"Introduzca el código de tiempo en el formato M:SS"
                           },
                           {
@@ -359,7 +359,7 @@
           "default":"Activar sonido"
         },
         {
-          "label":"Calidad del video",
+          "label":"Título de la calidad de vídeo",
           "default":"Calidad de vídeo"
         },
         {
