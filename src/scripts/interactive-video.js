@@ -841,12 +841,12 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
   this.controls.$interactionsContainer.children().remove();
 
   // Add new dots
-  this.interactions
+  H5P.jQuery.extend([], this.interactions)
     .sort((a, b) =>  a.getDuration().from - b.getDuration().from)
     .forEach(interaction => {
       const $menuitem = interaction.addDot();
 
-      if($menuitem !== undefined) {
+      if ($menuitem !== undefined) {
         $menuitem.appendTo(this.controls.$interactionsContainer);
 
         if(!this.preventSkipping) {
