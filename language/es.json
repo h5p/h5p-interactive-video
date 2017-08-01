@@ -375,23 +375,23 @@
           "default":"Pantalla completa"
         },
         {
-          "label":"Salir de pantalla completa",
+          "label":"Título de Salir de pantalla completa",
           "default":"Salir de pantalla completa"
         },
         {
-          "label":"Resumen",
+          "label":"Título de Resumen",
           "default":"Resumen"
         },
         {
-          "label":"Marcadores",
+          "label":"Título de marcadores",
           "default":"Marcadores"
         },
         {
-          "label":"Etiqueta por defecto del botón de búsqueda",
+          "label":"Etiqueta predeterminada para el botón de búsqueda de adaptabilidad",
           "default":"Continuar"
         },
         {
-          "label":"Etiqueta por defecto para el botón de continuar vídeo",
+          "label":"Etiqueta predeterminada para el botón de continuar video",
           "default":"Continuar con el vídeo"
         },
         {
@@ -408,7 +408,7 @@
         },
         {
           "label":"Texto para el sonido deshabilitado",
-          "default":"E sonido está deshabilitado"
+          "default":"El sonido está deshabilitado"
         },
         {
           "label":"Advertencia de que el usuario debe responder a la pregunta correctamente antes de continuar",
