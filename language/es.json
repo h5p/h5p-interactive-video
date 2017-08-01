@@ -26,8 +26,8 @@
                   "description":"Opcional. Mostrar un texto con una breve descripción en la pantalla inicial del vídeo. No funciona para vídeos de YouTube."
                 },
                 {
-                  "label":"Imagen de póster",
-                  "description":"La imagen que se muestra antes de que el usuario pulse play. No funciona para vídeos de YouTube."
+                  "label":"Cartel",
+                  "description":"Imagen que se muestra antes de que el usuario inicie el video. No funciona para Videos de YouTube."
                 },
                 {
                   "label":"Derechos de autor del video",
@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Idioma fuente, debe definirse para los subtítulos",
+                        "label":"Lengua de origen, debe definirse para los subtítulos",
                         "default":"en",
                         "description":"Debe ser una etiqueta de idioma válida de BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
@@ -107,13 +107,13 @@
                         "label":"Botón"
                       },
                       {
-                        "label":"Cartel"
+                        "label":"Usuario que publica"
                       }
                     ],
                     "default":"button"
                   },
                   {
-                    "label":"Etiqueta"
+                    "label":"Convertir en botón en pantallas pequeñas"
                   },
                   {
                     "label":"Etiqueta",
