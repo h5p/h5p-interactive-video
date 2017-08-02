@@ -121,9 +121,12 @@ function Interaction(parameters, player, previousState) {
   var createButton = function () {
     var hiddenClass = isShownAsButton ? '' : ' h5p-hidden';
     $interaction = $('<div/>', {
-      tabIndex: 0,
-      role: 'button',
+      'tabindex': 0,
+      'role': 'button',
       'class': 'h5p-interaction ' + classes + hiddenClass,
+      'aria-popup': 'true',
+      'aria-expanded': 'false',
+      'aria-label': title,
       css: {
         left: parameters.x + '%',
         top: parameters.y + '%',
@@ -132,18 +135,23 @@ function Interaction(parameters, player, previousState) {
       },
       on: {
         click: function () {
-          if (!self.dialogDisabled && library !== 'H5P.Nil') {
+          if (!self.dialogDisabled) {
             openDialog();
+            $interaction.attr('aria-expanded', 'true');
           }
         },
-        keypress: function (event) {
-          if ((event.charCode || event.keyCode) === 32) { // Space
-            if (!self.dialogDisabled && library !== 'H5P.Nil') {
-              openDialog();
-            }
+        keydown: function (event) {
+          if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
+            openDialog();
+            $interaction.attr('aria-expanded', 'true');
           }
         }
       }
+    });
+
+    self.on('closeDialog', () => {
+      $interaction.focus();
+      $interaction.attr('aria-expanded', 'false');
     });
 
     // if requires completion -> open dialog right away
@@ -159,10 +167,7 @@ function Interaction(parameters, player, previousState) {
     }).appendTo($interaction);
 
     $('<div/>', {
-      'role': 'button',
-      'tabindex': '0',
-      'class': 'h5p-interaction-button',
-      'aria-label': title
+      'class': 'h5p-interaction-button'
     }).appendTo($interaction);
 
     // Show label in editor on hover
@@ -192,11 +197,9 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Check to see if we should add label
-    if (library === 'H5P.Nil' || (parameters.label && $converter.html(parameters.label).text().length)) {
-      $label = $('<div/>', {
-        'class': 'h5p-interaction-label',
-        html: '<div class="h5p-interaction-label-text">' + parameters.label + '</div>'
-      }).appendTo($interaction);
+    const hasLabel = nonEmptyString(stripTags(parameters.label));
+    if (parameters.label && hasLabel) {
+      $label = createLabel(parameters.label, 'h5p-interaction').appendTo($interaction);
     }
 
     self.trigger('display', $interaction);
@@ -206,6 +209,39 @@ function Interaction(parameters, player, previousState) {
         $interaction.removeClass('h5p-hidden');
       }
     }, 0);
+  };
+
+  /**
+   * Creates a label element
+   *
+   * @param {string} label
+   * @param {string} classes
+   * @return {H5P.jQuery}
+   */
+  const createLabel = (label, classes = '') => {
+    return $('<div/>', {
+      'class': `h5p-interaction-label ${classes}`,
+      'html': `<div class="h5p-interaction-label-text">${label}</div>`
+    });
+  };
+
+  /**
+   * Creates a standalone Label interaction element
+   *
+   * @return {H5P.jQuery}
+   */
+  const createStandaloneLabel = () => {
+    $interaction = createLabel(parameters.label, 'h5p-interaction');
+    $interaction = $interaction.css({
+      left: `${parameters.x}%`,
+      top: `${parameters.y}%`,
+      width: '',
+      height: 'initial'
+    });
+    self.trigger('display', $interaction);
+    setTimeout(() => $interaction.removeClass('h5p-hidden'), 0);
+
+    return $interaction;
   };
 
   /**
@@ -317,12 +353,36 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Wraps tabbing around if trying to exit a list of elements
+   *
+   * @param {jQuery} $elementList
+   * @param {KeyboardEvent} event
+   */
+  const preventTabbingOutOfElementList = ($elementList, event) => {
+    const isCurrent = $element => event.target === $element.get(0);
+    const tabKeyPressed = event.which === 9;
+    const $first = $elementList.first();
+    const $last = $elementList.last();
+
+    if (tabKeyPressed && event.shiftKey && isCurrent($first)){
+      $last.focus();
+      event.preventDefault();
+    }
+    else if (tabKeyPressed && isCurrent($last)) {
+      $first.focus();
+      event.preventDefault();
+    }
+  };
+
+  /**
    * Opens button dialog.
    *
    * @private
    * @param {boolean} [checkScore] Check score before showing dialog
    */
   var openDialog = function (checkScore) {
+    const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+
     if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
       instance.setActivityStarted();
     }
@@ -333,6 +393,16 @@ function Interaction(parameters, player, previousState) {
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
+
+    if(self.getRequiresCompletion()){
+      $dialogWrapper.keydown(event => {
+        const $elements = $dialogWrapper
+          .find('[tabindex="0"], button, input')
+          .filter(':visible');
+
+        preventTabbingOutOfElementList($elements, event);
+      });
+    }
 
     // Attach instance to dialog and open
     var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
@@ -355,16 +425,21 @@ function Interaction(parameters, player, previousState) {
       player.dnb.dialog.disableOverlay = true;
 
       // selects the overlay, and adds warning on click
-      var $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
       $dialogWrapper.click(function () {
         if (!self.hasFullScore()) {
-          player.showWarningMask();
+          const $mask = player.showWarningMask();
+
+          // on close, focus on last button
+          $mask
+            .find('.h5p-button-back')
+            .click(() => $dialogContent.find('button').last().focus());
         }
       });
     }
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
+    player.dnb.dialog.focus();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
@@ -391,7 +466,7 @@ function Interaction(parameters, player, previousState) {
       }
     };
     player.dnb.dialog.on('close', dialogCloseHandler);
-
+    player.dnb.dialog.on('close', () => self.trigger('closeDialog'));
     /**
      * Set dialog width of interaction and unregister dialog close listener
      * @private
@@ -542,7 +617,6 @@ function Interaction(parameters, player, previousState) {
   var showOverlayMask = function ($interaction) {
     $interaction.css('zIndex', 52);
     player.showOverlayMask();
-
   };
 
 
@@ -568,6 +642,9 @@ function Interaction(parameters, player, previousState) {
     var visuals = getVisuals();
 
     $interaction = $('<div/>', {
+      'role': 'group',
+      'aria-label': player.l10n.interaction,
+      'tabindex': '-1',
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
       css: {
         left: parameters.x + '%',
@@ -634,6 +711,7 @@ function Interaction(parameters, player, previousState) {
         player.editor === undefined &&
         !self.hasFullScore()) {
       showOverlayMask($interaction);
+      $interaction.focus();
     }
 
     setTimeout(function () {
@@ -730,8 +808,11 @@ function Interaction(parameters, player, previousState) {
 
     // Wait for any modifications Question does to feedback and buttons
     setTimeout(function () {
-      // Set adaptivity message and hide interaction flow controls, strip adaptivity message of p tags
-      instance.updateFeedbackContent(adaptivity.message.replace('<p>', '').replace('</p>', ''), true);
+      // Strip adaptivity message of p tags
+      const message = adaptivity.message.replace('<p>', '').replace('</p>', '');
+      // Set adaptivity message and hide interaction flow controls
+      instance.updateFeedbackContent(message, true);
+      instance.read(message);
     }, 0);
   };
 
@@ -871,7 +952,7 @@ function Interaction(parameters, player, previousState) {
    * @returns {boolean}
    */
   self.isButton = function () {
-    if (parameters.displayType === 'button' || library === 'H5P.Nil') {
+    if (parameters.displayType === 'button') {
       return true;
     }
     else if (player.isMobileView && library !== 'H5P.IVHotspot') {
@@ -882,6 +963,13 @@ function Interaction(parameters, player, previousState) {
     }
     return false;
   };
+
+  /**
+   * Returns true if this interaction is only a label
+   *
+   * @return {boolean}
+   */
+  self.isStandaloneLabel = () => library === 'H5P.Nil';
 
   /**
    * Checks if this is the end summary.
@@ -1016,7 +1104,11 @@ function Interaction(parameters, player, previousState) {
     // set that this is visible
     isVisible = true;
 
-    if (self.isButton()) {
+    if (self.isStandaloneLabel()) {
+      createStandaloneLabel();
+      isShownAsButton = false;
+    }
+    else if (self.isButton()) {
       createButton();
       isShownAsButton = true;
     }
@@ -1067,11 +1159,15 @@ function Interaction(parameters, player, previousState) {
     // Only recreate existing interactions
     if ($interaction) {
       $interaction.detach();
-
-      if (self.isButton()) {
+      if(self.isStandaloneLabel()) {
+        createStandaloneLabel();
+        isShownAsButton = false;
+      }
+      else if (self.isButton()) {
         createButton();
         isShownAsButton = true;
-      } else {
+      }
+      else {
         createPoster();
         isShownAsButton = false;
       }
@@ -1082,7 +1178,7 @@ function Interaction(parameters, player, previousState) {
    * TODO
    */
   self.resizeInteraction = function () {
-    if (library !== 'H5P.Nil') {
+    if (!self.isStandaloneLabel()) {
       H5P.trigger(instance, 'resize');
     }
   };
@@ -1093,7 +1189,7 @@ function Interaction(parameters, player, previousState) {
    * @param {number} width Size of the container
    */
   self.positionLabel = function (width) {
-    if (!$interaction || !self.isButton() || !$label || library === 'H5P.Nil') {
+    if (!$interaction || !self.isButton() || !$label || self.isStandaloneLabel()) {
       return;
     }
 
@@ -1156,7 +1252,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.reCreate = function () {
     classes = determineClasses();
-    if (library !== 'H5P.Nil') {
+    if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
       instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
@@ -1281,20 +1377,21 @@ function Interaction(parameters, player, previousState) {
    * @returns {H5P.ContentCopyrights}
    */
   self.getCopyrights = function () {
-    if (library === 'H5P.Nil') {
-      return undefined;
+    const COPYRIGHTS_NONE = undefined;
+
+    if (!self.isStandaloneLabel()) {
+      const instance = H5P.newRunnable(action, player.contentId);
+
+      if (instance !== undefined) {
+        const interactionCopyrights = new H5P.ContentCopyrights();
+        interactionCopyrights.addContent(H5P.getCopyrights(instance, parameters, player.contentId));
+        interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
+
+        return interactionCopyrights;
+      }
     }
 
-    var instance = H5P.newRunnable(action, player.contentId);
-
-    if (instance !== undefined) {
-      var interactionCopyrights = new H5P.ContentCopyrights();
-      interactionCopyrights.addContent(H5P.getCopyrights(instance, parameters, player.contentId));
-      interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
-      return interactionCopyrights;
-    }
-
-    return undefined;
+    return COPYRIGHTS_NONE;
   };
 
   /**
@@ -1418,13 +1515,5 @@ function Interaction(parameters, player, previousState) {
 // Extends the event dispatcher
 Interaction.prototype = Object.create( H5P.EventDispatcher.prototype);
 Interaction.prototype.constructor = Interaction;
-
-/**
- * Tool for converting.
- *
- * @private
- * @type {H5P.jQuery}
- */
-var $converter = $('<div/>');
 
 export default Interaction;

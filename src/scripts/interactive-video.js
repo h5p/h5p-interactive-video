@@ -2,11 +2,16 @@ import SelectorControl from './selector-control';
 import Controls from 'h5p-lib-controls/src/scripts/controls';
 import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
+import Accessibility from './accessibility';
 const $ = H5P.jQuery;
 
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
+
+const KEY_CODE_ENTER = 13;
+const KEY_CODE_SPACE = 32;
+const KEY_CODE_K = 75; // 'K' to start/stop, same as youtube
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -41,6 +46,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Keep track of content ID
   self.contentId = id;
+  self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
@@ -116,7 +122,11 @@ function InteractiveVideo(params, id, contentData) {
     minutes: 'Minutes',
     seconds: 'Seconds',
     currentTime: 'Current time:',
-    totalTime: 'Total time:'
+    totalTime: 'Total time:',
+    navigationHotkeyInstructions: 'Use key \'k\' for starting and stopping video at any time',
+    singleInteractionAnnouncement: 'Interaction appeared:',
+    multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
+    videoPausedAnnouncement: 'Video was paused'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -237,8 +247,6 @@ function InteractiveVideo(params, id, contentData) {
 
       case H5P.Video.PLAYING:
         if (firstPlay) {
-          firstPlay = false;
-
           // Qualities might not be available until after play.
           self.addQualityChooser();
 
@@ -251,7 +259,9 @@ function InteractiveVideo(params, id, contentData) {
           self.startUpdatingBufferBar();
 
           // Remove bookmarkchooser
-          self.toggleBookmarksChooser(false);
+          self.toggleBookmarksChooser(false, firstPlay);
+
+          firstPlay = false;
         }
 
         self.currentState = H5P.Video.PLAYING;
@@ -372,6 +382,8 @@ function InteractiveVideo(params, id, contentData) {
       this.initInteraction(i);
     }
   }
+
+  self.accessibility = new Accessibility(self.l10n);
 }
 
 // Inheritance
@@ -552,6 +564,26 @@ InteractiveVideo.prototype.attach = function ($container) {
     }
   }
 
+  // Make sure navigation hotkey works for container
+  $container.attr('tabindex', '-1');
+  $container.on('keyup', e => {
+    const hasPlayButton = that.controls && that.controls.$play;
+    const startVideoKeyCode = (e.which === KEY_CODE_K);
+
+    if (hasPlayButton && startVideoKeyCode) {
+      if (this.hasUncompletedRequiredInteractions()) {
+        const $currentFocus = $(document.activeElement);
+        const $mask = this.showWarningMask();
+        $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
+      }
+      else {
+        that.controls.$play.click();
+      }
+    }
+  });
+
+  this.$container.prepend($(this.accessibility.getHotkeyInstructor()));
+  this.$container.append($(this.accessibility.getInteractionAnnouncer()));
 
   this.currentState = InteractiveVideo.ATTACHED;
 
@@ -615,8 +647,7 @@ InteractiveVideo.prototype.addSplash = function () {
   // Add play functionality and title to play icon
   $('.h5p-splash', this.$splash).keydown(function (e) {
     var code = e.which;
-    // 32 = Space, 13 = enter
-    if (code === 32 || code === 13) {
+    if (code === KEY_CODE_SPACE || code === KEY_CODE_ENTER) {
       that.video.play();
       e.preventDefault();
 
@@ -873,8 +904,9 @@ InteractiveVideo.prototype.addBookmarks = function () {
  *
  * @method toggleBookmarksChooser
  * @param {boolean} [show] Forces toggle state if set
+ * @param {boolean} [firstPlay] If first time
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show = false, firstPlay = false) {
   if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
@@ -899,7 +931,9 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show) {
         .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
         .removeClass('h5p-show');
 
-      this.controls.$bookmarksButton.focus();
+      if (!firstPlay) {
+        this.controls.$bookmarksButton.focus();
+      }
     }
 
     // Add classes if changing visibility
@@ -1038,7 +1072,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   var $li = $(`<li role="menuitem" aria-describedby="${self.bookmarksMenuId}">${bookmark.label}</li>`)
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keydown(e => {
-      if(e.which === 32 || e.which === 13){
+      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
         self.onBookmarkSelect($bookmark, bookmark);
       }
 
@@ -1219,7 +1253,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'title': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
-        if (event.which === 32 || event.which === 13) {
+        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
           self.toggleBookmarksChooser();
           event.preventDefault();
         }
@@ -1397,7 +1431,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'title': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
-      if (event.which === 32 || event.which === 13) {
+      if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
         closeQualityMenu();
         event.preventDefault();
       }
@@ -1696,7 +1730,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
         handler.call(this);
       },
       keydown: function (event) {
-        if (event.which === 32 || event.which === 13) { // Space or enter
+        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) { // Space or enter
           handler.call(this);
           event.preventDefault();
           event.stopPropagation();
@@ -1743,7 +1777,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
       self.updateQuality(quality);
     })
     .keydown(function(e) {
-      if(e.which === 32 || e.which === 13) {
+      if(e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
         const quality = $(this).attr('data-quality');
         self.updateQuality(quality);
       }
@@ -1824,7 +1858,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
       self.updatePlaybackRate(rate);
     })
     .keydown(function(e) {
-      if(e.which === 32 || e.which === 13){
+      if(e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER){
         const rate = $(this).attr('playback-rate');
         self.updatePlaybackRate(rate);
       }
@@ -2334,10 +2368,51 @@ InteractiveVideo.prototype.showOverlayMask = function () {
       self.showWarningMask();
     }
   });
+
+  self.toggleFocusTrap();
+};
+
+/**
+ * If there are visible required interactions, trap focus
+ * within them.
+ */
+InteractiveVideo.prototype.toggleFocusTrap = function () {
+  const requiredInteractions = this.getVisibleInteractions()
+    .filter(interaction => interaction.getRequiresCompletion() && !interaction.hasFullScore());
+
+  if (requiredInteractions.length > 0) {
+    this.$container
+      .off('focusin')
+      .on('focusin', event => this.trapFocusInInteractions(requiredInteractions, $(event.target)));
+  }
+  else {
+    this.$container.off('focusin', '**');
+  }
+};
+
+/**
+ * Trap the focus within a list of interactions
+ *
+ * @param {H5P.InteractiveVideoInteraction[]} requiredInteractions
+ * @param {jQuery} $focusedElement
+ */
+InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteractions, $focusedElement) {
+  const focusIsInsideInteraction = requiredInteractions
+    .some(interaction => {
+      const $interaction = interaction.getElement();
+      return isSameElementOrChild($interaction, $focusedElement)
+    });
+
+  const focusIsInsideWarningMask = this.$mask ? isSameElementOrChild(this.$mask, $focusedElement) : false;
+
+  if (!focusIsInsideInteraction && !focusIsInsideWarningMask) {
+    requiredInteractions[0].getElement().focus();
+  }
 };
 
 /**
  * Hides the mask behind the interaction
+ *
  * @return {jQuery} the dialog wrapper element
  */
 InteractiveVideo.prototype.hideOverlayMask = function () {
@@ -2345,6 +2420,7 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
 
   self.dnb.dialog.closeOverlay();
   self.$videoWrapper.removeClass('h5p-disable-opt-out');
+  self.toggleFocusTrap();
 
   return self.$container.find('.h5p-dialog-wrapper');
 };
@@ -2353,25 +2429,32 @@ InteractiveVideo.prototype.hideOverlayMask = function () {
 /**
  * Shows the warning mask.
  * The mask is shared by all interactions
+ *
+ * @returns {jQuery}
  */
 InteractiveVideo.prototype.showWarningMask = function () {
-  var self = this;
+  const self = this;
+  const warningTextId = `interactive-video-${self.contentId}-${self.instanceIndex}-completion-warning-text`;
 
   // create mask if doesn't exist
   if (!self.$mask) {
     self.$mask = $(
-      '<div class="h5p-warning-mask">' +
-      '<div class="h5p-warning-mask-wrapper">' +
-      '<div class="h5p-warning-mask-content">' + self.l10n.requiresCompletionWarning + '</div>' +
-      '<button type="button" class="h5p-joubelui-button h5p-button-back">' + self.l10n.back + '</button>' +
-      '</div>' +
-      '</div>'
+      `<div class="h5p-warning-mask" role="alertdialog" aria-describedby="${warningTextId}">
+        <div class="h5p-warning-mask-wrapper">
+          <div id="${warningTextId}" class="h5p-warning-mask-content">${self.l10n.requiresCompletionWarning}</div>
+          <button type="button" class="h5p-joubelui-button h5p-button-back">${self.l10n.back}</button>
+        </div>
+      </div>`
     ).click(function () {
       self.$mask.hide();
-    }).appendTo(self.$container);
+    })
+    .appendTo(self.$container);
   }
 
   self.$mask.show();
+  self.$mask.find('.h5p-button-back').focus();
+
+  return self.$mask;
 };
 
 /**
@@ -2412,7 +2495,7 @@ InteractiveVideo.prototype.removeDisabled = $element => {
  * Returns true if there are visible interactions that require completed
  * and the user doesn't have full score
  *
- * @param {number} second
+ * @param {number} [second]
  * @returns {boolean} If any required interaction is not completed with full score
  */
 InteractiveVideo.prototype.hasUncompletedRequiredInteractions = function (second) {
@@ -2473,6 +2556,8 @@ InteractiveVideo.prototype.toggleInteractions = function (second) {
     this.interactions[i].toggle(second);
     this.interactions[i].repositionToWrapper(this.$videoWrapper);
   }
+
+  this.accessibility.announceInteractions(this.interactions);
 };
 
 /**
@@ -2701,6 +2786,22 @@ var delayWork = function (time, job) {
 };
 
 /**
+ * Use a global counter to separate instances of IV,
+ * to maintain unique ids.
+ *
+ * Note that ids does not have to be unique across iframes.
+ *
+ * @return {number}
+ */
+const getAndIncrementGlobalCounter = () => {
+  if (window.interactiveVideoCounter === undefined) {
+    window.interactiveVideoCounter = 0;
+  }
+
+  return window.interactiveVideoCounter++;
+};
+
+/**
  * Get xAPI data.
  * Contract used by report rendering engine.
  *
@@ -2746,6 +2847,19 @@ var getxAPIDefinition = function () {
   };
 
   return definition;
+};
+
+/**
+ * Returns true if the child element is contained by the parent
+ * or is the same element as the parent
+ *
+ * @param {jQuery} $parent
+ * @param {jQuery} $child
+ * @return {boolean}
+ */
+const isSameElementOrChild = ($parent, $child) => {
+  return $parent !== undefined && $child !== undefined
+    && ($parent.is($child) || $.contains($parent.get(0), $child.get(0)));
 };
 
 /**

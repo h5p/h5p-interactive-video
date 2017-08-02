@@ -926,6 +926,38 @@
         "importance": "low",
         "default": "Total time:",
         "optional": true
+      },
+      {
+        "name": "navigationHotkeyInstructions",
+        "type": "text",
+        "label": "Text for explaining navigation hotkey",
+        "importance": "low",
+        "default": "Use key k for starting and stopping video at any time",
+        "optional": true
+      },
+      {
+        "name": "singleInteractionAnnouncement",
+        "type": "text",
+        "label": "Text explaining that a single interaction with a name has come into view",
+        "importance": "low",
+        "default": "Interaction appeared:",
+        "optional": true
+      },
+      {
+        "name": "multipleInteractionsAnnouncement",
+        "type": "text",
+        "label": "Text for explaining that multiple interactions have come into view",
+        "importance": "low",
+        "default": "Multiple interactions appeared.",
+        "optional": true
+      },
+      {
+        "name": "videoPausedAnnouncement",
+        "type": "text",
+        "label": "Video is paused announcement",
+        "importance": "low",
+        "default": "Video is paused",
+        "optional": true
       }
     ]
   }
