@@ -235,7 +235,35 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         }
 
         finished(null, parameters);
-      }
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.17.
+       *
+       * Sets default value of new parameter buttonOnMobile
+       * to true so that old content behaves correctly when transitioning
+       * to small screens.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      17: function (parameters, finished) {
+
+        if (parameters.interactiveVideo && 
+            parameters.interactiveVideo.assets && 
+            parameters.interactiveVideo.assets.interactions) {
+          var interactions = parameters.interactiveVideo.assets.interactions;
+          for (i = 0; i < interactions.length; i++) {
+            if (interactions[i].buttonOnMobile == undefined) { 
+              interactions[i].buttonOnMobile = true;
+            }
+          }        
+        }
+
+        // Done
+        finished(null, parameters);
+      },
     }
   };
 })(H5P.jQuery);
