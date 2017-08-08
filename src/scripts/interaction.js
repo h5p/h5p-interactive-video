@@ -239,7 +239,12 @@ function Interaction(parameters, player, previousState) {
       height: 'initial'
     });
     self.trigger('display', $interaction);
-    setTimeout(() => $interaction.removeClass('h5p-hidden'), 0);
+    setTimeout(() => {
+      if ($interaction) {
+        // Transition in
+        $interaction.removeClass('h5p-hidden');
+      }
+    }, 0);
 
     return $interaction;
   };
