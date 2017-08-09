@@ -60,7 +60,9 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
    */
   var toggle = function () {
     var isExpanded = self.control.getAttribute('aria-expanded') === 'true';
+    /* jshint -W030 */
     isExpanded ? hide() : show();
+    /* jshint +W030 */
   };
 
   /**

@@ -2400,7 +2400,7 @@ InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteracti
   const focusIsInsideInteraction = requiredInteractions
     .some(interaction => {
       const $interaction = interaction.getElement();
-      return isSameElementOrChild($interaction, $focusedElement)
+      return isSameElementOrChild($interaction, $focusedElement);
     });
 
   const focusIsInsideWarningMask = this.$mask ? isSameElementOrChild(this.$mask, $focusedElement) : false;
@@ -2858,8 +2858,8 @@ var getxAPIDefinition = function () {
  * @return {boolean}
  */
 const isSameElementOrChild = ($parent, $child) => {
-  return $parent !== undefined && $child !== undefined
-    && ($parent.is($child) || $.contains($parent.get(0), $child.get(0)));
+  return $parent !== undefined && $child !== undefined &&
+         ($parent.is($child) || $.contains($parent.get(0), $child.get(0)));
 };
 
 /**
