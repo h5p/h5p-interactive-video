@@ -993,6 +993,19 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
+    /**
+     * Skip if already on given timecode.
+     * This is done because players may act unexpectedly when attempting to skip to the location
+     * you are already on. For instance YouTube videos, which are supposed to be paused
+     * at the given timecode will start playing instead.
+     * Using .1 second precision to only target the cases where the dot has been pressed two times
+     * in close succession.
+     */
+    if (Math.floor(player.video.getCurrentTime() * 10) === Math.floor(parameters.duration.from * 10)) {
+      return;
+    }
+
+
     if (player.currentState === H5P.Video.VIDEO_CUED) {
       player.play();
       player.seek(parameters.duration.from);
@@ -1004,13 +1017,6 @@ function Interaction(parameters, player, previousState) {
       player.seek(parameters.duration.from);
       player.pause();
     }
-
-    // wait for interaction to be created
-    setTimeout(() => {
-      if($interaction) {
-        $interaction.focus();
-      }
-    }, 10);
   };
 
   /**
