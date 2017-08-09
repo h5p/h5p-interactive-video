@@ -199,7 +199,7 @@ function Interaction(parameters, player, previousState) {
     // Check to see if we should add label
     const hasLabel = nonEmptyString(stripTags(parameters.label));
     if (parameters.label && hasLabel) {
-      $label = createLabel(parameters.label, false, 'h5p-interaction').appendTo($interaction);
+      $label = createLabel(parameters.label, 'h5p-interaction').appendTo($interaction);
     }
 
     self.trigger('display', $interaction);
@@ -218,9 +218,9 @@ function Interaction(parameters, player, previousState) {
    * @param {string} classes
    * @return {H5P.jQuery}
    */
-  const createLabel = (label, standalone, classes = '') => {
+  const createLabel = (label, classes = '') => {
     return $('<div/>', {
-      'class': standalone ? `h5p-interaction-label-standalone ${classes}` : `h5p-interaction-label ${classes}`,
+      'class': `h5p-interaction-label ${classes}`,
       'html': `<div class="h5p-interaction-label-text">${label}</div>`
     });
   };
@@ -231,7 +231,7 @@ function Interaction(parameters, player, previousState) {
    * @return {H5P.jQuery}
    */
   const createStandaloneLabel = () => {
-    $interaction = createLabel(parameters.label, true, 'h5p-interaction');
+    $interaction = createLabel(parameters.label, 'h5p-interaction h5p-interaction-label-standalone');
     $interaction = $interaction.css({
       left: `${parameters.x}%`,
       top: `${parameters.y}%`,
