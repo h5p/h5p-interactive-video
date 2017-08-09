@@ -1379,11 +1379,9 @@ function Interaction(parameters, player, previousState) {
   /**
    * Collect copyright information for the interaction.
    *
-   * @returns {H5P.ContentCopyrights}
+   * @returns {H5P.ContentCopyrights} Will return undefined if no copyrights
    */
   self.getCopyrights = function () {
-    const COPYRIGHTS_NONE = undefined;
-
     if (!self.isStandaloneLabel()) {
       const instance = H5P.newRunnable(action, player.contentId);
 
@@ -1395,8 +1393,6 @@ function Interaction(parameters, player, previousState) {
         return interactionCopyrights;
       }
     }
-
-    return COPYRIGHTS_NONE;
   };
 
   /**
