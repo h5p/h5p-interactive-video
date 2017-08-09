@@ -161,22 +161,12 @@
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone  {
-  top: 0;
   left: 0;
   padding: 0.2em 0.5em;
   line-height: 1.5;
   height: auto;
   min-width: 1.5em;
-  cursor: pointer;
   border-radius: 0;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  z-index: 1;
-  width: auto;
-  white-space: nowrap;
-  vertical-align: text-bottom;
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone:focus {
