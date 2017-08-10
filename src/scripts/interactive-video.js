@@ -1287,21 +1287,24 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
   }
 
+  const currentTimeTemplate =
+    `<time class="h5p-current">
+      <span class="hidden-but-read"></span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>`;
+
   // Current time for minimal display
-  var $simpleTime = $('<div class="h5p-control h5p-simple-time"><time class="h5p-current"><span class="human-time">0:00</span></time></div>').appendTo($left);
-  self.controls.$currentTime = $simpleTime.find('.h5p-current').find('human-time');
-  self.controls.$currentTimeA11y = $simpleTime.find('.h5p-current').find('hidden-but-read');
+  const $simpleTime = $(`<div class="h5p-control h5p-simple-time">${currentTimeTemplate}</div>`).appendTo($left);
+  self.controls.$currentTimeSimple = $simpleTime.find('.human-time');
+  self.controls.$currentTimeA11ySimple = $simpleTime.find('.hidden-but-read');
 
   // Add display for time elapsed and duration
   const textFullTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
 
   const $time = $(`<div class="h5p-control h5p-time">
-    <time class="h5p-current">
-      <span class="hidden-but-read"></span>
-      <span class="human-time" aria-hidden="true">0:00</span>
-    </time>
+    ${currentTimeTemplate}
     <span>
-      <span class=hidden-but-read> of </span>
+      <span class="hidden-but-read"> of </span>
       <span aria-hidden="true"> / </span>
     </span>
     <time class="h5p-total">
@@ -1310,8 +1313,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     </time>
   </div>`).appendTo($right);
 
-  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current').find('.human-time'));
-  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('.hidden-but-read');
+  const $currentTimeElement = $time.find('.h5p-current');
+  self.controls.$currentTime = $currentTimeElement.find('.human-time');
+  self.controls.$currentTimeA11y = $currentTimeElement.find('.hidden-but-read');
   self.controls.$totalTime = $time.find('.h5p-total');
   self.updateCurrentTime(0);
 
@@ -2303,6 +2307,9 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   self.controls.$currentTime.html(humanTime);
   self.controls.$currentTimeA11y.html(`${self.l10n.currentTime} ${a11yTime}`);
+
+  self.controls.$currentTimeSimple.html(humanTime);
+  self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
 };
 
 /**
