@@ -1261,6 +1261,7 @@
 .h5p-interactive-video .h5p-table {
   font-size: 0.875em;
   border-collapse: collapse;
+  width: max-content;
 }
 .h5p-interactive-video .h5p-table th {
   border-bottom: 2px solid #191919;
