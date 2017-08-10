@@ -487,6 +487,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.h5p-interactive-video.h5p-minimal.mobile {
+  overflow: visible;
+}
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button {
   display: inline-block;
   padding-top: 4em;
