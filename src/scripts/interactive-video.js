@@ -2406,7 +2406,10 @@ InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteracti
   const focusIsInsideWarningMask = this.$mask ? isSameElementOrChild(this.$mask, $focusedElement) : false;
 
   if (!focusIsInsideInteraction && !focusIsInsideWarningMask) {
-    requiredInteractions[0].getElement().focus();
+    let element = requiredInteractions[0].getElement();
+    if (element) {
+      element.focus();
+    }
   }
 };
 
