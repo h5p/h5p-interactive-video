@@ -1,3 +1,5 @@
+import { KEY_CODE_START_PAUSE } from './interactive-video';
+
 const $ = H5P.jQuery;
 
 
@@ -148,6 +150,7 @@ function Interaction(parameters, player, previousState) {
         }
       }
     });
+    $interaction.on('keyup', disableGlobalVideoControls);
 
     self.on('closeDialog', () => {
       $interaction.focus();
@@ -247,6 +250,18 @@ function Interaction(parameters, player, previousState) {
     }, 0);
 
     return $interaction;
+  };
+
+  /**
+   * Do not propagate global hotkey to pause/play video through to video player when interacting
+   * with interactions.
+   *
+   * @param {Event} event
+   */
+  const disableGlobalVideoControls = (event) => {
+    if (event.which === KEY_CODE_START_PAUSE) {
+      event.stopPropagation();
+    }
   };
 
   /**
@@ -398,6 +413,7 @@ function Interaction(parameters, player, previousState) {
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
+    $dialogContent.on('keyup', disableGlobalVideoControls);
 
     if(self.getRequiresCompletion()){
       $dialogWrapper.keydown(event => {
@@ -658,6 +674,7 @@ function Interaction(parameters, player, previousState) {
         height: dimensions.height
       }
     });
+    $interaction.on('keyup', disableGlobalVideoControls);
 
     if (library !== 'H5P.IVHotspot') {
       // Add background

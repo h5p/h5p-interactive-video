@@ -2912,3 +2912,4 @@ var getXAPIDataFromChildren = function(children) {
 };
 
 export default InteractiveVideo;
+export const KEY_CODE_START_PAUSE = KEY_CODE_K;
