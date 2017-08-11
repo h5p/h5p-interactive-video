@@ -444,10 +444,7 @@ function Interaction(parameters, player, previousState) {
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
-    // Only focus on dialog after it is visible
-    player.dnb.$dialogContainer.get(0).addEventListener('transitionend', function(event) {
-      player.dnb.dialog.focus();
-    }, false);
+    player.dnb.dialog.focus();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
