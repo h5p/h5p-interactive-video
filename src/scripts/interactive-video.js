@@ -232,7 +232,7 @@ function InteractiveVideo(params, id, contentData) {
           .attr('title', self.l10n.play);
 
         self.timeUpdate(self.video.getCurrentTime());
-        self.controls.$currentTime.html(self.controls.$totalTime.find('.human-time').html());
+        self.updateCurrentTime(self.getDuration());
 
         self.complete();
 
@@ -666,6 +666,18 @@ InteractiveVideo.prototype.addSplash = function () {
 };
 
 /**
+ * Get the videos duration in seconds
+ *
+ * @return {number} seconds
+ */
+InteractiveVideo.prototype.getDuration = function () {
+  if (this.duration === undefined) {
+    this.duration = this.video.getDuration();
+  }
+  return this.duration;
+};
+
+/**
  * Update and show controls for the interactive video.
  */
 InteractiveVideo.prototype.addControls = function () {
@@ -675,13 +687,12 @@ InteractiveVideo.prototype.addControls = function () {
 
   this.attachControls(this.$controls.show());
 
-  const duration = this.video.getDuration();
+  const duration = this.getDuration();
   const humanTime = InteractiveVideo.humanizeTime(duration);
   const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
-  this.controls.$currentTime.html(InteractiveVideo.humanizeTime(0));
 
   // Add keyboard controls for Bookmarks
   this.bookmarkMenuKeyboardControls = new Controls([new UIKeyboard()]);
@@ -701,10 +712,10 @@ InteractiveVideo.prototype.addControls = function () {
  */
 InteractiveVideo.prototype.loaded = function () {
   // Get duration
-  var duration = this.video.getDuration();
+  var duration = this.getDuration();
 
   // Determine how many percentage one second is.
-  this.oneSecondInPercentage = (100 / this.video.getDuration());
+  this.oneSecondInPercentage = (100 / duration);
 
   duration = Math.floor(duration);
 
@@ -1276,22 +1287,24 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
   }
 
+  const currentTimeTemplate =
+    `<time class="h5p-current">
+      <span class="hidden-but-read"></span>
+      <span class="human-time" aria-hidden="true">0:00</span>
+    </time>`;
+
   // Current time for minimal display
-  var $simpleTime = $('<div class="h5p-control h5p-simple-time"><time class="h5p-current"><span class="human-time">0:00</span></time></div>').appendTo($left);
-  self.controls.$currentTime = $simpleTime.find('.h5p-current').find('human-time');
-  self.controls.$currentTimeA11y = $simpleTime.find('.h5p-current').find('hidden-but-read');
+  const $simpleTime = $(`<div class="h5p-control h5p-simple-time">${currentTimeTemplate}</div>`).appendTo($left);
+  self.controls.$currentTimeSimple = $simpleTime.find('.human-time');
+  self.controls.$currentTimeA11ySimple = $simpleTime.find('.hidden-but-read');
 
   // Add display for time elapsed and duration
-  const textStartTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
   const textFullTime = InteractiveVideo.formatTimeForA11y(0, self.l10n);
 
   const $time = $(`<div class="h5p-control h5p-time">
-    <time class="h5p-current">
-      <span class="hidden-but-read">${self.l10n.currentTime} ${textStartTime}</span>
-      <span class="human-time" aria-hidden="true">0:00</span>
-    </time>
+    ${currentTimeTemplate}
     <span>
-      <span class=hidden-but-read> of </span>
+      <span class="hidden-but-read"> of </span>
       <span aria-hidden="true"> / </span>
     </span>
     <time class="h5p-total">
@@ -1300,9 +1313,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     </time>
   </div>`).appendTo($right);
 
-  self.controls.$currentTime = self.controls.$currentTime.add($time.find('.h5p-current').find('.human-time'));
-  self.controls.$currentTimeA11y = $time.find('.h5p-current').find('.hidden-but-read');
+  const $currentTimeElement = $time.find('.h5p-current');
+  self.controls.$currentTime = $currentTimeElement.find('.human-time');
+  self.controls.$currentTimeA11y = $currentTimeElement.find('.hidden-but-read');
   self.controls.$totalTime = $time.find('.h5p-total');
+  self.updateCurrentTime(0);
 
   /**
    * Closes the minimal button overlay
@@ -1543,7 +1558,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       $handle
         .attr('role', 'slider')
         .attr('aria-valuemin', '0')
-        .attr('aria-valuemax',  self.video.getDuration().toString())
+        .attr('aria-valuemax',  self.getDuration().toString())
         .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
         .attr('aria-valuenow', '0');
 
@@ -1598,7 +1613,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       let time = ui.value;
 
       if(isKeyboardNav) {
-        const endTime = self.video.getDuration();
+        const endTime = self.getDuration();
         const currentTime = self.video.getCurrentTime();
 
         time = (event.key.indexOf('Right') !== -1) ?
@@ -1611,12 +1626,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       // Update elapsed time
       self.video.seek(time);
       self.updateInteractions(time);
-
-      const humanTime = InteractiveVideo.humanizeTime(time);
-      const a11yTime = InteractiveVideo.formatTimeForA11y(time, self.l10n);
-
-      self.controls.$currentTime.html(humanTime);
-      self.controls.$currentTimeA11y.html(`${self.l10n.currentTime} ${a11yTime}`);
+      self.updateCurrentTime(time);
 
       return continueHandlingEvents;
     },
@@ -2276,11 +2286,30 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
 
     if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
       // Update elapsed time
-      self.controls.$currentTime.html(InteractiveVideo.humanizeTime(Math.max(second, 0)));
-      self.controls.$currentTimeA11y.html(InteractiveVideo.formatTimeForA11y(Math.max(second, 0), self.l10n));
+      self.updateCurrentTime(second);
     }
   }
   self.lastSecond = second;
+};
+
+/**
+ * Updates the current time
+
+ * @param  {number} seconds seconds
+ */
+InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
+  var self = this;
+
+  seconds = Math.max(seconds, 0);
+
+  const humanTime = InteractiveVideo.humanizeTime(seconds);
+  const a11yTime = InteractiveVideo.formatTimeForA11y(seconds, self.l10n);
+
+  self.controls.$currentTime.html(humanTime);
+  self.controls.$currentTimeA11y.html(`${self.l10n.currentTime} ${a11yTime}`);
+
+  self.controls.$currentTimeSimple.html(humanTime);
+  self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
 };
 
 /**
