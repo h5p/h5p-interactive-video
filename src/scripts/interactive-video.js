@@ -1614,13 +1614,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
       if(isKeyboardNav) {
         const endTime = self.getDuration();
-        const currentTime = self.video.getCurrentTime();
-
         time = (event.key.indexOf('Right') !== -1) ?
-          Math.min(currentTime + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
-          Math.max(currentTime - KEYBOARD_STEP_LENGTH_SECONDS, 0);
-
-        self.timeUpdate(time);
+          Math.min(time + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
+          Math.max(time - KEYBOARD_STEP_LENGTH_SECONDS, 0);
+        self.timeUpdate(time, true);
       }
 
       // Update elapsed time
@@ -2229,8 +2226,11 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
  * Makes sure to update all UI elements.
  *
  * @param {number} time
+ * @param {boolean} [skipNextTimeUpdate] Skip queueing next time update.
+ *  This can be particularly useful for functionality that extends beyond a simple "play",
+ *  i.e. searching through video.
  */
-InteractiveVideo.prototype.timeUpdate = function (time) {
+InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   var self = this;
 
   // Scroll slider
@@ -2250,6 +2250,11 @@ InteractiveVideo.prototype.timeUpdate = function (time) {
   }
 
   self.updateInteractions(time);
+
+  // Skip queueing next time update
+  if (skipNextTimeUpdate) {
+    return;
+  }
 
   setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
