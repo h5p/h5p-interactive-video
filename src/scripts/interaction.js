@@ -575,10 +575,13 @@ function Interaction(parameters, player, previousState) {
       size.width = max.width;
     }
 
+    var width = positionDialog ? (size.width * fontSizeRatio) + 'em' : '';
+    var height = positionDialog ? (size.height * fontSizeRatio) + 'em' : '';
+
     var fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
     $img.css({
-      width: (size.width * fontSizeRatio) + 'em',
-      height: (size.height * fontSizeRatio) + 'em'
+      width: width,
+      height: height
     });
 
     if (positionDialog) {
