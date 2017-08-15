@@ -153,8 +153,10 @@ function Interaction(parameters, player, previousState) {
     $interaction.on('keyup', disableGlobalVideoControls);
 
     self.on('closeDialog', () => {
-      $interaction.focus();
-      $interaction.attr('aria-expanded', 'false');
+      if ($interaction) {
+        $interaction.focus();
+        $interaction.attr('aria-expanded', 'false');
+      }
     });
 
     // if requires completion -> open dialog right away
