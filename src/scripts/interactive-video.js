@@ -1303,10 +1303,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   const $time = $(`<div class="h5p-control h5p-time">
     ${currentTimeTemplate}
-    <span>
-      <span class="hidden-but-read"> of </span>
-      <span aria-hidden="true"> / </span>
-    </span>
+    <span aria-hidden="true"> / </span>
     <time class="h5p-total">
       <span class="hidden-but-read">${self.l10n.totalTime} ${textFullTime}</span>
       <span class="human-time" aria-hidden="true">0:00</span>
