@@ -472,10 +472,13 @@ function Interaction(parameters, player, previousState) {
     var dialogCloseHandler = function () {
       this.off('close', dialogCloseHandler); // Avoid running more than once
 
-      var $img = $dialogContent.find('img');
-      $img.css({
-        width: '',
-        height: ''
+      // Reset the image size to a percentage of the container instead of hardcoded values
+      player.dnb.$dialogContainer.one('transitionend', function(event) {
+        var $img = $dialogContent.find('img');
+        $img.css({
+          width: '',
+          height: ''
+        });
       });
 
       // Try to pause any media when closing dialog
