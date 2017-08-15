@@ -1162,7 +1162,9 @@
   right: 0.5em;
   cursor: pointer;
   padding: 0.25em 0.5em;
-  outline: none;
+}
+.h5p-interactive-video .h5p-dialog-close:focus {
+  outline: 2px solid #179fff;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
   font-family: 'H5PFontAwesome4';
