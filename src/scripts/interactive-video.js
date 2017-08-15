@@ -2058,7 +2058,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
     if (this.isMobileView) {
       // Close dialog because we can not know if it will turn into a poster
       if (this.dnb && this.dnb.dialog && !this.hasUncompletedRequiredInteractions()) {
-        this.dnb.dialog.close();
+        this.dnb.dialog.close(true);
       }
       this.$container.removeClass('mobile');
       this.isMobileView = false;
