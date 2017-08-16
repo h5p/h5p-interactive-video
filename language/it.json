@@ -8,7 +8,7 @@
           "fields":[
             {
               "label":"Aggiungi un video",
-              "description":"Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
+              "description":"Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungere un link a un video o caricare dei file video. È possibile aggiungere diverse versioni di video di differente qualità. Per assicurarsi la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4."
             },
             {
               "label":"Opzioni della schermata di avvio - non supportate per i video di YouTube",
@@ -23,15 +23,15 @@
                 },
                 {
                   "label":"Breve descrizione (facoltativa)",
-                  "description":"Optional. Display a short description text on the video start screen."
+                  "description":"Facoltativo. Visualizza un breve testo di descrizione sulla schermata iniziale del video. Non funziona per i video di YouTube."
                 },
                 {
                   "label":"Poster",
                   "description":"Immagine visualizzata prima che l'utente avvii il video. Non funziona per i video di YouTube."
                 },
                 {
-                  "label":"Informazioni Copyright Video",
-                  "description":"Informazioni riguardanti i copyright del video e degli elementi utilizzati nel video."
+                  "label":"Informazioni sul diritto d'autore",
+                  "description":"Informazioni riguardanti il diritto d'autore del video e gli elementi usati nel video."
                 }
               ]
             },
@@ -266,7 +266,7 @@
           ]
         },
         {
-          "label":"Riepilogo attività",
+          "label":"Attività di riepilogo",
           "fields":[
             {
               "default":{
@@ -319,15 +319,15 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"This function is not available on iPad when using YouTube as video source"
+          "label":"Inizia con il menu dei segnalibri aperto",
+          "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls"
+          "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
         },
         {
           "label":"Deactivate sound",
@@ -339,27 +339,27 @@
       "label":"Localize",
       "fields":[
         {
-          "label":"Titolo Interazione",
+          "label":"Titolo dell'interazione",
           "default":"Interaction"
         },
         {
-          "label":"Titolo Play",
+          "label":"Titolo di Play",
           "default":"Play"
         },
         {
-          "label":"Titolo Pausa",
+          "label":"Titolo di Pausa",
           "default":"Pause"
         },
         {
-          "label":"Titolo modalità muto",
+          "label":"Titolo della modalità muto",
           "default":"Mute"
         },
         {
-          "label":"Titolo disattiva modalità muto",
+          "label":"Titolo di disattivazione modalità muto",
           "default":"Unmute"
         },
         {
-          "label":"Titolo qualità Video",
+          "label":"Titolo di qualità del video",
           "default":"Video Quality"
         },
         {
@@ -371,23 +371,23 @@
           "default":"Close"
         },
         {
-          "label":"Titolo Schermo intero",
+          "label":"Titolo di schermo intero",
           "default":"Fullscreen"
         },
         {
-          "label":"Titolo Esci da Schermo intero",
+          "label":"Titolo di uscita da schermo intero",
           "default":"Exit Fullscreen"
         },
         {
-          "label":"Titolo Riepilogo",
+          "label":"Titolo di riepilogo",
           "default":"Summary"
         },
         {
-          "label":"Titolo Segnalibri",
+          "label":"Titolo dei segnalibri",
           "default":"Bookmarks"
         },
         {
-          "label":"Etichetta predefinita per adattabilità pulsante Vai a",
+          "label":"Etichetta oredefinita per il pulsante di ricerca adattiva",
           "default":"Continue"
         },
         {
@@ -411,11 +411,11 @@
           "default":"L'audio è disabilitato"
         },
         {
-          "label":"Attenzione che l'utente deve rispondere alla domanda in modo corretto prima di continuare",
-          "default":"È necessario rispondere correttamente a tutte le domande prima di continuare."
+          "label":"Attenzione: l'utente deve rispondere correttamente alla domanda prima di continuare",
+          "default":"Devi rispondere correttamente a tutte le domande prima di continuare."
         },
         {
-          "label":"Tasto indietro",
+          "label":"Pulsante indietro",
           "default":"Indietro"
         },
         {
