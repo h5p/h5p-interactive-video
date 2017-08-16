@@ -14,20 +14,20 @@
               "label":"Opzioni della schermata di avvio - non supportate per i video di YouTube",
               "fields":[
                 {
-                  "label":"The title of this interactive video",
-                  "default":"Interactive Video",
-                  "description":"Used in summaries, statistics etc."
+                  "label":"Il titolo di questo video interattivo",
+                  "default":"Video interattivo",
+                  "description":"Usato in riepiloghi, statistiche ecc."
                 },
                 {
-                  "label":"Hide title on video start screen"
+                  "label":"Nascondi il titolo nella schermata iniziale del video"
                 },
                 {
-                  "label":"Short description (Optional)",
+                  "label":"Breve descrizione (facoltativa)",
                   "description":"Optional. Display a short description text on the video start screen."
                 },
                 {
                   "label":"Poster",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "description":"Immagine visualizzata prima che l'utente avvii il video. Non funziona per i video di YouTube."
                 },
                 {
                   "label":"Informazioni Copyright Video",
@@ -36,10 +36,10 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Tracce di testo (sottotitoli, didascalie e descrizioni) - non supportate per i video di YouTube",
               "fields":[
                 {
-                  "label":"Available text tracks",
+                  "label":"Tracce di testo disponibili",
                   "entity":"Track",
                   "field":{
                     "label":"Track",
