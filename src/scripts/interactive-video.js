@@ -2056,6 +2056,13 @@ InteractiveVideo.prototype.resizeMobileView = function () {
       // Close dialog because we can not know if it will turn into a poster
       if (this.dnb && this.dnb.dialog && !this.hasUncompletedRequiredInteractions()) {
         this.dnb.dialog.close(true);
+
+        // Reset the image width and height so that it can scale when container is resized
+        var $img = $('.h5p-dialog', this.$container).find('img');
+        $img.css({
+          width: '',
+          height: ''
+        });
       }
       this.$container.removeClass('mobile');
       this.isMobileView = false;
