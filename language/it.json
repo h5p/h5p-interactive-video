@@ -1,13 +1,13 @@
 {
   "semantics":[
     {
-      "label":"Editor Video Interattivo",
+      "label":"Editor di Video interattivo",
       "fields":[
         {
-          "label":"Carica video",
+          "label":"Carica/incorpora video",
           "fields":[
             {
-              "label":"File Video",
+              "label":"Aggiungi un video",
               "description":"Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
@@ -403,12 +403,12 @@
           "default":"Torna indietro di 10 secondi"
         },
         {
-          "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "label":"Testo di La navigazione è disabilitata",
+          "default":"La navigazione è disabilitata"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label":"Testo di L'audio è disabilitato",
+          "default":"L'audio è disabilitato"
         },
         {
           "label":"Attenzione che l'utente deve rispondere alla domanda in modo corretto prima di continuare",
@@ -419,40 +419,40 @@
           "default":"Indietro"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Tempo trascorso in ore",
+          "default":"Ore"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Tempo trascorso in minuti",
+          "default":"Minuti"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Tempo trascorso in secondi",
+          "default":"Secondi"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"Etichetta per l'ora corrente",
+          "default":"Ora corrente:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Etichetta per tempo totale",
+          "default":"Tempo totale:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label":"Testo per spiegare i tasti di scelta rapida di navigazione",
+          "default":"Utilizzare la il tasto K per avviare e arrestare i video in qualsiasi momento"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label":"Testo che spiega che una singola interazione con un nome è ora alla vista",
+          "default":"L'interazione è apparsa:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label":"Testo per spiegare che interazioni multiple sono ora in vista",
+          "default":"Sono apparse interazioni multiple."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label":"Avviso di video in pausa",
+          "default":"Video in pausa"
         }
       ]
     }
