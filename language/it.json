@@ -148,64 +148,64 @@
                             "description":"Immetti il tempo nel formato M:SS"
                           },
                           {
-                            "label":"Consentire all'utente di rinunciare e andare avanti"
+                            "label":"Consenti all'utente di rinunciare e andare avanti"
                           },
                           {
-                            "label":"Message"
+                            "label":"Messaggio"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Etichetta per il pulsante di ricerca"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Azione su errore",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Cerca di",
+                            "description":"Immetti il tempo nel formato M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Consenti all'utente di rinunciare e andare avanti"
                           },
                           {
-                            "label":"Message"
+                            "label":"Messaggio"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Etichetta per il pulsante di ricerca"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label":"Richiede un punteggio pieno nell'attività prima di procedere",
+                        "description":"Per una migliore funzionalità, questa opzione deve essere utilizzata in combinazione con l'opzione \"Impedisci di saltare in avanti in un video\" di Video interattivo."
                       }
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Effetti visivi",
                     "fields":[
                       {
-                        "label":"Background color",
-                        "default":"rgb(255, 255, 255)",
+                        "label":"Colore di sfondo",
+                        "default":"RGB (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Ombreggiatura a forma di casella",
+                        "description":"Aggiunge una sottile ombreggiatura intorno all'interazione. Potrebbe convenire disabilitarla per interazioni completamente trasparenti"
                       }
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Vai a con un clic",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Tipo",
                         "options":[
                           {
-                            "label":"Timecode"
+                            "label":"Tempo codificato"
                           },
                           {
                             "label":"Another page (URL)"
@@ -399,8 +399,8 @@
           "default":"Playback Rate"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label":"Torna indietro di 10 secondi",
+          "default":"Torna indietro di 10 secondi"
         },
         {
           "label":"Navigation is disabled text",
