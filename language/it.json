@@ -42,35 +42,35 @@
                   "label":"Tracce di testo disponibili",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Traccia",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label":"Etichetta della traccia",
+                        "description":"Utilizzato se offrite tracce multiple e l'utente deve sceglierne una. Per esempio 'Sottotitoli in spagnolo' potrebbe essere l'etichetta di una traccia di sottotitoli spagnolo.",
+                        "default":"Sottotitoli"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"Tipo di traccia di testo",
+                        "default":"sottotitoli",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Sottotitoli"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Didascalie"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Descrizioni"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Lingua di origine, deve essere definita per i sottotitoli",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"Traccia di origine (file WebVTT)"
                       }
                     ]
                   }
@@ -100,11 +100,11 @@
                     "label":"Pausa"
                   },
                   {
-                    "label":"Display as",
-                    "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label":"Visualizza come",
+                    "description":"<b>Pulsante</b> è una funzione collassata su cui l'utente deve premere per aprirla. <b>Poster</b> è una funzione estesa visualizzata direttamente sopra il video",
                     "options":[
                       {
-                        "label":"Button"
+                        "label":"Pulsante"
                       },
                       {
                         "label":"Poster"
@@ -116,8 +116,8 @@
                     "label":"Etchetta"
                   },
                   {
-                    "label":"Label",
-                    "description":"Label displayed next to interaction icon."
+                    "label":"Etichetta",
+                    "description":"Etichetta visualizzata accanto all'icona di interazione."
                   },
                   {
                     
@@ -138,17 +138,17 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Adattività",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Azione su tutte le corrette",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Cerca di",
+                            "description":"Immetti il tempo nel formato M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Consentire all'utente di rinunciare e andare avanti"
                           },
                           {
                             "label":"Message"
