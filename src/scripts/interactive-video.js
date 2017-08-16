@@ -2058,7 +2058,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
         this.dnb.dialog.close(true);
 
         // Reset the image width and height so that it can scale when container is resized
-        var $img = $('.h5p-dialog', this.$container).siblings('h5p-image').find('img');
+        var $img = this.$container.find('.h5p-dialog.h5p-image img');
         $img.css({
           width: '',
           height: ''
