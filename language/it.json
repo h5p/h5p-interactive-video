@@ -11,7 +11,7 @@
               "description":"Selezionare i file video che si desidera utilizzare nel video interattivo. Per garantire la massima compatibilità dei browser è consigliato utilizzare i formati video WebM o MP4."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Opzioni della schermata di avvio - non supportate per i video di YouTube",
               "fields":[
                 {
                   "label":"The title of this interactive video",
