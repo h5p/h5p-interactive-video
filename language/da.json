@@ -57,20 +57,20 @@
                             "label":"Undertekster"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Billedtekster"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Beskrivelser"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Kildesprog, skal være defineret for undertekster",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"Sporkilde (WebVTT-fil)"
                       }
                     ]
                   }
@@ -80,13 +80,13 @@
           ]
         },
         {
-          "label":"Add interactions",
+          "label":"Tilføj interaktioner",
           "fields":[
             {
               "field":{
                 "fields":[
                   {
-                    "label":"Display time",
+                    "label":"Visningstid",
                     "fields":[
                       {
                         
@@ -97,17 +97,17 @@
                     ]
                   },
                   {
-                    "label":"Pause video"
+                    "label":"Sæt video på pause"
                   },
                   {
-                    "label":"Display as",
-                    "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label":"Vis som",
+                    "description":"<b>Knap</b> er en sammenklappet visning brugeren skal klikke på for at åbne. <b>Plakat</b> er en udvidet visning direkte på videoen.",
                     "options":[
                       {
-                        "label":"Button"
+                        "label":"Knap"
                       },
                       {
-                        "label":"Poster"
+                        "label":"Plakat"
                       }
                     ],
                     "default":"button"
