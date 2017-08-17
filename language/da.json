@@ -19,33 +19,33 @@
                   "description":"Brugt i resuméer, statistikker osv."
                 },
                 {
-                  "label":"Hide title on video start screen"
+                  "label":"Skjul titel på video-startskærm"
                 },
                 {
-                  "label":"Short description (Optional)",
+                  "label":"Kort beskrivelse (valgfri)",
                   "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label":"Poster image",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label":"Forsidebillede",
+                  "description":"Billedet vises før brugeren starter videoen. Virker ikke med YouTube-videoer."
                 },
                 {
-                  "label":"Video copyright information",
-                  "description":"Information regarding copyright of the video and elements used in the video."
+                  "label":"Video-copyrightoplysninger",
+                  "description":"Oplysninger om copyright på videoen og elementer der anvendes i videoen."
                 }
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Tekstspor (undertekster, billedtekster og beskrivelser) - understøttes ikke med YouTube-videoer",
               "fields":[
                 {
-                  "label":"Available text tracks",
+                  "label":"Tilgængelige tekstspor",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Spor",
                     "fields":[
                       {
-                        "label":"Track label",
+                        "label":"Sporetiket",
                         "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
                         "default":"Subtitles"
                       },
