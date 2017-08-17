@@ -1,13 +1,13 @@
 {
   "semantics":[
     {
-      "label":"Interactive Video Editor",
+      "label":"Interaktiv video-editor",
       "fields":[
         {
-          "label":"Upload/embed video",
+          "label":"Upload/indlejr video",
           "fields":[
             {
-              "label":"Add a video",
+              "label":"Tilføj en video",
               "description":"Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
