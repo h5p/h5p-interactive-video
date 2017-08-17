@@ -403,36 +403,36 @@
           "default":"Spol 10 sekunder tilbage"
         },
         {
-          "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "label":"Tekst til Navigation er deaktiveret",
+          "default":"Navigation er deaktiveret"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label":"Tekst til Lyd er deaktiveret",
+          "default":"Lyd er deaktiveret"
         },
         {
-          "label":"Warning that the user must answer the question correctly before continuing",
-          "default":"You need to answer all the questions correctly before continuing."
+          "label":"Advarsel til brugeren om at besvare spørgsmålet korrekt før hun kan fortsætte",
+          "default":"Du skal svare korrekt på alle spørgsmål før du kan fortsætte."
         },
         {
-          "label":"Back button",
-          "default":"Back"
+          "label":"Tilbage-knap",
+          "default":"Tilbage"
         },
         {
           "label":"Passed time hours",
-          "default":"Hours"
+          "default":"Timer"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Tid for bestået i minutter",
+          "default":"Minutter"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Tid for bestået i sekunder",
+          "default":"Sekunder"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"Titel for nuværende tid",
+          "default":"Aktuel tid"
         },
         {
           "label":"Label for total time",
