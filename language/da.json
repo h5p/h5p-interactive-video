@@ -199,7 +199,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Gå til ved at klikke",
                     "fields":[
                       {
                         "label":"Type",
@@ -243,8 +243,8 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Visualisèr",
+                        "description":"Vis at interaktion kan klikkes på ved at tilføje en kant og et ikon"
                       }
                     ]
                   }
@@ -266,7 +266,7 @@
           ]
         },
         {
-          "label":"Summary task",
+          "label":"Opsumemringsopgave",
           "fields":[
             {
               "default":{
@@ -277,7 +277,7 @@
             },
             {
               "label":"Visningstid",
-              "description":"Number of seconds before the video ends."
+              "description":"Antal sekunder før videoen stopper."
             }
           ]
         }
@@ -295,8 +295,8 @@
           "description":"Aktiver at video skal køre i loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Overskriv \"Vi svar\"-knap",
+          "description":"Dette valg afgør om \"Vis svar\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
           "options":[
             {
               "label":"Aktiveret"
@@ -308,7 +308,7 @@
         },
         {
           "label":"Overskriv \"Prøv igen\"-knap",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description":"Dette valg afgør om \"Prøv igen\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
           "options":[
             {
               "label":"Aktiveret"
@@ -320,14 +320,14 @@
         },
         {
           "label":"Begynd med bogmærkemenu åben",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "description":"Denne funktion er ikke tilgængelig på iPad når YouTube-kilde er brugt."
         },
         {
           "label":"Vis knap til at spole 10 sekunder tilbage"
         },
         {
           "label":"Undgå at spole frem i en video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "description":"Slå til for at forhindre at brugere springer over indhold i en video ved hjælp af standardfunktioner."
         },
         {
           "label":"Deaktiver lyd",
