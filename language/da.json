@@ -431,28 +431,28 @@
           "default":"Sekunder"
         },
         {
-          "label":"Titel for nuværende tid",
+          "label":"Titel til aktuel tid",
           "default":"Aktuel tid"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Etiket til tid i alt",
+          "default":"Tid i alt:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
+          "label":"Tekst til at forklare genvejstast til navigation",
           "default":"Use key k for starting and stopping video at any time"
         },
         {
           "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "default":"Interaktion synlig:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label":"Tekst som forklarer at flere interaktioner er synlige",
+          "default":"Flere interaktioner er synlige."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label":"Meddelelse til \"Video er sat på pause\"",
+          "default":"Video er sat på pause-titel"
         }
       ]
     }
