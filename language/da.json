@@ -144,7 +144,7 @@
                         "label":"Handling på alle korrekte",
                         "fields":[
                           {
-                            "label":"Søge at",
+                            "label":"Hop til",
                             "description":"Angiv tidskode i formatet M:SS"
                           },
                           {
