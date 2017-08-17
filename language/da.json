@@ -23,7 +23,7 @@
                 },
                 {
                   "label":"Kort beskrivelse (valgfri)",
-                  "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "description":"Valgfri. Vis en kort beskrivelse når en video uploades. Virker ikke med YouTube-videoer."
                 },
                 {
                   "label":"Forsidebillede",
@@ -116,7 +116,7 @@
                     "label":"Ledetekst"
                   },
                   {
-                    "label":"Label",
+                    "label":"Titel",
                     "description":"Etiket vises ved siden af interaktionsikon."
                   },
                   {
@@ -169,31 +169,31 @@
                             "label":"Tillad brugeren at fravælge og fortsætte"
                           },
                           {
-                            "label":"Message"
+                            "label":"Meddelelse"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Titel på søgeknap"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label":"Kræv at alle opgaver er rigtige før der kan fortsættes",
+                        "description":"For at opnå den bedste funktionalitet bør denne indstilling bruges sammen med indstillingen \"Undgå at spole frem i en video\" af den interaktive video."
                       }
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Visuelle effekter",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Baggrundsfarve",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Skygge på afkrydsningsfelt",
                         "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
@@ -205,22 +205,22 @@
                         "label":"Type",
                         "options":[
                           {
-                            "label":"Timecode"
+                            "label":"Tidskode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"En anden side (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
+                        "label":"Gå til",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protokol",
                             "options":[
                               {
                                 "label":"http://"
@@ -232,7 +232,7 @@
                                 "label":"(root relative)"
                               },
                               {
-                                "label":"other"
+                                "label":"andre"
                               }
                             ],
                             "default":"http://"
@@ -276,7 +276,7 @@
               }
             },
             {
-              "label":"Display at",
+              "label":"Visningstid",
               "description":"Number of seconds before the video ends."
             }
           ]
@@ -331,7 +331,7 @@
         },
         {
           "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Aktivering af denne indstilling vil deaktivere videoens lyd og forhindre den i at blive slået til."
         }
       ]
     },
