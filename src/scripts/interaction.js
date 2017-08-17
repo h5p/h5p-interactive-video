@@ -476,7 +476,7 @@ function Interaction(parameters, player, previousState) {
 
       // Reset the image size to a percentage of the container instead of hardcoded values
       player.dnb.$dialogContainer.one('transitionend', function(event) {
-        if ($dialogContent.is('h5p-image')) {
+        if ($dialogContent.is('.h5p-image')) {
           var $img = $dialogContent.find('img');
           $img.css({
             width: '',
