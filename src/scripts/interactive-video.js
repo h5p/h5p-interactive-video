@@ -571,6 +571,11 @@ InteractiveVideo.prototype.attach = function ($container) {
     const startVideoKeyCode = (e.which === KEY_CODE_K);
 
     if (hasPlayButton && startVideoKeyCode) {
+      // Skip textual input from user
+      if (e.target.nodeName === 'INPUT') {
+        return;
+      }
+
       if (this.hasUncompletedRequiredInteractions()) {
         const $currentFocus = $(document.activeElement);
         const $mask = this.showWarningMask();
