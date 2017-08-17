@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Skygge på afkrydsningsfelt",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "description":"Tilføjer en skygge omkring interaktionen. Det anbefales at deaktivere dette for fuldstændig transparent interaktioner"
                       }
                     ]
                   },
@@ -214,7 +214,7 @@
                       },
                       {
                         "label":"Gå til",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"Tidspunktet som brugeren navigeres til ved at klikke på et hotspot. Angiv tidskode i formatet M:SS."
                       },
                       {
                         "label":"URL",
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(rod relative)"
                               },
                               {
                                 "label":"andre"
