@@ -284,53 +284,53 @@
       ]
     },
     {
-      "label":"Behavioural settings",
+      "label":"Indstillinger for opgave-opførsel",
       "fields":[
         {
-          "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "label":"Begynd på",
+          "description":"Angiv tidskode i formatet M:SS"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Kør video i loop",
+          "description":"Aktiver at video skal køre i loop"
         },
         {
           "label":"Override \"Show Solution\" button",
           "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Aktiveret"
             },
             {
-              "label":"Disabled"
+              "label":"Deaktiveret"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
+          "label":"Overskriv \"Prøv igen\"-knap",
           "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Aktiveret"
             },
             {
-              "label":"Disabled"
+              "label":"Deaktiveret"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
+          "label":"Begynd med bogmærkemenu åben",
           "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Vis knap til at spole 10 sekunder tilbage"
         },
         {
-          "label":"Prevent skipping forward in a video",
+          "label":"Undgå at spole frem i en video",
           "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deactivate sound",
+          "label":"Deaktiver lyd",
           "description":"Aktivering af denne indstilling vil deaktivere videoens lyd og forhindre den i at blive slået til."
         }
       ]
