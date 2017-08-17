@@ -46,15 +46,15 @@
                     "fields":[
                       {
                         "label":"Sporetiket",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "description":"Anvendes hvis du tilbyder flere spor som brugeren kan vælge i mellem. For eksempel kunne 'Spanske undertekster' være etiketten for et spansk undertekstspor.",
+                        "default":"Undertekster"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"Typer af tekstspor",
+                        "default":"undertekster",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Undertekster"
                           },
                           {
                             "label":"Captions"
