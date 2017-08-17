@@ -392,7 +392,7 @@
         },
         {
           "label":"Standardetiket til at fortsætte videoen",
-          "default":"Continue with video"
+          "default":"Fortsæt video"
         },
         {
           "label":"Angiv afspilningshastighed",
@@ -419,7 +419,7 @@
           "default":"Tilbage"
         },
         {
-          "label":"Passed time hours",
+          "label":"Tid for bestået i minutter",
           "default":"Timer"
         },
         {
@@ -440,10 +440,10 @@
         },
         {
           "label":"Tekst til at forklare genvejstast til navigation",
-          "default":"Use key k for starting and stopping video at any time"
+          "default":"Benyt tasten k til at starte eller stoppe en video"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
+          "label":"Tekst som forklarer at en interaktion med navn er synlig",
           "default":"Interaktion synlig:"
         },
         {
