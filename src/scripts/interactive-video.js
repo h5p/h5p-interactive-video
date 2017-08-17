@@ -946,8 +946,7 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show = false, firs
       }
     }
 
-    // Add classes if changing visibility
-    this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || !show);
+    this.controls.$bookmarksChooser.addClass('h5p-transitioning');
   }
 };
 
