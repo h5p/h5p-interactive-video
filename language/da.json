@@ -113,11 +113,11 @@
                     "default":"button"
                   },
                   {
-                    "label":"Turn into button on small screens"
+                    "label":"Ledetekst"
                   },
                   {
                     "label":"Label",
-                    "description":"Label displayed next to interaction icon."
+                    "description":"Etiket vises ved siden af interaktionsikon."
                   },
                   {
                     
@@ -138,35 +138,35 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Kan tilpasses",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Handling på alle korrekte",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Søge at",
+                            "description":"Angiv tidskode i formatet M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Tillad brugeren at fravælge og fortsætte"
                           },
                           {
-                            "label":"Message"
+                            "label":"Meddelelse"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Navn på søgeknap"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Handling ved forkert",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label":"Søge at",
+                            "description":"Angiv tidskode i formatet M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Tillad brugeren at fravælge og fortsætte"
                           },
                           {
                             "label":"Message"
@@ -336,71 +336,71 @@
       ]
     },
     {
-      "label":"Localize",
+      "label":"Lokalisere",
       "fields":[
         {
-          "label":"Interaction title",
-          "default":"Interaction"
+          "label":"Interaktionstitel",
+          "default":"Interaktion"
         },
         {
-          "label":"Play title",
-          "default":"Play"
+          "label":"Afspilningstitel",
+          "default":"Afspil"
         },
         {
-          "label":"Pause title",
+          "label":"Pausetitel",
           "default":"Pause"
         },
         {
-          "label":"Mute title",
-          "default":"Mute"
+          "label":"Lyd fra-titel",
+          "default":"Lyd fra"
         },
         {
-          "label":"Unmute title",
-          "default":"Unmute"
+          "label":"Lyd til-titel",
+          "default":"Lyd til"
         },
         {
-          "label":"Video quality title",
-          "default":"Video Quality"
+          "label":"Videokvalitetstitel",
+          "default":"Videokvalitet"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label":"Videoundertitel",
+          "default":"Undertitel"
         },
         {
-          "label":"Close button text",
-          "default":"Close"
+          "label":"Tekst til luk-knap",
+          "default":"Luk"
         },
         {
-          "label":"Fullscreen title",
-          "default":"Fullscreen"
+          "label":"Fuldskærmstitel",
+          "default":"Fuldskærm"
         },
         {
-          "label":"Exit fullscreen title",
-          "default":"Exit Fullscreen"
+          "label":"Titel på Afslut fuldskærm",
+          "default":"Afslut fuldskærm"
         },
         {
-          "label":"Summary title",
-          "default":"Summary"
+          "label":"Opsummeringstitel",
+          "default":"Resumé"
         },
         {
-          "label":"Bookmarks title",
-          "default":"Bookmarks"
+          "label":"Bogmærketitel",
+          "default":"Bogmærker"
         },
         {
-          "label":"Default label for adaptivity seek button",
-          "default":"Continue"
+          "label":"Standardetiket til adaptiv søgeknap",
+          "default":"Forsæt"
         },
         {
-          "label":"Default label for continue video button",
+          "label":"Standardetiket til at fortsætte videoen",
           "default":"Continue with video"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label":"Angiv afspilningshastighed",
+          "default":"Afspilningshastighed"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label":"Spol 10 sekunder tilbage",
+          "default":"Spol 10 sekunder tilbage"
         },
         {
           "label":"Navigation is disabled text",
