@@ -1,3 +1,5 @@
+import { KEY_CODE_START_PAUSE } from './interactive-video';
+
 const $ = H5P.jQuery;
 
 
@@ -148,10 +150,13 @@ function Interaction(parameters, player, previousState) {
         }
       }
     });
+    $interaction.on('keyup', disableGlobalVideoControls);
 
     self.on('closeDialog', () => {
-      $interaction.focus();
-      $interaction.attr('aria-expanded', 'false');
+      if ($interaction) {
+        $interaction.focus();
+        $interaction.attr('aria-expanded', 'false');
+      }
     });
 
     // if requires completion -> open dialog right away
@@ -199,7 +204,7 @@ function Interaction(parameters, player, previousState) {
     // Check to see if we should add label
     const hasLabel = nonEmptyString(stripTags(parameters.label));
     if (parameters.label && hasLabel) {
-      $label = createLabel(parameters.label, false, 'h5p-interaction').appendTo($interaction);
+      $label = createLabel(parameters.label, 'h5p-interaction').appendTo($interaction);
     }
 
     self.trigger('display', $interaction);
@@ -218,9 +223,9 @@ function Interaction(parameters, player, previousState) {
    * @param {string} classes
    * @return {H5P.jQuery}
    */
-  const createLabel = (label, standalone, classes = '') => {
+  const createLabel = (label, classes = '') => {
     return $('<div/>', {
-      'class': standalone ? `h5p-interaction-label-standalone ${classes}` : `h5p-interaction-label ${classes}`,
+      'class': `h5p-interaction-label ${classes}`,
       'html': `<div class="h5p-interaction-label-text">${label}</div>`
     });
   };
@@ -231,7 +236,7 @@ function Interaction(parameters, player, previousState) {
    * @return {H5P.jQuery}
    */
   const createStandaloneLabel = () => {
-    $interaction = createLabel(parameters.label, true, 'h5p-interaction');
+    $interaction = createLabel(parameters.label, 'h5p-interaction h5p-interaction-label-standalone');
     $interaction = $interaction.css({
       left: `${parameters.x}%`,
       top: `${parameters.y}%`,
@@ -239,9 +244,26 @@ function Interaction(parameters, player, previousState) {
       height: 'initial'
     });
     self.trigger('display', $interaction);
-    setTimeout(() => $interaction.removeClass('h5p-hidden'), 0);
+    setTimeout(() => {
+      if ($interaction) {
+        // Transition in
+        $interaction.removeClass('h5p-hidden');
+      }
+    }, 0);
 
     return $interaction;
+  };
+
+  /**
+   * Do not propagate global hotkey to pause/play video through to video player when interacting
+   * with interactions.
+   *
+   * @param {Event} event
+   */
+  const disableGlobalVideoControls = (event) => {
+    if (event.which === KEY_CODE_START_PAUSE) {
+      event.stopPropagation();
+    }
   };
 
   /**
@@ -393,6 +415,7 @@ function Interaction(parameters, player, previousState) {
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
+    $dialogContent.on('keyup', disableGlobalVideoControls);
 
     if(self.getRequiresCompletion()){
       $dialogWrapper.keydown(event => {
@@ -439,7 +462,6 @@ function Interaction(parameters, player, previousState) {
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
-    player.dnb.dialog.focus();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
@@ -451,6 +473,17 @@ function Interaction(parameters, player, previousState) {
      */
     var dialogCloseHandler = function () {
       this.off('close', dialogCloseHandler); // Avoid running more than once
+
+      // Reset the image size to a percentage of the container instead of hardcoded values
+      player.dnb.$dialogContainer.one('transitionend', function(event) {
+        if ($dialogContent.is('.h5p-image')) {
+          var $img = $dialogContent.find('img');
+          $img.css({
+            width: '',
+            height: ''
+          });
+        }
+      });
 
       // Try to pause any media when closing dialog
       try {
@@ -653,6 +686,7 @@ function Interaction(parameters, player, previousState) {
         height: dimensions.height
       }
     });
+    $interaction.on('keyup', disableGlobalVideoControls);
 
     if (library !== 'H5P.IVHotspot') {
       // Add background
@@ -988,6 +1022,19 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
+    /**
+     * Skip if already on given timecode.
+     * This is done because players may act unexpectedly when attempting to skip to the location
+     * you are already on. For instance YouTube videos, which are supposed to be paused
+     * at the given timecode will start playing instead.
+     * Using .1 second precision to only target the cases where the dot has been pressed two times
+     * in close succession.
+     */
+    if (Math.floor(player.video.getCurrentTime() * 10) === Math.floor(parameters.duration.from * 10)) {
+      return;
+    }
+
+
     if (player.currentState === H5P.Video.VIDEO_CUED) {
       player.play();
       player.seek(parameters.duration.from);
@@ -999,13 +1046,6 @@ function Interaction(parameters, player, previousState) {
       player.seek(parameters.duration.from);
       player.pause();
     }
-
-    // wait for interaction to be created
-    setTimeout(() => {
-      if($interaction) {
-        $interaction.focus();
-      }
-    }, 10);
   };
 
   /**
@@ -1374,11 +1414,9 @@ function Interaction(parameters, player, previousState) {
   /**
    * Collect copyright information for the interaction.
    *
-   * @returns {H5P.ContentCopyrights}
+   * @returns {H5P.ContentCopyrights} Will return undefined if no copyrights
    */
   self.getCopyrights = function () {
-    const COPYRIGHTS_NONE = undefined;
-
     if (!self.isStandaloneLabel()) {
       const instance = H5P.newRunnable(action, player.contentId);
 
@@ -1390,8 +1428,6 @@ function Interaction(parameters, player, previousState) {
         return interactionCopyrights;
       }
     }
-
-    return COPYRIGHTS_NONE;
   };
 
   /**

@@ -117,24 +117,7 @@
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
-.h5p-interactive-video .h5p-interaction-label-standalone {
-  top: 0;
-  left: 0;
-  padding: 0.2em 0.5em;
-  line-height: 1.5;
-  height: auto;
-  min-width: 1.5em;
-  cursor: pointer;
-  border-radius: 0;
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  z-index: 1;
-  width: auto;
-  white-space: nowrap;
-  vertical-align: text-bottom;
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc000000,endColorstr=#cc000000);
-}
+
 .h5p-interactive-video .h5p-interaction-label {
   position: absolute;
   top: 0;
@@ -175,6 +158,20 @@
   border-bottom-left-radius: 1em;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone  {
+  left: 0;
+  padding: 0.2em 0.5em;
+  line-height: 1.5;
+  height: auto;
+  min-width: 1.5em;
+  border-radius: 0;
+}
+
+.h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone:focus {
+  outline: 1px solid #0099ff;
+  outline-offset: 0;
 }
 
 .h5p-interactive-video .h5p-interaction-button {
@@ -490,6 +487,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button {
   display: inline-block;
   padding-top: 4em;
@@ -1164,7 +1162,9 @@
   right: 0.5em;
   cursor: pointer;
   padding: 0.25em 0.5em;
-  outline: none;
+}
+.h5p-interactive-video .h5p-dialog-close:focus {
+  outline: 2px solid #179fff;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
   font-family: 'H5PFontAwesome4';
@@ -1260,6 +1260,7 @@
 .h5p-interactive-video .h5p-table {
   font-size: 0.875em;
   border-collapse: collapse;
+  width: max-content;
 }
 .h5p-interactive-video .h5p-table th {
   border-bottom: 2px solid #191919;
