@@ -291,12 +291,16 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Vidéo en boucle",
-          "description":"Vérifier si la vidéo doit s’exécuter en boucle"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"Ecraser le bouton \"Voir la correction\"",
-          "description":"Cette option détermine si le bouton \"Voir la correction\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
+        },
+        {
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Activé"
@@ -307,30 +311,30 @@
           ]
         },
         {
-          "label":"Ecraser le bouton \"Recommencer\"",
-          "description":"Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Activé"
+              "label":"Enabled"
             },
             {
-              "label":"Désactivé"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Empêcher de sauter en avant dans la vidéo",
-          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Désactiver le son",
+          "label":"Deactivate sound",
           "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
