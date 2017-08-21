@@ -16,7 +16,7 @@
                 {
                   "label":"The title of this interactive video",
                   "default":"Interactive Video",
-                  "description":"Used in summaries, statistics etc."
+                  "description":"Koristi se u sažecima, statistikama, itd.."
                 },
                 {
                   "label":"Hide title on video start screen"
@@ -26,7 +26,7 @@
                   "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label":"Poster image",
+                  "label":"Slika prikaza",
                   "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
@@ -42,30 +42,30 @@
                   "label":"Available text tracks",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Video",
                     "fields":[
                       {
-                        "label":"Track label",
+                        "label":"Opis videa",
                         "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "default":"Prijevod"
                       },
                       {
                         "label":"Type of text track",
                         "default":"subtitles",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Prijevod"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Titlovi"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Opis"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Za prijevod se mora navesti izvorni jezik",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -116,7 +116,7 @@
                     "label":"Turn into button on small screens"
                   },
                   {
-                    "label":"Label",
+                    "label":"Oznaka",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -183,10 +183,10 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Grafika",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Boja pozadine",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -202,7 +202,7 @@
                     "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Tip",
                         "options":[
                           {
                             "label":"Timecode"
@@ -220,7 +220,7 @@
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protokol",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,10 +229,10 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(u odnosu na)"
                               },
                               {
-                                "label":"other"
+                                "label":"ostalo"
                               }
                             ],
                             "default":"http://"
@@ -284,14 +284,14 @@
       ]
     },
     {
-      "label":"Behavioural settings",
+      "label":"Interaktionseinstellungen",
       "fields":[
         {
           "label":"Start video at",
           "description":"Enter timecode in the format M:SS"
         },
         {
-          "label":"Auto-play video",
+          "label":"Pusti automatski video",
           "description":"Start playing the video automatically"
         },
         {
@@ -299,26 +299,26 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Poništi dugme \"Prikaži rješenje\"",
+          "description":"Ova opcija podešava prikazivanje dugmeta \"Prikaži rješenje\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Prikaži"
             },
             {
-              "label":"Disabled"
+              "label":"Nemoj prikazati"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Poništi dugme \"Ponovi\"",
+          "description":"Ova opcija podešava prikazivanje dugmeta \"Ponovi\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Prikaži"
             },
             {
-              "label":"Disabled"
+              "label":"Nemoj prikazati"
             }
           ]
         },
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Localize",
+      "label":"Podešavanje ponašanja",
       "fields":[
         {
           "label":"Interaction title",
@@ -368,15 +368,15 @@
         },
         {
           "label":"Video captions title",
-          "default":"Captions"
+          "default":"Titlovi"
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Zatvori"
         },
         {
           "label":"Fullscreen title",
-          "default":"Fullscreen"
+          "default":"Cijeli ekran"
         },
         {
           "label":"Exit fullscreen title",
@@ -419,7 +419,7 @@
           "default":"You need to answer all the questions correctly before continuing."
         },
         {
-          "label":"Back button",
+          "label":"Oznaka za dugme \"Nazad\"",
           "default":"Back"
         },
         {
