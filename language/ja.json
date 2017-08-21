@@ -291,12 +291,16 @@
           "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "label":"ビデオをループ",
-          "description":"ビデオをループで再生するかどうかをチェック"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"「解を表示」ボタンを上書き",
-          "description":"このオプションは、すべての設問に対して「解を表示」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
+        },
+        {
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"有効"
@@ -307,31 +311,31 @@
           ]
         },
         {
-          "label":"「リトライ」ボタンを上書き",
-          "description":"このオプションは、すべての設問に対して「リトライ」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"有効"
+              "label":"Enabled"
             },
             {
-              "label":"無効"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"ブックマークメニューを開いて開始",
-          "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"10秒巻き戻すボタンを表示"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"ビデオで前方にスキップしないようにする",
-          "description":"このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"サウンド無効化",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
