@@ -16,7 +16,7 @@
                 {
                   "label":"Tittel",
                   "default":"Interaktiv video",
-                  "description":"Brukes i oppsummeringer, statistikk o.l."
+                  "description":"Brukes blant annet i oppsummeringer og statistikk."
                 },
                 {
                   "label":"Skjul tittel på startskjerm"
@@ -42,7 +42,7 @@
                   "label":"Available text tracks",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Spor",
                     "fields":[
                       {
                         "label":"Track label",
@@ -116,7 +116,7 @@
                     "label":"Ledetekst"
                   },
                   {
-                    "label":"Label",
+                    "label":"Tittel",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -138,14 +138,14 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visning",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Bakgrunnsfarge",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Legg inn tidskode i formatet M:SS"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -159,11 +159,11 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Skygge",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Legg inn tidskode i formatet M:SS"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Visuelt",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
@@ -213,14 +213,14 @@
                         ]
                       },
                       {
-                        "label":"Go To",
+                        "label":"Gå til",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protokoll",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(relativ)"
                               },
                               {
                                 "label":"other"
@@ -284,23 +284,23 @@
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Innstillinger for oppførsel",
       "fields":[
         {
           "label":"Begynn på",
           "description":"Legg inn tidskode i formatet M:SS"
         },
         {
-          "label":"Auto-play video",
+          "label":"Slå på automatisk avspilling",
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Kjør video i loop",
+          "description":"Slå på for å kjøre video i loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Overstyr «Fasit»-knapp",
+          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
               "label":"Aktivert"
@@ -311,36 +311,36 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Overstyr «Prøv igjen»-knapp",
+          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Aktivert"
             },
             {
-              "label":"Disabled"
+              "label":"Deaktivert"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Vis knapp for å spole tilbake 10 sekunder"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Unngå at brukere hopper over innhold i video",
+          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Deaktiver lyd",
+          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
         }
       ]
     },
     {
-      "label":"Lokaliser",
+      "label":"Innstillinger for oppgave-oppførsel",
       "fields":[
         {
           "label":"Interaksjonstittel",
@@ -372,7 +372,7 @@
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Lukk"
         },
         {
           "label":"Fullskjermstittel",
@@ -419,8 +419,8 @@
           "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
-          "label":"Tilbakeknapp",
-          "default":"Tilbake"
+          "label":"Forrige-knappen",
+          "default":"Forrige"
         },
         {
           "label":"Passed time hours",
