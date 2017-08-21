@@ -291,6 +291,10 @@
           "description":"Enter timecode in the format M:SS"
         },
         {
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
+        },
+        {
           "label":"Loop the video",
           "description":"Check if video should run in a loop"
         },
@@ -319,15 +323,15 @@
           ]
         },
         {
-          "label":"Inizia con il menu dei segnalibri aperto",
-          "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"Prevent skipping forward in a video",
-          "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",
