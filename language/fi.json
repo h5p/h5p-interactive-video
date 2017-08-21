@@ -299,26 +299,26 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Näytä vastaus\"-painike",
+          "description":"Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Käytössä kaikissa"
             },
             {
-              "label":"Disabled"
+              "label":"Pois käytöstä"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Yritä uudelleen\"-painike",
+          "description":"Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Käytössä kaikissa"
             },
             {
-              "label":"Disabled"
+              "label":"Pois käytöstä"
             }
           ]
         },
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Localize",
+      "label":"Muokkaa",
       "fields":[
         {
           "label":"Interaction title",
@@ -376,7 +376,7 @@
         },
         {
           "label":"Fullscreen title",
-          "default":"Fullscreen"
+          "default":"Koko ruutu"
         },
         {
           "label":"Exit fullscreen title",
@@ -384,7 +384,7 @@
         },
         {
           "label":"Summary title",
-          "default":"Summary"
+          "default":"Yhteenveto"
         },
         {
           "label":"Bookmarks title",
