@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Lingua di origine, deve essere definita per i sottotitoli",
+                        "label":"Track file (WebVTT)",
                         "default":"en",
                         "description":"Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita."
                       },
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Adattività",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Azione su tutte le corrette",
+                        "label":"Background color",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Azione su errore",
+                        "label":"Box shadow",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Effetti visivi",
+                    "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Colore di sfondo",
+                        "label":"Type",
                         "default":"RGB (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Ombreggiatura a forma di casella",
-                        "description":"Aggiunge una sottile ombreggiatura intorno all'interazione. Potrebbe convenire disabilitarla per interazioni completamente trasparenti"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
@@ -220,7 +220,7 @@
                         "label":"URL",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"Protocollo",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(relativo)"
                               },
                               {
                                 "label":"other"
@@ -284,11 +284,11 @@
       ]
     },
     {
-      "label":"Behavioural settings",
+      "label":"Impostazioni esecuzione",
       "fields":[
         {
           "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "description":"Immetti il tempo nel formato M:SS"
         },
         {
           "label":"Auto-play video",
@@ -299,39 +299,39 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Sovrascrivi il pulsante Mostra soluzione",
+          "description":"Questa opzione determina se il pulsante \"Mostra soluzione\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Attivato"
             },
             {
-              "label":"Disabled"
+              "label":"Disabilitato"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Sovrascrivi il pulsante \"Riprova\"",
+          "description":"Questa opzione determina se il pulsante \"Riprova\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Attivato"
             },
             {
-              "label":"Disabled"
+              "label":"Disabilitato"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Inizia con il menu dei segnalibri aperto",
+          "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
         },
         {
           "label":"Deactivate sound",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Localize",
+      "label":"Impostazioni esecuzione",
       "fields":[
         {
           "label":"Titolo dell'interazione",
@@ -352,7 +352,7 @@
         },
         {
           "label":"Titolo di Pausa",
-          "default":"Pause"
+          "default":"Pausa"
         },
         {
           "label":"Titolo della modalità muto",
@@ -368,15 +368,15 @@
         },
         {
           "label":"Video captions title",
-          "default":"Captions"
+          "default":"Didascalie"
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Vicino"
         },
         {
           "label":"Titolo di schermo intero",
-          "default":"Fullscreen"
+          "default":"Schermo intero"
         },
         {
           "label":"Titolo di uscita da schermo intero",
@@ -384,7 +384,7 @@
         },
         {
           "label":"Titolo di riepilogo",
-          "default":"Summary"
+          "default":"Sommario"
         },
         {
           "label":"Titolo dei segnalibri",
@@ -392,7 +392,7 @@
         },
         {
           "label":"Etichetta oredefinita per il pulsante di ricerca adattiva",
-          "default":"Continue"
+          "default":"Continua"
         },
         {
           "label":"Default label for continue video button",
@@ -419,7 +419,7 @@
           "default":"Devi rispondere correttamente a tutte le domande prima di continuare."
         },
         {
-          "label":"Pulsante indietro",
+          "label":"Pulsante Indietro",
           "default":"Indietro"
         },
         {
