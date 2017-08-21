@@ -291,24 +291,16 @@
           "description":"Introduzca el código de tiempo en el formato M:SS"
         },
         {
-          "label":"Repetir vídeo",
-          "description":"Compruebe si el vídeo debe mostrarse en un bucle"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"Ocultar el botón \"Mostrar solución\"",
-          "description":"Esta opción determina si el botón \"Mostrar solución\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
-          "options":[
-            {
-              "label":"Habilitado"
-            },
-            {
-              "label":"Desactivado"
-            }
-          ]
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Ocultar el botón de \"Reintentar\"",
-          "description":"Esta opción determina si el botón \"Reintentar\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Habilitado"
@@ -319,19 +311,31 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"This function is not available on iPad when using YouTube as video source"
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options":[
+            {
+              "label":"Enabled"
+            },
+            {
+              "label":"Disabled"
+            }
+          ]
         },
         {
-          "label":"Mostrar botón para rebobinar 10 segundos"
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Evitar saltar hacia adelante en un vídeo",
-          "description":"Enabling this options will disable user video navigation through default controls"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Desactivar sonido",
-          "description":"Habilitar esta opción desactiva el sonido del vídeo y evitar que se active."
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
+        },
+        {
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
