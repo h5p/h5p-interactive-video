@@ -352,7 +352,7 @@
         },
         {
           "label":"Pause title",
-          "default":"Pause"
+          "default":"Paus"
         },
         {
           "label":"Mute title",
@@ -392,7 +392,7 @@
         },
         {
           "label":"Default label for adaptivity seek button",
-          "default":"Continue"
+          "default":"Fortsätt"
         },
         {
           "label":"Default label for continue video button",
