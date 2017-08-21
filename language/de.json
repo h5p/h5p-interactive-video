@@ -16,7 +16,7 @@
                 {
                   "label":"Der Titel dieses interaktiven Videos",
                   "default":"Interaktives Video",
-                  "description":"Wird in Zusammenfassungen, Statistiken, etc. verwendet"
+                  "description":"Wird benutzt in Zusammenfassungen, Statistiken, usw."
                 },
                 {
                   "label":"Titel auf Video-Startbildschirm ausblenden"
@@ -45,7 +45,7 @@
                     "label":"Spur",
                     "fields":[
                       {
-                        "label":"Spurbezeichnung",
+                        "label":"Spurbeschriftung",
                         "description":"Benutzt, wenn Sie mehrere Spuren anbieten und der Benutzer eine Spur auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
                         "default":"Untertitel"
                       },
@@ -57,7 +57,7 @@
                             "label":"Untertitel"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Bildunterschriften"
                           },
                           {
                             "label":"Beschreibungen"
@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Ausgangssprache, muss für Untertitel definiert werden",
+                        "label":"Quellensprache muss für Untertitel definitert werden",
                         "default":"en",
                         "description":"Muss ein gültiges BCP 47 Sprachtag sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
                       },
@@ -138,14 +138,14 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visuelles",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Hintergrundfarbe",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Timecode im Format M:SS eingeben"
+                            "description":"Den Zeitcode im Format M:SS angeben"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Gehe zu",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Grafisches",
                     "fields":[
                       {
                         "label":"Hintergrundfarbe",
@@ -193,8 +193,8 @@
                         }
                       },
                       {
-                        "label":"Schatten anzeigen",
-                        "description":"Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
+                        "label":"Gehe zu",
+                        "description":"Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
                       }
                     ]
                   },
@@ -232,13 +232,13 @@
                                 "label":"(relativ zum Hauptverzeichnis)"
                               },
                               {
-                                "label":"other"
+                                "label":"anderes"
                               }
                             ],
                             "default":"http://"
                           },
                           {
-                            "label":"URL"
+                            "label":"URLs"
                           }
                         ]
                       },
@@ -284,23 +284,23 @@
       ]
     },
     {
-      "label":"Verhaltenssteuerung",
+      "label":"Interaktionseinstellungen",
       "fields":[
         {
           "label":"Starte Video bei",
-          "description":"Den Zeitcode im Format M:SS angeben"
+          "description":"Timecode im Format M:SS eingeben"
         },
         {
-          "label":"Auto-play video",
+          "label":"Video automatisch abspielen",
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Video in einer Schleife laufen lassen",
+          "description":"Wählen, wenn das Video in einer Schleife laufen soll"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Überschreiben des \"Lösungen anzeigen\"-Buttons",
+          "description":"Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options":[
             {
               "label":"Anzeigen"
@@ -311,36 +311,36 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Überschreiben des \"Wiederholen\"-Buttons",
+          "description":"Diese Option gibt an, ob der \"Wiederholen\" Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Anzeigen"
             },
             {
-              "label":"Disabled"
+              "label":"Ausblenden"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Zeige das Lesezeichen-Menü beim Laden",
+          "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Springen im Video verhindern",
+          "description":"Mit dieser Option wird verhindert, dass der Nutzer die Bedienelemente zum Navigieren verwenden kann"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Ton deaktivieren",
+          "description":"Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
         }
       ]
     },
     {
-      "label":"Sprache anpassen",
+      "label":"Verhaltenseinstellungen.",
       "fields":[
         {
           "label":"Interaktionstitel",
@@ -368,7 +368,7 @@
         },
         {
           "label":"Titel für Video-Untertitel",
-          "default":"Video-Untertitel"
+          "default":"Bildunterschriften"
         },
         {
           "label":"Text für Schließen-Button",
@@ -376,7 +376,7 @@
         },
         {
           "label":"Titel für den Vollbildmodus",
-          "default":"Vollbildmodus"
+          "default":"Vollbild"
         },
         {
           "label":"Titel zum Verlassen des Vollbildmodus",
@@ -392,7 +392,7 @@
         },
         {
           "label":"Standardbeschriftung für Springen-Button",
-          "default":"Weiter"
+          "default":"Fortfahren"
         },
         {
           "label":"Standardbeschriftung für Weiter-mit-dem-Video-Button",
@@ -403,8 +403,8 @@
           "default":"Abspielgeschwindigkeit"
         },
         {
-          "label":"10 Sekunden zurückspringen",
-          "default":"10 Sekunden zurück"
+          "label":"10 Sekunden zurück",
+          "default":"10 Sekunden zurückspringen"
         },
         {
           "label":"Text für deaktivierte Navigation",
@@ -419,7 +419,7 @@
           "default":"Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
         },
         {
-          "label":"Zurück-Button",
+          "label":"Beschriftung des \"Zurück\"-Buttons",
           "default":"Zurück"
         },
         {
