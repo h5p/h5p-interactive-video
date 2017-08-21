@@ -335,43 +335,43 @@
         },
         {
           "label":"Disattivare il suono",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Attivare questa opzione disattiverà il sonoro di un video e ne impedirà l'accensione."
         }
       ]
     },
     {
-      "label":"Impostazioni esecuzione",
+      "label":"Localizza",
       "fields":[
         {
           "label":"Titolo dell'interazione",
-          "default":"Interaction"
+          "default":"Interazione"
         },
         {
-          "label":"Titolo di Play",
-          "default":"Play"
+          "label":"Titolo di esegui",
+          "default":"Esegui"
         },
         {
-          "label":"Titolo di Pausa",
+          "label":"Titolo di pausa",
           "default":"Pausa"
         },
         {
           "label":"Titolo della modalità muto",
-          "default":"Mute"
+          "default":"Silenzia"
         },
         {
           "label":"Titolo di disattivazione modalità muto",
-          "default":"Unmute"
+          "default":"Riattiva l'audio"
         },
         {
           "label":"Titolo di qualità del video",
-          "default":"Video Quality"
+          "default":"Qualità del video"
         },
         {
-          "label":"Video captions title",
+          "label":"Titolo delle didascalie video",
           "default":"Didascalie"
         },
         {
-          "label":"Close button text",
+          "label":"Testo del pulsante di chiusura",
           "default":"Vicino"
         },
         {
@@ -380,7 +380,7 @@
         },
         {
           "label":"Titolo di uscita da schermo intero",
-          "default":"Exit Fullscreen"
+          "default":"Esci da schermo intero"
         },
         {
           "label":"Titolo di riepilogo",
@@ -388,19 +388,19 @@
         },
         {
           "label":"Titolo dei segnalibri",
-          "default":"Bookmarks"
+          "default":"Segnalibri"
         },
         {
           "label":"Etichetta oredefinita per il pulsante di ricerca adattiva",
           "default":"Continua"
         },
         {
-          "label":"Default label for continue video button",
-          "default":"Continue with video"
+          "label":"Etichetta predefinita per il pulsante di continuazione video",
+          "default":"Continua con il video"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label":"Imposta velocità di riproduzione",
+          "default":"Velocità riproduzione"
         },
         {
           "label":"Torna indietro di 10 secondi",
