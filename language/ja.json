@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"適応性",
+                    "label":"ビジュアル",
                     "fields":[
                       {
-                        "label":"全問正解に対する動作",
+                        "label":"背景色",
                         "fields":[
                           {
                             "label":"検索",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"まちがえに対する動作",
+                        "label":"ボックスシャドー",
                         "fields":[
                           {
                             "label":"検索",
@@ -193,8 +193,8 @@
                         }
                       },
                       {
-                        "label":"ボックスシャドウ",
-                        "description":"インタラクションの周りにわずかな影を追加します。完全に透明なインタラクションには無効にした方がいいかもしれません。"
+                        "label":"行く",
+                        "description":"ユーザーがホットスポットを押したときに移るターゲットの時間。M：SSの形式でタイムコードを入力してください。"
                       }
                     ]
                   },
@@ -291,16 +291,16 @@
           "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "label":"Auto-play video",
+          "label":"ビデオの自動再生",
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"ビデオをループ",
+          "description":"ビデオをループで再生するかどうかをチェック"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"「解を表示」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「解を表示」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options":[
             {
               "label":"有効"
@@ -311,31 +311,31 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"「リトライ」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「リトライ」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options":[
             {
-              "label":"Enabled"
+              "label":"有効"
             },
             {
-              "label":"Disabled"
+              "label":"無効"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"ブックマークメニューを開いて開始",
+          "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"10秒巻き戻すボタンを表示"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"ビデオで前方にスキップしないようにする",
+          "description":"このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"サウンド無効化",
+          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
         }
       ]
     },
@@ -392,7 +392,7 @@
         },
         {
           "label":"適応検索ボタンの既定ラベル",
-          "default":"続行"
+          "default":"続ける"
         },
         {
           "label":"ビデを続行ボタンの既定のラベル",
