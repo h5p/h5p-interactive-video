@@ -208,13 +208,13 @@
                             "label":"Tempo codificato"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Un'altra pagina (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Vai a",
+                        "description":"Il tempo a disposizione dell'utente dopo aver premuto sull'hotspot. Inserisci il tempo in formato M:SS."
                       },
                       {
                         "label":"URL",
@@ -232,7 +232,7 @@
                                 "label":"(relativo)"
                               },
                               {
-                                "label":"other"
+                                "label":"altro"
                               }
                             ],
                             "default":"http://"
@@ -243,8 +243,8 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Visualizza",
+                        "description":"Mostra che l'aggiunta di un bordo e un'icona rende cliccabile un'interazione"
                       }
                     ]
                   }
@@ -287,16 +287,16 @@
       "label":"Impostazioni esecuzione",
       "fields":[
         {
-          "label":"Start video at",
+          "label":"Avvia il video a",
           "description":"Immetti il tempo nel formato M:SS"
         },
         {
-          "label":"Auto-play video",
-          "description":"Start playing the video automatically"
+          "label":"Riproduzione automatica del video",
+          "description":"Inizia automaticamente la riproduzione del video"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Riproduci ciclicamente il video",
+          "description":"Verifica se il video debba eseguire un ciclo"
         },
         {
           "label":"Sovrascrivi il pulsante Mostra soluzione",
@@ -327,14 +327,14 @@
           "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
-          "label":"Prevent skipping forward in a video",
+          "label":"Evitare il salto in avanti di un video",
           "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
         },
         {
-          "label":"Deactivate sound",
+          "label":"Disattivare il suono",
           "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
