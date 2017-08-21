@@ -16,7 +16,7 @@
                 {
                   "label":"Titre de la vidéo interactive",
                   "default":"Vidéo interactive",
-                  "description":"Utilisé dans les récapitulatifs, statistiques, etc."
+                  "description":"Utilisée dans les résumés, statistiques, etc."
                 },
                 {
                   "label":"Cacher le titre sur l'écran de lancement de la vidéo"
@@ -26,7 +26,7 @@
                   "description":"Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
                 },
                 {
-                  "label":"Image de la vidéo ",
+                  "label":"Affiche",
                   "description":"Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
                 },
                 {
@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Track file (WebVTT)",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -116,7 +116,7 @@
                     "label":"Intitulé du bouton"
                   },
                   {
-                    "label":"Étiquette",
+                    "label":"Etiquette",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Background color",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,14 +159,14 @@
                         ]
                       },
                       {
-                        "label":"Action sur mauvaise réponse",
+                        "label":"Box shadow",
                         "fields":[
                           {
                             "label":"Seek to",
                             "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Autoriser l’utilisateur à se retirer et continuer"
                           },
                           {
                             "label":"Message"
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Couleur d'arrière-plan",
+                        "label":"Type",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
@@ -202,7 +202,7 @@
                     "label":"Au clic, aller vers",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Type de média",
                         "options":[
                           {
                             "label":"Timecode"
@@ -291,16 +291,16 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Auto-play video",
+          "label":"Démarrage automatique",
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Vidéo en boucle",
+          "description":"Vérifier si la vidéo doit s’exécuter en boucle"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Ecraser le bouton \"Voir la solution\"",
+          "description":"Cette option détermine si le bouton \"Voir la solution\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
           "options":[
             {
               "label":"Activé"
@@ -311,36 +311,36 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Ecraser le bouton \"Recommencer\"",
+          "description":"Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Activé"
             },
             {
-              "label":"Disabled"
+              "label":"Désactivé"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Show bookmarks menu on load",
+          "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Empêcher de sauter en avant dans la vidéo",
+          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
-          "label":"Deactivate sound",
+          "label":"Désactiver le son",
           "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Traduction de l'interface",
+      "label":"Options générales.",
       "fields":[
         {
           "label":"Intitulé de l'activité",
@@ -368,7 +368,7 @@
         },
         {
           "label":"Video captions title",
-          "default":"Captions"
+          "default":"Légendes"
         },
         {
           "label":"Texte pour le bouton \"Fermer\"",
@@ -384,7 +384,7 @@
         },
         {
           "label":"Intitulé du récapitulatif",
-          "default":"Récapitulatif"
+          "default":"Résumé"
         },
         {
           "label":"Intitulé du bouton \"Signets\"",
@@ -392,7 +392,7 @@
         },
         {
           "label":"Texte par défaut du bouton de reprise",
-          "default":"Continuer"
+          "default":"Reprendre"
         },
         {
           "label":"Texte par défaut du bouton de reprise",
@@ -419,7 +419,7 @@
           "default":"Vous devez répondre correctement à toutes les questions avant de continuer."
         },
         {
-          "label":"Bouton Retour",
+          "label":"Bouton précédent",
           "default":"Retour"
         },
         {
