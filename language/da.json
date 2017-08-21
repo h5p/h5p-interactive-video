@@ -291,12 +291,16 @@
           "description":"Angiv tidskode i formatet M:SS"
         },
         {
-          "label":"Kør video i loop",
-          "description":"Aktiver at video skal køre i loop"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"Overskriv \"Vi svar\"-knap",
-          "description":"Dette valg afgør om \"Vis svar\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
+        },
+        {
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Aktiveret"
@@ -307,31 +311,31 @@
           ]
         },
         {
-          "label":"Overskriv \"Prøv igen\"-knap",
-          "description":"Dette valg afgør om \"Prøv igen\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Aktiveret"
+              "label":"Enabled"
             },
             {
-              "label":"Deaktiveret"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"Begynd med bogmærkemenu åben",
-          "description":"Denne funktion er ikke tilgængelig på iPad når YouTube-kilde er brugt."
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Vis knap til at spole 10 sekunder tilbage"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Undgå at spole frem i en video",
-          "description":"Slå til for at forhindre at brugere springer over indhold i en video ved hjælp af standardfunktioner."
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deaktiver lyd",
-          "description":"Aktivering af denne indstilling vil deaktivere videoens lyd og forhindre den i at blive slået til."
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
