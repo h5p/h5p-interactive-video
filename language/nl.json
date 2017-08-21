@@ -138,14 +138,14 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Achtergrondkleur",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -159,11 +159,11 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Schaduw om box",
                         "fields":[
                           {
                             "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
                             "label":"Allow the user to opt out and continue"
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Ga naar na klikken",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Type",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Ga naar",
+                        "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
                       }
                     ]
                   },
@@ -295,12 +295,12 @@
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Video in loop tonen",
+          "description":"Aanvinken als de video in een loop getoond moet worden"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Toon oplossing\" knop instellen",
+          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options":[
             {
               "label":"Ingeschakeld"
@@ -311,27 +311,27 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Opnieuw proberen\" knop instellen",
+          "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Ingeschakeld"
             },
             {
-              "label":"Disabled"
+              "label":"Uitgeschakeld"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Toon bladwijzermenu bij laden",
+          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Voorkom vooruitbladeren in een video",
+          "description":"Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
         },
         {
           "label":"Deactivate sound",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Localiseren",
+      "label":"Localiseer",
       "fields":[
         {
           "label":"Titel van de activiteit",
@@ -352,7 +352,7 @@
         },
         {
           "label":"Pauzeren titel",
-          "default":"Pauzeren"
+          "default":"Pauze"
         },
         {
           "label":"Geluid uitschakelen",
@@ -392,7 +392,7 @@
         },
         {
           "label":"Standaardlabel voor zoekknop",
-          "default":"Doorgaan"
+          "default":"Hervatten"
         },
         {
           "label":"Standaardknop om door te gaan met afspelen van video",
