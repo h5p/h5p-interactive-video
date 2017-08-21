@@ -291,12 +291,16 @@
           "description":"Voer de tijdcode in als M:SS format"
         },
         {
-          "label":"Video in loop tonen",
-          "description":"Aanvinken als de video in een loop getoond moet worden"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"\"Toon oplossing\" knop instellen",
-          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
+        },
+        {
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Ingeschakeld"
@@ -307,27 +311,27 @@
           ]
         },
         {
-          "label":"\"Opnieuw proberen\" knop instellen",
-          "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Ingeschakeld"
+              "label":"Enabled"
             },
             {
-              "label":"Uitgeschakeld"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"Toon bladwijzermenu bij laden",
-          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Toon knop om 10 seconden terug te spoelen"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Voorkom vooruitbladeren in een video",
-          "description":"Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",
