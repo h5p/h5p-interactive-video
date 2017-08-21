@@ -63,9 +63,6 @@
   height: auto;
   color: #fff;
 }
-.h5p-interactive-video .h5p-video::-internal-media-controls-overlay-cast-button {
-  display: none; /* No chromecast support */
-}
 .h5p-interactive-video object {
   display: block;
 }

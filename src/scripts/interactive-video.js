@@ -592,6 +592,9 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   this.currentState = InteractiveVideo.ATTACHED;
 
+  // Disable remote playback UI such as chromecast
+  that.video.disableRemotePlayback = true;
+
   if (this.autoplay) {
     that.video.play();
   }
