@@ -16,7 +16,7 @@
                 {
                   "label":"Tittel",
                   "default":"Interaktiv video",
-                  "description":"Brukes i oppsummeringer, statistikk o.l."
+                  "description":"Brukes blant annet i oppsummeringer og statistikk."
                 },
                 {
                   "label":"Skjul tittel på startskjerm"
@@ -42,7 +42,7 @@
                   "label":"Available text tracks",
                   "entity":"Track",
                   "field":{
-                    "label":"Track",
+                    "label":"Spor",
                     "fields":[
                       {
                         "label":"Track label",
@@ -116,7 +116,7 @@
                     "label":"Ledetekst"
                   },
                   {
-                    "label":"Label",
+                    "label":"Tittel",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Background color",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Box shadow",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Visuelt",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Type",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(relativ)"
                               },
                               {
                                 "label":"other"
@@ -284,14 +284,14 @@
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Innstillinger for oppførsel",
       "fields":[
         {
           "label":"Begynn på",
           "description":"Enter timecode in the format M:SS"
         },
         {
-          "label":"Auto-play video",
+          "label":"Slå på automatisk avspeling",
           "description":"Start playing the video automatically"
         },
         {
@@ -299,8 +299,8 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Overstyr «Fasit»-knapp",
+          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
               "label":"Aktivert"
@@ -311,36 +311,36 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Overstyr «Prøv igjen»-knapp",
+          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Aktivert"
             },
             {
-              "label":"Disabled"
+              "label":"Deaktivert"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Unngå at brukere hopper over innhold i video",
+          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Deaktiver lyd",
+          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
         }
       ]
     },
     {
-      "label":"Lokaliser",
+      "label":"Innstillinger for oppgave-oppførsel",
       "fields":[
         {
           "label":"Interaksjonstittel",
@@ -372,7 +372,7 @@
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Lukk"
         },
         {
           "label":"Fullskjermstittel",
@@ -419,7 +419,7 @@
           "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
-          "label":"Tilbakeknapp",
+          "label":"Førre-knappen",
           "default":"Tilbake"
         },
         {
