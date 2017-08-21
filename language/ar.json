@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Track file (WebVTT)",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -116,7 +116,7 @@
                     "label":"التسمية"
                   },
                   {
-                    "label":"Label",
+                    "label":"التسمية",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Background color",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Box shadow",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Type",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
@@ -217,10 +217,10 @@
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label":"URL",
+                        "label":"الرابط",
                         "fields":[
                           {
-                            "label":"Protocol",
+                            "label":"بروتوكول",
                             "options":[
                               {
                                 "label":"http://"
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label":"(نسبي)"
                               },
                               {
                                 "label":"other"
@@ -238,7 +238,7 @@
                             "default":"http://"
                           },
                           {
-                            "label":"URL"
+                            "label":"الرابط"
                           }
                         ]
                       },
@@ -284,14 +284,14 @@
       ]
     },
     {
-      "label":"Behavioural settings",
+      "label":"إعدادات سلوكية",
       "fields":[
         {
           "label":"Start video at",
           "description":"Enter timecode in the format M:SS"
         },
         {
-          "label":"Auto-play video",
+          "label":"التشغيل التلقائي الفيديو",
           "description":"Start playing the video automatically"
         },
         {
@@ -323,15 +323,15 @@
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Show bookmarks menu on load",
+          "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "description":"Enabling this options will disable user video navigation through default controls"
         },
         {
           "label":"Deactivate sound",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Localize",
+      "label":"حساسية الاجابة",
       "fields":[
         {
           "label":"عنوان التفاعل",
@@ -372,7 +372,7 @@
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"أغلق"
         },
         {
           "label":"عنوان ملء الشاشة",
@@ -384,7 +384,7 @@
         },
         {
           "label":"عنوان الملخص",
-          "default":"Summary"
+          "default":"الملخص"
         },
         {
           "label":"عنوان الإشارات المرجعية",
@@ -419,7 +419,7 @@
           "default":"تحتاج إلى الإجابة على جميع الأسئلة بشكل صحيح قبل المتابعة."
         },
         {
-          "label":"زر العودة",
+          "label":"زر الرجوع",
           "default":"الى الخلف"
         },
         {
