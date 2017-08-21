@@ -295,12 +295,24 @@
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Repetir vídeo",
+          "description":"Compruebe si el vídeo debe mostrarse en un bucle"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Ocultar el botón \"Mostrar solución\"",
+          "description":"Esta opción determina si el botón \"Mostrar solución\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
+          "options":[
+            {
+              "label":"Habilitado"
+            },
+            {
+              "label":"Desactivado"
+            }
+          ]
+        },
+        {
+          "label":"Ocultar el botón de \"Reintentar\"",
+          "description":"Esta opción determina si el botón \"Reintentar\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
           "options":[
             {
               "label":"Habilitado"
@@ -311,36 +323,24 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
-            {
-              "label":"Enabled"
-            },
-            {
-              "label":"Disabled"
-            }
-          ]
+          "label":"Show bookmarks menu on load",
+          "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label":"Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Evitar saltar hacia adelante en un vídeo",
+          "description":"Enabling this options will disable user video navigation through default controls"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
-        },
-        {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Desactivar sonido",
+          "description":"Habilitar esta opción desactiva el sonido del vídeo y evitar que se active."
         }
       ]
     },
     {
-      "label":"Localizar",
+      "label":"Traducciones",
       "fields":[
         {
           "label":"Título de la actividad",
