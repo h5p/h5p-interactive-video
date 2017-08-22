@@ -173,7 +173,8 @@ function InteractiveVideo(params, id, contentData) {
       visuals: {
         poster: self.options.video.startScreenOptions.poster,
         controls: self.justVideo,
-        fit: false
+        fit: false,
+        disableRemotePlayback: true
       },
       startAt: startAt,
       a11y: self.options.video.textTracks
@@ -591,9 +592,6 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.$container.append($(this.accessibility.getInteractionAnnouncer()));
 
   this.currentState = InteractiveVideo.ATTACHED;
-
-  // Disable remote playback UI such as chromecast
-  that.video.disableRemotePlayback = true;
 
   if (this.autoplay) {
     that.video.play();
