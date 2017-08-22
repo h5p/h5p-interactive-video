@@ -885,7 +885,7 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
-    if (player.currentState !== player.video.ENDED) {
+    if (player.currentState !== H5P.Video.ENDED) {
       if (seekTo !== undefined) {
         player.pause();
         player.seek(seekTo);
