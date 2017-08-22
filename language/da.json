@@ -291,8 +291,8 @@
           "description":"Angiv tidskode i formatet M:SS"
         },
         {
-          "label":"Auto-play video",
-          "description":"Start playing the video automatically"
+          "label":"Slå automatisk afspilning til",
+          "description":"Begynd afspilning af video automatisk"
         },
         {
           "label":"Kør video i loop",
