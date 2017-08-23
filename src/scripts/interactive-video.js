@@ -922,9 +922,10 @@ InteractiveVideo.prototype.addBookmarks = function () {
  * @param {boolean} [show] Forces toggle state if set
  * @param {boolean} [firstPlay] If first time
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show = false, firstPlay = false) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = false) {
   if (this.controls.$bookmarksButton) {
-    show = !this.controls.$bookmarksChooser.hasClass('h5p-show');
+    show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
+    var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
     if(show) {
       this.controls.$more.attr('aria-expanded', 'true');
@@ -951,7 +952,7 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show = false, firs
       }
     }
 
-    this.controls.$bookmarksChooser.addClass('h5p-transitioning');
+    this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
   }
 };
 
