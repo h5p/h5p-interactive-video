@@ -1598,6 +1598,12 @@
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:hover {
   border-color: #00796f;
 }
+
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize .h5p-dialog-inner,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
+  position: relative;
+}
+
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize .goto-clickable:before,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:before {
   width: 0;
@@ -1669,9 +1675,6 @@
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus:after,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus:after {
   color: #018d82;
-}
-.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:after {
-  top: 3.5em;
 }
 .h5p-interactive-video .h5p-dialog.h5p-big.goto-clickable-visualize[data-lib="H5P.Image"] .h5p-dialog-inner:after {
   top: 0.25em;
