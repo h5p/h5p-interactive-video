@@ -173,7 +173,8 @@ function InteractiveVideo(params, id, contentData) {
       visuals: {
         poster: self.options.video.startScreenOptions.poster,
         controls: self.justVideo,
-        fit: false
+        fit: false,
+        disableRemotePlayback: true
       },
       startAt: startAt,
       a11y: self.options.video.textTracks
