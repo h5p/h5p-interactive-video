@@ -444,7 +444,6 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
  */
 InteractiveVideo.prototype.getCurrentState = function () {
   var self = this;
-
   if (!self.video.play) {
     return; // Missing video
   }
@@ -460,6 +459,9 @@ InteractiveVideo.prototype.getCurrentState = function () {
 
   if (state.progress) {
     return state;
+  }
+  else if (self.previousState && self.previousState.progress) {
+    return self.previousState;
   }
 };
 
