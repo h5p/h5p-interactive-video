@@ -167,6 +167,7 @@
   height: auto;
   min-width: 1.5em;
   border-radius: 0;
+  cursor: auto;
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone:focus {
