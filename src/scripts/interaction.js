@@ -198,6 +198,8 @@ function Interaction(parameters, player, previousState) {
         // Hide on focus, because of coord picker
         player.editor.hideInteractionTitle();
         isHovered = false;
+      }).click(function () {
+        player.editor.hideInteractionTitle();
       });
     }
 
