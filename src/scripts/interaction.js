@@ -77,7 +77,7 @@ function Interaction(parameters, player, previousState) {
 
   // Find library name and title
   var library = action.library.split(' ')[0];
-  var title = [action.params.contentName, stripTags(parameters.label), parameters.libraryTitle, player.l10n.interaction]
+  var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle, player.l10n.interaction]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
