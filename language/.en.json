@@ -11,7 +11,7 @@
               "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
-              "label": "Start screen options - not supported for YouTube videos",
+              "label": "Start screen options (unsupported for YouTube videos)",
               "fields": [
                 {
                   "label": "The title of this interactive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label": "Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label": "Text tracks (unsupported for YouTube videos)",
               "fields": [
                 {
                   "label": "Available text tracks",
