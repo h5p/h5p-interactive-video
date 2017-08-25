@@ -89,9 +89,6 @@ function Interaction(parameters, player, previousState) {
   // Keep track of DragNBarElement and related dialog/form
   var dnbElement;
 
-  // Keep track of interaction element state
-  var isShownAsButton = false;
-
   // Keep track of tooltip state
   var isHovered = false;
 
@@ -118,10 +115,11 @@ function Interaction(parameters, player, previousState) {
   /**
    * Display the current interaction as a button on top of the video.
    *
+   * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
    * @private
    */
-  var createButton = function () {
-    var hiddenClass = isShownAsButton ? '' : ' h5p-hidden';
+  var createButton = function (preventAnimation) {
+    var hiddenClass = preventAnimation ? '' : ' h5p-hidden';
     $interaction = $('<div/>', {
       'tabindex': 0,
       'role': 'button',
@@ -1112,9 +1110,10 @@ function Interaction(parameters, player, previousState) {
    * Display or remove the interaction depending on the video time.
    *
    * @param {number} second video time
+   * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
    * @returns {H5P.jQuery|undefined} interaction button or container
    */
-  self.toggle = function (second) {
+  self.toggle = function (second, preventAnimation) {
     second = Math.floor(second);
     if (!self.visibleAt(second)) {
       isVisible = false;
@@ -1146,15 +1145,12 @@ function Interaction(parameters, player, previousState) {
 
     if (self.isStandaloneLabel()) {
       createStandaloneLabel();
-      isShownAsButton = false;
     }
     else if (self.isButton()) {
-      createButton();
-      isShownAsButton = true;
+      createButton(preventAnimation);
     }
     else {
       createPoster();
-      isShownAsButton = false;
     }
     if (player.editor === undefined) {
       dnbElement = player.dnb.add($interaction, undefined, {dnbElement: dnbElement, disableContextMenu: true});
@@ -1201,15 +1197,12 @@ function Interaction(parameters, player, previousState) {
       $interaction.detach();
       if(self.isStandaloneLabel()) {
         createStandaloneLabel();
-        isShownAsButton = false;
       }
       else if (self.isButton()) {
-        createButton();
-        isShownAsButton = true;
+        createButton(true);
       }
       else {
         createPoster();
-        isShownAsButton = false;
       }
     }
   };
