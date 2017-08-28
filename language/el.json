@@ -1,37 +1,37 @@
 {
   "semantics":[
     {
-      "label":"Interaktiv Video Editor",
+      "label":"Interactive Video Editor",
       "fields":[
         {
-          "label":"Last opp video",
+          "label":"Upload/embed video",
           "fields":[
             {
-              "label":"Legg til ein video",
-              "description":"Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
+              "label":"Add a video",
+              "description":"Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
               "label":"Start screen options - not supported for YouTube videos",
               "fields":[
                 {
-                  "label":"Tittel",
-                  "default":"Interaktiv video",
-                  "description":"Brukes blant annet i oppsummeringer og statistikk."
+                  "label":"The title of this interactive video",
+                  "default":"Interactive Video",
+                  "description":"Used in summaries, statistics etc."
                 },
                 {
-                  "label":"Skjul tittel på startskjerm"
+                  "label":"Hide title on video start screen"
                 },
                 {
-                  "label":"Kort beskrivelse (Valgfri)",
-                  "description":"Valgfri. Viser en kort beskrivelse når en video lastes."
+                  "label":"Short description (Optional)",
+                  "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label":"Plakat",
+                  "label":"Poster image",
                   "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label":"Opphavsrettsinformasjon",
-                  "description":"Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
+                  "label":"Video copyright information",
+                  "description":"Information regarding copyright of the video and elements used in the video."
                 }
               ]
             },
@@ -42,7 +42,7 @@
                   "label":"Available text tracks",
                   "entity":"Track",
                   "field":{
-                    "label":"Spor",
+                    "label":"Track",
                     "fields":[
                       {
                         "label":"Track label",
@@ -80,13 +80,13 @@
           ]
         },
         {
-          "label":"Legg til interaksjonar",
+          "label":"Add interactions",
           "fields":[
             {
               "field":{
                 "fields":[
                   {
-                    "label":"Visningstid",
+                    "label":"Display time",
                     "fields":[
                       {
                         
@@ -100,23 +100,23 @@
                     "label":"Pause video"
                   },
                   {
-                    "label":"Vis som",
-                    "description":"<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
+                    "label":"Display as",
+                    "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options":[
                       {
-                        "label":"Knapp"
+                        "label":"Button"
                       },
                       {
-                        "label":"Plakat"
+                        "label":"Poster"
                       }
                     ],
                     "default":"button"
                   },
                   {
-                    "label":"Ledetekst"
+                    "label":"Turn into button on small screens"
                   },
                   {
-                    "label":"Tittel",
+                    "label":"Label",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Visuelt",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -229,7 +229,7 @@
                                 "label":"https://"
                               },
                               {
-                                "label":"(relativ)"
+                                "label":"(root relative)"
                               },
                               {
                                 "label":"other"
@@ -266,7 +266,7 @@
           ]
         },
         {
-          "label":"Oppsummeringsoppgave",
+          "label":"Summary task",
           "fields":[
             {
               "default":{
@@ -276,22 +276,22 @@
               }
             },
             {
-              "label":"Visningstid",
-              "description":"Antall sekunder før videoen slutter."
+              "label":"Display at",
+              "description":"Number of seconds before the video ends."
             }
           ]
         }
       ]
     },
     {
-      "label":"Innstillinger for oppførsel",
+      "label":"Behavioural settings",
       "fields":[
         {
-          "label":"Begynn på",
+          "label":"Start video at",
           "description":"Enter timecode in the format M:SS"
         },
         {
-          "label":"Slå på automatisk avspeling",
+          "label":"Auto-play video",
           "description":"Start playing the video automatically"
         },
         {
@@ -299,72 +299,72 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Overstyr «Fasit»-knapp",
-          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Aktivert"
+              "label":"Enabled"
             },
             {
-              "label":"Deaktivert"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"Overstyr «Prøv igjen»-knapp",
-          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
-              "label":"Aktivert"
+              "label":"Enabled"
             },
             {
-              "label":"Deaktivert"
+              "label":"Disabled"
             }
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"This function is not available on iPad when using YouTube as video source"
+          "label":"Start with bookmarks menu open",
+          "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
           "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video",
-          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Localize",
       "fields":[
         {
-          "label":"Interaksjonstittel",
-          "default":"Interaksjon"
+          "label":"Interaction title",
+          "default":"Interaction"
         },
         {
-          "label":"Spel av-tittel",
-          "default":"Spel av"
+          "label":"Play title",
+          "default":"Play"
         },
         {
-          "label":"Pause-tittel",
-          "default":"Pause"
+          "label":"Pause title",
+          "default":"Παύση"
         },
         {
-          "label":"Lyd av-tittel",
-          "default":"Lyd av"
+          "label":"Mute title",
+          "default":"Mute"
         },
         {
-          "label":"Lyd på-tittel",
-          "default":"Lyd på"
+          "label":"Unmute title",
+          "default":"Unmute"
         },
         {
-          "label":"Videokvalitetstittel",
-          "default":"Videokvalitet"
+          "label":"Video quality title",
+          "default":"Video Quality"
         },
         {
           "label":"Video captions title",
@@ -372,26 +372,26 @@
         },
         {
           "label":"Close button text",
-          "default":"Lukk"
+          "default":"Close"
         },
         {
-          "label":"Fullskjermstittel",
-          "default":"Fullskjerm"
+          "label":"Fullscreen title",
+          "default":"Fullscreen"
         },
         {
-          "label":"Avslutt fullskjerm-tittel",
-          "default":"Avslutt fullskjerm"
+          "label":"Exit fullscreen title",
+          "default":"Exit Fullscreen"
         },
         {
-          "label":"Oppsummeringstittel",
-          "default":"Oppsummering"
+          "label":"Summary title",
+          "default":"Summary"
         },
         {
-          "label":"Bokmerketittel",
-          "default":"Bokmerker"
+          "label":"Bookmarks title",
+          "default":"Bookmarks"
         },
         {
-          "label":"Standard merkelapp for adaptivitetssøkeknappen",
+          "label":"Default label for adaptivity seek button",
           "default":"Continue"
         },
         {
@@ -407,20 +407,20 @@
           "default":"Rewind 10 Seconds"
         },
         {
-          "label":"Navigasjon er ikke tillatt tekst",
-          "default":"Navigasjon er ikke tillatt"
+          "label":"Navigation is disabled text",
+          "default":"Navigation is disabled"
         },
         {
           "label":"Sound is disabled text",
           "default":"Sound is disabled"
         },
         {
-          "label":"Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
-          "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
+          "label":"Warning that the user must answer the question correctly before continuing",
+          "default":"You need to answer all the questions correctly before continuing."
         },
         {
-          "label":"Førre-knappen",
-          "default":"Tilbake"
+          "label":"Back button",
+          "default":"Back"
         },
         {
           "label":"Passed time hours",

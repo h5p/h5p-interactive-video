@@ -1,55 +1,77 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Editor Interactieve Video",
-      "fields": [
+      "label":"Editor Interactieve Video",
+      "fields":[
         {
-          "label": "Video uploaden/inbedden",
-          "fields": [
+          "label":"Video uploaden/inbedden",
+          "fields":[
             {
-              "label": "Voeg een video toe",
-              "description": "Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
+              "label":"Voeg een video toe",
+              "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label": "Opties voor beginscherm",
-              "fields": [
+              "label":"Start screen options - not supported for YouTube videos",
+              "fields":[
                 {
-                  "label": "Titel",
-                  "default": "Interactieve Video",
-                  "description": "Gebruikt in samenvattingen, statistieken, enz."
+                  "label":"Titel",
+                  "default":"Interactieve Video",
+                  "description":"Gebruikt in samenvattingen, statistieken, enz."
                 },
                 {
-                  "label": "Titel verbergen aan het begin van de video"
+                  "label":"Titel verbergen aan het begin van de video"
                 },
                 {
-                  "label": "Korte beschrijving (Optioneel)",
-                  "description": "Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube video's."
+                  "label":"Korte beschrijving (Optioneel)",
+                  "description":"Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube video's."
                 },
                 {
-                  "label": "Poster",
-                  "description": "Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube video's."
+                  "label":"Poster",
+                  "description":"Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube video's."
                 },
                 {
-                  "label": "Copyright informatie voor de video",
-                  "description": "Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
+                  "label":"Copyright informatie voor de video",
+                  "description":"Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
                 }
               ]
             },
             {
-              "fields": [
+              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "fields":[
                 {
-                  "field": {
-                    "fields": [
-                      {},
+                  "label":"Available text tracks",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Track",
+                    "fields":[
                       {
-                        "options": [
-                          {},
-                          {},
-                          {}
+                        "label":"Track label",
+                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default":"Subtitles"
+                      },
+                      {
+                        "label":"Type of text track",
+                        "default":"subtitles",
+                        "options":[
+                          {
+                            "label":"Subtitles"
+                          },
+                          {
+                            "label":"Captions"
+                          },
+                          {
+                            "label":"Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label":"Source language, must be defined for subtitles",
+                        "default":"en",
+                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label":"Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -58,312 +80,383 @@
           ]
         },
         {
-          "label": "Interacties toevoegen",
-          "fields": [
+          "label":"Interacties toevoegen",
+          "fields":[
             {
-              "field": {
-                "fields": [
+              "field":{
+                "fields":[
                   {
-                    "label": "Toon duur"
-                  },
-                  {
-                    "label": "Pauzeren"
-                  },
-                  {
-                    "label": "Tonen als",
-                    "description": "<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video.",
-                    "options": [
+                    "label":"Toon duur",
+                    "fields":[
                       {
-                        "label": "Knop"
+                        
                       },
                       {
-                        "label": "Poster"
+                        
                       }
                     ]
                   },
                   {
-                    "label": "Label",
-                    "description": "Label met beschrijving getoond naast het icoon van de interactie."
+                    "label":"Pauzeren"
                   },
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
                   {
-                    "label": "Adaptiviteit",
-                    "fields": [
+                    "label":"Tonen als",
+                    "description":"<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video.",
+                    "options":[
                       {
-                        "label": "Actie wanneer alles correct is",
-                        "fields": [
+                        "label":"Knop"
+                      },
+                      {
+                        "label":"Poster"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"Label"
+                  },
+                  {
+                    "label":"Label",
+                    "description":"Label displayed next to interaction icon."
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"Visuals",
+                    "fields":[
+                      {
+                        "label":"Achtergrondkleur",
+                        "fields":[
                           {
-                            "label": "Ga naar",
-                            "description": "Voer de tijdcode in als M:SS format"
+                            "label":"Seek to",
+                            "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label": "Toestaan dat de gebruiker geen antwoord geeft en doorgaat"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Melding"
+                            "label":"Message"
                           },
                           {
-                            "label": "Label voor zoekknop"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Actie wanneer een incorrect antwoord wordt gegeven",
-                        "fields": [
+                        "label":"Schaduw om box",
+                        "fields":[
                           {
-                            "label": "Ga naar",
-                            "description": "Voer de tijdcode in als M:SS format"
+                            "label":"Seek to",
+                            "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label": "Toestaan dat de gebruiker geen antwoord geeft en doorgaat"
+                            "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Melding"
+                            "label":"Message"
                           },
                           {
-                            "label": "Label voor zoekknop"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Vereis 100% score voor de taak om verder te gaan",
-                        "description": "Voor de beste functionaliteit moet deze optie gebruikt worden samen met de optie \"Voorkom vooruitbladeren in video\" van Interactieve Video."
+                        "label":"Require full score for task before proceeding",
+                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
-                    "fields": [
+                    "label":"Ga naar na klikken",
+                    "fields":[
                       {
-                        "label": "Achtergrondkleur",
-                        "default": "rgb(255, 255, 255)"
+                        "label":"Type",
+                        "default":"rgb(255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
                       },
                       {
-                        "label": "Schaduw om box",
-                        "description": "Voegt een subtiele schadow toe rond de interactie. Voor volledig transparante interacties kun je dit uitschakelen"
+                        "label":"Ga naar",
+                        "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
                       }
                     ]
                   },
                   {
-                    "label": "Ga naar na klikken",
-                    "fields": [
+                    "label":"Go to on click",
+                    "fields":[
                       {
-                        "label": "Type",
-                        "options": [
+                        "label":"Type",
+                        "options":[
                           {
-                            "label": "Tijdocde"
+                            "label":"Timecode"
                           },
                           {
-                            "label": "Andere pagina (URL)"
+                            "label":"Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Ga naar",
-                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label": "URL",
-                        "fields": [
+                        "label":"URL",
+                        "fields":[
                           {
-                            "label": "Protocol",
-                            "options": [
+                            "label":"Protocol",
+                            "options":[
                               {
-                                "label": "http://"
+                                "label":"http://"
                               },
                               {
-                                "label": "https://"
+                                "label":"https://"
                               },
                               {
-                                "label": "(relatief aan root)"
+                                "label":"(root relative)"
                               },
                               {
-                                "label": "anders"
+                                "label":"other"
                               }
-                            ]
+                            ],
+                            "default":"http://"
                           },
                           {
-                            "label": "URL"
+                            "label":"URL"
                           }
                         ]
                       },
                       {
-                        "label": "Visualiseer",
-                        "description": "Toon dat de interactie kan worden aangeklikt door er een rand en een icoon aan toe te voegen"
+                        "label":"Visualize",
+                        "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {}
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "Samenvatting van de taak",
-          "fields": [
-            {},
+          "label":"Samenvatting van de taak",
+          "fields":[
             {
-              "label": "Tonen op",
-              "description": "Aantal seconden voordat de video eindigt."
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"Tonen op",
+              "description":"Aantal seconden voordat de video eindigt."
             }
           ]
         }
       ]
     },
     {
-      "label": "Gedragsinstellingen",
-      "fields": [
+      "label":"Gedragsinstellingen",
+      "fields":[
         {
-          "label": "Begin video op",
-          "description": "Voer de tijdcode in als M:SS format"
+          "label":"Begin video op",
+          "description":"Voer de tijdcode in als M:SS format"
         },
         {
-          "label": "Video in loop tonen",
-          "description": "Aanvinken als de video in een loop getoond moet worden"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label": "\"Toon oplossing\" knop instellen",
-          "description": "Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
-          "options": [
+          "label":"Video in loop tonen",
+          "description":"Aanvinken als de video in een loop getoond moet worden"
+        },
+        {
+          "label":"\"Toon oplossing\" knop instellen",
+          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options":[
             {
-              "label": "Ingeschakeld"
+              "label":"Ingeschakeld"
             },
             {
-              "label": "Uitgeschakeld"
+              "label":"Uitgeschakeld"
             }
           ]
         },
         {
-          "label": "\"Opnieuw proberen\" knop instellen",
-          "description": "Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
-          "options": [
+          "label":"\"Opnieuw proberen\" knop instellen",
+          "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options":[
             {
-              "label": "Ingeschakeld"
+              "label":"Ingeschakeld"
             },
             {
-              "label": "Uitgeschakeld"
+              "label":"Uitgeschakeld"
             }
           ]
         },
         {
-          "label": "Toon bladwijzermenu bij laden",
-          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
+          "label":"Toon bladwijzermenu bij laden",
+          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
         },
         {
-          "label": "Toon knop om 10 seconden terug te spoelen"
+          "label":"Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label": "Voorkom vooruitbladeren in een video",
-          "description": "Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
+          "label":"Voorkom vooruitbladeren in een video",
+          "description":"Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label": "Localiseren",
-      "fields": [
+      "label":"Localiseer",
+      "fields":[
         {
-          "label": "Titel van de activiteit",
-          "default": "Interactie"
+          "label":"Titel van de activiteit",
+          "default":"Interactie"
         },
         {
-          "label": "Afspelen titel",
-          "default": "Play"
+          "label":"Afspelen titel",
+          "default":"Play"
         },
         {
-          "label": "Pauzeren titel",
-          "default": "Pauzeren"
+          "label":"Pauzeren titel",
+          "default":"Pauze"
         },
         {
-          "label": "Geluid uitschakelen",
-          "default": "Geluid uitschakelen"
+          "label":"Geluid uitschakelen",
+          "default":"Geluid uitschakelen"
         },
         {
-          "label": "Geluid inschakelen",
-          "default": "Geluid inschakelen"
+          "label":"Geluid inschakelen",
+          "default":"Geluid inschakelen"
         },
         {
-          "label": "Videokwaliteit",
-          "default": "Videokwaliteit"
-        },
-        {},
-        {},
-        {
-          "label": "Volledig scherm",
-          "default": "Volledig scherm"
+          "label":"Videokwaliteit",
+          "default":"Videokwaliteit"
         },
         {
-          "label": "Volledig scherm verlaten",
-          "default": "Volledig scherm verlaten"
+          "label":"Video captions title",
+          "default":"Captions"
         },
         {
-          "label": "Samenvatting",
-          "default": "Samenvatting"
+          "label":"Close button text",
+          "default":"Close"
         },
         {
-          "label": "Bladwijzers",
-          "default": "Bladwijzers"
+          "label":"Volledig scherm",
+          "default":"Volledig scherm"
         },
         {
-          "label": "Standaardlabel voor zoekknop",
-          "default": "Doorgaan"
+          "label":"Volledig scherm verlaten",
+          "default":"Volledig scherm verlaten"
         },
         {
-          "label": "Standaardknop om door te gaan met afspelen van video",
-          "default": "Doorgaan met afspelen"
+          "label":"Samenvatting",
+          "default":"Samenvatting"
         },
         {
-          "label": "Afspeelsnelheid instellen",
-          "default": "Afspeelsnelheid"
+          "label":"Bladwijzers",
+          "default":"Bladwijzers"
         },
         {
-          "label": "10 seconden terug",
-          "default": "10 seconden terug"
+          "label":"Standaardlabel voor zoekknop",
+          "default":"Hervatten"
         },
         {
-          "label": "Tekst navigatie uitgeschakeld",
-          "default": "Navigatie is uitgeschakeld"
+          "label":"Standaardknop om door te gaan met afspelen van video",
+          "default":"Doorgaan met afspelen"
         },
         {
-          "label": "Tekst geluid uitgeschakeld",
-          "default": "Geluid is uitgeschakeld"
+          "label":"Afspeelsnelheid instellen",
+          "default":"Afspeelsnelheid"
         },
         {
-          "label": "Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
-          "default": "Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
+          "label":"10 seconden terug",
+          "default":"10 seconden terug"
         },
         {
-          "label": "Terugknop",
-          "default": "Terug"
+          "label":"Tekst navigatie uitgeschakeld",
+          "default":"Navigatie is uitgeschakeld"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label":"Tekst geluid uitgeschakeld",
+          "default":"Geluid is uitgeschakeld"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label":"Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
+          "default":"Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label":"Terugknop",
+          "default":"Terug"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label":"Passed time hours",
+          "default":"Hours"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label":"Passed time minutes",
+          "default":"Minutes"
+        },
+        {
+          "label":"Passed time seconds",
+          "default":"Seconds"
+        },
+        {
+          "label":"Label for current time",
+          "default":"Current time:"
+        },
+        {
+          "label":"Label for total time",
+          "default":"Total time:"
+        },
+        {
+          "label":"Text for explaining navigation hotkey",
+          "default":"Use key k for starting and stopping video at any time"
+        },
+        {
+          "label":"Text explaining that a single interaction with a name has come into view",
+          "default":"Interaction appeared:"
+        },
+        {
+          "label":"Text for explaining that multiple interactions have come into view",
+          "default":"Multiple interactions appeared."
+        },
+        {
+          "label":"Video is paused announcement",
+          "default":"Video is paused"
         }
       ]
     }
