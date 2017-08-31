@@ -186,7 +186,7 @@
                     "label":"Ga naar na klikken",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Achtergrondkleur",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -208,7 +208,7 @@
                             "label":"Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Andere pagina (URL)"
                           }
                         ]
                       },
@@ -232,7 +232,7 @@
                                 "label":"(root relative)"
                               },
                               {
-                                "label":"other"
+                                "label":"andere"
                               }
                             ],
                             "default":"http://"
@@ -243,7 +243,7 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
+                        "label":"Visualiseren",
                         "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
