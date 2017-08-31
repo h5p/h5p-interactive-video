@@ -368,7 +368,7 @@
         },
         {
           "label":"Video captions title",
-          "default":"Captions"
+          "default":"Bijschriften"
         },
         {
           "label":"Close button text",
@@ -428,7 +428,7 @@
         },
         {
           "label":"Passed time minutes",
-          "default":"Minutes"
+          "default":"Minuten"
         },
         {
           "label":"Passed time seconds",
