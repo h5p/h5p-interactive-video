@@ -11,7 +11,7 @@
               "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Titel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Label"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Label",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Aanpasbaar",
                     "fields":[
                       {
-                        "label":"Achtergrondkleur",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Schaduw om box",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Ga naar",
+                        "label":"Box shadow",
                         "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
                       }
                     ]
@@ -291,24 +291,12 @@
           "description":"Voer de tijdcode in als M:SS format"
         },
         {
-          "label":"Auto-play video",
-          "description":"Start playing the video automatically"
-        },
-        {
           "label":"Video in loop tonen",
           "description":"Aanvinken als de video in een loop getoond moet worden"
         },
         {
           "label":"\"Toon oplossing\" knop instellen",
-          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
-          "options":[
-            {
-              "label":"Ingeschakeld"
-            },
-            {
-              "label":"Uitgeschakeld"
-            }
-          ]
+          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd."
         },
         {
           "label":"\"Opnieuw proberen\" knop instellen",
@@ -324,14 +312,26 @@
         },
         {
           "label":"Toon bladwijzermenu bij laden",
+          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt",
+          "options":[
+            {
+              "label":"Ingeschakeld"
+            },
+            {
+              "label":"Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "label":"Toon knop om 10 seconden terug te spoelen",
           "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
         },
         {
-          "label":"Toon knop om 10 seconden terug te spoelen"
+          "label":"Voorkom vooruitbladeren in een video"
         },
         {
-          "label":"Voorkom vooruitbladeren in een video",
-          "description":"Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         },
         {
           "label":"Deactivate sound",

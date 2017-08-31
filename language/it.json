@@ -11,7 +11,7 @@
               "description":"Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungere un link a un video o caricare dei file video. È possibile aggiungere diverse versioni di video di differente qualità. Per assicurarsi la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4."
             },
             {
-              "label":"Opzioni della schermata di avvio - non supportate per i video di YouTube",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Il titolo di questo video interattivo",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Tracce di testo (sottotitoli, didascalie e descrizioni) - non supportate per i video di YouTube",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tracce di testo disponibili",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Etchetta"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Etichetta",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adattività",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Azione su tutte le corrette",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Azione su errore",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -186,15 +186,15 @@
                     "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Colore di sfondo",
                         "default":"RGB (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Ombreggiatura a forma di casella",
+                        "description":"Aggiunge una sottile ombreggiatura intorno all'interazione. Potrebbe convenire disabilitarla per interazioni completamente trasparenti"
                       }
                     ]
                   },
@@ -291,16 +291,16 @@
           "description":"Immetti il tempo nel formato M:SS"
         },
         {
-          "label":"Riproduzione automatica del video",
-          "description":"Inizia automaticamente la riproduzione del video"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Riproduci ciclicamente il video",
-          "description":"Verifica se il video debba eseguire un ciclo"
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
         },
         {
-          "label":"Sovrascrivi il pulsante Mostra soluzione",
-          "description":"Questa opzione determina se il pulsante \"Mostra soluzione\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Attivato"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Sovrascrivi il pulsante \"Riprova\"",
-          "description":"Questa opzione determina se il pulsante \"Riprova\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
+          "label":"Show bookmarks menu on load",
+          "description":"This function is not available on iPad when using YouTube as video source",
           "options":[
             {
               "label":"Attivato"
@@ -323,15 +323,15 @@
           ]
         },
         {
-          "label":"Inizia con il menu dei segnalibri aperto",
+          "label":"Show button for rewinding 10 seconds",
           "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
-          "label":"Visualizza il pulsante per riavvolgere di 10 secondi"
+          "label":"Prevent skipping forward in a video"
         },
         {
-          "label":"Evitare il salto in avanti di un video",
-          "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         },
         {
           "label":"Disattivare il suono",

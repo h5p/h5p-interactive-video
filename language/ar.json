@@ -11,7 +11,7 @@
               "description":"حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"The title of this interactive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"التسمية"
+                    "label":"تتحول إلى زر على الشاشات الصغيرة"
                   },
                   {
                     "label":"التسمية",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"التكيف",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"اتخاذ إجراء بشأن جميع الصحيح",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"اتخاذ إجراء بشأن الخطأ",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Go To",
+                        "label":"Box shadow",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
@@ -291,24 +291,12 @@
           "description":"Enter timecode in the format M:SS"
         },
         {
-          "label":"التشغيل التلقائي الفيديو",
-          "description":"Start playing the video automatically"
-        },
-        {
           "label":"Loop the video",
           "description":"Check if video should run in a loop"
         },
         {
           "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
-            {
-              "label":"Enabled"
-            },
-            {
-              "label":"Disabled"
-            }
-          ]
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
         },
         {
           "label":"Override \"Retry\" button",
@@ -324,14 +312,26 @@
         },
         {
           "label":"Show bookmarks menu on load",
+          "description":"This function is not available on iPad when using YouTube as video source",
+          "options":[
+            {
+              "label":"Enabled"
+            },
+            {
+              "label":"Disabled"
+            }
+          ]
+        },
+        {
+          "label":"Show button for rewinding 10 seconds",
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Prevent skipping forward in a video"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls"
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         },
         {
           "label":"Deactivate sound",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"حساسية الاجابة",
+      "label":"محلية",
       "fields":[
         {
           "label":"عنوان التفاعل",

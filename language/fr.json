@@ -11,7 +11,7 @@
               "description":"Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label":"Options d’écran de départ - non pris en charge pour les vidéos YouTube",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Titre de la vidéo interactive",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Intitulé du bouton"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Etiquette",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action sur mauvaise réponse",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -186,15 +186,15 @@
                     "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Couleur d'arrière-plan",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Ajoute une ombre subtile autour de l’interaction. Vous voudrez peut-être désactiver ceci pour les interactions complètement transparentes"
                       }
                     ]
                   },
@@ -291,24 +291,12 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Démarrage automatique",
-          "description":"Start playing the video automatically"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Vidéo en boucle",
-          "description":"Vérifier si la vidéo doit s’exécuter en boucle"
-        },
-        {
-          "label":"Ecraser le bouton \"Voir la solution\"",
-          "description":"Cette option détermine si le bouton \"Voir la solution\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
-          "options":[
-            {
-              "label":"Activé"
-            },
-            {
-              "label":"Désactivé"
-            }
-          ]
+          "label":"Ecraser le bouton \"Voir la correction\"",
+          "description":"Cette option détermine si le bouton \"Voir la correction\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement."
         },
         {
           "label":"Ecraser le bouton \"Recommencer\"",
@@ -324,14 +312,26 @@
         },
         {
           "label":"Show bookmarks menu on load",
+          "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube",
+          "options":[
+            {
+              "label":"Activé"
+            },
+            {
+              "label":"Désactivé"
+            }
+          ]
+        },
+        {
+          "label":"Afficher le bouton pour revenir en arrière de 10 secondes",
           "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
         },
         {
-          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
+          "label":"Empêcher de sauter en avant dans la vidéo"
         },
         {
-          "label":"Empêcher de sauter en avant dans la vidéo",
-          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         },
         {
           "label":"Désactiver le son",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Options générales.",
+      "label":"Traduction de l'interface",
       "fields":[
         {
           "label":"Intitulé de l'activité",

@@ -11,7 +11,7 @@
               "description":"Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label":"Optionen für den Startbildschirm - nicht unterstützt bei YouTube-Videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Der Titel dieses interaktiven Videos",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Textspuren (Untertitel und Beschreibungen) - für YouTube-Videos nicht unterstützt",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Verfügbare Textspuren",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Beschriftung"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Beschriftung",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuelles",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Hintergrundfarbe",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Gehe zu",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Grafisches",
+                    "label":"Gehe zu bei Klick",
                     "fields":[
                       {
                         "label":"Hintergrundfarbe",
@@ -193,8 +193,8 @@
                         }
                       },
                       {
-                        "label":"Gehe zu",
-                        "description":"Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
+                        "label":"Schatten anzeigen",
+                        "description":"Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
                       }
                     ]
                   },
@@ -291,24 +291,12 @@
           "description":"Timecode im Format M:SS eingeben"
         },
         {
-          "label":"Video automatisch abspielen",
-          "description":"Start playing the video automatically"
-        },
-        {
           "label":"Video in einer Schleife laufen lassen",
           "description":"Wählen, wenn das Video in einer Schleife laufen soll"
         },
         {
           "label":"Überschreiben des \"Lösungen anzeigen\"-Buttons",
-          "description":"Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
-          "options":[
-            {
-              "label":"Anzeigen"
-            },
-            {
-              "label":"Ausblenden"
-            }
-          ]
+          "description":"Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird."
         },
         {
           "label":"Überschreiben des \"Wiederholen\"-Buttons",
@@ -324,14 +312,26 @@
         },
         {
           "label":"Zeige das Lesezeichen-Menü beim Laden",
+          "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt",
+          "options":[
+            {
+              "label":"Anzeigen"
+            },
+            {
+              "label":"Ausblenden"
+            }
+          ]
+        },
+        {
+          "label":"Zeige den Button, um 10 Sekunden zurück zu springen",
           "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
+          "label":"Springen im Video verhindern"
         },
         {
-          "label":"Springen im Video verhindern",
-          "description":"Mit dieser Option wird verhindert, dass der Nutzer die Bedienelemente zum Navigieren verwenden kann"
+          "label":"Ton deaktivieren",
+          "description":"Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
         },
         {
           "label":"Ton deaktivieren",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Verhaltenseinstellungen.",
+      "label":"Sprache anpassen",
       "fields":[
         {
           "label":"Interaktionstitel",
