@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"التسمية"
+                    "label":"تتحول إلى زر على الشاشات الصغيرة"
                   },
                   {
                     "label":"التسمية",
@@ -141,7 +141,7 @@
                     "label":"التكيف",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"اتخاذ إجراء بشأن جميع الصحيح",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"اتخاذ إجراء بشأن الخطأ",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Go To",
+                        "label":"Box shadow",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"حساسية الاجابة",
+      "label":"محلية",
       "fields":[
         {
           "label":"عنوان التفاعل",
