@@ -291,7 +291,7 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Loop the video",
+          "label":"Démarrage automatique",
           "description":"Start playing the video automatically"
         },
         {
@@ -327,11 +327,11 @@
           "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
         },
         {
-          "label":"Empêcher de sauter en avant dans la vidéo"
+          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
           "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
           "label":"Désactiver le son",
