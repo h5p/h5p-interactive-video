@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Quellensprache muss für Untertitel definitert werden",
+                        "label":"Ausgangssprache, muss für Untertitel definiert werden",
                         "default":"en",
                         "description":"Muss ein gültiges BCP 47 Sprachtag sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
                       },
@@ -291,16 +291,16 @@
           "description":"Timecode im Format M:SS eingeben"
         },
         {
-          "label":"Video in einer Schleife laufen lassen",
-          "description":"Wählen, wenn das Video in einer Schleife laufen soll"
+          "label":"Video automatisch abspielen",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"Überschreiben des \"Lösungen anzeigen\"-Buttons",
-          "description":"Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird."
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Überschreiben des \"Wiederholen\"-Buttons",
-          "description":"Diese Option gibt an, ob der \"Wiederholen\" Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Anzeigen"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Zeige das Lesezeichen-Menü beim Laden",
-          "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Anzeigen"
@@ -327,15 +327,15 @@
           "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label":"Springen im Video verhindern"
+          "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
+        },
+        {
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Ton deaktivieren",
-          "description":"Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
-        },
-        {
-          "label":"Ton deaktivieren",
-          "description":"Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },

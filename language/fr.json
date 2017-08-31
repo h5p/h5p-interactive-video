@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Track file (WebVTT)",
+                        "label":"Source language, must be defined for subtitles",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
                         "label":"Couleur d'arrière-plan",
@@ -291,12 +291,24 @@
           "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label":"Loop the video",
+          "label":"Démarrage automatique",
+          "description":"Start playing the video automatically"
+        },
+        {
+          "label":"Vidéo en boucle",
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Ecraser le bouton \"Voir la correction\"",
-          "description":"Cette option détermine si le bouton \"Voir la correction\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement."
+          "label":"Ecraser le bouton \"Voir la solution\"",
+          "description":"Cette option détermine si le bouton \"Voir la solution\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "options":[
+            {
+              "label":"Activé"
+            },
+            {
+              "label":"Désactivé"
+            }
+          ]
         },
         {
           "label":"Ecraser le bouton \"Recommencer\"",
@@ -311,27 +323,15 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube",
-          "options":[
-            {
-              "label":"Activé"
-            },
-            {
-              "label":"Désactivé"
-            }
-          ]
-        },
-        {
           "label":"Afficher le bouton pour revenir en arrière de 10 secondes",
           "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
         },
         {
-          "label":"Empêcher de sauter en avant dans la vidéo"
+          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Empêcher de sauter en avant dans la vidéo",
+          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
           "label":"Désactiver le son",

@@ -183,10 +183,10 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuelt",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Box shadow",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -291,16 +291,16 @@
           "description":"Enter timecode in the format M:SS"
         },
         {
+          "label":"Slå på automatisk avspeling",
+          "description":"Start playing the video automatically"
+        },
+        {
           "label":"Loop the video",
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Overstyr «Vis svar»-knapp",
-          "description":"Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål."
-        },
-        {
           "label":"Overstyr «Prøv igjen»-knapp",
-          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Aktivert"
@@ -312,7 +312,7 @@
         },
         {
           "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"This function is not available on iPad when using YouTube as video source",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Aktivert"
@@ -323,19 +323,19 @@
           ]
         },
         {
-          "label":"Show button for rewinding 10 seconds",
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video"
+          "label":"Show button for rewinding 10 seconds"
+        },
+        {
+          "label":"Unngå at brukere hopper over innhold i video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
-        },
-        {
-          "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },

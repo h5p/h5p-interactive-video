@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Track file (WebVTT)",
+                        "label":"Source language, must be defined for subtitles",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -183,10 +183,10 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Box shadow",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"يضيف ظل خفية حول التفاعل. قد تحتاج إلى تعطيل هذه التفاعلات شفاف تماما"
                       }
                     ]
                   },
@@ -291,16 +291,16 @@
           "description":"Enter timecode in the format M:SS"
         },
         {
+          "label":"التشغيل التلقائي الفيديو",
+          "description":"Start playing the video automatically"
+        },
+        {
           "label":"Loop the video",
           "description":"Check if video should run in a loop"
         },
         {
           "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
-        },
-        {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Enabled"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"This function is not available on iPad when using YouTube as video source",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Enabled"
@@ -331,7 +331,7 @@
         },
         {
           "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",

@@ -183,10 +183,10 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Box shadow",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -291,12 +291,24 @@
           "description":"Legg inn tidskode i formatet M:SS"
         },
         {
+          "label":"Slå på automatisk avspilling",
+          "description":"Start playing the video automatically"
+        },
+        {
           "label":"Kjør video i loop",
           "description":"Slå på for å kjøre video i loop"
         },
         {
-          "label":"Overstyr «Vis svar»-knapp",
-          "description":"Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål."
+          "label":"Overstyr «Fasit»-knapp",
+          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "options":[
+            {
+              "label":"Aktivert"
+            },
+            {
+              "label":"Deaktivert"
+            }
+          ]
         },
         {
           "label":"Overstyr «Prøv igjen»-knapp",
@@ -311,31 +323,19 @@
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt.",
-          "options":[
-            {
-              "label":"Aktivert"
-            },
-            {
-              "label":"Deaktivert"
-            }
-          ]
-        },
-        {
           "label":"Vis knapp for å spole tilbake 10 sekunder",
           "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video"
+          "label":"Vis knapp for å spole tilbake 10 sekunder"
+        },
+        {
+          "label":"Unngå at brukere hopper over innhold i video",
+          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
-        },
-        {
-          "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -435,20 +435,20 @@
           "default":"Sekunder"
         },
         {
-          "label":"Tittel for passert tid",
-          "default":"Passert tid:"
+          "label":"Label for current time",
+          "default":"Current time:"
         },
         {
           "label":"Tittel for full tid",
           "default":"Full tid:"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"Text for explaining navigation hotkey",
+          "default":"Use key k for starting and stopping video at any time"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Text explaining that a single interaction with a name has come into view",
+          "default":"Interaction appeared:"
         },
         {
           "label":"Text for explaining that multiple interactions have come into view",

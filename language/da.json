@@ -331,11 +331,11 @@
         },
         {
           "label":"Undgå at spole frem i en video",
-          "description":"Slå til for at forhindre at brugere springer over indhold i en video ved hjælp af standardfunktioner."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Aktivering af denne indstilling vil deaktivere videoens lyd og forhindre den i at blive slået til."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },

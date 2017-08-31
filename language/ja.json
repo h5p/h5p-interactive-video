@@ -291,16 +291,16 @@
           "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "label":"ビデオをループ",
-          "description":"ビデオをループで実行する必要があるかどうかを確認"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"\"正解を表示\"ボタンを上書き",
-          "description":"このオプションは、すべての質問に対して\"正解を表示\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"このオプションは、すべての質問に対して\"リトライ\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
+          "label":"「解を表示」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「解を表示」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options":[
             {
               "label":"有効"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"ブックマークメニューを開いて開始",
-          "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません",
+          "label":"「リトライ」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「リトライ」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options":[
             {
               "label":"有効"
@@ -327,15 +327,15 @@
           "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "label":"ビデオで前方にスキップしないようにする"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"サウンド無効",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"サウンド無効化",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
