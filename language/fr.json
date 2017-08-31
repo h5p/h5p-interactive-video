@@ -295,7 +295,7 @@
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Ecraser le bouton \"Voir la correction\"",
+          "label":"Vidéo en boucle",
           "description":"Check if video should run in a loop"
         },
         {
