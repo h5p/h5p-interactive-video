@@ -1,55 +1,77 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "label": "Éditeur de vidéo interactive",
-      "fields": [
+      "label":"Éditeur de vidéo interactive",
+      "fields":[
         {
-          "label": "Envoyer/intégrer une vidéo",
-          "fields": [
+          "label":"Envoyer/intégrer une vidéo",
+          "fields":[
             {
-              "label": "Fichiers vidéo",
-              "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
+              "label":"Fichiers vidéo",
+              "description":"Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label": "Options de l'écran de démarrage",
-              "fields": [
+              "label":"Options d’écran de départ - non pris en charge pour les vidéos YouTube",
+              "fields":[
                 {
-                  "label": "Titre de la vidéo interactive",
-                  "default": "Vidéo interactive",
-                  "description": "Utilisé dans les récapitulatifs, statistiques, etc."
+                  "label":"Titre de la vidéo interactive",
+                  "default":"Vidéo interactive",
+                  "description":"Utilisée dans les résumés, statistiques, etc."
                 },
                 {
-                  "label": "Cacher le titre sur l'écran de lancement de la vidéo"
+                  "label":"Cacher le titre sur l'écran de lancement de la vidéo"
                 },
                 {
-                  "label": "Courte description (en option)",
-                  "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                  "label":"Courte description (en option)",
+                  "description":"Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
                 },
                 {
-                  "label": "Image de la vidéo ",
-                  "description": "Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
+                  "label":"Affiche",
+                  "description":"Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas avec les vidéos YouTube."
                 },
                 {
-                  "label": "Informations sur le copyright de la vidéo",
-                  "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
+                  "label":"Informations sur le copyright de la vidéo",
+                  "description":"Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
                 }
               ]
             },
             {
-              "fields": [
+              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "fields":[
                 {
-                  "field": {
-                    "fields": [
-                      {},
+                  "label":"Available text tracks",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Track",
+                    "fields":[
                       {
-                        "options": [
-                          {},
-                          {},
-                          {}
+                        "label":"Track label",
+                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default":"Sous-titres"
+                      },
+                      {
+                        "label":"Type of text track",
+                        "default":"sous-titres",
+                        "options":[
+                          {
+                            "label":"Sous-titres"
+                          },
+                          {
+                            "label":"Légendes"
+                          },
+                          {
+                            "label":"Descriptions"
+                          }
                         ]
                       },
-                      {},
-                      {}
+                      {
+                        "label":"Track file (WebVTT)",
+                        "default":"en",
+                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label":"Track source (WebVTT file)"
+                      }
                     ]
                   }
                 }
@@ -58,315 +80,383 @@
           ]
         },
         {
-          "label": "Ajouter des activités",
-          "fields": [
+          "label":"Ajouter des activités",
+          "fields":[
             {
-              "field": {
-                "fields": [
+              "field":{
+                "fields":[
                   {
-                    "label": "Plage d'apparition"
-                  },
-                  {
-                    "label": "Mettre la vidéo sur pause"
-                  },
-                  {
-                    "label": "Afficher sous forme de",
-                    "description": "<b>Bouton</b> : l'utilisateur doit appuyer dessus pour faire apparaître l'activité. <b>Cadre</b> : l'activité est affichée directement sous la forme d'un cadre en surimpression sur la vidéo.",
-                    "options": [
+                    "label":"Plage d'apparition",
+                    "fields":[
                       {
-                        "label": "Bouton"
+                        
                       },
                       {
-                        "label": "Cadre"
+                        
                       }
                     ]
                   },
                   {
-                    "label": "Intitulé du bouton",
-                    "description": "Texte affiché à côté de l'icône de l'activité."
+                    "label":"Mettre la vidéo sur pause"
                   },
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
                   {
-                    "label": "Enchaînement",
-                    "fields": [
+                    "label":"Afficher sous forme de",
+                    "description":"<b>Bouton</b> : l'utilisateur doit appuyer dessus pour faire apparaître l'activité. <b>Cadre</b> : l'activité est affichée directement sous la forme d'un cadre en surimpression sur la vidéo.",
+                    "options":[
                       {
-                        "label": "Action si tout est juste",
-                        "fields": [
+                        "label":"Bouton"
+                      },
+                      {
+                        "label":"Cadre"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"Intitulé du bouton"
+                  },
+                  {
+                    "label":"Etiquette",
+                    "description":"Label displayed next to interaction icon."
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"Visuals",
+                    "fields":[
+                      {
+                        "label":"Background color",
+                        "fields":[
                           {
-                            "label": "Aller à",
-                            "description": "Entrer le timecode au format M:SS"
+                            "label":"Seek to",
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label": "Autoriser les utilisateurs à passer et à continuer"
+                            "label":"Autoriser l’utilisateur à se retirer et continuer"
                           },
                           {
-                            "label": "Message à afficher"
+                            "label":"Message"
                           },
                           {
-                            "label": "Intitulé du bouton de reprise"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Action en cas de réponse fausse",
-                        "fields": [
+                        "label":"Box shadow",
+                        "fields":[
                           {
-                            "label": "Aller à",
-                            "description": "Entrer le timecode au format M:SS"
+                            "label":"Seek to",
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label": "Autoriser les utilisateurs à passer et à continuer"
+                            "label":"Autoriser l’utilisateur à se retirer et continuer"
                           },
                           {
-                            "label": "Message à afficher"
+                            "label":"Message"
                           },
                           {
-                            "label": "Intitulé du bouton de reprise"
+                            "label":"Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label":"Require full score for task before proceeding",
+                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
-                    "fields": [
+                    "label":"Go to on click",
+                    "fields":[
                       {
-                        "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "label":"Type",
+                        "default":"rgb(255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label":"Go To",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
-                    "fields": [
+                    "label":"Au clic, aller vers",
+                    "fields":[
                       {
-                        "label": "Type",
-                        "options": [
+                        "label":"Type de média",
+                        "options":[
                           {
-                            "label": "Timecode"
+                            "label":"Timecode"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label":"Autre page (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Aller à",
+                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label": "URL",
-                        "fields": [
+                        "label":"URL",
+                        "fields":[
                           {
-                            "label": "Protocol",
-                            "options": [
+                            "label":"Protocole",
+                            "options":[
                               {
-                                "label": "http://"
+                                "label":"http://"
                               },
                               {
-                                "label": "https://"
+                                "label":"https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label":"(relatif)"
                               },
                               {
-                                "label": "other"
+                                "label":"autre"
                               }
-                            ]
+                            ],
+                            "default":"http://"
                           },
                           {
-                            "label": "URL"
+                            "label":"URL"
                           }
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Aperçu",
+                        "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {}
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
           ]
         },
         {
-          "label": "Récapitulatif",
-          "fields": [
-            {},
+          "label":"Récapitulatif",
+          "fields":[
             {
-              "label": "Afficher à",
-              "description": "Nombre de secondes avant la fin de la vidéo."
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"Afficher à",
+              "description":"Nombre de secondes avant la fin de la vidéo."
             }
           ]
         }
       ]
     },
     {
-      "label": "Options générales",
-      "fields": [
+      "label":"Options générales",
+      "fields":[
         {
-          "label": "Démarrer la vidéo à",
-          "description": "Veuillez saisir le temps au format M:SS"
+          "label":"Démarrer la vidéo à",
+          "description":"Veuillez saisir le temps au format M:SS"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label":"Démarrage automatique",
+          "description":"Start playing the video automatically"
         },
         {
-          "label": "Ecraser le bouton \"Voir la correction\"",
-          "description": "Cette option détermine si le bouton \"Voir la correction\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
-          "options": [
+          "label":"Vidéo en boucle",
+          "description":"Vérifier si la vidéo doit s’exécuter en boucle"
+        },
+        {
+          "label":"Ecraser le bouton \"Voir la solution\"",
+          "description":"Cette option détermine si le bouton \"Voir la solution\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "options":[
             {
-              "label": "Activé"
+              "label":"Activé"
             },
             {
-              "label": "Désactivé"
+              "label":"Désactivé"
             }
           ]
         },
         {
-          "label": "Ecraser le bouton \"Recommencer\"",
-          "description": "Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
-          "options": [
+          "label":"Ecraser le bouton \"Recommencer\"",
+          "description":"Cette option détermine si le bouton \"Recommencer\" sera affiché pour toutes les questions, désactivé pour toutes ou configuré pour chaque question individuellement.",
+          "options":[
             {
-              "label": "Activé"
+              "label":"Activé"
             },
             {
-              "label": "Désactivé"
+              "label":"Désactivé"
             }
           ]
         },
         {
-          "label": "Show bookmarks menu on load",
-          "description": "Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube",
-          "default": false
+          "label":"Show bookmarks menu on load",
+          "description":"Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
         },
         {
-          "label": "Afficher le bouton pour revenir en arrière de 10 secondes",
-          "default": false
+          "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label": "Empêcher de sauter en avant dans la vidéo",
-          "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video",
-          "default": false
+          "label":"Empêcher de sauter en avant dans la vidéo",
+          "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Désactiver le son",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label": "Traduction de l'interface",
-      "fields": [
+      "label":"Options générales.",
+      "fields":[
         {
-          "label": "Intitulé de l'activité",
-          "default": "Activité"
+          "label":"Intitulé de l'activité",
+          "default":"Activité"
         },
         {
-          "label": "Intitulé \"Jouer\"",
-          "default": "Jouer"
+          "label":"Intitulé \"Jouer\"",
+          "default":"Jouer"
         },
         {
-          "label": "Intitulé \"Pause\"",
-          "default": "Pause"
+          "label":"Intitulé \"Pause\"",
+          "default":"Pause"
         },
         {
-          "label": "Intitulé \"Couper le son\"",
-          "default": "Couper le son"
+          "label":"Intitulé \"Couper le son\"",
+          "default":"Couper le son"
         },
         {
-          "label": "Intitulé \"Remettre le son\"",
-          "default": "Rétablir le son"
+          "label":"Intitulé \"Remettre le son\"",
+          "default":"Rétablir le son"
         },
         {
-          "label": "Intitulé \"Qualité de la vidéo\"",
-          "default": "Qualité de la vidéo"
-        },
-        {},
-        {},
-        {
-          "label": "Intitulé \"Plein écran\"",
-          "default": "Plein écran"
+          "label":"Intitulé \"Qualité de la vidéo\"",
+          "default":"Qualité de la vidéo"
         },
         {
-          "label": "Intitulé \"Sortir du plein écran\"",
-          "default": "Sortir du plein écran"
+          "label":"Video captions title",
+          "default":"Légendes"
         },
         {
-          "label": "Intitulé du récapitulatif",
-          "default": "Récapitulatif"
+          "label":"Texte pour le bouton \"Fermer\"",
+          "default":"Fermer"
         },
         {
-          "label": "Intitulé du bouton \"Signets\"",
-          "default": "Signets"
+          "label":"Intitulé \"Plein écran\"",
+          "default":"Plein écran"
         },
         {
-          "label": "Texte par défaut du bouton de reprise",
-          "default": "Continuer"
+          "label":"Intitulé \"Sortir du plein écran\"",
+          "default":"Sortir du plein écran"
         },
         {
-          "label": "Texte par défaut du bouton de reprise",
-          "default": "Continuer avec la vidéo"
+          "label":"Intitulé du récapitulatif",
+          "default":"Résumé"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label":"Intitulé du bouton \"Signets\"",
+          "default":"Signets"
         },
         {
-          "label": "Revenir en arrière de 10 secondes",
-          "default": "Revenir en arrière de 10 secondes"
+          "label":"Texte par défaut du bouton de reprise",
+          "default":"Reprendre"
         },
         {
-          "label": "Text de navigation désactivée",
-          "default": "La navigation est désactivée"
+          "label":"Texte par défaut du bouton de reprise",
+          "default":"Continuer avec la vidéo"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label":"Set playback rate",
+          "default":"Playback Rate"
         },
         {
-          "label": "Avertissement que l'utilisateur doit répondre correctement à la question avant de continuer",
-          "default": "Vous devez répondre correctement à toutes les questions avant de continuer."
+          "label":"Revenir en arrière de 10 secondes",
+          "default":"Revenir en arrière de 10 secondes"
         },
         {
-          "label": "Bouton Retour",
-          "default": "Retour"
+          "label":"Text de navigation désactivée",
+          "default":"La navigation est désactivée"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label":"Sound is disabled text",
+          "default":"Sound is disabled"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label":"Avertissement que l'utilisateur doit répondre correctement à la question avant de continuer",
+          "default":"Vous devez répondre correctement à toutes les questions avant de continuer."
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label":"Bouton précédent",
+          "default":"Retour"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label":"Passed time hours",
+          "default":"Heures"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label":"Passed time minutes",
+          "default":"Minutes"
+        },
+        {
+          "label":"Passed time seconds",
+          "default":"Secondes"
+        },
+        {
+          "label":"Label for current time",
+          "default":"Current time:"
+        },
+        {
+          "label":"Label for total time",
+          "default":"Temps total :"
+        },
+        {
+          "label":"Text for explaining navigation hotkey",
+          "default":"Use key k for starting and stopping video at any time"
+        },
+        {
+          "label":"Text explaining that a single interaction with a name has come into view",
+          "default":"Interaction appeared:"
+        },
+        {
+          "label":"Text for explaining that multiple interactions have come into view",
+          "default":"Multiple interactions appeared."
+        },
+        {
+          "label":"Video is paused announcement",
+          "default":"Video is paused"
         }
       ]
     }
