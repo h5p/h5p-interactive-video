@@ -11,7 +11,7 @@
               "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label":"Opties voor beginscherm",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Titel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
