@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Label"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Label",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Aanpasbaar",
                     "fields":[
                       {
-                        "label":"Achtergrondkleur",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Schaduw om box",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Ga naar",
+                        "label":"Box shadow",
                         "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
                       }
                     ]
