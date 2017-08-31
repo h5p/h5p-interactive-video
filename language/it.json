@@ -327,7 +327,7 @@
           "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
-          "label":"Prevent skipping forward in a video"
+          "label":"Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
           "label":"Deactivate sound",
