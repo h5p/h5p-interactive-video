@@ -11,7 +11,7 @@
               "description":"Klik nedenfor for at tilføje en video, som du ønsker at bruge i din interaktive video. Du kan tilføje et videolink eller uploade videofiler. Det er muligt at tilføje flere versioner af videoen i forskellig kvalitet. For at sikre maksimal understøttelse i browsere tilføj mindst en version i webm og mp4-formater."
             },
             {
-              "label":"Startskærmindstillinger - understøttes ikke med YouTube-videoer",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Titlen på denne interaktive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Tekstspor (undertekster, billedtekster og beskrivelser) - understøttes ikke med YouTube-videoer",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tilgængelige tekstspor",
