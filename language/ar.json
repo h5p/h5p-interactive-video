@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Box shadow",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"يضيف ظل خفية حول التفاعل. قد تحتاج إلى تعطيل هذه التفاعلات شفاف تماما"
                       }
                     ]
                   },
