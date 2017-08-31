@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Ledetekst"
+                    "label":"Slå til knapp på små skjermer"
                   },
                   {
                     "label":"Tittel",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visning",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Bakgrunnsfarge",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Skygge",
+                        "label":"Action på feil",
                         "fields":[
                           {
                             "label":"Seek to",
