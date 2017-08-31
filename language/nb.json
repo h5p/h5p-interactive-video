@@ -292,7 +292,7 @@
         },
         {
           "label":"Slå på automatisk avspilling",
-          "description":"Slå på for å kjøre video i loop"
+          "description":"Start playing the video automatically"
         },
         {
           "label":"Kjør video i loop",
@@ -327,15 +327,15 @@
           "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video"
+          "label":"Vis knapp for å spole tilbake 10 sekunder"
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
