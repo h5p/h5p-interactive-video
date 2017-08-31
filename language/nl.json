@@ -11,7 +11,7 @@
               "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
+              "label":"Opties voor beginscherm (niet ondersteund voor YouTube videos)",
               "fields":[
                 {
                   "label":"Titel",
@@ -47,25 +47,25 @@
                       {
                         "label":"Track label",
                         "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "default":"Ondertitels"
                       },
                       {
                         "label":"Type of text track",
-                        "default":"subtitles",
+                        "default":"ondertitels",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Ondertitels"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Bijschriften"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Beschrijvingen"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Brontaal, moet worden gedefinieerd voor ondertitels",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
