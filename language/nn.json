@@ -330,7 +330,7 @@
           "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"Deaktiver lyd",
+          "label":"Unngå at brukere hopper over innhold i video",
           "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
