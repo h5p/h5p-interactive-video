@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Beschriftung"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Beschriftung",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuelles",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Hintergrundfarbe",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Gehe zu",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Gehe zu",
+                        "label":"Schatten anzeigen",
                         "description":"Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
                       }
                     ]
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Verhaltenseinstellungen.",
+      "label":"Sprache anpassen",
       "fields":[
         {
           "label":"Interaktionstitel",
