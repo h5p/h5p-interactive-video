@@ -291,8 +291,8 @@
           "description":"Timecode im Format M:SS eingeben"
         },
         {
-          "label":"Video in einer Schleife laufen lassen",
-          "description":"Wählen, wenn das Video in einer Schleife laufen soll"
+          "label":"Video automatisch abspielen",
+          "description":"Start playing the video automatically"
         },
         {
           "label":"Loop the video",
@@ -327,7 +327,7 @@
           "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label":"Springen im Video verhindern"
+          "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
           "label":"Ton deaktivieren",
@@ -335,7 +335,7 @@
         },
         {
           "label":"Ton deaktivieren",
-          "description":"Beim Verwenden dieser Option wird der Ton des Videos deaktiviert und kann nicht eingeschaltet werden."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
