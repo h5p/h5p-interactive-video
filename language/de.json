@@ -330,7 +330,7 @@
           "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
-          "label":"Ton deaktivieren",
+          "label":"Prevent skipping forward in a video",
           "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
