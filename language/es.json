@@ -11,7 +11,7 @@
               "description":"Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4."
             },
             {
-              "label":"Opciones de pantalla de inicio - no funcionan para vídeos de YouTube",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Título de este vídeo interactivo",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Pistas de texto (subtítulos, títulos y descripciones) - no funciona para vídeos de You Tube",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Pistas de texto disponibles",
