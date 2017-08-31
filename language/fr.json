@@ -330,7 +330,7 @@
           "label":"Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label":"Deactivate sound",
+          "label":"Empêcher de sauter en avant dans la vidéo",
           "description":"Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
