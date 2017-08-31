@@ -186,7 +186,7 @@
                     "label":"Go to on click",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Box shadow",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
