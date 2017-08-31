@@ -186,7 +186,7 @@
                     "label":"Ga naar na klikken",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
