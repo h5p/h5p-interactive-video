@@ -291,11 +291,11 @@
           "description":"Legg inn tidskode i formatet M:SS"
         },
         {
-          "label":"Kjør video i loop",
+          "label":"Slå på automatisk avspilling",
           "description":"Slå på for å kjøre video i loop"
         },
         {
-          "label":"Overstyr «Vis svar»-knapp",
+          "label":"Kjør video i loop",
           "description":"Slå på for å kjøre video i loop"
         },
         {
