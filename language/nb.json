@@ -330,7 +330,7 @@
           "label":"Vis knapp for å spole tilbake 10 sekunder"
         },
         {
-          "label":"Deaktiver lyd",
+          "label":"Unngå at brukere hopper over innhold i video",
           "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
@@ -448,7 +448,7 @@
         },
         {
           "label":"Label for total time",
-          "default":"Total time:"
+          "default":"Interaction appeared:"
         },
         {
           "label":"Text for explaining that multiple interactions have come into view",
