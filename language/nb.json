@@ -435,8 +435,8 @@
           "default":"Sekunder"
         },
         {
-          "label":"Tittel for passert tid",
-          "default":"Passert tid:"
+          "label":"Label for current time",
+          "default":"Current time:"
         },
         {
           "label":"Tittel for full tid",
@@ -444,7 +444,7 @@
         },
         {
           "label":"Text for explaining navigation hotkey",
-          "default":"Current time:"
+          "default":"Use key k for starting and stopping video at any time"
         },
         {
           "label":"Text explaining that a single interaction with a name has come into view",
