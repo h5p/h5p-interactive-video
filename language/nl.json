@@ -291,7 +291,7 @@
           "description":"Voer de tijdcode in als M:SS format"
         },
         {
-          "label":"Video in loop tonen",
+          "label":"Auto-play video",
           "description":"Start playing the video automatically"
         },
         {
@@ -327,10 +327,10 @@
           "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
         },
         {
-          "label":"Voorkom vooruitbladeren in een video"
+          "label":"Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label":"Deactivate sound",
+          "label":"Voorkom vooruitbladeren in een video",
           "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
