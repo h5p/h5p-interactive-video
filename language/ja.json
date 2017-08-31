@@ -11,7 +11,7 @@
               "description":"インタラクティブビデオで使用したいビデオファイルを選択してください。ビデオリンクかアップロードしたビデオファイルを追加できます。異なる品質で様々なビデオのバージョンを追加できます。ブラウザで最大限サポートされることを確実にするには、少なくともwebmとmp4形式のバージョンを追加してください。"
             },
             {
-              "label":"画面オプションを開始",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"このインタラクティブビデオのタイトル",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"テキストトラック （字幕、キャプションおよび説明） - YouTubeビデオでサポートされていません",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"利用可能なテキストトラック",
