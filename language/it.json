@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Etchetta"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Etichetta",
@@ -141,7 +141,7 @@
                     "label":"Adattività",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Azione su tutte le corrette",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Azione su errore",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Go To",
+                        "label":"Ombreggiatura a forma di casella",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
