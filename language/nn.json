@@ -323,11 +323,11 @@
           ]
         },
         {
-          "label":"Show button for rewinding 10 seconds",
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"Deaktiver lyd",
