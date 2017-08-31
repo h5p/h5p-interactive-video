@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
                         "label":"Bakgrunnsfarge",
@@ -296,11 +296,11 @@
         },
         {
           "label":"Overstyr «Vis svar»-knapp",
-          "description":"Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål."
+          "description":"Slå på for å kjøre video i loop"
         },
         {
-          "label":"Overstyr «Prøv igjen»-knapp",
-          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "label":"Overstyr «Fasit»-knapp",
+          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
               "label":"Aktivert"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt.",
+          "label":"Overstyr «Prøv igjen»-knapp",
+          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
           "options":[
             {
               "label":"Aktivert"
