@@ -443,11 +443,11 @@
           "default":"Full tid:"
         },
         {
-          "label":"Label for current time",
+          "label":"Text for explaining navigation hotkey",
           "default":"Current time:"
         },
         {
-          "label":"Label for total time",
+          "label":"Text explaining that a single interaction with a name has come into view",
           "default":"Interaction appeared:"
         },
         {
