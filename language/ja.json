@@ -330,12 +330,12 @@
           "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"サウンド無効",
+          "label":"Prevent skipping forward in a video",
           "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"サウンド無効化",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
