@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Track file (WebVTT)",
+                        "label":"Lingua di origine, deve essere definita per i sottotitoli",
                         "default":"en",
                         "description":"Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita."
                       },
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Effetti visivi",
                     "fields":[
                       {
                         "label":"Colore di sfondo",
@@ -291,16 +291,16 @@
           "description":"Immetti il tempo nel formato M:SS"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Riproduzione automatica del video",
+          "description":"Inizia automaticamente la riproduzione del video"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
+          "label":"Riproduci ciclicamente il video",
+          "description":"Verifica se il video debba eseguire un ciclo"
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Sovrascrivi il pulsante Mostra soluzione",
+          "description":"Questa opzione determina se il pulsante \"Mostra soluzione\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
           "options":[
             {
               "label":"Attivato"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
-          "description":"This function is not available on iPad when using YouTube as video source",
+          "label":"Sovrascrivi il pulsante \"Riprova\"",
+          "description":"Questa opzione determina se il pulsante \"Riprova\" sarà visualizzato per tutte le domande, disabilitato per tutti o configurato individualmente per ogni domanda.",
           "options":[
             {
               "label":"Attivato"
