@@ -151,7 +151,7 @@
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Bericht"
                           },
                           {
                             "label":"Label for seek button"
@@ -169,7 +169,7 @@
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Bericht"
                           },
                           {
                             "label":"Label for seek button"
@@ -372,7 +372,7 @@
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Sluiten"
         },
         {
           "label":"Volledig scherm",
@@ -424,7 +424,7 @@
         },
         {
           "label":"Passed time hours",
-          "default":"Hours"
+          "default":"Uren"
         },
         {
           "label":"Passed time minutes",
@@ -432,7 +432,7 @@
         },
         {
           "label":"Passed time seconds",
-          "default":"Seconds"
+          "default":"Seconden"
         },
         {
           "label":"Label for current time",
@@ -440,7 +440,7 @@
         },
         {
           "label":"Label for total time",
-          "default":"Total time:"
+          "default":"Totale tijd:"
         },
         {
           "label":"Text for explaining navigation hotkey",
@@ -456,7 +456,7 @@
         },
         {
           "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "default":"Video is gepauzeerd"
         }
       ]
     }
