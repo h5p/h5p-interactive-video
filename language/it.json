@@ -330,8 +330,8 @@
           "label":"Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Evitare il salto in avanti di un video",
+          "description":"Abilitare questa opzione disabiliterà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
         },
         {
           "label":"Disattivare il suono",
