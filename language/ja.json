@@ -291,8 +291,8 @@
           "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "label":"ビデオをループ",
-          "description":"ビデオをループで実行する必要があるかどうかを確認"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
           "label":"Loop the video",
@@ -327,11 +327,11 @@
           "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "label":"ビデオで前方にスキップしないようにする"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
           "label":"サウンド無効",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"サウンド無効化",
