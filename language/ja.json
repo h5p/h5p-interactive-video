@@ -295,8 +295,8 @@
           "description":"ビデオをループで実行する必要があるかどうかを確認"
         },
         {
-          "label":"ビデオをループ",
-          "description":"ビデオをループで再生するかどうかをチェック"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
           "label":"「解を表示」ボタンを上書き",
