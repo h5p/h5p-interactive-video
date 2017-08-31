@@ -16,7 +16,7 @@
                 {
                   "label":"Tittel",
                   "default":"Interaktiv video",
-                  "description":"Brukes blant annet i oppsummeringer og statistikk."
+                  "description":"Brukes i oppsummeringer, statistikk o.l."
                 },
                 {
                   "label":"Skjul tittel på startskjerm"
@@ -40,7 +40,7 @@
               "fields":[
                 {
                   "label":"Available text tracks",
-                  "entity":"Track",
+                  "entity":"Spor",
                   "field":{
                     "label":"Spor",
                     "fields":[
@@ -138,7 +138,7 @@
                     
                   },
                   {
-                    "label":"Visning",
+                    "label":"Adaptivity",
                     "fields":[
                       {
                         "label":"Bakgrunnsfarge",
@@ -291,12 +291,12 @@
           "description":"Legg inn tidskode i formatet M:SS"
         },
         {
-          "label":"Slå på automatisk avspilling",
-          "description":"Start playing the video automatically"
-        },
-        {
           "label":"Kjør video i loop",
           "description":"Slå på for å kjøre video i loop"
+        },
+        {
+          "label":"Overstyr «Vis svar»-knapp",
+          "description":"Dette valget avgjør om «Vis svar»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål."
         },
         {
           "label":"Overstyr «Fasit»-knapp",
@@ -323,15 +323,15 @@
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "label":"Vis knapp for å spole tilbake 10 sekunder",
           "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {
-          "label":"Vis knapp for å spole tilbake 10 sekunder"
+          "label":"Unngå at brukere hopper over innhold i video"
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video",
-          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
+          "label":"Deaktiver lyd",
+          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
         },
         {
           "label":"Deaktiver lyd",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Lokaliser",
       "fields":[
         {
           "label":"Interaksjonstittel",
@@ -419,20 +419,28 @@
           "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
-          "label":"Forrige-knappen",
-          "default":"Forrige"
+          "label":"Tilbakeknapp",
+          "default":"Tilbake"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Passert tid i timer",
+          "default":"Timer"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Passert tid i minutter",
+          "default":"Minutter"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Passert tid i sekunder",
+          "default":"Sekunder"
+        },
+        {
+          "label":"Tittel for passert tid",
+          "default":"Passert tid:"
+        },
+        {
+          "label":"Tittel for full tid",
+          "default":"Full tid:"
         },
         {
           "label":"Label for current time",
@@ -441,14 +449,6 @@
         {
           "label":"Label for total time",
           "default":"Total time:"
-        },
-        {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
-        },
-        {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
         },
         {
           "label":"Text for explaining that multiple interactions have come into view",
