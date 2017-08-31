@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Intitulé du bouton"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Etiquette",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action sur mauvaise réponse",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Go To",
+                        "label":"Box shadow",
                         "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       }
                     ]
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Options générales.",
+      "label":"Traduction de l'interface",
       "fields":[
         {
           "label":"Intitulé de l'activité",
