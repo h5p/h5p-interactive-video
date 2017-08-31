@@ -11,7 +11,7 @@
               "description":"Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungere un link a un video o caricare dei file video. È possibile aggiungere diverse versioni di video di differente qualità. Per assicurarsi la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4."
             },
             {
-              "label":"Start screen options",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Il titolo di questo video interattivo",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Tracce di testo (sottotitoli, didascalie e descrizioni) - non supportate per i video di YouTube",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tracce di testo disponibili",
