@@ -186,7 +186,7 @@
                     "label":"Gehe zu bei Klick",
                     "fields":[
                       {
-                        "label":"Typ",
+                        "label":"Hintergrundfarbe",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
@@ -194,7 +194,7 @@
                       },
                       {
                         "label":"Schatten anzeigen",
-                        "description":"Der Zielzeitpunkt, zu dem der Nutzer nach Klicken auf den Hotspot springt. Gib den Timecode in der Form M:SS ein."
+                        "description":"Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
                       }
                     ]
                   },
