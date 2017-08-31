@@ -292,14 +292,14 @@
         },
         {
           "label":"Video in loop tonen",
-          "description":"Aanvinken als de video in een loop getoond moet worden"
+          "description":"Start playing the video automatically"
         },
         {
-          "label":"\"Toon oplossing\" knop instellen",
-          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd."
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"\"Opnieuw proberen\" knop instellen",
+          "label":"Override \"Show Solution\" button",
           "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options":[
             {
@@ -311,7 +311,7 @@
           ]
         },
         {
-          "label":"Toon bladwijzermenu bij laden",
+          "label":"Override \"Retry\" button",
           "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt",
           "options":[
             {
@@ -331,7 +331,7 @@
         },
         {
           "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",
