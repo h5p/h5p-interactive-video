@@ -11,7 +11,7 @@
               "description":"حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"The title of this interactive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Track file (WebVTT)",
+                        "label":"Source language, must be defined for subtitles",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"التسمية"
+                    "label":"تتحول إلى زر على الشاشات الصغيرة"
                   },
                   {
                     "label":"التسمية",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"التكيف",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"اتخاذ إجراء بشأن جميع الصحيح",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"اتخاذ إجراء بشأن الخطأ",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Visuals",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Background color",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"يضيف ظل خفية حول التفاعل. قد تحتاج إلى تعطيل هذه التفاعلات شفاف تماما"
                       }
                     ]
                   },
@@ -323,15 +323,15 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
+          "label":"Show button for rewinding 10 seconds",
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"Prevent skipping forward in a video"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls"
+          "label":"Deactivate sound",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"حساسية الاجابة",
+      "label":"محلية",
       "fields":[
         {
           "label":"عنوان التفاعل",

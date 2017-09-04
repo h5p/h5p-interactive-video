@@ -11,7 +11,7 @@
               "description":"Klik nedenfor for at tilføje en video, som du ønsker at bruge i din interaktive video. Du kan tilføje et videolink eller uploade videofiler. Det er muligt at tilføje flere versioner af videoen i forskellig kvalitet. For at sikre maksimal understøttelse i browsere tilføj mindst en version i webm og mp4-formater."
             },
             {
-              "label":"Startskærmindstillinger - understøttes ikke med YouTube-videoer",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Titlen på denne interaktive video",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Tekstspor (undertekster, billedtekster og beskrivelser) - understøttes ikke med YouTube-videoer",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tilgængelige tekstspor",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Ledetekst"
+                    "label":"Slå i knap på små skærme"
                   },
                   {
                     "label":"Titel",
@@ -331,11 +331,11 @@
         },
         {
           "label":"Undgå at spole frem i en video",
-          "description":"Slå til for at forhindre at brugere springer over indhold i en video ved hjælp af standardfunktioner."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Aktivering af denne indstilling vil deaktivere videoens lyd og forhindre den i at blive slået til."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },

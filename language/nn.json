@@ -11,7 +11,7 @@
               "description":"Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tittel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Ledetekst"
+                    "label":"Slå til knapp på små skjermer"
                   },
                   {
                     "label":"Tittel",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -186,15 +186,15 @@
                     "label":"Visuelt",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -299,8 +299,8 @@
           "description":"Check if video should run in a loop"
         },
         {
-          "label":"Overstyr «Fasit»-knapp",
-          "description":"Dette valget avgjør om «Fasit»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "label":"Overstyr «Prøv igjen»-knapp",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Aktivert"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Overstyr «Prøv igjen»-knapp",
-          "description":"Dette valget avgjør om «Prøv igjen»-knappen vil vises for alle spørsmål, skjules for alle eller konfigureres individuelt for hvert spørsmål.",
+          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Aktivert"
@@ -331,16 +331,16 @@
         },
         {
           "label":"Unngå at brukere hopper over innhold i video",
-          "description":"Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Lokaliser",
       "fields":[
         {
           "label":"Interaksjonstittel",
@@ -423,16 +423,16 @@
           "default":"Tilbake"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Passert tid i timer",
+          "default":"Timer"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Passert tid i minutter",
+          "default":"Minutter"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Passert tid i sekunder",
+          "default":"Sekunder"
         },
         {
           "label":"Label for current time",

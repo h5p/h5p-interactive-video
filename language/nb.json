@@ -11,7 +11,7 @@
               "description":"Klikk under for å legge til en video du ønsker å bruke i din interaktive video. Du kan legge til en videolenke eller laste opp videofiler. Det er mulig å legge til flere versioner av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesere bør du legge til i hvert fall en version i webm og mp4 format."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tittel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Ledetekst"
+                    "label":"Slå til knapp på små skjermer"
                   },
                   {
                     "label":"Tittel",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visning",
+                    "label":"Adaptivity",
                     "fields":[
                       {
-                        "label":"Bakgrunnsfarge",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Skygge",
+                        "label":"Action på feil",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"Visuelt",
+                    "label":"Visuals",
                     "fields":[
                       {
                         "label":"Bakgrunnsfarge",
@@ -193,8 +193,8 @@
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Box shadow",
+                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
@@ -323,7 +323,7 @@
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
+          "label":"Vis knapp for å spole tilbake 10 sekunder",
           "description":"Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {
@@ -335,12 +335,12 @@
         },
         {
           "label":"Deaktiver lyd",
-          "description":"Når man slår på denne slår man av lyden. Brukeren hindres i å overstyre dette."
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Innstillinger for oppgave-oppførsel",
+      "label":"Lokaliser",
       "fields":[
         {
           "label":"Interaksjonstittel",
@@ -423,24 +423,24 @@
           "default":"Forrige"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Passert tid i timer",
+          "default":"Timer"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Passert tid i minutter",
+          "default":"Minutter"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Passert tid i sekunder",
+          "default":"Sekunder"
         },
         {
           "label":"Label for current time",
           "default":"Current time:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Tittel for full tid",
+          "default":"Full tid:"
         },
         {
           "label":"Text for explaining navigation hotkey",

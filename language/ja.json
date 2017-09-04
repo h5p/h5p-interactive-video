@@ -11,7 +11,7 @@
               "description":"インタラクティブビデオで使用したいビデオファイルを選択してください。ビデオリンクかアップロードしたビデオファイルを追加できます。異なる品質で様々なビデオのバージョンを追加できます。ブラウザで最大限サポートされることを確実にするには、少なくともwebmとmp4形式のバージョンを追加してください。"
             },
             {
-              "label":"スタート画面のオプション - YouTubeビデオに対してサポートされていません",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"このインタラクティブビデオのタイトル",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"テキストトラック （字幕、キャプションおよび説明） - YouTubeビデオでサポートされていません",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"利用可能なテキストトラック",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"ビジュアル",
+                    "label":"適応性",
                     "fields":[
                       {
-                        "label":"背景色",
+                        "label":"全問正解に対する動作",
                         "fields":[
                           {
                             "label":"検索",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"ボックスシャドー",
+                        "label":"まちがえに対する動作",
                         "fields":[
                           {
                             "label":"検索",
@@ -183,7 +183,7 @@
                     ]
                   },
                   {
-                    "label":"外観",
+                    "label":"クリックしてください",
                     "fields":[
                       {
                         "label":"背景色",
@@ -193,8 +193,8 @@
                         }
                       },
                       {
-                        "label":"行く",
-                        "description":"ユーザーがホットスポットを押したときに移るターゲットの時間。M：SSの形式でタイムコードを入力してください。"
+                        "label":"ボックスシャドウ",
+                        "description":"インタラクションの周りにわずかな影を追加します。完全に透明なインタラクションには無効にした方がいいかもしれません。"
                       }
                     ]
                   },
@@ -291,12 +291,12 @@
           "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "label":"ビデオの自動再生",
+          "label":"Auto-play video",
           "description":"Start playing the video automatically"
         },
         {
-          "label":"ビデオをループ",
-          "description":"ビデオをループで再生するかどうかをチェック"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
           "label":"「解を表示」ボタンを上書き",
@@ -323,19 +323,19 @@
           ]
         },
         {
-          "label":"ブックマークメニューを開いて開始",
+          "label":"10秒巻き戻すボタンを表示",
           "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "label":"10秒巻き戻すボタンを表示"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "label":"ビデオで前方にスキップしないようにする",
-          "description":"このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"サウンド無効化",
-          "description":"このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。"
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },

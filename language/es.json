@@ -11,7 +11,7 @@
               "description":"Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4."
             },
             {
-              "label":"Opciones de pantalla de inicio - no funcionan para vídeos de YouTube",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Título de este vídeo interactivo",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Pistas de texto (subtítulos, títulos y descripciones) - no funciona para vídeos de You Tube",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Pistas de texto disponibles",
@@ -291,16 +291,16 @@
           "description":"Introduzca el código de tiempo en el formato M:SS"
         },
         {
-          "label":"Auto-play video",
-          "description":"Start playing the video automatically"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"Repetir vídeo",
-          "description":"Compruebe si el vídeo debe mostrarse en un bucle"
+          "label":"Override \"Show Solution\" button",
+          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
         },
         {
-          "label":"Ocultar el botón \"Mostrar solución\"",
-          "description":"Esta opción determina si el botón \"Mostrar solución\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
+          "label":"Override \"Retry\" button",
+          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options":[
             {
               "label":"Habilitado"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Ocultar el botón de \"Reintentar\"",
-          "description":"Esta opción determina si el botón \"Reintentar\" se muestra en todas las preguntas, se desactiva para todas, o se configura para cada pregunta individualmente.",
+          "label":"Show bookmarks menu on load",
+          "description":"This function is not available on iPad when using YouTube as video source",
           "options":[
             {
               "label":"Habilitado"
@@ -323,15 +323,15 @@
           ]
         },
         {
-          "label":"Show bookmarks menu on load",
+          "label":"Show button for rewinding 10 seconds",
           "description":"This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Mostrar botón para rebobinar 10 segundos"
+          "label":"Prevent skipping forward in a video"
         },
         {
-          "label":"Evitar saltar hacia adelante en un vídeo",
-          "description":"Enabling this options will disable user video navigation through default controls"
+          "label":"Deactivate sound",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         },
         {
           "label":"Desactivar sonido",
@@ -340,7 +340,7 @@
       ]
     },
     {
-      "label":"Traducciones",
+      "label":"Localizar",
       "fields":[
         {
           "label":"Título de la actividad",

@@ -11,7 +11,7 @@
               "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label":"Start screen options - not supported for YouTube videos",
+              "label":"Opties voor beginscherm (niet ondersteund voor YouTube videos)",
               "fields":[
                 {
                   "label":"Titel",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Text tracks (subtitles, captions and descriptions) - not supported for YouTube videos",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Available text tracks",
@@ -47,25 +47,25 @@
                       {
                         "label":"Track label",
                         "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "default":"Ondertitels"
                       },
                       {
                         "label":"Type of text track",
-                        "default":"subtitles",
+                        "default":"ondertitels",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Ondertitels"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Bijschriften"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Beschrijvingen"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Brontaal, moet worden gedefinieerd voor ondertitels",
                         "default":"en",
                         "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Label"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Label",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Aanpasbaar",
                     "fields":[
                       {
-                        "label":"Achtergrondkleur",
+                        "label":"Action on all correct",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -151,7 +151,7 @@
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Bericht"
                           },
                           {
                             "label":"Label for seek button"
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Schaduw om box",
+                        "label":"Action on wrong",
                         "fields":[
                           {
                             "label":"Seek to",
@@ -169,7 +169,7 @@
                             "label":"Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label":"Bericht"
                           },
                           {
                             "label":"Label for seek button"
@@ -186,14 +186,14 @@
                     "label":"Ga naar na klikken",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Achtergrondkleur",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Ga naar",
+                        "label":"Box shadow",
                         "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdcode in in M:SS format."
                       }
                     ]
@@ -208,7 +208,7 @@
                             "label":"Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label":"Andere pagina (URL)"
                           }
                         ]
                       },
@@ -232,7 +232,7 @@
                                 "label":"(root relative)"
                               },
                               {
-                                "label":"other"
+                                "label":"andere"
                               }
                             ],
                             "default":"http://"
@@ -243,7 +243,7 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
+                        "label":"Visualiseren",
                         "description":"Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
@@ -295,23 +295,11 @@
           "description":"Start playing the video automatically"
         },
         {
-          "label":"Video in loop tonen",
-          "description":"Aanvinken als de video in een loop getoond moet worden"
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
         },
         {
-          "label":"\"Toon oplossing\" knop instellen",
-          "description":"Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
-          "options":[
-            {
-              "label":"Ingeschakeld"
-            },
-            {
-              "label":"Uitgeschakeld"
-            }
-          ]
-        },
-        {
-          "label":"\"Opnieuw proberen\" knop instellen",
+          "label":"Override \"Show Solution\" button",
           "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options":[
             {
@@ -323,7 +311,19 @@
           ]
         },
         {
-          "label":"Toon bladwijzermenu bij laden",
+          "label":"Override \"Retry\" button",
+          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt",
+          "options":[
+            {
+              "label":"Ingeschakeld"
+            },
+            {
+              "label":"Uitgeschakeld"
+            }
+          ]
+        },
+        {
+          "label":"Toon knop om 10 seconden terug te spoelen",
           "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube video als bron wordt gebruikt"
         },
         {
@@ -331,7 +331,7 @@
         },
         {
           "label":"Voorkom vooruitbladeren in een video",
-          "description":"Door dit in te schakelen kan de gebruiker niet meer door de video navigeren met de standaardregelaars"
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
           "label":"Deactivate sound",
@@ -368,11 +368,11 @@
         },
         {
           "label":"Video captions title",
-          "default":"Captions"
+          "default":"Bijschriften"
         },
         {
           "label":"Close button text",
-          "default":"Close"
+          "default":"Sluiten"
         },
         {
           "label":"Volledig scherm",
@@ -424,15 +424,15 @@
         },
         {
           "label":"Passed time hours",
-          "default":"Hours"
+          "default":"Uren"
         },
         {
           "label":"Passed time minutes",
-          "default":"Minutes"
+          "default":"Minuten"
         },
         {
           "label":"Passed time seconds",
-          "default":"Seconds"
+          "default":"Seconden"
         },
         {
           "label":"Label for current time",
@@ -440,7 +440,7 @@
         },
         {
           "label":"Label for total time",
-          "default":"Total time:"
+          "default":"Totale tijd:"
         },
         {
           "label":"Text for explaining navigation hotkey",
@@ -456,7 +456,7 @@
         },
         {
           "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "default":"Video is gepauzeerd"
         }
       ]
     }

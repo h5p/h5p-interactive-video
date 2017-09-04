@@ -11,7 +11,7 @@
               "description":"Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungere un link a un video o caricare dei file video. È possibile aggiungere diverse versioni di video di differente qualità. Per assicurarsi la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4."
             },
             {
-              "label":"Opzioni della schermata di avvio - non supportate per i video di YouTube",
+              "label":"Start screen options (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Il titolo di questo video interattivo",
@@ -36,7 +36,7 @@
               ]
             },
             {
-              "label":"Tracce di testo (sottotitoli, didascalie e descrizioni) - non supportate per i video di YouTube",
+              "label":"Text tracks (unsupported for YouTube videos)",
               "fields":[
                 {
                   "label":"Tracce di testo disponibili",
@@ -65,7 +65,7 @@
                         ]
                       },
                       {
-                        "label":"Track file (WebVTT)",
+                        "label":"Lingua di origine, deve essere definita per i sottotitoli",
                         "default":"en",
                         "description":"Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita."
                       },
@@ -113,7 +113,7 @@
                     "default":"button"
                   },
                   {
-                    "label":"Etchetta"
+                    "label":"Turn into button on small screens"
                   },
                   {
                     "label":"Etichetta",
@@ -138,10 +138,10 @@
                     
                   },
                   {
-                    "label":"Visuals",
+                    "label":"Adattività",
                     "fields":[
                       {
-                        "label":"Background color",
+                        "label":"Azione su tutte le corrette",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -159,7 +159,7 @@
                         ]
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Azione su errore",
                         "fields":[
                           {
                             "label":"Cerca di",
@@ -183,18 +183,18 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Effetti visivi",
                     "fields":[
                       {
-                        "label":"Type",
+                        "label":"Colore di sfondo",
                         "default":"RGB (255, 255, 255)",
                         "spectrum":{
                           
                         }
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label":"Ombreggiatura a forma di casella",
+                        "description":"Aggiunge una sottile ombreggiatura intorno all'interazione. Potrebbe convenire disabilitarla per interazioni completamente trasparenti"
                       }
                     ]
                   },
@@ -323,7 +323,7 @@
           ]
         },
         {
-          "label":"Inizia con il menu dei segnalibri aperto",
+          "label":"Show button for rewinding 10 seconds",
           "description":"Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
         },
         {
