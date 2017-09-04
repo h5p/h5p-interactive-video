@@ -15,16 +15,18 @@
           {
             "name": "files",
             "type": "video",
-            "label": "Video files",
+            "label": "Add a video",
             "importance": "high",
-            "description": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
-            "extraAttributes": ["metadata"],
+            "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats.",
+            "extraAttributes": [
+              "metadata"
+            ],
             "enableCustomQualityLabel": true
           },
           {
             "name": "startScreenOptions",
             "type": "group",
-            "label": "Start screen options",
+            "label": "Start screen options (unsupported for YouTube videos)",
             "importance": "low",
             "fields": [
               {
@@ -82,7 +84,7 @@
           {
             "name": "textTracks",
             "type": "group",
-            "label": "Text tracks (subtitles, captions and descriptions)",
+            "label": "Text tracks (unsupported for YouTube videos)",
             "importance": "low",
             "fields": [
               {
@@ -105,13 +107,15 @@
                       "name": "label",
                       "type": "text",
                       "label": "Track label",
+                      "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
                       "importance": "low",
+                      "default": "Subtitles",
                       "optional": true
                     },
                     {
                       "name": "kind",
                       "type": "select",
-                      "label": "Type kind, refer to <a target='_blank' href=https://html.spec.whatwg.org/multipage/embedded-content.html#the-track-element>HTML living standard</a>",
+                      "label": "Type of text track",
                       "importance": "low",
                       "default": "subtitles",
                       "options": [
@@ -135,7 +139,7 @@
                       "label": "Source language, must be defined for subtitles",
                       "importance": "low",
                       "default": "en",
-                      "description": "Must be a valid BCP 47 language tag. If the kind attribute is set to subtitles, then srclang must be defined."
+                      "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                     },
                     {
                       "name": "track",
@@ -209,6 +213,13 @@
                   "default": "button"
                 },
                 {
+                  "name": "buttonOnMobile",
+                  "label": "Turn into button on small screens",
+                  "importance": "low",
+                  "type": "boolean",
+                  "default": false
+                },
+                {
                   "name": "label",
                   "type": "text",
                   "widget": "html",
@@ -248,6 +259,13 @@
                   "optional": true
                 },
                 {
+                  "name": "libraryTitle",
+                  "type": "text",
+                  "importance": "low",
+                  "optional": true,
+                  "widget": "none"
+                },
+                {
                   "name": "action",
                   "type": "library",
                   "importance": "low",
@@ -257,17 +275,17 @@
                     "H5P.Table 1.1",
                     "H5P.Link 1.3",
                     "H5P.Image 1.0",
-                    "H5P.Summary 1.7",
-                    "H5P.SingleChoiceSet 1.8",
-                    "H5P.MultiChoice 1.9",
-                    "H5P.TrueFalse 1.1",
-                    "H5P.Blanks 1.7",
-                    "H5P.DragQuestion 1.10",
-                    "H5P.MarkTheWords 1.6",
-                    "H5P.DragText 1.5",
-                    "H5P.GoToQuestion 1.2",
+                    "H5P.Summary 1.8",
+                    "H5P.SingleChoiceSet 1.9",
+                    "H5P.MultiChoice 1.10",
+                    "H5P.TrueFalse 1.2",
+                    "H5P.Blanks 1.8",
+                    "H5P.DragQuestion 1.11",
+                    "H5P.MarkTheWords 1.7",
+                    "H5P.DragText 1.6",
+                    "H5P.GoToQuestion 1.3",
                     "H5P.IVHotspot 1.2",
-                    "H5P.Questionnaire 1.1"
+                    "H5P.Questionnaire 1.2"
                   ]
                 },
                 {
@@ -582,10 +600,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.7"
+              "H5P.Summary 1.8"
             ],
             "default": {
-              "library": "H5P.Summary 1.7",
+              "library": "H5P.Summary 1.8",
               "params": {}
             }
           },
@@ -615,6 +633,14 @@
         "importance": "low",
         "optional": true,
         "description": "Enter timecode in the format M:SS"
+      },
+      {
+        "name": "autoplay",
+        "type": "boolean",
+        "label": "Auto-play video",
+        "default": false,
+        "optional": true,
+        "description": "Start playing the video automatically"
       },
       {
         "name": "loop",
@@ -859,6 +885,78 @@
         "label": "Back button",
         "importance": "low",
         "default": "Back",
+        "optional": true
+      },
+      {
+        "name": "hours",
+        "type": "text",
+        "label": "Passed time hours",
+        "importance": "low",
+        "default": "Hours",
+        "optional": true
+      },
+      {
+        "name": "minutes",
+        "type": "text",
+        "label": "Passed time minutes",
+        "importance": "low",
+        "default": "Minutes",
+        "optional": true
+      },
+      {
+        "name": "seconds",
+        "type": "text",
+        "label": "Passed time seconds",
+        "importance": "low",
+        "default": "Seconds",
+        "optional": true
+      },
+      {
+        "name": "currentTime",
+        "type": "text",
+        "label": "Label for current time",
+        "importance": "low",
+        "default": "Current time:",
+        "optional": true
+      },
+      {
+        "name": "totalTime",
+        "type": "text",
+        "label": "Label for total time",
+        "importance": "low",
+        "default": "Total time:",
+        "optional": true
+      },
+      {
+        "name": "navigationHotkeyInstructions",
+        "type": "text",
+        "label": "Text for explaining navigation hotkey",
+        "importance": "low",
+        "default": "Use key k for starting and stopping video at any time",
+        "optional": true
+      },
+      {
+        "name": "singleInteractionAnnouncement",
+        "type": "text",
+        "label": "Text explaining that a single interaction with a name has come into view",
+        "importance": "low",
+        "default": "Interaction appeared:",
+        "optional": true
+      },
+      {
+        "name": "multipleInteractionsAnnouncement",
+        "type": "text",
+        "label": "Text for explaining that multiple interactions have come into view",
+        "importance": "low",
+        "default": "Multiple interactions appeared.",
+        "optional": true
+      },
+      {
+        "name": "videoPausedAnnouncement",
+        "type": "text",
+        "label": "Video is paused announcement",
+        "importance": "low",
+        "default": "Video is paused",
         "optional": true
       }
     ]
