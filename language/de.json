@@ -11,7 +11,7 @@
               "description":"Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
+              "label":"Optionen Startbildschirm (nicht unnterstützt für YouTube Videos)",
               "fields":[
                 {
                   "label":"Der Titel dieses interaktiven Videos",
@@ -31,12 +31,12 @@
                 },
                 {
                   "label":"Video-Urheberrechtsinformationen",
-                  "description":"Urheberrechtliche Informationen zum Video und zu den Elemente, die im Video verwendet werden."
+                  "description":"Urheberrechtliche Informationen zum Video und zu den Elementen, die im Video verwendet werden."
                 }
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
+              "label":"Textspuren (nicht unterstützt für YouTube Videos)",
               "fields":[
                 {
                   "label":"Verfügbare Textspuren",
@@ -66,8 +66,8 @@
                       },
                       {
                         "label":"Ausgangssprache, muss für Untertitel definiert werden",
-                        "default":"en",
-                        "description":"Muss ein gültiges BCP 47 Sprachtag sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
+                        "default":"de",
+                        "description":"Muss ein gültiges BCP 47 Sprachtag (z.B. de=Deutsch, en=Englisch) sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
                       },
                       {
                         "label":"Quelldatei der Spur (WebVTT-Datei)"
@@ -113,11 +113,11 @@
                     "default":"button"
                   },
                   {
-                    "label":"Turn into button on small screens"
+                    "label":"Auf kleinen Bildschirmen als Button verwenden"
                   },
                   {
                     "label":"Beschriftung",
-                    "description":"Label displayed next to interaction icon."
+                    "description":"Beschriftung neben dem Icon der Interaktion"
                   },
                   {
                     
@@ -138,47 +138,47 @@
                     
                   },
                   {
-                    "label":"Adaptivity",
+                    "label":"Adaptivität",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Aktion, wenn alles richtig",
                         "fields":[
                           {
-                            "label":"Seek to",
+                            "label":"Sprung nach",
                             "description":"Den Zeitcode im Format M:SS angeben"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
                           },
                           {
                             "label":"Nachricht"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Beschriftung des Sprung-Buttons"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Aktion, wenn falsch",
                         "fields":[
                           {
-                            "label":"Seek to",
-                            "description":"Timecode im Format M:SS eingeben"
+                            "label":"Sprung nach",
+                            "description":"Den Zeitcode im Format M:SS eingeben"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
                           },
                           {
                             "label":"Nachricht"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Beschriftung des Sprung-Buttons"
                           }
                         ]
                       },
                       {
                         "label":"Zum Fortsetzen der Aufgabe volle Punktzahl benötigt",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description":"Für die optimale Funktionalität sollte diese Option in Verbindung mit  \"Unterbindung von Vorwärtssprüngen\" verwendet werden."
                       }
                     ]
                   },
@@ -199,7 +199,7 @@
                     ]
                   },
                   {
-                    "label":"Go to on click",
+                    "label":"Gehe zu bei Klick",
                     "fields":[
                       {
                         "label":"Typ",
@@ -243,8 +243,8 @@
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label":"Darstellung",
+                        "description":"Zeige dass eine Interaktion angeklickt werden kann durch Hinzufügung von Rand und Icon."
                       }
                     ]
                   }
@@ -292,15 +292,15 @@
         },
         {
           "label":"Video automatisch abspielen",
-          "description":"Start playing the video automatically"
+          "description":"Video automatisch abspielen"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Videoschleife",
+          "description":"Aktivierenn, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Überschreibe \"Zeige Lösung\" Button",
+          "description":"Diese Option bestimmt, ob der \"Zeige Lösung\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
           "options":[
             {
               "label":"Anzeigen"
@@ -311,8 +311,8 @@
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"Überschreibe \"Wiederholen\" Button",
+          "description":"Diese Option bestimmt, ob der \"Wiederholen\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
           "options":[
             {
               "label":"Anzeigen"
@@ -330,12 +330,12 @@
           "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Unterbindung eines Vorwärtssprungs im Video",
+          "description":"Aktivieren, um die Videonavigation zu unterbinden."
         },
         {
           "label":"Ton deaktivieren",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description":"Aktivieren, um die Audio-Ausgabe zu unterbinden."
         }
       ]
     },
@@ -356,7 +356,7 @@
         },
         {
           "label":"Titel zum Stummschalten",
-          "default":"Stumm"
+          "default":"Stummschaltung aktivieren"
         },
         {
           "label":"Titel, um Stummmodus aufzuheben",
@@ -423,40 +423,40 @@
           "default":"Zurück"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label":"Nutzungsdauer in Stunden",
+          "default":"Stunden"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label":"Nutzungsdauer in Minuten",
+          "default":"Minuten"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label":"Nutzungsdauer in Sekunden",
+          "default":"Sekunden"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label":"Beschriftung der aktuellen Zeit",
+          "default":"Aktuelle Zeit:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label":"Beschriftung der Gesamtzeit",
+          "default":"Gesamtzeit:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label":"Hilfetext für den Hotkey der Navigation",
+          "default":"Drücke Taste k, um das Video jederzeit zu starten und zu stoppen"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label":"Hilfetext, dass eine einzelne Interaktion im Sichtfeld erscheint",
+          "default":"Interaktion erscheint:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label":"Hilfetext, dass mehrere Interaktionen im Sichtfeld erscheinen",
+          "default":"Mehrere Interaktionen erscheinen."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label":"Ankündigung einer Videopause",
+          "default":"Video ist angehalten"
         }
       ]
     }
