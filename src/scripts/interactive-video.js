@@ -126,7 +126,8 @@ function InteractiveVideo(params, id, contentData) {
     navigationHotkeyInstructions: 'Use key \'k\' for starting and stopping video at any time',
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
-    videoPausedAnnouncement: 'Video was paused'
+    videoPausedAnnouncement: 'Video was paused',
+    content: 'Content'
   }, params.l10n);
 
   // Make it possible to restore from previous state

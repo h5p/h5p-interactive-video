@@ -457,6 +457,10 @@
         {
           "label":"Ankündigung einer Videopause",
           "default":"Video ist angehalten"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }

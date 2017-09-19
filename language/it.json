@@ -457,6 +457,10 @@
         {
           "label":"Avviso di video in pausa",
           "default":"Video in pausa"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }
