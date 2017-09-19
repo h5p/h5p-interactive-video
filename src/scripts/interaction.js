@@ -19,6 +19,39 @@ const nonEmptyString = text => ((text !== undefined) && (typeof text === 'string
  */
 const stripTags = str => nonEmptyString(str) ? $(`<div>${str}</div>`).text() : undefined;
 
+/**
+ * @enum {string}
+ */
+const gotoType = {
+  TIME_CODE: 'timecode',
+  URL: 'url'
+};
+
+/**
+ * Returns true if the type is goto timecode
+ *
+ * @param {Parameters} parameters
+ * @param {gotoType} type
+ * @return {boolean}
+ */
+const isGotoType = function(parameters, type) {
+  return parameters.goto !== undefined && parameters.goto.type === type;
+};
+
+/**
+ * @const {string[]}
+ */
+const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H5P.GoToQuestion', 'H5P.IVHotspot'];
+
+/**
+ * Returns true if the given library is on the static libraries list or is goto type "timecode"
+ *
+ * @param {string} library
+ * @return {boolean}
+ */
+const isStaticLibrary = function(library) {
+  return staticLibraryTitles.indexOf(library) !== -1 || isGotoType(parameters, gotoType.TIME_CODE);
+};
 
 /**
  * @typedef {Object} Parameters Interaction settings
@@ -77,7 +110,10 @@ function Interaction(parameters, player, previousState) {
 
   // Find library name and title
   var library = action.library.split(' ')[0];
-  var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle, player.l10n.interaction]
+
+  var libraryTypeLabel = player.l10n[isStaticLibrary(library) ? 'content' : 'interaction'];
+
+  var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
@@ -464,7 +500,7 @@ function Interaction(parameters, player, previousState) {
     player.dnb.dialog.open($dialogContent);
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
-    player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
+    player.dnb.dialog.toggleClass('h5p-goto-timecode', isGotoType(parameters, gotoType.TIME_CODE));
 
 
     /**
@@ -1065,6 +1101,7 @@ function Interaction(parameters, player, previousState) {
     const $menuitem = $('<div/>', {
       'role': 'menuitem',
       'class': seekbarClasses,
+      'aria-label': `${libraryTypeLabel}. ${title}`,
       title: title,
       css: {
         left: (parameters.duration.from * player.oneSecondInPercentage) + '%'

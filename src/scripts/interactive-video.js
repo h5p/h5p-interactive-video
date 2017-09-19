@@ -1539,6 +1539,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$interactionsContainer = $('<div/>', {
     'role': 'menu',
     'class': 'h5p-interactions-container',
+    'aria-label': self.l10n.interaction,
     appendTo: $slider
   });
 
