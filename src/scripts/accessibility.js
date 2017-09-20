@@ -75,6 +75,9 @@ export default class Accessibility {
         announcement += `. ${this.l10n.videoPausedAnnouncement}`;
       }
     }
-    this.interactionsAnnouncer.textContent = announcement;
+
+    if (this.interactionsAnnouncer.textContent !== announcement) {
+      this.interactionsAnnouncer.textContent = announcement;
+    }
   }
 }
