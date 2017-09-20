@@ -41,7 +41,7 @@ const isGotoType = function (parameters, type) {
 /**
  * @const {string[]}
  */
-const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H5P.GoToQuestion', 'H5P.IVHotspot'];
+const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H5P.GoToQuestion', 'H5P.IVHotspot', 'H5P.Text'];
 
 /**
  * Returns true if the given library is on the static libraries list or is goto type "timecode"
