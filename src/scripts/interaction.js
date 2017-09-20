@@ -47,9 +47,10 @@ const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H
  * Returns true if the given library is on the static libraries list or is goto type "timecode"
  *
  * @param {string} library
+ * @param {Parameters} parameters
  * @return {boolean}
  */
-const isStaticLibrary = function(library) {
+const isStaticLibrary = function(library, parameters) {
   return staticLibraryTitles.indexOf(library) !== -1 || isGotoType(parameters, gotoType.TIME_CODE);
 };
 
@@ -111,7 +112,7 @@ function Interaction(parameters, player, previousState) {
   // Find library name and title
   var library = action.library.split(' ')[0];
 
-  var libraryTypeLabel = player.l10n[isStaticLibrary(library) ? 'content' : 'interaction'];
+  var libraryTypeLabel = player.l10n[isStaticLibrary(library, parameters) ? 'content' : 'interaction'];
 
   var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle]
     .filter(nonEmptyString)[0];
