@@ -34,8 +34,8 @@ const gotoType = {
  * @param {gotoType} type
  * @return {boolean}
  */
-const isGotoType = function(parameters, type) {
-  return parameters.goto !== undefined && parameters.goto.type === type;
+const isGotoType = function (parameters, type) {
+  return (parameters.goto !== undefined) && (parameters.goto.type === type);
 };
 
 /**
@@ -50,7 +50,7 @@ const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H
  * @param {Parameters} parameters
  * @return {boolean}
  */
-const isStaticLibrary = function(library, parameters) {
+const isStaticLibrary = function (library, parameters) {
   return staticLibraryTitles.indexOf(library) !== -1 || isGotoType(parameters, gotoType.TIME_CODE);
 };
 
