@@ -1,445 +1,466 @@
 {
-  "semantics": [
+  "semantics":[
     {
-      "englishLabel": "Interactive Video Editor",
-      "label": "インタラクティブビデオエディタ",
-      "fields": [
+      "label":"インタラクティブビデオエディタ",
+      "fields":[
         {
-          "englishLabel": "Upload/embed video",
-          "label": "アップロード/埋め込みビデオ",
-          "fields": [
+          "label":"アップロード / 埋め込みビデオ",
+          "fields":[
             {
-              "englishLabel": "Video files",
-              "label": "ビデオファイル",
-              "englishDescription": "Select the video files you wish to use in your interactive video. To ensure maximum support in browsers at least add a version of the video in webm and mp4 formats.",
-              "description": "インタラクティブビデオで使用したいビデオファイルを選択してください。確実にブラウザに最適にするには、少なくともwebmとmp4形式のビデオを追加してください。"
+              "label":"ビデオを追加",
+              "description":"インタラクティブビデオで使用したいビデオファイルを選択してください。ビデオリンクかアップロードしたビデオファイルを追加できます。異なる品質で様々なビデオのバージョンを追加できます。ブラウザで最大限サポートされることを確実にするには、少なくともwebmとmp4形式のバージョンを追加してください。"
             },
             {
-              "englishLabel": "Start screen options",
-              "label": "画面オプションを開始",
-              "fields": [
+              "label":"Start screen options (unsupported for YouTube videos)",
+              "fields":[
                 {
-                  "englishLabel": "The title of this interactive video",
-                  "label": "このインタラクティブビデオのタイトル",
-                  "englishDefault": "Interactive Video",
-                  "default": "インタラクティブビデオ",
-                  "englishDescription": "Used in summaries, statistics etc.",
-                  "description": "概要や統計などで用いられる。"
+                  "label":"このインタラクティブビデオのタイトル",
+                  "default":"インタラクティブビデオ",
+                  "description":"概要や統計などで用いられます。"
                 },
                 {
-                  "englishLabel": "Hide title on video start screen",
-                  "label": "ビデオスタート画面でタイトルを非表示"
+                  "label":"ビデオスタート画面でタイトルを非表示"
                 },
                 {
-                  "englishLabel": "Short description (Optional)",
-                  "label": "簡単な説明（オプション）",
-                  "englishDescription": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
-                  "description": "オプション。ビデオスタート画面で簡単な説明を表示してください。YouTubeビデオでは動作しません。"
+                  "label":"簡単な説明（オプション）",
+                  "description":"省略可能です。ビデオスタート画面で簡単な説明を表示してください。YouTubeビデオでは動作しません。"
                 },
                 {
-                  "englishLabel": "Poster image",
-                  "label": "ポスター画像",
-                  "englishDescription": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
-                  "description": "ユーザーがビデオを起動する前に表示される画像。YouTubeビデオでは動作しません。"
+                  "label":"ポスター画像",
+                  "description":"ユーザーがビデオを起動する前に表示される画像。YouTubeビデオでは動作しません。"
                 },
                 {
-                  "englishLabel": "Video copyright information",
-                  "label": "ビデオ著作権情報",
-                  "englishDescription": "Information regarding copyright of the video and elements used in the video.",
-                  "description": "ビデオの著作権とビデオ内で使用されている要素に関する情報。"
+                  "label":"ビデオ著作権情報",
+                  "description":"ビデオとビデオ内で使用されている要素の著作権に関する情報。"
+                }
+              ]
+            },
+            {
+              "label":"Text tracks (unsupported for YouTube videos)",
+              "fields":[
+                {
+                  "label":"利用可能なテキストトラック",
+                  "entity":"Track",
+                  "field":{
+                    "label":"トラック",
+                    "fields":[
+                      {
+                        "label":"トラックラベル",
+                        "description":"もし複数のトラックを提供しユーザーがトラックを選択しなければならない場合に用いられます。例えば「スペイン語字幕」はスペイン語字幕トラックのラベルになり得ます。",
+                        "default":"字幕"
+                      },
+                      {
+                        "label":"テキストトラックのタイプ",
+                        "default":"字幕",
+                        "options":[
+                          {
+                            "label":"字幕"
+                          },
+                          {
+                            "label":"キャプション"
+                          },
+                          {
+                            "label":"説明"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"字幕のソース言語を定義する必要があります。",
+                        "default":"en",
+                        "description":"有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
+                      },
+                      {
+                        "label":"トラックソース（WebVTT ファイル）"
+                      }
+                    ]
+                  }
                 }
               ]
             }
           ]
         },
         {
-          "englishLabel": "Add interactions",
-          "label": "インタラクションを追加",
-          "fields": [
+          "label":"インタラクションを追加",
+          "fields":[
             {
-              "field": {
-                "fields": [
+              "field":{
+                "fields":[
                   {
-                    "englishLabel": "Display time",
-                    "label": "表示時間"
-                  },
-                  {
-                    "englishLabel": "Pause video",
-                    "label": "ビデオを一時停止"
-                  },
-                  {
-                    "englishLabel": "Display as",
-                    "label": "表示",
-                    "englishDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
-                    "description": "<b>ボタン</b>は、ユーザーが開くために押す必要のある折りたたまれたインタラクションです。 <b>ポスター</b>は、ビデオ上に直接表示される拡張インタラクションです",
-                    "options": [
+                    "label":"表示時間",
+                    "fields":[
                       {
-                        "englishLabel": "Button",
-                        "label": "ボタン"
+                        
                       },
                       {
-                        "englishLabel": "Poster",
-                        "label": "ポスター"
+                        
                       }
                     ]
                   },
                   {
-                    "englishLabel": "Label",
-                    "label": "ラベル",
-                    "englishDescription": "Label displayed next to interaction icon.",
-                    "description": "インタラクションアイコンのとなりにラベルが表示されます。"
+                    "label":"ビデオを一時停止"
                   },
-                  {},
-                  {},
-                  {},
-                  {},
-                  {},
                   {
-                    "englishLabel": "Adaptivity",
-                    "label": "適応性",
-                    "fields": [
+                    "label":"表示",
+                    "description":"<b>ボタン</b>は、ユーザーが開くために押す必要のある折りたたまれたインタラクションです。 <b>ポスター</b>は、ビデオ上に直接表示される拡張インタラクションです",
+                    "options":[
                       {
-                        "englishLabel": "Action on all correct",
-                        "label": "すべての正解に対する操作",
-                        "fields": [
+                        "label":"ボタン"
+                      },
+                      {
+                        "label":"ポスター"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"小さな画面のボタンに戻る"
+                  },
+                  {
+                    "label":"ラベル",
+                    "description":"インタラクションアイコンの次に表示されるらべる。"
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"適応性",
+                    "fields":[
+                      {
+                        "label":"全問正解に対する動作",
+                        "fields":[
                           {
-                            "englishLabel": "Seek to",
-                            "label": "シーク",
-                            "englishDescription": "Enter timecode in the format M:SS",
-                            "description": "M:SS形式でタイムコードを入力"
+                            "label":"検索",
+                            "description":"M:SS 形式でタイムコードを入力"
                           },
                           {
-                            "englishLabel": "Allow the user to opt out and continue",
-                            "label": "ユーザにオプトアウトと継続を許可"
+                            "label":"ユーザーに取り止めと継続を許可"
                           },
                           {
-                            "englishLabel": "Message",
-                            "label": "メッセージ"
+                            "label":"メッセージ"
                           },
                           {
-                            "englishLabel": "Label for seek button",
-                            "label": "シークボタンのラベル"
+                            "label":"検索ボタンのラベル"
                           }
                         ]
                       },
                       {
-                        "englishLabel": "Action on wrong",
-                        "label": "間違った操作",
-                        "fields": [
+                        "label":"まちがえに対する動作",
+                        "fields":[
                           {
-                            "englishLabel": "Seek to",
-                            "label": "シーク",
-                            "englishDescription": "Enter timecode in the format M:SS",
-                            "description": "M:SS形式でタイムコードを入力"
+                            "label":"検索",
+                            "description":"M:SS 形式でタイムコードを入力"
                           },
                           {
-                            "englishLabel": "Allow the user to opt out and continue",
-                            "label": "ユーザにオプトアウトと継続を許可"
+                            "label":"ユーザーに取り止めと継続を許可"
                           },
                           {
-                            "englishLabel": "Message",
-                            "label": "メッセージ"
+                            "label":"メッセージ"
                           },
                           {
-                            "englishLabel": "Label for seek button",
-                            "label": "シークボタンのラベル"
+                            "label":"検索ボタンのラベル"
                           }
                         ]
                       },
                       {
-                        "englishLabel": "Require full score for task before proceeding",
-                        "label": "続行する前にタスクの満点が必要",
-                        "englishDescription": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
-                        "description": "最も機能的にするには、このオプションをインタラクティブビデオの\"ビデオ内で前方にスキップしない\"オプションと組み合わせて使用する必要があります。"
+                        "label":"続行する前にタスクの満点が必要",
+                        "description":"最高の機能性を得るには、このオプションをインタラクティブビデオの「ビデオ内でのスキップするのを防ぐ」オプションと併用する必要があります。"
                       }
                     ]
                   },
                   {
-                    "englishLabel": "Visuals",
-                    "label": "ビジュアル",
-                    "fields": [
+                    "label":"クリックしてください",
+                    "fields":[
                       {
-                        "englishLabel": "Background color",
-                        "label": "背景色",
-                        "englishDefault": "rgb(255, 255, 255)",
-                        "default": "rgb(255, 255, 255)"
+                        "label":"背景色",
+                        "default":"rgb (255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
                       },
                       {
-                        "englishLabel": "Box shadow",
-                        "label": "ボックスシャドー",
-                        "englishDescription": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
-                        "description": "インタラクションの周りにわずかな影を追加。 完全に透明なインタラクションにはこれを無効に。"
+                        "label":"ボックスシャドウ",
+                        "description":"インタラクションの周りにわずかな影を追加します。完全に透明なインタラクションには無効にした方がいいかもしれません。"
                       }
                     ]
                   },
                   {
-                    "englishLabel": "Go to on click",
-                    "label": "クリックしてください",
-                    "fields": [
+                    "label":"クリック時の行先",
+                    "fields":[
                       {
-                        "englishLabel": "Type",
-                        "label": "タイプ",
-                        "options": [
+                        "label":"タイプ",
+                        "options":[
                           {
-                            "englishLabel": "Timecode",
-                            "label": "タイムコード"
+                            "label":"タイムコード"
                           },
                           {
-                            "englishLabel": "Another page (URL)",
-                            "label": "別のページ(URL)"
+                            "label":"別ページ (URL)"
                           }
                         ]
                       },
                       {
-                        "englishLabel": "Go To",
-                        "label": "行く",
-                        "englishDescription": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
-                        "description": "ユーザーがホットスポットを押したときに移るターゲットの時間。M：SSの形式でタイムコードを入力してください。"
+                        "label":"移動",
+                        "description":"ユーザーがホットスポットを押したときに得られるターゲット時間。タイムコードを M:SS の形式で入力してください。"
                       },
                       {
-                        "englishLabel": "URL",
-                        "label": "URL",
-                        "fields": [
+                        "label":"URL",
+                        "fields":[
                           {
-                            "englishLabel": "Protocol",
-                            "label": "プロトコル",
-                            "options": [
+                            "label":"プロトコル",
+                            "options":[
                               {
-                                "englishLabel": "http://",
-                                "label": "http://"
+                                "label":"http://"
                               },
                               {
-                                "englishLabel": "https://",
-                                "label": "https://"
+                                "label":"https://"
                               },
                               {
-                                "englishLabel": "(root relative)",
-                                "label": "(ルート 相対)"
+                                "label":"（ルート相対）"
                               },
                               {
-                                "englishLabel": "other",
-                                "label": "その他"
+                                "label":"その他"
                               }
-                            ]
+                            ],
+                            "default":"http://"
                           },
                           {
-                            "englishLabel": "URL",
-                            "label": "URL"
+                            "label":"URL"
                           }
                         ]
                       },
                       {
-                        "englishLabel": "Visualize",
-                        "label": "可視化",
-                        "englishDescription": "Show that interaction can be clicked by adding a border and an icon",
-                        "description": "境界線とアイコンを追加してインタラクションをクリックできることを示してください"
+                        "label":"可視化",
+                        "description":"境界線とアイコンを追加してインタラクションがクリックできることを示します"
                       }
                     ]
                   }
                 ]
               }
             },
-            {}
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
           ]
         },
         {
-          "englishLabel": "Summary task",
-          "label": "タスクの概要",
-          "fields": [
-            {},
+          "label":"サマリータスク",
+          "fields":[
             {
-              "englishLabel": "Display at",
-              "label": "ここで表示",
-              "englishDescription": "Number of seconds before the video ends.",
-              "description": "ビデオが終了するまでの秒数"
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"ここで表示",
+              "description":"ビデオが終了するまでの秒数"
             }
           ]
         }
       ]
     },
     {
-      "englishLabel": "Behavioural settings",
-      "label": "動作設定",
-      "fields": [
+      "label":"動作設定",
+      "fields":[
         {
-          "englishLabel": "Start video at",
-          "label": "ここでビデオを開始",
-          "englishDescription": "Enter timecode in the format M:SS",
-          "description": "M:SS形式でタイムコードを入寮k"
+          "label":"ここでビデオを開始",
+          "description":"M:SS 形式でタイムコードを入力"
         },
         {
-          "englishLabel": "Loop the video",
-          "label": "ビデオをループ",
-          "englishDescription": "Check if video should run in a loop",
-          "description": "ビデオをループで実行する必要があるかどうかを確認"
+          "label":"Auto-play video",
+          "description":"Start playing the video automatically"
         },
         {
-          "englishLabel": "Override \"Show Solution\" button",
-          "label": "\"正解を表示\"ボタンを上書き",
-          "englishDescription": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "description": "このオプションは、すべての質問に対して\"正解を表示\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
-          "options": [
+          "label":"Loop the video",
+          "description":"Check if video should run in a loop"
+        },
+        {
+          "label":"「解を表示」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「解を表示」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
+          "options":[
             {
-              "englishLabel": "Enabled",
-              "label": "有効"
+              "label":"有効"
             },
             {
-              "englishLabel": "Disabled",
-              "label": "無効"
+              "label":"無効"
             }
           ]
         },
         {
-          "englishLabel": "Override \"Retry\" button",
-          "label": "Override \"Retry\" button",
-          "englishDescription": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "description": "このオプションは、すべての質問に対して\"リトライ\"ボタンが表示されるか、すべての質問に対して無効になるか、各質問ごとに個別に設定されるかを決定します。",
-          "options": [
+          "label":"「リトライ」ボタンを上書き",
+          "description":"このオプションは、すべての設問に対して「リトライ」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
+          "options":[
             {
-              "englishLabel": "Enabled",
-              "label": "有効"
+              "label":"有効"
             },
             {
-              "englishLabel": "Disabled",
-              "label": "無効"
+              "label":"無効"
             }
           ]
         },
         {
-          "englishLabel": "Start with bookmarks menu open",
-          "label": "ブックマークメニューを開いて開始",
-          "englishDescription": "This function is not available on iPad when using YouTube as video source",
-          "description": "ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
+          "label":"10秒巻き戻すボタンを表示",
+          "description":"ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
         },
         {
-          "englishLabel": "Show button for rewinding 10 seconds",
-          "label": "10秒巻き戻すボタンを表示"
+          "label":"Show button for rewinding 10 seconds"
         },
         {
-          "englishLabel": "Prevent skipping forward in a video",
-          "label": "ビデオで前方にスキップしないようにする",
-          "englishDescription": "Enabling this options will disable user video navigation through default controls",
-          "description": "このオプションを有効にすると、既定のコントロールを通してのユーザーのビデオナビゲーションが無効になります"
+          "label":"Prevent skipping forward in a video",
+          "description":"Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label": "サウンド無効",
-          "englishLabel": "Deactivate sound",
-          "description": "このオプションを有効にすると、ビデオのサウンドが無効になり、オンにならないようにします。",
-          "englishDescription": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"サウンド無効化",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "englishLabel": "Localize",
-      "label": "ローカライズ",
-      "fields": [
+      "label":"ローカライズ",
+      "fields":[
         {
-          "englishLabel": "Interaction title",
-          "label": "インタラクションのタイトル",
-          "englishDefault": "Interaction",
-          "default": "インタラクション"
+          "label":"インタラクションのタイトル",
+          "default":"インタラクション"
         },
         {
-          "englishLabel": "Play title",
-          "label": "再生のタイトル",
-          "englishDefault": "Play",
-          "default": "再生"
+          "label":"再生のタイトル",
+          "default":"再生"
         },
         {
-          "englishLabel": "Pause title",
-          "label": "一時停止のタイトル",
-          "englishDefault": "Pause",
-          "default": "一時停止"
+          "label":"一時停止のタイトル",
+          "default":"一時停止"
         },
         {
-          "englishLabel": "Mute title",
-          "label": "ミュートのタイトル",
-          "englishDefault": "Mute",
-          "default": "ミュート"
+          "label":"ミュートのタイトル",
+          "default":"ミュート"
         },
         {
-          "englishLabel": "Unmute title",
-          "label": "ミュートを解除のタイトル",
-          "englishDefault": "Unmute",
-          "default": "ミュートを解除"
+          "label":"ミュートを解除のタイトル",
+          "default":"ミュートを解除"
         },
         {
-          "englishLabel": "Video quality title",
-          "label": "ビデオ品質のタイトル",
-          "englishDefault": "Video Quality",
-          "default": "ビデオ品質"
+          "label":"ビデオ品質のタイトル",
+          "default":"ビデオ品質"
         },
         {
-          "englishLabel": "Fullscreen title",
-          "label": "フルスクリーンのタイトル",
-          "englishDefault": "Fullscreen",
-          "default": "フルスクリーン"
+          "label":"ビデオのキャプションタイトル",
+          "default":"キャプション"
         },
         {
-          "englishLabel": "Exit fullscreen title",
-          "label": "フルスクリーン解除のタイトル",
-          "englishDefault": "Exit Fullscreen",
-          "default": "フルスクリーン解除"
+          "label":"閉じるボタンのテキスト",
+          "default":"閉じる"
         },
         {
-          "englishLabel": "Summary title",
-          "label": "概要のタイトル",
-          "englishDefault": "Summary",
-          "default": "概要"
+          "label":"フルスクリーンのタイトル",
+          "default":"フルスクリーン"
         },
         {
-          "englishLabel": "Bookmarks title",
-          "label": "ブックマークのタイトル",
-          "englishDefault": "Bookmarks",
-          "default": "ブックマーク"
+          "label":"フルスクリーン解除のタイトル",
+          "default":"フルスクリーン解除"
         },
         {
-          "englishLabel": "Default label for adaptivity seek button",
-          "label": "適用シークボタンの既定ラベル",
-          "englishDefault": "Continue",
-          "default": "続行"
+          "label":"サマリータイトル",
+          "default":"サマリー"
         },
         {
-          "englishLabel": "Default label for continue video button",
-          "label": "ビデを続行ボタンの既定のラベル",
-          "englishDefault": "Continue with video",
-          "default": "ビデオを続行"
+          "label":"ブックマークのタイトル",
+          "default":"ブックマーク"
         },
         {
-          "englishLabel": "Set playback rate",
-          "label": "再生速度を設定",
-          "englishDefault": "Playback Rate",
-          "default": "再生速度"
+          "label":"適応検索ボタンの既定ラベル",
+          "default":"続ける"
         },
         {
-          "englishLabel": "Rewind 10 Seconds",
-          "label": "10秒巻き戻し",
-          "englishDefault": "Rewind 10 Seconds",
-          "default": "10秒巻き戻し"
+          "label":"ビデを続行ボタンの既定のラベル",
+          "default":"ビデオを続行"
         },
         {
-          "englishLabel": "Navigation is disabled text",
-          "label": "ナビゲーションが無効",
-          "englishDefault": "Navigation is disabled",
-          "default": "ナビゲーションが無効"
+          "label":"再生速度を設定",
+          "default":"再生速度"
         },
         {
-          "englishLabel": "Sound is disabled text",
-          "label": "サウンドが無効",
-          "englishDefault": "Sound is disabled",
-          "default": "サウンドが無効"
+          "label":"10秒巻き戻し",
+          "default":"10秒巻き戻し"
         },
         {
-          "englishLabel": "Warning that the user must answer the question correctly before continuing",
-          "label": "続行する前にユーザーが設問に正解しなければならないことを警告",
-          "englishDefault": "You need to answer all the questions correctly before continuing.",
-          "default": "続行する前に、すべての設問に正しく解答する必要があります。"
+          "label":"ナビゲーションが無効のテキスト",
+          "default":"ナビゲーションが無効"
         },
         {
-          "englishLabel": "Back button",
-          "label": "戻るボタン",
-          "englishDefault": "Back",
-          "default": "戻る"
+          "label":"サウンドが無効のテキスト",
+          "default":"サウンドが無効"
+        },
+        {
+          "label":"続行する前にユーザーが設問に正解しなければならないことを警告",
+          "default":"続行する前に、すべての設問に正しく解答する必要があります。"
+        },
+        {
+          "label":"戻るボタン",
+          "default":"戻る"
+        },
+        {
+          "label":"合格時間　時",
+          "default":"時"
+        },
+        {
+          "label":"合格時間　分",
+          "default":"分"
+        },
+        {
+          "label":"合格時間　秒",
+          "default":"秒"
+        },
+        {
+          "label":"現在時刻のラベル",
+          "default":"現在時刻:"
+        },
+        {
+          "label":"トータル時間のラベル",
+          "default":"トータル時間:"
+        },
+        {
+          "label":"Text for explaining navigation hotkey",
+          "default":"Use key k for starting and stopping video at any time"
+        },
+        {
+          "label":"Text explaining that a single interaction with a name has come into view",
+          "default":"Interaction appeared:"
+        },
+        {
+          "label":"Text for explaining that multiple interactions have come into view",
+          "default":"Multiple interactions appeared."
+        },
+        {
+          "label":"Video is paused announcement",
+          "default":"Video is paused"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }

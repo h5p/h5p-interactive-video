@@ -1,0 +1,468 @@
+{
+  "semantics":[
+    {
+      "label":"Interaktiv video-editor",
+      "fields":[
+        {
+          "label":"Upload/indlejr video",
+          "fields":[
+            {
+              "label":"Tilføj en video",
+              "description":"Klik nedenfor for at tilføje en video, som du ønsker at bruge i din interaktive video. Du kan tilføje et videolink eller uploade videofiler. Det er muligt at tilføje flere versioner af videoen i forskellig kvalitet. For at sikre maksimal understøttelse i browsere tilføj mindst en version i webm og mp4-formater."
+            },
+            {
+              "label":"Start screen options (unsupported for YouTube videos)",
+              "fields":[
+                {
+                  "label":"Titlen på denne interaktive video",
+                  "default":"Interaktiv video",
+                  "description":"Brugt i resuméer, statistikker osv."
+                },
+                {
+                  "label":"Skjul titel på video-startskærm"
+                },
+                {
+                  "label":"Kort beskrivelse (valgfri)",
+                  "description":"Valgfri. Vis en kort beskrivelse når en video uploades. Virker ikke med YouTube-videoer."
+                },
+                {
+                  "label":"Forsidebillede",
+                  "description":"Billedet vises før brugeren starter videoen. Virker ikke med YouTube-videoer."
+                },
+                {
+                  "label":"Video-copyrightoplysninger",
+                  "description":"Oplysninger om copyright på videoen og elementer der anvendes i videoen."
+                }
+              ]
+            },
+            {
+              "label":"Text tracks (unsupported for YouTube videos)",
+              "fields":[
+                {
+                  "label":"Tilgængelige tekstspor",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Spor",
+                    "fields":[
+                      {
+                        "label":"Sporetiket",
+                        "description":"Anvendes hvis du tilbyder flere spor som brugeren kan vælge i mellem. For eksempel kunne 'Spanske undertekster' være etiketten for et spansk undertekstspor.",
+                        "default":"Undertekster"
+                      },
+                      {
+                        "label":"Typer af tekstspor",
+                        "default":"undertekster",
+                        "options":[
+                          {
+                            "label":"Undertekster"
+                          },
+                          {
+                            "label":"Undertitel"
+                          },
+                          {
+                            "label":"Beskrivelser"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"Kildesprog, skal være defineret for undertekster",
+                        "default":"en",
+                        "description":"Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
+                      },
+                      {
+                        "label":"Sporkilde (WebVTT-fil)"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label":"Tilføj interaktioner",
+          "fields":[
+            {
+              "field":{
+                "fields":[
+                  {
+                    "label":"Visningstid",
+                    "fields":[
+                      {
+                        
+                      },
+                      {
+                        
+                      }
+                    ]
+                  },
+                  {
+                    "label":"Sæt video på pause"
+                  },
+                  {
+                    "label":"Vis som",
+                    "description":"<b>Knap</b> er en sammenklappet visning brugeren skal klikke på for at åbne. <b>Plakat</b> er en udvidet visning direkte på videoen.",
+                    "options":[
+                      {
+                        "label":"Knap"
+                      },
+                      {
+                        "label":"Plakat"
+                      }
+                    ],
+                    "default":"button"
+                  },
+                  {
+                    "label":"Slå i knap på små skærme"
+                  },
+                  {
+                    "label":"Titel",
+                    "description":"Etiket vises ved siden af interaktionsikon."
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    
+                  },
+                  {
+                    "label":"Kan tilpasses",
+                    "fields":[
+                      {
+                        "label":"Handling på alle korrekte",
+                        "fields":[
+                          {
+                            "label":"Hop til",
+                            "description":"Angiv tidskode i formatet M:SS"
+                          },
+                          {
+                            "label":"Tillad brugeren at fravælge og fortsætte"
+                          },
+                          {
+                            "label":"Meddelelse"
+                          },
+                          {
+                            "label":"Titel på søgeknap"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"Handling ved forkert",
+                        "fields":[
+                          {
+                            "label":"Hop til",
+                            "description":"Angiv tidskode i formatet M:SS"
+                          },
+                          {
+                            "label":"Tillad brugeren at fravælge og fortsætte"
+                          },
+                          {
+                            "label":"Meddelelse"
+                          },
+                          {
+                            "label":"Navn på søgeknap"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"Kræv at alle opgaver er rigtige før der kan fortsættes",
+                        "description":"For at opnå den bedste funktionalitet bør denne indstilling bruges sammen med indstillingen \"Undgå at spole frem i en video\" af den interaktive video."
+                      }
+                    ]
+                  },
+                  {
+                    "label":"Visuelle effekter",
+                    "fields":[
+                      {
+                        "label":"Baggrundsfarve",
+                        "default":"rgb(255, 255, 255)",
+                        "spectrum":{
+                          
+                        }
+                      },
+                      {
+                        "label":"Skygge på afkrydsningsfelt",
+                        "description":"Tilføjer en skygge omkring interaktionen. Det anbefales at deaktivere dette for fuldstændig transparent interaktioner"
+                      }
+                    ]
+                  },
+                  {
+                    "label":"Gå til ved at klikke",
+                    "fields":[
+                      {
+                        "label":"Type",
+                        "options":[
+                          {
+                            "label":"Tidskode"
+                          },
+                          {
+                            "label":"En anden side (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"Gå til",
+                        "description":"Tidspunktet som brugeren navigeres til ved at klikke på et hotspot. Angiv tidskode i formatet M:SS."
+                      },
+                      {
+                        "label":"URL",
+                        "fields":[
+                          {
+                            "label":"Protokol",
+                            "options":[
+                              {
+                                "label":"http://"
+                              },
+                              {
+                                "label":"https://"
+                              },
+                              {
+                                "label":"(rod relative)"
+                              },
+                              {
+                                "label":"andre"
+                              }
+                            ],
+                            "default":"http://"
+                          },
+                          {
+                            "label":"URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label":"Visualisèr",
+                        "description":"Vis at interaktion kan klikkes på ved at tilføje en kant og et ikon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+                    
+                  },
+                  {
+                    
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label":"Opsumemringsopgave",
+          "fields":[
+            {
+              "default":{
+                "params":{
+                  
+                }
+              }
+            },
+            {
+              "label":"Visningstid",
+              "description":"Antal sekunder før videoen stopper."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label":"Indstillinger for opgave-opførsel",
+      "fields":[
+        {
+          "label":"Begynd på",
+          "description":"Angiv tidskode i formatet M:SS"
+        },
+        {
+          "label":"Slå automatisk afspilning til",
+          "description":"Begynd afspilning af video automatisk"
+        },
+        {
+          "label":"Kør video i loop",
+          "description":"Aktiver at video skal køre i loop"
+        },
+        {
+          "label":"Overskriv \"Vi svar\"-knap",
+          "description":"Dette valg afgør om \"Vis svar\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
+          "options":[
+            {
+              "label":"Aktiveret"
+            },
+            {
+              "label":"Deaktiveret"
+            }
+          ]
+        },
+        {
+          "label":"Overskriv \"Prøv igen\"-knap",
+          "description":"Dette valg afgør om \"Prøv igen\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
+          "options":[
+            {
+              "label":"Aktiveret"
+            },
+            {
+              "label":"Deaktiveret"
+            }
+          ]
+        },
+        {
+          "label":"Begynd med bogmærkemenu åben",
+          "description":"Denne funktion er ikke tilgængelig på iPad når YouTube-kilde er brugt."
+        },
+        {
+          "label":"Vis knap til at spole 10 sekunder tilbage"
+        },
+        {
+          "label":"Undgå at spole frem i en video",
+          "description":"Enabling this options will disable user video navigation through default controls."
+        },
+        {
+          "label":"Deaktiver lyd",
+          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        }
+      ]
+    },
+    {
+      "label":"Lokalisere",
+      "fields":[
+        {
+          "label":"Interaktionstitel",
+          "default":"Interaktion"
+        },
+        {
+          "label":"Afspilningstitel",
+          "default":"Afspil"
+        },
+        {
+          "label":"Pausetitel",
+          "default":"Pause"
+        },
+        {
+          "label":"Lyd fra-titel",
+          "default":"Lyd fra"
+        },
+        {
+          "label":"Lyd til-titel",
+          "default":"Lyd til"
+        },
+        {
+          "label":"Videokvalitetstitel",
+          "default":"Videokvalitet"
+        },
+        {
+          "label":"Videoundertitel",
+          "default":"Billedtekster"
+        },
+        {
+          "label":"Tekst til luk-knap",
+          "default":"Luk"
+        },
+        {
+          "label":"Fuldskærmstitel",
+          "default":"Fuldskærm"
+        },
+        {
+          "label":"Titel på Afslut fuldskærm",
+          "default":"Afslut fuldskærm"
+        },
+        {
+          "label":"Opsummeringstitel",
+          "default":"Resumé"
+        },
+        {
+          "label":"Bogmærketitel",
+          "default":"Bogmærker"
+        },
+        {
+          "label":"Standardetiket til adaptiv søgeknap",
+          "default":"Forsæt"
+        },
+        {
+          "label":"Standardetiket til at fortsætte videoen",
+          "default":"Fortsæt video"
+        },
+        {
+          "label":"Angiv afspilningshastighed",
+          "default":"Afspilningshastighed"
+        },
+        {
+          "label":"Spol 10 sekunder tilbage",
+          "default":"Spol 10 sekunder tilbage"
+        },
+        {
+          "label":"Tekst til Navigation er deaktiveret",
+          "default":"Navigation er deaktiveret"
+        },
+        {
+          "label":"Tekst til Lyd er deaktiveret",
+          "default":"Lyd er deaktiveret"
+        },
+        {
+          "label":"Advarsel til brugeren om at besvare spørgsmålet korrekt før hun kan fortsætte",
+          "default":"Du skal svare korrekt på alle spørgsmål før du kan fortsætte."
+        },
+        {
+          "label":"Tilbage-knap",
+          "default":"Tilbage"
+        },
+        {
+          "label":"Tid for bestået i minutter",
+          "default":"Timer"
+        },
+        {
+          "label":"Tid for bestået i minutter",
+          "default":"Minutter"
+        },
+        {
+          "label":"Tid for bestået i sekunder",
+          "default":"Sekunder"
+        },
+        {
+          "label":"Titel til aktuel tid",
+          "default":"Aktuel tid"
+        },
+        {
+          "label":"Etiket til tid i alt",
+          "default":"Tid i alt:"
+        },
+        {
+          "label":"Tekst til at forklare genvejstast til navigation",
+          "default":"Benyt tasten k til at starte eller stoppe en video"
+        },
+        {
+          "label":"Tekst som forklarer at en interaktion med navn er synlig",
+          "default":"Interaktion synlig:"
+        },
+        {
+          "label":"Tekst som forklarer at flere interaktioner er synlige",
+          "default":"Flere interaktioner er synlige."
+        },
+        {
+          "label":"Meddelelse til \"Video er sat på pause\"",
+          "default":"Video er sat på pause-titel"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
+        }
+      ]
+    }
+  ]
+}
