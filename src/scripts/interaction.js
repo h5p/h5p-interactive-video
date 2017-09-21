@@ -450,7 +450,8 @@ function Interaction(parameters, player, previousState) {
 
     // Create wrapper for dialog content
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-dialog-interaction h5p-frame'
+      'class': 'h5p-dialog-interaction h5p-frame',
+      'tabindex': (player.editor === undefined ? 0 : -1)
     });
     $dialogContent.on('keyup', disableGlobalVideoControls);
 
@@ -759,7 +760,8 @@ function Interaction(parameters, player, previousState) {
     }
 
     $outer = $('<div>', {
-      'class': 'h5p-interaction-outer'
+      'class': 'h5p-interaction-outer',
+      'tabindex': (player.editor === undefined ? 0 : -1)
     }).appendTo($interaction);
 
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
