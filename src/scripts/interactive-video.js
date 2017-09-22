@@ -287,7 +287,11 @@ function InteractiveVideo(params, id, contentData) {
           .attr('title', self.l10n.play);
 
         // refocus for re-read button title by screen reader
-        if (self.controls.$play.is(":focus")) {
+        if (self.focusInteraction) {
+          self.focusInteraction.getElement().focus();
+          delete self.focusInteraction;
+        }
+        else if (self.controls.$play.is(":focus")) {
           self.controls.$play.blur();
           self.controls.$play.focus();
         }
@@ -826,9 +830,10 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       var isPlaying = self.currentState === H5P.Video.PLAYING ||
         self.currentState === H5P.Video.BUFFERING;
       if (isPlaying && interaction.pause()) {
+        if (!self.focusInteraction) {
+          self.focusInteraction = interaction;
+        }
         self.video.pause();
-        self.currentState = H5P.Video.PAUSED;
-        interaction.getElement().focus();
       }
     });
 
