@@ -827,6 +827,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
         self.currentState === H5P.Video.BUFFERING;
       if (isPlaying && interaction.pause()) {
         self.video.pause();
+        interaction.getElement().focus();
       }
     });
 
