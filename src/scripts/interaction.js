@@ -713,7 +713,6 @@ function Interaction(parameters, player, previousState) {
     var visuals = getVisuals();
 
     $interaction = $('<div/>', {
-      'role': 'group',
       'aria-label': player.l10n.interaction,
       'tabindex': '-1',
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
