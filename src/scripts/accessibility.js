@@ -1,4 +1,19 @@
 /**
+ * Returns true if the value is not contained in the array
+ *
+ * @template T
+ * @param {Array.<T>} arr
+ * @param {T} val
+ * @return {boolean}
+ */
+const contains = (arr, val) => (arr.indexOf(val) !== -1);
+
+/**
+ * @const {string}
+ */
+const NO_ANNOUNCEMENT = '';
+
+/**
  * @class
  * Makes it easier to manage accessibility
  */
@@ -37,6 +52,10 @@ export default class Accessibility {
     hotkeyInstructor.classList.add('h5p-iv-hotkey-instructions');
     hotkeyInstructor.textContent = l10n.navigationHotkeyInstructions;
     this.hotkeyInstructor = hotkeyInstructor;
+    /**
+     * @type {string[]}
+     */
+    this.announcedInteractionIds = [];
   }
 
   /**
@@ -60,24 +79,58 @@ export default class Accessibility {
    * @param {H5P.InteractiveVideoInteraction[]} interactions
    */
   announceInteractions(interactions) {
-    let announcement = '';
     const visibleInteractions = interactions.filter(i => i.isVisible());
-    const videoWillPause = visibleInteractions
-      .filter(i => i.pause()).length;
+    const newInteractions = visibleInteractions
+      .filter(i => !contains(this.announcedInteractionIds, i.getSubcontentId()));
 
-    if (visibleInteractions.length) {
-      announcement = `${this.l10n.singleInteractionAnnouncement} ${visibleInteractions[0].getTitle()}`;
-      if (visibleInteractions.length > 1) {
-        announcement = this.l10n.multipleInteractionsAnnouncement;
-      }
-
-      if (videoWillPause) {
-        announcement += `. ${this.l10n.videoPausedAnnouncement}`;
-      }
+    if (newInteractions.length > 0) {
+      this.interactionsAnnouncer.textContent = ''; // reset content
+      this.interactionsAnnouncer.textContent = `
+        ${this.getAnnouncementMessage(newInteractions.length)} 
+        ${this.getTitleAnnouncement(newInteractions.length, newInteractions[0])}
+        ${this.getPauseAnnouncement(newInteractions)}`;
     }
 
-    if (this.interactionsAnnouncer.textContent !== announcement) {
-      this.interactionsAnnouncer.textContent = announcement;
+    // sets announced interactions to be equal to the visible ones
+    this.announcedInteractionIds = visibleInteractions.map(i => i.getSubcontentId());
+  }
+
+  /**
+   * Returns the appropriate announcement message
+   *
+   * @param {number} newInteractionCount
+   * @return {string}
+   */
+  getAnnouncementMessage(newInteractionCount) {
+    if (newInteractionCount === 0) {
+      return NO_ANNOUNCEMENT;
     }
+    else if (newInteractionCount === 1) {
+      return this.l10n.singleInteractionAnnouncement;
+    }
+    else {
+      return this.l10n.multipleInteractionsAnnouncement;
+    }
+  }
+
+  /**
+   * Returns the title of the content, if only single content appears
+   *
+   * @param {number} newInteractionCount
+   * @param {H5P.InteractiveVideoInteraction} interaction
+   * @return {string}
+   */
+  getTitleAnnouncement(newInteractionCount, interaction) {
+    return  (newInteractionCount === 1) ? interaction.getTitle() : NO_ANNOUNCEMENT;
+  }
+
+  /**
+   * Returns the paused announcement, if any of the newly appeared interactions should be paused
+   *
+   * @param interactions
+   * @return {string}
+   */
+  getPauseAnnouncement(interactions) {
+    return interactions.some(i => i.pause()) ? `. ${this.l10n.videoPausedAnnouncement}` : NO_ANNOUNCEMENT;
   }
 }

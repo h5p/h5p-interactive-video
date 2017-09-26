@@ -99,7 +99,7 @@ function Interaction(parameters, player, previousState) {
   var self = this;
 
   // Initialize event inheritance
-   H5P.EventDispatcher.call(self);
+  H5P.EventDispatcher.call(self);
 
   var $interaction, $label, $inner, $outer;
   var action = parameters.action;
@@ -114,7 +114,9 @@ function Interaction(parameters, player, previousState) {
 
   var libraryTypeLabel = player.l10n[isStaticLibrary(library, parameters) ? 'content' : 'interaction'];
 
-  var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle]
+
+  var isLabelRelevant = (library !== 'H5P.Nil' && parameters.displayType === 'button');
+  var title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', parameters.libraryTitle]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
