@@ -87,7 +87,7 @@ export default class Accessibility {
       this.interactionsAnnouncer.textContent = ''; // reset content
       this.interactionsAnnouncer.textContent = `
         ${this.getAnnouncementMessage(newInteractions.length)} 
-        ${this.getTitleAnnouncement(newInteractions.length, visibleInteractions[0])}
+        ${this.getTitleAnnouncement(newInteractions.length, newInteractions[0])}
         ${this.getPauseAnnouncement(newInteractions)}`;
     }
 
