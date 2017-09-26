@@ -5,7 +5,7 @@
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 17,
-  "patchVersion": 0,
+  "patchVersion": 2,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",
   "embedTypes": [
@@ -19,18 +19,12 @@
   },
   "preloadedJs": [
     {
-      "path": "scripts/interaction.js"
-    },
-    {
-      "path": "scripts/interactive-video.js"
-    },
-    {
-      "path": "scripts/selector-control.js"
+      "path": "dist/h5p-interactive-video.js"
     }
   ],
   "preloadedCss": [
     {
-      "path": "styles/interactive-video.css"
+      "path": "dist/h5p-interactive-video.css"
     }
   ],
   "preloadedDependencies": [

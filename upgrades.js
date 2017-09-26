@@ -250,15 +250,15 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
        */
       17: function (parameters, finished) {
 
-        if (parameters.interactiveVideo && 
-            parameters.interactiveVideo.assets && 
+        if (parameters.interactiveVideo &&
+            parameters.interactiveVideo.assets &&
             parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
           for (i = 0; i < interactions.length; i++) {
-            if (interactions[i].buttonOnMobile == undefined) { 
+            if (interactions[i].buttonOnMobile == undefined) {
               interactions[i].buttonOnMobile = true;
             }
-          }        
+          }
         }
 
         // Done
