@@ -265,7 +265,7 @@ function Interaction(parameters, player, previousState) {
   const createLabel = (label, classes = '') => {
     return $('<div/>', {
       'class': `h5p-interaction-label ${classes}`,
-      'html': `<div class="h5p-interaction-label-text">${label}</div>`
+      'html': `<div class="h5p-interaction-label-text" tabindex="0">${label}</div>`
     });
   };
 
@@ -766,8 +766,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     $outer = $('<div>', {
-      'class': 'h5p-interaction-outer',
-      'tabindex': (player.editor === undefined ? 0 : -1)
+      'class': 'h5p-interaction-outer'
     }).appendTo($interaction);
 
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
@@ -1501,6 +1500,21 @@ function Interaction(parameters, player, previousState) {
    */
   self.getElement = function () {
     return $interaction;
+  };
+
+  /**
+   * Returns the first tabbable element
+   * returns the interaction if none exists
+   * @return {*} 
+   */
+  self.getFirstTabbableElement = function () {
+    var $tabbables = $interaction.find('[tabindex]');
+    if ($tabbables.length) {
+      return $tabbables.get(0);
+    }
+    else {
+      return $interaction;
+    }
   };
 
   /**
