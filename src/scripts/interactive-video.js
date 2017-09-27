@@ -288,7 +288,7 @@ function InteractiveVideo(params, id, contentData) {
 
         // refocus for re-read button title by screen reader
         if (self.focusInteraction) {
-          self.focusInteraction.getElement().focus();
+          self.focusInteraction.getFirstTabbableElement().focus();
           delete self.focusInteraction;
         }
         else if (self.controls.$play.is(":focus")) {
