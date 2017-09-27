@@ -451,12 +451,22 @@ function Interaction(parameters, player, previousState) {
 
     var isGotoClickable = self.isGotoClickable();
 
+    const tabbableElements = $dialogWrapper.find('[tabindex]');
+
     // Create wrapper for dialog content
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-dialog-interaction h5p-frame',
-      'tabindex': (player.editor === undefined ? 0 : -1)
+      'class': 'h5p-dialog-interaction h5p-frame'
     });
     $dialogContent.on('keyup', disableGlobalVideoControls);
+
+    // Disable tabbing when editing
+    if (player.editor !== undefined) {
+      $dialogContent.attr('tabindex', -1);
+    }
+    // If tabbales no tabbable elements exist, make the dialog content tabbable
+    else if (tabbableElements.length === 0) {
+      $dialogContent.attr('tabindex', 0);
+    }
 
     if(self.getRequiresCompletion()){
       $dialogWrapper.keydown(event => {
@@ -1501,10 +1511,10 @@ function Interaction(parameters, player, previousState) {
   /**
    * Returns the first tabbable element
    * returns the interaction if none exists
-   * @return {*} 
+   * @return {*}
    */
   self.getFirstTabbableElement = function () {
-    var $tabbables = $interaction.find('[tabindex]');
+    var $tabbables = $($interaction.get(0)).find('[tabindex]');
     if ($tabbables.length) {
       return $tabbables.get(0);
     }
