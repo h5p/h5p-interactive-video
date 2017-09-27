@@ -507,6 +507,10 @@ function Interaction(parameters, player, previousState) {
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', isGotoType(parameters, gotoType.TIME_CODE));
 
+    // Restore tabindexes that must be possible to access
+    if (player.dnb.dialog.disableOverlay) {
+      player.restorePosterTabIndexes();
+    }
 
     /**
      * Handle dialog closing once.
