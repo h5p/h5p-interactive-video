@@ -2425,6 +2425,7 @@ InteractiveVideo.prototype.showOverlayMask = function () {
 
   self.$videoWrapper.addClass('h5p-disable-opt-out');
   self.dnb.dialog.openOverlay();
+  self.restorePosterTabIndexes();
 
   var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
   $dialogWrapper.click(function () {
@@ -2434,6 +2435,19 @@ InteractiveVideo.prototype.showOverlayMask = function () {
   });
 
   self.toggleFocusTrap();
+};
+
+/**
+ * Restore tabindexes for posters.
+ * Typically used when an overlay has been applied and removed all tabindexes.
+ */
+InteractiveVideo.prototype.restorePosterTabIndexes = function() {
+  const self = this;
+
+  // Allow posters to be tabbable, but not buttons.
+  self.$overlay.find('.h5p-interaction.h5p-poster').each(function () {
+    self.dnb.dialog.restoreTabIndexes($(this));
+  });
 };
 
 /**
