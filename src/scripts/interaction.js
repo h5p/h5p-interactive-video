@@ -346,6 +346,7 @@ function Interaction(parameters, player, previousState) {
    */
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
+    self.trigger('hide', $interaction);
     if (self.isButton()) {
       if (closeDialog) {
         player.dnb.dialog.close();
@@ -1236,8 +1237,9 @@ function Interaction(parameters, player, previousState) {
 
     // Only recreate existing interactions
     if ($interaction) {
+      self.trigger('hide', $interaction);
       $interaction.detach();
-      if(self.isStandaloneLabel()) {
+      if (self.isStandaloneLabel()) {
         createStandaloneLabel();
       }
       else if (self.isButton()) {
@@ -1316,6 +1318,7 @@ function Interaction(parameters, player, previousState) {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
       }, {'bubbles': true, 'external': true});
+      self.trigger('hide', $interaction);
       $interaction.detach();
       $interaction = undefined;
     }
