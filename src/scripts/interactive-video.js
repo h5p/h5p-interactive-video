@@ -843,6 +843,16 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     }, 0);
   });
 
+  // The interaction is about to be hidden.
+  interaction.on('hide', function (event) {
+    var $interaction = event.data; // Grab DOM element
+
+    // Check if the interaction or any of its children has focus
+    if ($interaction.is(':focus') || $interaction.find(':focus').length) {
+      self.controls.$play.focus();
+    }
+  });
+
   // handle xAPI event
   interaction.on('xAPI', function (event) {
     // update state
