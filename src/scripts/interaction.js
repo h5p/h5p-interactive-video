@@ -55,6 +55,22 @@ const isStaticLibrary = function (library, parameters) {
 };
 
 /**
+ * @const {string[]}
+ */
+const scrollableLibraries = ['H5P.Text', 'H5P.Table'];
+
+/**
+ * Returns true if the given library is on the static libraries list or is goto type "timecode"
+ *
+ * @param {string} library
+ * @param {Parameters} parameters
+ * @return {boolean}
+ */
+const isScrollableLibrary = function (library) {
+  return staticLibraryTitles.indexOf(library) !== -1;
+};
+
+/**
  * @typedef {Object} Parameters Interaction settings
  * @property {Object} action Library
  * @property {string|undefined} contentName Title of library
@@ -265,7 +281,7 @@ function Interaction(parameters, player, previousState) {
   const createLabel = (label, classes = '') => {
     return $('<div/>', {
       'class': `h5p-interaction-label ${classes}`,
-      'html': `<div class="h5p-interaction-label-text" tabindex="0">${label}</div>`
+      'html': `<div class="h5p-interaction-label-text">${label}</div>`
     });
   };
 
@@ -455,7 +471,8 @@ function Interaction(parameters, player, previousState) {
 
     // Create wrapper for dialog content
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-dialog-interaction h5p-frame'
+      'class': 'h5p-dialog-interaction h5p-frame',
+      'tabindex': isScrollableLibrary(library) ? '0' : '' // Make content scrollable
     });
     $dialogContent.on('keyup', disableGlobalVideoControls);
 
@@ -463,7 +480,7 @@ function Interaction(parameters, player, previousState) {
     if (player.editor !== undefined) {
       $dialogContent.attr('tabindex', -1);
     }
-    // If tabbales no tabbable elements exist, make the dialog content tabbable
+    // If no tabbable elements exist, make the dialog content tabbable
     else if (tabbableElements.length === 0) {
       $dialogContent.attr('tabindex', 0);
     }
@@ -780,7 +797,8 @@ function Interaction(parameters, player, previousState) {
     }).appendTo($interaction);
 
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-interaction-inner h5p-frame'
+      'class': 'h5p-interaction-inner h5p-frame',
+      'tabindex': isScrollableLibrary(library) ? '0' : '' // Make content scrollable
     }).appendTo($outer);
 
     if (player.editor !== undefined && instance.disableAutoPlay) {
