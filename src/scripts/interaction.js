@@ -67,7 +67,7 @@ const scrollableLibraries = ['H5P.Text', 'H5P.Table'];
  * @return {boolean}
  */
 const isScrollableLibrary = function (library) {
-  return staticLibraryTitles.indexOf(library) !== -1;
+  return scrollableLibraries.indexOf(library) !== -1;
 };
 
 /**
@@ -471,9 +471,13 @@ function Interaction(parameters, player, previousState) {
 
     // Create wrapper for dialog content
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-dialog-interaction h5p-frame',
-      'tabindex': isScrollableLibrary(library) ? '0' : '' // Make content scrollable
+      'class': 'h5p-dialog-interaction h5p-frame'
     });
+
+    if (!isGotoClickable && isScrollableLibrary(library)) {
+      $dialogContent.attr('tabindex', '0'); // Make content scrollable
+    }
+
     $dialogContent.on('keyup', disableGlobalVideoControls);
 
     // Disable tabbing when editing
@@ -797,9 +801,12 @@ function Interaction(parameters, player, previousState) {
     }).appendTo($interaction);
 
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-interaction-inner h5p-frame',
-      'tabindex': isScrollableLibrary(library) ? '0' : '' // Make content scrollable
+      'class': 'h5p-interaction-inner h5p-frame'
     }).appendTo($outer);
+
+    if (!isGotoClickable && isScrollableLibrary(library)) {
+      $inner.attr('tabindex', '0'); // Make content scrollable
+    }
 
     if (player.editor !== undefined && instance.disableAutoPlay) {
       instance.disableAutoPlay();
