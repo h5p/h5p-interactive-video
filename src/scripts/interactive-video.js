@@ -425,12 +425,12 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   self.captionsTrackSelector.on('select', function (event) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
-  self.captionsTrackSelector.on('close', function (event) {
+  self.captionsTrackSelector.on('close', function () {
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
   });
-  self.captionsTrackSelector.on('open', function (event) {
+  self.captionsTrackSelector.on('open', function () {
     self.controls.$overlayButtons.addClass('h5p-hide');
   });
 
@@ -548,6 +548,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
     // Resume playing when closing dialog
     this.dnb.dialog.on('close', function () {
+      that.restoreTabIndexes();
       if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
         that.video.play();
       }
@@ -704,7 +705,7 @@ InteractiveVideo.prototype.addControls = function () {
   const humanTime = InteractiveVideo.humanizeTime(duration);
   const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
   this.controls.$totalTime.find('.human-time').html(humanTime);
-  this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
+  this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
 
   // Add keyboard controls for Bookmarks
@@ -1575,7 +1576,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     orientation: 'horizontal',
     range: 'min',
     max: 0,
-    create: function (event, ui) {
+    create: function (event) {
       const $handle = $(event.target).find('.ui-slider-handle');
 
       $handle
@@ -1816,7 +1817,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
     });
 
   const menuElements = $list.find('li').get();
-  menuElements.forEach((el, index) => {
+  menuElements.forEach(el => {
     self.qualityMenuKeyboardControls.addElement(el);
 
     // updates tabindex based on if it's selected
@@ -1833,7 +1834,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 /**
  * Updates the quality of the video, and toggles menus
  *
- * @param {string} quality
+ * @param {string} quality
  */
 InteractiveVideo.prototype.updateQuality = function (quality) {
   var self = this;
@@ -1948,7 +1949,6 @@ InteractiveVideo.prototype.resize = function () {
     return;
   }
 
-  var self = this;
   var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
   this.$videoWrapper.css({
@@ -2071,6 +2071,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
         var $dialog = $('.h5p-dialog', this.$container);
         $dialog.show();
       } else {
+        self.restoreTabIndexes();
         this.dnb.dialog.closeOverlay();
       }
 
@@ -2424,6 +2425,7 @@ InteractiveVideo.prototype.showOverlayMask = function () {
   var self = this;
 
   self.$videoWrapper.addClass('h5p-disable-opt-out');
+  self.disableTabIndexes();
   self.dnb.dialog.openOverlay();
   self.restorePosterTabIndexes();
 
@@ -2446,8 +2448,79 @@ InteractiveVideo.prototype.restorePosterTabIndexes = function() {
 
   // Allow posters to be tabbable, but not buttons.
   self.$overlay.find('.h5p-interaction.h5p-poster').each(function () {
-    self.dnb.dialog.restoreTabIndexes($(this));
+    self.restoreTabIndexes($(this));
   });
+};
+
+
+/**
+ * Disable tab indexes hidden behind overlay.
+ */
+InteractiveVideo.prototype.disableTabIndexes = function () {
+  var self = this;
+  // Make all other elements in container not tabbable. When dialog is open,
+  // it's like the elements behind does not exist.
+  var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+  self.$tabbables = self.$container.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
+    var $tabbable = $(this);
+    var insideWrapper = $.contains($dialogWrapper.get(0), $tabbable.get(0));
+
+      // tabIndex has already been modified, keep it in the set.
+    if ($tabbable.data('tabindex')) {
+      return true;
+    }
+
+    if (!insideWrapper) {
+      // Store current tabindex, so we can set it back when dialog closes
+      var tabIndex = $tabbable.attr('tabindex');
+      $tabbable.data('tabindex', tabIndex);
+
+      // Make it non tabbable
+      $tabbable.attr('tabindex', '-1');
+      return true;
+    }
+    // If element is part of dialog wrapper, just ignore it
+    return false;
+  });
+};
+
+/**
+ * Restore tab indexes that was previously disabled.
+ * @param {H5P.jQuery} $withinContainer Only restore tab indexes of elements within this container.
+ */
+InteractiveVideo.prototype.restoreTabIndexes = function ($withinContainer) {
+  var self = this;
+  // Resetting tabindex on background elements
+  if (self.$tabbables) {
+    self.$tabbables.each(function () {
+      var $element = $(this);
+      var tabindex = $element.data('tabindex');
+
+      // Only restore elements within container when specified
+      if ($withinContainer && !$.contains($withinContainer.get(0), $element.get(0))) {
+        return true;
+      }
+
+      // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+      if ($element.hasClass('ui-slider-handle')) {
+        $element.attr('tabindex', 0);
+        $element.removeData('tabindex');
+      }
+      else if (tabindex !== undefined) {
+        $element.attr('tabindex', tabindex);
+        $element.removeData('tabindex');
+      }
+      else {
+        $element.removeAttr('tabindex');
+      }
+    });
+
+    // Do not remove reference if only restored partially
+    if (!$withinContainer) {
+      // Has been restored, remove reference
+      self.$tabbables = undefined;
+    }
+  }
 };
 
 /**
@@ -2499,6 +2572,7 @@ InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteracti
 InteractiveVideo.prototype.hideOverlayMask = function () {
   var self = this;
 
+  self.restoreTabIndexes();
   self.dnb.dialog.closeOverlay();
   self.$videoWrapper.removeClass('h5p-disable-opt-out');
   self.toggleFocusTrap();
