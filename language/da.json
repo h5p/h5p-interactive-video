@@ -457,6 +457,10 @@
         {
           "label":"Meddelelse til \"Video er sat på pause\"",
           "default":"Video er sat på pause-titel"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }

@@ -958,6 +958,14 @@
         "importance": "low",
         "default": "Video is paused",
         "optional": true
+      },
+      {
+        "name": "content",
+        "type": "text",
+        "label": "Content label",
+        "importance": "low",
+        "default": "Content",
+        "optional": true
       }
     ]
   }

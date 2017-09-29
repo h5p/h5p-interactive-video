@@ -457,6 +457,10 @@
         {
           "label":"Video is paused announcement",
           "default":"Video is gepauzeerd"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }

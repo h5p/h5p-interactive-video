@@ -433,6 +433,10 @@
         {
           "label": "Video is paused announcement",
           "default": "Video is paused"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         }
       ]
     }
