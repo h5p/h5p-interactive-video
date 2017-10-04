@@ -75,7 +75,7 @@ function InteractiveVideo(params, id, contentData) {
   }, self.options.video.startScreenOptions);
 
   // Set overrides for interactions
-  if (params.override && (params.override.showSolutionButton || params.override.retryButton)) {
+  if (params.override && (params.override.showSolutionButton || params.override.retryButton || params.override.checkButton)) {
     self.override = {};
 
     if (params.override.showSolutionButton) {
@@ -86,6 +86,11 @@ function InteractiveVideo(params, id, contentData) {
     if (params.override.retryButton) {
       // Force "Retry" button to be on or off for all interactions
       self.override.enableRetry = params.override.retryButton === 'on';
+    }
+
+    if (params.override.checkButton) {
+      // Force "Check" button to be on or off for all interactions
+      self.override.enableCheckButton = params.override.checkButton === 'on';
     }
   }
 

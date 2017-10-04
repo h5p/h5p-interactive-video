@@ -1405,6 +1405,10 @@ function Interaction(parameters, player, previousState) {
           adaptivity();
         });
 
+        if (action.params.behaviour && action.params.behaviour.enableCheckButton === false) {
+          adaptivity();
+        }
+
         instance.on('resize', function () {
           // Forget the static dialog width on resize
           delete self.dialogWidth;
