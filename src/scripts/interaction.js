@@ -34,7 +34,7 @@ const gotoType = {
  * @param {gotoType} type
  * @return {boolean}
  */
-const isGotoType = function (parameters, type) {
+const isGotoType = function (parameters, type) {
   return (parameters.goto !== undefined) && (parameters.goto.type === type);
 };
 
@@ -534,6 +534,7 @@ function Interaction(parameters, player, previousState) {
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
+    player.disableTabIndexes();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', isGotoType(parameters, gotoType.TIME_CODE));
@@ -551,7 +552,7 @@ function Interaction(parameters, player, previousState) {
       this.off('close', dialogCloseHandler); // Avoid running more than once
 
       // Reset the image size to a percentage of the container instead of hardcoded values
-      player.dnb.$dialogContainer.one('transitionend', function(event) {
+      player.dnb.$dialogContainer.one('transitionend', function() {
         if ($dialogContent.is('.h5p-image')) {
           var $img = $dialogContent.find('img');
           $img.css({
