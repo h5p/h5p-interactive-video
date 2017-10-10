@@ -531,7 +531,7 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.readText = null;
 
   // Controls
-  this.$controls = $container.children('.h5p-controls').hide();
+  this.$controls = $container.children('.h5p-controls').addClass('hidden');
 
   if (this.editor === undefined) {
     this.dnb = new H5P.DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
@@ -699,7 +699,7 @@ InteractiveVideo.prototype.addControls = function () {
   // Display splash screen
   this.addSplash();
 
-  this.attachControls(this.$controls.show());
+  this.attachControls(this.$controls.removeClass('hidden'));
 
   const duration = this.getDuration();
   const humanTime = InteractiveVideo.humanizeTime(duration);
