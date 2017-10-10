@@ -2071,7 +2071,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
         var $dialog = $('.h5p-dialog', this.$container);
         $dialog.show();
       } else {
-        self.restoreTabIndexes();
+        this.restoreTabIndexes();
         this.dnb.dialog.closeOverlay();
       }
 
@@ -2486,7 +2486,7 @@ InteractiveVideo.prototype.disableTabIndexes = function () {
 
 /**
  * Restore tab indexes that was previously disabled.
- * @param {H5P.jQuery} $withinContainer Only restore tab indexes of elements within this container.
+ * @param {H5P.jQuery} [$withinContainer] Only restore tab indexes of elements within this container.
  */
 InteractiveVideo.prototype.restoreTabIndexes = function ($withinContainer) {
   var self = this;
