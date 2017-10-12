@@ -576,19 +576,23 @@
                           "options": [
                             {
                               "value": "http://",
-                              "label": "http://"
+                              "label": "http://",
+                              "id": "TODO"
                             },
                             {
                               "value": "https://",
-                              "label": "https://"
+                              "label": "https://",
+                              "id": "TODO"
                             },
                             {
                               "value": "/",
-                              "label": "(root relative)"
+                              "label": "(root relative)",
+                              "id": "TODO"
                             },
                             {
                               "value": "other",
-                              "label": "other"
+                              "label": "other",
+                              "id": "TODO"
                             }
                           ],
                           "optional": true,
