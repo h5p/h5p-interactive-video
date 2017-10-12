@@ -576,19 +576,19 @@
                           "options": [
                             {
                               "value": "http://",
-                              "label": "http://",
+                              "label": "http://"
                             },
                             {
                               "value": "https://",
-                              "label": "https://",
+                              "label": "https://"
                             },
                             {
                               "value": "/",
-                              "label": "(root relative)",
+                              "label": "(root relative)"
                             },
                             {
                               "value": "other",
-                              "label": "other",
+                              "label": "other"
                             }
                           ],
                           "optional": true,
