@@ -21,7 +21,8 @@
             "extraAttributes": [
               "metadata"
             ],
-            "enableCustomQualityLabel": true
+            "enableCustomQualityLabel": true,
+            "id": "files"
           },
           {
             "name": "startScreenOptions",
@@ -36,7 +37,8 @@
                 "importance": "low",
                 "maxLength": 60,
                 "default": "Interactive Video",
-                "description": "Used in summaries, statistics etc."
+                "description": "Used in summaries, statistics etc.",
+                "id": "title"
               },
               {
                 "name": "hideStartTitle",
@@ -44,7 +46,8 @@
                 "label": "Hide title on video start screen",
                 "importance": "low",
                 "optional": true,
-                "default": false
+                "default": false,
+                "id": "hideStartTitle"
               },
               {
                 "name": "shortStartDescription",
@@ -53,7 +56,8 @@
                 "importance": "low",
                 "optional": true,
                 "maxLength": 120,
-                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos.",
+                "id": "shortStartDescription"
               },
               {
                 "name": "poster",
@@ -61,7 +65,8 @@
                 "label": "Poster image",
                 "importance": "low",
                 "optional": true,
-                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                "description": "Image displayed before the user launches the video. Does not work for YouTube Videos.",
+                "id": "poster"
               },
               {
                 "name": "copyright",
@@ -77,9 +82,11 @@
                   "em",
                   "del",
                   "a"
-                ]
+                ],
+                "id": "copyright"
               }
-            ]
+            ],
+            "id": "startScreenOptions"
           },
           {
             "name": "textTracks",
@@ -110,7 +117,8 @@
                       "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
                       "importance": "low",
                       "default": "Subtitles",
-                      "optional": true
+                      "optional": true,
+                      "id": "label"
                     },
                     {
                       "name": "kind",
@@ -121,17 +129,21 @@
                       "options": [
                         {
                           "value": "subtitles",
-                          "label": "Subtitles"
+                          "label": "Subtitles",
+                          "id": "textTrackSubtitles"
                         },
                         {
                           "value": "captions",
-                          "label": "Captions"
+                          "label": "Captions",
+                          "id": "textTrackCaptions"
                         },
                         {
                           "value": "descriptions",
-                          "label": "Descriptions"
+                          "label": "Descriptions",
+                          "id": "textTrackDescriptions"
                         }
-                      ]
+                      ],
+                      "id": "kindOfTextTrack"
                     },
                     {
                       "name": "srcLang",
@@ -139,20 +151,26 @@
                       "label": "Source language, must be defined for subtitles",
                       "importance": "low",
                       "default": "en",
-                      "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined.",
+                      "id": "srcLang"
                     },
                     {
                       "name": "track",
                       "type": "file",
                       "label": "Track source (WebVTT file)",
-                      "importance": "low"
+                      "importance": "low",
+                      "id": "track"
                     }
-                  ]
-                }
+                  ],
+                  "id": "textTrack"
+                },
+                "id": "videoTrack"
               }
-            ]
+            ],
+            "id": "textTracks"
           }
-        ]
+        ],
+        "id": "video"
       },
       {
         "name": "assets",
@@ -185,13 +203,15 @@
                       "name": "to",
                       "type": "number"
                     }
-                  ]
+                  ],
+                  "id": "duration"
                 },
                 {
                   "name": "pause",
                   "label": "Pause video",
                   "importance": "low",
-                  "type": "boolean"
+                  "type": "boolean",
+                  "id": "pause"
                 },
                 {
                   "name": "displayType",
@@ -203,21 +223,25 @@
                   "options": [
                     {
                       "value": "button",
-                      "label": "Button"
+                      "label": "Button",
+                      "id": "displayAsButton"
                     },
                     {
                       "value": "poster",
-                      "label": "Poster"
+                      "label": "Poster",
+                      "id": "displayAsPoster"
                     }
                   ],
-                  "default": "button"
+                  "default": "button",
+                  "id": "displayType"
                 },
                 {
                   "name": "buttonOnMobile",
                   "label": "Turn into button on small screens",
                   "importance": "low",
                   "type": "boolean",
-                  "default": false
+                  "default": false,
+                  "id": "buttonOnMobile"
                 },
                 {
                   "name": "label",
@@ -230,7 +254,8 @@
                   "enterMode": "p",
                   "tags": [
                     "p"
-                  ]
+                  ],
+                  "id": "htmlWidgetLabel"
                 },
                 {
                   "name": "x",
@@ -305,12 +330,14 @@
                           "type": "number",
                           "widget": "timecode",
                           "label": "Seek to",
-                          "description": "Enter timecode in the format M:SS"
+                          "description": "Enter timecode in the format M:SS",
+                          "id": "seekTo"
                         },
                         {
                           "name": "allowOptOut",
                           "type": "boolean",
-                          "label": "Allow the user to opt out and continue"
+                          "label": "Allow the user to opt out and continue",
+                          "id": "allowOptOut"
                         },
                         {
                           "name": "message",
@@ -323,14 +350,17 @@
                             "del",
                             "a"
                           ],
-                          "label": "Message"
+                          "label": "Message",
+                          "id": "message"
                         },
                         {
                           "name": "seekLabel",
                           "type": "text",
-                          "label": "Label for seek button"
+                          "label": "Label for seek button",
+                          "id": "seekLabel"
                         }
-                      ]
+                      ],
+                      "id": "correct"
                     },
                     {
                       "name": "wrong",
@@ -342,12 +372,14 @@
                           "type": "number",
                           "widget": "timecode",
                           "label": "Seek to",
-                          "description": "Enter timecode in the format M:SS"
+                          "description": "Enter timecode in the format M:SS",
+                          "id": "seekToNumber"
                         },
                         {
                           "name": "allowOptOut",
                           "type": "boolean",
-                          "label": "Allow the user to opt out and continue"
+                          "label": "Allow the user to opt out and continue",
+                          "id": "allowOptOutOnWrong"
                         },
                         {
                           "name": "message",
@@ -360,22 +392,27 @@
                             "del",
                             "a"
                           ],
-                          "label": "Message"
+                          "label": "Message",
+                          "id": "actionOnWrong"
                         },
                         {
                           "name": "seekLabel",
                           "type": "text",
-                          "label": "Label for seek button"
+                          "label": "Label for seek button",
+                          "id": "seekLabelOnWrong"
                         }
-                      ]
+                      ],
+                      "id": "wrong"
                     },
                     {
                       "name": "requireCompletion",
                       "type": "boolean",
                       "label": "Require full score for task before proceeding",
-                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video.",
+                      "id": "requireCompletion"
                     }
-                  ]
+                  ],
+                  "id": "adaptivity"
                 },
                 {
                   "name": "visuals",
@@ -470,16 +507,19 @@
                             "rgb(76, 17, 48)"
                           ]
                         ]
-                      }
+                      },
+                      "id": "backgroundColor"
                     },
                     {
                       "name": "boxShadow",
                       "type": "boolean",
                       "label": "Box shadow",
                       "default": true,
-                      "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions",
+                      "id": "boxShadow"
                     }
-                  ]
+                  ],
+                  "id": "visuals"
                 },
                 {
                   "name": "goto",
@@ -498,17 +538,20 @@
                           "label": "Timecode",
                           "hideFields": [
                             "url"
-                          ]
+                          ],
+                          "id": "gotoOnClickTimeCode"
                         },
                         {
                           "value": "url",
                           "label": "Another page (URL)",
                           "hideFields": [
                             "time"
-                          ]
+                          ],
+                          "id": "gotoURL"
                         }
                       ],
-                      "optional": true
+                      "optional": true,
+                      "id": "type"
                     },
                     {
                       "name": "time",
@@ -516,7 +559,8 @@
                       "widget": "timecode",
                       "label": "Go To",
                       "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS.",
-                      "optional": true
+                      "optional": true,
+                      "id": "time"
                     },
                     {
                       "name": "url",
@@ -532,39 +576,44 @@
                           "options": [
                             {
                               "value": "http://",
-                              "label": "http://"
+                              "label": "http://",
                             },
                             {
                               "value": "https://",
-                              "label": "https://"
+                              "label": "https://",
                             },
                             {
                               "value": "/",
-                              "label": "(root relative)"
+                              "label": "(root relative)",
                             },
                             {
                               "value": "other",
-                              "label": "other"
+                              "label": "other",
                             }
                           ],
                           "optional": true,
-                          "default": "http://"
+                          "default": "http://",
+                          "id": "protocol"
                         },
                         {
                           "name": "url",
                           "type": "text",
                           "label": "URL",
-                          "optional": true
+                          "optional": true,
+                          "id": "url"
                         }
-                      ]
+                      ],
+                      "id": "urlGroup"
                     },
                     {
                       "name": "visualize",
                       "type": "boolean",
                       "label": "Visualize",
-                      "description": "Show that interaction can be clicked by adding a border and an icon"
+                      "description": "Show that interaction can be clicked by adding a border and an icon",
+                      "id": "visualize"
                     }
-                  ]
+                  ],
+                  "id": "goto"
                 }
               ]
             }
@@ -588,7 +637,8 @@
               ]
             }
           }
-        ]
+        ],
+        "id": "assets"
       },
       {
         "name": "summary",
@@ -612,11 +662,14 @@
             "type": "number",
             "label": "Display at",
             "description": "Number of seconds before the video ends.",
-            "default": 3
+            "default": 3,
+            "id": "displayAt"
           }
-        ]
+        ],
+        "id": "summary"
       }
-    ]
+    ],
+    "id": "interactiveVideo"
   },
   {
     "name": "override",
@@ -632,7 +685,8 @@
         "label": "Start video at",
         "importance": "low",
         "optional": true,
-        "description": "Enter timecode in the format M:SS"
+        "description": "Enter timecode in the format M:SS",
+        "id": "startVideoAt"
       },
       {
         "name": "autoplay",
@@ -640,7 +694,8 @@
         "label": "Auto-play video",
         "default": false,
         "optional": true,
-        "description": "Start playing the video automatically"
+        "description": "Start playing the video automatically",
+        "id": "autoplay"
       },
       {
         "name": "loop",
@@ -648,7 +703,8 @@
         "label": "Loop the video",
         "default": false,
         "optional": true,
-        "description": "Check if video should run in a loop"
+        "description": "Check if video should run in a loop",
+        "id": "loop"
       },
       {
         "name": "showSolutionButton",
@@ -660,13 +716,16 @@
         "options": [
           {
             "value": "on",
-            "label": "Enabled"
+            "label": "Enabled",
+            "id": "showSolutionButtonOptionEnabled"
           },
           {
             "value": "off",
-            "label": "Disabled"
+            "label": "Disabled",
+            "id": "showSolutionButtonOptionDisabled"
           }
-        ]
+        ],
+        "id": "showSolutionButton"
       },
       {
         "name": "retryButton",
@@ -678,13 +737,16 @@
         "options": [
           {
             "value": "on",
-            "label": "Enabled"
+            "label": "Enabled",
+            "id": "retryButtonOptionEnabled"
           },
           {
             "value": "off",
-            "label": "Disabled"
+            "label": "Disabled",
+            "id": "retryButtonOptionDisabled"
           }
-        ]
+        ],
+        "id": "retryButton"
       },
       {
         "name": "showBookmarksmenuOnLoad",
@@ -692,14 +754,16 @@
         "label": "Start with bookmarks menu open",
         "importance": "low",
         "default": false,
-        "description": "This function is not available on iPad when using YouTube as video source."
+        "description": "This function is not available on iPad when using YouTube as video source.",
+        "id": "showBookmarksmenuOnLoad"
       },
       {
         "name": "showRewind10",
         "type": "boolean",
         "label": "Show button for rewinding 10 seconds",
         "importance": "low",
-        "default": false
+        "default": false,
+        "id": "showRewind10"
       },
       {
         "name": "preventSkipping",
@@ -707,7 +771,8 @@
         "default": false,
         "label": "Prevent skipping forward in a video",
         "importance": "low",
-        "description": "Enabling this options will disable user video navigation through default controls."
+        "description": "Enabling this options will disable user video navigation through default controls.",
+        "id": "preventSkipping"
       },
       {
         "name": "deactivateSound",
@@ -715,9 +780,11 @@
         "default": false,
         "label": "Deactivate sound",
         "importance": "low",
-        "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
+        "id": "deactivateSound"
       }
-    ]
+    ],
+    "id": "override"
   },
   {
     "name": "l10n",
@@ -733,7 +800,8 @@
         "label": "Interaction title",
         "importance": "low",
         "default": "Interaction",
-        "optional": true
+        "optional": true,
+        "id": "interaction"
       },
       {
         "name": "play",
@@ -741,7 +809,8 @@
         "label": "Play title",
         "importance": "low",
         "default": "Play",
-        "optional": true
+        "optional": true,
+        "id": "play"
       },
       {
         "name": "pause",
@@ -749,7 +818,8 @@
         "label": "Pause title",
         "importance": "low",
         "default": "Pause",
-        "optional": true
+        "optional": true,
+        "id": "pauseTitle"
       },
       {
         "name": "mute",
@@ -757,7 +827,8 @@
         "label": "Mute title",
         "importance": "low",
         "default": "Mute",
-        "optional": true
+        "optional": true,
+        "id": "mute"
       },
       {
         "name": "unmute",
@@ -765,7 +836,8 @@
         "label": "Unmute title",
         "importance": "low",
         "default": "Unmute",
-        "optional": true
+        "optional": true,
+        "id": "unmute"
       },
       {
         "name": "quality",
@@ -773,7 +845,8 @@
         "label": "Video quality title",
         "importance": "low",
         "default": "Video Quality",
-        "optional": true
+        "optional": true,
+        "id": "quality"
       },
       {
         "name": "captions",
@@ -781,7 +854,8 @@
         "label": "Video captions title",
         "importance": "low",
         "default": "Captions",
-        "optional": true
+        "optional": true,
+        "id": "captions"
       },
       {
         "name": "close",
@@ -789,7 +863,8 @@
         "label": "Close button text",
         "importance": "low",
         "default": "Close",
-        "optional": true
+        "optional": true,
+        "id": "close"
       },
       {
         "name": "fullscreen",
@@ -797,7 +872,8 @@
         "label": "Fullscreen title",
         "importance": "low",
         "default": "Fullscreen",
-        "optional": true
+        "optional": true,
+        "id": "fullscreen"
       },
       {
         "name": "exitFullscreen",
@@ -805,7 +881,8 @@
         "label": "Exit fullscreen title",
         "importance": "low",
         "default": "Exit Fullscreen",
-        "optional": true
+        "optional": true,
+        "id": "exitFullscreen"
       },
       {
         "name": "summary",
@@ -813,7 +890,8 @@
         "label": "Summary title",
         "importance": "low",
         "default": "Summary",
-        "optional": true
+        "optional": true,
+        "id": "summaryTitle"
       },
       {
         "name": "bookmarks",
@@ -821,7 +899,8 @@
         "label": "Bookmarks title",
         "importance": "low",
         "default": "Bookmarks",
-        "optional": true
+        "optional": true,
+        "id": "bookmarks"
       },
       {
         "name": "defaultAdaptivitySeekLabel",
@@ -829,7 +908,8 @@
         "label": "Default label for adaptivity seek button",
         "importance": "low",
         "default": "Continue",
-        "optional": true
+        "optional": true,
+        "id": "defaultAdaptivitySeekLabel"
       },
       {
         "name": "continueWithVideo",
@@ -837,7 +917,8 @@
         "label": "Default label for continue video button",
         "importance": "low",
         "default": "Continue with video",
-        "optional": true
+        "optional": true,
+        "id": "continueWithVideo"
       },
       {
         "name": "playbackRate",
@@ -845,7 +926,8 @@
         "label": "Set playback rate",
         "importance": "low",
         "default": "Playback Rate",
-        "optional": true
+        "optional": true,
+        "id": "playbackRate"
       },
       {
         "name": "rewind10",
@@ -853,7 +935,8 @@
         "label": "Rewind 10 Seconds",
         "importance": "low",
         "default": "Rewind 10 Seconds",
-        "optional": true
+        "optional": true,
+        "id": "rewind10"
       },
       {
         "name": "navDisabled",
@@ -861,7 +944,8 @@
         "label": "Navigation is disabled text",
         "importance": "low",
         "default": "Navigation is disabled",
-        "optional": true
+        "optional": true,
+        "id": "navDisabled"
       },
       {
         "name": "sndDisabled",
@@ -869,7 +953,8 @@
         "label": "Sound is disabled text",
         "importance": "low",
         "default": "Sound is disabled",
-        "optional": true
+        "optional": true,
+        "id": "sndDisabled"
       },
       {
         "name": "requiresCompletionWarning",
@@ -877,7 +962,8 @@
         "label": "Warning that the user must answer the question correctly before continuing",
         "importance": "low",
         "default": "You need to answer all the questions correctly before continuing.",
-        "optional": true
+        "optional": true,
+        "id": "requiresCompletionWarning"
       },
       {
         "name": "back",
@@ -885,7 +971,8 @@
         "label": "Back button",
         "importance": "low",
         "default": "Back",
-        "optional": true
+        "optional": true,
+        "id": "back"
       },
       {
         "name": "hours",
@@ -893,7 +980,8 @@
         "label": "Passed time hours",
         "importance": "low",
         "default": "Hours",
-        "optional": true
+        "optional": true,
+        "id": "hours"
       },
       {
         "name": "minutes",
@@ -901,7 +989,8 @@
         "label": "Passed time minutes",
         "importance": "low",
         "default": "Minutes",
-        "optional": true
+        "optional": true,
+        "id": "minutes"
       },
       {
         "name": "seconds",
@@ -909,7 +998,8 @@
         "label": "Passed time seconds",
         "importance": "low",
         "default": "Seconds",
-        "optional": true
+        "optional": true,
+        "id": "seconds"
       },
       {
         "name": "currentTime",
@@ -917,7 +1007,8 @@
         "label": "Label for current time",
         "importance": "low",
         "default": "Current time:",
-        "optional": true
+        "optional": true,
+        "id": "currentTime"
       },
       {
         "name": "totalTime",
@@ -925,7 +1016,8 @@
         "label": "Label for total time",
         "importance": "low",
         "default": "Total time:",
-        "optional": true
+        "optional": true,
+        "id": "totalTime"
       },
       {
         "name": "navigationHotkeyInstructions",
@@ -933,7 +1025,8 @@
         "label": "Text for explaining navigation hotkey",
         "importance": "low",
         "default": "Use key k for starting and stopping video at any time",
-        "optional": true
+        "optional": true,
+        "id": "navigationHotkeyInstructions"
       },
       {
         "name": "singleInteractionAnnouncement",
@@ -941,7 +1034,8 @@
         "label": "Text explaining that a single interaction with a name has come into view",
         "importance": "low",
         "default": "Interaction appeared:",
-        "optional": true
+        "optional": true,
+        "id": "singleInteractionAnnouncement"
       },
       {
         "name": "multipleInteractionsAnnouncement",
@@ -949,7 +1043,8 @@
         "label": "Text for explaining that multiple interactions have come into view",
         "importance": "low",
         "default": "Multiple interactions appeared.",
-        "optional": true
+        "optional": true,
+        "id": "multipleInteractionsAnnouncement"
       },
       {
         "name": "videoPausedAnnouncement",
@@ -957,7 +1052,8 @@
         "label": "Video is paused announcement",
         "importance": "low",
         "default": "Video is paused",
-        "optional": true
+        "optional": true,
+        "id": "videoPausedAnnouncement"
       },
       {
         "name": "content",
@@ -965,8 +1061,10 @@
         "label": "Content label",
         "importance": "low",
         "default": "Content",
-        "optional": true
+        "optional": true,
+        "id": "content"
       }
-    ]
+    ],
+    "id": "l10n"
   }
 ]
