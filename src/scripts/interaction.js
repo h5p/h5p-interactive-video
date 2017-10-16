@@ -396,6 +396,7 @@ function Interaction(parameters, player, previousState) {
     button.innerHTML = player.l10n.continueWithVideo;
     button.className = 'h5p-interaction-continue-button';
     button.addEventListener('click', function () {
+      console.log('clicked');
       closeInteraction();
       player.play();
     });
@@ -971,6 +972,7 @@ function Interaction(parameters, player, previousState) {
         player.seek(seekTo);
       }
       player.play();
+      player.controls.$play.focus();
     }
   };
 
