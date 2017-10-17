@@ -231,7 +231,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.ENDED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         self.timeUpdate(self.video.getCurrentTime());
         self.updateCurrentTime(self.getDuration());
@@ -269,7 +269,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PLAYING;
         self.controls.$play
           .removeClass('h5p-pause')
-          .attr('title', self.l10n.pause);
+          .attr('aria-label', self.l10n.pause);
 
         // refocus for re-read button title by screen reader
         if (self.controls.$play.is(":focus")) {
@@ -284,7 +284,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PAUSED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         // refocus for re-read button title by screen reader
         if (self.focusInteraction) {
@@ -336,7 +336,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '100%');
     self.controls.$fullscreen
       .addClass('h5p-exit')
-      .attr('title', self.l10n.exitFullscreen);
+      .attr('aria-label', self.l10n.exitFullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -355,7 +355,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '');
     self.controls.$fullscreen
       .removeClass('h5p-exit')
-      .attr('title', self.l10n.fullscreen);
+      .attr('aria-label', self.l10n.fullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -1282,7 +1282,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'button',
       'class': 'h5p-chooser-close-button',
       'tabindex': '0',
-      'title': self.l10n.close,
+      'aria-label': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
         if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
@@ -1409,14 +1409,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         if ($muteButton.hasClass('h5p-muted')) {
           $muteButton
             .removeClass('h5p-muted')
-            .attr('title', self.l10n.mute);
+            .attr('aria-label', self.l10n.mute);
 
           self.video.unMute();
         }
         else {
           $muteButton
             .addClass('h5p-muted')
-            .attr('title', self.l10n.unmute);
+            .attr('aria-label', self.l10n.unmute);
 
           self.video.mute();
         }
@@ -1429,7 +1429,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
-        .attr('title', self.l10n.sndDisabled);
+        .attr('aria-label', self.l10n.sndDisabled);
 
       self.setDisabled(self.controls.$volume);
     }
@@ -1461,7 +1461,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'button',
     'class': 'h5p-chooser-close-button',
     'tabindex': '0',
-    'title': self.l10n.close,
+    'aria-label': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
       if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
@@ -1765,7 +1765,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
     },
     appendTo: $target
   };
-  options[text ? 'text' : 'title'] = self.l10n[type];
+  options[text ? 'text' : 'aria-label'] = self.l10n[type];
   return H5P.jQuery('<div/>', options);
 };
 
