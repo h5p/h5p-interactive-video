@@ -3020,7 +3020,7 @@ const isSameElementOrChild = ($parent, $child) => {
 var getXAPIDataFromChildren = function(children) {
   return children.map(function(child) {
     return child.getXAPIData();
-  });
+  }).filter(data => !!data);
 };
 
 export default InteractiveVideo;
