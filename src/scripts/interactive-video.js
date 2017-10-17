@@ -844,7 +844,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     }, 0);
   });
 
-  // // The interaction is about to be hidden.
+  // The interaction is about to be hidden.
   interaction.on('hide', function (event) {
     var $interaction = event.data; // Grab DOM element
   });
