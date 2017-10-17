@@ -630,12 +630,11 @@ InteractiveVideo.prototype.addSplash = function () {
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
       '<div class="h5p-splash-outer">' +
-        '<div class="h5p-splash" role="button" tabindex="0" ' +
-              'aria-label="' + this.l10n.play + '" title="' + this.l10n.play + '">' +
+        '<div class="h5p-splash" role="button" tabindex="0">' +
           '<div class="h5p-splash-main">' +
             '<div class="h5p-splash-main-outer">' +
               '<div class="h5p-splash-main-inner">' +
-                '<div class="h5p-splash-play-icon"></div>' +
+                '<div class="h5p-splash-play-icon" aria-label="' + this.l10n.play + '"></div>' +
                 '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
               '</div>' +
             '</div>' +
