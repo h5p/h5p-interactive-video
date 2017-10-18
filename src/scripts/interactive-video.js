@@ -837,6 +837,12 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       }
     });
 
+    // Focus if it is 'seeked-to'
+    if (self.seekingTo) {
+      self.seekingTo = undefined;
+      $interaction.focus();
+    }
+
     // Position label on next tick
     setTimeout(function () {
       interaction.positionLabel(self.$videoWrapper.width());
@@ -2275,11 +2281,6 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   }
 
   self.updateInteractions(time);
-
-  if (self.seekingTo) {
-    self.seekingTo = undefined;
-    self.focusInteraction.getFirstTabbableElement().focus();;
-  }
 
   // Skip queueing next time update
   if (skipNextTimeUpdate) {

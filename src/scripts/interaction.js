@@ -1547,7 +1547,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.getFirstTabbableElement = function () {
     var $tabbables = $($interaction.get(0)).find('[tabindex]');
-    if ($tabbables.length) {
+    if ($tabbables && $tabbables.length) {
       return $tabbables.get(0);
     }
     else {
