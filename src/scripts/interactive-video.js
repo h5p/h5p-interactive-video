@@ -2276,6 +2276,11 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
 
   self.updateInteractions(time);
 
+  if (self.seekingTo) {
+    self.seekingTo = undefined;
+    self.focusInteraction.getFirstTabbableElement().focus();;
+  }
+
   // Skip queueing next time update
   if (skipNextTimeUpdate) {
     return;
