@@ -494,6 +494,7 @@
   position: relative;
   vertical-align: bottom;
   outline: none;
+  cursor: pointer;
   -webkit-transition: visibility 0s linear 0.1s;
 }
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button.h5p-hide {
@@ -1698,6 +1699,10 @@
   font-family: "H5PFontAwesome4";
   content: '\f144';
   margin-left: 1.2em;
+}
+
+.h5p-interactive-video .hidden {
+  display: none;
 }
 
 .h5p-interactive-video .hidden-but-read {

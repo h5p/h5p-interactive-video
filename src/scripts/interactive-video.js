@@ -231,7 +231,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.ENDED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         self.timeUpdate(self.video.getCurrentTime());
         self.updateCurrentTime(self.getDuration());
@@ -269,7 +269,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PLAYING;
         self.controls.$play
           .removeClass('h5p-pause')
-          .attr('title', self.l10n.pause);
+          .attr('aria-label', self.l10n.pause);
 
         // refocus for re-read button title by screen reader
         if (self.controls.$play.is(":focus")) {
@@ -284,7 +284,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PAUSED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         // refocus for re-read button title by screen reader
         if (self.focusInteraction) {
@@ -336,7 +336,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '100%');
     self.controls.$fullscreen
       .addClass('h5p-exit')
-      .attr('title', self.l10n.exitFullscreen);
+      .attr('aria-label', self.l10n.exitFullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -355,7 +355,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '');
     self.controls.$fullscreen
       .removeClass('h5p-exit')
-      .attr('title', self.l10n.fullscreen);
+      .attr('aria-label', self.l10n.fullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -531,7 +531,7 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.readText = null;
 
   // Controls
-  this.$controls = $container.children('.h5p-controls').hide();
+  this.$controls = $container.children('.h5p-controls').addClass('hidden');
 
   if (this.editor === undefined) {
     this.dnb = new H5P.DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
@@ -630,12 +630,11 @@ InteractiveVideo.prototype.addSplash = function () {
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
       '<div class="h5p-splash-outer">' +
-        '<div class="h5p-splash" role="button" tabindex="0" ' +
-              'aria-label="' + this.l10n.play + '" title="' + this.l10n.play + '">' +
+        '<div class="h5p-splash" role="button" tabindex="0">' +
           '<div class="h5p-splash-main">' +
             '<div class="h5p-splash-main-outer">' +
               '<div class="h5p-splash-main-inner">' +
-                '<div class="h5p-splash-play-icon"></div>' +
+                '<div class="h5p-splash-play-icon" aria-label="' + this.l10n.play + '"></div>' +
                 '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
               '</div>' +
             '</div>' +
@@ -699,7 +698,7 @@ InteractiveVideo.prototype.addControls = function () {
   // Display splash screen
   this.addSplash();
 
-  this.attachControls(this.$controls.show());
+  this.attachControls(this.$controls.removeClass('hidden'));
 
   const duration = this.getDuration();
   const humanTime = InteractiveVideo.humanizeTime(duration);
@@ -838,6 +837,12 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       }
     });
 
+    // Focus if it is 'seeked-to'
+    if (self.seekingTo) {
+      self.seekingTo = undefined;
+      $interaction.focus();
+    }
+
     // Position label on next tick
     setTimeout(function () {
       interaction.positionLabel(self.$videoWrapper.width());
@@ -847,11 +852,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   // The interaction is about to be hidden.
   interaction.on('hide', function (event) {
     var $interaction = event.data; // Grab DOM element
-
-    // Check if the interaction or any of its children has focus
-    if ($interaction.is(':focus') || $interaction.find(':focus').length) {
-      self.controls.$play.focus();
-    }
   });
 
   // handle xAPI event
@@ -1287,7 +1287,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'button',
       'class': 'h5p-chooser-close-button',
       'tabindex': '0',
-      'title': self.l10n.close,
+      'aria-label': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
         if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
@@ -1414,14 +1414,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         if ($muteButton.hasClass('h5p-muted')) {
           $muteButton
             .removeClass('h5p-muted')
-            .attr('title', self.l10n.mute);
+            .attr('aria-label', self.l10n.mute);
 
           self.video.unMute();
         }
         else {
           $muteButton
             .addClass('h5p-muted')
-            .attr('title', self.l10n.unmute);
+            .attr('aria-label', self.l10n.unmute);
 
           self.video.mute();
         }
@@ -1434,7 +1434,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
-        .attr('title', self.l10n.sndDisabled);
+        .attr('aria-label', self.l10n.sndDisabled);
 
       self.setDisabled(self.controls.$volume);
     }
@@ -1466,7 +1466,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'button',
     'class': 'h5p-chooser-close-button',
     'tabindex': '0',
-    'title': self.l10n.close,
+    'aria-label': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
       if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
@@ -1770,7 +1770,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
     },
     appendTo: $target
   };
-  options[text ? 'text' : 'title'] = self.l10n[type];
+  options[text ? 'text' : 'aria-label'] = self.l10n[type];
   return H5P.jQuery('<div/>', options);
 };
 
@@ -2071,7 +2071,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
         var $dialog = $('.h5p-dialog', this.$container);
         $dialog.show();
       } else {
-        self.restoreTabIndexes();
+        this.restoreTabIndexes();
         this.dnb.dialog.closeOverlay();
       }
 
@@ -2486,7 +2486,7 @@ InteractiveVideo.prototype.disableTabIndexes = function () {
 
 /**
  * Restore tab indexes that was previously disabled.
- * @param {H5P.jQuery} $withinContainer Only restore tab indexes of elements within this container.
+ * @param {H5P.jQuery} [$withinContainer] Only restore tab indexes of elements within this container.
  */
 InteractiveVideo.prototype.restoreTabIndexes = function ($withinContainer) {
   var self = this;
@@ -3026,7 +3026,7 @@ const isSameElementOrChild = ($parent, $child) => {
 var getXAPIDataFromChildren = function(children) {
   return children.map(function(child) {
     return child.getXAPIData();
-  });
+  }).filter(data => !!data);
 };
 
 export default InteractiveVideo;

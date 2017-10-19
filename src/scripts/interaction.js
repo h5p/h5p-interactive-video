@@ -971,6 +971,7 @@ function Interaction(parameters, player, previousState) {
         player.seek(seekTo);
       }
       player.play();
+      player.controls.$play.focus();
     }
   };
 
@@ -1102,6 +1103,8 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
+    player.seekingTo = true; // Used to focus on first visible interaction
+
     /**
      * Skip if already on given timecode.
      * This is done because players may act unexpectedly when attempting to skip to the location
@@ -1113,7 +1116,6 @@ function Interaction(parameters, player, previousState) {
     if (Math.floor(player.video.getCurrentTime() * 10) === Math.floor(parameters.duration.from * 10)) {
       return;
     }
-
 
     if (player.currentState === H5P.Video.VIDEO_CUED) {
       player.play();
@@ -1545,7 +1547,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.getFirstTabbableElement = function () {
     var $tabbables = $($interaction.get(0)).find('[tabindex]');
-    if ($tabbables.length) {
+    if ($tabbables && $tabbables.length) {
       return $tabbables.get(0);
     }
     else {
