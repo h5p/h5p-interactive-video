@@ -428,6 +428,7 @@
   height: 36px;
   background: #2c2c2c;
   display: flex;
+  line-height: 1.5em;
 }
 .h5p-interactive-video .h5p-control {
   display: inline-block;
