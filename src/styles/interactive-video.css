@@ -92,10 +92,30 @@
   outline: none;
 }
 
-.h5p-interactive-video .h5p-interaction:focus,
+/*
+ * Hack for applying outline in Firefox, without including absolute children
+ * https://stackoverflow.com/questions/10662902/css-outline-different-behavior-behavior-on-webkit-gecko
+ */
+.h5p-interactive-video .h5p-interaction:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.h5p-interactive-video .h5p-interaction:focus:before,
 .h5p-interactive-video .h5p-interaction .h5p-image:focus,
 .h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus {
   outline: 2px solid #179fff;
+}
+
+.h5p-interactive-video .h5p-interaction:focus:before,
+.h5p-interactive-video .h5p-interaction .h5p-image:focus {
   outline-offset: 8px;
 }
 
