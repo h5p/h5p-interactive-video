@@ -199,6 +199,7 @@ function Interaction(parameters, player, previousState) {
           if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
             openDialog();
             $interaction.attr('aria-expanded', 'true');
+            event.preventDefault();
           }
         }
       }
