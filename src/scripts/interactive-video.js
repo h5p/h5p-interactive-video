@@ -126,7 +126,8 @@ function InteractiveVideo(params, id, contentData) {
     navigationHotkeyInstructions: 'Use key \'k\' for starting and stopping video at any time',
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
-    videoPausedAnnouncement: 'Video was paused'
+    videoPausedAnnouncement: 'Video was paused',
+    content: 'Content'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -173,7 +174,8 @@ function InteractiveVideo(params, id, contentData) {
       visuals: {
         poster: self.options.video.startScreenOptions.poster,
         controls: self.justVideo,
-        fit: false
+        fit: false,
+        disableRemotePlayback: true
       },
       startAt: startAt,
       a11y: self.options.video.textTracks
@@ -229,7 +231,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.ENDED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         self.timeUpdate(self.video.getCurrentTime());
         self.updateCurrentTime(self.getDuration());
@@ -267,7 +269,7 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PLAYING;
         self.controls.$play
           .removeClass('h5p-pause')
-          .attr('title', self.l10n.pause);
+          .attr('aria-label', self.l10n.pause);
 
         // refocus for re-read button title by screen reader
         if (self.controls.$play.is(":focus")) {
@@ -282,10 +284,14 @@ function InteractiveVideo(params, id, contentData) {
         self.currentState = H5P.Video.PAUSED;
         self.controls.$play
           .addClass('h5p-pause')
-          .attr('title', self.l10n.play);
+          .attr('aria-label', self.l10n.play);
 
         // refocus for re-read button title by screen reader
-        if (self.controls.$play.is(":focus")) {
+        if (self.focusInteraction) {
+          self.focusInteraction.getFirstTabbableElement().focus();
+          delete self.focusInteraction;
+        }
+        else if (self.controls.$play.is(":focus")) {
           self.controls.$play.blur();
           self.controls.$play.focus();
         }
@@ -330,7 +336,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '100%');
     self.controls.$fullscreen
       .addClass('h5p-exit')
-      .attr('title', self.l10n.exitFullscreen);
+      .attr('aria-label', self.l10n.exitFullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -349,7 +355,7 @@ function InteractiveVideo(params, id, contentData) {
     self.$container.parent('.h5p-content').css('height', '');
     self.controls.$fullscreen
       .removeClass('h5p-exit')
-      .attr('title', self.l10n.fullscreen);
+      .attr('aria-label', self.l10n.fullscreen);
 
     // refocus for re-read button title by screen reader
     self.controls.$fullscreen.blur();
@@ -419,12 +425,12 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   self.captionsTrackSelector.on('select', function (event) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
-  self.captionsTrackSelector.on('close', function (event) {
+  self.captionsTrackSelector.on('close', function () {
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
   });
-  self.captionsTrackSelector.on('open', function (event) {
+  self.captionsTrackSelector.on('open', function () {
     self.controls.$overlayButtons.addClass('h5p-hide');
   });
 
@@ -525,7 +531,7 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.readText = null;
 
   // Controls
-  this.$controls = $container.children('.h5p-controls').hide();
+  this.$controls = $container.children('.h5p-controls').addClass('hidden');
 
   if (this.editor === undefined) {
     this.dnb = new H5P.DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
@@ -542,6 +548,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
     // Resume playing when closing dialog
     this.dnb.dialog.on('close', function () {
+      that.restoreTabIndexes();
       if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
         that.video.play();
       }
@@ -623,12 +630,11 @@ InteractiveVideo.prototype.addSplash = function () {
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
       '<div class="h5p-splash-outer">' +
-        '<div class="h5p-splash" role="button" tabindex="0" ' +
-              'aria-label="' + this.l10n.play + '" title="' + this.l10n.play + '">' +
+        '<div class="h5p-splash" role="button" tabindex="0">' +
           '<div class="h5p-splash-main">' +
             '<div class="h5p-splash-main-outer">' +
               '<div class="h5p-splash-main-inner">' +
-                '<div class="h5p-splash-play-icon"></div>' +
+                '<div class="h5p-splash-play-icon" aria-label="' + this.l10n.play + '"></div>' +
                 '<div class="h5p-splash-title">' + this.options.video.startScreenOptions.title + '</div>' +
               '</div>' +
             '</div>' +
@@ -692,13 +698,13 @@ InteractiveVideo.prototype.addControls = function () {
   // Display splash screen
   this.addSplash();
 
-  this.attachControls(this.$controls.show());
+  this.attachControls(this.$controls.removeClass('hidden'));
 
   const duration = this.getDuration();
   const humanTime = InteractiveVideo.humanizeTime(duration);
   const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
   this.controls.$totalTime.find('.human-time').html(humanTime);
-  this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
+  this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
 
   // Add keyboard controls for Bookmarks
@@ -824,14 +830,28 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       var isPlaying = self.currentState === H5P.Video.PLAYING ||
         self.currentState === H5P.Video.BUFFERING;
       if (isPlaying && interaction.pause()) {
+        if (!self.focusInteraction) {
+          self.focusInteraction = interaction;
+        }
         self.video.pause();
       }
     });
+
+    // Focus if it is 'seeked-to'
+    if (self.seekingTo) {
+      self.seekingTo = undefined;
+      $interaction.focus();
+    }
 
     // Position label on next tick
     setTimeout(function () {
       interaction.positionLabel(self.$videoWrapper.width());
     }, 0);
+  });
+
+  // The interaction is about to be hidden.
+  interaction.on('hide', function (event) {
+    var $interaction = event.data; // Grab DOM element
   });
 
   // handle xAPI event
@@ -1267,7 +1287,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'button',
       'class': 'h5p-chooser-close-button',
       'tabindex': '0',
-      'title': self.l10n.close,
+      'aria-label': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
         if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
@@ -1394,14 +1414,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         if ($muteButton.hasClass('h5p-muted')) {
           $muteButton
             .removeClass('h5p-muted')
-            .attr('title', self.l10n.mute);
+            .attr('aria-label', self.l10n.mute);
 
           self.video.unMute();
         }
         else {
           $muteButton
             .addClass('h5p-muted')
-            .attr('title', self.l10n.unmute);
+            .attr('aria-label', self.l10n.unmute);
 
           self.video.mute();
         }
@@ -1414,7 +1434,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
-        .attr('title', self.l10n.sndDisabled);
+        .attr('aria-label', self.l10n.sndDisabled);
 
       self.setDisabled(self.controls.$volume);
     }
@@ -1446,7 +1466,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'button',
     'class': 'h5p-chooser-close-button',
     'tabindex': '0',
-    'title': self.l10n.close,
+    'aria-label': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
       if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
@@ -1537,6 +1557,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$interactionsContainer = $('<div/>', {
     'role': 'menu',
     'class': 'h5p-interactions-container',
+    'aria-label': self.l10n.interaction,
     appendTo: $slider
   });
 
@@ -1555,7 +1576,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     orientation: 'horizontal',
     range: 'min',
     max: 0,
-    create: function (event, ui) {
+    create: function (event) {
       const $handle = $(event.target).find('.ui-slider-handle');
 
       $handle
@@ -1749,7 +1770,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
     },
     appendTo: $target
   };
-  options[text ? 'text' : 'title'] = self.l10n[type];
+  options[text ? 'text' : 'aria-label'] = self.l10n[type];
   return H5P.jQuery('<div/>', options);
 };
 
@@ -1796,7 +1817,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
     });
 
   const menuElements = $list.find('li').get();
-  menuElements.forEach((el, index) => {
+  menuElements.forEach(el => {
     self.qualityMenuKeyboardControls.addElement(el);
 
     // updates tabindex based on if it's selected
@@ -1813,7 +1834,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 /**
  * Updates the quality of the video, and toggles menus
  *
- * @param {string} quality
+ * @param {string} quality
  */
 InteractiveVideo.prototype.updateQuality = function (quality) {
   var self = this;
@@ -1928,7 +1949,6 @@ InteractiveVideo.prototype.resize = function () {
     return;
   }
 
-  var self = this;
   var fullscreenOn = this.$container.hasClass('h5p-fullscreen') || this.$container.hasClass('h5p-semi-fullscreen');
 
   this.$videoWrapper.css({
@@ -2051,6 +2071,7 @@ InteractiveVideo.prototype.resizeMobileView = function () {
         var $dialog = $('.h5p-dialog', this.$container);
         $dialog.show();
       } else {
+        this.restoreTabIndexes();
         this.dnb.dialog.closeOverlay();
       }
 
@@ -2404,7 +2425,9 @@ InteractiveVideo.prototype.showOverlayMask = function () {
   var self = this;
 
   self.$videoWrapper.addClass('h5p-disable-opt-out');
+  self.disableTabIndexes();
   self.dnb.dialog.openOverlay();
+  self.restorePosterTabIndexes();
 
   var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
   $dialogWrapper.click(function () {
@@ -2414,6 +2437,90 @@ InteractiveVideo.prototype.showOverlayMask = function () {
   });
 
   self.toggleFocusTrap();
+};
+
+/**
+ * Restore tabindexes for posters.
+ * Typically used when an overlay has been applied and removed all tabindexes.
+ */
+InteractiveVideo.prototype.restorePosterTabIndexes = function() {
+  const self = this;
+
+  // Allow posters to be tabbable, but not buttons.
+  self.$overlay.find('.h5p-interaction.h5p-poster').each(function () {
+    self.restoreTabIndexes($(this));
+  });
+};
+
+
+/**
+ * Disable tab indexes hidden behind overlay.
+ */
+InteractiveVideo.prototype.disableTabIndexes = function () {
+  var self = this;
+  // Make all other elements in container not tabbable. When dialog is open,
+  // it's like the elements behind does not exist.
+  var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+  self.$tabbables = self.$container.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
+    var $tabbable = $(this);
+    var insideWrapper = $.contains($dialogWrapper.get(0), $tabbable.get(0));
+
+      // tabIndex has already been modified, keep it in the set.
+    if ($tabbable.data('tabindex')) {
+      return true;
+    }
+
+    if (!insideWrapper) {
+      // Store current tabindex, so we can set it back when dialog closes
+      var tabIndex = $tabbable.attr('tabindex');
+      $tabbable.data('tabindex', tabIndex);
+
+      // Make it non tabbable
+      $tabbable.attr('tabindex', '-1');
+      return true;
+    }
+    // If element is part of dialog wrapper, just ignore it
+    return false;
+  });
+};
+
+/**
+ * Restore tab indexes that was previously disabled.
+ * @param {H5P.jQuery} [$withinContainer] Only restore tab indexes of elements within this container.
+ */
+InteractiveVideo.prototype.restoreTabIndexes = function ($withinContainer) {
+  var self = this;
+  // Resetting tabindex on background elements
+  if (self.$tabbables) {
+    self.$tabbables.each(function () {
+      var $element = $(this);
+      var tabindex = $element.data('tabindex');
+
+      // Only restore elements within container when specified
+      if ($withinContainer && !$.contains($withinContainer.get(0), $element.get(0))) {
+        return true;
+      }
+
+      // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+      if ($element.hasClass('ui-slider-handle')) {
+        $element.attr('tabindex', 0);
+        $element.removeData('tabindex');
+      }
+      else if (tabindex !== undefined) {
+        $element.attr('tabindex', tabindex);
+        $element.removeData('tabindex');
+      }
+      else {
+        $element.removeAttr('tabindex');
+      }
+    });
+
+    // Do not remove reference if only restored partially
+    if (!$withinContainer) {
+      // Has been restored, remove reference
+      self.$tabbables = undefined;
+    }
+  }
 };
 
 /**
@@ -2465,6 +2572,7 @@ InteractiveVideo.prototype.trapFocusInInteractions = function (requiredInteracti
 InteractiveVideo.prototype.hideOverlayMask = function () {
   var self = this;
 
+  self.restoreTabIndexes();
   self.dnb.dialog.closeOverlay();
   self.$videoWrapper.removeClass('h5p-disable-opt-out');
   self.toggleFocusTrap();
@@ -2918,7 +3026,7 @@ const isSameElementOrChild = ($parent, $child) => {
 var getXAPIDataFromChildren = function(children) {
   return children.map(function(child) {
     return child.getXAPIData();
-  });
+  }).filter(data => !!data);
 };
 
 export default InteractiveVideo;

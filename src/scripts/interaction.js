@@ -19,6 +19,56 @@ const nonEmptyString = text => ((text !== undefined) && (typeof text === 'string
  */
 const stripTags = str => nonEmptyString(str) ? $(`<div>${str}</div>`).text() : undefined;
 
+/**
+ * @enum {string}
+ */
+const gotoType = {
+  TIME_CODE: 'timecode',
+  URL: 'url'
+};
+
+/**
+ * Returns true if the type is goto timecode
+ *
+ * @param {Parameters} parameters
+ * @param {gotoType} type
+ * @return {boolean}
+ */
+const isGotoType = function (parameters, type) {
+  return (parameters.goto !== undefined) && (parameters.goto.type === type);
+};
+
+/**
+ * @const {string[]}
+ */
+const staticLibraryTitles = ['H5P.Image', 'H5P.Nil', 'H5P.Table', 'H5P.Link', 'H5P.GoToQuestion', 'H5P.IVHotspot', 'H5P.Text'];
+
+/**
+ * Returns true if the given library is on the static libraries list or is goto type "timecode"
+ *
+ * @param {string} library
+ * @param {Parameters} parameters
+ * @return {boolean}
+ */
+const isStaticLibrary = function (library, parameters) {
+  return staticLibraryTitles.indexOf(library) !== -1 || isGotoType(parameters, gotoType.TIME_CODE);
+};
+
+/**
+ * @const {string[]}
+ */
+const scrollableLibraries = ['H5P.Text', 'H5P.Table'];
+
+/**
+ * Returns true if the given library is on the static libraries list or is goto type "timecode"
+ *
+ * @param {string} library
+ * @param {Parameters} parameters
+ * @return {boolean}
+ */
+const isScrollableLibrary = function (library) {
+  return scrollableLibraries.indexOf(library) !== -1;
+};
 
 /**
  * @typedef {Object} Parameters Interaction settings
@@ -65,7 +115,7 @@ function Interaction(parameters, player, previousState) {
   var self = this;
 
   // Initialize event inheritance
-   H5P.EventDispatcher.call(self);
+  H5P.EventDispatcher.call(self);
 
   var $interaction, $label, $inner, $outer;
   var action = parameters.action;
@@ -77,7 +127,12 @@ function Interaction(parameters, player, previousState) {
 
   // Find library name and title
   var library = action.library.split(' ')[0];
-  var title = [action.params.contentName, (library === 'H5P.Nil' ? '' : stripTags(parameters.label)), parameters.libraryTitle, player.l10n.interaction]
+
+  var libraryTypeLabel = player.l10n[isStaticLibrary(library, parameters) ? 'content' : 'interaction'];
+
+
+  var isLabelRelevant = (library !== 'H5P.Nil' && parameters.displayType === 'button');
+  var title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', parameters.libraryTitle]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
@@ -144,6 +199,7 @@ function Interaction(parameters, player, previousState) {
           if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
             openDialog();
             $interaction.attr('aria-expanded', 'true');
+            event.preventDefault();
           }
         }
       }
@@ -196,6 +252,8 @@ function Interaction(parameters, player, previousState) {
         // Hide on focus, because of coord picker
         player.editor.hideInteractionTitle();
         isHovered = false;
+      }).click(function () {
+        player.editor.hideInteractionTitle();
       });
     }
 
@@ -307,6 +365,7 @@ function Interaction(parameters, player, previousState) {
    */
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
+    self.trigger('hide', $interaction);
     if (self.isButton()) {
       if (closeDialog) {
         player.dnb.dialog.close();
@@ -409,11 +468,27 @@ function Interaction(parameters, player, previousState) {
 
     var isGotoClickable = self.isGotoClickable();
 
+    const tabbableElements = $dialogWrapper.find('[tabindex]');
+
     // Create wrapper for dialog content
     var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-dialog-interaction h5p-frame'
     });
+
+    if (!isGotoClickable && isScrollableLibrary(library)) {
+      $dialogContent.attr('tabindex', '0'); // Make content scrollable
+    }
+
     $dialogContent.on('keyup', disableGlobalVideoControls);
+
+    // Disable tabbing when editing
+    if (player.editor !== undefined) {
+      $dialogContent.attr('tabindex', -1);
+    }
+    // If no tabbable elements exist, make the dialog content tabbable
+    else if (tabbableElements.length === 0) {
+      $dialogContent.attr('tabindex', 0);
+    }
 
     if(self.getRequiresCompletion()){
       $dialogWrapper.keydown(event => {
@@ -460,10 +535,15 @@ function Interaction(parameters, player, previousState) {
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
+    player.disableTabIndexes();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
-    player.dnb.dialog.toggleClass('h5p-goto-timecode', !!(parameters.goto && parameters.goto.type === 'timecode'));
+    player.dnb.dialog.toggleClass('h5p-goto-timecode', isGotoType(parameters, gotoType.TIME_CODE));
 
+    // Restore tabindexes that must be possible to access
+    if (player.dnb.dialog.disableOverlay) {
+      player.restorePosterTabIndexes();
+    }
 
     /**
      * Handle dialog closing once.
@@ -473,7 +553,7 @@ function Interaction(parameters, player, previousState) {
       this.off('close', dialogCloseHandler); // Avoid running more than once
 
       // Reset the image size to a percentage of the container instead of hardcoded values
-      player.dnb.$dialogContainer.one('transitionend', function(event) {
+      player.dnb.$dialogContainer.one('transitionend', function() {
         if ($dialogContent.is('.h5p-image')) {
           var $img = $dialogContent.find('img');
           $img.css({
@@ -673,7 +753,6 @@ function Interaction(parameters, player, previousState) {
     var visuals = getVisuals();
 
     $interaction = $('<div/>', {
-      'role': 'group',
       'aria-label': player.l10n.interaction,
       'tabindex': '-1',
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
@@ -726,6 +805,10 @@ function Interaction(parameters, player, previousState) {
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
       'class': 'h5p-interaction-inner h5p-frame'
     }).appendTo($outer);
+
+    if (!isGotoClickable && isScrollableLibrary(library)) {
+      $inner.attr('tabindex', '0'); // Make content scrollable
+    }
 
     if (player.editor !== undefined && instance.disableAutoPlay) {
       instance.disableAutoPlay();
@@ -889,6 +972,7 @@ function Interaction(parameters, player, previousState) {
         player.seek(seekTo);
       }
       player.play();
+      player.controls.$play.focus();
     }
   };
 
@@ -1020,6 +1104,8 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
+    player.seekingTo = true; // Used to focus on first visible interaction
+
     /**
      * Skip if already on given timecode.
      * This is done because players may act unexpectedly when attempting to skip to the location
@@ -1031,7 +1117,6 @@ function Interaction(parameters, player, previousState) {
     if (Math.floor(player.video.getCurrentTime() * 10) === Math.floor(parameters.duration.from * 10)) {
       return;
     }
-
 
     if (player.currentState === H5P.Video.VIDEO_CUED) {
       player.play();
@@ -1063,6 +1148,7 @@ function Interaction(parameters, player, previousState) {
     const $menuitem = $('<div/>', {
       'role': 'menuitem',
       'class': seekbarClasses,
+      'aria-label': `${libraryTypeLabel}. ${title}`,
       title: title,
       css: {
         left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
@@ -1194,8 +1280,9 @@ function Interaction(parameters, player, previousState) {
 
     // Only recreate existing interactions
     if ($interaction) {
+      self.trigger('hide', $interaction);
       $interaction.detach();
-      if(self.isStandaloneLabel()) {
+      if (self.isStandaloneLabel()) {
         createStandaloneLabel();
       }
       else if (self.isButton()) {
@@ -1274,6 +1361,7 @@ function Interaction(parameters, player, previousState) {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
       }, {'bubbles': true, 'external': true});
+      self.trigger('hide', $interaction);
       $interaction.detach();
       $interaction = undefined;
     }
@@ -1451,6 +1539,21 @@ function Interaction(parameters, player, previousState) {
    */
   self.getElement = function () {
     return $interaction;
+  };
+
+  /**
+   * Returns the first tabbable element
+   * returns the interaction if none exists
+   * @return {*}
+   */
+  self.getFirstTabbableElement = function () {
+    var $tabbables = $($interaction.get(0)).find('[tabindex]');
+    if ($tabbables && $tabbables.length) {
+      return $tabbables.get(0);
+    }
+    else {
+      return $interaction;
+    }
   };
 
   /**

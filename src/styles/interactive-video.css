@@ -64,9 +64,6 @@
   color: #fff;
   clear: both;
 }
-.h5p-interactive-video .h5p-video::-internal-media-controls-overlay-cast-button {
-  display: none; /* No chromecast support */
-}
 .h5p-interactive-video object {
   display: block;
 }
@@ -95,10 +92,30 @@
   outline: none;
 }
 
-.h5p-interactive-video .h5p-interaction:focus,
+/*
+ * Hack for applying outline in Firefox, without including absolute children
+ * https://stackoverflow.com/questions/10662902/css-outline-different-behavior-behavior-on-webkit-gecko
+ */
+.h5p-interactive-video .h5p-interaction:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.h5p-interactive-video .h5p-interaction:focus:before,
 .h5p-interactive-video .h5p-interaction .h5p-image:focus,
 .h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus {
   outline: 2px solid #179fff;
+}
+
+.h5p-interactive-video .h5p-interaction:focus:before,
+.h5p-interactive-video .h5p-interaction .h5p-image:focus {
   outline-offset: 8px;
 }
 
@@ -431,6 +448,7 @@
   height: 36px;
   background: #2c2c2c;
   display: flex;
+  line-height: 1.5em;
 }
 .h5p-interactive-video .h5p-control {
   display: inline-block;
@@ -497,6 +515,7 @@
   position: relative;
   vertical-align: bottom;
   outline: none;
+  cursor: pointer;
   -webkit-transition: visibility 0s linear 0.1s;
 }
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button.h5p-hide {
@@ -1701,6 +1720,10 @@
   font-family: "H5PFontAwesome4";
   content: '\f144';
   margin-left: 1.2em;
+}
+
+.h5p-interactive-video .hidden {
+  display: none;
 }
 
 .h5p-interactive-video .hidden-but-read {
