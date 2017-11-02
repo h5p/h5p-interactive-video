@@ -402,7 +402,8 @@
 .h5p-interactive-video .h5p-interaction-inner.h5p-text {
   width: auto;
 }
-.h5p-interactive-video .h5p-text:focus {
+.h5p-interactive-video .h5p-text:focus,
+.h5p-interactive-video .h5p-table:focus {
   outline: 0;
 }
 
