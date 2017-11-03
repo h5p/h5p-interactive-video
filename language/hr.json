@@ -22,7 +22,7 @@
                   "label": "Hide title on video start screen"
                 },
                 {
-                  "label": "Short description (Optional)",
+                  "label": "Kratki opis (opcionalno)",
                   "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
@@ -50,17 +50,17 @@
                         "default": "Subtitles"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Vrsta pratećeg teksta",
                         "default": "subtitles",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Titlovi"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Natpisi"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Opisi"
                           }
                         ]
                       },
@@ -184,7 +184,7 @@
                     "label": "Go to on click",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Vrsta",
                         "options": [
                           {
                             "label": "Timecode"
