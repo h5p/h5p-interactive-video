@@ -92,29 +92,11 @@
   outline: none;
 }
 
-/*
- * Hack for applying outline in Firefox, without including absolute children
- * https://stackoverflow.com/questions/10662902/css-outline-different-behavior-behavior-on-webkit-gecko
- */
-.h5p-interactive-video .h5p-interaction:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.h5p-interactive-video .h5p-interaction:focus:before,
 .h5p-interactive-video .h5p-interaction .h5p-image:focus,
 .h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus {
   outline: 2px solid #179fff;
 }
 
-.h5p-interactive-video .h5p-interaction:focus:before,
 .h5p-interactive-video .h5p-interaction .h5p-image:focus {
   outline-offset: 8px;
 }
@@ -195,11 +177,14 @@
 
 .h5p-interactive-video .h5p-interaction-button {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   z-index: 2;
   display: block;
   width: 1.75em;
   height: 1.75em;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
   border-radius: 50%;
   line-height: 1.75em;
   color: #fff;
@@ -207,14 +192,13 @@
   -moz-box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
   box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
   text-align: center;
-  border: 0;
-  -webkit-transition: -webkit-transform 0.2s, background 0.3s, box-shadow 0.3s;
-  -moz-transition: -moz-transform 0.2s, background 0.3s, box-shadow 0.3s;
-  -ms-transition: background 0.3s, box-shadow 0.3s;
-  -o-transition: background 0.3s, box-shadow 0.3s;
-  transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+  border-color: transparent;
+  -webkit-transition: -webkit-transform 0.2s, background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  -moz-transition: -moz-transform 0.2s, background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  -ms-transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  -o-transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+  transition: transform 0.2s, background 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-.h5p-interactive-video .h5p-interaction:focus .h5p-interaction-button,
 .h5p-interactive-video .h5p-interaction:hover .h5p-interaction-button {
   -webkit-box-shadow: 0 0.3em 0.25em 0 rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0 0.3em 0.25em 0 rgba(0, 0, 0, 0.5);
@@ -236,16 +220,21 @@
 
 /* Purple interactions; default */
 .h5p-interactive-video div > .h5p-interaction-button {
-  background: #981d99;
+  background-color: #981d99;
 }
 
-.h5p-interactive-video div:hover > .h5p-interaction-button,
+.h5p-interactive-video div:hover > .h5p-interaction-button {
+  background-color: #661366;
+}
 .h5p-interactive-video div:focus > .h5p-interaction-button {
-  background: #661366;
+  /* Default focus effect - purple */
+  top: -0.167em;
+  left: -0.167em;
+  border: 0.167em solid #e489f3;
 }
 
 .h5p-interactive-video div:active > .h5p-interaction-button {
-  background: #4c0e4c;
+  background-color: #4c0e4c;
   box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -254,42 +243,31 @@
   content: "\e609";
 }
 
-/* Green interaction; gotoquestion */
-.h5p-interactive-video .h5p-gotoquestion-interaction > .h5p-interaction-button {
-  background: #018d82;
-}
-.h5p-interactive-video .h5p-gotoquestion-interaction:hover > .h5p-interaction-button,
-.h5p-interactive-video .h5p-gotoquestion-interaction:focus > .h5p-interaction-button {
-  background: #02766c;
-}
-.h5p-interactive-video .h5p-gotoquestion-interaction:active > .h5p-interaction-button {
-  background: #025f57;
-}
-
 /* Blue interactions; text, images, etc. */
 .h5p-interactive-video .h5p-text-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-link-interaction > .h5p-interaction-button,
 .h5p-interactive-video .h5p-image-interaction > .h5p-interaction-button {
-  background: #1d5cff;
+  background-color: #1d5cff;
 }
 
 .h5p-interactive-video .h5p-text-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction:hover > .h5p-interaction-button,
 .h5p-interactive-video .h5p-link-interaction:hover > .h5p-interaction-button,
-.h5p-interactive-video .h5p-image-interaction:hover > .h5p-interaction-button,
+.h5p-interactive-video .h5p-image-interaction:hover > .h5p-interaction-button {
+  background-color: #003fdf;
+}
 .h5p-interactive-video .h5p-text-interaction:focus > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction:focus > .h5p-interaction-button,
 .h5p-interactive-video .h5p-link-interaction:focus > .h5p-interaction-button,
 .h5p-interactive-video .h5p-image-interaction:focus > .h5p-interaction-button {
-  background: #003fdf;
+  border-color: #70b0ff;
 }
-
 .h5p-interactive-video .h5p-text-interaction:active > .h5p-interaction-button,
 .h5p-interactive-video .h5p-table-interaction:active > .h5p-interaction-button,
 .h5p-interactive-video .h5p-link-interaction:active > .h5p-interaction-button,
 .h5p-interactive-video .h5p-image-interaction:active > .h5p-interaction-button {
-  background: #163c9b;
+  background-color: #163c9b;
   box-shadow: 0 0.15em 0.25em 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -303,14 +281,16 @@
 
 /* Timecode links are green  */
 .h5p-interactive-video .h5p-goto-timecode > .h5p-interaction-button {
-  background: #018d82;
+  background-color: #018d82;
 }
-.h5p-interactive-video .h5p-goto-timecode:hover > .h5p-interaction-button,
+.h5p-interactive-video .h5p-goto-timecode:hover > .h5p-interaction-button {
+  background-color: #007b71;
+}
 .h5p-interactive-video .h5p-goto-timecode:focus > .h5p-interaction-button {
-  background: #007b71;
+  border-color: #53d5c9;
 }
 .h5p-interactive-video .h5p-goto-timecode:active > .h5p-interaction-button {
-  background: #055e57;
+  background-color: #055e57;
 }
 
 .h5p-interactive-video .h5p-dialog-interaction {
@@ -421,6 +401,10 @@
 
 .h5p-interactive-video .h5p-interaction-inner.h5p-text {
   width: auto;
+}
+.h5p-interactive-video .h5p-text:focus,
+.h5p-interactive-video .h5p-table:focus {
+  outline: 0;
 }
 
 .h5p-interactive-video .h5p-interaction-inner.h5p-questionnaire-wrapper,
