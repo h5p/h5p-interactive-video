@@ -26,7 +26,7 @@
                   "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label": "Poster image",
+                  "label": "Poster slika",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
