@@ -1,7 +1,7 @@
 {
   "interactiveVideoLabel": "Éditeur de vidéo interactive",
   "videoLabel": "Envoyer/intégrer une vidéo",
-  "filesLabel": "Fichiers vidéo",
+  "filesLabel": "Ajouter une vidéo",
   "filesDescription": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm.",
   "startScreenOptionsLabel": "Start screen options (unsupported for YouTube videos)",
   "titleLabel": "Titre de la vidéo interactive",
