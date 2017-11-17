@@ -120,5 +120,5 @@
   "singleInteractionAnnouncementLabel": "Text explaining that a single interaction with a name has come into view",
   "multipleInteractionsAnnouncementLabel": "Text for explaining that multiple interactions have come into view",
   "videoPausedAnnouncementLabel": "Video is paused announcement",
-  "contentLabel": "Content label"
+  "contentLabel": "Étiquette de contenu"
 }
