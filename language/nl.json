@@ -4,11 +4,11 @@
       "label":"Editor Interactieve Video",
       "fields":[
         {
-          "label":"Video uploaden/inbedden",
+          "label":"Video uploaden/embedden",
           "fields":[
             {
               "label":"Voeg een video toe",
-              "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
+              "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formaat."
             },
             {
               "label":"Opties voor beginscherm (niet ondersteund voor YouTube videos)",
@@ -36,21 +36,21 @@
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
+              "label":"Tekstsporen (werkt niet voor YouTube videos)",
               "fields":[
                 {
-                  "label":"Available text tracks",
-                  "entity":"Track",
+                  "label":"Beschikbare tekstsporen",
+                  "entity":"Spoor",
                   "field":{
-                    "label":"Track",
+                    "label":"Spoor",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "label":"Spoor label",
+                        "description":"Van toepassing indien de gebruiker kan kiezen uit verschillende opties. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitelspoor.",
                         "default":"Ondertitels"
                       },
                       {
-                        "label":"Type of text track",
+                        "label":"Type tekstspoor",
                         "default":"ondertitels",
                         "options":[
                           {
