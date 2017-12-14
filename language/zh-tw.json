@@ -399,15 +399,15 @@
           "default": "返回"
         },
         {
-          "label": "所花時間-時",
+          "label": "花費時間-時",
           "default": "時"
         },
         {
-          "label": "所花時間-分",
+          "label": "花費時間-分",
           "default": "分"
         },
         {
-          "label": "所花時間-秒",
+          "label": "花費時間-秒",
           "default": "秒"
         },
         {
