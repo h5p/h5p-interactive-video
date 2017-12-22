@@ -202,7 +202,7 @@
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "協議",
+                            "label": "通訊協定",
                             "options": [
                               {
                                 "label": "http://"
