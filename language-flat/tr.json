@@ -29,7 +29,7 @@
   "durationLabel": "Görüntüleme süresi",
   "pauseLabel": "Videoyu durdur",
   "displayTypeLabel": "Olarak görüntüle",
-  "displayTypeDescription": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+  "displayTypeDescription": "<b>Buton</b> kullanıcının açması için basması gereken daraltılmış bir etkileşimdir.<b>Afiş</b> doğrudan videonun üstünde görüntülenen genişletilmiş bir etkileşimdir",
   "displayAsButtonLabel": "Buton",
   "displayAsPosterLabel": "Afiş",
   "buttonOnMobileLabel": "Küçük ekranlarda düğmeye dönüştür",
