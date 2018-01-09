@@ -118,7 +118,7 @@
   "totalTimeLabel": "Toplam süren için etiket",
   "navigationHotkeyInstructionsLabel": "Gezinme için açıklanan kısa yol metni",
   "singleInteractionAnnouncementLabel": "Bir adla tek bir etkileşimin görülebildiğini gösteren metin",
-  "multipleInteractionsAnnouncementLabel": "Birden fazla etkileşimin görüleceğini açıklayan metin",
+  "multipleInteractionsAnnouncementLabel": "Text for explaining that multiple interactions have come into view",
   "videoPausedAnnouncementLabel": "Video duraklatılmış duyurudur",
   "contentLabel": "İçerik etiketi"
 }
