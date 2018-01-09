@@ -101,7 +101,7 @@
   "closeLabel": "Metin butonunu kapat",
   "fullscreenLabel": "Tam ekran başlığı",
   "exitFullscreenLabel": "Tam ekran başlığından çık",
-  "summaryTitleLabel": "Başlık özeti",
+  "summaryTitleLabel": "Özet başlığı",
   "bookmarksLabel": "Yer imleri başlığı",
   "defaultAdaptivitySeekLabelLabel": "Uyarlanabilir arama butonu için varsayılan etiket",
   "continueWithVideoLabel": "Devam eden video butonu için varsayılan etiket",
@@ -117,8 +117,8 @@
   "currentTimeLabel": "Şuan ki süre için etiket",
   "totalTimeLabel": "Toplam süren için etiket",
   "navigationHotkeyInstructionsLabel": "Gezinme için açıklanan kısa yol metni",
-  "singleInteractionAnnouncementLabel": "Bir adla tek bir etkileşimin görülebildiğini gösteren metin",
-  "multipleInteractionsAnnouncementLabel": "Text for explaining that multiple interactions have come into view",
+  "singleInteractionAnnouncementLabel": "Bir adla tek bir etkileşimin görüldüğünü açıklayan metin",
+  "multipleInteractionsAnnouncementLabel": "Birçok etkileşimin görüldüğünü açıklayan metin",
   "videoPausedAnnouncementLabel": "Video duraklatılmış duyurudur",
   "contentLabel": "İçerik etiketi"
 }
