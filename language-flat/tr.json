@@ -2,7 +2,7 @@
   "interactiveVideoLabel": "İnteraktif Video Editörü",
   "videoLabel": "Video yükle/yerleştir",
   "filesLabel": "Bir video ekle",
-  "filesDescription": "İnteraktif videonuzda kullanmak istediğiniz bir video eklemek için aşağıdaki bağlantıyı tıklayın. Video linki ekleyebilir ya da video dosyalarını yükleyebilirsiniz. Farklı kalitelerde birkaç versiyon eklemeniz mümkündür. Tarayıcılarda maksimum desteği sağlamak için en azından webm ve mp4 formatlarında bir sürüm ekleyin.",
+  "filesDescription": "İnteraktif videonuzda kullanmak istediğiniz videoyu eklemek için aşağıya tıklayın. Video linki ekleyebilir ya da video dosyalarını yükleyebilirsiniz. Farklı özellikli videonun çeşitli versiyonlarını eklemeniz mümkündür. Tarayıcılarda maksimum desteği sağlamak için en azından webm ve mp4 formatlarında bir sürüm ekleyin.",
   "startScreenOptionsLabel": "Ekran seçeneklerini (desteklenmeyen Youtube videoları için) başlat",
   "titleLabel": "Bu interaktif videonun başlığı",
   "titleDescription": "Özetlerde, istatistiklerde vb. kullanılır.",
