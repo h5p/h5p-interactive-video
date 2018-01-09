@@ -17,7 +17,7 @@
   "videoTrackLabel": "Kullanılabilir metin parçaları",
   "textTrackLabel": "Parça",
   "labelLabel": "Parça etiketi",
-  "labelDescription": "Birden fazla parça sunuyorsanız ve kullanıcının bir parça seçmesi gerekiyorsa kullanılır. Örneğin \"İspanyolca altyazılar\" İspanyol altyazı parçası etiketinde olabilir.",
+  "labelDescription": "Birden fazla parça teklif ediyorsanız ve kullanıcının bir parça seçmesi gerekiyorsa kullanılır. Örneğin \"İspanyolca altyazılar\" İspanyol altyazı parçası etiketinde olabilir.",
   "kindOfTextTrackLabel": "Metin parçası tipleri",
   "textTrackSubtitlesLabel": "Altyazılar",
   "textTrackCaptionsLabel": "Başlıklar",
