@@ -436,15 +436,15 @@
         },
         {
           "label":"Label voor huidige tijd",
-          "default":"Current time:"
+          "default":"Huidige tijd:"
         },
         {
           "label":"Label voor totale tijd",
           "default":"Totale tijd:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label":"Tekst voor uitleg navigatie sneltoets",
+          "default":"Gebruik de K-toets om de video op elk moment te starten en te stoppen"
         },
         {
           "label":"Text explaining that a single interaction with a name has come into view",
