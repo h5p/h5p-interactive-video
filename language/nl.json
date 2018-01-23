@@ -36,21 +36,21 @@
               ]
             },
             {
-              "label":"Text tracks (werkt niet voor YouTube-videos)",
+              "label":"Tekst sporen (werkt niet voor YouTube-videos)",
               "fields":[
                 {
-                  "label":"Beschikbare tekst tracks",
-                  "entity":"Track",
+                  "label":"Beschikbare tekst sporen",
+                  "entity":"Spoor",
                   "field":{
-                    "label":"Track",
+                    "label":"Spoor",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Gebruikt wanneer je meerdere tracks aanbiedt en de gebruiker een track moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaanse ondertitels track.",
+                        "label":"Spoorlabel",
+                        "description":"Gebruik wanneer je meerdere sporen aanbiedt en de gebruiker een spoor moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitel spoor.",
                         "default":"Ondertitels"
                       },
                       {
-                        "label":"Type tekst track",
+                        "label":"Type tekst spoor",
                         "default":"ondertitels",
                         "options":[
                           {
@@ -67,10 +67,10 @@
                       {
                         "label":"Brontaal, moet worden gedefinieerd voor ondertitels",
                         "default":"en",
-                        "description":"Moet een geldige BCP 47 taal tag zijn. Indien het track type 'Ondertitels' is geselecteerd, moet de brontaal van de track bepaald worden."
+                        "description":"Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
-                        "label":"Bron van de track (WebVTT bestand)"
+                        "label":"Bron van het spoor (WebVTT bestand)"
                       }
                     ]
                   }
@@ -141,44 +141,44 @@
                     "label":"Aanpasbaar",
                     "fields":[
                       {
-                        "label":"Action on all correct",
+                        "label":"Alle acties zijn correct",
                         "fields":[
                           {
-                            "label":"Seek to",
+                            "label":"Zoeken naar",
                             "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Sta de gebruiker opt out toe en ga door"
                           },
                           {
                             "label":"Bericht"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Label voor de zoekknop"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
+                        "label":"Actie bij incorrect",
                         "fields":[
                           {
-                            "label":"Seek to",
+                            "label":"Zoeken naar",
                             "description":"Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label":"Sta de gebruiker opt out toe en ga door"
                           },
                           {
                             "label":"Bericht"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label":"Label voor de zoekknop"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label":"De volledige score van de taak is vereist voordat je verder kan gaan",
+                        "description":"Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Prevent skipping forward in a video\" van de Interactieve Video."
                       }
                     ]
                   },
@@ -193,7 +193,7 @@
                         }
                       },
                       {
-                        "label":"Box shadow",
+                        "label":"Box schaduw",
                         "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
                       }
                     ]
@@ -244,7 +244,7 @@
                       },
                       {
                         "label":"Visualiseren",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "description":"Toon dat op de interactie kan worden geklikt door een rand en een pictogram toe te voegen"
                       }
                     ]
                   }
@@ -447,12 +447,12 @@
           "default":"Gebruik de K-toets om de video op elk moment te starten en te stoppen"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label":"Tekst om uit te leggen dat er een enkele interactie met een naam zichtbaar is geworden",
+          "default":"Interactie verschijnt:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label":"Tekst om uit te leggen dat er meerdere interacties zichtbaar zijn geworden",
+          "default":"Meerdere interacties verschenen."
         },
         {
           "label":"Video is gepauzeerd",
