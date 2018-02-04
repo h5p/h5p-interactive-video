@@ -138,6 +138,19 @@ function InteractiveVideo(params, id, contentData) {
     self.previousState = contentData.previousState;
   }
 
+  // Keep track of interactions that have been answered (interactions themselves don't know about their state)
+  if (self.previousState !== undefined && self.previousState.answered !== undefined) {
+    self.answered = self.previousState.answered;
+  }
+  else {
+    self.answered = new Array(self.options.assets.interactions.length).map(function () {
+      return false;
+    });
+  }
+  self.$menuitems = new Array(self.options.assets.interactions.length).map(function () {
+    return undefined;
+  });
+
   // Initial state
   self.lastState = H5P.Video.ENDED;
 
@@ -388,6 +401,8 @@ function InteractiveVideo(params, id, contentData) {
       this.initInteraction(i);
     }
   }
+  // Order by position on seekbar, not by creation
+  self.interactions = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from);
 
   self.accessibility = new Accessibility(self.l10n);
 }
@@ -456,11 +471,15 @@ InteractiveVideo.prototype.getCurrentState = function () {
 
   var state = {
     progress: self.video.getCurrentTime(),
-    answers: []
+    answers: [],
+    answered: self.answered
   };
 
-  for (var i = 0; i < self.interactions.length; i++) {
-    state.answers[i] = self.interactions[i].getCurrentState();
+  // Page might not have been loaded yet
+  if (self.interactions !== undefined) {
+    for (let i = 0; i < self.interactions.length; i++) {
+      state.answers[i] = self.interactions[i].getCurrentState();
+    }
   }
 
   if (state.progress) {
@@ -868,6 +887,10 @@ InteractiveVideo.prototype.initInteraction = function (index) {
           self.complete();
         }, 0);
       }
+      // Change interaction dot on seekbar
+      const index = self.interactions.indexOf(interaction);
+      self.$menuitems[index].addClass('h5p-question-answered');
+      self.answered[index] = true;
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
@@ -911,15 +934,17 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 
   // Add new dots
   H5P.jQuery.extend([], this.interactions)
-    .sort((a, b) =>  a.getDuration().from - b.getDuration().from)
-    .forEach(interaction => {
-      const $menuitem = interaction.addDot();
+    .forEach((interaction, index) => {
+      this.$menuitems[index] = interaction.addDot();
 
-      if ($menuitem !== undefined) {
-        $menuitem.appendTo(this.controls.$interactionsContainer);
+      if (this.$menuitems[index] !== undefined) {
+        if (this.answered[index] === true) {
+          this.$menuitems[index].addClass('h5p-question-answered');
+        }
+        this.$menuitems[index].appendTo(this.controls.$interactionsContainer);
 
         if(!this.preventSkipping) {
-          this.interactionKeyboardControls.addElement($menuitem.get(0));
+          this.interactionKeyboardControls.addElement(this.$menuitems[index].get(0));
         }
       }
     });
@@ -2754,6 +2779,10 @@ InteractiveVideo.prototype.resetTask = function () {
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
   }
+
+  this.answered = new Array(this.interactions.length).map(function () {
+    return false;
+  });
 };
 
 /**
