@@ -891,6 +891,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       const index = self.interactions.indexOf(interaction);
       self.$menuitems[index].addClass('h5p-question-answered');
       self.answered[index] = true;
+      self.playStarAnimation();
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
@@ -1182,9 +1183,26 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var self = this;
 
-  // The controls consist of three different sections:
+  // The controls consist of four different sections:
   var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
   var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
+  // True will be replaced by boolean variable, e.g. endScreenAvailable
+  if (true) {
+    self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper}).click(function() {
+      //self.showEndScreen();
+      /* class 'h5p-star-active' will make star foreground green*/
+    });
+    $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
+    $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
+    $('<div/>', {'class': 'h5p-control h5p-star h5p-star-foreground', appendTo: self.$star});
+
+    // Add star animation
+    let $h5pContainer = $wrapper.closest('.h5p-frame');
+    if (!$h5pContainer.length) {
+      $h5pContainer = $wrapper.closest('.h5p-container');
+    }
+    self.$starAnimation = $('<div/>', {'class': 'h5p-star-animation h5p-star-animation-inactive', appendTo: $h5pContainer});
+  }
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
   if (self.preventSkipping) {
@@ -1750,6 +1768,40 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 };
 
 /**
+ * Play the star animation
+ */
+InteractiveVideo.prototype.playStarAnimation = function () {
+  const self = this;
+  if (this.$starAnimation.hasClass('h5p-star-animation-inactive')) {
+    self.$starAnimation.removeClass('h5p-star-animation-inactive');
+    self.$starAnimation.addClass('h5p-star-animation-active');
+
+    setTimeout(function () {
+      self.$starAnimation.removeClass('h5p-star-animation-active');
+      self.$starAnimation.addClass('h5p-star-animation-inactive');
+    }, 1000);
+  }
+};
+
+/**
+ * Update the star animation's position
+ */
+InteractiveVideo.prototype.updateStarAnimation = function () {
+  const self = this;
+  if (this.$starAnimation !== undefined) {
+    // On startup, the final position of self.$star may not have been set yet
+    setTimeout(function () {
+      const offsetXSize = (self.$starAnimation.width() - self.$star.width()) / 2;
+      const offsetXTranslation = parseInt(self.$star.css('marginLeft')) * (1 + self.$star.width() / self.$starAnimation.width());
+      const offsetX = offsetXSize - offsetXTranslation;
+      const offsetY = (self.$starAnimation.height() - self.$star.height()) / 2;
+      self.$starAnimation.css('left', parseInt(self.$star.offset().left- offsetX) + 'px');
+      self.$starAnimation.css('top', parseInt(self.$star.offset().top - offsetY) + 'px');
+    }, 50);
+  }
+};
+
+/**
  * Check if any active interactions should be paused
  * @return {boolean} True if an interaction should be paused
  */
@@ -2067,6 +2119,8 @@ InteractiveVideo.prototype.resize = function () {
     this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
   }
 
+  this.updateStarAnimation();
+
   this.resizeInteractions();
 };
 
@@ -2371,6 +2425,9 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   self.controls.$currentTimeSimple.html(humanTime);
   self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
+
+  // If the width of the digits changes, star is moved. See HFP-1847
+  self.updateStarAnimation();
 };
 
 /**
