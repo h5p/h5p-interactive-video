@@ -151,9 +151,8 @@ function Bubble($container, text, maxWidth) {
   };
 
   // Create bubble
-
   var $tail = $('<div class="h5p-interactive-video-bubble-tail"></div>');
-  var $innerTail = $('<div class=".h5p-interactive-video-bubble-inner-tail"></div>');
+  var $innerTail = $('<div class="h5p-interactive-video-bubble-inner-tail"></div>');
   var $innerBubble = $(
     '<div class="h5p-interactive-video-bubble-inner">' +
       '<div class="h5p-interactive-video-bubble-text">' + text + '</div>' +

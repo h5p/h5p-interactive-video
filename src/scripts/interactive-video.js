@@ -739,7 +739,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.addBookmarks();
 
   // Add bubble
-  this.$bubble = new Bubble(this.$star, '', 'auto');
+  this.$bubble = new Bubble(this.$star, 'New Bubble', 'auto');
 
   this.trigger('controls');
 };
@@ -1828,12 +1828,15 @@ InteractiveVideo.prototype.updateBubbleAnimation = function (text) {
 
   if (this.$bubble !== undefined) {
     if (text !== undefined) {
-      self.$bubble.find('.h5p-interactive-video-bubble-inner').html(text);
+      self.$bubble.find('.h5p-interactive-video-bubble-text').html(text);
     }
-    let $inner = self.$bubble.find('.h5p-interactive-video-bubble-inner');
-    let $tail = self.$bubble.find('.h5p-interactive-video-bubble-tail');
-    let offsetInner = parseInt($tail.css('left')) + $tail.width()/2 - self.$bubble.width() / 2;
+    const $inner = self.$bubble.find('.h5p-interactive-video-bubble-inner');
+    const $innerTail = self.$bubble.find('.h5p-interactive-video-bubble-inner-tail');
+    const $tail = self.$bubble.find('.h5p-interactive-video-bubble-tail');
+    const offsetInner = parseInt($tail.css('left')) + $tail.width()/2 - self.$bubble.width() / 2;
     $inner.css('left', offsetInner + 'px');
+    const offsetInnerTail = $tail.offset().left - $innerTail.offset().left;
+    $innerTail.css('left', parseInt($innerTail.css('left')) + offsetInnerTail + 'px');
     self.$bubble.css('left', parseInt(self.$star.offset().left) + 'px');
   }
 };
