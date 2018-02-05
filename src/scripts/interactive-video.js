@@ -3,6 +3,7 @@ import Controls from 'h5p-lib-controls/src/scripts/controls';
 import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
 import Accessibility from './accessibility';
+import Bubble from './bubble';
 const $ = H5P.jQuery;
 
 const SECONDS_IN_MINUTE = 60;
@@ -127,7 +128,8 @@ function InteractiveVideo(params, id, contentData) {
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
-    content: 'Content'
+    content: 'Content',
+    answered: 'answered'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -736,6 +738,9 @@ InteractiveVideo.prototype.addControls = function () {
   // Add bookmarks
   this.addBookmarks();
 
+  // Add bubble
+  this.$bubble = new Bubble(this.$star, '', 'auto');
+
   this.trigger('controls');
 };
 
@@ -891,7 +896,12 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       const index = self.interactions.indexOf(interaction);
       self.$menuitems[index].addClass('h5p-question-answered');
       self.answered[index] = true;
+      const answeredTotal = self.answered.reduce(function(a, b) {
+        return a + b;
+      }, 0);
+
       self.playStarAnimation();
+      self.playBubbleAnimation('<strong>' + answeredTotal + '</strong>' + ' ' + self.l10n.answered);
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
@@ -1772,9 +1782,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
  */
 InteractiveVideo.prototype.playStarAnimation = function () {
   const self = this;
+
+  if (this.isMobileView === true) {
+    return;
+  }
+
   if (this.$starAnimation.hasClass('h5p-star-animation-inactive')) {
-    self.$starAnimation.removeClass('h5p-star-animation-inactive');
-    self.$starAnimation.addClass('h5p-star-animation-active');
+    this.$starAnimation.removeClass('h5p-star-animation-inactive');
+    this.$starAnimation.addClass('h5p-star-animation-active');
 
     setTimeout(function () {
       self.$starAnimation.removeClass('h5p-star-animation-active');
@@ -1788,6 +1803,7 @@ InteractiveVideo.prototype.playStarAnimation = function () {
  */
 InteractiveVideo.prototype.updateStarAnimation = function () {
   const self = this;
+
   if (this.$starAnimation !== undefined) {
     // On startup, the final position of self.$star may not have been set yet
     setTimeout(function () {
@@ -1798,6 +1814,52 @@ InteractiveVideo.prototype.updateStarAnimation = function () {
       self.$starAnimation.css('left', parseInt(self.$star.offset().left- offsetX) + 'px');
       self.$starAnimation.css('top', parseInt(self.$star.offset().top - offsetY) + 'px');
     }, 50);
+  }
+};
+
+/**
+ * Play the bubble animation
+ */
+InteractiveVideo.prototype.playBubbleAnimation = function (text) {
+  const self = this;
+
+  if (this.isMobileView === true) {
+    return;
+  }
+
+  if (this.$bubble.hasClass('inactive')) {
+    this.updateBubbleAnimation(text);
+    this.$bubble.removeClass('inactive');
+    this.$bubble.addClass('active');
+
+    setTimeout(function () {
+      self.$bubble.removeClass('active');
+      self.$bubble.addClass('inactive');
+    }, 1500);
+  }
+};
+
+/**
+ * Update the bubble animation's text and position
+ *
+ * @param {string} text - Text for the bubble
+ */
+InteractiveVideo.prototype.updateBubbleAnimation = function (text) {
+  const self = this;
+
+  if (!self.$bubble || self.$bubble.hasClass('active')) {
+    return;
+  }
+
+  if (this.$bubble !== undefined) {
+    if (text !== undefined) {
+      self.$bubble.find('.h5p-interactive-video-bubble-inner').html(text);
+    }
+    let $inner = self.$bubble.find('.h5p-interactive-video-bubble-inner');
+    let $tail = self.$bubble.find('.h5p-interactive-video-bubble-tail');
+    let offsetInner = parseInt($tail.css('left')) + $tail.width()/2 - self.$bubble.width() / 2;
+    $inner.css('left', offsetInner + 'px');
+    self.$bubble.css('left', parseInt(self.$star.offset().left) + 'px');
   }
 };
 
@@ -2120,6 +2182,7 @@ InteractiveVideo.prototype.resize = function () {
   }
 
   this.updateStarAnimation();
+  this.updateBubbleAnimation();
 
   this.resizeInteractions();
 };

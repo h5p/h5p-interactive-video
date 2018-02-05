@@ -1757,12 +1757,11 @@
   z-index: 1;
   background: url('../gui/score_h5p_green.svg') center/14px no-repeat;
   position: absolute;
-  transition-timing-function: ease-in;
-  -webkit-transition: 1s;
-  -moz-transition: 1s;
-  -ms-transition: 1s;
-  -o-transition: 1s;
-  transition: 1s;
+  -webkit-transition: 0.5s ease-in;
+  -moz-transition: 0.5s ease-in;
+  -ms-transition: 0.5s ease-in;
+  -o-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
   opacity: 1;
 }
 .h5p-star-animation.h5p-star-animation-inactive {
