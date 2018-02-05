@@ -168,7 +168,7 @@ function Bubble($container, text, maxWidth) {
 
   let $currentSpeechBubble = $('<div class="h5p-interactive-video-bubble" aria-live="assertive">')
     .append([$tail, $innerBubble])
-    .addClass('inactive')
+    .addClass('h5p-interactive-video-bubble-inactive')
     .appendTo($h5pContainer);
 
   // Calculate offset between the button and the h5p frame

@@ -1802,14 +1802,14 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
     return;
   }
 
-  if (this.$bubble.hasClass('inactive')) {
+  if (this.$bubble.hasClass('h5p-interactive-video-bubble-inactive')) {
     this.updateBubbleAnimation(text);
-    this.$bubble.removeClass('inactive');
-    this.$bubble.addClass('active');
+    this.$bubble.removeClass('h5p-interactive-video-bubble-inactive');
+    this.$bubble.addClass('h5p-interactive-video-bubble-active');
 
     setTimeout(function () {
-      self.$bubble.removeClass('active');
-      self.$bubble.addClass('inactive');
+      self.$bubble.removeClass('h5p-interactive-video-bubble-active');
+      self.$bubble.addClass('h5p-interactive-video-bubble-inactive');
     }, 1500);
   }
 };
@@ -1822,7 +1822,7 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
 InteractiveVideo.prototype.updateBubbleAnimation = function (text) {
   const self = this;
 
-  if (!self.$bubble || self.$bubble.hasClass('active')) {
+  if (!self.$bubble || self.$bubble.hasClass('h5p-interactive-video-bubble-active')) {
     return;
   }
 

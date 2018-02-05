@@ -6,7 +6,6 @@
   z-index: 301;
   margin-top: 0.45em;
   min-width: 1em;
-  opacity: 0;
   transition: transform 0.5s ease-out 0.5s, opacity 0s ease-out 0.5s;
   }
 .h5p-interactive-video-bubble p {
@@ -18,11 +17,11 @@
 .h5p-interactive-video-bubble p:last-child {
   margin-bottom: 0.25em;
 }
-.h5p-interactive-video-bubble.active {
+.h5p-interactive-video-bubble.h5p-interactive-video-bubble-active {
   transform: translateY(-9px);
   opacity: 1;
 }
-.h5p-interactive-video-bubble.inactive {
+.h5p-interactive-video-bubble.h5p-interactive-video-bubble-inactive {
   transition: 0s;
   opacity: 0;
 }
