@@ -1205,13 +1205,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-foreground', appendTo: self.$star});
-
-    // Add star animation
-    let $h5pContainer = $wrapper.closest('.h5p-frame');
-    if (!$h5pContainer.length) {
-      $h5pContainer = $wrapper.closest('.h5p-container');
-    }
-    self.$starAnimation = $('<div/>', {'class': 'h5p-star-animation h5p-star-animation-inactive', appendTo: $h5pContainer});
+    self.$starAnimation = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-animation h5p-star-animation-inactive', appendTo: self.$star});
   }
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
@@ -1799,25 +1793,6 @@ InteractiveVideo.prototype.playStarAnimation = function () {
 };
 
 /**
- * Update the star animation's position
- */
-InteractiveVideo.prototype.updateStarAnimation = function () {
-  const self = this;
-
-  if (this.$starAnimation !== undefined) {
-    // On startup, the final position of self.$star may not have been set yet
-    setTimeout(function () {
-      const offsetXSize = (self.$starAnimation.width() - self.$star.width()) / 2;
-      const offsetXTranslation = parseInt(self.$star.css('marginLeft')) * (1 + self.$star.width() / self.$starAnimation.width());
-      const offsetX = offsetXSize - offsetXTranslation;
-      const offsetY = (self.$starAnimation.height() - self.$star.height()) / 2;
-      self.$starAnimation.css('left', parseInt(self.$star.offset().left- offsetX) + 'px');
-      self.$starAnimation.css('top', parseInt(self.$star.offset().top - offsetY) + 'px');
-    }, 50);
-  }
-};
-
-/**
  * Play the bubble animation
  */
 InteractiveVideo.prototype.playBubbleAnimation = function (text) {
@@ -2181,7 +2156,6 @@ InteractiveVideo.prototype.resize = function () {
     this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
   }
 
-  this.updateStarAnimation();
   this.updateBubbleAnimation();
 
   this.resizeInteractions();
@@ -2489,8 +2463,6 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
   self.controls.$currentTimeSimple.html(humanTime);
   self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
 
-  // If the width of the digits changes, star is moved. See HFP-1847
-  self.updateStarAnimation();
 };
 
 /**

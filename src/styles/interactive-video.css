@@ -1742,20 +1742,17 @@
   position: absolute;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground {
-  background: url('../gui/score_h5p_grey.svg') center/14px no-repeat;
+  background: url('../gui/score_h5p_grey.svg') center/11px no-repeat;
   position: absolute;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground:hover {
-  background: url('../gui/score_h5p_white.svg') center/14px no-repeat;
+  background: url('../gui/score_h5p_white.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active {
-  background: url('../gui/score_h5p_green.svg') center/14px no-repeat;
+  background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
 }
-.h5p-star-animation {
-  width: 72px;
-  height: 72px;
-  z-index: 1;
-  background: url('../gui/score_h5p_green.svg') center/14px no-repeat;
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation {
+  background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
   position: absolute;
   -webkit-transition: 0.5s ease-in;
   -moz-transition: 0.5s ease-in;
@@ -1764,16 +1761,15 @@
   transition: 0.5s ease-in;
   opacity: 1;
 }
-.h5p-star-animation.h5p-star-animation-inactive {
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation.h5p-star-animation-active {
+  background: url('../gui/score_h5p_green.svg') center/36px no-repeat;
+  opacity: 0;
+}
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation.h5p-star-animation-inactive {
   visibility: hidden;
   -webkit-transition: 0s;
   -moz-transition: 0s;
   -ms-transition: 0s;
   -o-transition: 0s;
   transition: 0s;
-}
-
-.h5p-star-animation.h5p-star-animation-active {
-  background: url('../gui/score_h5p_green.svg') center/72px no-repeat;
-  opacity: 0;
 }
