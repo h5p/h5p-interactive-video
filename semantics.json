@@ -966,6 +966,14 @@
         "importance": "low",
         "default": "Content",
         "optional": true
+      },
+      {
+        "name": "answered",
+        "type": "text",
+        "label": "Answered label (@answered will be replaced with the number of answered questions)",
+        "importance": "low",
+        "default": "@answered answered!",
+        "optional": true
       }
     ]
   }

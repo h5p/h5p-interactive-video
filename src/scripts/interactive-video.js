@@ -739,7 +739,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.addBookmarks();
 
   // Add bubble
-  this.$bubble = new Bubble(this.$star, 'New Bubble', 'auto');
+  this.$bubble = new Bubble(this.$star, '', 'auto');
 
   this.trigger('controls');
 };
@@ -901,7 +901,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       }, 0);
 
       self.playStarAnimation();
-      self.playBubbleAnimation('<strong>' + answeredTotal + '</strong>' + ' ' + self.l10n.answered);
+      self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
