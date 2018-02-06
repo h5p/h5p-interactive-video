@@ -1199,14 +1199,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
   var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
   // True will be replaced by boolean variable, e.g. endScreenAvailable
-  if (true) {
-    self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper}).click(function() {
-      //self.showEndScreen();
-      /* class 'h5p-star-active' will make star foreground green*/
-    });
+  if (true || self.editor) {
+    self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
-    $('<div/>', {'class': 'h5p-control h5p-star h5p-star-foreground', appendTo: self.$star});
     self.$starAnimation = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-animation h5p-star-animation-inactive', appendTo: self.$star});
   }
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
@@ -1409,6 +1405,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.controls.$overlayButtons.removeClass('h5p-hide');
     }, 150);
   };
+
+  self.controls.$endScreen = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
+
+  });
 
   // Add control for displaying overlay with buttons
   self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
