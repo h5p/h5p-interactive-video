@@ -27,6 +27,8 @@ const gotoType = {
   URL: 'url'
 };
 
+console.log('changed');
+
 /**
  * Returns true if the type is goto timecode
  *
@@ -617,7 +619,8 @@ function Interaction(parameters, player, previousState) {
       // Position dialog. Use medium dialog for all interactive dialogs.
       if (!player.isMobileView) {
         // Set size of dialog
-        player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, !(library === 'H5P.Text' || library === 'H5P.Table'));
+        let isMedium = !(library === 'H5P.Text' || library === 'H5P.Table' || library === 'H5P.IVOpenEndedQuestion');
+        player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, false, true);
       }
     }
 
@@ -1578,9 +1581,10 @@ function Interaction(parameters, player, previousState) {
    * @param {H5P.jQuery} $wrapper
    */
   self.repositionToWrapper = function ($wrapper) {
+    console.log(library);
 
-    if ($interaction && library !== 'H5P.IVHotspot') {
-
+    if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.IVOpenEndedQuestion') {
+      console.log('repositioning ' + library);
       // Reset positions
       if (isRepositioned) {
         $interaction.css({
