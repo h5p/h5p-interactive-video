@@ -931,7 +931,7 @@
   top: -3px;
 }
 
-.h5p-interactive-video .h5p-seekbar-interaction.h5p-question-answered:before {
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-interaction-answered:before {
   content: "\e90e";
 }
 

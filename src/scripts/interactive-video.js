@@ -129,7 +129,7 @@ function InteractiveVideo(params, id, contentData) {
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
-    answered: 'answered'
+    answered: '@answered answered!'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -140,19 +140,8 @@ function InteractiveVideo(params, id, contentData) {
     self.previousState = contentData.previousState;
   }
 
-  // Keep track of interactions that have been answered (interactions themselves don't know about their state)
-  let interactionsNumber = (this.interactions !== undefined) ? self.options.assets.interactions.length : 0;
-  if (self.previousState !== undefined && self.previousState.answered !== undefined) {
-    self.answered = self.previousState.answered;
-  }
-  else {
-    self.answered = new Array(interactionsNumber).map(function () {
-      return false;
-    });
-  }
-  self.$menuitems = new Array(interactionsNumber).map(function () {
-    return undefined;
-  });
+  // Dots to be changed
+  self.menuitems = [];
 
   // Initial state
   self.lastState = H5P.Video.ENDED;
@@ -174,6 +163,12 @@ function InteractiveVideo(params, id, contentData) {
   startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
   if (startAt === 0 && params.override && !!params.override.startVideoAt) {
     startAt = params.override.startVideoAt;
+  }
+
+  // Keep track of interactions that have been answered (interactions themselves don't know about their state)
+  self.interactionsState = [];
+  if (self.previousState && self.previousState.interactionsState) {
+    self.interactionsState = self.previousState.interactionsState;
   }
 
   // determine if video should be looped
@@ -404,8 +399,6 @@ function InteractiveVideo(params, id, contentData) {
       this.initInteraction(i);
     }
   }
-  // Order by position on seekbar, not by creation
-  self.interactions = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from);
 
   self.accessibility = new Accessibility(self.l10n);
 }
@@ -475,7 +468,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   var state = {
     progress: self.video.getCurrentTime(),
     answers: [],
-    answered: self.answered
+    interactionsState: self.interactionsState
   };
 
   // Page might not have been loaded yet
@@ -574,6 +567,7 @@ InteractiveVideo.prototype.attach = function ($container) {
       if (that.lastState !== H5P.Video.PAUSED && that.lastState !== H5P.Video.ENDED) {
         that.video.play();
       }
+      that.handleAnswered();
     });
   }
   else {
@@ -878,11 +872,17 @@ InteractiveVideo.prototype.initInteraction = function (index) {
 
   // The interaction is about to be hidden.
   interaction.on('hide', function (event) {
+    self.handleAnswered();
     var $interaction = event.data; // Grab DOM element
   });
 
   // handle xAPI event
   interaction.on('xAPI', function (event) {
+    if (event.getVerb() === 'interacted') {
+      const pos = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from).indexOf(interaction);
+      self.interactionsState[pos] = 'interacted';
+    }
+
     // update state
     if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
       event.setVerb('answered');
@@ -895,16 +895,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
           self.complete();
         }, 0);
       }
-      // Change interaction dot on seekbar
-      const index = self.interactions.indexOf(interaction);
-      self.$menuitems[index].addClass('h5p-question-answered');
-      self.answered[index] = true;
-      const answeredTotal = self.answered.reduce(function(a, b) {
-        return a + b;
-      }, 0);
-
-      self.playStarAnimation();
-      self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
@@ -915,6 +905,27 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   self.interactions.push(interaction);
 
   return interaction;
+};
+
+/**
+ * Change seekbar dot if interaction was answered
+ */
+InteractiveVideo.prototype.handleAnswered = function () {
+  const self = this;
+  // By looping over all states we do not need to care which interaction was active previously
+  self.interactionsState.forEach((state, index) => {
+    if (state === 'interacted') {
+      self.interactionsState[index] = 'answered';
+      self.menuitems[index].addClass('h5p-interaction-answered');
+
+      const answeredTotal = self.interactionsState.filter(function(a) {
+        return a === 'answered';
+      }).length;
+
+      self.playStarAnimation();
+      self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
+    }
+  });
 };
 
 /**
@@ -943,22 +954,28 @@ InteractiveVideo.prototype.hasMainSummary = function () {
  * Puts the tiny cute balls above the slider / seek bar.
  */
 InteractiveVideo.prototype.addSliderInteractions = function () {
+  const self = this;
   // Remove old dots
   this.controls.$interactionsContainer.children().remove();
 
   // Add new dots
   H5P.jQuery.extend([], this.interactions)
-    .forEach((interaction, index) => {
-      this.$menuitems[index] = interaction.addDot();
+    .sort((a, b) =>  a.getDuration().from - b.getDuration().from)
+    .forEach(interaction => {
+      const $menuitem = interaction.addDot();
+      self.menuitems.push($menuitem);
+      if (self.previousState === undefined) {
+        self.interactionsState.push(undefined);
+      }
+      if (self.interactionsState[self.menuitems.length - 1] === 'answered') {
+        $menuitem.addClass('h5p-interaction-answered');
+      }
 
-      if (this.$menuitems[index] !== undefined) {
-        if (this.answered[index] === true) {
-          this.$menuitems[index].addClass('h5p-question-answered');
-        }
-        this.$menuitems[index].appendTo(this.controls.$interactionsContainer);
+      if ($menuitem !== undefined) {
+        $menuitem.appendTo(this.controls.$interactionsContainer);
 
         if(!this.preventSkipping) {
-          this.interactionKeyboardControls.addElement(this.$menuitems[index].get(0));
+          this.interactionKeyboardControls.addElement($menuitem.get(0));
         }
       }
     });
@@ -1231,6 +1248,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     else {
       self.video.pause();
     }
+    self.handleAnswered();
   });
 
   // Add button for rewinding 10 seconds
@@ -2878,8 +2896,8 @@ InteractiveVideo.prototype.resetTask = function () {
     this.interactions[i].resetTask();
   }
 
-  this.answered = new Array(this.interactions.length).map(function () {
-    return false;
+  this.interactionAnswered = new Array(this.interactions.length).map(function () {
+    return undefined;
   });
 };
 
