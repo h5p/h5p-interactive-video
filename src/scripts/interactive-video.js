@@ -141,15 +141,16 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // Keep track of interactions that have been answered (interactions themselves don't know about their state)
+  let interactionsNumber = (this.interactions !== undefined) ? self.options.assets.interactions.length : 0;
   if (self.previousState !== undefined && self.previousState.answered !== undefined) {
     self.answered = self.previousState.answered;
   }
   else {
-    self.answered = new Array(self.options.assets.interactions.length).map(function () {
+    self.answered = new Array(interactionsNumber).map(function () {
       return false;
     });
   }
-  self.$menuitems = new Array(self.options.assets.interactions.length).map(function () {
+  self.$menuitems = new Array(interactionsNumber).map(function () {
     return undefined;
   });
 
