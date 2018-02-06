@@ -739,7 +739,9 @@ InteractiveVideo.prototype.addControls = function () {
   this.addBookmarks();
 
   // Add bubble
-  this.$bubble = new Bubble(this.$star, '', 'auto');
+  if (!this.editor) {
+    this.$bubble = new Bubble(this.$star, '', 'auto');
+  }
 
   this.trigger('controls');
 };
