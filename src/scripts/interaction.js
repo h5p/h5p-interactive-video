@@ -27,8 +27,6 @@ const gotoType = {
   URL: 'url'
 };
 
-console.log('changed');
-
 /**
  * Returns true if the type is goto timecode
  *
@@ -426,6 +424,13 @@ function Interaction(parameters, player, previousState) {
       }
 
       instance.on('noSuccessScreen', function () {
+        closeInteraction();
+        player.play();
+      });
+    }
+
+    if (library === 'H5P.IVOpenEndedQuestion') {
+      instance.on('continue', function () {
         closeInteraction();
         player.play();
       });
@@ -1581,10 +1586,8 @@ function Interaction(parameters, player, previousState) {
    * @param {H5P.jQuery} $wrapper
    */
   self.repositionToWrapper = function ($wrapper) {
-    console.log(library);
 
     if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.IVOpenEndedQuestion') {
-      console.log('repositioning ' + library);
       // Reset positions
       if (isRepositioned) {
         $interaction.css({
