@@ -893,7 +893,7 @@
 
 .h5p-interactive-video .h5p-seekbar-interaction {
   position: absolute;
-  top: -18px;
+  top: -19px;
   transform: translateX(-50%);
   cursor: pointer;
   box-sizing: border-box;
@@ -902,7 +902,7 @@
 .h5p-interactive-video .h5p-seekbar-interaction:before {
   font-family: 'H5Picons';
   content: "\e90d";
-  font-size: 12px;
+  font-size: 10px;
   color: #ffffff;
 }
 
@@ -1736,6 +1736,9 @@
   width: 24px;
   border-radius: 0;
   position: absolute;
+}
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-bar.h5p-star-bar-buffered {
+  background: #4d4d4d;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-background {
   background: url('../gui/score_h5p_black.svg') center/22px no-repeat;

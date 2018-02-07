@@ -1219,7 +1219,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // True will be replaced by boolean variable, e.g. endScreenAvailable
   if (true || self.editor) {
     self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper});
-    $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
+    self.$starBar = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
     self.$starAnimation = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-animation h5p-star-animation-inactive', appendTo: self.$star});
   }
@@ -2072,6 +2072,11 @@ InteractiveVideo.prototype.startUpdatingBufferBar = function () {
     var buffered = self.video.getBuffered();
     if (buffered && self.controls.$buffered) {
       self.controls.$buffered.css('width', buffered + '%');
+      if (buffered === 100) {
+        self.$starBar.addClass('h5p-star-bar-buffered');
+      } else {
+        self.$starBar.removeClass('h5p-star-bar-buffered');
+      }
     }
     self.bufferLoop = setTimeout(updateBufferBar, 500);
   };
