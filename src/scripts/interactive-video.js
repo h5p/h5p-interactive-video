@@ -70,6 +70,9 @@ function InteractiveVideo(params, id, contentData) {
     self.options.video.startScreenOptions.title = 'Interactive Video';
   }
 
+  // Show the score star if there are endscreens available or user is editing
+  self.hasStar = (self.editor || self.options.assets.endscreens !== undefined);
+
   // Set default splash options
   self.startScreenOptions = $.extend({
     hideStartTitle: false,
@@ -111,6 +114,7 @@ function InteractiveVideo(params, id, contentData) {
     exitFullscreen: 'Exit fullscreen',
     summary: 'Summary',
     bookmarks: 'Bookmarks',
+    endscreens: 'End Screens',
     defaultAdaptivitySeekLabel: 'Continue',
     continueWithVideo: 'Continue with video',
     more: 'More',
@@ -130,8 +134,7 @@ function InteractiveVideo(params, id, contentData) {
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
-    answered: '@answered answered!',
-    endscreens: 'End Screens'
+    answered: '@answered answered!'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -746,7 +749,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.addEndscreens();
 
   // Add bubble
-  if (!this.editor) {
+  if (!this.editor && this.$star) {
     this.$bubble = new Bubble(this.$star, '', 'auto');
   }
 
@@ -934,8 +937,10 @@ InteractiveVideo.prototype.handleAnswered = function () {
         return a === 'answered';
       }).length;
 
-      self.playStarAnimation();
-      self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
+      if (self.hasStar) {
+        self.playStarAnimation();
+        self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
+      }
     }
   });
 };
@@ -1015,6 +1020,10 @@ InteractiveVideo.prototype.addEndscreens = function () {
       this.addEndscreen(i);
     }
   }
+  // We add a default endscreen that can be deleted later and won't be replaced
+  if (this.editor && !!this.editor.freshVideo) {
+    this.editor.addEndscreen(this.getDuration(), true);
+  }
 };
 
 /**
@@ -1079,6 +1088,7 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
         .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
         .addClass('h5p-show');
       this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
+      this.controls.$endscreensButton.addClass('h5p-star-active-editor');
     }
     else {
       this.controls.$more.attr('aria-expanded', 'false');
@@ -1093,6 +1103,7 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
       if (!firstPlay) {
         this.controls.$endscreensButton.focus();
       }
+      this.controls.$endscreensButton.removeClass('h5p-star-active-editor');
     }
 
     this.controls.$endscreensChooser.toggleClass('h5p-transitioning', show || hiding);
@@ -1318,7 +1329,6 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   var endscreen = self.options.assets.endscreens[id];
 
   // Avoid stacking of endscreens.
-  // TODO: Merge this for bookmarks and endscreens
   if (tenth === undefined) {
     tenth = Math.floor(endscreen.time * 10) / 10;
   }
@@ -1404,7 +1414,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
   var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
   // True will be replaced by boolean variable, e.g. endScreenAvailable
-  if (true || self.editor) {
+
+  if (self.hasStar) {
     self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper});
     self.$starBar = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
@@ -1565,16 +1576,16 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
   }
 
-  self.controls.$endscreensButton = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
-    if (self.editor) {
-      // Open endscreen editor
-      console.log('Open endscreen editor');
-      self.toggleEndscreensChooser();
-    }
-    else  {
+  if (self.hasStar) {
+    self.controls.$endscreensButton = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
+      if (self.editor) {
+        self.toggleEndscreensChooser();
+      }
+      else  {
 
-    }
-  });
+      }
+    });
+  }
 
   // Add endscreen controls
   if (self.editor) {
@@ -1601,13 +1612,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }));
 
     // Amend button for opening endscreen popup
-    // TODO: Move this together in code
-    self.controls.$endscreensButton.attr('aria-haspopup', 'true');
-    self.controls.$endscreensButton.attr('aria-expanded', 'false');
-    self.controls.$endscreensChooser.insertAfter(self.controls.$endscreensButton);
-    self.controls.$endscreensChooser.bind('transitionend', function () {
-      self.controls.$endscreensChooser.removeClass('h5p-transitioning');
-    });
+    if (self.hasStar) {
+      self.controls.$endscreensButton.attr('aria-haspopup', 'true');
+      self.controls.$endscreensButton.attr('aria-expanded', 'false');
+      self.controls.$endscreensChooser.insertAfter(self.controls.$endscreensButton);
+      self.controls.$endscreensChooser.bind('transitionend', function () {
+        self.controls.$endscreensChooser.removeClass('h5p-transitioning');
+      });
+    }
   }
 
   const currentTimeTemplate =
@@ -2308,10 +2320,12 @@ InteractiveVideo.prototype.startUpdatingBufferBar = function () {
     var buffered = self.video.getBuffered();
     if (buffered && self.controls.$buffered) {
       self.controls.$buffered.css('width', buffered + '%');
-      if (buffered === 100) {
-        self.$starBar.addClass('h5p-star-bar-buffered');
-      } else {
-        self.$starBar.removeClass('h5p-star-bar-buffered');
+      if (self.hasStar) {
+        if (buffered === 100) {
+          self.$starBar.addClass('h5p-star-bar-buffered');
+        } else {
+          self.$starBar.removeClass('h5p-star-bar-buffered');
+        }
       }
     }
     self.bufferLoop = setTimeout(updateBufferBar, 500);

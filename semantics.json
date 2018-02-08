@@ -843,6 +843,14 @@
         "optional": true
       },
       {
+        "name": "endscreen",
+        "type": "text",
+        "label": "End screen title",
+        "importance": "low",
+        "default": "End screen",
+        "optional": true
+      },
+      {
         "name": "defaultAdaptivitySeekLabel",
         "type": "text",
         "label": "Default label for adaptivity seek button",

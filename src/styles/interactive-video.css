@@ -966,7 +966,7 @@
 
 .h5p-interactive-video .h5p-bookmark {
   position: absolute;
-  top: -13px;
+  top: -14px;
   width: 1px;
   height: 36px;
   background: unset;
@@ -980,7 +980,7 @@
 
 .h5p-interactive-video .h5p-endscreen {
   position: absolute;
-  top: -13px;
+  top: -14px;
   width: 1px;
   height: 36px;
   background: #a2a2a2;
@@ -1770,8 +1770,9 @@
 
 .h5p-interactive-video .h5p-control.h5p-star {
   position: relative;
-  margin-left: -4px;
-  margin-right: -8px;
+  margin-left: -3px;
+  margin-right: -5px;
+  width: 32px;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-bar {
   background: #0b0d0c;
@@ -1799,6 +1800,9 @@
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
+}
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active-editor {
+  background: url('../gui/score_h5p_light_grey.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
