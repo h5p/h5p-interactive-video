@@ -587,6 +587,25 @@
                 }
               ]
             }
+          },
+          {
+            "name": "endscreens",
+            "importance": "low",
+            "type": "list",
+            "field": {
+              "name": "endscreen",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "time",
+                  "type": "number"
+                },
+                {
+                  "name": "label",
+                  "type": "text"
+                }
+              ]
+            }
           }
         ]
       },
