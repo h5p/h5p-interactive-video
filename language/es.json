@@ -89,10 +89,10 @@
                     "label":"Mostar duración",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"Etiqueta que aparece junto al icono de interacción."
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"Adaptabilidad",
@@ -189,7 +189,7 @@
                         "label":"Color del fondo",
                         "default":"rgb (255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,10 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
                   }
                 ]
               }
@@ -271,7 +271,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -461,6 +461,10 @@
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "name": "answered",
+          "default": "@answered answered!"
         }
       ]
     }

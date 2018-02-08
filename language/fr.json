@@ -89,10 +89,10 @@
                     "label":"Plage d'apparition",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"Label displayed next to interaction icon."
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"Adaptivity",
@@ -189,7 +189,7 @@
                         "label":"Couleur d'arrière-plan",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,10 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
                   }
                 ]
               }
@@ -271,7 +271,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -461,6 +461,10 @@
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "name": "answered",
+          "default": "@answered answered!"
         }
       ]
     }
