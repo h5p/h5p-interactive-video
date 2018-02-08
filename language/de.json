@@ -89,10 +89,10 @@
                     "label":"Anzeigezeit",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"Beschriftung neben dem Icon der Interaktion"
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"Adaptivität",
@@ -189,7 +189,7 @@
                         "label":"Hintergrundfarbe",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,10 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
                   }
                 ]
               }
@@ -271,7 +271,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -460,7 +460,11 @@
         },
         {
           "label": "Content label",
-          "default": "Content"
+          "default": "Inhalt"
+        },
+        {
+          "name": "answered",
+          "default": "@answered beantwortet!"
         }
       ]
     }

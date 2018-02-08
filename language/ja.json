@@ -89,10 +89,10 @@
                     "label":"表示時間",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"インタラクションアイコンの次に表示されるらべる。"
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"適応性",
@@ -189,7 +189,7 @@
                         "label":"背景色",
                         "default":"rgb (255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,10 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
                   }
                 ]
               }
@@ -271,7 +271,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -461,6 +461,10 @@
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "name": "answered",
+          "default": "@answered answered!"
         }
       ]
     }
