@@ -51,6 +51,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
+  self.endscreensMenuId = 'interactive-video-' + this.contentId + '-endscreens-chooser';
   self.qualityMenuId = 'interactive-video-' + this.contentId + '-quality-chooser';
   self.captionsMenuId = 'interactive-video-' + this.contentId + '-captions-chooser';
   self.playbackRateMenuId = 'interactive-video-' + this.contentId + '-playback-rate-chooser';
@@ -129,7 +130,8 @@ function InteractiveVideo(params, id, contentData) {
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
-    answered: '@answered answered!'
+    answered: '@answered answered!',
+    endscreens: 'End Screens'
   }, params.l10n);
 
   // Make it possible to restore from previous state
@@ -273,6 +275,9 @@ function InteractiveVideo(params, id, contentData) {
 
           // Remove bookmarkchooser
           self.toggleBookmarksChooser(false, firstPlay);
+
+          // Remove endscreenChooser
+          self.toggleEndscreensChooser(false, firstPlay);
 
           firstPlay = false;
         }
@@ -717,7 +722,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.attachControls(this.$controls.removeClass('hidden'));
 
   const duration = this.getDuration();
-  const humanTime = InteractiveVideo.humanizeTime(duration);
+  const humanTime = this.humanizeTime(duration);
   const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
@@ -727,11 +732,18 @@ InteractiveVideo.prototype.addControls = function () {
   this.bookmarkMenuKeyboardControls = new Controls([new UIKeyboard()]);
   this.bookmarkMenuKeyboardControls.on('close', () =>  this.toggleBookmarksChooser(false));
 
+  // Add keyboard controls for Endscreens
+  this.endscreenMenuKeyboardControls = new Controls([new UIKeyboard()]);
+  this.endscreenMenuKeyboardControls.on('close', () =>  this.toggleEndscreensChooser(false));
+
   // Add dots above seeking line.
   this.addSliderInteractions();
 
   // Add bookmarks
   this.addBookmarks();
+
+  // Add endscreens
+  this.addEndscreens();
 
   // Add bubble
   if (!this.editor) {
@@ -994,6 +1006,18 @@ InteractiveVideo.prototype.addBookmarks = function () {
 };
 
 /**
+ * Puts all the cool narrow lines around the slider / seek bar.
+ */
+InteractiveVideo.prototype.addEndscreens = function () {
+  this.endscreensMap = {};
+  if (this.options.assets.endscreens !== undefined && !this.preventSkipping) {
+    for (var i = 0; i < this.options.assets.endscreens.length; i++) {
+      this.addEndscreen(i);
+    }
+  }
+};
+
+/**
  * Toggle bookmarks menu
  *
  * @method toggleBookmarksChooser
@@ -1035,6 +1059,47 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = 
 };
 
 /**
+ * Toggle endscreensChooser menu
+ *
+ * @method toggleEndscreensChooser
+ * @param {boolean} [show] Forces toggle state if set
+ * @param {boolean} [firstPlay] If first time
+ */
+InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay = false) {
+  if (this.editor && this.controls.$endscreensButton) {
+    show = (show === undefined ? !this.controls.$endscreensChooser.hasClass('h5p-show') : show);
+    var hiding = this.controls.$endscreensChooser.hasClass('h5p-show');
+
+    if(show) {
+      this.controls.$more.attr('aria-expanded', 'true');
+      this.controls.$minimalOverlay.addClass('h5p-show');
+      this.controls.$minimalOverlay.find('.h5p-minimal-button').addClass('h5p-hide');
+      this.controls.$endscreensButton.attr('aria-expanded', 'true');
+      this.controls.$endscreensChooser
+        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+        .addClass('h5p-show');
+      this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
+    }
+    else {
+      this.controls.$more.attr('aria-expanded', 'false');
+      this.controls.$minimalOverlay.removeClass('h5p-show');
+      this.controls.$minimalOverlay.find('.h5p-minimal-button').removeClass('h5p-hide');
+      this.controls.$endscreensButton.attr('aria-expanded', 'false');
+
+      this.controls.$endscreensChooser
+        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+        .removeClass('h5p-show');
+
+      if (!firstPlay) {
+        this.controls.$endscreensButton.focus();
+      }
+    }
+
+    this.controls.$endscreensChooser.toggleClass('h5p-transitioning', show || hiding);
+  }
+};
+
+/**
  * Show message saying that skipping in the video is not allowed.
  *
  * @param {number} offsetX offset in pixels from left side of the seek bar
@@ -1052,6 +1117,11 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
     self.$preventSkippingMessage = $('<div>', {
       'class': 'h5p-prevent-skipping-message',
       appendTo: self.controls.$bookmarksContainer
+    });
+
+    self.$preventSkippingMessage = $('<div>', {
+      'class': 'h5p-prevent-skipping-message',
+      appendTo: self.controls.$endscreensContainer
     });
 
     self.$preventSkippingMessageText = $('<div>', {
@@ -1117,6 +1187,33 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
   self.video.seek(bookmark.time);
 
   const l11yTime = InteractiveVideo.formatTimeForA11y(bookmark.time, self.l10n);
+  setTimeout(() => self.read(`${self.l10n.currentTime} ${l11yTime}`), 150);
+};
+
+/**
+ * Update video to jump to position of selected endscreen
+ *
+ * @param {jQuery} $endscreen
+ * @param {object} endscreen
+ */
+InteractiveVideo.prototype.onEndscreenSelect = function ($endscreen, endscreen) {
+  var self = this;
+
+  if (self.currentState !== H5P.Video.PLAYING) {
+    $endscreen.mouseover().mouseout();
+    setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
+  }
+
+  if (self.controls.$more.attr('aria-expanded') === 'true' && self.$container.hasClass('h5p-minimal')) {
+    self.controls.$more.click();
+  }
+  else {
+    self.toggleEndscreensChooser(false);
+  }
+  self.video.play();
+  self.video.seek(endscreen.time);
+
+  const l11yTime = InteractiveVideo.formatTimeForA11y(endscreen.time, self.l10n);
   setTimeout(() => self.read(`${self.l10n.currentTime} ${l11yTime}`), 150);
 };
 
@@ -1206,6 +1303,96 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 };
 
 /**
+ * Puts a single cool narrow line around the slider / seek bar.
+ *
+ * @param {number} id
+ * @param {number} [tenth]
+ * @returns {H5P.jQuery}
+ */
+InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
+  if (!this.editor) {
+    return;
+  }
+
+  var self = this;
+  var endscreen = self.options.assets.endscreens[id];
+
+  // Avoid stacking of endscreens.
+  // TODO: Merge this for bookmarks and endscreens
+  if (tenth === undefined) {
+    tenth = Math.floor(endscreen.time * 10) / 10;
+  }
+
+  // Create endscreen element for the seek bar.
+  var $endscreen = self.endscreensMap[tenth] = $('<div class="h5p-endscreen" style="left:' + (endscreen.time * self.oneSecondInPercentage) + '%"><div class="h5p-endscreen-label"><div class="h5p-endscreen-text">' + endscreen.label + '</div></div></div>')
+    .appendTo(self.controls.$endscreensContainer)
+    .data('id', id)
+    .hover(function () {
+      if (self.endscreenTimeout !== undefined) {
+        clearTimeout(self.endscreenTimeout);
+      }
+      self.controls.$endscreensContainer.children('.h5p-show').removeClass('h5p-show');
+      $endscreen.addClass('h5p-show');
+    }, function () {
+      self.endscreenTimeout = setTimeout(function () {
+        $endscreen.removeClass('h5p-show');
+      }, 2000);
+    });
+
+  // Set max size of label to the size of the controls to the right.
+  $endscreen.find('.h5p-endscreen-label').css('maxWidth', parseInt(self.controls.$slider.parent().css('marginRight')) - 35);
+
+  // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
+  if (self.controls.$endscreensList === undefined) {
+    self.controls.$endscreensList = $('<ul role="menu"></ul>')
+      .insertAfter(self.controls.$endscreensChooser.find('h3'));
+  }
+
+  // Create list element for endscreen
+  var $li = $(`<li role="menuitem" aria-describedby="${self.endscreensMenuId}">${endscreen.label}</li>`)
+    .click(() => self.onEndscreenSelect($endscreen, endscreen))
+    .keydown(e => {
+      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
+        self.onEndscreenSelect($endscreen, endscreen);
+      }
+
+      e.stopPropagation();
+    });
+
+  self.endscreenMenuKeyboardControls.addElement($li.get(0));
+
+  // Insert endscreen in the correct place.
+  var $next = self.controls.$endscreensList.children(':eq(' + id + ')');
+  if ($next.length !== 0) {
+    $li.insertBefore($next);
+  }
+  else {
+    $li.appendTo(self.controls.$endscreensList);
+  }
+
+  // Listen for changes to our id.
+  self.on('endscreensChanged', function (event) {
+    var index = event.data.index;
+    var number = event.data.number;
+    if (index === id && number < 0) {
+      // We are removing this item.
+      $li.remove();
+      delete self.endscreensMap[tenth];
+      // self.off('endscreensChanged');
+    }
+    else if (id >= index) {
+      // We must update our id.
+      id += number;
+      $endscreen.data('id', id);
+    }
+  });
+
+  // Tell others we have added a new endscreen.
+  self.trigger('endscreenAdded', {'endscreen': $endscreen});
+  return $endscreen;
+};
+
+/**
  * Attach video controls to the given wrapper.
  *
  * @param {H5P.jQuery} $wrapper
@@ -1221,6 +1408,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.$star = $('<div/>', {'class': 'h5p-control h5p-star', appendTo: $wrapper});
     self.$starBar = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-bar', appendTo: self.$star});
     $('<div/>', {'class': 'h5p-control h5p-star h5p-star-background', appendTo: self.$star});
+
     self.$starAnimation = $('<div/>', {'class': 'h5p-control h5p-star h5p-star-animation h5p-star-animation-inactive', appendTo: self.$star});
   }
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
@@ -1377,6 +1565,51 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
   }
 
+  self.controls.$endscreensButton = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
+    if (self.editor) {
+      // Open endscreen editor
+      console.log('Open endscreen editor');
+      self.toggleEndscreensChooser();
+    }
+    else  {
+
+    }
+  });
+
+  // Add endscreen controls
+  if (self.editor) {
+    // Popup dialog for choosing endscreens
+    self.controls.$endscreensChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-endscreens',
+      'role': 'dialog',
+      html: `<h3 id="${self.endscreensMenuId}">${self.l10n.endscreens}</h3>`,
+    });
+
+    // Adding close button to endscreens-menu
+    self.controls.$endscreensChooser.append($('<span>', {
+      'role': 'button',
+      'class': 'h5p-chooser-close-button',
+      'tabindex': '0',
+      'aria-label': self.l10n.close,
+      click: () => self.toggleEndscreensChooser(),
+      keydown: event => {
+        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
+          self.toggleEndscreensChooser();
+          event.preventDefault();
+        }
+      }
+    }));
+
+    // Amend button for opening endscreen popup
+    // TODO: Move this together in code
+    self.controls.$endscreensButton.attr('aria-haspopup', 'true');
+    self.controls.$endscreensButton.attr('aria-expanded', 'false');
+    self.controls.$endscreensChooser.insertAfter(self.controls.$endscreensButton);
+    self.controls.$endscreensChooser.bind('transitionend', function () {
+      self.controls.$endscreensChooser.removeClass('h5p-transitioning');
+    });
+  }
+
   const currentTimeTemplate =
     `<time class="h5p-current">
       <span class="hidden-but-read"></span>
@@ -1414,6 +1647,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$more.attr('aria-expanded', 'false');
     self.controls.$more.focus();
     self.toggleBookmarksChooser(false);
+    self.toggleEndscreensChooser(false);
     if (self.controls.$qualityButton && self.controls.$qualityButton.attr('aria-expanded') === 'true') {
       self.controls.$qualityButton.click();
     }
@@ -1424,10 +1658,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.controls.$overlayButtons.removeClass('h5p-hide');
     }, 150);
   };
-
-  self.controls.$endScreen = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
-
-  });
 
   // Add control for displaying overlay with buttons
   self.controls.$more = self.createButton('more', 'h5p-control', $right, function () {
@@ -1449,6 +1679,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }
 
     // Make sure sub menus are closed
+    // TODO: Check if we need to do something here
     if (bookmarksEnabled) {
       self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
     }
@@ -1631,6 +1862,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   self.controls.$bookmarksContainer = $('<div/>', {
     'class': 'h5p-bookmarks-container',
+    appendTo: $slider
+  });
+
+  self.controls.$endscreensContainer = $('<div/>', {
+    'class': 'h5p-endscreens-container',
     appendTo: $slider
   });
 
@@ -2457,6 +2693,11 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
       // Show bookmark
       self.bookmarksMap[tenth].mouseover().mouseout();
     }
+    // Check for endscreens
+    if (self.endscreensMap !== undefined && self.endscreensMap[tenth] !== undefined) {
+      // Show endscreen
+      self.endscreensMap[tenth].mouseover().mouseout();
+    }
   }
   self.lastTenth = tenth;
 
@@ -2483,7 +2724,7 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   seconds = Math.max(seconds, 0);
 
-  const humanTime = InteractiveVideo.humanizeTime(seconds);
+  const humanTime = this.humanizeTime(seconds);
   const a11yTime = InteractiveVideo.formatTimeForA11y(seconds, self.l10n);
 
   self.controls.$currentTime.html(humanTime);
@@ -2989,7 +3230,7 @@ InteractiveVideo.ATTACHED = 6;
  * @param {number} seconds
  * @returns {string}
  */
-InteractiveVideo.humanizeTime = function (seconds) {
+InteractiveVideo.prototype.humanizeTime = function (seconds) {
   const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
   let result = '';
 
