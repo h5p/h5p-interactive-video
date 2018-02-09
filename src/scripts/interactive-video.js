@@ -749,7 +749,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.addEndscreens();
 
   // Add bubble
-  if (!this.editor && this.$star) {
+  if (!this.editor && this.hasStar) {
     this.$bubble = new Bubble(this.$star, '', 'auto');
   }
 
@@ -2321,7 +2321,7 @@ InteractiveVideo.prototype.startUpdatingBufferBar = function () {
     if (buffered && self.controls.$buffered) {
       self.controls.$buffered.css('width', buffered + '%');
       if (self.hasStar) {
-        if (buffered === 100) {
+        if (buffered > 99) {
           self.$starBar.addClass('h5p-star-bar-buffered');
         } else {
           self.$starBar.removeClass('h5p-star-bar-buffered');
