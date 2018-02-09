@@ -455,7 +455,7 @@
           "default": "Sadržaj"
         },
         {
-          "name": "answered",
+          "label": "answered",
           "default": "@answered answered!"
         }
       ]

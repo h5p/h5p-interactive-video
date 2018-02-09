@@ -479,7 +479,7 @@
           "default": "Inhoud"
         },
         {
-          "name": "answered",
+          "label": "answered",
           "default": "@answered answered!"
         }
       ]

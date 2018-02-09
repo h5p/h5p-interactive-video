@@ -403,8 +403,8 @@
           "default":"Lesezeichen"
         },
         {
-          "label": "End screen title",
-          "default": "End screen"
+          "label": "Titel für Endbildschirm",
+          "default": "Endbildschirm"
         },
         {
           "label":"Standardbeschriftung für Springen-Button",
@@ -479,7 +479,7 @@
           "default": "Inhalt"
         },
         {
-          "name": "answered",
+          "label": "answered",
           "default": "@answered beantwortet!"
         }
       ]

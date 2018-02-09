@@ -479,7 +479,7 @@
           "default": "Sisältö"
         },
         {
-          "name": "answered",
+          "label": "answered",
           "default": "@answered answered!"
         }
       ]
