@@ -364,7 +364,9 @@ function Interaction(parameters, player, previousState) {
    */
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
-    self.trigger('hide', $interaction);
+    if ($interaction) {
+      self.trigger('hide', $interaction);
+    }
     if (self.isButton()) {
       if (closeDialog) {
         player.dnb.dialog.close();
@@ -1360,7 +1362,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.remove = function () {
     if ($interaction) {
-      // Let others reach to the hiding of this interaction
+      // Let others react to the hiding of this interaction
       self.trigger('domHidden', {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
