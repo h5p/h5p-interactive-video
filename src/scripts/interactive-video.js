@@ -1582,7 +1582,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         self.toggleEndscreensChooser();
       }
       else  {
-
+        // show summary/submit screen in HFP-1843
       }
     });
     self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
@@ -1614,11 +1614,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
     // Amend button for opening endscreen popup
     if (self.hasStar) {
-      self.controls.$endscreensButton.attr('aria-haspopup', 'true');
-      self.controls.$endscreensButton.attr('aria-expanded', 'false');
-      self.controls.$endscreensChooser.insertAfter(self.controls.$endscreensButton);
-      self.controls.$endscreensChooser.bind('transitionend', function () {
-        self.controls.$endscreensChooser.removeClass('h5p-transitioning');
+      self.controls.$endscreensButton
+        .attr('aria-haspopup', 'true')
+        .attr('aria-expanded', 'false');
+      self.controls.$endscreensChooser
+        .insertAfter(self.controls.$endscreensButton)
+        .bind('transitionend', function () {
+          self.controls.$endscreensChooser.removeClass('h5p-transitioning');
       });
     }
   }
@@ -1692,7 +1694,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     }
 
     // Make sure sub menus are closed
-    // TODO: Check if we need to do something here
     if (bookmarksEnabled) {
       self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
     }
@@ -2104,6 +2105,7 @@ InteractiveVideo.prototype.updateBubbleAnimation = function (text) {
     if (text !== undefined) {
       self.$bubble.find('.h5p-interactive-video-bubble-text').html(text);
     }
+    // Move bubble parts in case the container was resized
     const $inner = self.$bubble.find('.h5p-interactive-video-bubble-inner');
     const $innerTail = self.$bubble.find('.h5p-interactive-video-bubble-inner-tail');
     const $tail = self.$bubble.find('.h5p-interactive-video-bubble-tail');
