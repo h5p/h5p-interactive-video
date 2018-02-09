@@ -2051,12 +2051,14 @@ InteractiveVideo.prototype.playStarAnimation = function () {
   }
 
   if (this.$starAnimation.hasClass('h5p-star-animation-inactive')) {
-    this.$starAnimation.removeClass('h5p-star-animation-inactive');
-    this.$starAnimation.addClass('h5p-star-animation-active');
+    this.$starAnimation
+      .removeClass('h5p-star-animation-inactive')
+      .addClass('h5p-star-animation-active');
 
     setTimeout(function () {
-      self.$starAnimation.removeClass('h5p-star-animation-active');
-      self.$starAnimation.addClass('h5p-star-animation-inactive');
+      self.$starAnimation
+        .removeClass('h5p-star-animation-active')
+        .addClass('h5p-star-animation-inactive');
     }, 1000);
   }
 };
@@ -2073,13 +2075,15 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
 
   if (this.$bubble.hasClass('h5p-interactive-video-bubble-inactive')) {
     this.updateBubbleAnimation(text);
-    this.$bubble.removeClass('h5p-interactive-video-bubble-inactive');
-    this.$bubble.addClass('h5p-interactive-video-bubble-active');
+    this.$bubble
+      .removeClass('h5p-interactive-video-bubble-inactive')
+      .addClass('h5p-interactive-video-bubble-active');
 
     setTimeout(function () {
-      self.$bubble.removeClass('h5p-interactive-video-bubble-active');
-      self.$bubble.addClass('h5p-interactive-video-bubble-inactive');
-    }, 1500);
+      self.$bubble
+        .removeClass('h5p-interactive-video-bubble-active')
+        .addClass('h5p-interactive-video-bubble-inactive');
+    }, 2000);
   }
 };
 
@@ -3155,10 +3159,6 @@ InteractiveVideo.prototype.resetTask = function () {
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
   }
-
-  this.interactionAnswered = new Array(this.interactions.length).map(function () {
-    return undefined;
-  });
 };
 
 /**
