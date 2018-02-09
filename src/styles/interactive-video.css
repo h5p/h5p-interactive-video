@@ -972,7 +972,7 @@
   background: unset;
   border-color: #a2a2a2;
   color: #fefefe;
-  border-right: 1px dashed #a2a2a2;
+  border-right: 0.042em dashed #a2a2a2;
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
   transition: background-color 0.2s;
