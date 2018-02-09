@@ -1585,6 +1585,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
       }
     });
+    self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
   }
 
   // Add endscreen controls
