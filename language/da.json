@@ -262,6 +262,18 @@
                   }
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -389,6 +401,10 @@
         {
           "label":"Bogmærketitel",
           "default":"Bogmærker"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label":"Standardetiket til adaptiv søgeknap",

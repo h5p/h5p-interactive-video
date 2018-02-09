@@ -240,6 +240,18 @@
                   {}
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -365,6 +377,10 @@
         {
           "label": "Bookmarks title",
           "default": "Bookmarks"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label": "Default label for adaptivity seek button",

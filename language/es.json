@@ -262,6 +262,18 @@
                   }
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -389,6 +401,10 @@
         {
           "label":"Título de marcadores",
           "default":"Marcadores"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label":"Etiqueta predeterminada para el botón de búsqueda de adaptabilidad",

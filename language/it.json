@@ -262,6 +262,18 @@
                   }
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -389,6 +401,10 @@
         {
           "label":"Titolo dei segnalibri",
           "default":"Segnalibri"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label":"Etichetta predefinita per il pulsante di ricerca adattiva",

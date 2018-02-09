@@ -262,6 +262,18 @@
                   }
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -389,6 +401,10 @@
         {
           "label":"ブックマークのタイトル",
           "default":"ブックマーク"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label":"適応検索ボタンの既定ラベル",

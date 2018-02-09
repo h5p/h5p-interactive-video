@@ -262,6 +262,18 @@
                   }
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -389,6 +401,10 @@
         {
           "label":"Intitulé du bouton \"Signets\"",
           "default":"Signets"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
         },
         {
           "label":"Texte par défaut du bouton de reprise",
