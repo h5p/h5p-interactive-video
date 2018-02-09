@@ -967,7 +967,7 @@
 .h5p-interactive-video .h5p-bookmark {
   position: absolute;
   top: -14px;
-  width: 1px;
+  width: 0.042em;
   height: 36px;
   background: unset;
   border-color: #a2a2a2;
@@ -981,7 +981,7 @@
 .h5p-interactive-video .h5p-endscreen {
   position: absolute;
   top: -14px;
-  width: 1px;
+  width: 0.042em;
   height: 36px;
   background: #a2a2a2;
   color: #fefefe;
