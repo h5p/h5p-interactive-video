@@ -38,7 +38,7 @@ function Bubble($container, text, maxWidth) {
       bubblePosition.left = offset.outerWidth - bubbleWidth - 3;
     }
     else {
-      bubblePosition.left = offset.left - widthOffset + (offset.innerWidth / 2);
+      bubblePosition.left = offset.left - widthOffset + 15;
     }
 
     return bubblePosition;
@@ -47,27 +47,15 @@ function Bubble($container, text, maxWidth) {
   /**
    * Calculate position for speech bubble tail
    *
-   * @param {number} bubbleWidth The width of the speech bubble
+   * @param {jQuery} reference - The reference object for tail position
    * @param {object} bubblePosition Speech bubble position
-   * @param {object} offset
-   * @param {number} iconWidth The width of the tip icon
    * @return {object} Return position for the tail
    */
-  const getTailPosition = function (bubbleWidth, bubblePosition, offset, iconWidth) {
+  const getTailPosition = function ($reference, bubblePosition) {
     var tailPosition = {};
     // Magic numbers. Tuned by hand so that the tail fits visually within
     // the bounds of the speech bubble.
-    var leftBoundary = 9;
-    var rightBoundary = bubbleWidth - 20;
-
-    tailPosition.left = offset.left - bubblePosition.left + (iconWidth / 2) - 6;
-    if (tailPosition.left < leftBoundary) {
-      tailPosition.left = leftBoundary;
-    }
-    if (tailPosition.left > rightBoundary) {
-      tailPosition.left = rightBoundary;
-    }
-
+    tailPosition.left = $reference.offset().left - bubblePosition.left + 6;
     tailPosition.top = -6;
     tailPosition.bottom = -6;
 
@@ -151,9 +139,9 @@ function Bubble($container, text, maxWidth) {
   };
 
   // Create bubble
-  var $tail = $('<div class="h5p-interactive-video-bubble-tail"></div>');
-  var $innerTail = $('<div class="h5p-interactive-video-bubble-inner-tail"></div>');
-  var $innerBubble = $(
+  const $tail = $('<div class="h5p-interactive-video-bubble-tail"></div>');
+  const $innerTail = $('<div class="h5p-interactive-video-bubble-inner-tail"></div>');
+  const $innerBubble = $(
     '<div class="h5p-interactive-video-bubble-inner">' +
       '<div class="h5p-interactive-video-bubble-text">' + text + '</div>' +
     '</div>'
@@ -165,43 +153,63 @@ function Bubble($container, text, maxWidth) {
     $h5pContainer = $container.closest('.h5p-container');
   }
 
-  let $currentSpeechBubble = $('<div class="h5p-interactive-video-bubble" aria-live="assertive">')
+  const $currentSpeechBubble = $('<div class="h5p-interactive-video-bubble" aria-live="assertive">')
     .append([$tail, $innerBubble])
     .addClass('h5p-interactive-video-bubble-inactive')
     .appendTo($h5pContainer);
 
-  // Calculate offset between the button and the h5p frame
-  var offset = getOffsetBetween($h5pContainer, $container);
+  $currentSpeechBubble.$h5pContainer = $h5pContainer;
+  $currentSpeechBubble.$button = $container;
+  $currentSpeechBubble.$tail = $tail;
+  $currentSpeechBubble.$innerTail = $innerTail;
+  $currentSpeechBubble.$innerBubble = $innerBubble;
+  $currentSpeechBubble.maxWidth = maxWidth;
 
-  var direction = (offset.bottom > offset.top ? 'bottom' : 'top');
-  var tipWidth = offset.outerWidth * 0.9; // Var needs to be renamed to make sense
-  if (maxWidth === 'auto') {
-    maxWidth = offset.innerWidth;
-  }
-  var bubbleWidth = tipWidth > maxWidth ? maxWidth : tipWidth;
-  var bubblePosition = getBubblePosition(bubbleWidth, offset);
-  let offsetStar = (parseInt($container.css('marginLeft')) + parseInt($container.css('marginRight'))) / 2;
-  var tailPosition = getTailPosition(bubbleWidth, bubblePosition, offset, $container.width() + offsetStar);
-  // Need to set font-size, since element is appended to body.
-  // Using same font-size as parent. In that way it will grow accordingly
-  // when resizing
-  var fontSize = 16;//parseFloat($parent.css('font-size'));
+  /**
+   * Update position (and size) of bubble's elements
+   *
+   * @param {string} content - Text or outerHTML of DOM.
+   */
+  $currentSpeechBubble.update = function(content) {
+    if (content !== undefined) {
+      this.find('.h5p-interactive-video-bubble-text').html(content);
+    }
 
-  // Set width and position of speech bubble
-  $currentSpeechBubble.css(bubbleCSS(
-    direction,
-    'auto',
-    bubblePosition,
-    fontSize
-  ));
+    // Calculate offset between the button and the h5p frame
+    const offset = getOffsetBetween(this.$h5pContainer, this.$button);
 
-  var preparedTailCSS = tailCSS(direction, tailPosition);
-  $tail.css(preparedTailCSS);
-  $innerTail.css(preparedTailCSS);
+    const direction = (offset.bottom > offset.top ? 'bottom' : 'top');
+    const tipWidth = offset.outerWidth * 0.9; // Var needs to be renamed to make sense
+
+    // Compute current bubbleWidth (after changing the content);
+    const bubbleWidth = Math.min(tipWidth, (this.maxWidth === 'auto') ? $innerBubble.outerWidth() : this.maxWidth);
+    const bubblePosition = getBubblePosition(bubbleWidth, offset);
+    const offsetStar = (parseInt(this.$button.css('marginLeft')) + parseInt(this.$button.css('marginRight'))) / 2;
+    const tailPosition = getTailPosition(this.$button, bubblePosition);
+
+    // Need to set font-size, since element is appended to body.
+    // Using same font-size as parent. In that way it will grow accordingly
+    // when resizing
+    const fontSize = 16;//parseFloat($parent.css('font-size'));
+
+    // Set width and position of speech bubble
+    this.css(bubbleCSS(
+      direction,
+      this.maxWidth,
+      bubblePosition,
+      fontSize
+    ));
+
+    const preparedTailCSS = tailCSS(direction, tailPosition);
+    this.$tail.css(preparedTailCSS);
+    this.$innerTail.css(preparedTailCSS);
+  };
 
   if (iDevice) {
     H5P.$body.css('cursor', 'pointer');
   }
+
+  $currentSpeechBubble.update();
 
   return $currentSpeechBubble;
 }

@@ -1039,31 +1039,19 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = 
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
     if(show) {
-      this.controls.$more.attr('aria-expanded', 'true');
-      this.controls.$minimalOverlay.addClass('h5p-show');
-      this.controls.$minimalOverlay.find('.h5p-minimal-button').addClass('h5p-hide');
-      this.controls.$bookmarksButton.attr('aria-expanded', 'true');
-      this.controls.$bookmarksChooser
-        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
-        .addClass('h5p-show');
       this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
     }
-    else {
-      this.controls.$more.attr('aria-expanded', 'false');
-      this.controls.$minimalOverlay.removeClass('h5p-show');
-      this.controls.$minimalOverlay.find('.h5p-minimal-button').removeClass('h5p-hide');
-      this.controls.$bookmarksButton.attr('aria-expanded', 'false');
-
-      this.controls.$bookmarksChooser
-        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
-        .removeClass('h5p-show');
-
-      if (!firstPlay) {
-        this.controls.$bookmarksButton.focus();
-      }
+    else if (!firstPlay) {
+      this.controls.$bookmarksButton.focus();
     }
-
-    this.controls.$bookmarksChooser.toggleClass('h5p-transitioning', show || hiding);
+    this.controls.$minimalOverlay.toggleClass('h5p-show', show);
+    this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
+    this.controls.$bookmarksButton.attr('aria-expanded', show ? 'true' : false);
+    this.controls.$more.attr('aria-expanded', show ? 'true' : 'false');
+    this.controls.$bookmarksChooser
+      .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+      .toggleClass('h5p-show', show)
+      .toggleClass('h5p-transitioning', show || hiding);
   }
 };
 
@@ -1080,33 +1068,22 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
     var hiding = this.controls.$endscreensChooser.hasClass('h5p-show');
 
     if(show) {
-      this.controls.$more.attr('aria-expanded', 'true');
-      this.controls.$minimalOverlay.addClass('h5p-show');
-      this.controls.$minimalOverlay.find('.h5p-minimal-button').addClass('h5p-hide');
-      this.controls.$endscreensButton.attr('aria-expanded', 'true');
-      this.controls.$endscreensChooser
-        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
-        .addClass('h5p-show');
       this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
-      this.controls.$endscreensButton.addClass('h5p-star-active-editor');
     }
-    else {
-      this.controls.$more.attr('aria-expanded', 'false');
-      this.controls.$minimalOverlay.removeClass('h5p-show');
-      this.controls.$minimalOverlay.find('.h5p-minimal-button').removeClass('h5p-hide');
-      this.controls.$endscreensButton.attr('aria-expanded', 'false');
-
-      this.controls.$endscreensChooser
-        .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
-        .removeClass('h5p-show');
-
-      if (!firstPlay) {
-        this.controls.$endscreensButton.focus();
-      }
-      this.controls.$endscreensButton.removeClass('h5p-star-active-editor');
+    else if (!firstPlay) {
+      this.controls.$endscreensButton.focus();
     }
 
-    this.controls.$endscreensChooser.toggleClass('h5p-transitioning', show || hiding);
+    this.controls.$minimalOverlay.toggleClass('h5p-show', show);
+    this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
+    this.controls.$endscreensButton
+      .attr('aria-expanded', show ? 'true' : 'false')
+      .toggleClass('h5p-star-active-editor', show);
+    this.controls.$more.attr('aria-expanded', show ? 'true' : 'false');
+    this.controls.$endscreensChooser
+      .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+      .toggleClass('h5p-show', show)
+      .toggleClass('h5p-transitioning', show || hiding);
   }
 };
 
@@ -1181,11 +1158,11 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
  * @param {object} bookmark
  */
 InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
-  var self = this;
+  const self = this;
 
   if (self.currentState !== H5P.Video.PLAYING) {
     $bookmark.mouseover().mouseout();
-    setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
+    setTimeout(() => {self.timeUpdate(self.video.getCurrentTime());}, 0);
   }
 
   if (self.controls.$more.attr('aria-expanded') === 'true' && self.$container.hasClass('h5p-minimal')) {
@@ -1208,11 +1185,11 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
  * @param {object} endscreen
  */
 InteractiveVideo.prototype.onEndscreenSelect = function ($endscreen, endscreen) {
-  var self = this;
+  const self = this;
 
   if (self.currentState !== H5P.Video.PLAYING) {
     $endscreen.mouseover().mouseout();
-    setTimeout(function () {self.timeUpdate(self.video.getCurrentTime());}, 0);
+    setTimeout(() => {self.timeUpdate(self.video.getCurrentTime());}, 0);
   }
 
   if (self.controls.$more.attr('aria-expanded') === 'true' && self.$container.hasClass('h5p-minimal')) {
@@ -2076,7 +2053,7 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
   }
 
   if (this.$bubble.hasClass('h5p-interactive-video-bubble-inactive')) {
-    this.updateBubbleAnimation(text);
+    this.$bubble.update(text);
     this.$bubble
       .removeClass('h5p-interactive-video-bubble-inactive')
       .addClass('h5p-interactive-video-bubble-active');
@@ -2086,34 +2063,6 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
         .removeClass('h5p-interactive-video-bubble-active')
         .addClass('h5p-interactive-video-bubble-inactive');
     }, 2000);
-  }
-};
-
-/**
- * Update the bubble animation's text and position
- *
- * @param {string} text - Text for the bubble
- */
-InteractiveVideo.prototype.updateBubbleAnimation = function (text) {
-  const self = this;
-
-  if (!self.$bubble || self.$bubble.hasClass('h5p-interactive-video-bubble-active')) {
-    return;
-  }
-
-  if (this.$bubble !== undefined) {
-    if (text !== undefined) {
-      self.$bubble.find('.h5p-interactive-video-bubble-text').html(text);
-    }
-    // Move bubble parts in case the container was resized
-    const $inner = self.$bubble.find('.h5p-interactive-video-bubble-inner');
-    const $innerTail = self.$bubble.find('.h5p-interactive-video-bubble-inner-tail');
-    const $tail = self.$bubble.find('.h5p-interactive-video-bubble-tail');
-    const offsetInner = parseInt($tail.css('left')) + $tail.width()/2 - self.$bubble.width() / 2;
-    $inner.css('left', offsetInner + 'px');
-    const offsetInnerTail = $tail.offset().left - $innerTail.offset().left;
-    $innerTail.css('left', parseInt($innerTail.css('left')) + offsetInnerTail + 'px');
-    self.$bubble.css('left', parseInt(self.$star.offset().left) + 'px');
   }
 };
 
@@ -2442,7 +2391,9 @@ InteractiveVideo.prototype.resize = function () {
     this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
   }
 
-  this.updateBubbleAnimation();
+  if (this.$bubble) {
+    this.$bubble.update();
+  }
 
   this.resizeInteractions();
 };
