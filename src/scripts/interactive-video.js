@@ -813,7 +813,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   }
 
   var interaction = new Interaction(parameters, self, previousState);
-  console.log(interaction);
   // handle display event
   interaction.on('display', function (event) {
     var $interaction = event.data;
