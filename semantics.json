@@ -688,24 +688,6 @@
         ]
       },
       {
-        "name": "checkButton",
-        "type": "select",
-        "label": "Override \"Check\" button",
-        "importance": "low",
-        "description": "This option determines if the \"Check\" button will be shown for all questions, disabled for all or configured for each question individually.",
-        "optional": true,
-        "options": [
-          {
-            "value": "on",
-            "label": "Enabled"
-          },
-          {
-            "value": "off",
-            "label": "Disabled"
-          }
-        ]
-      },
-      {
         "name": "showBookmarksmenuOnLoad",
         "type": "boolean",
         "label": "Start with bookmarks menu open",
