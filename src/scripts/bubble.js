@@ -1,116 +1,164 @@
-/**
- * Creates a new speech bubble
- *
- * @param {H5P.jQuery} $container The speaking object
- * @param {string} text The text to display
- * @param {number} maxWidth The maximum width of the bubble
- * @return {InteractiveVideo.Bubble}
- */
-function Bubble($container, text, maxWidth) {
-  'use strict';
-  const $ = H5P.jQuery;
-  const iDevice = navigator.userAgent.match(/iPod|iPhone|iPad/g) ? true : false;
+const $ = H5P.jQuery;
+const iDevice = navigator.userAgent.match(/iPod|iPhone|iPad/g) ? true : false;
+
+/** Class representing a bubble. */
+class Bubble {
+  /**
+   * Creates a new speech bubble
+   *
+   * @param {H5P.jQuery} $reference - The speaking object to attach to.
+   * @param {object} params - Optional parameters.
+   * @param {string=''} params.content - The content to display. Can be HTML.
+   * @param {number|string='auto'} params.maxWidth - The width of the bubble. Can be 'auto'.
+   * @param {string='h5p-interactive-video-bubble'} params.style - Selector for the CSS base class.
+   * @param {string='centered'} params.mode - 'centered' or 'full' (could be extended)
+   * @return {Bubble} The bubble.
+   */
+  constructor ($reference, params = {content: '', maxWidth: 'auto', style: 'h5p-interactive-video-bubble', mode: 'centered'}) {
+    this.$reference = $reference;
+    this.maxWidth = params.maxWidth;
+    this.style = params.style;
+    this.mode = params.mode;
+
+    this.$tail = $('<div/>', {class: this.style + '-tail'});
+    this.$innerTail = $('<div/>', {class: this.style + '-inner-tail'});
+    this.$content = $('<div/>', {class: this.style + '-text', html: params.content});
+    this.$innerBubble = $('<div/>', {class: this.style + '-inner'})
+      .append(this.$content)
+      .prepend(this.$innerTail);
+
+    this.$h5pContainer = this.$reference.closest('.h5p-frame');
+    // Check closest h5p frame first, then check for container in case there is no frame.
+    if (!this.$h5pContainer.length) {
+      this.$h5pContainer = this.$reference.closest('.h5p-container');
+    }
+
+    this.$bubble = $('<div/>', {class: this.style, 'aria-live': 'assertive'})
+      .append([this.$tail, this.$innerBubble])
+      .addClass(this.style + '-inactive')
+      .appendTo(this.$h5pContainer);
+
+    if (iDevice) {
+      H5P.$body.css('cursor', 'pointer');
+    }
+
+    this.update();
+  }
 
   /**
-   * Calculate position for speech bubble
-   *
-   * @param {number} bubbleWidth The width of the speech bubble
-   * @param {object} offset
-   * @return {object} Return position for the speech bubble
+   * Update position (and size) of bubble's elements.
    */
-  const getBubblePosition = function (bubbleWidth, offset) {
-    var bubblePosition = {};
+  update () {
+    // Calculate offset between the button and the h5p frame
+    const offset = this.getOffsetBetween(this.$h5pContainer, this.$reference);
 
-    var tailOffset = 4;
-    var widthOffset = bubbleWidth / 2;
+    // Compute bubbleWidth (after changing the content);
+    const bubbleWidth = Math.min(offset.outerWidth * 0.9, (this.maxWidth === 'auto') ? this.$innerBubble.outerWidth() : this.maxWidth);
+    const bubblePosition = this.getBubblePosition(bubbleWidth, offset);
+    const tailPosition = this.getTailPosition(this.$reference, bubblePosition);
+    // Need to set font-size, since element is appended to body.
+    // Using same font-size as parent. In that way it will grow accordingly
+    // when resizing
+    const fontSize = 16;//parseFloat($parent.css('font-size'));
 
-    // Calculate top position
-    bubblePosition.top = offset.top + offset.innerHeight;
+    // Set width and position of speech bubble
+    this.$bubble.css({
+      width: (this.maxWidth === 'auto') ? 'auto' : this.maxWidth + 'px',
+      bottom: bubblePosition.bottom + 'px',
+      left: bubblePosition.left + 'px',
+      fontSize: fontSize + 'px'
+    });
 
-    // Calculate bottom position
-    bubblePosition.bottom = offset.bottom + offset.innerHeight + tailOffset;
-
-    // Calculate left position
-    if (offset.left < widthOffset) {
-      bubblePosition.left = 3;
-    }
-    else if ((offset.left + widthOffset) > offset.outerWidth) {
-      bubblePosition.left = offset.outerWidth - bubbleWidth - 3;
-    }
-    else {
-      bubblePosition.left = offset.left - widthOffset + 15;
-    }
-
-    return bubblePosition;
-  };
+    const preparedTailCSS = {
+      bottom: tailPosition.bottom + 'px',
+      left: tailPosition.left + 'px'
+    };
+    this.$tail.css(preparedTailCSS);
+    this.$innerTail.css(preparedTailCSS);
+  }
 
   /**
-   * Calculate position for speech bubble tail
-   *
-   * @param {jQuery} reference - The reference object for tail position
-   * @param {object} bubblePosition Speech bubble position
-   * @return {object} Return position for the tail
+   * Animate the bubble
    */
-  const getTailPosition = function ($reference, bubblePosition) {
-    var tailPosition = {};
-    // Magic numbers. Tuned by hand so that the tail fits visually within
-    // the bounds of the speech bubble.
-    tailPosition.left = $reference.offset().left - bubblePosition.left + 6;
-    tailPosition.top = -6;
-    tailPosition.bottom = -6;
+  animate () {
+    const that = this;
 
-    return tailPosition;
-  };
+    if (this.$bubble.hasClass(this.style + '-inactive')) {
+      this.$bubble
+        .removeClass(this.style + '-inactive')
+        .addClass(this.style + '-active');
 
-  /**
-   * Return bubble CSS for the desired growth direction
-   *
-   * @param {string} direction The direction the speech bubble will grow
-   * @param {number} width The width of the speech bubble
-   * @param {object} position Speech bubble position
-   * @param {number} fontSize The size of the bubbles font
-   * @return {object} Return CSS
-   */
-  const bubbleCSS = function (direction, width, position, fontSize) {
-    if (direction === 'top') {
-      return {
-        width: width + 'px',
-        bottom: position.bottom + 'px',
-        left: position.left + 'px',
-        fontSize: fontSize + 'px'
-      };
+      setTimeout(() => {
+        that.$bubble
+          .removeClass(that.style + '-active')
+          .addClass(that.style + '-inactive');
+      }, 2000);
     }
-    else {
-      return {
-        width: width + 'px',
-        top: position.top + 'px',
-        left: position.left + 'px',
-        fontSize: fontSize + 'px'
-      };
-    }
-  };
+  }
 
   /**
-   * Return tail CSS for the desired growth direction
+   * Set the content for the bubble.
    *
-   * @param {string} direction The direction the speech bubble will grow
-   * @param {object} position Tail position
-   * @return {object} Return CSS
+   * @param {string=''} content - The content to be displayed.
    */
-  const tailCSS = function (direction, position) {
-    if (direction === 'top') {
-      return {
-        bottom: position.bottom + 'px',
-        left: position.left + 'px'
-      };
-    }
-    else {
-      return {
-        top: position.top + 'px',
-        left: position.left + 'px'
-      };
-    }
-  };
+  setContent (content = '') {
+    this.$content.html(content);
+    this.update();
+  }
+
+  /**
+   * Get the content of a bubble.
+   *
+   * @return {string} Text or outerHTML displayed in the bubble.
+   */
+  getContent () {
+    return this.$content.get(0).outerHTML;
+  }
+
+  /**
+   * Calculate position for speech bubble.
+   *
+   * @param {number} bubbleWidth - Width of the bubble.
+   * @param {object} offset - Offset.
+   * @param {number} offset.top - Top offset.
+   * @param {number} offset.right - Right offset.
+   * @param {number} offset.bottom - Bottom offset.
+   * @param {number} offset.left - Left offset.
+   * @param {number} offset.innerWidth - InnerWidth offset.
+   * @param {number} offset.innerHeight - InnerHeight offset.
+   * @param {number} offset.outerWidth - OuterWidth offset.
+   * @param {number} offset.outerHeight- OuterHeight offset.
+   * @return {object} Position for the bubble.
+   */
+  getBubblePosition (bubbleWidth, offset) {
+    const tailOffset = 4;
+    const widthOffset = bubbleWidth / 2;
+
+    return {
+      top: offset.top + offset.innerHeight,
+      bottom: offset.bottom + offset.innerHeight + tailOffset,
+      left: offset.left - widthOffset + 15
+    };
+  }
+
+  /**
+   * Calculate position for speech bubble tail.
+   *
+   * @param {jQuery} reference - Reference object for tail position.
+   * @param {object} bubblePosition - Bubble position.
+   * @param {number} bubblePosition.top - Top position.
+   * @param {number} bubblePosition.bottom - Bottom position.
+   * @param {number} bubblePosition.left - Left position.
+   * @return {object} Position for the tail.
+   */
+  getTailPosition ($reference, bubblePosition) {
+    // Magic numbers. Tuned by hand so that the tail fits visually within the bounds of the bubble.
+    return {
+      left: $reference.offset().left - bubblePosition.left + 6,
+      top: -6,
+      bottom: -6
+    };
+  }
 
   /**
    * Calculates the offset between an element inside a container and the
@@ -118,13 +166,13 @@ function Bubble($container, text, maxWidth) {
    * outer element.
    * Width/height of the elements is included as a convenience.
    *
-   * @param {H5P.jQuery} $outer
-   * @param {H5P.jQuery} $inner
-   * @return {object} Position offset
+   * @param {H5P.jQuery} $outer - Outer object.
+   * @param {H5P.jQuery} $inner - Inner object.
+   * @return {object} Position offset.
    */
-  const getOffsetBetween = function ($outer, $inner) {
-    var outer = $outer[0].getBoundingClientRect();
-    var inner = $inner[0].getBoundingClientRect();
+  getOffsetBetween ($outer, $inner) {
+    const outer = $outer[0].getBoundingClientRect();
+    const inner = $inner[0].getBoundingClientRect();
 
     return {
       top: inner.top - outer.top,
@@ -136,82 +184,7 @@ function Bubble($container, text, maxWidth) {
       outerWidth: outer.width,
       outerHeight: outer.height
     };
-  };
-
-  // Create bubble
-  const $tail = $('<div class="h5p-interactive-video-bubble-tail"></div>');
-  const $innerTail = $('<div class="h5p-interactive-video-bubble-inner-tail"></div>');
-  const $innerBubble = $(
-    '<div class="h5p-interactive-video-bubble-inner">' +
-      '<div class="h5p-interactive-video-bubble-text">' + text + '</div>' +
-    '</div>'
-  ).prepend($innerTail);
-
-  let $h5pContainer = $container.closest('.h5p-frame');
-  // Check closest h5p frame first, then check for container in case there is no frame.
-  if (!$h5pContainer.length) {
-    $h5pContainer = $container.closest('.h5p-container');
   }
-
-  const $currentSpeechBubble = $('<div class="h5p-interactive-video-bubble" aria-live="assertive">')
-    .append([$tail, $innerBubble])
-    .addClass('h5p-interactive-video-bubble-inactive')
-    .appendTo($h5pContainer);
-
-  $currentSpeechBubble.$h5pContainer = $h5pContainer;
-  $currentSpeechBubble.$button = $container;
-  $currentSpeechBubble.$tail = $tail;
-  $currentSpeechBubble.$innerTail = $innerTail;
-  $currentSpeechBubble.$innerBubble = $innerBubble;
-  $currentSpeechBubble.maxWidth = maxWidth;
-
-  /**
-   * Update position (and size) of bubble's elements
-   *
-   * @param {string} content - Text or outerHTML of DOM.
-   */
-  $currentSpeechBubble.update = function(content) {
-    if (content !== undefined) {
-      this.find('.h5p-interactive-video-bubble-text').html(content);
-    }
-
-    // Calculate offset between the button and the h5p frame
-    const offset = getOffsetBetween(this.$h5pContainer, this.$button);
-
-    const direction = (offset.bottom > offset.top ? 'bottom' : 'top');
-    const tipWidth = offset.outerWidth * 0.9; // Var needs to be renamed to make sense
-
-    // Compute current bubbleWidth (after changing the content);
-    const bubbleWidth = Math.min(tipWidth, (this.maxWidth === 'auto') ? $innerBubble.outerWidth() : this.maxWidth);
-    const bubblePosition = getBubblePosition(bubbleWidth, offset);
-    const offsetStar = (parseInt(this.$button.css('marginLeft')) + parseInt(this.$button.css('marginRight'))) / 2;
-    const tailPosition = getTailPosition(this.$button, bubblePosition);
-
-    // Need to set font-size, since element is appended to body.
-    // Using same font-size as parent. In that way it will grow accordingly
-    // when resizing
-    const fontSize = 16;//parseFloat($parent.css('font-size'));
-
-    // Set width and position of speech bubble
-    this.css(bubbleCSS(
-      direction,
-      this.maxWidth,
-      bubblePosition,
-      fontSize
-    ));
-
-    const preparedTailCSS = tailCSS(direction, tailPosition);
-    this.$tail.css(preparedTailCSS);
-    this.$innerTail.css(preparedTailCSS);
-  };
-
-  if (iDevice) {
-    H5P.$body.css('cursor', 'pointer');
-  }
-
-  $currentSpeechBubble.update();
-
-  return $currentSpeechBubble;
 }
 
 export default Bubble;

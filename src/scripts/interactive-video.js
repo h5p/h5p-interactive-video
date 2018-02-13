@@ -750,7 +750,7 @@ InteractiveVideo.prototype.addControls = function () {
 
   // Add bubble
   if (!this.editor && this.hasStar) {
-    this.$bubble = new Bubble(this.$star, '', 'auto');
+    this.bubbleScore = new Bubble(this.$star);
   }
 
   this.trigger('controls');
@@ -2044,6 +2044,8 @@ InteractiveVideo.prototype.playStarAnimation = function () {
 
 /**
  * Play the bubble animation
+ *
+ * @param {string} text - Text to display in bubble (if undefined, no change)
  */
 InteractiveVideo.prototype.playBubbleAnimation = function (text) {
   const self = this;
@@ -2052,18 +2054,8 @@ InteractiveVideo.prototype.playBubbleAnimation = function (text) {
     return;
   }
 
-  if (this.$bubble.hasClass('h5p-interactive-video-bubble-inactive')) {
-    this.$bubble.update(text);
-    this.$bubble
-      .removeClass('h5p-interactive-video-bubble-inactive')
-      .addClass('h5p-interactive-video-bubble-active');
-
-    setTimeout(function () {
-      self.$bubble
-        .removeClass('h5p-interactive-video-bubble-active')
-        .addClass('h5p-interactive-video-bubble-inactive');
-    }, 2000);
-  }
+  this.bubbleScore.setContent(text);
+  this.bubbleScore.animate();
 };
 
 /**
@@ -2391,8 +2383,8 @@ InteractiveVideo.prototype.resize = function () {
     this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
   }
 
-  if (this.$bubble) {
-    this.$bubble.update();
+  if (this.bubbleScore) {
+    this.bubbleScore.update();
   }
 
   this.resizeInteractions();
