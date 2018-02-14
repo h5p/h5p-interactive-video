@@ -2048,8 +2048,6 @@ InteractiveVideo.prototype.playStarAnimation = function () {
  * @param {string} text - Text to display in bubble (if undefined, no change)
  */
 InteractiveVideo.prototype.playBubbleAnimation = function (text) {
-  const self = this;
-
   if (this.isMobileView === true) {
     return;
   }
