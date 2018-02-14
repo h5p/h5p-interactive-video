@@ -240,6 +240,18 @@
                   {}
                 ]
               }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
             }
           ]
         },
@@ -367,6 +379,10 @@
           "default": "Bookmarks"
         },
         {
+          "label": "End screen title",
+          "default": "End screen"
+        },
+        {
           "label": "Default label for adaptivity seek button",
           "default": "Continue"
         },
@@ -437,6 +453,10 @@
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "label": "answered",
+          "default": "@answered answered!"
         }
       ]
     }

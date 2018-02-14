@@ -89,10 +89,10 @@
                     "label":"Visningstid",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"Label displayed next to interaction icon."
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"Adaptivity",
@@ -189,7 +189,7 @@
                         "label":"Bakgrunnsfarge",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,22 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
+                  }
+                ]
+              }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
                   }
                 ]
               }
@@ -271,7 +283,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -391,6 +403,10 @@
           "default":"Bokmerker"
         },
         {
+          "label": "End screen title",
+          "default": "End screen"
+        },
+        {
           "label":"Standard merkelapp for adaptivitetssøkeknappen",
           "default":"Continue"
         },
@@ -461,6 +477,10 @@
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "label": "answered",
+          "default": "@answered answered!"
         }
       ]
     }

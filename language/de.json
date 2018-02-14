@@ -89,10 +89,10 @@
                     "label":"Anzeigezeit",
                     "fields":[
                       {
-                        
+
                       },
                       {
-                        
+
                       }
                     ]
                   },
@@ -120,22 +120,22 @@
                     "description":"Beschriftung neben dem Icon der Interaktion"
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
-                    
+
                   },
                   {
                     "label":"Adaptivität",
@@ -189,7 +189,7 @@
                         "label":"Hintergrundfarbe",
                         "default":"rgb(255, 255, 255)",
                         "spectrum":{
-                          
+
                         }
                       },
                       {
@@ -255,10 +255,22 @@
               "field":{
                 "fields":[
                   {
-                    
+
                   },
                   {
-                    
+
+                  }
+                ]
+              }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
                   }
                 ]
               }
@@ -271,7 +283,7 @@
             {
               "default":{
                 "params":{
-                  
+
                 }
               }
             },
@@ -391,6 +403,10 @@
           "default":"Lesezeichen"
         },
         {
+          "label": "Titel für Endbildschirm",
+          "default": "Endbildschirm"
+        },
+        {
           "label":"Standardbeschriftung für Springen-Button",
           "default":"Fortfahren"
         },
@@ -460,7 +476,11 @@
         },
         {
           "label": "Content label",
-          "default": "Content"
+          "default": "Inhalt"
+        },
+        {
+          "label": "answered",
+          "default": "@answered beantwortet!"
         }
       ]
     }
