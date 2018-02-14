@@ -81,17 +81,15 @@ class Bubble {
    * Animate the bubble
    */
   animate () {
-    const that = this;
-
     if (this.$bubble.hasClass(this.style + '-inactive')) {
       this.$bubble
         .removeClass(this.style + '-inactive')
         .addClass(this.style + '-active');
 
       setTimeout(() => {
-        that.$bubble
-          .removeClass(that.style + '-active')
-          .addClass(that.style + '-inactive');
+        this.$bubble
+          .removeClass(this.style + '-active')
+          .addClass(this.style + '-inactive');
       }, 2000);
     }
   }
