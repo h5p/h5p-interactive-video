@@ -4,6 +4,8 @@ import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
 import Interaction from './interaction';
 import Accessibility from './accessibility';
 import Bubble from './bubble';
+import Endscreen from './endscreen';
+
 const $ = H5P.jQuery;
 
 const SECONDS_IN_MINUTE = 60;
@@ -69,9 +71,6 @@ function InteractiveVideo(params, id, contentData) {
   if (!self.options.video.startScreenOptions.title) {
     self.options.video.startScreenOptions.title = 'Interactive Video';
   }
-
-  // Show the score star if there are endscreens available or user is editing
-  self.hasStar = (self.editor || self.options.assets.endscreens !== undefined);
 
   // Set default splash options
   self.startScreenOptions = $.extend({
@@ -529,12 +528,20 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.width = 640; // parseInt($container.css('width')); // Get width in px
 
   // 'video only' fallback has no interactions
+  let isAnswerable = false;
   if (this.interactions) {
+
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
       interaction.reCreate();
+      if (interaction.isAnswerable()) {
+        isAnswerable = true;
+      }
     });
   }
+
+  // Show the score star if there are endscreens and interactions available or user is editing
+  this.hasStar = this.editor || this.options.assets.endscreens !== undefined && isAnswerable;
 
   // Video with interactions
   this.$videoWrapper = $container.children('.h5p-video-wrapper');
@@ -703,7 +710,7 @@ InteractiveVideo.prototype.addSplash = function () {
 };
 
 /**
- * Get the videos duration in seconds
+ * Get the video's duration in seconds
  *
  * @return {number} seconds
  */
@@ -746,12 +753,10 @@ InteractiveVideo.prototype.addControls = function () {
   this.addBookmarks();
 
   // Add endscreens
-  this.addEndscreens();
+  this.addEndscreenMarkers();
 
-  // Add bubble
-  if (!this.editor && this.hasStar) {
-    this.bubbleScore = new Bubble(this.$star);
-  }
+  // Add bubble for answered interactions score and endscreen
+  this.addBubbles();
 
   this.trigger('controls');
 };
@@ -883,6 +888,8 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     setTimeout(function () {
       interaction.positionLabel(self.$videoWrapper.width());
     }, 0);
+
+    self.toggleEndscreen(false);
   });
 
   // The interaction is about to be hidden.
@@ -896,6 +903,8 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     if (event.getVerb() === 'interacted') {
       const pos = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from).indexOf(interaction);
       self.interactionsState[pos] = 'interacted';
+      this.setState('interacted');
+      interaction.state = 'interacted';
     }
 
     // update state
@@ -931,6 +940,7 @@ InteractiveVideo.prototype.handleAnswered = function () {
   self.interactionsState.forEach((state, index) => {
     if (state === 'interacted') {
       self.interactionsState[index] = 'answered';
+      self.interactions[index].setState('answered');
       self.menuitems[index].addClass('h5p-interaction-answered');
 
       const answeredTotal = self.interactionsState.filter(function(a) {
@@ -940,6 +950,7 @@ InteractiveVideo.prototype.handleAnswered = function () {
       if (self.hasStar) {
         self.playStarAnimation();
         self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
+        self.endscreen.update(self.interactions);
       }
     }
   });
@@ -1013,7 +1024,7 @@ InteractiveVideo.prototype.addBookmarks = function () {
 /**
  * Puts all the cool narrow lines around the slider / seek bar.
  */
-InteractiveVideo.prototype.addEndscreens = function () {
+InteractiveVideo.prototype.addEndscreenMarkers = function () {
   this.endscreensMap = {};
   if (this.options.assets.endscreens !== undefined && !this.preventSkipping) {
     for (var i = 0; i < this.options.assets.endscreens.length; i++) {
@@ -1023,6 +1034,41 @@ InteractiveVideo.prototype.addEndscreens = function () {
   // We add a default endscreen that can be deleted later and won't be replaced
   if (this.editor && !!this.editor.freshVideo) {
     this.editor.addEndscreen(this.getDuration(), true);
+  }
+};
+
+/**
+ * Add bubbles for answered interactions score and endscreen
+ */
+InteractiveVideo.prototype.addBubbles = function () {
+  if (!this.editor && this.hasStar) {
+
+    // Score bubble
+    this.bubbleScore = new Bubble(this.$star);
+
+    // Endscreen and endscreen bubble
+    this.endscreen = new Endscreen(this, {
+      l10n: {
+        title: this.l10n.endcardTitle,
+        information: this.l10n.endcardInformation,
+        submitButton: this.l10n.endcardSubmitButton,
+        submitMessage: this.l10n.endcardSubmitMessage,
+        tableRowAnswered: this.l10n.endcardTableRowAnswered,
+        tableRowScore: this.l10n.endcardTableRowScore,
+        answeredScore: this.l10n.endcardAnsweredScore
+      }
+    });
+    this.endscreen.update(this.interactions);
+
+    this.bubbleEndscreen = new Bubble(
+      this.$star,
+      {
+        content: this.endscreen.getDOM(),
+        maxWidth: 'auto',
+        style: 'h5p-interactive-video-bubble-endscreen',
+        mode: 'full'
+      }
+    );
   }
 };
 
@@ -1085,6 +1131,34 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
       .toggleClass('h5p-show', show)
       .toggleClass('h5p-transitioning', show || hiding);
   }
+};
+
+/**
+ * Toggle the endscreen view
+ *
+ * @param {boolean} show - If true will show, if false will hide, toggle otherwise
+ */
+InteractiveVideo.prototype.toggleEndscreen = function (show) {
+  if (this.editor || !this.hasStar) {
+    return;
+  }
+
+  show = (show === undefined) ? !this.bubbleEndscreen.isActive() : show;
+
+  if (show) {
+    this.stateBeforeEndscreen = this.currentState;
+    this.video.pause();
+  }
+  else {
+    // Continue video if it had been playing before opening the endscreen
+    if (this.stateBeforeEndscreen === H5P.Video.PLAYING) {
+      this.video.play();
+      this.stateBeforeEndscreen = undefined;
+    }
+  }
+
+  this.controls.$endscreensButton.toggleClass('h5p-star-active', show);
+  this.bubbleEndscreen.toggle(show, true);
 };
 
 /**
@@ -1181,14 +1255,14 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
 /**
  * Update video to jump to position of selected endscreen
  *
- * @param {jQuery} $endscreen
+ * @param {jQuery} $endscreenMarker
  * @param {object} endscreen
  */
-InteractiveVideo.prototype.onEndscreenSelect = function ($endscreen, endscreen) {
+InteractiveVideo.prototype.onEndscreenSelect = function ($endscreenMarker, endscreen) {
   const self = this;
 
   if (self.currentState !== H5P.Video.PLAYING) {
-    $endscreen.mouseover().mouseout();
+    $endscreenMarker.mouseover().mouseout();
     setTimeout(() => {self.timeUpdate(self.video.getCurrentTime());}, 0);
   }
 
@@ -1298,10 +1372,6 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
  * @returns {H5P.jQuery}
  */
 InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
-  if (!this.editor) {
-    return;
-  }
-
   var self = this;
   var endscreen = self.options.assets.endscreens[id];
 
@@ -1310,8 +1380,14 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
     tenth = Math.floor(endscreen.time * 10) / 10;
   }
 
+  var $endscreenMarker;
+  if (!this.editor) {
+    $endscreenMarker = self.endscreensMap[tenth] = true;
+    return;
+  }
+
   // Create endscreen element for the seek bar.
-  var $endscreen = self.endscreensMap[tenth] = $('<div class="h5p-endscreen" style="left:' + (endscreen.time * self.oneSecondInPercentage) + '%"><div class="h5p-endscreen-label"><div class="h5p-endscreen-text">' + endscreen.label + '</div></div></div>')
+  $endscreenMarker = self.endscreensMap[tenth] = $('<div class="h5p-endscreen" style="left:' + (endscreen.time * self.oneSecondInPercentage) + '%"><div class="h5p-endscreen-label"><div class="h5p-endscreen-text">' + endscreen.label + '</div></div></div>')
     .appendTo(self.controls.$endscreensContainer)
     .data('id', id)
     .hover(function () {
@@ -1319,15 +1395,15 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
         clearTimeout(self.endscreenTimeout);
       }
       self.controls.$endscreensContainer.children('.h5p-show').removeClass('h5p-show');
-      $endscreen.addClass('h5p-show');
+      $endscreenMarker.addClass('h5p-show');
     }, function () {
       self.endscreenTimeout = setTimeout(function () {
-        $endscreen.removeClass('h5p-show');
+        $endscreenMarker.removeClass('h5p-show');
       }, 2000);
     });
 
   // Set max size of label to the size of the controls to the right.
-  $endscreen.find('.h5p-endscreen-label').css('maxWidth', parseInt(self.controls.$slider.parent().css('marginRight')) - 35);
+  $endscreenMarker.find('.h5p-endscreen-label').css('maxWidth', parseInt(self.controls.$slider.parent().css('marginRight')) - 35);
 
   // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$endscreensList === undefined) {
@@ -1337,10 +1413,10 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
 
   // Create list element for endscreen
   var $li = $(`<li role="menuitem" aria-describedby="${self.endscreensMenuId}">${endscreen.label}</li>`)
-    .click(() => self.onEndscreenSelect($endscreen, endscreen))
+    .click(() => self.onEndscreenSelect($endscreenMarker, endscreen))
     .keydown(e => {
       if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
-        self.onEndscreenSelect($endscreen, endscreen);
+        self.onEndscreenSelect($endscreenMarker, endscreen);
       }
 
       e.stopPropagation();
@@ -1370,13 +1446,13 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
     else if (id >= index) {
       // We must update our id.
       id += number;
-      $endscreen.data('id', id);
+      $endscreenMarker.data('id', id);
     }
   });
 
   // Tell others we have added a new endscreen.
-  self.trigger('endscreenAdded', {'endscreen': $endscreen});
-  return $endscreen;
+  self.trigger('endscreenAdded', {'endscreen': $endscreenMarker});
+  return $endscreenMarker;
 };
 
 /**
@@ -1420,6 +1496,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         self.toggleFullScreen();
       }
       self.video.play();
+      self.toggleEndscreen(false);
     }
     else {
       self.video.pause();
@@ -1559,7 +1636,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         self.toggleEndscreensChooser();
       }
       else  {
-        // show summary/submit screen in HFP-1843
+        self.toggleEndscreen();
       }
     });
     self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
@@ -1890,6 +1967,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       if (self.currentState === InteractiveVideo.SEEKING) {
         return; // Prevent double start on touch devies!
       }
+      self.toggleEndscreen(false);
 
       if (!self.delayedState) {
 
@@ -2308,6 +2386,8 @@ InteractiveVideo.prototype.resize = function () {
     if (videoHeight + controlsHeight <= containerHeight) {
       this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
       width = this.$videoWrapper.width();
+
+      this.bubbleEndscreen.fullscreen(containerHeight, videoHeight);
     }
     else {
       var ratio = this.$videoWrapper.width() / videoHeight;
@@ -2318,6 +2398,8 @@ InteractiveVideo.prototype.resize = function () {
         width: width,
         height: height
       });
+
+      this.bubbleEndscreen.fullscreen();
     }
 
     // Resize again to fit the new container size.
@@ -2383,6 +2465,7 @@ InteractiveVideo.prototype.resize = function () {
 
   if (this.bubbleScore) {
     this.bubbleScore.update();
+    this.bubbleEndscreen.update();
   }
 
   this.resizeInteractions();
@@ -2655,10 +2738,21 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
       // Show bookmark
       self.bookmarksMap[tenth].mouseover().mouseout();
     }
-    // Check for endscreens
-    if (self.endscreensMap !== undefined && self.endscreensMap[tenth] !== undefined) {
-      // Show endscreen
-      self.endscreensMap[tenth].mouseover().mouseout();
+
+    // Check for endscreen markers incl. helper functions to keep the code a little cleaner
+    const finalEndscreenHit = function () {
+      // This one is needed because the final tenth value can be smaller than self.getDuration()
+      return self.currentState === H5P.Video.ENDED && self.endscreensMap[self.getDuration()];
+    };
+    const regularEndscreenHit = function () {
+      return self.endscreensMap !== undefined && self.endscreensMap[tenth] !== undefined && self.currentState !== InteractiveVideo.SEEKING;
+    };
+    const answeredTotal = self.interactionsState.filter(function(a) {
+      return a === 'answered';
+    }).length;
+
+    if ((finalEndscreenHit() || regularEndscreenHit()) && answeredTotal > 0) {
+      self.toggleEndscreen(true);
     }
   }
   self.lastTenth = tenth;
@@ -3171,6 +3265,15 @@ InteractiveVideo.prototype.getCopyrights = function () {
   }
 
   return info;
+};
+
+/**
+ * Detect whether skipping shall be prevented
+ *
+ * @return {boolean} True, if skipping shall be prevented
+ */
+InteractiveVideo.prototype.skippingPrevented = function () {
+  return this.preventSkipping;
 };
 
 // Additional player states

@@ -141,6 +141,9 @@ function Interaction(parameters, player, previousState) {
   // Keep track of content instance
   var instance;
 
+  // Keep track of the interaction's state
+  var state;
+
   // Keep track of DragNBarElement and related dialog/form
   var dnbElement;
 
@@ -1484,6 +1487,24 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Returns true if the given library is answerable
+   *
+   * @return {boolean}
+   */
+  self.isAnswerable = function () {
+    return staticLibraryTitles.indexOf(self.getLibraryName()) === -1 && !self.isStandaloneLabel();
+  };
+
+
+  self.setState = function (state) {
+    this.state = state;
+  };
+
+  self.getState = function () {
+    return this.state;
+  };
+
+  /**
    * Get HTML class name
    *
    * @returns {string}
@@ -1638,6 +1659,10 @@ function Interaction(parameters, player, previousState) {
     delete self.maxScore;
 
     self.reCreate();
+  };
+
+  self.getInstance = function () {
+    return instance;
   };
 
   // Create instance of content

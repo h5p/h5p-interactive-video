@@ -22,24 +22,36 @@ class Bubble {
 
     this.$tail = $('<div/>', {class: this.style + '-tail'});
     this.$innerTail = $('<div/>', {class: this.style + '-inner-tail'});
-    this.$content = $('<div/>', {class: this.style + '-text', html: params.content});
+    this.$content = $('<div/>', {class: this.style + '-text'});
+    if (typeof content === 'string') {
+      this.$content.html(params.content);
+    }
+    else {
+      this.$content.append(params.content);
+    }
     this.$innerBubble = $('<div/>', {class: this.style + '-inner'})
       .append(this.$content)
       .prepend(this.$innerTail);
 
-    this.$h5pContainer = this.$reference.closest('.h5p-frame');
-    // Check closest h5p frame first, then check for container in case there is no frame.
-    if (!this.$h5pContainer.length) {
-      this.$h5pContainer = this.$reference.closest('.h5p-container');
-    }
+    this.$h5pContainer = this.$reference.closest('.h5p-container');
 
-    this.$bubble = $('<div/>', {class: this.style, 'aria-live': 'assertive'})
+    this.$bubble = $('<div/>', {
+      class: this.style,
+      'aria-live': 'assertive'
+    })
       .append([this.$tail, this.$innerBubble])
       .addClass(this.style + '-inactive')
       .appendTo(this.$h5pContainer);
 
+/*
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
+    }
+*/
+    if (this.mode === 'centered') {
+      this.$bubble.css({
+        width: (this.maxWidth === 'auto') ? 'auto' : this.maxWidth + 'px'
+      });
     }
 
     this.update();
@@ -53,25 +65,21 @@ class Bubble {
     const offset = this.getOffsetBetween(this.$h5pContainer, this.$reference);
 
     // Compute bubbleWidth (after changing the content);
-    const bubbleWidth = Math.min(offset.outerWidth * 0.9, (this.maxWidth === 'auto') ? this.$innerBubble.outerWidth() : this.maxWidth);
-    const bubblePosition = this.getBubblePosition(bubbleWidth, offset);
+    const bubbleWidth = (this.mode === 'full') ? this.$bubble.outerWidth() : Math.min(offset.outerWidth * 0.9, (this.maxWidth === 'auto') ? this.$bubble.outerWidth() : this.maxWidth);
+    const bubblePosition = this.getBubblePosition(bubbleWidth, offset, this.mode);
     const tailPosition = this.getTailPosition(this.$reference, bubblePosition);
-    // Need to set font-size, since element is appended to body.
-    // Using same font-size as parent. In that way it will grow accordingly
-    // when resizing
-    const fontSize = 16;//parseFloat($parent.css('font-size'));
 
-    // Set width and position of speech bubble
-    this.$bubble.css({
-      width: (this.maxWidth === 'auto') ? 'auto' : this.maxWidth + 'px',
-      bottom: bubblePosition.bottom + 'px',
-      left: bubblePosition.left + 'px',
-      fontSize: fontSize + 'px'
-    });
+    if (this.mode === 'centered') {
+      // Set width and position of bubble, won't be handled by CSS
+      this.$bubble.css({
+        bottom: (bubblePosition.bottom === undefined) ? undefined : bubblePosition.bottom + 'px',
+        left: bubblePosition.left + 'px'
+      });
+    }
 
     const preparedTailCSS = {
       bottom: tailPosition.bottom + 'px',
-      left: tailPosition.left + 'px'
+      left: (typeof tailPosition.left === 'string') ? tailPosition.left : tailPosition.left + 'px'
     };
     this.$tail.css(preparedTailCSS);
     this.$innerTail.css(preparedTailCSS);
@@ -114,6 +122,47 @@ class Bubble {
   }
 
   /**
+   * Determine whether the bubble is active
+   *
+   * @return {boolean} True, if bubble is active
+   */
+  isActive () {
+    return this.$bubble.hasClass(this.style + '-active');
+  }
+
+  /**
+   * Change activity of this bubble.
+   *
+   * @param {boolean=} show - True: show, false: hide, undefined: toggle.
+   * @param {boolean=false} animate - True: animate the bubble in.
+   */
+  toggle (show, animate = false) {
+    show = (show === undefined) ? !this.isActive() : show;
+
+    if (show && animate) {
+      /*
+       * If in CSS you transition from display: none (inactive) to inherit (active),
+       * the element won't translate but just be visible even with a delay set.
+       * Still, for the animation, we need the element below the content, and
+       * it's height will be considered on resize even with visibility: hidden.
+       */
+      setTimeout(() => {
+        this.$bubble
+          .removeClass(this.style + '-preparing')
+          .addClass(this.style + '-active');
+      }, 100); // 100ms seem to do the trick
+      this.$bubble
+        .removeClass(this.style + '-inactive')
+        .addClass(this.style + '-preparing');
+    }
+    else {
+      this.$bubble
+        .toggleClass(this.style + '-inactive', !show)
+        .toggleClass(this.style + '-active', show);
+    }
+  }
+
+  /**
    * Calculate position for speech bubble.
    *
    * @param {number} bubbleWidth - Width of the bubble.
@@ -128,14 +177,16 @@ class Bubble {
    * @param {number} offset.outerHeight- OuterHeight offset.
    * @return {object} Position for the bubble.
    */
-  getBubblePosition (bubbleWidth, offset) {
+  getBubblePosition (bubbleWidth, offset, mode) {
     const tailOffset = 4;
     const widthOffset = bubbleWidth / 2;
 
+    const bottom = (mode === 'full') ? undefined : offset.bottom + offset.innerHeight + tailOffset;
+    const left = (mode === 'full') ? (offset.outerWidth - bubbleWidth) / 2 : offset.left - widthOffset + 16; // 16 ~ half of star icons width
+
     return {
-      top: offset.top + offset.innerHeight,
-      bottom: offset.bottom + offset.innerHeight + tailOffset,
-      left: offset.left - widthOffset + 15
+      bottom: bottom,
+      left: left
     };
   }
 
@@ -151,8 +202,9 @@ class Bubble {
    */
   getTailPosition ($reference, bubblePosition) {
     // Magic numbers. Tuned by hand so that the tail fits visually within the bounds of the bubble.
+    let left = $reference.offset().left - bubblePosition.left + 6;
     return {
-      left: $reference.offset().left - bubblePosition.left + 6,
+      left: left,
       top: -6,
       bottom: -6
     };
@@ -182,6 +234,25 @@ class Bubble {
       outerWidth: outer.width,
       outerHeight: outer.height
     };
+  }
+
+  /**
+   * Set the offset for fullscreen mode.
+   *
+   * @param {number} containerHeight - Container height.
+   * @param {number} videoHeight - Height of video.
+   */
+  fullscreen (containerHeight, videoHeight) {
+    if (containerHeight && videoHeight) {
+      console.log(containerHeight, videoHeight);
+      this.$bubble.css({
+        maxHeight: 'calc(' + videoHeight + 'px - 1em - 9px)',
+        top: 'calc((' + containerHeight + 'px - ' + videoHeight +'px + 1em - 9px) / 2)'
+      });
+    }
+    else {
+      this.$bubble.css({maxHeight: '', top: ''});
+    }
   }
 }
 

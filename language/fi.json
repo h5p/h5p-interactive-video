@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Vuorovaikutteinen video",
-      "fields":[
+      "label": "Vuorovaikutteinen video",
+      "fields": [
         {
-          "label":"Lataa tai upota video",
-          "fields":[
+          "label": "Lataa tai upota video",
+          "fields": [
             {
-              "label":"Lisää video",
-              "description":"Klikkaa lisätäksesi videon. Voit lisätä linkin videoon tai ladata videon. Videosta on mahdollista ladata useita erilaatuisia versioita. Varmistaaksesi toimivuuden eri selaimissa lataa vähintään mp4- ja webm-versiot videosta."
+              "label": "Lisää video",
+              "description": "Klikkaa lisätäksesi videon. Voit lisätä linkin videoon tai ladata videon. Videosta on mahdollista ladata useita erilaatuisia versioita. Varmistaaksesi toimivuuden eri selaimissa lataa vähintään mp4- ja webm-versiot videosta."
             },
             {
-              "label":"Aloitusnäkymän valinnat (Ei koske YouTube-videoita)",
-              "fields":[
+              "label": "Aloitusnäkymän valinnat (Ei koske YouTube-videoita)",
+              "fields": [
                 {
-                  "label":"Videon otsikko",
-                  "default":"Vuorovaikutteinen video",
-                  "description":"Käytetään yhteenvedoissa, tilastoissa jne."
+                  "label": "Videon otsikko",
+                  "default": "Vuorovaikutteinen video",
+                  "description": "Käytetään yhteenvedoissa, tilastoissa jne."
                 },
                 {
-                  "label":"Piilota otsikko aloitusnäkymässä"
+                  "label": "Piilota otsikko aloitusnäkymässä"
                 },
                 {
-                  "label":"Kuvaus sisällöstä (Valinnainen)",
-                  "description":"Näytetään lyhyt johdantoteksti videon aloitusnäkymässä."
-                },
-               {
-                  "label":"Esittelykuva",
-                  "description":"Kuva näytetään videokuvan sijaan aloitusnäkymänä, josta videon voi käynnistää."
+                  "label": "Kuvaus sisällöstä (Valinnainen)",
+                  "description": "Näytetään lyhyt johdantoteksti videon aloitusnäkymässä."
                 },
                 {
-                  "label":"Videon tekijänoikeustiedot",
-                  "description":"Tekijänoikeustiedot videosta ja sen sisällöstä."
+                  "label": "Esittelykuva",
+                  "description": "Kuva näytetään videokuvan sijaan aloitusnäkymänä, josta videon voi käynnistää."
+                },
+                {
+                  "label": "Videon tekijänoikeustiedot",
+                  "description": "Tekijänoikeustiedot videosta ja sen sisällöstä."
                 }
               ]
             },
             {
-              "label":"Tekstiraidat (Ei koske YouTube-videoita)",
-              "fields":[
+              "label": "Tekstiraidat (Ei koske YouTube-videoita)",
+              "fields": [
                 {
-                  "label":"Saatavilla olevat tekstiraidat",
-                  "entity":"Raita",
-                  "field":{
-                    "label":"Raita",
-                    "fields":[
+                  "label": "Saatavilla olevat tekstiraidat",
+                  "entity": "Raita",
+                  "field": {
+                    "label": "Raita",
+                    "fields": [
                       {
-                        "label":"Raidan selite",
-                        "description":"Käytetään, jos tarjolla on useita raitoja ja käyttäjä joutuu valitsemaan niistä yhden. Esimerkiksi 'Tekstitys espanjaksi' selitteenä espanjankieliselle tekstitysraidalle.",
-                        "default":"Tekstitykset"
+                        "label": "Raidan selite",
+                        "description": "Käytetään, jos tarjolla on useita raitoja ja käyttäjä joutuu valitsemaan niistä yhden. Esimerkiksi 'Tekstitys espanjaksi' selitteenä espanjankieliselle tekstitysraidalle.",
+                        "default": "Tekstitykset"
                       },
                       {
-                        "label":"Tekstiraidan tyyppi",
-                        "default":"subtitles",
-                        "options":[
+                        "label": "Tekstiraidan tyyppi",
+                        "options": [
                           {
-                            "label":"Tekstitykset"
+                            "label": "Tekstitykset"
                           },
                           {
-                            "label":"Otsikot"
+                            "label": "Otsikot"
                           },
                           {
-                            "label":"Selitteet"
+                            "label": "Selitteet"
                           }
                         ]
                       },
                       {
-                        "label":"Lähdekieli, pakollinen tekstityksille",
-                        "default":"en",
-                        "description":"Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
+                        "label": "Lähdekieli, pakollinen tekstityksille",
+                        "default": "en",
+                        "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
-                        "label":"Raidan lähde (WebVTT tiedosto)"
+                        "label": "Raidan lähde (WebVTT tiedosto)"
                       }
                     ]
                   }
@@ -80,399 +79,346 @@
           ]
         },
         {
-          "label":"Lisää toiminto tai tehtävä",
-          "fields":[
+          "label": "Lisää toiminto tai tehtävä",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"Näyttöaika",
-                    "fields":[
+                    "label": "Näyttöaika"
+                  },
+                  {
+                    "label": "Pysäytä video"
+                  },
+                  {
+                    "label": "Näytä muodossa",
+                    "description": "<b>Painike</b>: Käyttäjän on painettava avatakseen se. <b>Pop-up</b>: Näkyy suoraan videon päällä",
+                    "options": [
                       {
-
+                        "label": "Painike"
                       },
                       {
-
+                        "label": "Pop-up"
                       }
                     ]
                   },
                   {
-                    "label":"Pysäytä video"
+                    "label": "Muunna painikkeeksi katsottaessa pienellä ruudulla"
                   },
                   {
-                    "label":"Näytä muodossa",
-                    "description":"<b>Painike</b>: Käyttäjän on painettava avatakseen se. <b>Pop-up</b>: Näkyy suoraan videon päällä",
-                    "options":[
+                    "label": "Teksti",
+                    "description": "Näytetään toiminnon yhteydessä."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Ketju",
+                    "fields": [
                       {
-                        "label":"Painike"
-                      },
-                      {
-                        "label":"Pop-up"
-                      }
-                    ],
-                    "default":"button"
-                  },
-                  {
-                    "label":"Muunna painikkeeksi katsottaessa pienellä ruudulla"
-                  },
-                  {
-                    "label":"Teksti",
-                    "description":"Näytetään toiminnon yhteydessä."
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-                    "label":"Ketju",
-                    "fields":[
-                      {
-                        "label":"Toiminto, kun kaikki oikein",
-                        "fields":[
+                        "label": "Toiminto, kun kaikki oikein",
+                        "fields": [
                           {
-                            "label":"Siirry kohtaan",
-                            "description":"Anna aika muodossa M:SS"
+                            "label": "Siirry kohtaan",
+                            "description": "Anna aika muodossa M:SS"
                           },
                           {
-                            "label":"Salli käyttäjän ohittaa toiminto"
+                            "label": "Salli käyttäjän ohittaa toiminto"
                           },
                           {
-                            "label":"Viesti"
+                            "label": "Viesti"
                           },
                           {
-                            "label":"Selite hakupainikkeelle"
+                            "label": "Selite hakupainikkeelle"
                           }
                         ]
                       },
                       {
-                        "label":"Toiminto, kun väärin",
-                        "fields":[
+                        "label": "Toiminto, kun väärin",
+                        "fields": [
                           {
-                            "label":"Siirry kohtaan",
-                            "description":"Anna aika muodossa M:SS"
+                            "label": "Siirry kohtaan",
+                            "description": "Anna aika muodossa M:SS"
                           },
                           {
-                            "label":"Salli käyttäjän ohittaa toiminto"
+                            "label": "Salli käyttäjän ohittaa toiminto"
                           },
                           {
-                            "label":"Viesti"
+                            "label": "Viesti"
                           },
                           {
-                            "label":"Selite hakupainikkeelle"
+                            "label": "Selite hakupainikkeelle"
                           }
                         ]
                       },
                       {
-                        "label":"Vaadi täydet pisteet tehtävästä ennen jatkamista",
-                        "description":"Parhaimman toiminnan varmistamiseksi tätä toimintoa on suositeltavaa käyttää vuorovaikutteisen videon \"Estä videossa eteenpäin hyppiminen\" toiminnon kanssa"
+                        "label": "Vaadi täydet pisteet tehtävästä ennen jatkamista",
+                        "description": "Parhaimman toiminnan varmistamiseksi tätä toimintoa on suositeltavaa käyttää vuorovaikutteisen videon \"Estä videossa eteenpäin hyppiminen\" toiminnon kanssa"
                       }
                     ]
                   },
                   {
-                    "label":"Ulkoasu",
-                    "fields":[
+                    "label": "Ulkoasu",
+                    "fields": [
                       {
-                        "label":"Taustaväri",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-
-                        }
+                        "label": "Taustaväri",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Varjostus",
-                        "description":"Lisää kevyen varjostuksen vuorovaikutteisen toiminnon ympärille. Jos toiminnon halutaan olevan läpinäkyvä, on tämä jätettävä valitsematta."
+                        "label": "Varjostus",
+                        "description": "Lisää kevyen varjostuksen vuorovaikutteisen toiminnon ympärille. Jos toiminnon halutaan olevan läpinäkyvä, on tämä jätettävä valitsematta."
                       }
                     ]
                   },
                   {
-                    "label":"Siirry kohteeseen",
-                    "fields":[
+                    "label": "Siirry kohteeseen",
+                    "fields": [
                       {
-                        "label":"Tyyppi",
-                        "options":[
+                        "label": "Tyyppi",
+                        "options": [
                           {
-                            "label":"Aika"
+                            "label": "Aika"
                           },
                           {
-                            "label":"Uusi sivu (URL)"
+                            "label": "Uusi sivu (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Aika",
-                        "description":"Kohdeaika, johon käyttäjä siirtyy toimintoa klikkaamalla. Anna aika muodossa M:SS."
+                        "label": "Aika",
+                        "description": "Kohdeaika, johon käyttäjä siirtyy toimintoa klikkaamalla. Anna aika muodossa M:SS."
                       },
                       {
-                        "label":"URL",
-                        "fields":[
+                        "label": "URL",
+                        "fields": [
                           {
-                            "label":"Protokolla",
-                            "options":[
+                            "label": "Protokolla",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(suhteessa juureen)"
+                                "label": "(suhteessa juureen)"
                               },
                               {
-                                "label":"muu"
+                                "label": "muu"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"URL"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
-                        "label":"Korosta",
-                        "description":"Näytetään, että vuorovaikutteinen toiminto on klikattava lisäämälle sille reunus ja ikoni."
+                        "label": "Korosta",
+                        "description": "Näytetään, että vuorovaikutteinen toiminto on klikattava lisäämälle sille reunus ja ikoni."
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"Yhteenvetotehtävä",
-          "fields":[
+          "label": "Yhteenvetotehtävä",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-
-                }
-              }
-            },
-            {
-              "label":"Näytä kohdassa",
-              "description":"Sekuntimäärä ennen videon päättymistä."
+              "label": "Näytä kohdassa",
+              "description": "Sekuntimäärä ennen videon päättymistä."
             }
           ]
         }
       ]
     },
     {
-      "label":"Yleisasetukset",
-      "fields":[
+      "label": "Yleisasetukset",
+      "fields": [
         {
-          "label":"Aloita video kohdasta",
-          "description":"Anna aika muodossa M:SS"
+          "label": "Aloita video kohdasta",
+          "description": "Anna aika muodossa M:SS"
         },
         {
-          "label":"Käynnistä video automaattisesti",
-          "description":"Video käynnistetään automaattisesti"
+          "label": "Käynnistä video automaattisesti",
+          "description": "Video käynnistetään automaattisesti"
         },
         {
-          "label":"Toista video",
-          "description":"Valitse toistaaksesi videota loputtomasti"
+          "label": "Toista video",
+          "description": "Valitse toistaaksesi videota loputtomasti"
         },
         {
-          "label":"\"Näytä vastaus\"-painike",
-          "description":"Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia",
-          "options":[
+          "label": "\"Näytä vastaus\"-painike",
+          "description": "Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia",
+          "options": [
             {
-              "label":"Käytössä kaikissa"
+              "label": "Käytössä kaikissa"
             },
             {
-              "label":"Pois käytöstä"
+              "label": "Pois käytöstä"
             }
           ]
         },
         {
-          "label":"\"Yritä uudelleen\"-painike",
-          "description":"Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia.",
-          "options":[
+          "label": "\"Yritä uudelleen\"-painike",
+          "description": "Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia.",
+          "options": [
             {
-              "label":"Käytössä kaikissa"
+              "label": "Käytössä kaikissa"
             },
             {
-              "label":"Pois käytöstä"
+              "label": "Pois käytöstä"
             }
           ]
         },
         {
-          "label":"Aloita kirjanmerkkimenu avattuna",
-          "description":"Tämä toiminto ei ole käytössä iPadilla YouTube-videoita käytettäessä."
+          "label": "Aloita kirjanmerkkimenu avattuna",
+          "description": "Tämä toiminto ei ole käytössä iPadilla YouTube-videoita käytettäessä."
         },
         {
-          "label":"Näytä 10 sekuntia taaksepäin kelaava painike"
+          "label": "Näytä 10 sekuntia taaksepäin kelaava painike"
         },
         {
-          "label":"Estä videossa eteenpäin hyppiminen",
-          "description":"Tämän valinta estää käyttäjän navigoinnnin videossa oletusohjaimilla."
+          "label": "Estä videossa eteenpäin hyppiminen",
+          "description": "Tämän valinta estää käyttäjän navigoinnnin videossa oletusohjaimilla."
         },
         {
-          "label":"Estä ääni",
-          "description":"Tämä valinta estää äänen ja sen kytkemisen päälle."
+          "label": "Estä ääni",
+          "description": "Tämä valinta estää äänen ja sen kytkemisen päälle."
         }
       ]
     },
     {
-      "label":"Muokkaa",
-      "fields":[
+      "label": "Muokkaa",
+      "fields": [
         {
-          "label":"Toiminto",
-          "default":"Toiminto"
+          "label": "Toiminto",
+          "default": "Toiminto"
         },
         {
-          "label":"Käynnistä",
-          "default":"Käynnistä"
+          "label": "Käynnistä",
+          "default": "Käynnistä"
         },
         {
-          "label":"Pysäytä",
-          "default":"Pysäytä"
+          "label": "Pysäytä",
+          "default": "Pysäytä"
         },
         {
-          "label":"Vaimenna",
-          "default":"Vaimenna"
+          "label": "Vaimenna",
+          "default": "Vaimenna"
         },
         {
-          "label":"Ääni päälle",
-          "default":"Ääni päälle"
+          "label": "Ääni päälle",
+          "default": "Ääni päälle"
         },
         {
-          "label":"Videon laatu",
-          "default":"Laatu"
+          "label": "Videon laatu",
+          "default": "Laatu"
         },
         {
-          "label":"Videon tekstit",
-          "default":"Tekstit"
+          "label": "Videon tekstit",
+          "default": "Tekstit"
         },
         {
-          "label":"Sulje painike",
-          "default":"Sulje"
+          "label": "Sulje painike",
+          "default": "Sulje"
         },
         {
-          "label":"Kokoruutu",
-          "default":"Koko ruutu"
+          "label": "Kokoruutu",
+          "default": "Koko ruutu"
         },
         {
-          "label":"Poistu kokoruudusta",
-          "default":"Poistu kokoruudusta"
+          "label": "Poistu kokoruudusta",
+          "default": "Poistu kokoruudusta"
         },
         {
-          "label":"Yhteenveto",
-          "default":"Yhteenvetotehtävä"
+          "label": "Yhteenveto",
+          "default": "Yhteenvetotehtävä"
         },
         {
-          "label":"Kirjanmerkit",
-          "default":"Kirjanmerki"
+          "label": "Kirjanmerkit",
+          "default": "Kirjanmerki"
         },
         {
           "label": "End screen title",
           "default": "End screen"
         },
         {
-          "label":"Siirtyminen eteenpäin Ketjussa",
-          "default":"Jatka"
+          "label": "Siirtyminen eteenpäin Ketjussa",
+          "default": "Jatka"
         },
         {
-          "label":"Videossa eteenpäin jatkaminen",
-          "default":"Jatka videon katsomista"
+          "label": "Videossa eteenpäin jatkaminen",
+          "default": "Jatka videon katsomista"
         },
         {
-          "label":"Aseta toistonopeus",
-          "default":"Toistonopeus"
+          "label": "Aseta toistonopeus",
+          "default": "Toistonopeus"
         },
         {
-          "label":"Kelaa taakse 10 sekuntia",
-          "default":"Kelaa taakse 10 sekuntia"
+          "label": "Kelaa taakse 10 sekuntia",
+          "default": "Kelaa taakse 10 sekuntia"
         },
         {
-          "label":"Navigointi on estetty",
-          "default":"Navigointi on estetty"
+          "label": "Navigointi on estetty",
+          "default": "Navigointi on estetty"
         },
         {
-          "label":"Ääni on estetty",
-          "default":"Ääni on estetty"
+          "label": "Ääni on estetty",
+          "default": "Ääni on estetty"
         },
         {
-          "label":"Varoitus käyttäjälle, että kysymykseen on vastattava oikein, jotta voidaan jatkaa",
-          "default":"Kaikkiin kysymyksiin täytyy vastata oikein, jotta voit jatkaa."
+          "label": "Varoitus käyttäjälle, että kysymykseen on vastattava oikein, jotta voidaan jatkaa",
+          "default": "Kaikkiin kysymyksiin täytyy vastata oikein, jotta voit jatkaa."
         },
         {
-          "label":"Taaksepäin",
-          "default":"Taaksepäin"
+          "label": "Taaksepäin",
+          "default": "Taaksepäin"
         },
         {
-          "label":"Kulunut aika tunteina",
-          "default":"Tuntia"
+          "label": "Kulunut aika tunteina",
+          "default": "Tuntia"
         },
         {
-          "label":"Kulunut aika minuutteina",
-          "default":"Minuuttia"
+          "label": "Kulunut aika minuutteina",
+          "default": "Minuuttia"
         },
         {
-          "label":"Kulunut aika sekunteina",
-          "default":"Sekuntia"
+          "label": "Kulunut aika sekunteina",
+          "default": "Sekuntia"
         },
         {
-          "label":"Aika",
-          "default":"Aika:"
+          "label": "Aika",
+          "default": "Aika:"
         },
         {
-          "label":"Pituus",
-          "default":"Pituus:"
+          "label": "Pituus",
+          "default": "Pituus:"
         },
         {
-          "label":"Navigoinnin pikanäppäin",
-          "default":"Käytä näppäintä k käynnistääksesi tai pysäyttääksesi videon"
+          "label": "Navigoinnin pikanäppäin",
+          "default": "Käytä näppäintä k käynnistääksesi tai pysäyttääksesi videon"
         },
         {
-          "label":"Ilmoitusteksti, kun nimetty vuorovaikutteinen toiminto on näkyvillä",
-          "default":"Toiminto näkyvillä:"
+          "label": "Ilmoitusteksti, kun nimetty vuorovaikutteinen toiminto on näkyvillä",
+          "default": "Toiminto näkyvillä:"
         },
         {
-          "label":"Ilmoitusteksti, kun useita toimintoja on näkyvillä",
-          "default":"Useita toimintoja näkyvillä."
+          "label": "Ilmoitusteksti, kun useita toimintoja on näkyvillä",
+          "default": "Useita toimintoja näkyvillä."
         },
         {
-          "label":"Ilmoitusteksti videon pysähtymisestä",
-          "default":"Video on pysäytetty"
+          "label": "Ilmoitusteksti videon pysähtymisestä",
+          "default": "Video on pysäytetty"
         },
         {
           "label": "Sisällön selite",
@@ -480,7 +426,45 @@
         },
         {
           "label": "answered",
-          "default": "@answered answered!"
+          "default": "@answered answered"
+        },
+        {
+          "label": "Endcard title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Endcard information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Endcard submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Endcard submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Endcard table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Endcard table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Endcard answered score",
+          "default": "answered"
         }
       ]
     }

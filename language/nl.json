@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Editor Interactieve Video",
-      "fields":[
+      "label": "Editor Interactieve Video",
+      "fields": [
         {
-          "label":"Video uploaden/embedden",
-          "fields":[
+          "label": "Video uploaden/embedden",
+          "fields": [
             {
-              "label":"Voeg een video toe",
-              "description":"Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
+              "label": "Voeg een video toe",
+              "description": "Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
             },
             {
-              "label":"Opties voor beginscherm (werkt niet voor YouTube-video's)",
-              "fields":[
+              "label": "Opties voor beginscherm (werkt niet voor YouTube-video's)",
+              "fields": [
                 {
-                  "label":"Titel",
-                  "default":"Interactieve Video",
-                  "description":"Gebruikt in samenvattingen, statistieken, enz."
+                  "label": "Titel",
+                  "default": "Interactieve Video",
+                  "description": "Gebruikt in samenvattingen, statistieken, enz."
                 },
                 {
-                  "label":"Titel verbergen aan het begin van de video"
+                  "label": "Titel verbergen aan het begin van de video"
                 },
                 {
-                  "label":"Korte beschrijving (optioneel)",
-                  "description":"Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube-video's."
+                  "label": "Korte beschrijving (optioneel)",
+                  "description": "Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube-video's."
                 },
                 {
-                  "label":"Poster",
-                  "description":"Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube-video's."
+                  "label": "Poster",
+                  "description": "Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube-video's."
                 },
                 {
-                  "label":"Copyright informatie voor de video",
-                  "description":"Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
+                  "label": "Copyright informatie voor de video",
+                  "description": "Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
                 }
               ]
             },
             {
-              "label":"Tekst sporen (werkt niet voor YouTube-videos)",
-              "fields":[
+              "label": "Tekst sporen (werkt niet voor YouTube-videos)",
+              "fields": [
                 {
-                  "label":"Beschikbare tekst sporen",
-                  "entity":"Spoor",
-                  "field":{
-                    "label":"Spoor",
-                    "fields":[
+                  "label": "Beschikbare tekst sporen",
+                  "entity": "Spoor",
+                  "field": {
+                    "label": "Spoor",
+                    "fields": [
                       {
-                        "label":"Spoorlabel",
-                        "description":"Gebruik wanneer je meerdere sporen aanbiedt en de gebruiker een spoor moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitel spoor.",
-                        "default":"Ondertitels"
+                        "label": "Spoorlabel",
+                        "description": "Gebruik wanneer je meerdere sporen aanbiedt en de gebruiker een spoor moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitel spoor.",
+                        "default": "Ondertitels"
                       },
                       {
-                        "label":"Type tekst spoor",
-                        "default":"ondertitels",
-                        "options":[
+                        "label": "Type tekst spoor",
+                        "options": [
                           {
-                            "label":"Ondertitels"
+                            "label": "Ondertitels"
                           },
                           {
-                            "label":"Bijschriften"
+                            "label": "Bijschriften"
                           },
                           {
-                            "label":"Beschrijvingen"
+                            "label": "Beschrijvingen"
                           }
                         ]
                       },
                       {
-                        "label":"Brontaal, moet worden gedefinieerd voor ondertitels",
-                        "default":"en",
-                        "description":"Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
+                        "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
+                        "default": "en",
+                        "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
-                        "label":"Bron van het spoor (WebVTT bestand)"
+                        "label": "Bron van het spoor (WebVTT bestand)"
                       }
                     ]
                   }
@@ -80,399 +79,346 @@
           ]
         },
         {
-          "label":"Interacties toevoegen",
-          "fields":[
+          "label": "Interacties toevoegen",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"Toon duur",
-                    "fields":[
+                    "label": "Toon duur"
+                  },
+                  {
+                    "label": "Pauzeren"
+                  },
+                  {
+                    "label": "Tonen als",
+                    "description": "<b>Knop</b> is een samengevouwde interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwde interactie die direct getoond wordt bovenop de video.",
+                    "options": [
                       {
-
+                        "label": "Knop"
                       },
                       {
-
+                        "label": "Poster"
                       }
                     ]
                   },
                   {
-                    "label":"Pauzeren"
+                    "label": "Maak hiervan een knop op een klein scherm"
                   },
                   {
-                    "label":"Tonen als",
-                    "description":"<b>Knop</b> is een samengevouwde interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwde interactie die direct getoond wordt bovenop de video.",
-                    "options":[
+                    "label": "Label",
+                    "description": "Toon label naast interactie-icoon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Aanpasbaar",
+                    "fields": [
                       {
-                        "label":"Knop"
-                      },
-                      {
-                        "label":"Poster"
-                      }
-                    ],
-                    "default":"Knop"
-                  },
-                  {
-                    "label":"Maak hiervan een knop op een klein scherm"
-                  },
-                  {
-                    "label":"Label",
-                    "description":"Toon label naast interactie-icoon."
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-                    "label":"Aanpasbaar",
-                    "fields":[
-                      {
-                        "label":"Alle acties zijn correct",
-                        "fields":[
+                        "label": "Alle acties zijn correct",
+                        "fields": [
                           {
-                            "label":"Zoeken naar",
-                            "description":"Voer de tijdcode in als M:SS format"
+                            "label": "Zoeken naar",
+                            "description": "Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label":"Sta de gebruiker opt out toe en ga door"
+                            "label": "Sta de gebruiker opt out toe en ga door"
                           },
                           {
-                            "label":"Bericht"
+                            "label": "Bericht"
                           },
                           {
-                            "label":"Label voor de zoekknop"
+                            "label": "Label voor de zoekknop"
                           }
                         ]
                       },
                       {
-                        "label":"Actie bij incorrect",
-                        "fields":[
+                        "label": "Actie bij incorrect",
+                        "fields": [
                           {
-                            "label":"Zoeken naar",
-                            "description":"Voer de tijdcode in als M:SS format"
+                            "label": "Zoeken naar",
+                            "description": "Voer de tijdcode in als M:SS format"
                           },
                           {
-                            "label":"Sta de gebruiker opt out toe en ga door"
+                            "label": "Sta de gebruiker opt out toe en ga door"
                           },
                           {
-                            "label":"Bericht"
+                            "label": "Bericht"
                           },
                           {
-                            "label":"Label voor de zoekknop"
+                            "label": "Label voor de zoekknop"
                           }
                         ]
                       },
                       {
-                        "label":"De volledige score van de taak is vereist voordat je verder kan gaan",
-                        "description":"Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Prevent skipping forward in a video\" van de Interactieve Video."
+                        "label": "De volledige score van de taak is vereist voordat je verder kan gaan",
+                        "description": "Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Prevent skipping forward in a video\" van de Interactieve Video."
                       }
                     ]
                   },
                   {
-                    "label":"Ga naar na klikken",
-                    "fields":[
+                    "label": "Ga naar na klikken",
+                    "fields": [
                       {
-                        "label":"Achtergrondkleur",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-
-                        }
+                        "label": "Achtergrondkleur",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Box schaduw",
-                        "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
+                        "label": "Box schaduw",
+                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
                       }
                     ]
                   },
                   {
-                    "label":"Ga naar bij muisklik",
-                    "fields":[
+                    "label": "Ga naar bij muisklik",
+                    "fields": [
                       {
-                        "label":"Type",
-                        "options":[
+                        "label": "Type",
+                        "options": [
                           {
-                            "label":"Tijdscode"
+                            "label": "Tijdscode"
                           },
                           {
-                            "label":"Andere pagina (URL)"
+                            "label": "Andere pagina (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Ga naar",
-                        "description":"De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
+                        "label": "Ga naar",
+                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
                       },
                       {
-                        "label":"URL",
-                        "fields":[
+                        "label": "URL",
+                        "fields": [
                           {
-                            "label":"Protocol",
-                            "options":[
+                            "label": "Protocol",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(root relative)"
+                                "label": "(root relative)"
                               },
                               {
-                                "label":"andere"
+                                "label": "andere"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"URL"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
-                        "label":"Visualiseren",
-                        "description":"Toon dat op de interactie kan worden geklikt door een rand en een pictogram toe te voegen"
+                        "label": "Visualiseren",
+                        "description": "Toon dat op de interactie kan worden geklikt door een rand en een pictogram toe te voegen"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"Samenvatting van de taak",
-          "fields":[
+          "label": "Samenvatting van de taak",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-
-                }
-              }
-            },
-            {
-              "label":"Tonen op",
-              "description":"Aantal seconden voordat de video eindigt."
+              "label": "Tonen op",
+              "description": "Aantal seconden voordat de video eindigt."
             }
           ]
         }
       ]
     },
     {
-      "label":"Gedragsinstellingen",
-      "fields":[
+      "label": "Gedragsinstellingen",
+      "fields": [
         {
-          "label":"Video starten na",
-          "description":"Voer de tijdscode in als M:SS formaat"
+          "label": "Video starten na",
+          "description": "Voer de tijdscode in als M:SS formaat"
         },
         {
-          "label":"Video automatisch afspelen",
-          "description":"Laat de video automatisch starten"
+          "label": "Video automatisch afspelen",
+          "description": "Laat de video automatisch starten"
         },
         {
-          "label":"Video opnieuw afspelen",
-          "description":"Ga na of de video opnieuw moet worden afgespeeld"
+          "label": "Video opnieuw afspelen",
+          "description": "Ga na of de video opnieuw moet worden afgespeeld"
         },
         {
-          "label":"\"Toon oplossing\" knop overrulen",
-          "description":"Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
-          "options":[
+          "label": "\"Toon oplossing\" knop overrulen",
+          "description": "Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "options": [
             {
-              "label":"Ingeschakeld"
+              "label": "Ingeschakeld"
             },
             {
-              "label":"Uitgeschakeld"
+              "label": "Uitgeschakeld"
             }
           ]
         },
         {
-          "label":"\"Opnieuw\" knop overrulen",
-          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt",
-          "options":[
+          "label": "\"Opnieuw\" knop overrulen",
+          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt",
+          "options": [
             {
-              "label":"Ingeschakeld"
+              "label": "Ingeschakeld"
             },
             {
-              "label":"Uitgeschakeld"
+              "label": "Uitgeschakeld"
             }
           ]
         },
         {
-          "label":"Toon knop om 10 seconden terug te spoelen",
-          "description":"Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt"
+          "label": "Toon knop om 10 seconden terug te spoelen",
+          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt"
         },
         {
-          "label":"Toon knop om 10 seconden terug te spoelen"
+          "label": "Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label":"Voorkom scrollen in een video",
-          "description":"Met deze optie kan een gebruiker niet door de video scrollen met de standaard knoppen."
+          "label": "Voorkom scrollen in een video",
+          "description": "Met deze optie kan een gebruiker niet door de video scrollen met de standaard knoppen."
         },
         {
-          "label":"Geluid uitschakelen",
-          "description":"Met deze optie wordt het geluid van de video uitgeschakeld en kan het niet worden ingeschakeld."
+          "label": "Geluid uitschakelen",
+          "description": "Met deze optie wordt het geluid van de video uitgeschakeld en kan het niet worden ingeschakeld."
         }
       ]
     },
     {
-      "label":"Localiseer",
-      "fields":[
+      "label": "Localiseer",
+      "fields": [
         {
-          "label":"Titel van de activiteit",
-          "default":"Interactie"
+          "label": "Titel van de activiteit",
+          "default": "Interactie"
         },
         {
-          "label":"Afspelen titel",
-          "default":"Afspelen"
+          "label": "Afspelen titel",
+          "default": "Afspelen"
         },
         {
-          "label":"Pauzeren titel",
-          "default":"Pauze"
+          "label": "Pauzeren titel",
+          "default": "Pauze"
         },
         {
-          "label":"Geluid uitschakelen",
-          "default":"Geluid uitschakelen"
+          "label": "Geluid uitschakelen",
+          "default": "Geluid uitschakelen"
         },
         {
-          "label":"Geluid inschakelen",
-          "default":"Geluid inschakelen"
+          "label": "Geluid inschakelen",
+          "default": "Geluid inschakelen"
         },
         {
-          "label":"Videokwaliteit",
-          "default":"Videokwaliteit"
+          "label": "Videokwaliteit",
+          "default": "Videokwaliteit"
         },
         {
-          "label":"Bijschriften",
-          "default":"Bijschriften"
+          "label": "Bijschriften",
+          "default": "Bijschriften"
         },
         {
-          "label":"Sluiten",
-          "default":"Sluiten"
+          "label": "Sluiten",
+          "default": "Sluiten"
         },
         {
-          "label":"Volledig scherm",
-          "default":"Volledig scherm"
+          "label": "Volledig scherm",
+          "default": "Volledig scherm"
         },
         {
-          "label":"Volledig scherm verlaten",
-          "default":"Volledig scherm verlaten"
+          "label": "Volledig scherm verlaten",
+          "default": "Volledig scherm verlaten"
         },
         {
-          "label":"Samenvatting",
-          "default":"Samenvatting"
+          "label": "Samenvatting",
+          "default": "Samenvatting"
         },
         {
-          "label":"Bladwijzers",
-          "default":"Bladwijzers"
+          "label": "Bladwijzers",
+          "default": "Bladwijzers"
         },
         {
           "label": "End screen title",
           "default": "End screen"
         },
         {
-          "label":"Standaardlabel voor zoekknop",
-          "default":"Hervatten"
+          "label": "Standaardlabel voor zoekknop",
+          "default": "Hervatten"
         },
         {
-          "label":"Standaardknop om door te gaan met afspelen van video",
-          "default":"Doorgaan met afspelen"
+          "label": "Standaardknop om door te gaan met afspelen van video",
+          "default": "Doorgaan met afspelen"
         },
         {
-          "label":"Afspeelsnelheid instellen",
-          "default":"Afspeelsnelheid"
+          "label": "Afspeelsnelheid instellen",
+          "default": "Afspeelsnelheid"
         },
         {
-          "label":"10 seconden terug",
-          "default":"10 seconden terug"
+          "label": "10 seconden terug",
+          "default": "10 seconden terug"
         },
         {
-          "label":"Tekst navigatie uitgeschakeld",
-          "default":"Navigatie is uitgeschakeld"
+          "label": "Tekst navigatie uitgeschakeld",
+          "default": "Navigatie is uitgeschakeld"
         },
         {
-          "label":"Tekst geluid uitgeschakeld",
-          "default":"Geluid is uitgeschakeld"
+          "label": "Tekst geluid uitgeschakeld",
+          "default": "Geluid is uitgeschakeld"
         },
         {
-          "label":"Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
-          "default":"Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
+          "label": "Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
+          "default": "Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
         },
         {
-          "label":"Terugknop",
-          "default":"Terug"
+          "label": "Terugknop",
+          "default": "Terug"
         },
         {
-          "label":"Uren",
-          "default":"Uren"
+          "label": "Uren",
+          "default": "Uren"
         },
         {
-          "label":"Minuten",
-          "default":"Minuten"
+          "label": "Minuten",
+          "default": "Minuten"
         },
         {
-          "label":"Seconden",
-          "default":"Seconden"
+          "label": "Seconden",
+          "default": "Seconden"
         },
         {
-          "label":"Label voor huidige tijd",
-          "default":"Huidige tijd:"
+          "label": "Label voor huidige tijd",
+          "default": "Huidige tijd:"
         },
         {
-          "label":"Label voor totale tijd",
-          "default":"Totale tijd:"
+          "label": "Label voor totale tijd",
+          "default": "Totale tijd:"
         },
         {
-          "label":"Tekst voor uitleg navigatie sneltoets",
-          "default":"Gebruik de K-toets om de video op elk moment te starten en te stoppen"
+          "label": "Tekst voor uitleg navigatie sneltoets",
+          "default": "Gebruik de K-toets om de video op elk moment te starten en te stoppen"
         },
         {
-          "label":"Tekst om uit te leggen dat er een enkele interactie met een naam zichtbaar is geworden",
-          "default":"Interactie verschijnt:"
+          "label": "Tekst om uit te leggen dat er een enkele interactie met een naam zichtbaar is geworden",
+          "default": "Interactie verschijnt:"
         },
         {
-          "label":"Tekst om uit te leggen dat er meerdere interacties zichtbaar zijn geworden",
-          "default":"Meerdere interacties verschenen."
+          "label": "Tekst om uit te leggen dat er meerdere interacties zichtbaar zijn geworden",
+          "default": "Meerdere interacties verschenen."
         },
         {
-          "label":"Video is gepauzeerd",
-          "default":"Video is gepauzeerd"
+          "label": "Video is gepauzeerd",
+          "default": "Video is gepauzeerd"
         },
         {
           "label": "Inhoudslabel",
@@ -480,7 +426,45 @@
         },
         {
           "label": "answered",
-          "default": "@answered answered!"
+          "default": "@answered answered"
+        },
+        {
+          "label": "Endcard title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Endcard information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Endcard submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Endcard submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Endcard table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Endcard table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Endcard answered score",
+          "default": "answered"
         }
       ]
     }

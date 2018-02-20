@@ -999,7 +999,81 @@
         "type": "text",
         "label": "Answered label (@answered will be replaced with the number of answered questions)",
         "importance": "low",
-        "default": "@answered answered!",
+        "default": "@answered answered",
+        "optional": true
+      },
+      {
+        "name": "endcardTitle",
+        "type": "text",
+        "label": "Endcard title",
+        "importance": "low",
+        "default": "@answered Question(s) answered",
+        "description": "@answered will be replaced by the number of answered questions.",
+        "optional": true
+      },
+      {
+        "name": "endcardInformation",
+        "type": "text",
+        "label": "Endcard information",
+        "importance": "low",
+        "default": "You have answered @answered questions, click below to submit your answers.",
+        "description": "@answered will be replaced by the number of answered questions.",
+        "optional": true
+      },
+      {
+        "name": "endcardInformationNoAnswers",
+        "type": "text",
+        "label": "Endcard information for missing answers",
+        "importance": "low",
+        "default": "You have not answered any questions.",
+        "optional": true
+      },
+      {
+        "name": "endcardInformationMustHaveAnswer",
+        "type": "text",
+        "label": "Endcard information for answer needed",
+        "importance": "low",
+        "default": "You have to answer at least one question before you can submit your answers.",
+        "optional": true
+      },
+      {
+        "name": "endcardSubmitButton",
+        "type": "text",
+        "label": "Endcard submit button",
+        "importance": "low",
+        "default": "Submit Answers",
+        "optional": true
+      },
+      {
+        "name": "endcardSubmitMessage",
+        "type": "text",
+        "label": "Endcard submit message",
+        "importance": "low",
+        "default": "Your answers have been submitted!",
+        "optional": true
+      },
+      {
+        "name": "endcardTableRowAnswered",
+        "type": "text",
+        "label": "Endcard table row title: Answered questions",
+        "importance": "low",
+        "default": "Answered questions",
+        "optional": true
+      },
+      {
+        "name": "endcardTableRowScore",
+        "type": "text",
+        "label": "Endcard table row title: Score",
+        "importance": "low",
+        "default": "Score",
+        "optional": true
+      },
+      {
+        "name": "endcardAnsweredScore",
+        "type": "text",
+        "label": "Endcard answered score",
+        "importance": "low",
+        "default": "answered",
         "optional": true
       }
     ]

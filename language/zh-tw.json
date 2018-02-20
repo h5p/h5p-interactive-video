@@ -51,7 +51,6 @@
                       },
                       {
                         "label": "Type of text track",
-                        "default": "副標題",
                         "options": [
                           {
                             "label": "副標題"
@@ -86,11 +85,7 @@
               "field": {
                 "fields": [
                   {
-                    "label": "顯示時間",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "label": "顯示時間"
                   },
                   {
                     "label": "影片暫停"
@@ -105,8 +100,7 @@
                       {
                         "label": "廣告招貼"
                       }
-                    ],
-                    "default": "互動按鈕"
+                    ]
                   },
                   {
                     "label": "在小螢幕使用時轉換為互動按鈕"
@@ -171,8 +165,7 @@
                     "fields": [
                       {
                         "label": "Background color",
-                        "default": "rgb(255, 255, 255)",
-                        "spectrum": {}
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -216,8 +209,7 @@
                               {
                                 "label": "other"
                               }
-                            ],
-                            "default": "http://"
+                            ]
                           },
                           {
                             "label": "URL"
@@ -233,36 +225,14 @@
                 ]
               }
             },
-            {
-              "field": {
-                "fields": [
-                  {},
-                  {}
-                ]
-              }
-            },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
           "label": "Summary task",
           "fields": [
-            {
-              "default": {
-                "params": {}
-              }
-            },
+            {},
             {
               "label": "Display at",
               "description": "Number of seconds before the video ends."
@@ -456,7 +426,45 @@
         },
         {
           "label": "answered",
-          "default": "@answered answered!"
+          "default": "@answered answered"
+        },
+        {
+          "label": "Endcard title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Endcard information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Endcard submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Endcard submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Endcard table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Endcard table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Endcard answered score",
+          "default": "answered"
         }
       ]
     }
