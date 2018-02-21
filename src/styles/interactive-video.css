@@ -1083,7 +1083,13 @@
   overflow: hidden;
   line-height: 30px;
 }
-.h5p-interactive-video .h5p-bookmark-text:before,
+
+.h5p-interactive-video .h5p-bookmark-text:before {
+  font-family: H5PFontAwesome4;
+  content: "\f02e";
+  margin-right: 8px;
+}
+
 .h5p-interactive-video .h5p-endscreen-text:before {
   font-family: H5Picons;
   content: "\e91c";
