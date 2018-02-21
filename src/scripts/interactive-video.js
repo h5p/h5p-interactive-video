@@ -58,6 +58,9 @@ function InteractiveVideo(params, id, contentData) {
   self.captionsMenuId = 'interactive-video-' + this.contentId + '-captions-chooser';
   self.playbackRateMenuId = 'interactive-video-' + this.contentId + '-playback-rate-chooser';
 
+  // IDs of popup menus that could need closing
+  self.popupMenuButtons = ['$bookmarksButton', '$qualityButton', '$playbackRateButton', '$endscreensButton'];
+
   self.isMinimal = false;
 
   // Insert default options
@@ -1010,6 +1013,24 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 };
 
 /**
+ * Close popup menus that are open.
+ *
+ * @param {string[]} buttons - Identifiers of buttons handlind popup menus.
+ */
+InteractiveVideo.prototype.closePopupMenus = function (buttons) {
+  buttons.forEach((button) => {
+    const $button = this.controls[button];
+    if ($button === undefined) {
+      return;
+    }
+
+    if ($button.attr('aria-disabled') === undefined && $button.attr('aria-expanded') === 'true') {
+      $button.click();
+    }
+  });
+};
+
+/**
  * Puts all the cool narrow lines around the slider / seek bar.
  */
 InteractiveVideo.prototype.addBookmarks = function () {
@@ -1085,6 +1106,10 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = 
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
     if(show) {
+      // Close other popups
+      const position = this.popupMenuButtons.indexOf('$bookmarksButton');
+      this.closePopupMenus(this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1)));
+
       this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
     }
     else if (!firstPlay) {
@@ -1114,6 +1139,9 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
     var hiding = this.controls.$endscreensChooser.hasClass('h5p-show');
 
     if(show) {
+      // Close other popups
+      const position = this.popupMenuButtons.indexOf('$endscreensButton');
+      this.closePopupMenus(this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1)));
       this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
     }
     else if (!firstPlay) {
@@ -1570,6 +1598,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         $button.attr('aria-expanded', 'true');
         $menu.addClass('h5p-show');
         $menu.find('[tabindex="0"]').focus();
+
+        // Close all open popup menus (except this one)
+        const position = self.popupMenuButtons.indexOf(button);
+        self.closePopupMenus(self.popupMenuButtons.slice(0, position).concat(self.popupMenuButtons.slice(position + 1)));
       }
     };
   };
