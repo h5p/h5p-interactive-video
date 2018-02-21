@@ -244,7 +244,6 @@ class Bubble {
    */
   fullscreen (containerHeight, videoHeight) {
     if (containerHeight && videoHeight) {
-      console.log(containerHeight, videoHeight);
       this.$bubble.css({
         maxHeight: 'calc(' + videoHeight + 'px - 1em - 9px)',
         top: 'calc((' + containerHeight + 'px - ' + videoHeight +'px + 1em - 9px) / 2)'
