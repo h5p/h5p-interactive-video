@@ -292,7 +292,7 @@ function Interaction(parameters, player, previousState) {
    */
   const createStandaloneLabel = () => {
     $interaction = createLabel(parameters.label, 'h5p-interaction h5p-interaction-label-standalone');
-    $interaction = $interaction.css({
+    $interaction.css({
       left: `${parameters.x}%`,
       top: `${parameters.y}%`,
       width: '',
@@ -365,8 +365,10 @@ function Interaction(parameters, player, previousState) {
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
     if ($interaction) {
+      instance.trigger('hide');
       self.trigger('hide', $interaction);
     }
+
     if (self.isButton()) {
       if (closeDialog) {
         player.dnb.dialog.close();
@@ -1291,6 +1293,7 @@ function Interaction(parameters, player, previousState) {
 
     // Only recreate existing interactions
     if ($interaction) {
+      instance.trigger('hide');
       self.trigger('hide', $interaction);
       $interaction.detach();
       if (self.isStandaloneLabel()) {
@@ -1372,6 +1375,7 @@ function Interaction(parameters, player, previousState) {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
       }, {'bubbles': true, 'external': true});
+      instance.trigger('hide');
       self.trigger('hide', $interaction);
       $interaction.detach();
       $interaction = undefined;
@@ -1387,7 +1391,7 @@ function Interaction(parameters, player, previousState) {
     if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
 
       // Getting initial score from instance (if it has previous state)
       if (action.userDatas && hasScoreData(instance)) {
