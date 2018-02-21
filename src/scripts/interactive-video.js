@@ -1796,6 +1796,30 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
   });
 
+  const closePlaybackRateMenu = () => {
+    if (self.isMinimal) {
+      self.controls.$more.click();
+    }
+    else {
+      self.controls.$playbackRateButton.click();
+    }
+  };
+
+  // Adding close button to playback rate-menu
+  self.controls.$playbackRateChooser.append($('<span>', {
+    'role': 'button',
+    'class': 'h5p-chooser-close-button',
+    'tabindex': '0',
+    'aria-label': self.l10n.close,
+    click: () => closePlaybackRateMenu(),
+    keydown: event => {
+      if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
+        closePlaybackRateMenu();
+        event.preventDefault();
+      }
+    }
+  }));
+
   // Button for opening video playback rate selection dialog
   self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
   self.setDisabled(self.controls.$playbackRateButton);
