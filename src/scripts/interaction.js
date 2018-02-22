@@ -379,7 +379,9 @@ function Interaction(parameters, player, previousState) {
         player.dnb.dialog.close();
       }
 
-      $interaction.detach();
+      if ($interaction) {
+        $interaction.detach();
+      }
     }
 
     self.trigger('remove', $interaction);
