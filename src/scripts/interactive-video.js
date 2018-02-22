@@ -256,6 +256,14 @@ function InteractiveVideo(params, id, contentData) {
 
         self.complete();
 
+        // Open final endscreen if necessary
+        const answeredTotal = self.interactionsState.filter(function (a) {
+          return a === 'answered';
+        }).length;
+        if (self.endscreensMap[self.getDuration()] && answeredTotal > 0) {
+          self.toggleEndscreen(true);
+        }
+
         if (loopVideo) {
           self.video.play();
           // we must check the parameter because the video might have started at previousState.progress
@@ -1410,6 +1418,10 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
 
   var $endscreenMarker;
   if (!this.editor) {
+    // This fill fix the problem of sending VIDEO.ENDED before getDuration() has been reached.
+    if (self.getDuration() - tenth < 1) {
+      tenth = self.getDuration();
+    }
     $endscreenMarker = self.endscreensMap[tenth] = true;
     return;
   }
@@ -2796,10 +2808,6 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
     }
 
     // Check for endscreen markers incl. helper functions to keep the code a little cleaner
-    const finalEndscreenHit = function () {
-      // This one is needed because the final tenth value can be smaller than self.getDuration()
-      return self.currentState === H5P.Video.ENDED && self.endscreensMap[self.getDuration()];
-    };
     const regularEndscreenHit = function () {
       return self.endscreensMap !== undefined && self.endscreensMap[tenth] !== undefined && self.currentState !== InteractiveVideo.SEEKING;
     };
@@ -2807,7 +2815,7 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
       return a === 'answered';
     }).length;
 
-    if ((finalEndscreenHit() || regularEndscreenHit()) && answeredTotal > 0) {
+    if (regularEndscreenHit() && answeredTotal > 0) {
       self.toggleEndscreen(true);
     }
   }
