@@ -588,6 +588,25 @@
                 }
               ]
             }
+          },
+          {
+            "name": "endscreens",
+            "importance": "low",
+            "type": "list",
+            "field": {
+              "name": "endscreen",
+              "type": "group",
+              "fields": [
+                {
+                  "name": "time",
+                  "type": "number"
+                },
+                {
+                  "name": "label",
+                  "type": "text"
+                }
+              ]
+            }
           }
         ]
       },
@@ -825,6 +844,14 @@
         "optional": true
       },
       {
+        "name": "endscreen",
+        "type": "text",
+        "label": "End screen title",
+        "importance": "low",
+        "default": "End screen",
+        "optional": true
+      },
+      {
         "name": "defaultAdaptivitySeekLabel",
         "type": "text",
         "label": "Default label for adaptivity seek button",
@@ -966,6 +993,14 @@
         "label": "Content label",
         "importance": "low",
         "default": "Content",
+        "optional": true
+      },
+      {
+        "name": "answered",
+        "type": "text",
+        "label": "Answered label (@answered will be replaced with the number of answered questions)",
+        "importance": "low",
+        "default": "@answered answered!",
         "optional": true
       }
     ]

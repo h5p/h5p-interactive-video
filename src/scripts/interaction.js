@@ -34,7 +34,7 @@ const gotoType = {
  * @param {gotoType} type
  * @return {boolean}
  */
-const isGotoType = function (parameters, type) {
+const isGotoType = function (parameters, type) {
   return (parameters.goto !== undefined) && (parameters.goto.type === type);
 };
 
@@ -199,6 +199,7 @@ function Interaction(parameters, player, previousState) {
           if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
             openDialog();
             $interaction.attr('aria-expanded', 'true');
+            event.preventDefault();
           }
         }
       }
@@ -547,6 +548,7 @@ function Interaction(parameters, player, previousState) {
 
     // Open dialog
     player.dnb.dialog.open($dialogContent);
+    player.disableTabIndexes();
     player.dnb.dialog.addLibraryClass(library);
     player.dnb.dialog.toggleClass('goto-clickable-visualize', !!(isGotoClickable && parameters.goto.visualize));
     player.dnb.dialog.toggleClass('h5p-goto-timecode', isGotoType(parameters, gotoType.TIME_CODE));
@@ -564,7 +566,7 @@ function Interaction(parameters, player, previousState) {
       this.off('close', dialogCloseHandler); // Avoid running more than once
 
       // Reset the image size to a percentage of the container instead of hardcoded values
-      player.dnb.$dialogContainer.one('transitionend', function(event) {
+      player.dnb.$dialogContainer.one('transitionend', function() {
         if ($dialogContent.is('.h5p-image')) {
           var $img = $dialogContent.find('img');
           $img.css({
@@ -989,6 +991,7 @@ function Interaction(parameters, player, previousState) {
         player.seek(seekTo);
       }
       player.play();
+      player.controls.$play.focus();
     }
   };
 
@@ -1120,6 +1123,8 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
+    player.seekingTo = true; // Used to focus on first visible interaction
+
     /**
      * Skip if already on given timecode.
      * This is done because players may act unexpectedly when attempting to skip to the location
@@ -1131,7 +1136,6 @@ function Interaction(parameters, player, previousState) {
     if (Math.floor(player.video.getCurrentTime() * 10) === Math.floor(parameters.duration.from * 10)) {
       return;
     }
-
 
     if (player.currentState === H5P.Video.VIDEO_CUED) {
       player.play();
@@ -1565,7 +1569,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.getFirstTabbableElement = function () {
     var $tabbables = $($interaction.get(0)).find('[tabindex]');
-    if ($tabbables.length) {
+    if ($tabbables && $tabbables.length) {
       return $tabbables.get(0);
     }
     else {

@@ -33,6 +33,11 @@ var config = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         include: path.join(__dirname, 'src/fonts'),
         loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.(svg)$/,
+        include: path.join(__dirname, 'src/gui'),
+        loader: 'file-loader?name=fonts/[name].[ext]'
       }
     ]
   },

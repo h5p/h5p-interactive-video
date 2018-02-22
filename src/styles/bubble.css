@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+.h5p-interactive-video-bubble {
+  position: absolute;
+  color: #333;
+  z-index: 301;
+  margin-top: 0.45em;
+  min-width: 1em;
+  transition: transform 0.5s ease-out 0.5s, opacity 0s ease-out 0.5s;
+  }
+.h5p-interactive-video-bubble p {
+  margin: 0.75em 0;
+}
+.h5p-interactive-video-bubble p:first-child {
+  margin-top: 0.25em;
+}
+.h5p-interactive-video-bubble p:last-child {
+  margin-bottom: 0.25em;
+}
+.h5p-interactive-video-bubble.h5p-interactive-video-bubble-active {
+  transform: translateY(-9px);
+  opacity: 1;
+}
+.h5p-interactive-video-bubble.h5p-interactive-video-bubble-inactive {
+  transition: 0s;
+  opacity: 0;
+}
+.h5p-interactive-video-bubble-inner {
+  background: #fbfbfb;
+  box-shadow: 0 0 0.5em #2c2c2c;
+  border-radius: 0.25em;
+  padding: 0 0.5em;
+  text-align: center;
+  position: relative;
+  word-wrap: break-word; /* Long words have to break */
+  z-index: 1;
+  font-size: 0.8em;
+}
+.h5p-interactive-video-bubble-inner-tail,
+.h5p-interactive-video-bubble-tail {
+  position: absolute;
+  /* Setting these in pixels is intentional. We use it when calculating placement of bubble */
+  width: 12px;
+  height: 12px;
+  background: #fbfbfb;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.h5p-interactive-video-bubble-tail {
+  box-shadow: 0 0 0.5em #2c2c2c;
+}

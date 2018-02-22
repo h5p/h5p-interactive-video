@@ -1,0 +1,464 @@
+{
+  "semantics": [
+    {
+      "label": "建立互動式影像內容",
+      "fields": [
+        {
+          "label": "上傳/崁入影片",
+          "fields": [
+            {
+              "label": "新增影片",
+              "description": "點擊下方新增您欲使用的互動式影片. 您可使用影片連結或上傳影片檔案.上傳影片時可以新增數個不同解析度版本的影片. 為確保瀏覽器的支援性，請至少新增webm及mp4格式影片各1則."
+            },
+            {
+              "label": "開始播放選項 (暫不支援YouTube影像)",
+              "fields": [
+                {
+                  "label": "互動式影像內容標題",
+                  "default": "互動式影像內容",
+                  "description": "使用於總結、統計等."
+                },
+                {
+                  "label": "在影片開始播放畫面中隱藏標題"
+                },
+                {
+                  "label": "簡述(選填)",
+                  "description": "選填. 在影片開始播放畫面中顯示簡短的描述文字. 不適用於YouTube影像."
+                },
+                {
+                  "label": "廣告圖像",
+                  "description": "使用者撥放影像前顯示的圖像. 不適用於YouTube影像."
+                },
+                {
+                  "label": "影像版權資訊",
+                  "description": "影像中所使用的影片及元素之版權資訊."
+                }
+              ]
+            },
+            {
+              "label": "文字歷程(不適用於YouTube影像)",
+              "fields": [
+                {
+                  "label": "有效的文字歷程訊息",
+                  "entity": "歷程",
+                  "field": {
+                    "label": "歷程",
+                    "fields": [
+                      {
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
+                      },
+                      {
+                        "label": "Type of text track",
+                        "default": "副標題",
+                        "options": [
+                          {
+                            "label": "副標題"
+                          },
+                          {
+                            "label": "標題"
+                          },
+                          {
+                            "label": "描述"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "語言別,必須為副標題定義",
+                        "default": "中文",
+                        "description": "需符合BCP 47語言標籤. 當 '副標題' 是文字歷程所設定使用的類型, 歷程語言別是必須被定義的."
+                      },
+                      {
+                        "label": "來源追蹤 (WebVTT 檔案)"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "新增戶動",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "顯示時間",
+                    "fields": [
+                      {},
+                      {}
+                    ]
+                  },
+                  {
+                    "label": "影片暫停"
+                  },
+                  {
+                    "label": "顯示",
+                    "description": "<b>互動按鈕</b> 需使用者點選後才能打開的折合式互動. <b>廣告招貼</b> 直接在影片中展開的擴展式互動",
+                    "options": [
+                      {
+                        "label": "互動按鈕"
+                      },
+                      {
+                        "label": "廣告招貼"
+                      }
+                    ],
+                    "default": "互動按鈕"
+                  },
+                  {
+                    "label": "在小螢幕使用時轉換為互動按鈕"
+                  },
+                  {
+                    "label": "名稱",
+                    "description": "互動圖像旁顯示的名稱."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "適應性",
+                    "fields": [
+                      {
+                        "label": "作動於所有正確選擇",
+                        "fields": [
+                          {
+                            "label": "尋求",
+                            "description": "依格式輸入時間碼 M:SS"
+                          },
+                          {
+                            "label": "允許使用者退出及繼續"
+                          },
+                          {
+                            "label": "訊息"
+                          },
+                          {
+                            "label": "尋找按鈕名稱"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "作動於有錯誤選擇",
+                        "fields": [
+                          {
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
+                          },
+                          {
+                            "label": "Allow the user to opt out and continue"
+                          },
+                          {
+                            "label": "Message"
+                          },
+                          {
+                            "label": "Label for seek button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Require full score for task before proceeding",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "label": "Background color",
+                        "default": "rgb(255, 255, 255)",
+                        "spectrum": {}
+                      },
+                      {
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "label": "Type",
+                        "options": [
+                          {
+                            "label": "Timecode"
+                          },
+                          {
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "other"
+                              }
+                            ],
+                            "default": "http://"
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualize",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "field": {
+                "fields": [
+                  {},
+                  {}
+                ]
+              }
+            },
+            {
+              "field":{
+                "fields":[
+                  {
+
+                  },
+                  {
+
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Summary task",
+          "fields": [
+            {
+              "default": {
+                "params": {}
+              }
+            },
+            {
+              "label": "Display at",
+              "description": "Number of seconds before the video ends."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Behavioural settings",
+      "fields": [
+        {
+          "label": "Start video at",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
+          "label": "Auto-play video",
+          "description": "Start playing the video automatically"
+        },
+        {
+          "label": "Loop the video",
+          "description": "Check if video should run in a loop"
+        },
+        {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
+        },
+        {
+          "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "label": "Prevent skipping forward in a video",
+          "description": "Enabling this options will disable user video navigation through default controls."
+        },
+        {
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        }
+      ]
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Interaction title",
+          "default": "Interaction"
+        },
+        {
+          "label": "Play title",
+          "default": "Play"
+        },
+        {
+          "label": "Pause title",
+          "default": "Pause"
+        },
+        {
+          "label": "Mute title",
+          "default": "Mute"
+        },
+        {
+          "label": "Unmute title",
+          "default": "Unmute"
+        },
+        {
+          "label": "Video quality title",
+          "default": "Video Quality"
+        },
+        {
+          "label": "Video captions title",
+          "default": "Captions"
+        },
+        {
+          "label": "Close button text",
+          "default": "Close"
+        },
+        {
+          "label": "Fullscreen title",
+          "default": "Fullscreen"
+        },
+        {
+          "label": "Exit fullscreen title",
+          "default": "Exit Fullscreen"
+        },
+        {
+          "label": "Summary title",
+          "default": "Summary"
+        },
+        {
+          "label": "Bookmarks title",
+          "default": "Bookmarks"
+        },
+        {
+          "label": "End screen title",
+          "default": "End screen"
+        },
+        {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
+          "label": "Default label for continue video button",
+          "default": "Continue with video"
+        },
+        {
+          "label": "Set playback rate",
+          "default": "Playback Rate"
+        },
+        {
+          "label": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
+        },
+        {
+          "label": "Navigation is disabled text",
+          "default": "Navigation is disabled"
+        },
+        {
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
+        },
+        {
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "You need to answer all the questions correctly before continuing."
+        },
+        {
+          "label": "Back button",
+          "default": "Back"
+        },
+        {
+          "label": "Passed time hours",
+          "default": "Hours"
+        },
+        {
+          "label": "Passed time minutes",
+          "default": "Minutes"
+        },
+        {
+          "label": "Passed time seconds",
+          "default": "Seconds"
+        },
+        {
+          "label": "Label for current time",
+          "default": "Current time:"
+        },
+        {
+          "label": "Label for total time",
+          "default": "Total time:"
+        },
+        {
+          "label": "Text for explaining navigation hotkey",
+          "default": "Use key k for starting and stopping video at any time"
+        },
+        {
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "Interaction appeared:"
+        },
+        {
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "Multiple interactions appeared."
+        },
+        {
+          "label": "Video is paused announcement",
+          "default": "Video is paused"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
+        },
+        {
+          "label": "answered",
+          "default": "@answered answered!"
+        }
+      ]
+    }
+  ]
+}
