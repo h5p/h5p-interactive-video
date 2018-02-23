@@ -513,8 +513,16 @@ function Interaction(parameters, player, previousState) {
     }
 
     if (self.hasFullScore() && checkScore) {
-      // Skip opening dialog if re-calculation yields full score
-      return;
+      /*
+       * Skip opening dialog if re-calculation yields full score unless the
+       * dialogWrapper is open already. This can happen if an answer is required by
+       * adaptivity and the user quickly gives another answer after continue. In
+       * that case, we might have a full score, but an open window, too, resulting
+       * in a situation without an option to close the dialog.
+       */
+      if ($dialogWrapper.hasClass('h5p-hidden')) {
+        return;
+      }
     }
     else if (self.getRequiresCompletion() && !self.hasFullScore()) {
       player.dnb.dialog.hideCloseButton();
