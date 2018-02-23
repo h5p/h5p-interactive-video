@@ -7,11 +7,11 @@ class Bubble {
    * Creates a new speech bubble
    *
    * @param {H5P.jQuery} $reference - The speaking object to attach to.
-   * @param {object} params - Optional parameters.
-   * @param {string=''} params.content - The content to display. Can be HTML.
-   * @param {number|string='auto'} params.maxWidth - The width of the bubble. Can be 'auto'.
-   * @param {string='h5p-interactive-video-bubble'} params.style - Selector for the CSS base class.
-   * @param {string='centered'} params.mode - 'centered' or 'full' (could be extended)
+   * @param {object} [params] - Optional parameters.
+   * @param {string} [params.content] - The content to display. Can be HTML.
+   * @param {number|string} [params.maxWidth=auto] - The width of the bubble. Can be 'auto'.
+   * @param {string} [params.style=h5p-interactive-video-bubble] - Selector for the CSS base class.
+   * @param {string} [params.mode=centered] - 'centered' or 'full' (could be extended)
    * @return {Bubble} The bubble.
    */
   constructor ($reference, params = {content: '', maxWidth: 'auto', style: 'h5p-interactive-video-bubble', mode: 'centered'}) {
@@ -43,11 +43,10 @@ class Bubble {
       .addClass(this.style + '-inactive')
       .appendTo(this.$h5pContainer);
 
-/*
     if (iDevice) {
       H5P.$body.css('cursor', 'pointer');
     }
-*/
+
     if (this.mode === 'centered') {
       this.$bubble.css({
         width: (this.maxWidth === 'auto') ? 'auto' : this.maxWidth + 'px'
@@ -64,7 +63,7 @@ class Bubble {
     // Calculate offset between the button and the h5p frame
     const offset = this.getOffsetBetween(this.$h5pContainer, this.$reference);
 
-    // Compute bubbleWidth (after changing the content);
+    // Compute bubbleWidth (after changing the content)
     const bubbleWidth = (this.mode === 'full') ? this.$bubble.outerWidth() : Math.min(offset.outerWidth * 0.9, (this.maxWidth === 'auto') ? this.$bubble.outerWidth() : this.maxWidth);
     const bubblePosition = this.getBubblePosition(bubbleWidth, offset, this.mode);
     const tailPosition = this.getTailPosition(this.$reference, bubblePosition);
@@ -105,7 +104,7 @@ class Bubble {
   /**
    * Set the content for the bubble.
    *
-   * @param {string=''} content - The content to be displayed.
+   * @param {string} [content] - The content to be displayed.
    */
   setContent (content = '') {
     this.$content.html(content);
@@ -133,8 +132,8 @@ class Bubble {
   /**
    * Change activity of this bubble.
    *
-   * @param {boolean=} show - True: show, false: hide, undefined: toggle.
-   * @param {boolean=false} animate - True: animate the bubble in.
+   * @param {boolean} [show] - True: show, false: hide, undefined: toggle.
+   * @param {boolean} [animate=false] - True: animate the bubble in.
    */
   toggle (show, animate = false) {
     show = (show === undefined) ? !this.isActive() : show;

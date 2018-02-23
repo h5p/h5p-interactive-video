@@ -173,9 +173,9 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // Keep track of interactions that have been answered (interactions themselves don't know about their state)
-  self.interactionsState = [];
-  if (self.previousState && self.previousState.interactionsState) {
-    self.interactionsState = self.previousState.interactionsState;
+  self.interactionsProgress = [];
+  if (self.previousState && self.previousState.interactionsProgress) {
+    self.interactionsProgress = self.previousState.interactionsProgress;
   }
 
   // determine if video should be looped
@@ -257,8 +257,8 @@ function InteractiveVideo(params, id, contentData) {
         self.complete();
 
         // Open final endscreen if necessary
-        const answeredTotal = self.interactionsState.filter(function (a) {
-          return a === 'answered';
+        const answeredTotal = self.interactionsProgress.filter(function (a) {
+          return a === Interaction.PROGRESS_ANSWERED;
         }).length;
         if (self.endscreensMap[self.getDuration()] && answeredTotal > 0) {
           self.toggleEndscreen(true);
@@ -486,7 +486,9 @@ InteractiveVideo.prototype.getCurrentState = function () {
   var state = {
     progress: self.video.getCurrentTime(),
     answers: [],
-    interactionsState: self.interactionsState
+    interactionsProgress: self.interactions.map((interaction) => {
+      return interaction.getProgress();
+    })
   };
 
   // Page might not have been loaded yet
@@ -913,9 +915,8 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   interaction.on('xAPI', function (event) {
     if (event.getVerb() === 'interacted') {
       const pos = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from).indexOf(interaction);
-      self.interactionsState[pos] = 'interacted';
-      this.setState('interacted');
-      interaction.state = 'interacted';
+      self.interactionsProgress[pos] = Interaction.PROGRESS_INTERACTED;
+      this.setProgress(Interaction.PROGRESS_INTERACTED);
     }
 
     // update state
@@ -948,23 +949,30 @@ InteractiveVideo.prototype.initInteraction = function (index) {
 InteractiveVideo.prototype.handleAnswered = function () {
   const self = this;
   // By looping over all states we do not need to care which interaction was active previously
-  self.interactionsState.forEach((state, index) => {
-    if (state === 'interacted') {
-      self.interactionsState[index] = 'answered';
-      self.interactions[index].setState('answered');
+  self.interactions.forEach((interaction, index) => {
+    if (interaction.getProgress() === Interaction.PROGRESS_INTERACTED) {
+      self.interactionsProgress[index] = Interaction.PROGRESS_ANSWERED;
+      interaction.setProgress(Interaction.PROGRESS_ANSWERED);
       self.menuitems[index].addClass('h5p-interaction-answered');
-
-      const answeredTotal = self.interactionsState.filter(function(a) {
-        return a === 'answered';
-      }).length;
 
       if (self.hasStar) {
         self.playStarAnimation();
-        self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + answeredTotal + '</strong>'));
+        self.playBubbleAnimation(self.l10n.answered.replace('@answered', '<strong>' + self.getAnsweredTotal() + '</strong>'));
         self.endscreen.update(self.interactions);
       }
     }
   });
+};
+
+/**
+ * Get number of answered interactions.
+ *
+ * return {number} Number of answered interactions.
+ */
+InteractiveVideo.prototype.getAnsweredTotal = function () {
+  return this.interactions.filter(function(a) {
+    return a.getProgress() === Interaction.PROGRESS_ANSWERED;
+  }).length;
 };
 
 /**
@@ -1004,9 +1012,10 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
       const $menuitem = interaction.addDot();
       self.menuitems.push($menuitem);
       if (self.previousState === undefined) {
-        self.interactionsState.push(undefined);
+        self.interactionsProgress.push(undefined);
       }
-      if (self.interactionsState[self.menuitems.length - 1] === 'answered') {
+      if (self.interactionsProgress[self.menuitems.length - 1] === Interaction.PROGRESS_ANSWERED) {
+        interaction.setProgress(self.interactionsProgress[self.menuitems.length - 1]);
         $menuitem.addClass('h5p-interaction-answered');
       }
 
@@ -1418,7 +1427,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
 
   var $endscreenMarker;
   if (!this.editor) {
-    // This fill fix the problem of sending VIDEO.ENDED before getDuration() has been reached.
+    // This will fix the problem of sending VIDEO.ENDED before getDuration() has been reached.
     if (self.getDuration() - tenth < 1) {
       tenth = self.getDuration();
     }
@@ -1481,7 +1490,6 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
       // We are removing this item.
       $li.remove();
       delete self.endscreensMap[tenth];
-      // self.off('endscreensChanged');
     }
     else if (id >= index) {
       // We must update our id.
@@ -2194,10 +2202,6 @@ InteractiveVideo.prototype.playStarAnimation = function () {
  * @param {string} text - Text to display in bubble (if undefined, no change)
  */
 InteractiveVideo.prototype.playBubbleAnimation = function (text) {
-  if (this.isMobileView === true) {
-    return;
-  }
-
   this.bubbleScore.setContent(text);
   this.bubbleScore.animate();
 };
@@ -2811,11 +2815,7 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
     const regularEndscreenHit = function () {
       return self.endscreensMap !== undefined && self.endscreensMap[tenth] !== undefined && self.currentState !== InteractiveVideo.SEEKING;
     };
-    const answeredTotal = self.interactionsState.filter(function(a) {
-      return a === 'answered';
-    }).length;
-
-    if (regularEndscreenHit() && answeredTotal > 0) {
+    if (regularEndscreenHit() && self.getAnsweredTotal() > 0) {
       self.toggleEndscreen(true);
     }
   }

@@ -425,8 +425,8 @@
           "default": "Inhalt"
         },
         {
-          "label": "answered",
-          "default": "@answered beantwortet"
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
         },
         {
           "label": "Endcard title",

@@ -425,7 +425,7 @@
           "default": "Inhoud"
         },
         {
-          "label": "answered",
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
           "default": "@answered answered"
         },
         {
