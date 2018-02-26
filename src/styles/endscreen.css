@@ -18,6 +18,8 @@
   flex-direction: column;
   padding: 2em;
   max-height: calc(100% - 4em);
+  /* Special treatment for iOS devices */
+  -webkit-text-size-adjust: none;
 }
 .h5p-interactive-video-endscreen.h5p-interactive-video-endscreen-active {
   opacity: 1;
@@ -51,7 +53,6 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-shrink: 0;
   margin-bottom: 0.5em;
 }
 .h5p-interactive-video-endscreen-introduction-title-text {
@@ -59,6 +60,36 @@
   font-weight: bold;
   width: 100%;
   margin-bottom: 0.25em;
+}
+.h5p-interactive-video-endscreen-introduction-text {
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  font-size: 0.7em;
+  line-height: 1.5em;
+  margin-bottom: 1em;
+}
+.h5p-interactive-video-endscreen-introduction-text-submitted {
+  color: #85BC8D;
+}
+.h5p-interactive-video-endscreen-submit-button-container {
+  width: 100%;
+}
+.h5p-interactive-video-endscreen-submit-button {
+  font-size: 0.7em;
+  background: #55a964;
+}
+.h5p-interactive-video-endscreen-submit-button-hidden > .h5p-joubelui-button {
+  cursor: auto;
+  display: none;
+}
+.h5p-interactive-video-endscreen-submit-button:hover,
+.h5p-interactive-video-endscreen-submit-button:active,
+.h5p-interactive-video-endscreen-submit-button:focus {
+  background: #4e8c3a;
+}
+.h5p-interactive-video-endscreen-submit-button:before {
+  content: "\F058";
 }
 .h5p-interactive-video-endscreen-close-button {
   cursor: pointer;
@@ -72,35 +103,6 @@
 }
 .h5p-interactive-video-endscreen-close-button:focus {
   outline: 2px solid #179fff;
-}
-.h5p-interactive-video-endscreen-introduction-text {
-  width: 100%;
-  font-size: 0.7em;
-  margin-bottom: 1em;
-  flex-shrink: 0;
-}
-.h5p-interactive-video-endscreen-introduction-text-submitted {
-  color: #85BC8D;
-}
-.h5p-interactive-video-endscreen-introduction-button-container {
-  width: 100%;
-  flex-shrink: 0;
-}
-.h5p-interactive-video-endscreen-submit-button {
-  font-size: 0.7em;
-  background: #55a964;
-}
-.h5p-interactive-video-endscreen-submit-button-hidden > .h5p-joubelui-button {
-  opacity: 0;
-  cursor: auto;
-}
-.h5p-interactive-video-endscreen-submit-button:hover,
-.h5p-interactive-video-endscreen-submit-button:active,
-.h5p-interactive-video-endscreen-submit-button:focus {
-  background: #4e8c3a;
-}
-.h5p-interactive-video-endscreen-submit-button:before {
-  content: "\F058";
 }
 .h5p-interactive-video-endscreen-overview {
   width: 100%;
@@ -169,7 +171,6 @@
 .h5p-interactive-video-endscreen-overview-table-row-title {
   width: 100%;
   text-align: left;
-  flex-shrink: 1;
 }
 .h5p-interactive-video-endscreen-overview-table-row-score {
   width: 100%;

@@ -372,6 +372,12 @@ function InteractiveVideo(params, id, contentData) {
     self.controls.$fullscreen.focus();
 
     self.resizeInteractions();
+    // Give the DOM some time to reposition everything
+    setTimeout(() => {
+      if (this.bubbleEndscreen !== undefined) {
+        this.bubbleEndscreen.update();
+      }
+    }, 300);
   });
 
   // Handle exiting fullscreen
@@ -2179,10 +2185,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 InteractiveVideo.prototype.playStarAnimation = function () {
   const self = this;
 
-  if (this.isMobileView === true) {
-    return;
-  }
-
   if (this.$starAnimation.hasClass('h5p-star-animation-inactive')) {
     this.$starAnimation
       .removeClass('h5p-star-animation-inactive')
@@ -2459,7 +2461,9 @@ InteractiveVideo.prototype.resize = function () {
       this.$videoWrapper.css('marginTop', (containerHeight - controlsHeight - videoHeight) / 2);
       width = this.$videoWrapper.width();
 
-      this.bubbleEndscreen.fullscreen(containerHeight, videoHeight);
+      if (this.bubbleEndscreen !== undefined) {
+        this.bubbleEndscreen.fullscreen(true, containerHeight, videoHeight);
+      }
     }
     else {
       var ratio = this.$videoWrapper.width() / videoHeight;
@@ -2470,8 +2474,9 @@ InteractiveVideo.prototype.resize = function () {
         width: width,
         height: height
       });
-
-      this.bubbleEndscreen.fullscreen();
+      if (this.bubbleEndscreen !== undefined) {
+        this.bubbleEndscreen.fullscreen(true);
+      }
     }
 
     // Resize again to fit the new container size.
@@ -2479,6 +2484,9 @@ InteractiveVideo.prototype.resize = function () {
   }
   else {
     width = this.$container.width();
+    if (this.bubbleEndscreen !== undefined) {
+      this.bubbleEndscreen.fullscreen();
+    }
   }
 
   // Set base font size. Don't allow it to fall below original size.
