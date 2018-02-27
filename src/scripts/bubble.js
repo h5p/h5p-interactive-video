@@ -20,16 +20,16 @@ class Bubble {
     this.style = params.style;
     this.mode = params.mode;
 
-    this.$tail = $('<div/>', {class: this.style + '-tail'});
-    this.$innerTail = $('<div/>', {class: this.style + '-inner-tail'});
-    this.$content = $('<div/>', {class: this.style + '-text'});
+    this.$tail = $('<div/>', {class: `${this.style}-tail`});
+    this.$innerTail = $('<div/>', {class: `${this.style}-inner-tail`});
+    this.$content = $('<div/>', {class: `${this.style}-text`});
     if (typeof content === 'string') {
       this.$content.html(params.content);
     }
     else {
       this.$content.append(params.content);
     }
-    this.$innerBubble = $('<div/>', {class: this.style + '-inner'})
+    this.$innerBubble = $('<div/>', {class: `${this.style}-inner`})
       .append(this.$content)
       .prepend(this.$innerTail);
 
@@ -40,7 +40,7 @@ class Bubble {
       'aria-live': 'assertive'
     })
       .append([this.$tail, this.$innerBubble])
-      .addClass(this.style + '-inactive')
+      .addClass(`${this.style}-inactive`)
       .appendTo(this.$h5pContainer);
 
     if (iDevice) {
@@ -49,7 +49,7 @@ class Bubble {
 
     if (this.mode === 'centered') {
       this.$bubble.css({
-        width: (this.maxWidth === 'auto') ? 'auto' : this.maxWidth + 'px'
+        width: (this.maxWidth === 'auto') ? 'auto' : `${this.maxWidth}px`
       });
     }
 
@@ -71,14 +71,14 @@ class Bubble {
     if (this.mode === 'centered') {
       // Set width and position of bubble, won't be handled by CSS
       this.$bubble.css({
-        bottom: (bubblePosition.bottom === undefined) ? undefined : bubblePosition.bottom + 'px',
-        left: bubblePosition.left + 'px'
+        bottom: (bubblePosition.bottom === undefined) ? undefined : `${bubblePosition.bottom}px`,
+        left: `${bubblePosition.left}px`
       });
     }
 
     const preparedTailCSS = {
-      bottom: tailPosition.bottom + 'px',
-      left: (typeof tailPosition.left === 'string') ? tailPosition.left : tailPosition.left + 'px'
+      bottom: `${tailPosition.bottom}px`,
+      left: (typeof tailPosition.left === 'string') ? tailPosition.left : `${tailPosition.left}px`
     };
     this.$tail.css(preparedTailCSS);
     this.$innerTail.css(preparedTailCSS);
@@ -88,15 +88,15 @@ class Bubble {
    * Animate the bubble
    */
   animate () {
-    if (this.$bubble.hasClass(this.style + '-inactive')) {
+    if (this.$bubble.hasClass(`${this.style}-inactive`)) {
       this.$bubble
-        .removeClass(this.style + '-inactive')
-        .addClass(this.style + '-active');
+        .removeClass(`${this.style}-inactive`)
+        .addClass(`${this.style}-active`);
 
       setTimeout(() => {
         this.$bubble
-          .removeClass(this.style + '-active')
-          .addClass(this.style + '-inactive');
+          .removeClass(`${this.style}-active`)
+          .addClass(`${this.style}-inactive`);
       }, 2000);
     }
   }
@@ -126,7 +126,7 @@ class Bubble {
    * @return {boolean} True, if bubble is active
    */
   isActive () {
-    return this.$bubble.hasClass(this.style + '-active');
+    return this.$bubble.hasClass(`${this.style}-active`);
   }
 
   /**
@@ -147,17 +147,17 @@ class Bubble {
        */
       setTimeout(() => {
         this.$bubble
-          .removeClass(this.style + '-preparing')
-          .addClass(this.style + '-active');
+          .removeClass(`${this.style}-preparing`)
+          .addClass(`${this.style}-active`);
       }, 100); // 100ms seem to do the trick
       this.$bubble
-        .removeClass(this.style + '-inactive')
-        .addClass(this.style + '-preparing');
+        .removeClass(`${this.style}-inactive`)
+        .addClass(`${this.style}-preparing`);
     }
     else {
       this.$bubble
-        .toggleClass(this.style + '-inactive', !show)
-        .toggleClass(this.style + '-active', show);
+        .toggleClass(`${this.style}-inactive`, !show)
+        .toggleClass(`${this.style}-active`, show);
     }
   }
 
@@ -251,10 +251,10 @@ class Bubble {
       fontSize: fontSize
     });
 
-    const cssMaxHeight = (containerHeight !== undefined && videoHeight !== undefined) ? 'calc(' + videoHeight + 'px - 1em - 9px)' : '';
+    const cssMaxHeight = (containerHeight !== undefined && videoHeight !== undefined) ? `calc(${videoHeight}px - 1em - 9px)` : '';
     let cssTop = '';
     if (containerHeight !== undefined && videoHeight !== undefined) {
-      cssTop = (this.isMobilePhone() && fullscreen) ? 'calc((' + containerHeight + 'px - ' + videoHeight +'px + 0em - 9px) / 2)' : 'calc((' + containerHeight + 'px - ' + videoHeight +'px + 0em - 9px) / 2)';
+      cssTop = (this.isMobilePhone() && fullscreen) ? `calc((${containerHeight}px - ${videoHeight}px + 0em - 9px) / 2)` : `calc((${containerHeight}px - ${videoHeight}px + 1em - 9px) / 2)`;
     }
     this.$bubble.css({
       maxHeight: cssMaxHeight,

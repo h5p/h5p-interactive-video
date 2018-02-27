@@ -1,5 +1,10 @@
 const $ = H5P.jQuery;
 
+const ENDSCREEN_STYLE_BASE = 'h5p-interactive-video-endscreen';
+const ENDSCREEN_STYLE_BUTTON_HIDDEN = 'h5p-interactive-video-endscreen-submit-button-hidden';
+const KEY_CODE_ENTER = 13;
+const KEY_CODE_SPACE = 32;
+
 /** Class representing an endscreen. */
 class Endscreen extends H5P.EventDispatcher {
 
@@ -20,9 +25,6 @@ class Endscreen extends H5P.EventDispatcher {
   constructor (parent, params = {}) {
     super();
 
-    this.STYLE_BASE = 'h5p-interactive-video-endscreen';
-    this.STYLE_BUTTON_HIDDEN = 'h5p-interactive-video-endscreen-submit-button-hidden';
-
     this.parent = parent;
     this.l10n = $.extend({
       title: '@answered Questions answered',
@@ -40,7 +42,7 @@ class Endscreen extends H5P.EventDispatcher {
     this.xAPILog = {};
 
     // We are listening for all events here
-    H5P.externalDispatcher.on('xAPI', (event) => {
+    this.on('interceptXAPI', event => {
       if (event.data.statement.object) {
         const subContentID = /[\?|\&]subContentId=([a-f0-9\-]+)/g.exec(event.data.statement.object.id);
         if (subContentID !== null) {
@@ -57,59 +59,57 @@ class Endscreen extends H5P.EventDispatcher {
    */
   buildDOM () {
     // Title Bar with text and close button
-    this.$endscreenIntroductionTitleText = $('<div/>', {class: this.STYLE_BASE + '-introduction-title-text'});
+    this.$endscreenIntroductionTitleText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`});
 
-    const $endscreenCloseButton = $('<div>', {'role': 'button', 'class': this.STYLE_BASE + '-close-button', 'tabindex': '0', 'aria-label': this.parent.l10n.close})
+    const $endscreenCloseButton = $('<div>', {'role': 'button', 'class': `${ENDSCREEN_STYLE_BASE}-close-button`, 'tabindex': '0', 'aria-label': this.parent.l10n.close})
       .click(() => {
         // This is a little bit like Minsky's useless machine, but necessary because of the dual use of the bubble class.
         this.parent.toggleEndscreen(false);
       })
-      .keydown((event) => {
-        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
+      .keydown(event => {
+        if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
           this.parent.toggleEndscreen(false);
           event.preventDefault();
         }
       });
 
-    const $endscreenIntroductionTitle = $('<div/>', {class: this.STYLE_BASE + '-introduction-title'})
+    const $endscreenIntroductionTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title`})
       .append([this.$endscreenIntroductionTitleText, $endscreenCloseButton]);
 
     // Description
-    this.$endscreenIntroductionText = $('<div/>', {class: this.STYLE_BASE + '-introduction-text'});
+    this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
 
     // Submit button
-    this.$endscreenSubmitButton = $('<div/>', {class: this.STYLE_BASE + '-submit-button-container'})
-      .addClass(this.STYLE_BUTTON_HIDDEN)
-      .append(H5P.JoubelUI.createButton({class: this.STYLE_BASE + '-submit-button', html: this.l10n.submitButton})
-        .click((event) => {
+    this.$endscreenSubmitButton = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`})
+      .addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
+      .append(H5P.JoubelUI.createButton({class: `${ENDSCREEN_STYLE_BASE}-submit-button`, html: this.l10n.submitButton})
+        .click(event => {
           this.handleSubmit();
           event.preventDefault();
         })
-        .keydown((event) => {
-          switch (event.which) {
-            case 13: // Enter
-            case 32: // Space
-              this.handleSubmit();
-              event.preventDefault();
+        .keydown(event => {
+          if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
+            this.handleSubmit();
+            event.preventDefault();
           }
         })
       );
 
     // Title row for the table at the bottom
-    this.$endscreenOverviewTitle = $('<div/>', {class: this.STYLE_BASE + '-overview-title'})
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview-title-answered-questions', 'html': this.l10n.tableRowAnswered}))
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview-title-score', 'html': this.l10n.tableRowScore}));
+    this.$endscreenOverviewTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title`})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title-answered-questions`, 'html': this.l10n.tableRowAnswered}))
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title-score`, 'html': this.l10n.tableRowScore}));
 
     // Table for answered interactions
-    this.$endscreenBottomTable = $('<div/>', {class: this.STYLE_BASE + '-overview-table'});
+    this.$endscreenBottomTable = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table`});
 
     // Endscreen DOM root
-    this.$endscreen = $('<div/>', {class: this.STYLE_BASE})
-      .append($('<div/>', {class: this.STYLE_BASE + '-introduction'})
-        .append($('<div/>', {class: this.STYLE_BASE + '-star-symbol'}))
-        .append($('<div/>', {class: this.STYLE_BASE + '-introduction-container'})
+    this.$endscreen = $('<div/>', {class: ENDSCREEN_STYLE_BASE})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction`})
+        .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-star-symbol`}))
+        .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-container`})
           .append([$endscreenIntroductionTitle, this.$endscreenIntroductionText, this.$endscreenSubmitButton])))
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview'})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview`})
         .append(this.$endscreenOverviewTitle)
         .append(this.$endscreenBottomTable));
   }
@@ -122,13 +122,13 @@ class Endscreen extends H5P.EventDispatcher {
    * a 'completed' xAPI statement for parent (IV) each time.
    */
   handleSubmit () {
-    if (this.$endscreenSubmitButton.hasClass(this.STYLE_BUTTON_HIDDEN)) {
+    if (this.$endscreenSubmitButton.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
       return;
     }
-    this.$endscreenSubmitButton.addClass(this.STYLE_BUTTON_HIDDEN);
-    this.$endscreenIntroductionText.html('<div class="h5p-interactive-video-endscreen-introduction-text-submitted">' + this.l10n.submitMessage + '</div>');
+    this.$endscreenSubmitButton.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
+    this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-introduction-text-submitted">${this.l10n.submitMessage}</div>`);
 
-    this.answered.forEach((interaction) => {
+    this.answered.forEach(interaction => {
       const id = interaction.getSubcontentId();
       /*
        * We only need to fire an xAPI answered statement if the user
@@ -172,12 +172,12 @@ class Endscreen extends H5P.EventDispatcher {
    * @return {jQuery} DOM element for the table row.
    */
   buildTableRow (time, title, score = this.l10n.answered) {
-    return $('<div/>', {class: this.STYLE_BASE + '-overview-table-row'})
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview-table-row-time', html: this.parent.humanizeTime(time)})
+    return $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row`})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: this.parent.humanizeTime(time)})
         .click(() => {this.jump(time);}))
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview-table-row-title', html: title}))
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title}))
         .click(() => {this.jump(time);})
-      .append($('<div/>', {class: this.STYLE_BASE + '-overview-table-row-score', html: score || this.l10n.tableAnswered}));
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`, html: score || this.l10n.tableAnswered}));
   }
 
   /**
@@ -200,17 +200,13 @@ class Endscreen extends H5P.EventDispatcher {
   update (interactions = []) {
     // Filter for interactions that have been answered and sort chronologically
     this.answered = interactions
-     .filter((interaction) => {
-       return interaction.getProgress() !== undefined;
-     })
-     .sort((a, b) => {
-       return a.getDuration().from > b.getDuration().from;
-     });
+     .filter(interaction => interaction.getProgress() !== undefined)
+     .sort((a, b) => a.getDuration().from > b.getDuration().from);
 
     this.$endscreenBottomTable.empty();
 
     // No chaining because we need the variable later
-    this.answered.forEach((interaction) => {
+    this.answered.forEach(interaction => {
       const time = interaction.getDuration().from;
       const title = this.getDescription(interaction);
       const score = (interaction.getInstance().getScore && interaction.getInstance().getMaxScore) ? interaction.getInstance().getScore() + ' / ' + interaction.getInstance().getMaxScore() : this.l10n.answeredScore;
@@ -222,7 +218,7 @@ class Endscreen extends H5P.EventDispatcher {
     this.$endscreenIntroductionTitleText.html(this.l10n.title.replace('@answered', number));
 
     if (number === 0) {
-      this.$endscreenIntroductionText.html('<div class="' + this.STYLE_BASE + '-bold-text">' + this.l10n.informationNoAnswers + '</div><div>' + this.l10n.informationMustHaveAnswer + '<div>');
+      this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div><div>${this.l10n.informationMustHaveAnswer}<div>`);
     }
     else {
       this.$endscreenIntroductionText.html(this.l10n.information.replace('@answered', number));
@@ -230,7 +226,7 @@ class Endscreen extends H5P.EventDispatcher {
 
     // Only show submit button (again) if there are answered interactions
     if (number > 0) {
-      this.$endscreenSubmitButton.removeClass(this.STYLE_BUTTON_HIDDEN);
+      this.$endscreenSubmitButton.removeClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
     }
   }
 

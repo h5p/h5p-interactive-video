@@ -257,9 +257,8 @@ function InteractiveVideo(params, id, contentData) {
         self.complete();
 
         // Open final endscreen if necessary
-        const answeredTotal = self.interactionsProgress.filter(function (a) {
-          return a === Interaction.PROGRESS_ANSWERED;
-        }).length;
+        const answeredTotal = self.interactionsProgress
+          .filter(a => a === Interaction.PROGRESS_ANSWERED).length;
         if (self.endscreensMap[self.getDuration()] && answeredTotal > 0) {
           self.toggleEndscreen(true);
         }
@@ -492,9 +491,9 @@ InteractiveVideo.prototype.getCurrentState = function () {
   var state = {
     progress: self.video.getCurrentTime(),
     answers: [],
-    interactionsProgress: self.interactions.map((interaction) => {
-      return interaction.getProgress();
-    })
+    interactionsProgress: self.interactions
+      .sort((a, b) => a.getDuration().from - b.getDuration().from)
+      .map(interaction => interaction.getProgress())
   };
 
   // Page might not have been loaded yet
@@ -920,7 +919,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   // handle xAPI event
   interaction.on('xAPI', function (event) {
     if (event.getVerb() === 'interacted') {
-      const pos = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from).indexOf(interaction);
+      const pos = self.interactions.sort((a, b) => a.getDuration().from - b.getDuration().from).indexOf(interaction);
       self.interactionsProgress[pos] = Interaction.PROGRESS_INTERACTED;
       this.setProgress(Interaction.PROGRESS_INTERACTED);
     }
@@ -942,6 +941,10 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       event.data.statement.context.extensions = {};
     }
     event.data.statement.context.extensions['http://id.tincanapi.com/extension/ending-point'] = 'PT' + Math.floor(self.video.getCurrentTime()) + 'S';
+
+    self.endscreen.trigger('interceptXAPI', {
+      'statement': event.data.statement
+    });
   });
 
   self.interactions.push(interaction);
@@ -976,9 +979,8 @@ InteractiveVideo.prototype.handleAnswered = function () {
  * return {number} Number of answered interactions.
  */
 InteractiveVideo.prototype.getAnsweredTotal = function () {
-  return this.interactions.filter(function(a) {
-    return a.getProgress() === Interaction.PROGRESS_ANSWERED;
-  }).length;
+  return this.interactions
+    .filter(a => a.getProgress() === Interaction.PROGRESS_ANSWERED).length;
 };
 
 /**
@@ -1013,7 +1015,7 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 
   // Add new dots
   H5P.jQuery.extend([], this.interactions)
-    .sort((a, b) =>  a.getDuration().from - b.getDuration().from)
+    .sort((a, b) => a.getDuration().from - b.getDuration().from)
     .forEach(interaction => {
       const $menuitem = interaction.addDot();
       self.menuitems.push($menuitem);
@@ -1044,7 +1046,7 @@ InteractiveVideo.prototype.closePopupMenus = function (exceptButton) {
   const position = this.popupMenuButtons.indexOf(exceptButton);
   const buttons = this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1));
 
-  buttons.forEach((button) => {
+  buttons.forEach(button => {
     const $button = this.controls[button];
     if ($button === undefined) {
       return;
