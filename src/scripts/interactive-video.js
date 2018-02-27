@@ -1038,9 +1038,12 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 /**
  * Close popup menus that are open.
  *
- * @param {string[]} buttons - Identifiers of buttons handlind popup menus.
+ * @param {string} exceptButton - Identifier of button handling popup menus that should remain open.
  */
-InteractiveVideo.prototype.closePopupMenus = function (buttons) {
+InteractiveVideo.prototype.closePopupMenus = function (exceptButton) {
+  const position = this.popupMenuButtons.indexOf(exceptButton);
+  const buttons = this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1));
+
   buttons.forEach((button) => {
     const $button = this.controls[button];
     if ($button === undefined) {
@@ -1130,8 +1133,7 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = 
 
     if(show) {
       // Close other popups
-      const position = this.popupMenuButtons.indexOf('$bookmarksButton');
-      this.closePopupMenus(this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1)));
+      this.closePopupMenus('$bookmarksButton');
 
       this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
     }
@@ -1163,8 +1165,7 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
 
     if(show) {
       // Close other popups
-      const position = this.popupMenuButtons.indexOf('$endscreensButton');
-      this.closePopupMenus(this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1)));
+      this.closePopupMenus('$endscreensButton');
       this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
     }
     else if (!firstPlay) {
@@ -1626,8 +1627,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         $menu.find('[tabindex="0"]').focus();
 
         // Close all open popup menus (except this one)
-        const position = self.popupMenuButtons.indexOf(button);
-        self.closePopupMenus(self.popupMenuButtons.slice(0, position).concat(self.popupMenuButtons.slice(position + 1)));
+        self.closePopupMenus(button);
       }
     };
   };
