@@ -1417,8 +1417,10 @@ function Interaction(parameters, player, previousState) {
             return parent.id === interactiveVideoId;
           });
 
-          if (isInteractiveVideoParent && isCompletedOrAnswered && (event.getMaxScore() && event.getScore() !== null)) {
-            self.score = event.getScore();
+          if (isInteractiveVideoParent && isCompletedOrAnswered && event.getMaxScore()) {
+            // Allow subcontent types to have null scores so that they can be dynamically graded
+            // See iv-open-ended-question
+            self.score = (event.getScore() == null ? 0 : event.getScore());
             self.maxScore = event.getMaxScore();
             adaptivity();
           }
