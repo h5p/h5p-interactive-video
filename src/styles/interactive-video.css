@@ -395,7 +395,7 @@
   -moz-box-sizing: border-box;
 }
 
-.h5p-interactive-video .h5p-interaction-inner.h5p-iv-open-ended-question-wrapper {
+.h5p-interactive-video .h5p-interaction-inner.h5p-free-text-question-wrapper {
   height: inherit;
 }
 

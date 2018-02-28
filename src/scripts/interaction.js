@@ -1419,7 +1419,7 @@ function Interaction(parameters, player, previousState) {
 
           if (isInteractiveVideoParent && isCompletedOrAnswered && event.getMaxScore()) {
             // Allow subcontent types to have null scores so that they can be dynamically graded
-            // See iv-open-ended-question
+            // See H5P.FreeTextQuestion
             self.score = (event.getScore() == null ? 0 : event.getScore());
             self.maxScore = event.getMaxScore();
             adaptivity();
