@@ -436,7 +436,7 @@ function Interaction(parameters, player, previousState) {
       });
     }
 
-    if (library === 'H5P.IVOpenEndedQuestion') {
+    if (library === 'H5P.FreeTextQuestion') {
       instance.on('continue', function () {
         closeInteraction();
         player.play();
@@ -632,7 +632,7 @@ function Interaction(parameters, player, previousState) {
       // Position dialog. Use medium dialog for all interactive dialogs.
       if (!player.isMobileView) {
         // Set size and type of dialog
-        if (library === 'H5P.IVOpenEndedQuestion') {
+        if (library === 'H5P.FreeTextQuestion') {
           player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'big');
         } else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
           player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'medium');
@@ -1602,7 +1602,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.repositionToWrapper = function ($wrapper) {
 
-    if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.IVOpenEndedQuestion') {
+    if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.FreeTextQuestion') {
       // Reset positions
       if (isRepositioned) {
         $interaction.css({
