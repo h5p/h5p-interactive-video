@@ -1397,7 +1397,7 @@ function Interaction(parameters, player, previousState) {
     if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
+      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
 
       // Getting initial score from instance (if it has previous state)
       if (action.userDatas && hasScoreData(instance)) {
