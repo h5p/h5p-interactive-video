@@ -1396,7 +1396,10 @@ function Interaction(parameters, player, previousState) {
     if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
+      if (self.maxScore == undefined && instance.getMaxScore) {
+        self.maxScore = instance.getMaxScore();
+      }
 
       // Getting initial score from instance (if it has previous state)
       if (action.userDatas && hasScoreData(instance)) {
@@ -1420,7 +1423,7 @@ function Interaction(parameters, player, previousState) {
             // Allow subcontent types to have null scores so that they can be dynamically graded
             // See H5P.FreeTextQuestion
             self.score = (event.getScore() == null ? 0 : event.getScore());
-            self.maxScore = event.getMaxScore();
+            self.maxScore = (self.maxScore ? self.maxScore : event.getMaxScore());
             adaptivity();
           }
 
