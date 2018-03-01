@@ -206,13 +206,6 @@ function Interaction(parameters, player, previousState) {
     });
     $interaction.on('keyup', disableGlobalVideoControls);
 
-    self.on('closeDialog', () => {
-      if ($interaction) {
-        $interaction.focus();
-        $interaction.attr('aria-expanded', 'false');
-      }
-    });
-
     // if requires completion -> open dialog right away
     if (self.getRequiresCompletion() &&
         player.editor === undefined &&
@@ -563,8 +556,6 @@ function Interaction(parameters, player, previousState) {
      * @private
      */
     var dialogCloseHandler = function () {
-      this.off('close', dialogCloseHandler); // Avoid running more than once
-
       // Reset the image size to a percentage of the container instead of hardcoded values
       player.dnb.$dialogContainer.one('transitionend', function() {
         if ($dialogContent.is('.h5p-image')) {
@@ -588,9 +579,18 @@ function Interaction(parameters, player, previousState) {
         // Prevent crashing, log error.
         H5P.error(err);
       }
+
+      if ($interaction) {
+        $interaction.focus();
+        $interaction.attr('aria-expanded', 'false');
+      }
+
+      // Tell interactions we are not visible anymore
+      instance.trigger('hide');
     };
-    player.dnb.dialog.on('close', dialogCloseHandler);
-    player.dnb.dialog.on('close', () => self.trigger('closeDialog'));
+    // A dialog can be closed only once
+    player.dnb.dialog.once('close', dialogCloseHandler);
+
     /**
      * Set dialog width of interaction and unregister dialog close listener
      * @private
@@ -1291,7 +1291,6 @@ function Interaction(parameters, player, previousState) {
    * Recreate interactions. Useful when an interaction or view has changed.
    */
   self.reCreateInteraction = function () {
-
     // Do not recreate IVHotspot since it should always be a poster
     if (library === 'H5P.IVHotspot') {
       return;
