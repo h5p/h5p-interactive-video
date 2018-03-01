@@ -885,20 +885,21 @@ InteractiveVideo.prototype.initInteraction = function (index) {
   });
 
   // The interaction is about to be hidden.
-  interaction.on('hide', function (event) {
+  interaction.on('hide', function () {
     self.handleAnswered();
-    var $interaction = event.data; // Grab DOM element
   });
 
   // handle xAPI event
   interaction.on('xAPI', function (event) {
-    if (event.getVerb() === 'interacted') {
+    var verb = event.getVerb();
+
+    if (verb === 'interacted') {
       const pos = self.interactions.sort((a, b) =>  a.getDuration().from - b.getDuration().from).indexOf(interaction);
       self.interactionsState[pos] = 'interacted';
     }
 
     // update state
-    if ($.inArray(event.getVerb(), ['completed', 'answered']) !== -1) {
+    if ($.inArray(verb, ['completed', 'answered']) !== -1) {
       event.setVerb('answered');
       // IV is complete if:
       // - The event is sent from the "main" summary
