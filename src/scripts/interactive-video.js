@@ -1043,12 +1043,9 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
  * @param {string} exceptButton - Identifier of button handling popup menus that should remain open.
  */
 InteractiveVideo.prototype.closePopupMenus = function (exceptButton) {
-  const position = this.popupMenuButtons.indexOf(exceptButton);
-  const buttons = this.popupMenuButtons.slice(0, position).concat(this.popupMenuButtons.slice(position + 1));
-
-  buttons.forEach(button => {
+  this.popupMenuButtons.forEach(button => {
     const $button = this.controls[button];
-    if ($button === undefined) {
+    if ($button === undefined || button === exceptButton) {
       return;
     }
 
@@ -1933,7 +1930,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
   self.controls.$qualityChooser.insertAfter(self.controls.$qualityButton);
-
 
   // Add fullscreen button
   if (!self.editor && H5P.fullscreenSupported !== false) {
