@@ -395,6 +395,10 @@
   -moz-box-sizing: border-box;
 }
 
+.h5p-interactive-video .h5p-interaction-inner.h5p-free-text-question-wrapper {
+  height: inherit;
+}
+
 .h5p-interactive-video .h5p-interaction-inner.h5p-ivhotspot {
   height: 100%;
 }
@@ -1235,6 +1239,10 @@
 .h5p-interactive-video .h5p-big > .h5p-dialog-inner {
   width: 100%;
   height: auto;
+}
+.h5p-interactive-video .h5p-big.h5p-stretch > .h5p-dialog-inner {
+  width: 100%;
+  height: 100%;
 }
 .h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar {

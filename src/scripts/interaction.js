@@ -206,13 +206,6 @@ function Interaction(parameters, player, previousState) {
     });
     $interaction.on('keyup', disableGlobalVideoControls);
 
-    self.on('closeDialog', () => {
-      if ($interaction) {
-        $interaction.focus();
-        $interaction.attr('aria-expanded', 'false');
-      }
-    });
-
     // if requires completion -> open dialog right away
     if (self.getRequiresCompletion() &&
         player.editor === undefined &&
@@ -293,7 +286,7 @@ function Interaction(parameters, player, previousState) {
    */
   const createStandaloneLabel = () => {
     $interaction = createLabel(parameters.label, 'h5p-interaction h5p-interaction-label-standalone');
-    $interaction = $interaction.css({
+    $interaction.css({
       left: `${parameters.x}%`,
       top: `${parameters.y}%`,
       width: '',
@@ -365,7 +358,11 @@ function Interaction(parameters, player, previousState) {
    */
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
-    self.trigger('hide', $interaction);
+    if ($interaction) {
+      instance.trigger('hide');
+      self.trigger('hide', $interaction);
+    }
+
     if (self.isButton()) {
       if (closeDialog) {
         player.dnb.dialog.close();
@@ -376,7 +373,9 @@ function Interaction(parameters, player, previousState) {
         player.dnb.dialog.close();
       }
 
-      $interaction.detach();
+      if ($interaction) {
+        $interaction.detach();
+      }
     }
 
     self.trigger('remove', $interaction);
@@ -425,6 +424,13 @@ function Interaction(parameters, player, previousState) {
       }
 
       instance.on('noSuccessScreen', function () {
+        closeInteraction();
+        player.play();
+      });
+    }
+
+    if (library === 'H5P.FreeTextQuestion') {
+      instance.on('continue', function () {
         closeInteraction();
         player.play();
       });
@@ -558,8 +564,6 @@ function Interaction(parameters, player, previousState) {
      * @private
      */
     var dialogCloseHandler = function () {
-      this.off('close', dialogCloseHandler); // Avoid running more than once
-
       // Reset the image size to a percentage of the container instead of hardcoded values
       player.dnb.$dialogContainer.one('transitionend', function() {
         if ($dialogContent.is('.h5p-image')) {
@@ -583,9 +587,18 @@ function Interaction(parameters, player, previousState) {
         // Prevent crashing, log error.
         H5P.error(err);
       }
+
+      if ($interaction) {
+        $interaction.focus();
+        $interaction.attr('aria-expanded', 'false');
+      }
+
+      // Tell interactions we are not visible anymore
+      instance.trigger('hide');
     };
-    player.dnb.dialog.on('close', dialogCloseHandler);
-    player.dnb.dialog.on('close', () => self.trigger('closeDialog'));
+    // A dialog can be closed only once
+    player.dnb.dialog.once('close', dialogCloseHandler);
+
     /**
      * Set dialog width of interaction and unregister dialog close listener
      * @private
@@ -626,8 +639,14 @@ function Interaction(parameters, player, previousState) {
     else {
       // Position dialog. Use medium dialog for all interactive dialogs.
       if (!player.isMobileView) {
-        // Set size of dialog
-        player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, !(library === 'H5P.Text' || library === 'H5P.Table'));
+        // Set size and type of dialog
+        if (library === 'H5P.FreeTextQuestion') {
+          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'big');
+        } else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
+          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'medium');
+        } else {
+          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, null);
+        }
       }
     }
 
@@ -1280,7 +1299,6 @@ function Interaction(parameters, player, previousState) {
    * Recreate interactions. Useful when an interaction or view has changed.
    */
   self.reCreateInteraction = function () {
-
     // Do not recreate IVHotspot since it should always be a poster
     if (library === 'H5P.IVHotspot') {
       return;
@@ -1288,6 +1306,7 @@ function Interaction(parameters, player, previousState) {
 
     // Only recreate existing interactions
     if ($interaction) {
+      instance.trigger('hide');
       self.trigger('hide', $interaction);
       $interaction.detach();
       if (self.isStandaloneLabel()) {
@@ -1364,11 +1383,12 @@ function Interaction(parameters, player, previousState) {
    */
   self.remove = function () {
     if ($interaction) {
-      // Let others reach to the hiding of this interaction
+      // Let others react to the hiding of this interaction
       self.trigger('domHidden', {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
       }, {'bubbles': true, 'external': true});
+      instance.trigger('hide');
       self.trigger('hide', $interaction);
       $interaction.detach();
       $interaction = undefined;
@@ -1384,7 +1404,10 @@ function Interaction(parameters, player, previousState) {
     if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player});
+      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
+      if (self.maxScore == undefined && instance.getMaxScore) {
+        self.maxScore = instance.getMaxScore();
+      }
 
       // Getting initial score from instance (if it has previous state)
       if (action.userDatas && hasScoreData(instance)) {
@@ -1404,9 +1427,11 @@ function Interaction(parameters, player, previousState) {
             return parent.id === interactiveVideoId;
           });
 
-          if (isInteractiveVideoParent && isCompletedOrAnswered && (event.getMaxScore() && event.getScore() !== null)) {
-            self.score = event.getScore();
-            self.maxScore = event.getMaxScore();
+          if (isInteractiveVideoParent && isCompletedOrAnswered && event.getMaxScore()) {
+            // Allow subcontent types to have null scores so that they can be dynamically graded
+            // See H5P.FreeTextQuestion
+            self.score = (event.getScore() == null ? 0 : event.getScore());
+            self.maxScore = (self.maxScore ? self.maxScore : event.getMaxScore());
             adaptivity();
           }
 
@@ -1587,8 +1612,7 @@ function Interaction(parameters, player, previousState) {
    */
   self.repositionToWrapper = function ($wrapper) {
 
-    if ($interaction && library !== 'H5P.IVHotspot') {
-
+    if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.FreeTextQuestion') {
       // Reset positions
       if (isRepositioned) {
         $interaction.css({
