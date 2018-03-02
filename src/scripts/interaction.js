@@ -2,7 +2,6 @@ import { KEY_CODE_START_PAUSE } from './interactive-video';
 
 const $ = H5P.jQuery;
 
-
 /**
  * Returns true if parameter is a non empty string
  *
@@ -140,6 +139,9 @@ function Interaction(parameters, player, previousState) {
 
   // Keep track of content instance
   var instance;
+
+  // Keep track of the interaction's progress
+  var progress;
 
   // Keep track of DragNBarElement and related dialog/form
   var dnbElement;
@@ -1517,6 +1519,34 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Returns true if the given library is answerable
+   *
+   * @return {boolean}
+   */
+  self.isAnswerable = function () {
+    return staticLibraryTitles.indexOf(self.getLibraryName()) === -1 && !self.isStandaloneLabel();
+  };
+
+
+  /**
+   * Set state of interaction.
+   *
+   * @param {number} state - State of the interaction.
+   */
+  self.setProgress = function (progress) {
+    this.progress = progress;
+  };
+
+  /**
+   * Get state of interaction.
+   *
+   * @return {number} State of interaction.
+   */
+  self.getProgress = function () {
+    return this.progress;
+  };
+
+  /**
    * Get HTML class name
    *
    * @returns {string}
@@ -1672,6 +1702,15 @@ function Interaction(parameters, player, previousState) {
     self.reCreate();
   };
 
+  /**
+   * Get interaction's instance.
+   *
+   * @return {Object} Instance.
+   */
+  self.getInstance = function () {
+    return instance;
+  };
+
   // Create instance of content
   self.reCreate();
 }
@@ -1679,5 +1718,10 @@ function Interaction(parameters, player, previousState) {
 // Extends the event dispatcher
 Interaction.prototype = Object.create( H5P.EventDispatcher.prototype);
 Interaction.prototype.constructor = Interaction;
+
+/** @constant {Number} */
+Interaction.PROGRESS_INTERACTED = 0;
+/** @constant {Number} */
+Interaction.PROGRESS_ANSWERED = 1;
 
 export default Interaction;

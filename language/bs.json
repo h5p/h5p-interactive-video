@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Interactive Video Editor",
-      "fields":[
+      "label": "Interactive Video Editor",
+      "fields": [
         {
-          "label":"Upload/embed video",
-          "fields":[
+          "label": "Upload/embed video",
+          "fields": [
             {
-              "label":"Add a video",
-              "description":"Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Add a video",
+              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Start screen options (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"The title of this interactive video",
-                  "default":"Interactive Video",
-                  "description":"Koristi se u sažecima, statistikama, itd.."
+                  "label": "The title of this interactive video",
+                  "default": "Interactive Video",
+                  "description": "Koristi se u sažecima, statistikama, itd.."
                 },
                 {
-                  "label":"Hide title on video start screen"
+                  "label": "Hide title on video start screen"
                 },
                 {
-                  "label":"Short description (Optional)",
-                  "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label":"Slika prikaza",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Slika prikaza",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label":"Video copyright information",
-                  "description":"Information regarding copyright of the video and elements used in the video."
+                  "label": "Video copyright information",
+                  "description": "Information regarding copyright of the video and elements used in the video."
                 }
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Text tracks (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"Available text tracks",
-                  "entity":"Track",
-                  "field":{
-                    "label":"Video",
-                    "fields":[
+                  "label": "Available text tracks",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Video",
+                    "fields": [
                       {
-                        "label":"Opis videa",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Prijevod"
+                        "label": "Opis videa",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Prijevod"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
-                        "options":[
+                        "label": "Type of text track",
+                        "options": [
                           {
-                            "label":"Prijevod"
+                            "label": "Prijevod"
                           },
                           {
-                            "label":"Titlovi"
+                            "label": "Titlovi"
                           },
                           {
-                            "label":"Opis"
+                            "label": "Opis"
                           }
                         ]
                       },
                       {
-                        "label":"Za prijevod se mora navesti izvorni jezik",
-                        "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label": "Za prijevod se mora navesti izvorni jezik",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label": "Track source (WebVTT file)"
                       }
                     ]
                   }
@@ -80,407 +79,392 @@
           ]
         },
         {
-          "label":"Add interactions",
-          "fields":[
+          "label": "Add interactions",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"Display time",
-                    "fields":[
+                    "label": "Display time"
+                  },
+                  {
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
                       {
-
+                        "label": "Button"
                       },
                       {
-
+                        "label": "Poster"
                       }
                     ]
                   },
                   {
-                    "label":"Pause video"
+                    "label": "Turn into button on small screens"
                   },
                   {
-                    "label":"Display as",
-                    "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
-                    "options":[
+                    "label": "Oznaka",
+                    "description": "Label displayed next to interaction icon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivity",
+                    "fields": [
                       {
-                        "label":"Button"
-                      },
-                      {
-                        "label":"Poster"
-                      }
-                    ],
-                    "default":"button"
-                  },
-                  {
-                    "label":"Turn into button on small screens"
-                  },
-                  {
-                    "label":"Oznaka",
-                    "description":"Label displayed next to interaction icon."
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-                    "label":"Adaptivity",
-                    "fields":[
-                      {
-                        "label":"Action on all correct",
-                        "fields":[
+                        "label": "Action on all correct",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
-                        "fields":[
+                        "label": "Action on wrong",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Require full score for task before proceeding",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label":"Grafika",
-                    "fields":[
+                    "label": "Grafika",
+                    "fields": [
                       {
-                        "label":"Boja pozadine",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-
-                        }
+                        "label": "Boja pozadine",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
                   {
-                    "label":"Go to on click",
-                    "fields":[
+                    "label": "Go to on click",
+                    "fields": [
                       {
-                        "label":"Tip",
-                        "options":[
+                        "label": "Tip",
+                        "options": [
                           {
-                            "label":"Timecode"
+                            "label": "Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label": "Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label":"URL",
-                        "fields":[
+                        "label": "URL",
+                        "fields": [
                           {
-                            "label":"Protokol",
-                            "options":[
+                            "label": "Protokol",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(u odnosu na)"
+                                "label": "(u odnosu na)"
                               },
                               {
-                                "label":"ostalo"
+                                "label": "ostalo"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"URL"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Visualize",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"Summary task",
-          "fields":[
+          "label": "Summary task",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-
-                }
-              }
-            },
-            {
-              "label":"Display at",
-              "description":"Number of seconds before the video ends."
+              "label": "Display at",
+              "description": "Number of seconds before the video ends."
             }
           ]
         }
       ]
     },
     {
-      "label":"Interaktionseinstellungen",
-      "fields":[
+      "label": "Interaktionseinstellungen",
+      "fields": [
         {
-          "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "label": "Start video at",
+          "description": "Enter timecode in the format M:SS"
         },
         {
-          "label":"Pusti automatski video",
-          "description":"Start playing the video automatically"
+          "label": "Pusti automatski video",
+          "description": "Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label": "Loop the video",
+          "description": "Check if video should run in a loop"
         },
         {
-          "label":"Poništi dugme \"Prikaži rješenje\"",
-          "description":"Ova opcija podešava prikazivanje dugmeta \"Prikaži rješenje\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
-          "options":[
+          "label": "Poništi dugme \"Prikaži rješenje\"",
+          "description": "Ova opcija podešava prikazivanje dugmeta \"Prikaži rješenje\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
+          "options": [
             {
-              "label":"Prikaži"
+              "label": "Prikaži"
             },
             {
-              "label":"Nemoj prikazati"
+              "label": "Nemoj prikazati"
             }
           ]
         },
         {
-          "label":"Poništi dugme \"Ponovi\"",
-          "description":"Ova opcija podešava prikazivanje dugmeta \"Ponovi\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
-          "options":[
+          "label": "Poništi dugme \"Ponovi\"",
+          "description": "Ova opcija podešava prikazivanje dugmeta \"Ponovi\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
+          "options": [
             {
-              "label":"Prikaži"
+              "label": "Prikaži"
             },
             {
-              "label":"Nemoj prikazati"
+              "label": "Nemoj prikazati"
             }
           ]
         },
         {
-          "label":"Start with bookmarks menu open",
-          "description":"This function is not available on iPad when using YouTube as video source."
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label": "Prevent skipping forward in a video",
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Podešavanje ponašanja",
-      "fields":[
+      "label": "Podešavanje ponašanja",
+      "fields": [
         {
-          "label":"Interaction title",
-          "default":"Interaction"
+          "label": "Interaction title",
+          "default": "Interaction"
         },
         {
-          "label":"Play title",
-          "default":"Play"
+          "label": "Play title",
+          "default": "Play"
         },
         {
-          "label":"Pause title",
-          "default":"Pause"
+          "label": "Pause title",
+          "default": "Pause"
         },
         {
-          "label":"Mute title",
-          "default":"Mute"
+          "label": "Mute title",
+          "default": "Mute"
         },
         {
-          "label":"Unmute title",
-          "default":"Unmute"
+          "label": "Unmute title",
+          "default": "Unmute"
         },
         {
-          "label":"Video quality title",
-          "default":"Video Quality"
+          "label": "Video quality title",
+          "default": "Video Quality"
         },
         {
-          "label":"Video captions title",
-          "default":"Titlovi"
+          "label": "Video captions title",
+          "default": "Titlovi"
         },
         {
-          "label":"Close button text",
-          "default":"Zatvori"
+          "label": "Close button text",
+          "default": "Zatvori"
         },
         {
-          "label":"Fullscreen title",
-          "default":"Cijeli ekran"
+          "label": "Fullscreen title",
+          "default": "Cijeli ekran"
         },
         {
-          "label":"Exit fullscreen title",
-          "default":"Exit Fullscreen"
+          "label": "Exit fullscreen title",
+          "default": "Exit Fullscreen"
         },
         {
-          "label":"Summary title",
-          "default":"Summary"
+          "label": "Summary title",
+          "default": "Summary"
         },
         {
-          "label":"Bookmarks title",
-          "default":"Bookmarks"
+          "label": "Bookmarks title",
+          "default": "Bookmarks"
         },
         {
           "label": "End screen title",
           "default": "End screen"
         },
         {
-          "label":"Default label for adaptivity seek button",
-          "default":"Continue"
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
         },
         {
-          "label":"Default label for continue video button",
-          "default":"Continue with video"
+          "label": "Default label for continue video button",
+          "default": "Continue with video"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label": "Set playback rate",
+          "default": "Playback Rate"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
         },
         {
-          "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "label": "Navigation is disabled text",
+          "default": "Navigation is disabled"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
         },
         {
-          "label":"Warning that the user must answer the question correctly before continuing",
-          "default":"You need to answer all the questions correctly before continuing."
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "You need to answer all the questions correctly before continuing."
         },
         {
-          "label":"Oznaka za dugme \"Nazad\"",
-          "default":"Back"
+          "label": "Oznaka za dugme \"Nazad\"",
+          "default": "Back"
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label": "Passed time hours",
+          "default": "Hours"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label": "Passed time minutes",
+          "default": "Minutes"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label": "Passed time seconds",
+          "default": "Seconds"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label": "Label for current time",
+          "default": "Current time:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label": "Label for total time",
+          "default": "Total time:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label": "Text for explaining navigation hotkey",
+          "default": "Use key k for starting and stopping video at any time"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "Interaction appeared:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "Multiple interactions appeared."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label": "Video is paused announcement",
+          "default": "Video is paused"
         },
         {
           "label": "Content label",
           "default": "Content"
         },
         {
-          "label": "answered",
-          "default": "@answered answered!"
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Endcard title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Endcard information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Endcard submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Endcard submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Endcard table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Endcard table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Endcard answered score",
+          "default": "answered"
         }
       ]
     }

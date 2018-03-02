@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Interaktiv Video Editor",
-      "fields":[
+      "label": "Interaktiv Video Editor",
+      "fields": [
         {
-          "label":"Last opp video",
-          "fields":[
+          "label": "Last opp video",
+          "fields": [
             {
-              "label":"Legg til ein video",
-              "description":"Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
+              "label": "Legg til ein video",
+              "description": "Klikk under for å leggje til ein video du ynskjer å bruke i din interaktive video. Du kan leggje til ein videolenkje eller laste opp videofilar. Det er mogeleg å leggje til fleire versionar av videoen med forskjellig kvalitet. For å sikre maksimal støtte i nettlesarar bør du leggje til i alle fall ein version i webm og mp4 format."
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Start screen options (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"Tittel",
-                  "default":"Interaktiv video",
-                  "description":"Brukes blant annet i oppsummeringer og statistikk."
+                  "label": "Tittel",
+                  "default": "Interaktiv video",
+                  "description": "Brukes blant annet i oppsummeringer og statistikk."
                 },
                 {
-                  "label":"Skjul tittel på startskjerm"
+                  "label": "Skjul tittel på startskjerm"
                 },
                 {
-                  "label":"Kort beskrivelse (Valgfri)",
-                  "description":"Valgfri. Viser en kort beskrivelse når en video lastes."
+                  "label": "Kort beskrivelse (Valgfri)",
+                  "description": "Valgfri. Viser en kort beskrivelse når en video lastes."
                 },
                 {
-                  "label":"Plakat",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Plakat",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label":"Opphavsrettsinformasjon",
-                  "description":"Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
+                  "label": "Opphavsrettsinformasjon",
+                  "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
                 }
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Text tracks (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"Available text tracks",
-                  "entity":"Track",
-                  "field":{
-                    "label":"Spor",
-                    "fields":[
+                  "label": "Available text tracks",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Spor",
+                    "fields": [
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
-                        "options":[
+                        "label": "Type of text track",
+                        "options": [
                           {
-                            "label":"Subtitles"
+                            "label": "Subtitles"
                           },
                           {
-                            "label":"Captions"
+                            "label": "Captions"
                           },
                           {
-                            "label":"Descriptions"
+                            "label": "Descriptions"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
-                        "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label": "Source language, must be defined for subtitles",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label": "Track source (WebVTT file)"
                       }
                     ]
                   }
@@ -80,407 +79,392 @@
           ]
         },
         {
-          "label":"Legg til interaksjonar",
-          "fields":[
+          "label": "Legg til interaksjonar",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"Visningstid",
-                    "fields":[
+                    "label": "Visningstid"
+                  },
+                  {
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Vis som",
+                    "description": "<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
+                    "options": [
                       {
-
+                        "label": "Knapp"
                       },
                       {
-
+                        "label": "Plakat"
                       }
                     ]
                   },
                   {
-                    "label":"Pause video"
+                    "label": "Slå til knapp på små skjermer"
                   },
                   {
-                    "label":"Vis som",
-                    "description":"<b>Knapp</b> er en kollapset visning brukeren må klikke på for å åpne. <b>Plakat</b> er en ekspandert visning direkte på videoen",
-                    "options":[
+                    "label": "Tittel",
+                    "description": "Label displayed next to interaction icon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivity",
+                    "fields": [
                       {
-                        "label":"Knapp"
-                      },
-                      {
-                        "label":"Plakat"
-                      }
-                    ],
-                    "default":"button"
-                  },
-                  {
-                    "label":"Slå til knapp på små skjermer"
-                  },
-                  {
-                    "label":"Tittel",
-                    "description":"Label displayed next to interaction icon."
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-
-                  },
-                  {
-                    "label":"Adaptivity",
-                    "fields":[
-                      {
-                        "label":"Action on all correct",
-                        "fields":[
+                        "label": "Action on all correct",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"Action on wrong",
-                        "fields":[
+                        "label": "Action on wrong",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Require full score for task before proceeding",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label":"Visuelt",
-                    "fields":[
+                    "label": "Visuelt",
+                    "fields": [
                       {
-                        "label":"Bakgrunnsfarge",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-
-                        }
+                        "label": "Bakgrunnsfarge",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
                   {
-                    "label":"Go to on click",
-                    "fields":[
+                    "label": "Go to on click",
+                    "fields": [
                       {
-                        "label":"Type",
-                        "options":[
+                        "label": "Type",
+                        "options": [
                           {
-                            "label":"Timecode"
+                            "label": "Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label": "Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label":"URL",
-                        "fields":[
+                        "label": "URL",
+                        "fields": [
                           {
-                            "label":"Protocol",
-                            "options":[
+                            "label": "Protocol",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(relativ)"
+                                "label": "(relativ)"
                               },
                               {
-                                "label":"other"
+                                "label": "other"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"URL"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Visualize",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            },
-            {
-              "field":{
-                "fields":[
-                  {
-
-                  },
-                  {
-
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"Oppsummeringsoppgave",
-          "fields":[
+          "label": "Oppsummeringsoppgave",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-
-                }
-              }
-            },
-            {
-              "label":"Visningstid",
-              "description":"Antall sekunder før videoen slutter."
+              "label": "Visningstid",
+              "description": "Antall sekunder før videoen slutter."
             }
           ]
         }
       ]
     },
     {
-      "label":"Innstillinger for oppførsel",
-      "fields":[
+      "label": "Innstillinger for oppførsel",
+      "fields": [
         {
-          "label":"Begynn på",
-          "description":"Enter timecode in the format M:SS"
+          "label": "Begynn på",
+          "description": "Enter timecode in the format M:SS"
         },
         {
-          "label":"Slå på automatisk avspeling",
-          "description":"Start playing the video automatically"
+          "label": "Slå på automatisk avspeling",
+          "description": "Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label": "Loop the video",
+          "description": "Check if video should run in a loop"
         },
         {
-          "label":"Overstyr «Prøv igjen»-knapp",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
+          "label": "Overstyr «Prøv igjen»-knapp",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
             {
-              "label":"Aktivert"
+              "label": "Aktivert"
             },
             {
-              "label":"Deaktivert"
+              "label": "Deaktivert"
             }
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
+          "label": "Vis bokmerkemeny når interaktiv video åpnes",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
             {
-              "label":"Aktivert"
+              "label": "Aktivert"
             },
             {
-              "label":"Deaktivert"
+              "label": "Deaktivert"
             }
           ]
         },
         {
-          "label":"Vis bokmerkemeny når interaktiv video åpnes",
-          "description":"This function is not available on iPad when using YouTube as video source"
+          "label": "Vis bokmerkemeny når interaktiv video åpnes",
+          "description": "This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label":"Unngå at brukere hopper over innhold i video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label": "Unngå at brukere hopper over innhold i video",
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deaktiver lyd",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Deaktiver lyd",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"Lokaliser",
-      "fields":[
+      "label": "Lokaliser",
+      "fields": [
         {
-          "label":"Interaksjonstittel",
-          "default":"Interaksjon"
+          "label": "Interaksjonstittel",
+          "default": "Interaksjon"
         },
         {
-          "label":"Spel av-tittel",
-          "default":"Spel av"
+          "label": "Spel av-tittel",
+          "default": "Spel av"
         },
         {
-          "label":"Pause-tittel",
-          "default":"Pause"
+          "label": "Pause-tittel",
+          "default": "Pause"
         },
         {
-          "label":"Lyd av-tittel",
-          "default":"Lyd av"
+          "label": "Lyd av-tittel",
+          "default": "Lyd av"
         },
         {
-          "label":"Lyd på-tittel",
-          "default":"Lyd på"
+          "label": "Lyd på-tittel",
+          "default": "Lyd på"
         },
         {
-          "label":"Videokvalitetstittel",
-          "default":"Videokvalitet"
+          "label": "Videokvalitetstittel",
+          "default": "Videokvalitet"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label": "Video captions title",
+          "default": "Captions"
         },
         {
-          "label":"Close button text",
-          "default":"Lukk"
+          "label": "Close button text",
+          "default": "Lukk"
         },
         {
-          "label":"Fullskjermstittel",
-          "default":"Fullskjerm"
+          "label": "Fullskjermstittel",
+          "default": "Fullskjerm"
         },
         {
-          "label":"Avslutt fullskjerm-tittel",
-          "default":"Avslutt fullskjerm"
+          "label": "Avslutt fullskjerm-tittel",
+          "default": "Avslutt fullskjerm"
         },
         {
-          "label":"Oppsummeringstittel",
-          "default":"Oppsummering"
+          "label": "Oppsummeringstittel",
+          "default": "Oppsummering"
         },
         {
-          "label":"Bokmerketittel",
-          "default":"Bokmerker"
+          "label": "Bokmerketittel",
+          "default": "Bokmerker"
         },
         {
           "label": "End screen title",
           "default": "End screen"
         },
         {
-          "label":"Standard merkelapp for adaptivitetssøkeknappen",
-          "default":"Continue"
+          "label": "Standard merkelapp for adaptivitetssøkeknappen",
+          "default": "Continue"
         },
         {
-          "label":"Default label for continue video button",
-          "default":"Continue with video"
+          "label": "Default label for continue video button",
+          "default": "Continue with video"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label": "Set playback rate",
+          "default": "Playback Rate"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
         },
         {
-          "label":"Navigasjon er ikke tillatt tekst",
-          "default":"Navigasjon er ikke tillatt"
+          "label": "Navigasjon er ikke tillatt tekst",
+          "default": "Navigasjon er ikke tillatt"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
         },
         {
-          "label":"Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
-          "default":"Du må svare korrekt på alle spørsmålene før du kan fortsette."
+          "label": "Advarsel om at brukeren må svare korrekt på spørsmålet for han kan fortsette",
+          "default": "Du må svare korrekt på alle spørsmålene før du kan fortsette."
         },
         {
-          "label":"Førre-knappen",
-          "default":"Tilbake"
+          "label": "Førre-knappen",
+          "default": "Tilbake"
         },
         {
-          "label":"Passert tid i timer",
-          "default":"Timer"
+          "label": "Passert tid i timer",
+          "default": "Timer"
         },
         {
-          "label":"Passert tid i minutter",
-          "default":"Minutter"
+          "label": "Passert tid i minutter",
+          "default": "Minutter"
         },
         {
-          "label":"Passert tid i sekunder",
-          "default":"Sekunder"
+          "label": "Passert tid i sekunder",
+          "default": "Sekunder"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label": "Label for current time",
+          "default": "Current time:"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label": "Label for total time",
+          "default": "Total time:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label": "Text for explaining navigation hotkey",
+          "default": "Use key k for starting and stopping video at any time"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "Interaction appeared:"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "Multiple interactions appeared."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label": "Video is paused announcement",
+          "default": "Video is paused"
         },
         {
           "label": "Content label",
           "default": "Content"
         },
         {
-          "label": "answered",
-          "default": "@answered answered!"
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Endcard title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Endcard information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Endcard information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Endcard submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Endcard submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Endcard table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Endcard table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Endcard answered score",
+          "default": "answered"
         }
       ]
     }
