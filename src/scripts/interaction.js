@@ -1174,7 +1174,8 @@ function Interaction(parameters, player, previousState) {
    */
   self.addDot = function () {
     if (library === 'H5P.Nil') {
-      return; // Skip "sub titles"
+      // Empty menuitem for title, but not undefined
+      return $('<div/>', {'class': seekbarClasses});
     }
 
     var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
@@ -1204,6 +1205,7 @@ function Interaction(parameters, player, previousState) {
         .attr('aria-disabled', 'true')
         .attr('tabindex', '-1');
     }
+    self.$menuitem = $menuitem;
 
     return $menuitem;
   };

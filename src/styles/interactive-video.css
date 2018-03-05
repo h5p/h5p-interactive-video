@@ -942,6 +942,11 @@
   border-color: #e98be9;
 }
 
+.h5p-interactive-video .h5p-seekbar-interaction.h5p-nil-interaction {
+  cursor: normal;
+  opacity: 0;
+}
+
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-ivhotspot-interaction:before,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-goto-timecode:before,
 .h5p-interactive-video .h5p-seekbar-interaction.h5p-image-interaction:before,

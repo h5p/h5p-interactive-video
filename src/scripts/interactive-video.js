@@ -257,8 +257,9 @@ function InteractiveVideo(params, id, contentData) {
         self.complete();
 
         // Open final endscreen if necessary
-        const answeredTotal = self.interactionsProgress
-          .filter(a => a === Interaction.PROGRESS_ANSWERED).length;
+        const answeredTotal = self.interactions
+          .map (interaction => interaction.getProgress() || 0)
+          .reduce((a, b) => a + b, 0);
         if (self.endscreensMap[self.getDuration()] && answeredTotal > 0) {
           self.toggleEndscreen(true);
         }
@@ -919,8 +920,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     var verb = event.getVerb();
 
     if (verb === 'interacted') {
-      const pos = self.interactions.sort((a, b) => a.getDuration().from - b.getDuration().from).indexOf(interaction);
-      self.interactionsProgress[pos] = Interaction.PROGRESS_INTERACTED;
       this.setProgress(Interaction.PROGRESS_INTERACTED);
     }
 
@@ -958,11 +957,10 @@ InteractiveVideo.prototype.initInteraction = function (index) {
 InteractiveVideo.prototype.handleAnswered = function () {
   const self = this;
   // By looping over all states we do not need to care which interaction was active previously
-  self.interactions.forEach((interaction, index) => {
+  self.interactions.forEach((interaction) => {
     if (interaction.getProgress() === Interaction.PROGRESS_INTERACTED) {
-      self.interactionsProgress[index] = Interaction.PROGRESS_ANSWERED;
       interaction.setProgress(Interaction.PROGRESS_ANSWERED);
-      self.menuitems[index].addClass('h5p-interaction-answered');
+      interaction.$menuitem.addClass('h5p-interaction-answered');
 
       if (self.hasStar) {
         self.playStarAnimation();
