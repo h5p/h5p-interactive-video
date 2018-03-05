@@ -360,8 +360,12 @@ function Interaction(parameters, player, previousState) {
    */
   var closeInteraction = function (seekTo) {
     var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
-    if ($interaction) {
+
+    if (instance) {
       instance.trigger('hide');
+    }
+
+    if ($interaction) {
       self.trigger('hide', $interaction);
     }
 
@@ -596,7 +600,9 @@ function Interaction(parameters, player, previousState) {
       }
 
       // Tell interactions we are not visible anymore
-      instance.trigger('hide');
+      if (instance) {
+        instance.trigger('hide');
+      }
     };
     // A dialog can be closed only once
     player.dnb.dialog.once('close', dialogCloseHandler);
@@ -1308,7 +1314,9 @@ function Interaction(parameters, player, previousState) {
 
     // Only recreate existing interactions
     if ($interaction) {
-      instance.trigger('hide');
+      if (instance) {
+        instance.trigger('hide');
+      }
       self.trigger('hide', $interaction);
       $interaction.detach();
       if (self.isStandaloneLabel()) {
@@ -1390,7 +1398,9 @@ function Interaction(parameters, player, previousState) {
         '$dom': $interaction,
         'key': 'videoProgressedPast'
       }, {'bubbles': true, 'external': true});
-      instance.trigger('hide');
+      if (instance) {
+        instance.trigger('hide');
+      }
       self.trigger('hide', $interaction);
       $interaction.detach();
       $interaction = undefined;
