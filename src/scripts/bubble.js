@@ -66,7 +66,6 @@ class Bubble {
     // Compute bubbleWidth (after changing the content)
     const bubbleWidth = (this.mode === 'full') ? this.$bubble.outerWidth() : Math.min(offset.outerWidth * 0.9, (this.maxWidth === 'auto') ? this.$bubble.outerWidth() : this.maxWidth);
     const bubblePosition = this.getBubblePosition(bubbleWidth, offset, this.mode);
-    const tailPosition = this.getTailPosition(this.$reference, bubblePosition);
 
     if (this.mode === 'centered') {
       // Set width and position of bubble, won't be handled by CSS
@@ -76,12 +75,20 @@ class Bubble {
       });
     }
 
-    const preparedTailCSS = {
-      bottom: `${tailPosition.bottom}px`,
-      left: (typeof tailPosition.left === 'string') ? tailPosition.left : `${tailPosition.left}px`
-    };
-    this.$tail.css(preparedTailCSS);
-    this.$innerTail.css(preparedTailCSS);
+    /*
+     * The DOM needs some time to keep up with the positining of the reference object (star in IV)
+     * Smoothened with CSS transition ease-out when resizing
+     */
+    setTimeout(() => {
+      const tailPosition = this.getTailPosition(this.$reference, bubblePosition, this.mode);
+      const preparedTailCSS = {
+        bottom: `${tailPosition.bottom}px`,
+        left: (typeof tailPosition.left === 'string') ? tailPosition.left : `${tailPosition.left}px`
+      };
+      this.$tail.css(preparedTailCSS);
+      this.$innerTail.css(preparedTailCSS);
+    }, 75);
+
   }
 
   /**
@@ -173,7 +180,8 @@ class Bubble {
    * @param {number} offset.innerWidth - InnerWidth offset.
    * @param {number} offset.innerHeight - InnerHeight offset.
    * @param {number} offset.outerWidth - OuterWidth offset.
-   * @param {number} offset.outerHeight- OuterHeight offset.
+   * @param {number} offset.outerHeight - OuterHeight offset.
+   * @param {string} mode - 'centered' for score bubble, 'full' for endscreen
    * @return {object} Position for the bubble.
    */
   getBubblePosition (bubbleWidth, offset, mode) {
@@ -197,11 +205,12 @@ class Bubble {
    * @param {number} bubblePosition.top - Top position.
    * @param {number} bubblePosition.bottom - Bottom position.
    * @param {number} bubblePosition.left - Left position.
+   * @param {string} mode - 'centered' for score bubble, 'full' for endscreen
    * @return {object} Position for the tail.
    */
-  getTailPosition ($reference, bubblePosition) {
+  getTailPosition ($reference, bubblePosition, mode) {
     // Magic numbers. Tuned by hand so that the tail fits visually within the bounds of the bubble.
-    let left = $reference.offset().left - bubblePosition.left + 6;
+    const left = (mode === 'full') ? $reference.offset().left - 4 : $reference.offset().left - bubblePosition.left + 6;
 
     return {
       left: left,

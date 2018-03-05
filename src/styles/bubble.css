@@ -121,6 +121,7 @@
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
   z-index: -1;
+  transition: left ease-out 0.25s;
 }
 .h5p-interactive-video-bubble-endscreen-tail {
   /* box-shadow: 0 0 0.5em #2c2c2c; */

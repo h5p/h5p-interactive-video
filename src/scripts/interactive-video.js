@@ -371,12 +371,12 @@ function InteractiveVideo(params, id, contentData) {
     self.controls.$fullscreen.focus();
 
     self.resizeInteractions();
-    // Give the DOM some time to reposition everything
+    // Give the DOM some time for repositioning, takes longer for fullscreen on mobile
     setTimeout(() => {
       if (this.bubbleEndscreen !== undefined) {
         this.bubbleEndscreen.update();
       }
-    }, 300);
+    }, 225);
   });
 
   // Handle exiting fullscreen

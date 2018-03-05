@@ -209,7 +209,7 @@ class Endscreen extends H5P.EventDispatcher {
     this.answered.forEach(interaction => {
       const time = interaction.getDuration().from;
       const title = this.getDescription(interaction);
-      const score = (interaction.getInstance().getScore && interaction.getInstance().getMaxScore) ? interaction.getInstance().getScore() + ' / ' + interaction.getInstance().getMaxScore() : this.l10n.answeredScore;
+      const score = (interaction.getInstance().getScore && interaction.getInstance().getScore() !== null && interaction.getInstance().getMaxScore) ? interaction.getInstance().getScore() + ' / ' + interaction.getInstance().getMaxScore() : this.l10n.answeredScore;
       this.$endscreenBottomTable.append(this.buildTableRow(time, title, score));
     });
 
