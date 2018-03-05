@@ -1417,14 +1417,13 @@ function Interaction(parameters, player, previousState) {
       action.params = action.params || {};
 
       instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
-      if (self.maxScore == undefined && instance.getMaxScore) {
+      if (self.maxScore === undefined && instance.getMaxScore) {
         self.maxScore = instance.getMaxScore();
       }
 
       // Getting initial score from instance (if it has previous state)
       if (action.userDatas && hasScoreData(instance)) {
         self.score = instance.getScore();
-        self.maxScore = instance.getMaxScore();
       }
 
       // Set adaptivity if question is finished on attach
