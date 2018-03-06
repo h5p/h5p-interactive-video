@@ -940,10 +940,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
       event.data.statement.context.extensions = {};
     }
     event.data.statement.context.extensions['http://id.tincanapi.com/extension/ending-point'] = 'PT' + Math.floor(self.video.getCurrentTime()) + 'S';
-
-    self.endscreen.trigger('interceptXAPI', {
-      'statement': event.data.statement
-    });
   });
 
   self.interactions.push(interaction);

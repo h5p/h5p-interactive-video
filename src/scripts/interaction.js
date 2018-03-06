@@ -143,6 +143,9 @@ function Interaction(parameters, player, previousState) {
   // Keep track of the interaction's progress
   var progress;
 
+  // Store last xAPI statement verb that was triggered
+  var lastXAPIVerb;
+
   // Keep track of DragNBarElement and related dialog/form
   var dnbElement;
 
@@ -1448,6 +1451,9 @@ function Interaction(parameters, player, previousState) {
             adaptivity();
           }
 
+          // Keep track of last xAPI verb that was sent
+          self.setLastXAPIVerb(event.getVerb());
+
           self.trigger(event);
         });
 
@@ -1555,6 +1561,24 @@ function Interaction(parameters, player, previousState) {
    */
   self.getProgress = function () {
     return this.progress;
+  };
+
+  /**
+   * Set last xAPI verb that was triggered.
+   *
+   * @param {boolean} True if last xAPI statement was 'answered' or 'completed'.
+   */
+  self.setLastXAPIVerb = function (verb) {
+    lastXAPIVerb = verb;
+  };
+
+  /**
+   * Get last xAPI verb that was triggered.
+   *
+   * @return {boolean} True if last xAPI statement was 'answered' or 'completed'.
+   */
+  self.getLastXAPIVerb = function () {
+    return lastXAPIVerb;
   };
 
   /**

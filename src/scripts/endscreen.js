@@ -38,19 +38,6 @@ class Endscreen extends H5P.EventDispatcher {
       answeredScore: 'answered'
     }, params.l10n);
 
-    // Keep track of the last xAPI statement of each interaction
-    this.xAPILog = {};
-
-    // We are listening for all events here
-    this.on('interceptXAPI', event => {
-      if (event.data.statement.object) {
-        const subContentID = /[\?|\&]subContentId=([a-f0-9\-]+)/g.exec(event.data.statement.object.id);
-        if (subContentID !== null) {
-          this.xAPILog[subContentID[1]] = event.data.statement;
-        }
-      }
-    });
-
     this.buildDOM();
   }
 
@@ -118,7 +105,7 @@ class Endscreen extends H5P.EventDispatcher {
    * Handle click on the submit button.
    *
    * Will fire an 'answered' xAPI statement for all interactions that have
-   * been interacted with but have not yet sent 'answered'. Will send
+   * been interacted with but have not yet sent 'answered' or completed. Will send
    * a 'completed' xAPI statement for parent (IV) each time.
    */
   handleSubmit () {
@@ -129,23 +116,19 @@ class Endscreen extends H5P.EventDispatcher {
     this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-introduction-text-submitted">${this.l10n.submitMessage}</div>`);
 
     this.answered.forEach(interaction => {
-      const id = interaction.getSubcontentId();
       /*
        * We only need to fire an xAPI answered statement if the user
        * interacted with the content and the content has not sent it so far
        * itself.
        */
-      let statement = this.xAPILog[id];
-      if (statement === undefined || !statement.verb.id.endsWith('/answered')) {
-        // This should always be true if the contract is really implemented.
-        if (typeof interaction.getInstance().getXAPIData === 'function') {
-          const xAPIEvent = new H5P.XAPIEvent();
-          xAPIEvent.data.statement = interaction.getInstance().getXAPIData().statement;
-          this.trigger(xAPIEvent);
-        }
+      if (interaction.getLastXAPIVerb() !== 'completed' && interaction.getLastXAPIVerb() !== 'answered') {
+        const xAPIEvent = new H5P.XAPIEvent();
+        xAPIEvent.data.statement = interaction.getXAPIData().statement;
+        interaction.setLastXAPIVerb(xAPIEvent.getVerb());
+
+        this.trigger(xAPIEvent);
       }
     });
-
     /*
      * Override the "completeSent" variable of the parent here, because new
      * submissions basically mean a new attempt of the parent (IV).
