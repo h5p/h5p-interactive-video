@@ -423,7 +423,6 @@ function InteractiveVideo(params, id, contentData) {
       this.initInteraction(i);
     }
   }
-
   self.accessibility = new Accessibility(self.l10n);
 }
 
@@ -493,6 +492,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
     progress: self.video.getCurrentTime(),
     answers: [],
     interactionsProgress: self.interactions
+      .slice()
       .sort((a, b) => a.getDuration().from - b.getDuration().from)
       .map(interaction => interaction.getProgress())
   };
