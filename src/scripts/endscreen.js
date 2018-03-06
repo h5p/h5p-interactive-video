@@ -139,8 +139,8 @@ class Endscreen extends H5P.EventDispatcher {
       if (statement === undefined || !statement.verb.id.endsWith('/answered')) {
         // This should always be true if the contract is really implemented.
         if (typeof interaction.getInstance().getXAPIData === 'function') {
-          statement = interaction.getInstance().getXAPIData().statement;
-          const xAPIEvent = new H5P.Event('xAPI', {'statement': statement}, {bubbles: true, external: true});
+          const xAPIEvent = new H5P.XAPIEvent();
+          xAPIEvent.data.statement = interaction.getInstance().getXAPIData().statement;
           this.trigger(xAPIEvent);
         }
       }
