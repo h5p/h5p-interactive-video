@@ -343,7 +343,7 @@ function InteractiveVideo(params, id, contentData) {
 
   self.video.on('qualityChange', function (event) {
     var quality = event.data;
-    if (self.controls.$qualityChooser) {
+    if (self.controls && self.controls.$qualityChooser) {
       // Update quality selector
       self.controls.$qualityChooser.find('li').attr('aria-checked', 'false').filter('[data-quality="' + quality + '"]').attr('aria-checked', 'true');
     }
