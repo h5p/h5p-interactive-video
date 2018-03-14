@@ -995,7 +995,7 @@ InteractiveVideo.prototype.hasMainSummary = function () {
     summary.task.params === undefined ||
     summary.task.params.summaries === undefined ||
     !summary.task.params.summaries.length ||
-    summary.task.params.summaries[0].summary === undefined ||
+    summary.task.params.summaries[0].summary !== undefined ||
     !summary.task.params.summaries[0].summary.length);
 };
 
