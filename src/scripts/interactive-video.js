@@ -116,7 +116,7 @@ function InteractiveVideo(params, id, contentData) {
     exitFullscreen: 'Exit fullscreen',
     summary: 'Summary',
     bookmarks: 'Bookmarks',
-    endscreens: 'End Screens',
+    endscreens: 'Submit Screens',
     defaultAdaptivitySeekLabel: 'Continue',
     continueWithVideo: 'Continue with video',
     more: 'More',
