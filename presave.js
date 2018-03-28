@@ -3,9 +3,9 @@ var H5PEditor = H5PEditor || {};
 
 
 /**
- * Function to go thr all elements of a Course Presentation and perform the separate calculations before returning a aggregated result
+ * Function to go through all elements of a Course Presentation and perform the separate calculations before returning a aggregated result
  *
- * @param content
+ * @param {object} content
  * @param finished
  * @constructor
  */
@@ -42,6 +42,10 @@ H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
     finished({maxScore: score});
   }
 
+  /**
+   * Check if required parameters is present
+   * @return {boolean}
+   */
   function isContentInValid(content) {
     return !presave.checkNestedRequirements(content, 'content.interactiveVideo.assets.interactions') || !Array.isArray(content.interactiveVideo.assets.interactions);
   }
