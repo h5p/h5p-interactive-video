@@ -28,10 +28,6 @@
                 {
                   "label": "Esittelykuva",
                   "description": "Kuva näytetään videokuvan sijaan aloitusnäkymänä, josta videon voi käynnistää."
-                },
-                {
-                  "label": "Videon tekijänoikeustiedot",
-                  "description": "Tekijänoikeustiedot videosta ja sen sisällöstä."
                 }
               ]
             },

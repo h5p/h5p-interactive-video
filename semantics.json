@@ -62,22 +62,6 @@
                 "importance": "low",
                 "optional": true,
                 "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-              },
-              {
-                "name": "copyright",
-                "type": "text",
-                "widget": "html",
-                "enterMode": "p",
-                "label": "Video copyright information",
-                "importance": "low",
-                "optional": true,
-                "description": "Information regarding copyright of the video and elements used in the video.",
-                "tags": [
-                  "strong",
-                  "em",
-                  "del",
-                  "a"
-                ]
               }
             ]
           },

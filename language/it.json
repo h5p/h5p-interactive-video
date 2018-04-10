@@ -28,10 +28,6 @@
                 {
                   "label": "Immagine del poster",
                   "description": "Immagine visualizzata prima che l'utente avvii il video. Non funziona per i video di YouTube."
-                },
-                {
-                  "label": "Informazioni sul diritto d'autore",
-                  "description": "Informazioni riguardanti il diritto d'autore del video e gli elementi usati nel video."
                 }
               ]
             },

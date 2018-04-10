@@ -49,6 +49,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Keep track of content ID
   self.contentId = id;
+  self.contentData = contentData;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Create dynamic ids
@@ -3206,7 +3207,7 @@ InteractiveVideo.prototype.showSolutions = function () {
  * @returns {string}
  */
 InteractiveVideo.prototype.getTitle = function () {
-  return H5P.createTitle(this.options.video.startScreenOptions.title);
+  return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title : 'Interactive Video');
 };
 
 /**

@@ -28,10 +28,6 @@
                 {
                   "label": "الملصق",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
-                  "label": "معلومات حقوق النشر فيديو",
-                  "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
                 }
               ]
             },

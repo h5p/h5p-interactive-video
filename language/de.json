@@ -28,10 +28,6 @@
                 {
                   "label": "Posterbild",
                   "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
-                },
-                {
-                  "label": "Video-Urheberrechtsinformationen",
-                  "description": "Urheberrechtliche Informationen zum Video und zu den Elementen, die im Video verwendet werden."
                 }
               ]
             },
