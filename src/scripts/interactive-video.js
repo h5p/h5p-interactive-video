@@ -1353,7 +1353,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     }, function () {
       self.bookmarkTimeout = setTimeout(function () {
         $bookmark.removeClass('h5p-show');
-      }, 2000);
+      }, (self.editor) ? 1000 : 2000);
     });
 
   // Set max size of label to the size of the controls to the right.
@@ -1448,7 +1448,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
     }, function () {
       self.endscreenTimeout = setTimeout(function () {
         $endscreenMarker.removeClass('h5p-show');
-      }, 2000);
+      }, (self.editor) ? 1000 : 2000);
     });
 
   // Set max size of label to the size of the controls to the right.
