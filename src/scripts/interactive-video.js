@@ -1682,14 +1682,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   if (self.hasStar) {
-    self.controls.$endscreensButton = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
-      if (self.editor) {
-        self.toggleEndscreensChooser();
-      }
-      else  {
-        self.toggleEndscreen();
-      }
-    });
+    var starClass = (self.editor) ? 'star h5p-star-foreground-editor' : 'star h5p-star-foreground';
+    var starClick = (self.editor) ? function() {self.toggleEndscreensChooser();} : function() {self.toggleEndscreen();};
+
+    self.controls.$endscreensButton = self.createButton(starClass, 'h5p-control', self.$star, starClick);
     self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
   }
 

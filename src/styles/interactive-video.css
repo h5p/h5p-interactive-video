@@ -1822,11 +1822,18 @@
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground:hover {
   background: url('../gui/score_h5p_white.svg') center/11px no-repeat;
 }
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground-editor {
+  background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
+  position: absolute;
+}
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground-editor:hover {
+  background: url('../gui/score_h5p_light_green.svg') center/11px no-repeat;
+}
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active-editor {
-  background: url('../gui/score_h5p_light_grey.svg') center/11px no-repeat;
+  background: url('../gui/score_h5p_light_green.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
