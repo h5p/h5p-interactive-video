@@ -1851,6 +1851,9 @@
   transition: 0s;
 }
 .h5p-interactive-video .h5p-control .h5p-interactive-video-tooltip {
+  font-size: 16px;
+  padding: 0 0.5em;
+  line-height: 2em;
   visibility: hidden;
   position: absolute;
   bottom: 36px;
