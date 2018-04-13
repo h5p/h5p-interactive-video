@@ -658,7 +658,6 @@
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks,
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens {
   z-index: 1;
-  width: 200px;
   left: -34px;
   bottom: 36px;
   overflow-y: hidden;
@@ -709,7 +708,6 @@
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show,
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens.h5p-show {
-  width: 200px;
   left: -10px;
   overflow-y: auto;
   opacity: 1;
