@@ -71,6 +71,9 @@ function InteractiveVideo(params, id, contentData) {
   }, params.interactiveVideo);
   self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
 
+  // Video quality options that may become available
+  self.qualities = undefined;
+
   // Add default title
   if (!self.options.video.startScreenOptions.title) {
     self.options.video.startScreenOptions.title = 'Interactive Video';
@@ -345,6 +348,14 @@ function InteractiveVideo(params, id, contentData) {
   self.video.on('qualityChange', function (event) {
     var quality = event.data;
     if (self.controls && self.controls.$qualityChooser) {
+      if (this.getHandlerName() === 'YouTube') {
+        if (!self.qualities) {
+          return;
+        }
+        var qualities = self.qualities.filter(q => q.name === event.data)[0];
+        self.controls.$qualityChooser.find('li').attr('data-quality', event.data).html(qualities.label);
+        return;
+      }
       // Update quality selector
       self.controls.$qualityChooser.find('li').attr('aria-checked', 'false').filter('[data-quality="' + quality + '"]').attr('aria-checked', 'true');
     }
@@ -2357,12 +2368,18 @@ InteractiveVideo.prototype.addQualityChooser = function () {
     return;
   }
 
-  var qualities = this.video.getQualities();
-  if (!qualities || this.controls.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
+  self.qualities = this.video.getQualities();
+  if (!self.qualities || this.controls.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
     return;
   }
 
   var currentQuality = this.video.getQuality();
+
+  var qualities = self.qualities;
+  // Since YouTube doesn't allow to change the quality rate, limit the options to the current one
+  if (this.video.getHandlerName() === 'YouTube') {
+    qualities = qualities.filter(q => q.name === currentQuality);
+  }
 
   var html = '';
   for (var i = 0; i < qualities.length; i++) {
