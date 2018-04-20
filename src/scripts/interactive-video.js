@@ -1079,7 +1079,9 @@ InteractiveVideo.prototype.addEndscreenMarkers = function () {
   }
   // We add a default endscreen that can be deleted later and won't be replaced
   if (this.editor && !!this.editor.freshVideo) {
-    this.editor.addEndscreen(this.getDuration(), true);
+    if (!this.endscreensMap[this.getDuration()]) {
+      this.editor.addEndscreen(this.getDuration(), true);
+    }
   }
 };
 
