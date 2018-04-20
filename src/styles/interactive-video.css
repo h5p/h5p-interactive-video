@@ -548,6 +548,9 @@
 .h5p-interactive-video .h5p-rewind10:before {
   content: "\f1da"; /* fa-history */
 }
+.h5p-interactive-video .h5p-control.h5p-bookmarks {
+  position: relative;
+}
 .h5p-interactive-video .h5p-control.h5p-bookmarks:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-bookmarks:before {
   content: "\f02e";
@@ -635,7 +638,7 @@
   max-width: 300px;
   line-height: 21px;
   background: #2c2c2c;
-  background: rgba(44,44,44,0.8);
+  background: rgba(44,44,44,.9);
   color: #fbfbfb;
   opacity: 0;
   visibility: hidden;
@@ -655,7 +658,6 @@
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks,
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens {
   z-index: 1;
-  width: 200px;
   left: -34px;
   bottom: 36px;
   overflow-y: hidden;
@@ -706,7 +708,6 @@
 }
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show,
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens.h5p-show {
-  width: 200px;
   left: -10px;
   overflow-y: auto;
   opacity: 1;
@@ -1819,11 +1820,18 @@
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground:hover {
   background: url('../gui/score_h5p_white.svg') center/11px no-repeat;
 }
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground-editor {
+  background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
+  position: absolute;
+}
+.h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground-editor:hover {
+  background: url('../gui/score_h5p_light_green.svg') center/11px no-repeat;
+}
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-foreground.h5p-star-active-editor {
-  background: url('../gui/score_h5p_light_grey.svg') center/11px no-repeat;
+  background: url('../gui/score_h5p_light_green.svg') center/11px no-repeat;
 }
 .h5p-interactive-video .h5p-control.h5p-star.h5p-star-animation {
   background: url('../gui/score_h5p_green.svg') center/11px no-repeat;
@@ -1846,4 +1854,22 @@
   -ms-transition: 0s;
   -o-transition: 0s;
   transition: 0s;
+}
+.h5p-interactive-video .h5p-control .h5p-interactive-video-tooltip {
+  font-size: 16px;
+  padding: 0 0.5em;
+  line-height: 2em;
+  visibility: hidden;
+  position: absolute;
+  bottom: 36px;
+  z-index: 2;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  content: attr(data-label);
+  white-space: pre;
+}
+.h5p-interactive-video .h5p-control:not(.h5p-no-tooltip):hover > .h5p-interactive-video-tooltip {
+  visibility: visible;
 }

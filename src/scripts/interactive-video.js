@@ -59,7 +59,8 @@ function InteractiveVideo(params, id, contentData) {
   self.playbackRateMenuId = 'interactive-video-' + this.contentId + '-playback-rate-chooser';
 
   // IDs of popup menus that could need closing
-  self.popupMenuButtons = ['$bookmarksButton', '$qualityButton', '$playbackRateButton', '$endscreensButton'];
+  self.popupMenuButtons = [];
+  self.popupMenuChoosers = [];
 
   self.isMinimal = false;
 
@@ -287,10 +288,10 @@ function InteractiveVideo(params, id, contentData) {
           self.startUpdatingBufferBar();
 
           // Remove bookmarkchooser
-          self.toggleBookmarksChooser(false, firstPlay);
+          self.toggleBookmarksChooser(false, {firstPlay: firstPlay});
 
           // Remove endscreenChooser
-          self.toggleEndscreensChooser(false, firstPlay);
+          self.toggleEndscreensChooser(false, {firstPlay: firstPlay});
 
           firstPlay = false;
         }
@@ -456,6 +457,16 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
 
   // Create new track selector
   self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n, self.contentId);
+
+  // Insert popup and button
+  self.controls.$captionsButton = $(self.captionsTrackSelector.control);
+  self.popupMenuButtons.push(self.controls.$captionsButton);
+  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
+  self.popupMenuChoosers.push($(self.captionsTrackSelector.popup));
+  $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
+  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
+
   self.captionsTrackSelector.on('select', function (event) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
@@ -463,16 +474,12 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
+    self.resumeVideo();
   });
   self.captionsTrackSelector.on('open', function () {
     self.controls.$overlayButtons.addClass('h5p-hide');
+    self.closePopupMenus(self.controls.$captionsButton);
   });
-
-  // Insert popup and button
-  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
-  $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
-  $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
-  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
 
   self.minimalMenuKeyboardControls.insertElementAt(self.captionsTrackSelector.overlayControl, 2);
 };
@@ -1034,12 +1041,11 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
 /**
  * Close popup menus that are open.
  *
- * @param {string} exceptButton - Identifier of button handling popup menus that should remain open.
+ * @param {string} [$exceptButton] - Identifier of button handling popup menus that should remain open.
  */
-InteractiveVideo.prototype.closePopupMenus = function (exceptButton) {
-  this.popupMenuButtons.forEach(button => {
-    const $button = this.controls[button];
-    if ($button === undefined || button === exceptButton) {
+InteractiveVideo.prototype.closePopupMenus = function ($exceptButton) {
+  this.popupMenuButtons.forEach($button => {
+    if ($button === undefined || $button === $exceptButton) {
       return;
     }
 
@@ -1113,26 +1119,20 @@ InteractiveVideo.prototype.addBubbles = function () {
 };
 
 /**
- * Toggle bookmarks menu
+ * Toggle bookmarks menu.
+ * Function could be refactored together with all the other popups -- when more time
  *
  * @method toggleBookmarksChooser
- * @param {boolean} [show] Forces toggle state if set
- * @param {boolean} [firstPlay] If first time
+ * @param {boolean} [show] Forces toggle state if set.
+ * @param {object} [params] Extra parameters.
+ * @param {boolean} [params.keepStopped] If true, will not resume a stopped video.
+ * @param {boolean} [params.firstPlay] If first time.
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = false) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {keepStopped: false, firstPlay: false}) {
   if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
-    if(show) {
-      // Close other popups
-      this.closePopupMenus('$bookmarksButton');
-
-      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
-    }
-    else if (!firstPlay) {
-      this.controls.$bookmarksButton.focus();
-    }
     this.controls.$minimalOverlay.toggleClass('h5p-show', show);
     this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
     this.controls.$bookmarksButton.attr('aria-expanded', show ? 'true' : false);
@@ -1142,28 +1142,43 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, firstPlay = 
       .toggleClass('h5p-show', show)
       .toggleClass('h5p-transitioning', show || hiding);
   }
+
+  if (show) {
+    // Close other popups
+    this.closePopupMenus(this.controls.$bookmarksButton);
+    this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+
+    if (this.editor) {
+      this.interruptVideo();
+      this.updateChooserTime(this.controls.$bookmarksChooser, '.h5p-add-bookmark');
+    }
+  }
+  else if (!params.firstPlay) {
+    // Play (resume) if it was stopped by a popop and no other stopper popups are open
+    if (this.editor && !params.keepStopped) {
+      this.resumeVideo();
+    }
+    // Used to distinguish a button click from a direct call
+    if (!this.controls.$bookmarksChooser.hasClass('h5p-show')) {
+      this.controls.$bookmarksButton.focus();
+    }
+  }
 };
 
 /**
  * Toggle endscreensChooser menu
  *
  * @method toggleEndscreensChooser
- * @param {boolean} [show] Forces toggle state if set
- * @param {boolean} [firstPlay] If first time
+ * @param {boolean} [show] Forces toggle state if set.
+ * @param {object} [params] Extra parameters.
+ * @param {boolean} [params.keepStopped] If true, will not resume a stopped video.
+ * @param {boolean} [params.firstPlay] If first time.
  */
-InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay = false) {
+InteractiveVideo.prototype.toggleEndscreensChooser = function (show, params = {keepStopped: false, firstPlay: false}) {
+  const that = this;
   if (this.editor && this.controls.$endscreensButton) {
     show = (show === undefined ? !this.controls.$endscreensChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$endscreensChooser.hasClass('h5p-show');
-
-    if(show) {
-      // Close other popups
-      this.closePopupMenus('$endscreensButton');
-      this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
-    }
-    else if (!firstPlay) {
-      this.controls.$endscreensButton.focus();
-    }
 
     this.controls.$minimalOverlay.toggleClass('h5p-show', show);
     this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
@@ -1171,11 +1186,79 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, firstPlay =
       .attr('aria-expanded', show ? 'true' : 'false')
       .toggleClass('h5p-star-active-editor', show);
     this.controls.$more.attr('aria-expanded', show ? 'true' : 'false');
+
+    // -10px from stylesheet offset + offset if chooser goes beyond right border; will align to the right if too big
+    const offset = -10 + Math.min(0, this.$container.outerWidth() - this.controls.$endscreensChooser.parent().offset().left - this.controls.$endscreensChooser.outerWidth()) + 'px';
     this.controls.$endscreensChooser
       .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
+      .css({left: offset})
       .toggleClass('h5p-show', show)
       .toggleClass('h5p-transitioning', show || hiding);
   }
+
+  if (show) {
+    // Close other popups
+    this.closePopupMenus(this.controls.$endscreensButton);
+
+    if (this.editor) {
+      this.interruptVideo();
+      this.updateChooserTime(this.controls.$endscreensChooser, '.h5p-add-endscreen');
+    }
+
+    this.controls.$endscreensChooser.find('[tabindex="0"]').first().focus();
+  }
+  else if (!params.firstPlay) {
+    if (this.editor && !params.keepStopped) {
+      this.resumeVideo();
+    }
+    // Used to distinguish a button click from a direct call
+    if (!this.controls.$endscreensChooser.hasClass('h5p-show')) {
+      this.controls.$endscreensButton.focus();
+    }
+  }
+};
+
+/**
+ * Update the timecode in a chooser menu
+ *
+ * @param {jQuery} $chooser - Chooser menu.
+ * @param {string} selector - Class of item that holds the timecode.
+ */
+InteractiveVideo.prototype.updateChooserTime = function ($chooser, selector) {
+  const $addElement = $chooser.find(selector);
+  $addElement.html($addElement.data('default').replace('@timecode', this.humanizeTime(this.video.getCurrentTime())));
+};
+
+/**
+ * Will interrupt the video and remember that is was interrupted for resuming later.
+ */
+InteractiveVideo.prototype.interruptVideo = function () {
+  if (this.currentState === H5P.Video.PLAYING) {
+    this.interruptedTemporarily = true;
+    this.video.pause();
+  }
+};
+
+/**
+ * Will resume a video that was interrupted.
+ *
+ * @param {boolean} override - If true, will override restrictions for resuming.
+ */
+InteractiveVideo.prototype.resumeVideo = function (override) {
+  if (!override) {
+    // Done if not interrupted
+    if (!this.interruptedTemporarily) {
+      return;
+    }
+
+    // Keep interrupted if still popups open
+    if (this.popupMenuChoosers.some($chooser => $chooser.hasClass('h5p-show'))) {
+      return;
+    }
+  }
+
+  this.interruptedTemporarily = false;
+  this.video.play();
 };
 
 /**
@@ -1353,7 +1436,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
     }, function () {
       self.bookmarkTimeout = setTimeout(function () {
         $bookmark.removeClass('h5p-show');
-      }, 2000);
+      }, (self.editor) ? 1000 : 2000);
     });
 
   // Set max size of label to the size of the controls to the right.
@@ -1448,8 +1531,15 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
     }, function () {
       self.endscreenTimeout = setTimeout(function () {
         $endscreenMarker.removeClass('h5p-show');
-      }, 2000);
+      }, (self.editor) ? 1000 : 2000);
     });
+
+  // In editor, mouse doesn't necessarily hover
+  if (self.editor) {
+    self.endscreenTimeout = setTimeout(function () {
+      $endscreenMarker.removeClass('h5p-show');
+    }, 1000);
+  }
 
   // Set max size of label to the size of the controls to the right.
   $endscreenMarker.find('.h5p-endscreen-label').css('maxWidth', parseInt(self.controls.$slider.parent().css('marginRight')) - 35);
@@ -1545,6 +1635,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       }
       self.video.play();
       self.toggleEndscreen(false);
+      self.closePopupMenus();
     }
     else {
       self.video.pause();
@@ -1608,10 +1699,15 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       if (isExpanded) {
         // Closing
         $button.attr('aria-expanded', 'false');
+        // Used to distinguish click from closePopupMenus
+        if (!$menu.hasClass('h5p-show')) {
+          $button.focus();
+        }
         $menu.removeClass('h5p-show');
-        $button.focus();
 
         closeMoreMenuIfExpanded();
+
+        self.resumeVideo();
       }
       else {
         // Opening
@@ -1620,7 +1716,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         $menu.find('[tabindex="0"]').focus();
 
         // Close all open popup menus (except this one)
-        self.closePopupMenus(button);
+        self.closePopupMenus($button);
       }
     };
   };
@@ -1649,6 +1745,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'dialog',
       html: `<h3 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h3>`,
     });
+    self.popupMenuChoosers.push(self.controls.$bookmarksChooser);
 
     // Adding close button to bookmarks-menu
     self.controls.$bookmarksChooser.append($('<span>', {
@@ -1679,18 +1776,16 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$bookmarksChooser.bind('transitionend', function () {
       self.controls.$bookmarksChooser.removeClass('h5p-transitioning');
     });
+    self.popupMenuButtons.push(self.controls.$bookmarksButton);
   }
 
   if (self.hasStar) {
-    self.controls.$endscreensButton = self.createButton('star h5p-star-foreground', 'h5p-control', self.$star, function() {
-      if (self.editor) {
-        self.toggleEndscreensChooser();
-      }
-      else  {
-        self.toggleEndscreen();
-      }
-    });
+    const starClass = (self.editor) ? 'star h5p-star-foreground-editor' : 'star h5p-star-foreground';
+    const starClick = (self.editor) ? (() => self.toggleEndscreensChooser()) : (() => self.toggleEndscreen());
+
+    self.controls.$endscreensButton = self.createButton(starClass, 'h5p-control', self.$star, starClick);
     self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
+    self.popupMenuButtons.push(self.controls.$endscreensButton);
   }
 
   // Add endscreen controls
@@ -1701,6 +1796,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'dialog',
       html: `<h3 id="${self.endscreensMenuId}">${self.l10n.endscreens}</h3>`,
     });
+    self.popupMenuChoosers.push(self.controls.$endscreensChooser);
 
     // Adding close button to endscreens-menu
     self.controls.$endscreensChooser.append($('<span>', {
@@ -1766,14 +1862,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$minimalOverlay.removeClass('h5p-show');
     self.controls.$more.attr('aria-expanded', 'false');
     self.controls.$more.focus();
-    self.toggleBookmarksChooser(false);
-    self.toggleEndscreensChooser(false);
-    if (self.controls.$qualityButton && self.controls.$qualityButton.attr('aria-expanded') === 'true') {
-      self.controls.$qualityButton.click();
-    }
-    if (self.controls.$playbackRateButton && self.controls.$playbackRateButton.attr('aria-expanded') === 'true') {
-      self.controls.$playbackRateButton.click();
-    }
+
     setTimeout(function () {
       self.controls.$overlayButtons.removeClass('h5p-hide');
     }, 150);
@@ -1798,14 +1887,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       }, 150);
     }
 
-    // Make sure sub menus are closed
-    if (bookmarksEnabled) {
-      self.controls.$bookmarksChooser.add(self.controls.$qualityChooser).removeClass('h5p-show');
-    }
-    else {
-      self.controls.$qualityChooser.removeClass('h5p-show');
-      self.controls.$playbackRateChooser.removeClass('h5p-show');
-    }
+    self.closePopupMenus();
   });
 
   // Add popup for selecting playback rate
@@ -1814,6 +1896,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'dialog',
     html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
   });
+  self.popupMenuChoosers.push(self.controls.$playbackRateChooser);
 
   const closePlaybackRateMenu = () => {
     if (self.isMinimal) {
@@ -1822,6 +1905,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     else {
       self.controls.$playbackRateButton.click();
     }
+    self.resumeVideo();
   };
 
   // Adding close button to playback rate-menu
@@ -1841,6 +1925,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Button for opening video playback rate selection dialog
   self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+  self.popupMenuButtons.push(self.controls.$playbackRateButton);
   self.setDisabled(self.controls.$playbackRateButton);
   self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
   self.controls.$playbackRateButton.attr('aria-expanded', 'false');
@@ -1893,6 +1978,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'dialog',
     html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
   });
+  self.popupMenuChoosers.push(self.controls.$qualityChooser);
 
   const closeQualityMenu = () => {
     if (self.isMinimal) {
@@ -1901,6 +1987,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     else {
       self.controls.$qualityButton.click();
     }
+    self.resumeVideo();
   };
 
   // Adding close button to quality-menu
@@ -1920,6 +2007,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Button for opening video quality selection dialog
   self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
+  self.popupMenuButtons.push(self.controls.$qualityButton);
   self.setDisabled(self.controls.$qualityButton);
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
@@ -2150,6 +2238,11 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
       // Done catching mouse events
       self.$overlay.removeClass('h5p-visible');
+
+      if (self.editor) {
+        self.updateChooserTime(self.controls.$bookmarksChooser, '.h5p-add-bookmark');
+        self.updateChooserTime(self.controls.$endscreensChooser, '.h5p-add-endscreen');
+      }
     }
   });
 
@@ -2852,7 +2945,6 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   self.controls.$currentTimeSimple.html(humanTime);
   self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
-
 };
 
 /**
