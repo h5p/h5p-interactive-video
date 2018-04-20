@@ -758,7 +758,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.attachControls(this.$controls.removeClass('hidden'));
 
   const duration = this.getDuration();
-  const humanTime = this.humanizeTime(duration);
+  const humanTime = InteractiveVideo.humanizeTime(duration);
   const a11yTime = InteractiveVideo.formatTimeForA11y(duration, self.l10n);
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
@@ -1228,7 +1228,7 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, params = {k
  */
 InteractiveVideo.prototype.updateChooserTime = function ($chooser, selector) {
   const $addElement = $chooser.find(selector);
-  $addElement.html($addElement.data('default').replace('@timecode', this.humanizeTime(this.video.getCurrentTime())));
+  $addElement.html($addElement.data('default').replace('@timecode', InteractiveVideo.humanizeTime(this.video.getCurrentTime())));
 };
 
 /**
@@ -2939,7 +2939,7 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   seconds = Math.max(seconds, 0);
 
-  const humanTime = this.humanizeTime(seconds);
+  const humanTime = InteractiveVideo.humanizeTime(seconds);
   const a11yTime = InteractiveVideo.formatTimeForA11y(seconds, self.l10n);
 
   self.controls.$currentTime.html(humanTime);
@@ -3449,7 +3449,7 @@ InteractiveVideo.ATTACHED = 6;
  * @param {number} seconds
  * @returns {string}
  */
-InteractiveVideo.prototype.humanizeTime = function (seconds) {
+InteractiveVideo.humanizeTime = function (seconds) {
   const time = InteractiveVideo.secondsToMinutesAndHours(seconds);
   let result = '';
 
