@@ -195,7 +195,7 @@
                         "label": "網址",
                         "fields": [
                           {
-                            "label": "協議",
+                            "label": "通訊協定",
                             "options": [
                               {
                                 "label": "http://"
@@ -204,7 +204,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "頁面相對位置"
+                                "label": "相對位址"
                               },
                               {
                                 "label": "其它"
@@ -212,7 +212,7 @@
                             ]
                           },
                           {
-                            "label": "網路位置"
+                            "label": "網路位址"
                           }
                         ]
                       },
