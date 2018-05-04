@@ -254,7 +254,7 @@
         },
         {
           "label": "Videoschleife",
-          "description": "Aktivierenn, wenn das Video in einer Schleife abgespielt werden soll"
+          "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
           "label": "Überschreibe \"Zeige Lösung\" Button",
