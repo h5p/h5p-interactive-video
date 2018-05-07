@@ -23,7 +23,7 @@ class Bubble {
     this.$tail = $('<div/>', {class: `${this.style}-tail`});
     this.$innerTail = $('<div/>', {class: `${this.style}-inner-tail`});
     this.$content = $('<div/>', {class: `${this.style}-text`});
-    if (typeof content === 'string') {
+    if (typeof params.content === 'string') {
       this.$content.html(params.content);
     }
     else {
