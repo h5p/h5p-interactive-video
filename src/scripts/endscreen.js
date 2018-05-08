@@ -63,25 +63,6 @@ class Endscreen extends H5P.EventDispatcher {
     const $endscreenIntroductionTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title`})
       .append([this.$endscreenIntroductionTitleText, $endscreenCloseButton]);
 
-    // Description
-    this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
-
-    // Submit button
-    this.$endscreenSubmitButton = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`})
-      .addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
-      .append(H5P.JoubelUI.createButton({class: `${ENDSCREEN_STYLE_BASE}-submit-button`, html: this.l10n.submitButton})
-        .click(event => {
-          this.handleSubmit();
-          event.preventDefault();
-        })
-        .keydown(event => {
-          if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
-            this.handleSubmit();
-            event.preventDefault();
-          }
-        })
-      );
-
     // Title row for the table at the bottom
     this.$endscreenOverviewTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title`})
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title-answered-questions`, 'html': this.l10n.tableRowAnswered}))
@@ -90,12 +71,39 @@ class Endscreen extends H5P.EventDispatcher {
     // Table for answered interactions
     this.$endscreenBottomTable = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table`});
 
+    var introductionElements = [$endscreenIntroductionTitle];
+
+    // Only show introduction text and submit button when reporting is enabled
+    if (H5PIntegration.reportingIsEnabled) {
+      // Description
+      this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
+
+      // Submit button
+      this.$endscreenSubmitButton = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`})
+        .addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
+        .append(H5P.JoubelUI.createButton({class: `${ENDSCREEN_STYLE_BASE}-submit-button`, html: this.l10n.submitButton})
+          .click(event => {
+            this.handleSubmit();
+            event.preventDefault();
+          })
+          .keydown(event => {
+            if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
+              this.handleSubmit();
+              event.preventDefault();
+            }
+          })
+        );
+
+      introductionElements.push(this.$endscreenIntroductionText);
+      introductionElements.push(this.$endscreenSubmitButton);
+    }
+
     // Endscreen DOM root
     this.$endscreen = $('<div/>', {class: ENDSCREEN_STYLE_BASE})
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction`})
         .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-star-symbol`}))
         .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-container`})
-          .append([$endscreenIntroductionTitle, this.$endscreenIntroductionText, this.$endscreenSubmitButton])))
+          .append(introductionElements)))
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview`})
         .append(this.$endscreenOverviewTitle)
         .append(this.$endscreenBottomTable));
@@ -109,7 +117,7 @@ class Endscreen extends H5P.EventDispatcher {
    * a 'completed' xAPI statement for parent (IV) each time.
    */
   handleSubmit () {
-    if (this.$endscreenSubmitButton.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
+    if (this.$endscreenSubmitButton === undefined || this.$endscreenSubmitButton.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
       return;
     }
     this.$endscreenSubmitButton.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
@@ -200,15 +208,17 @@ class Endscreen extends H5P.EventDispatcher {
 
     this.$endscreenIntroductionTitleText.html(this.l10n.title.replace('@answered', number));
 
-    if (number === 0) {
-      this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div><div>${this.l10n.informationMustHaveAnswer}<div>`);
-    }
-    else {
-      this.$endscreenIntroductionText.html(this.l10n.information.replace('@answered', number));
+    if (this.$endscreenIntroductionText) {
+      if (number === 0) {
+        this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div><div>${this.l10n.informationMustHaveAnswer}<div>`);
+      }
+      else {
+        this.$endscreenIntroductionText.html(this.l10n.information.replace('@answered', number));
+      }
     }
 
     // Only show submit button (again) if there are answered interactions
-    if (number > 0) {
+    if (this.$endscreenSubmitButton !== undefined && number > 0) {
       this.$endscreenSubmitButton.removeClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
     }
   }
