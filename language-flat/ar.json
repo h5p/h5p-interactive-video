@@ -119,6 +119,6 @@
   "navigationHotkeyInstructionsLabel": "Text for explaining navigation hotkey",
   "singleInteractionAnnouncementLabel": "Text explaining that a single interaction with a name has come into view",
   "multipleInteractionsAnnouncementLabel": "Text for explaining that multiple interactions have come into view",
-  "videoPausedAnnouncementLabel": "Video is paused announcement",
+  "videoPausedAnnouncementLabel": "الفيديو اوقف الإعلان",
   "contentLabel": "عنوان محتوى الاتصال"
 }
