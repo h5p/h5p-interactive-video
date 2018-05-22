@@ -1302,10 +1302,17 @@
   transform: scale(1.1,1.1);
 }
 
+.h5p-interactive-video .h5p-question .h5p-question-buttons {
+  margin-bottom: 1em;
+}
+
 .h5p-interactive-video .h5p-question .h5p-joubelui-button {
   float: left;
 }
-.h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
+
+
+
+/*.h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child {
   margin: 0 0.5em 1em 0;
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:last-child {
@@ -1313,7 +1320,7 @@
 }
 .h5p-interactive-video .h5p-question .h5p-joubelui-button:first-child:last-child {
   margin: 0 0 1em;
-}
+}*/
 
 .h5p-interactive-video .h5p-dialog-interaction.h5p-image {
   display: block;
