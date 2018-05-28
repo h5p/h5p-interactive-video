@@ -3,7 +3,7 @@
   "videoLabel": "アップロード / 埋め込みビデオ",
   "filesLabel": "ビデオを追加",
   "filesDescription": "インタラクティブビデオで使用したいビデオファイルを選択してください。ビデオリンクかアップロードしたビデオファイルを追加できます。異なる品質で様々なビデオのバージョンを追加できます。ブラウザで最大限サポートされることを確実にするには、少なくともwebmとmp4形式のバージョンを追加してください。",
-  "startScreenOptionsLabel": "Start screen options (unsupported for YouTube videos)",
+  "startScreenOptionsLabel": "スマートスクリーンオプション (YouTubeの動画は対応していません)",
   "titleLabel": "このインタラクティブビデオのタイトル",
   "titleDescription": "概要や統計などで用いられます。",
   "hideStartTitleLabel": "ビデオスタート画面でタイトルを非表示",
@@ -13,7 +13,7 @@
   "posterDescription": "ユーザーがビデオを起動する前に表示される画像。YouTubeビデオでは動作しません。",
   "copyrightLabel": "ビデオ著作権情報",
   "copyrightDescription": "ビデオとビデオ内で使用されている要素の著作権に関する情報。",
-  "textTracksLabel": "Text tracks (unsupported for YouTube videos)",
+  "textTracksLabel": "テキストトラック (YouTubeの動画は対応していません)",
   "videoTrackLabel": "利用可能なテキストトラック",
   "textTrackLabel": "トラック",
   "labelLabel": "トラックラベル",
@@ -71,7 +71,7 @@
   "overrideLabel": "動作設定",
   "startVideoAtLabel": "ここでビデオを開始",
   "startVideoAtDescription": "M:SS 形式でタイムコードを入力",
-  "autoplayLabel": "Auto-play video",
+  "autoplayLabel": "動画の自動再生",
   "autoplayDescription": "Start playing the video automatically",
   "loopLabel": "Loop the video",
   "loopDescription": "Check if video should run in a loop",
@@ -120,5 +120,5 @@
   "singleInteractionAnnouncementLabel": "Text explaining that a single interaction with a name has come into view",
   "multipleInteractionsAnnouncementLabel": "Text for explaining that multiple interactions have come into view",
   "videoPausedAnnouncementLabel": "Video is paused announcement",
-  "contentLabel": "Content label"
+  "contentLabel": "コンテンツラベル"
 }

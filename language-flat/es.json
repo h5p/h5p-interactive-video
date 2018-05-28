@@ -3,7 +3,7 @@
   "videoLabel": "Subir/Insertar video",
   "filesLabel": "Añadir un vídeo",
   "filesDescription": "Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4.",
-  "startScreenOptionsLabel": "Start screen options (unsupported for YouTube videos)",
+  "startScreenOptionsLabel": "Opciones de pantalla de inicio (sin soporte para vídeos de YouTube)",
   "titleLabel": "Título de este vídeo interactivo",
   "titleDescription": "Utilizado en extractos, estadísticas, etc.",
   "hideStartTitleLabel": "Ocultar el título al inicio del video",
@@ -13,7 +13,7 @@
   "posterDescription": "Imagen que se muestra antes de que el usuario inicie el video. No funciona para Videos de YouTube.",
   "copyrightLabel": "Derechos de autor del video",
   "copyrightDescription": "Información relacionada con los derechos de autor del vídeo y de los elementos usados en el mismo.",
-  "textTracksLabel": "Text tracks (unsupported for YouTube videos)",
+  "textTracksLabel": "Pistas de texto (sin soporte para vídeos de YouTube)",
   "videoTrackLabel": "Pistas de texto disponibles",
   "textTrackLabel": "Pista",
   "labelLabel": "Etiqueta de pista",
@@ -120,5 +120,5 @@
   "singleInteractionAnnouncementLabel": "Texto explicando que una interacción simple con un nombre ha aparecido",
   "multipleInteractionsAnnouncementLabel": "Texto para explicar que múltiples interacciones han aparecido",
   "videoPausedAnnouncementLabel": "Anuncio de que el video ha sido pausado",
-  "contentLabel": "Content label"
+  "contentLabel": "Etiqueta del contenido"
 }
