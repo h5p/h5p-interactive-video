@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"محرر الفيديو التفاعلي",
-      "fields":[
+      "label": "محرر الفيديو التفاعلي",
+      "fields": [
         {
-          "label":"تحميل الفيديو",
-          "fields":[
+          "label": "تحميل الفيديو",
+          "fields": [
             {
-              "label":"ملفات الفيديو",
-              "description":"حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
+              "label": "ملفات الفيديو",
+              "description": "حدد ملفات الفيديو التي ترغب في استخدامها في الفيديو التفاعلي الخاص بك. لضمان أقصى قدر من الدعم في متصفحات على الأقل إضافة نسخة من شريط الفيديو في ويب إم و MP4 الأشكال"
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Start screen options (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"The title of this interactive video",
-                  "default":"Interactive Video",
-                  "description":"Used in summaries, statistics etc."
+                  "label": "The title of this interactive video",
+                  "default": "Interactive Video",
+                  "description": "Used in summaries, statistics etc."
                 },
                 {
-                  "label":"Hide title on video start screen"
+                  "label": "Hide title on video start screen"
                 },
                 {
-                  "label":"Short description (Optional)",
-                  "description":"Optional. Display a short description text on the video start screen."
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen."
                 },
                 {
-                  "label":"الملصق",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "الملصق",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
-                  "label":"معلومات حقوق النشر فيديو",
-                  "description":"معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
+                  "label": "معلومات حقوق النشر فيديو",
+                  "description": "معلومات بشأن حقوق الطبع والنشر من شريط الفيديو والعناصر المستخدمة في الفيديو"
                 }
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
-              "fields":[
+              "label": "Text tracks (unsupported for YouTube videos)",
+              "fields": [
                 {
-                  "label":"Available text tracks",
-                  "entity":"Track",
-                  "field":{
-                    "label":"Track",
-                    "fields":[
+                  "label": "Available text tracks",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Track",
+                    "fields": [
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
-                        "options":[
+                        "label": "Type of text track",
+                        "options": [
                           {
-                            "label":"Subtitles"
+                            "label": "Subtitles"
                           },
                           {
-                            "label":"Captions"
+                            "label": "Captions"
                           },
                           {
-                            "label":"Descriptions"
+                            "label": "Descriptions"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
-                        "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label": "Source language, must be defined for subtitles",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label": "Track source (WebVTT file)"
                       }
                     ]
                   }
@@ -80,387 +79,392 @@
           ]
         },
         {
-          "label":"إضافة التفاعلات",
-          "fields":[
+          "label": "إضافة التفاعلات",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"عرض الوقت",
-                    "fields":[
+                    "label": "عرض الوقت"
+                  },
+                  {
+                    "label": "إيقاف مؤقت"
+                  },
+                  {
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
                       {
-                        
+                        "label": "Button"
                       },
                       {
-                        
+                        "label": "Poster"
                       }
                     ]
                   },
                   {
-                    "label":"إيقاف مؤقت"
+                    "label": "تتحول إلى زر على الشاشات الصغيرة"
                   },
                   {
-                    "label":"Display as",
-                    "description":"<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
-                    "options":[
+                    "label": "التسمية",
+                    "description": "Label displayed next to interaction icon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "التكيف",
+                    "fields": [
                       {
-                        "label":"Button"
-                      },
-                      {
-                        "label":"Poster"
-                      }
-                    ],
-                    "default":"button"
-                  },
-                  {
-                    "label":"تتحول إلى زر على الشاشات الصغيرة"
-                  },
-                  {
-                    "label":"التسمية",
-                    "description":"Label displayed next to interaction icon."
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    "label":"التكيف",
-                    "fields":[
-                      {
-                        "label":"اتخاذ إجراء بشأن جميع الصحيح",
-                        "fields":[
+                        "label": "اتخاذ إجراء بشأن جميع الصحيح",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"اتخاذ إجراء بشأن الخطأ",
-                        "fields":[
+                        "label": "اتخاذ إجراء بشأن الخطأ",
+                        "fields": [
                           {
-                            "label":"Seek to",
-                            "description":"Enter timecode in the format M:SS"
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label":"Allow the user to opt out and continue"
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label":"Message"
+                            "label": "Message"
                           },
                           {
-                            "label":"Label for seek button"
+                            "label": "Label for seek button"
                           }
                         ]
                       },
                       {
-                        "label":"Require full score for task before proceeding",
-                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Require full score for task before proceeding",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label":"Visuals",
-                    "fields":[
+                    "label": "Visuals",
+                    "fields": [
                       {
-                        "label":"Background color",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-                          
-                        }
+                        "label": "Background color",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Box shadow",
-                        "description":"يضيف ظل خفية حول التفاعل. قد تحتاج إلى تعطيل هذه التفاعلات شفاف تماما"
+                        "label": "Box shadow",
+                        "description": "يضيف ظل خفية حول التفاعل. قد تحتاج إلى تعطيل هذه التفاعلات شفاف تماما"
                       }
                     ]
                   },
                   {
-                    "label":"Go to on click",
-                    "fields":[
+                    "label": "Go to on click",
+                    "fields": [
                       {
-                        "label":"Type",
-                        "options":[
+                        "label": "Type",
+                        "options": [
                           {
-                            "label":"Timecode"
+                            "label": "Timecode"
                           },
                           {
-                            "label":"Another page (URL)"
+                            "label": "Another page (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
-                        "label":"الرابط",
-                        "fields":[
+                        "label": "الرابط",
+                        "fields": [
                           {
-                            "label":"بروتوكول",
-                            "options":[
+                            "label": "بروتوكول",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(نسبي)"
+                                "label": "(نسبي)"
                               },
                               {
-                                "label":"other"
+                                "label": "other"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"الرابط"
+                            "label": "الرابط"
                           }
                         ]
                       },
                       {
-                        "label":"Visualize",
-                        "description":"Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Visualize",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-                    
-                  },
-                  {
-                    
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"ملخص النشاط",
-          "fields":[
+          "label": "ملخص النشاط",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-                  
-                }
-              }
-            },
-            {
-              "label":"عرض في",
-              "description":"عدد الثواني قبل انتهاء الفيديو"
+              "label": "عرض في",
+              "description": "عدد الثواني قبل انتهاء الفيديو"
             }
           ]
         }
       ]
     },
     {
-      "label":"إعدادات سلوكية",
-      "fields":[
+      "label": "إعدادات سلوكية",
+      "fields": [
         {
-          "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "label": "Start video at",
+          "description": "Enter timecode in the format M:SS"
         },
         {
-          "label":"التشغيل التلقائي الفيديو",
-          "description":"Start playing the video automatically"
+          "label": "التشغيل التلقائي الفيديو",
+          "description": "Start playing the video automatically"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label": "Loop the video",
+          "description": "Check if video should run in a loop"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
             {
-              "label":"Enabled"
+              "label": "Enabled"
             },
             {
-              "label":"Disabled"
+              "label": "Disabled"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-          "options":[
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
             {
-              "label":"Enabled"
+              "label": "Enabled"
             },
             {
-              "label":"Disabled"
+              "label": "Disabled"
             }
           ]
         },
         {
-          "label":"Show button for rewinding 10 seconds",
-          "description":"This function is not available on iPad when using YouTube as video source"
+          "label": "Show button for rewinding 10 seconds",
+          "description": "This function is not available on iPad when using YouTube as video source"
         },
         {
-          "label":"Prevent skipping forward in a video"
+          "label": "Prevent skipping forward in a video"
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label": "Deactivate sound",
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label":"محلية",
-      "fields":[
+      "label": "محلية",
+      "fields": [
         {
-          "label":"عنوان التفاعل",
-          "default":"Interaction"
+          "label": "عنوان التفاعل",
+          "default": "Interaction"
         },
         {
-          "label":"لقب التشغيل",
-          "default":"Play"
+          "label": "لقب التشغيل",
+          "default": "Play"
         },
         {
-          "label":"عنوان إيقاف مؤقت",
-          "default":"Pause"
+          "label": "عنوان إيقاف مؤقت",
+          "default": "Pause"
         },
         {
-          "label":"عنوان كتم الصوت",
-          "default":"Mute"
+          "label": "عنوان كتم الصوت",
+          "default": "Mute"
         },
         {
-          "label":"عنوان عدم كتمان الصوت",
-          "default":"Unmute"
+          "label": "عنوان عدم كتمان الصوت",
+          "default": "Unmute"
         },
         {
-          "label":"عنوان جودة الفيديو",
-          "default":"Video Quality"
+          "label": "عنوان جودة الفيديو",
+          "default": "Video Quality"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label": "Video captions title",
+          "default": "Captions"
         },
         {
-          "label":"Close button text",
-          "default":"أغلق"
+          "label": "Close button text",
+          "default": "أغلق"
         },
         {
-          "label":"عنوان ملء الشاشة",
-          "default":"Fullscreen"
+          "label": "عنوان ملء الشاشة",
+          "default": "Fullscreen"
         },
         {
-          "label":"عنوان الخروج ملء الشاشة",
-          "default":"Fullscreen"
+          "label": "عنوان الخروج ملء الشاشة",
+          "default": "Fullscreen"
         },
         {
-          "label":"عنوان الملخص",
-          "default":"الملخص"
+          "label": "عنوان الملخص",
+          "default": "الملخص"
         },
         {
-          "label":"عنوان الإشارات المرجعية",
-          "default":"Bookmarks"
+          "label": "عنوان الإشارات المرجعية",
+          "default": "Bookmarks"
         },
         {
-          "label":"التسمية الافتراضية لقابلية التكيف زر السعى",
-          "default":"Continue"
+          "label": "Submit screen title",
+          "default": "Submit screen"
         },
         {
-          "label":"Default label for continue video button",
-          "default":"Continue with video"
+          "label": "التسمية الافتراضية لقابلية التكيف زر السعى",
+          "default": "Continue"
         },
         {
-          "label":"Set playback rate",
-          "default":"Playback Rate"
+          "label": "Default label for continue video button",
+          "default": "Continue with video"
         },
         {
-          "label":"Rewind 10 Seconds",
-          "default":"Rewind 10 Seconds"
+          "label": "Set playback rate",
+          "default": "Playback Rate"
         },
         {
-          "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "label": "Rewind 10 Seconds",
+          "default": "Rewind 10 Seconds"
         },
         {
-          "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "label": "Navigation is disabled text",
+          "default": "Navigation is disabled"
         },
         {
-          "label":"محذرا من أن المستخدم يجب أن يجيب على السؤال بشكل صحيح قبل المتابعة",
-          "default":"تحتاج إلى الإجابة على جميع الأسئلة بشكل صحيح قبل المتابعة."
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
         },
         {
-          "label":"زر الرجوع",
-          "default":"الى الخلف"
+          "label": "محذرا من أن المستخدم يجب أن يجيب على السؤال بشكل صحيح قبل المتابعة",
+          "default": "تحتاج إلى الإجابة على جميع الأسئلة بشكل صحيح قبل المتابعة."
         },
         {
-          "label":"Passed time hours",
-          "default":"Hours"
+          "label": "زر الرجوع",
+          "default": "الى الخلف"
         },
         {
-          "label":"Passed time minutes",
-          "default":"Minutes"
+          "label": "Passed time hours",
+          "default": "Hours"
         },
         {
-          "label":"Passed time seconds",
-          "default":"Seconds"
+          "label": "Passed time minutes",
+          "default": "Minutes"
         },
         {
-          "label":"Label for current time",
-          "default":"Current time:"
+          "label": "Passed time seconds",
+          "default": "Seconds"
         },
         {
-          "label":"Label for total time",
-          "default":"Total time:"
+          "label": "Label for current time",
+          "default": "Current time:"
         },
         {
-          "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "label": "Label for total time",
+          "default": "Total time:"
         },
         {
-          "label":"Text explaining that a single interaction with a name has come into view",
-          "default":"Interaction appeared:"
+          "label": "Text for explaining navigation hotkey",
+          "default": "Use key k for starting and stopping video at any time"
         },
         {
-          "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "Interaction appeared:"
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "Multiple interactions appeared."
+        },
+        {
+          "label": "Video is paused announcement",
+          "default": "Video is paused"
         },
         {
           "label": "Content label",
           "default": "Content"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Submit screen information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Submit screen submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Submit screen submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Submit screen table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "answered"
         }
       ]
     }

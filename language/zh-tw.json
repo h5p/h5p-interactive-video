@@ -1,48 +1,48 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "建立互動式影像內容",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "上傳/崁入影片",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "新增影片",
+              "description": "點擊下方新增您欲使用的互動式影片. 您可使用影片連結或上傳影片檔案.上傳影片時可以新增數個不同解析度版本的影片. 為確保瀏覽器的支援性，請至少新增webm及mp4格式影片各1則."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "開始播放選項 (暫不支援YouTube影像)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "互動式影像內容標題",
+                  "default": "互動式影像內容",
+                  "description": "使用於總結、統計等."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "在影片開始播放畫面中隱藏標題"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "簡述(選填)",
+                  "description": "選填. 在影片開始播放畫面中顯示簡短的描述文字. 不適用於YouTube影像."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "廣告圖像",
+                  "description": "使用者撥放影像前顯示的圖像. 不適用於YouTube影像."
                 },
                 {
-                  "label": "Video copyright information",
-                  "description": "Information regarding copyright of the video and elements used in the video."
+                  "label": "影像版權資訊",
+                  "description": "影像中所使用的影片及元素之版權資訊."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "文字歷程(不適用於YouTube影像)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "有效的文字歷程訊息",
+                  "entity": "歷程",
                   "field": {
-                    "label": "Track",
+                    "label": "歷程",
                     "fields": [
                       {
                         "label": "Track label",
@@ -53,23 +53,23 @@
                         "label": "Type of text track",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "副標題"
                           },
                           {
-                            "label": "Captions"
+                            "label": "標題"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "描述"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
-                        "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label": "語言別,必須為副標題定義",
+                        "default": "中文",
+                        "description": "需符合BCP 47語言標籤. 當 '副標題' 是文字歷程所設定使用的類型, 歷程語言別是必須被定義的."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "來源追蹤 (WebVTT 檔案)"
                       }
                     ]
                   }
@@ -79,35 +79,35 @@
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "新增戶動",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "顯示時間"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "影片暫停"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "顯示",
+                    "description": "<b>互動按鈕</b> 需使用者點選後才能打開的折合式互動. <b>廣告招貼</b> 直接在影片中展開的擴展式互動",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "互動按鈕"
                       },
                       {
-                        "label": "Poster"
+                        "label": "廣告招貼"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "在小螢幕使用時轉換為互動按鈕"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "名稱",
+                    "description": "互動圖像旁顯示的名稱."
                   },
                   {},
                   {},
@@ -116,28 +116,28 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "適應性",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "作動於所有正確選擇",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "尋求",
+                            "description": "依格式輸入時間碼 M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "允許使用者退出及繼續"
                           },
                           {
-                            "label": "Message"
+                            "label": "訊息"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "尋找按鈕名稱"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "作動於有錯誤選擇",
                         "fields": [
                           {
                             "label": "Seek to",
@@ -353,6 +353,10 @@
           "default": "Submit screen"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Default label for continue video button",
           "default": "Continue with video"
         },
@@ -415,10 +419,6 @@
         {
           "label": "Video is paused announcement",
           "default": "Video is paused"
-        },
-        {
-          "label": "Content label",
-          "default": "Content"
         },
         {
           "label": "Content label",
