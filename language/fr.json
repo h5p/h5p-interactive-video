@@ -165,8 +165,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Couleur d'arrière-plan",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Couleur d'arrière-plan"
                       },
                       {
                         "label": "Box shadow",

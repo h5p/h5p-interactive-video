@@ -164,8 +164,7 @@
                     "label": "外觀",
                     "fields": [
                       {
-                        "label": "背景顏色",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "背景顏色"
                       },
                       {
                         "label": "盒式陰影",
