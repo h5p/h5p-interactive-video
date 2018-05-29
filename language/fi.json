@@ -164,8 +164,7 @@
                     "label": "Ulkoasu",
                     "fields": [
                       {
-                        "label": "Taustaväri",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Taustaväri"
                       },
                       {
                         "label": "Varjostus",

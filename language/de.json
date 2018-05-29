@@ -164,8 +164,7 @@
                     "label": "Gehe zu bei Klick",
                     "fields": [
                       {
-                        "label": "Hintergrundfarbe",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Hintergrundfarbe"
                       },
                       {
                         "label": "Schatten anzeigen",

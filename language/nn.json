@@ -164,8 +164,7 @@
                     "label": "Visuelt",
                     "fields": [
                       {
-                        "label": "Bakgrunnsfarge",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Bakgrunnsfarge"
                       },
                       {
                         "label": "Box shadow",

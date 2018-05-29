@@ -164,8 +164,7 @@
                     "label": "Visuelle effekter",
                     "fields": [
                       {
-                        "label": "Baggrundsfarve",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Baggrundsfarve"
                       },
                       {
                         "label": "Skygge på afkrydsningsfelt",

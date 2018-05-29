@@ -164,8 +164,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Background color"
                       },
                       {
                         "label": "Box shadow",
