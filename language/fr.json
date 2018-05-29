@@ -11,8 +11,8 @@
               "description": "Sélectionnez les fichiers vidéo que vous souhaitez utiliser dans votre vidéo interactive. Pour assurer une compatibilité maximale avec les navigateurs, merci d'ajouter au moins une version de la vidéo aux formats mp4 et webm."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
-              "fields": [
+              "label":"Options au démarrage (incompatible avec les vidéos YouTube)",
+              "fields":[
                 {
                   "label": "Titre de la vidéo interactive",
                   "default": "Vidéo interactive",
@@ -36,22 +36,22 @@
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
-              "fields": [
+              "label":"Pistes Texte (incompatible avec les vidéos YouTube)",
+              "fields":[
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
-                  "field": {
-                    "label": "Track",
-                    "fields": [
+                  "label":"Pistes texte disponibles",
+                  "entity":"Track",
+                  "field":{
+                    "label":"Piste",
+                    "fields":[
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Sous-titres"
+                        "label":"Nom de piste",
+                        "description":"Utilisé si vous offrez des pistes multiples et que l'utilisateur doit choisir une piste. Par exemple, 'sous-titre espagnol' pourrait être la piste de sous-titre en espagnol.",
+                        "default":"Sous-titres"
                       },
                       {
-                        "label": "Type of text track",
-                        "options": [
+                        "label":"Type de piste texte",
+                        "options":[
                           {
                             "label": "Sous-titres"
                           },
@@ -64,12 +64,12 @@
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
-                        "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label":"Langage source, doit être défini pour le sous-titrage",
+                        "default":"fr",
+                        "description":"Doit être un tag BCP 47 valide. Si 'Sous-titres' est le type de piste texte choisi, le langage source de la piste doit être défini."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label":"Piste source (fichier WebVTT)"
                       }
                     ]
                   }
@@ -91,9 +91,10 @@
                     "label": "Mettre la vidéo sur pause"
                   },
                   {
-                    "label": "Afficher sous forme de",
-                    "description": "<b>Bouton</b> : l'utilisateur doit appuyer dessus pour faire apparaître l'activité. <b>Cadre</b> : l'activité est affichée directement sous la forme d'un cadre en surimpression sur la vidéo.",
-                    "options": [
+
+                    "label":"Afficher sous forme de",
+                    "description":"<b>Bouton</b> : l'utilisateur doit cliquer dessus pour faire apparaître l'activité. <b>Cadre</b> : l'activité est affichée directement sous la forme d'un cadre en surimpression sur la vidéo.",
+                    "options":[
                       {
                         "label": "Bouton"
                       },
@@ -103,11 +104,11 @@
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label":"Passer en mode bouton sur les petits écrans"
                   },
                   {
-                    "label": "Etiquette",
-                    "description": "Label displayed next to interaction icon."
+                    "label":"Etiquette",
+                    "description":"Label affiché à côté d'une icone interactive."
                   },
                   {},
                   {},
@@ -116,23 +117,23 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
-                    "fields": [
+                    "label":"Adaptativité",
+                    "fields":[
                       {
-                        "label": "Action on all correct",
-                        "fields": [
+                        "label":"Toute les Actions sont correctes",
+                        "fields":[
                           {
-                            "label": "Seek to",
-                            "description": "Veuillez saisir le temps au format M:SS"
+                            "label":"aller à",
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label": "Autoriser l’utilisateur à se retirer et continuer"
+                            "label":"Autoriser l’utilisateur à abandonner et continuer"
                           },
                           {
                             "label": "Message"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label":"Label pour le bouton Aller à"
                           }
                         ]
                       },
@@ -140,8 +141,8 @@
                         "label": "Action sur mauvaise réponse",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Veuillez saisir le temps au format M:SS"
+                            "label":"Aller à",
+                            "description":"Veuillez saisir le temps au format M:SS"
                           },
                           {
                             "label": "Autoriser l’utilisateur à se retirer et continuer"
@@ -150,13 +151,13 @@
                             "label": "Message"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label":"Label pour le bouton Aller à"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label":"Requiert un résultat complet avant de poursuivre",
+                        "description":"For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
