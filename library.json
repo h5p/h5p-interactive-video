@@ -4,8 +4,8 @@
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 17,
-  "patchVersion": 5,
+  "minorVersion": 18,
+  "patchVersion": 1,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",
   "embedTypes": [
@@ -15,7 +15,7 @@
   "fullscreen": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 13
+    "minorVersion": 15
   },
   "preloadedJs": [
     {
@@ -41,7 +41,7 @@
     {
       "machineName": "H5P.Video",
       "majorVersion": 1,
-      "minorVersion": 3
+      "minorVersion": 4
     },
     {
       "machineName": "H5P.DragNBar",
@@ -58,7 +58,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 17
+      "minorVersion": 18
     }
   ]
 }

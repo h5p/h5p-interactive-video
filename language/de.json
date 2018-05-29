@@ -1,76 +1,75 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Editor für interaktive Videos",
-      "fields":[
+      "label": "Editor für interaktive Videos",
+      "fields": [
         {
-          "label":"Video hochladen/einbetten",
-          "fields":[
+          "label": "Video hochladen/einbetten",
+          "fields": [
             {
-              "label":"Videodateien",
-              "description":"Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
+              "label": "Videodateien",
+              "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label":"Optionen Startbildschirm (nicht unnterstützt für YouTube Videos)",
-              "fields":[
+              "label": "Optionen Startbildschirm (nicht unnterstützt für YouTube Videos)",
+              "fields": [
                 {
-                  "label":"Der Titel dieses interaktiven Videos",
-                  "default":"Interaktives Video",
-                  "description":"Wird benutzt in Zusammenfassungen, Statistiken, usw."
+                  "label": "Der Titel dieses interaktiven Videos",
+                  "default": "Interaktives Video",
+                  "description": "Wird benutzt in Zusammenfassungen, Statistiken, usw."
                 },
                 {
-                  "label":"Titel auf Video-Startbildschirm ausblenden"
+                  "label": "Titel auf Video-Startbildschirm ausblenden"
                 },
                 {
-                  "label":"Kurze Beschreibung (optional)",
-                  "description":"Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
+                  "label": "Kurze Beschreibung (optional)",
+                  "description": "Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
                 },
                 {
-                  "label":"Posterbild",
-                  "description":"Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
+                  "label": "Posterbild",
+                  "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
                 },
                 {
-                  "label":"Video-Urheberrechtsinformationen",
-                  "description":"Urheberrechtliche Informationen zum Video und zu den Elementen, die im Video verwendet werden."
+                  "label": "Video-Urheberrechtsinformationen",
+                  "description": "Urheberrechtliche Informationen zum Video und zu den Elementen, die im Video verwendet werden."
                 }
               ]
             },
             {
-              "label":"Textspuren (nicht unterstützt für YouTube Videos)",
-              "fields":[
+              "label": "Textspuren (nicht unterstützt für YouTube Videos)",
+              "fields": [
                 {
-                  "label":"Verfügbare Textspuren",
-                  "entity":"Track",
-                  "field":{
-                    "label":"Spur",
-                    "fields":[
+                  "label": "Verfügbare Textspuren",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Spur",
+                    "fields": [
                       {
-                        "label":"Spurbeschriftung",
-                        "description":"Benutzt, wenn Sie mehrere Spuren anbieten und der Benutzer eine Spur auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
-                        "default":"Untertitel"
+                        "label": "Spurbeschriftung",
+                        "description": "Benutzt, wenn Sie mehrere Spuren anbieten und der Benutzer eine Spur auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
+                        "default": "Untertitel"
                       },
                       {
-                        "label":"Art der Textspur",
-                        "default":"Untertitel",
-                        "options":[
+                        "label": "Art der Textspur",
+                        "options": [
                           {
-                            "label":"Untertitel"
+                            "label": "Untertitel"
                           },
                           {
-                            "label":"Bildunterschriften"
+                            "label": "Bildunterschriften"
                           },
                           {
-                            "label":"Beschreibungen"
+                            "label": "Beschreibungen"
                           }
                         ]
                       },
                       {
-                        "label":"Ausgangssprache, muss für Untertitel definiert werden",
-                        "default":"de",
-                        "description":"Muss ein gültiges BCP 47 Sprachtag (z.B. de=Deutsch, en=Englisch) sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
+                        "label": "Ausgangssprache, muss für Untertitel definiert werden",
+                        "default": "de",
+                        "description": "Muss ein gültiges BCP 47 Sprachtag (z.B. de=Deutsch, en=Englisch) sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
                       },
                       {
-                        "label":"Quelldatei der Spur (WebVTT-Datei)"
+                        "label": "Quelldatei der Spur (WebVTT-Datei)"
                       }
                     ]
                   }
@@ -80,387 +79,392 @@
           ]
         },
         {
-          "label":"Interaktionen hinzufügen",
-          "fields":[
+          "label": "Interaktionen hinzufügen",
+          "fields": [
             {
-              "field":{
-                "fields":[
+              "field": {
+                "fields": [
                   {
-                    "label":"Anzeigezeit",
-                    "fields":[
+                    "label": "Anzeigezeit"
+                  },
+                  {
+                    "label": "Video pausieren"
+                  },
+                  {
+                    "label": "Anzeigen als",
+                    "description": "<b>Button</b> ist eine eingeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine ausgeklappte Interaktion, die direkt über dem Video angezeigt wird",
+                    "options": [
                       {
-                        
+                        "label": "Button"
                       },
                       {
-                        
+                        "label": "Poster"
                       }
                     ]
                   },
                   {
-                    "label":"Video pausieren"
+                    "label": "Auf kleinen Bildschirmen als Button verwenden"
                   },
                   {
-                    "label":"Anzeigen als",
-                    "description":"<b>Button</b> ist eine eingeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine ausgeklappte Interaktion, die direkt über dem Video angezeigt wird",
-                    "options":[
+                    "label": "Beschriftung",
+                    "description": "Beschriftung neben dem Icon der Interaktion"
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivität",
+                    "fields": [
                       {
-                        "label":"Button"
-                      },
-                      {
-                        "label":"Poster"
-                      }
-                    ],
-                    "default":"button"
-                  },
-                  {
-                    "label":"Auf kleinen Bildschirmen als Button verwenden"
-                  },
-                  {
-                    "label":"Beschriftung",
-                    "description":"Beschriftung neben dem Icon der Interaktion"
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    
-                  },
-                  {
-                    "label":"Adaptivität",
-                    "fields":[
-                      {
-                        "label":"Aktion, wenn alles richtig",
-                        "fields":[
+                        "label": "Aktion, wenn alles richtig",
+                        "fields": [
                           {
-                            "label":"Sprung nach",
-                            "description":"Den Zeitcode im Format M:SS angeben"
+                            "label": "Sprung nach",
+                            "description": "Den Zeitcode im Format M:SS angeben"
                           },
                           {
-                            "label":"Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
+                            "label": "Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
                           },
                           {
-                            "label":"Nachricht"
+                            "label": "Nachricht"
                           },
                           {
-                            "label":"Beschriftung des Sprung-Buttons"
+                            "label": "Beschriftung des Sprung-Buttons"
                           }
                         ]
                       },
                       {
-                        "label":"Aktion, wenn falsch",
-                        "fields":[
+                        "label": "Aktion, wenn falsch",
+                        "fields": [
                           {
-                            "label":"Sprung nach",
-                            "description":"Den Zeitcode im Format M:SS eingeben"
+                            "label": "Sprung nach",
+                            "description": "Den Zeitcode im Format M:SS eingeben"
                           },
                           {
-                            "label":"Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
+                            "label": "Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
                           },
                           {
-                            "label":"Nachricht"
+                            "label": "Nachricht"
                           },
                           {
-                            "label":"Beschriftung des Sprung-Buttons"
+                            "label": "Beschriftung des Sprung-Buttons"
                           }
                         ]
                       },
                       {
-                        "label":"Zum Fortsetzen der Aufgabe volle Punktzahl benötigt",
-                        "description":"Für die optimale Funktionalität sollte diese Option in Verbindung mit  \"Unterbindung von Vorwärtssprüngen\" verwendet werden."
+                        "label": "Zum Fortsetzen der Aufgabe volle Punktzahl benötigt",
+                        "description": "Für die optimale Funktionalität sollte diese Option in Verbindung mit  \"Unterbindung von Vorwärtssprüngen\" verwendet werden."
                       }
                     ]
                   },
                   {
-                    "label":"Gehe zu bei Klick",
-                    "fields":[
+                    "label": "Gehe zu bei Klick",
+                    "fields": [
                       {
-                        "label":"Hintergrundfarbe",
-                        "default":"rgb(255, 255, 255)",
-                        "spectrum":{
-                          
-                        }
+                        "label": "Hintergrundfarbe",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label":"Schatten anzeigen",
-                        "description":"Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
+                        "label": "Schatten anzeigen",
+                        "description": "Fügt dem Interaktionsfeld einen leichten Schatten hinzu. Für vollständig transparente Interaktionsfelder deaktivieren"
                       }
                     ]
                   },
                   {
-                    "label":"Gehe zu bei Klick",
-                    "fields":[
+                    "label": "Gehe zu bei Klick",
+                    "fields": [
                       {
-                        "label":"Typ",
-                        "options":[
+                        "label": "Typ",
+                        "options": [
                           {
-                            "label":"Timecode"
+                            "label": "Timecode"
                           },
                           {
-                            "label":"Andere Seite (URL)"
+                            "label": "Andere Seite (URL)"
                           }
                         ]
                       },
                       {
-                        "label":"Go To",
-                        "description":"Die Zeit, die bei Anklicken des Hotspots angesprungen wird. Timecode im Format M:SS eingeben."
+                        "label": "Go To",
+                        "description": "Die Zeit, die bei Anklicken des Hotspots angesprungen wird. Timecode im Format M:SS eingeben."
                       },
                       {
-                        "label":"URLs",
-                        "fields":[
+                        "label": "URLs",
+                        "fields": [
                           {
-                            "label":"Protokoll",
-                            "options":[
+                            "label": "Protokoll",
+                            "options": [
                               {
-                                "label":"http://"
+                                "label": "http://"
                               },
                               {
-                                "label":"https://"
+                                "label": "https://"
                               },
                               {
-                                "label":"(relativ zum Hauptverzeichnis)"
+                                "label": "(relativ zum Hauptverzeichnis)"
                               },
                               {
-                                "label":"anderes"
+                                "label": "anderes"
                               }
-                            ],
-                            "default":"http://"
+                            ]
                           },
                           {
-                            "label":"URLs"
+                            "label": "URLs"
                           }
                         ]
                       },
                       {
-                        "label":"Darstellung",
-                        "description":"Zeige dass eine Interaktion angeklickt werden kann durch Hinzufügung von Rand und Icon."
+                        "label": "Darstellung",
+                        "description": "Zeige dass eine Interaktion angeklickt werden kann durch Hinzufügung von Rand und Icon."
                       }
                     ]
                   }
                 ]
               }
             },
-            {
-              "field":{
-                "fields":[
-                  {
-                    
-                  },
-                  {
-                    
-                  }
-                ]
-              }
-            }
+            {},
+            {}
           ]
         },
         {
-          "label":"Zusammenfassende Aufgabe",
-          "fields":[
+          "label": "Zusammenfassende Aufgabe",
+          "fields": [
+            {},
             {
-              "default":{
-                "params":{
-                  
-                }
-              }
-            },
-            {
-              "label":"Anzeigen bei",
-              "description":"Anzahl der Sekunden vor Ende des Videos."
+              "label": "Anzeigen bei",
+              "description": "Anzahl der Sekunden vor Ende des Videos."
             }
           ]
         }
       ]
     },
     {
-      "label":"Interaktionseinstellungen",
-      "fields":[
+      "label": "Interaktionseinstellungen",
+      "fields": [
         {
-          "label":"Starte Video bei",
-          "description":"Timecode im Format M:SS eingeben"
+          "label": "Starte Video bei",
+          "description": "Timecode im Format M:SS eingeben"
         },
         {
-          "label":"Video automatisch abspielen",
-          "description":"Video automatisch abspielen"
+          "label": "Video automatisch abspielen",
+          "description": "Video automatisch abspielen"
         },
         {
-          "label":"Videoschleife",
-          "description":"Aktivierenn, wenn das Video in einer Schleife abgespielt werden soll"
+          "label": "Videoschleife",
+          "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
-          "label":"Überschreibe \"Zeige Lösung\" Button",
-          "description":"Diese Option bestimmt, ob der \"Zeige Lösung\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
-          "options":[
+          "label": "Überschreibe \"Zeige Lösung\" Button",
+          "description": "Diese Option bestimmt, ob der \"Zeige Lösung\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
+          "options": [
             {
-              "label":"Anzeigen"
+              "label": "Anzeigen"
             },
             {
-              "label":"Ausblenden"
+              "label": "Ausblenden"
             }
           ]
         },
         {
-          "label":"Überschreibe \"Wiederholen\" Button",
-          "description":"Diese Option bestimmt, ob der \"Wiederholen\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
-          "options":[
+          "label": "Überschreibe \"Wiederholen\" Button",
+          "description": "Diese Option bestimmt, ob der \"Wiederholen\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
+          "options": [
             {
-              "label":"Anzeigen"
+              "label": "Anzeigen"
             },
             {
-              "label":"Ausblenden"
+              "label": "Ausblenden"
             }
           ]
         },
         {
-          "label":"Zeige den Button, um 10 Sekunden zurück zu springen",
-          "description":"Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
+          "label": "Mit geöffnetem Lesezeichenmenü starten",
+          "description": "Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label":"Zeige den Button, um 10 Sekunden zurück zu springen"
+          "label": "Zeige den Button, um 10 Sekunden zurück zu springen"
         },
         {
-          "label":"Unterbindung eines Vorwärtssprungs im Video",
-          "description":"Aktivieren, um die Videonavigation zu unterbinden."
+          "label": "Unterbindung eines Vorwärtssprungs im Video",
+          "description": "Aktivieren, um die Videonavigation zu unterbinden."
         },
         {
-          "label":"Ton deaktivieren",
-          "description":"Aktivieren, um die Audio-Ausgabe zu unterbinden."
+          "label": "Ton deaktivieren",
+          "description": "Aktivieren, um die Audio-Ausgabe zu unterbinden."
         }
       ]
     },
     {
-      "label":"Sprache anpassen",
-      "fields":[
+      "label": "Sprache anpassen",
+      "fields": [
         {
-          "label":"Interaktionstitel",
-          "default":"Interaktion"
+          "label": "Interaktionstitel",
+          "default": "Interaktion"
         },
         {
-          "label":"Titel zum Abspielen",
-          "default":"Start"
+          "label": "Titel zum Abspielen",
+          "default": "Start"
         },
         {
-          "label":"Titel zum Pausieren",
-          "default":"Pause"
+          "label": "Titel zum Pausieren",
+          "default": "Pause"
         },
         {
-          "label":"Titel zum Stummschalten",
-          "default":"Stummschaltung aktivieren"
+          "label": "Titel zum Stummschalten",
+          "default": "Stummschaltung aktivieren"
         },
         {
-          "label":"Titel, um Stummmodus aufzuheben",
-          "default":"Stummschaltung aufheben"
+          "label": "Titel, um Stummmodus aufzuheben",
+          "default": "Stummschaltung aufheben"
         },
         {
-          "label":"Titel für die Videoqualität",
-          "default":"Video-Qualität"
+          "label": "Titel für die Videoqualität",
+          "default": "Video-Qualität"
         },
         {
-          "label":"Titel für Video-Untertitel",
-          "default":"Bildunterschriften"
+          "label": "Titel für Video-Untertitel",
+          "default": "Bildunterschriften"
         },
         {
-          "label":"Text für Schließen-Button",
-          "default":"Schließen"
+          "label": "Text für Schließen-Button",
+          "default": "Schließen"
         },
         {
-          "label":"Titel für den Vollbildmodus",
-          "default":"Vollbild"
+          "label": "Titel für den Vollbildmodus",
+          "default": "Vollbild"
         },
         {
-          "label":"Titel zum Verlassen des Vollbildmodus",
-          "default":"Vollbildmodus verlassen"
+          "label": "Titel zum Verlassen des Vollbildmodus",
+          "default": "Vollbildmodus verlassen"
         },
         {
-          "label":"Titel für die Zusammenfassung",
-          "default":"Zusammenfassung"
+          "label": "Titel für die Zusammenfassung",
+          "default": "Zusammenfassung"
         },
         {
-          "label":"Titel für Lesezeichen",
-          "default":"Lesezeichen"
+          "label": "Titel für Lesezeichen",
+          "default": "Lesezeichen"
         },
         {
-          "label":"Standardbeschriftung für Springen-Button",
-          "default":"Fortfahren"
+          "label": "Submit screen title",
+          "default": "Submit screen"
         },
         {
-          "label":"Standardbeschriftung für Weiter-mit-dem-Video-Button",
-          "default":"Weiter mit dem Video"
+          "label": "Standardbeschriftung für Springen-Button",
+          "default": "Fortfahren"
         },
         {
-          "label":"Abspielgeschwindigkeit setzen",
-          "default":"Abspielgeschwindigkeit"
+          "label": "Standardbeschriftung für Weiter-mit-dem-Video-Button",
+          "default": "Weiter mit dem Video"
         },
         {
-          "label":"10 Sekunden zurück",
-          "default":"10 Sekunden zurückspringen"
+          "label": "Abspielgeschwindigkeit setzen",
+          "default": "Abspielgeschwindigkeit"
         },
         {
-          "label":"Text für deaktivierte Navigation",
-          "default":"Navigation ist deaktiviert"
+          "label": "10 Sekunden zurück",
+          "default": "10 Sekunden zurückspringen"
         },
         {
-          "label":"Hinweis auf deaktivierten Ton",
-          "default":"Ton ist deaktiviert"
+          "label": "Text für deaktivierte Navigation",
+          "default": "Navigation ist deaktiviert"
         },
         {
-          "label":"Warnung, dass der Benutzer die Frage richtig beantworten muss, um weitermachen zu können",
-          "default":"Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
+          "label": "Hinweis auf deaktivierten Ton",
+          "default": "Ton ist deaktiviert"
         },
         {
-          "label":"Beschriftung des \"Zurück\"-Buttons",
-          "default":"Zurück"
+          "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, um weitermachen zu können",
+          "default": "Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
         },
         {
-          "label":"Nutzungsdauer in Stunden",
-          "default":"Stunden"
+          "label": "Beschriftung des \"Zurück\"-Buttons",
+          "default": "Zurück"
         },
         {
-          "label":"Nutzungsdauer in Minuten",
-          "default":"Minuten"
+          "label": "Nutzungsdauer in Stunden",
+          "default": "Stunden"
         },
         {
-          "label":"Nutzungsdauer in Sekunden",
-          "default":"Sekunden"
+          "label": "Nutzungsdauer in Minuten",
+          "default": "Minuten"
         },
         {
-          "label":"Beschriftung der aktuellen Zeit",
-          "default":"Aktuelle Zeit:"
+          "label": "Nutzungsdauer in Sekunden",
+          "default": "Sekunden"
         },
         {
-          "label":"Beschriftung der Gesamtzeit",
-          "default":"Gesamtzeit:"
+          "label": "Beschriftung der aktuellen Zeit",
+          "default": "Aktuelle Zeit:"
         },
         {
-          "label":"Hilfetext für den Hotkey der Navigation",
-          "default":"Drücke Taste k, um das Video jederzeit zu starten und zu stoppen"
+          "label": "Beschriftung der Gesamtzeit",
+          "default": "Gesamtzeit:"
         },
         {
-          "label":"Hilfetext, dass eine einzelne Interaktion im Sichtfeld erscheint",
-          "default":"Interaktion erscheint:"
+          "label": "Hilfetext für den Hotkey der Navigation",
+          "default": "Drücke Taste k, um das Video jederzeit zu starten und zu stoppen"
         },
         {
-          "label":"Hilfetext, dass mehrere Interaktionen im Sichtfeld erscheinen",
-          "default":"Mehrere Interaktionen erscheinen."
+          "label": "Hilfetext, dass eine einzelne Interaktion im Sichtfeld erscheint",
+          "default": "Interaktion erscheint:"
         },
         {
-          "label":"Ankündigung einer Videopause",
-          "default":"Video ist angehalten"
+          "label": "Hilfetext, dass mehrere Interaktionen im Sichtfeld erscheinen",
+          "default": "Mehrere Interaktionen erscheinen."
+        },
+        {
+          "label": "Ankündigung einer Videopause",
+          "default": "Video ist angehalten"
         },
         {
           "label": "Content label",
-          "default": "Content"
+          "default": "Inhalt"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Submit screen information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Submit screen submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Submit screen submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Submit screen table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "answered"
         }
       ]
     }
