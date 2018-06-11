@@ -11,7 +11,7 @@
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Optionen Startbildschirm (nicht unnterstützt für YouTube Videos)",
+              "label": "Optionen Startbildschirm (nicht unterstützt für YouTube Videos)",
               "fields": [
                 {
                   "label": "Der Titel dieses interaktiven Videos",
@@ -250,7 +250,7 @@
         },
         {
           "label": "Videoschleife",
-          "description": "Aktivierenn, wenn das Video in einer Schleife abgespielt werden soll"
+          "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
           "label": "Überschreibe \"Zeige Lösung\" Button",

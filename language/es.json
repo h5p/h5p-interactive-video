@@ -161,7 +161,7 @@
                     "fields": [
                       {
                         "label": "Color del fondo",
-                        "default": "rgb (255, 255, 255)"
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombra de caja",

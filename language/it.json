@@ -161,7 +161,7 @@
                     "fields": [
                       {
                         "label": "Colore di sfondo",
-                        "default": "RGB (255, 255, 255)"
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Ombreggiatura a forma di casella",

@@ -156,7 +156,7 @@ class Endscreen extends H5P.EventDispatcher {
    */
   buildTableRow (time, title, score = this.l10n.answered) {
     return $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row`})
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: this.parent.humanizeTime(time)})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: H5P.InteractiveVideo.humanizeTime(time)})
         .click(() => {this.jump(time);}))
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title}))
         .click(() => {this.jump(time);})
