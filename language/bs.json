@@ -164,7 +164,9 @@
                     "label": "Grafika",
                     "fields": [
                       {
-                        "label": "Boja pozadine"                      },
+                        "label": "Boja pozadine",
+                        "default": "rgb(255, 255, 255)"
+                      },
                       {
                         "label": "Box shadow",
                         "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"

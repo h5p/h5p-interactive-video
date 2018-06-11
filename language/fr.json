@@ -51,7 +51,6 @@
                       },
                       {
                         "label": "Type  de texte",
-                        "default": "Sous-titres",
                         "options": [
                           {
                             "label": "Sous-titres"
@@ -86,11 +85,7 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Plage d'apparition",
-                    "fields": [
-                      {},
-                      {}
-                    ]
+                    "label": "Plage d'apparition"
                   },
                   {
                     "label": "Mettre la vidéo sur pause"
@@ -105,8 +100,7 @@
                       {
                         "label": "Cadre"
                       }
-                    ],
-                    "default": "button"
+                    ]
                   },
                   {
                     "label": "Devient Bouton sur de petits écrans"
@@ -425,6 +419,52 @@
         {
           "label": "Intitulé du contenu",
           "default": "Contenu vidéo"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Submit screen information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Submit screen submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Submit screen submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Submit screen table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "answered"
         }
       ]
     }
