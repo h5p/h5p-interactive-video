@@ -1067,6 +1067,16 @@ InteractiveVideo.prototype.closePopupMenus = function ($exceptButton) {
 };
 
 /**
+ * Check if there are any bookmarks defined
+ *
+ * @return {boolean}
+ */
+InteractiveVideo.prototype.hasBookmarks = function () {
+  return this.options.assets.bookmarks &&
+         this.options.assets.bookmarks.length;
+};
+
+/**
  * Puts all the cool narrow lines around the slider / seek bar.
  */
 InteractiveVideo.prototype.addBookmarks = function () {
@@ -1747,8 +1757,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
    * Only available for controls.
    * @private
    */
-  var hasBookmarks = self.options.assets.bookmarks && self.options.assets.bookmarks.length;
-  var bookmarksEnabled = self.editor || (hasBookmarks && !self.preventSkipping);
+  var bookmarksEnabled = self.editor || (self.hasBookmarks() && !self.preventSkipping);
 
   // Add bookmark controls
   if (bookmarksEnabled) {
@@ -2269,7 +2278,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   /* Show bookmarks, except when youtube is used on iPad */
-  if (self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
+  if (self.hasBookmarks() && self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
     self.toggleBookmarksChooser(true);
   }
 
