@@ -140,9 +140,6 @@ function Interaction(parameters, player, previousState) {
   // Keep track of content instance
   var instance;
 
-  // Keep track of the interaction's progress
-  var progress;
-
   // Store last xAPI statement verb that was triggered
   var lastXAPIVerb;
 
@@ -1640,17 +1637,19 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
-   * Returns the first tabbable element
-   * returns the interaction if none exists
-   * @return {*}
+   * Set focus on the first tabbable element
    */
-  self.getFirstTabbableElement = function () {
+  self.focusOnFirstTabbableElement = function () {
+    if (!$interaction) {
+      return;
+    }
+
     var $tabbables = $($interaction.get(0)).find('[tabindex]');
     if ($tabbables && $tabbables.length) {
-      return $tabbables.get(0);
+      $tabbables.get(0).focus();
     }
     else {
-      return $interaction;
+      self.focus();
     }
   };
 

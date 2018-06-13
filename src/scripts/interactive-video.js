@@ -318,10 +318,9 @@ function InteractiveVideo(params, id, contentData) {
         self.controls.$play
           .addClass('h5p-pause')
           .attr('aria-label', self.l10n.play);
-
         // refocus for re-read button title by screen reader
         if (self.focusInteraction) {
-          self.focusInteraction.getFirstTabbableElement().focus();
+          self.focusInteraction.focusOnFirstTabbableElement();
           delete self.focusInteraction;
         }
         else if (self.controls.$play.is(":focus")) {
@@ -1198,7 +1197,6 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {ke
  * @param {boolean} [params.firstPlay] If first time.
  */
 InteractiveVideo.prototype.toggleEndscreensChooser = function (show, params = {keepStopped: false, firstPlay: false}) {
-  const that = this;
   if (this.editor && this.controls.$endscreensButton) {
     show = (show === undefined ? !this.controls.$endscreensChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$endscreensChooser.hasClass('h5p-show');
