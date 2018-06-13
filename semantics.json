@@ -623,7 +623,7 @@
               "H5P.Summary 1.9"
             ],
             "default": {
-              "library": "H5P.Summary 1.8",
+              "library": "H5P.Summary 1.9",
               "params": {}
             }
           },
