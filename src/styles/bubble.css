@@ -98,6 +98,20 @@
   opacity: 0;
   display: none;
 }
+
+/* Mobile and fullscreen - use the complete screen */
+.h5p-interactive-video-bubble-endscreen.mobile-fullscreen {
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.h5p-interactive-video-bubble-endscreen.mobile-fullscreen .h5p-interactive-video-bubble-endscreen-inner {
+  border-radius: 0;
+}
+
 .h5p-interactive-video-bubble-endscreen-inner {
   background: #000000;
   /* box-shadow: 0 0 0.5em #2c2c2c; */
@@ -122,9 +136,6 @@
   transform: rotate(45deg);
   z-index: -1;
   transition: left ease-out 0.25s;
-}
-.h5p-interactive-video-bubble-endscreen-tail {
-  /* box-shadow: 0 0 0.5em #2c2c2c; */
 }
 .h5p-interactive-video-bubble-endscreen-text {
   height: 100%;

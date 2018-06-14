@@ -681,10 +681,6 @@
   overflow: hidden;
 }
 
-.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks.h5p-show,
-.h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens.h5p-show {
-  overflow-y: auto;
-}
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks.h5p-transitioning,
 .h5p-interactive-video .h5p-chooser.h5p-endscreens.h5p-transitioning {
   visibility: visible;
