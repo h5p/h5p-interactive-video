@@ -166,6 +166,9 @@ class Bubble {
         .toggleClass(`${this.style}-inactive`, !show)
         .toggleClass(`${this.style}-active`, show);
     }
+
+    // Need to update tail position
+    this.update();
   }
 
   /**
@@ -210,7 +213,7 @@ class Bubble {
    */
   getTailPosition ($reference, bubblePosition, mode) {
     // Magic numbers. Tuned by hand so that the tail fits visually within the bounds of the bubble.
-    const left = (mode === 'full') ? $reference.offset().left - 4 : $reference.offset().left - bubblePosition.left + 6;
+    const left = (mode === 'full') ? ($reference.offset().left - this.$tail.parent().offset().left + 8) : ($reference.offset().left - bubblePosition.left + 6);
 
     return {
       left: left,
