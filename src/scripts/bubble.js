@@ -88,7 +88,6 @@ class Bubble {
       this.$tail.css(preparedTailCSS);
       this.$innerTail.css(preparedTailCSS);
     }, 75);
-
   }
 
   /**

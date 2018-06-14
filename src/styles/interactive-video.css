@@ -657,7 +657,6 @@
 
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-bookmarks,
 .h5p-interactive-video:not(.h5p-minimal) .h5p-chooser.h5p-endscreens {
-  z-index: 1;
   left: -34px;
   bottom: 36px;
   overflow-y: hidden;
@@ -1020,7 +1019,7 @@
   -webkit-transition: visibility 0s 0.2s, opacity 0.2s;
   -moz-transition: visibility 0s 0.2s, opacity 0.2s;
   transition: visibility 0s 0.2s, opacity 0.2s;
-  z-index: 1;
+  z-index: 10;
 }
 
 .h5p-interactive-video .h5p-prevent-skipping-message {
@@ -1110,12 +1109,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 51;
-  background: rgba(44, 44, 44, 0.5);
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
   transition: background-color 0.2s;
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);
+}
+
+.h5p-interactive-video .h5p-dialog-wrapper {
+  background: rgba(44, 44, 44, 0.5);
+  z-index: 51;
 }
 
 .h5p-interactive-video .h5p-warning-mask {

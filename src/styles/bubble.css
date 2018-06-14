@@ -3,7 +3,7 @@
 .h5p-interactive-video-bubble {
   position: absolute;
   color: #333;
-  z-index: 301;
+  z-index: 1;
   margin-top: 0.45em;
   min-width: 1em;
   font-size:16px;
@@ -35,7 +35,6 @@
   text-align: center;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
-  z-index: 1;
   font-size: 0.750em;
   line-height: 1.5em;
   height: 1.5em;
@@ -83,7 +82,7 @@
   margin-bottom: 0.25em;
 }
 .h5p-interactive-video-bubble-endscreen.h5p-interactive-video-bubble-endscreen-active {
-  z-index: 301;
+  z-index: 1;
   opacity: 1;
   display: inherit;
   top: 0.5em;
@@ -119,7 +118,6 @@
   text-align: center;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
-  z-index: 1;
   height: 100%;
 }
 .h5p-interactive-video-bubble-endscreen-inner-tail,
