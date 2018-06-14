@@ -1070,9 +1070,10 @@ InteractiveVideo.prototype.closePopupMenus = function ($exceptButton) {
  *
  * @return {boolean}
  */
-InteractiveVideo.prototype.hasBookmarks = function () {
+InteractiveVideo.prototype.displayBookmarks = function () {
   return this.options.assets.bookmarks &&
-         this.options.assets.bookmarks.length;
+         this.options.assets.bookmarks.length &&
+         !this.preventSkipping;
 };
 
 /**
@@ -1755,7 +1756,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
    * Only available for controls.
    * @private
    */
-  var bookmarksEnabled = self.editor || (self.hasBookmarks() && !self.preventSkipping);
+  var bookmarksEnabled = self.editor || self.displayBookmarks();
 
   // Add bookmark controls
   if (bookmarksEnabled) {
@@ -2276,7 +2277,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
 
   /* Show bookmarks, except when youtube is used on iPad */
-  if (self.hasBookmarks() && self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
+  if (self.displayBookmarks() && self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
     self.toggleBookmarksChooser(true);
   }
 
@@ -2585,6 +2586,7 @@ InteractiveVideo.prototype.resize = function () {
         width: width,
         height: height
       });
+
       if (this.bubbleEndscreen !== undefined) {
         this.bubbleEndscreen.fullscreen(true);
       }
