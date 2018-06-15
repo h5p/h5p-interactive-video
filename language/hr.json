@@ -1,13 +1,13 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Uređivač interaktivnog videa",
       "fields": [
         {
           "label": "Upload/embed video",
           "fields": [
             {
-              "label": "Add a video",
+              "label": "Dodaj video",
               "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
@@ -15,18 +15,18 @@
               "fields": [
                 {
                   "label": "The title of this interactive video",
-                  "default": "Interactive Video",
+                  "default": "Interaktivni video",
                   "description": "Used in summaries, statistics etc."
                 },
                 {
                   "label": "Hide title on video start screen"
                 },
                 {
-                  "label": "Short description (Optional)",
+                  "label": "Kratki opis (opcionalno)",
                   "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
                 },
                 {
-                  "label": "Poster image",
+                  "label": "Poster slika",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
                 },
                 {
@@ -50,16 +50,16 @@
                         "default": "Subtitles"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Vrsta pratećeg teksta",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Titlovi"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Natpisi"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Opisi"
                           }
                         ]
                       },
@@ -79,23 +79,23 @@
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Dodaj interakcije",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Prikaži vrijeme"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Pauziraj video"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Prikaži kao",
+                    "description": "<b>Gumb</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Gumb"
                       },
                       {
                         "label": "Poster"
@@ -106,7 +106,7 @@
                     "label": "Turn into button on small screens"
                   },
                   {
-                    "label": "Label",
+                    "label": "Oznaka",
                     "description": "Label displayed next to interaction icon."
                   },
                   {},
@@ -129,7 +129,7 @@
                             "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Message"
+                            "label": "Poruka"
                           },
                           {
                             "label": "Label for seek button"
@@ -147,7 +147,7 @@
                             "label": "Allow the user to opt out and continue"
                           },
                           {
-                            "label": "Message"
+                            "label": "Poruka"
                           },
                           {
                             "label": "Label for seek button"
@@ -164,7 +164,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Boja pozadine"
                       },
                       {
                         "label": "Box shadow",
@@ -176,7 +176,7 @@
                     "label": "Go to on click",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Vrsta",
                         "options": [
                           {
                             "label": "Timecode"
@@ -194,7 +194,7 @@
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Protokol",
                             "options": [
                               {
                                 "label": "http://"
@@ -206,7 +206,7 @@
                                 "label": "(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label": "ostalo"
                               }
                             ]
                           },
@@ -229,7 +229,7 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Sažetak zadatka",
           "fields": [
             {},
             {
@@ -260,10 +260,10 @@
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Omogućeno"
             },
             {
-              "label": "Disabled"
+              "label": "Onemogućeno"
             }
           ]
         },
@@ -272,10 +272,10 @@
           "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Omogućeno"
             },
             {
-              "label": "Disabled"
+              "label": "Onemogućeno"
             }
           ]
         },
@@ -297,19 +297,19 @@
       ]
     },
     {
-      "label": "Localize",
+      "label": "Lokaliziraj",
       "fields": [
         {
-          "label": "Interaction title",
+          "label": "Naslov",
           "default": "Interaction"
         },
         {
           "label": "Play title",
-          "default": "Play"
+          "default": "Pokreni"
         },
         {
           "label": "Pause title",
-          "default": "Pause"
+          "default": "Pauza"
         },
         {
           "label": "Mute title",
@@ -325,11 +325,11 @@
         },
         {
           "label": "Video captions title",
-          "default": "Captions"
+          "default": "Titlovi"
         },
         {
           "label": "Close button text",
-          "default": "Close"
+          "default": "Zatvori"
         },
         {
           "label": "Fullscreen title",
@@ -340,7 +340,7 @@
           "default": "Exit Fullscreen"
         },
         {
-          "label": "Summary title",
+          "label": "Naslov sažetka",
           "default": "Summary"
         },
         {
@@ -350,6 +350,10 @@
         {
           "label": "Submit screen title",
           "default": "Submit screen"
+        },
+        {
+          "label": "Default label for adaptivity seek button",
+          "default": "Nastavi"
         },
         {
           "label": "Default label for continue video button",
@@ -381,19 +385,19 @@
         },
         {
           "label": "Passed time hours",
-          "default": "Hours"
+          "default": "Sati"
         },
         {
           "label": "Passed time minutes",
-          "default": "Minutes"
+          "default": "Minute"
         },
         {
           "label": "Passed time seconds",
-          "default": "Seconds"
+          "default": "Sekunde"
         },
         {
           "label": "Label for current time",
-          "default": "Current time:"
+          "default": "Trenutno vrijeme:"
         },
         {
           "label": "Label for total time",
@@ -416,12 +420,8 @@
           "default": "Video is paused"
         },
         {
-          "label": "Content label",
-          "default": "Content"
-        },
-        {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Oznaka sadržaja",
+          "default": "Sadržaj"
         },
         {
           "label": "Answered message (@answered will be replaced with the number of answered questions)",

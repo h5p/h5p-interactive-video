@@ -1,0 +1,471 @@
+{
+  "semantics": [
+    {
+      "label": "建立互動式影像內容",
+      "fields": [
+        {
+          "label": "上傳/崁入影片",
+          "fields": [
+            {
+              "label": "新增影片",
+              "description": "請點擊下方新增互動式影像內容使用的影像。您可使用影片連結或上傳影片檔案。且可新增多款不同解析度的影片。為確保瀏覽器支援度，建議上傳webm及mp4格式影片."
+            },
+            {
+              "label": "影像播放介面功能選項（不支援YouTube影片)",
+              "fields": [
+                {
+                  "label": "互動式影像內容標題",
+                  "default": "互動式影像內容",
+                  "description": "將顯示於總結、統計等."
+                },
+                {
+                  "label": "在影像播放介面中隱藏標題"
+                },
+                {
+                  "label": "簡述(選填)",
+                  "description": "選填. 在影像播放介面中顯示此段簡短的描述訊息。不支援YouTube影片."
+                },
+                {
+                  "label": "設定預覽圖示",
+                  "description": "圖像顯示於使用者開始撥放影片前。不支援YouTube影片."
+                },
+                {
+                  "label": "影片著作權資訊",
+                  "description": "此段影片中所使用的影像及元素之版權資訊."
+                }
+              ]
+            },
+            {
+              "label": "軌道名稱(不支援YouTube影片)",
+              "fields": [
+                {
+                  "label": "可用的軌道名稱",
+                  "entity": "軌道",
+                  "field": {
+                    "label": "軌道",
+                    "fields": [
+                      {
+                        "label": "軌道名稱",
+                        "description": "若您提供多種曲目且使用者也須選擇曲目時，請設定此曲目名稱。例如“西班牙語字幕”則將字幕軌道名稱設定為西班牙語字幕.",
+                        "default": "字幕"
+                      },
+                      {
+                        "label": "軌道類型",
+                        "options": [
+                          {
+                            "label": "字幕"
+                          },
+                          {
+                            "label": "標題"
+                          },
+                          {
+                            "label": "描述"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "語言別,必須為字幕定義",
+                        "default": "中文",
+                        "description": "需符合BCP 47語言標籤標示. 當軌道預設為 '字幕' 時, 則必須定義軌道語言別."
+                      },
+                      {
+                        "label": "軌道文件 (WebVTT 檔案)"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "新增互動",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "顯示時間"
+                  },
+                  {
+                    "label": "影片暫停"
+                  },
+                  {
+                    "label": "顯示",
+                    "description": "<b>互動按鈕</b> 需使用者點選後才能打開的折合式互動. <b>訊息招貼</b> 直接在影片中展開的擴展式互動",
+                    "options": [
+                      {
+                        "label": "互動按鈕"
+                      },
+                      {
+                        "label": "訊息招貼"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "在小螢幕使用時轉換為互動按鈕"
+                  },
+                  {
+                    "label": "名稱",
+                    "description": "互動圖像旁顯示的名稱."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "適應性",
+                    "fields": [
+                      {
+                        "label": "作動於所有正確選擇",
+                        "fields": [
+                          {
+                            "label": "尋求",
+                            "description": "影像開始時間碼，輸入格式分:秒 (M:SS)"
+                          },
+                          {
+                            "label": "允許使用者退出及繼續"
+                          },
+                          {
+                            "label": "訊息"
+                          },
+                          {
+                            "label": "尋找功能鈕名稱"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "作動於有錯誤選擇",
+                        "fields": [
+                          {
+                            "label": "尋求",
+                            "description": "影像開始時間碼，輸入格式分:秒 (M:SS)"
+                          },
+                          {
+                            "label": "允許使用者退出及繼續"
+                          },
+                          {
+                            "label": "訊息"
+                          },
+                          {
+                            "label": "尋找功能鈕名稱"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "繼續前需要完成任務的分數",
+                        "description": "為獲得最佳效果，此選像應與選項─影像中不能點擊跳過結合使用."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "視覺效果",
+                    "fields": [
+                      {
+                        "label": "背景顏色"
+                      },
+                      {
+                        "label": "視窗陰影",
+                        "description": "為互動視窗周圍添加陰影.當你不想互動視窗周圍是空白的."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "繼續點擊",
+                    "fields": [
+                      {
+                        "label": "類型",
+                        "options": [
+                          {
+                            "label": "時間編碼"
+                          },
+                          {
+                            "label": "另一頁(URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "繼續",
+                        "description": "使用者點擊互動功能鈕後所紀錄的時間點.以 M:SS 格式輸入時間碼"
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "通訊協定",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "顯現",
+                        "description": "透過添加邊框和圖標方式來使互動更加明顯"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "總結任務",
+          "fields": [
+            {},
+            {
+              "label": "顯示於",
+              "description": "在影片播放結束前的秒數."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "行為設定",
+      "fields": [
+        {
+          "label": "影片開始時間",
+          "description": "影像開始時間碼，輸入格式分:秒( M:SS ) "
+        },
+        {
+          "label": "自動撥放",
+          "description": "自動開始撥放影像"
+        },
+        {
+          "label": "循環播放",
+          "description": "確認影像是否應循環播放"
+        },
+        {
+          "label": "“查看解法”功能鈕",
+          "description": "設定所有問題是否顯示”查看解法”功能鈕,全部啟用或是禁用.",
+          "options": [
+            {
+              "label": "啟用"
+            },
+            {
+              "label": "禁用"
+            }
+          ]
+        },
+        {
+          "label": "“重試”功能鈕",
+          "description": "設定所有問題是否顯示”重試”功能鈕,全部啟用或是禁用.",
+          "options": [
+            {
+              "label": "啟用"
+            },
+            {
+              "label": "禁用"
+            }
+          ]
+        },
+        {
+          "label": "開啟書籤時開始播放",
+          "description": "運行於YouTube影片時，此功能無法於iPad上運行."
+        },
+        {
+          "label": "顯示倒退10秒功能鈕"
+        },
+        {
+          "label": "影像中不能點擊跳過",
+          "description": "啟用此選項時，使用者將不能任意跳換."
+        },
+        {
+          "label": "關閉聲音",
+          "description": "啟用此選項時將關閉影片的聲音，且無法再被開啟聲音"
+        }
+      ]
+    },
+    {
+      "label": "在地化",
+      "fields": [
+        {
+          "label": "互動標題",
+          "default": "互動"
+        },
+        {
+          "label": "撥放標題",
+          "default": "撥放"
+        },
+        {
+          "label": "暫停標題",
+          "default": "暫停"
+        },
+        {
+          "label": "靜音標題",
+          "default": "靜音"
+        },
+        {
+          "label": "取消靜音標題",
+          "default": "取消靜音"
+        },
+        {
+          "label": "影像品質標題",
+          "default": "影像品質"
+        },
+        {
+          "label": "影像字幕標題",
+          "default": "字幕"
+        },
+        {
+          "label": "關閉功能鈕名稱",
+          "default": "關閉"
+        },
+        {
+          "label": "全螢幕標題",
+          "default": "全螢幕"
+        },
+        {
+          "label": "關閉全螢幕標題",
+          "default": "關閉全螢幕"
+        },
+        {
+          "label": "總結標題",
+          "default": "總結"
+        },
+        {
+          "label": "書籤標題",
+          "default": "書籤"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "Submit screen"
+        },
+        {
+          "label": "自適應性查找功能鈕預設名稱",
+          "default": "繼續"
+        },
+        {
+          "label": "影像持續播放功能鈕預設名稱",
+          "default": "繼續撥放影片"
+        },
+        {
+          "label": "設置撥放速度",
+          "default": "撥放速度"
+        },
+        {
+          "label": "倒退10秒",
+          "default": "倒退10秒"
+        },
+        {
+          "label": "停用快捷功能名稱",
+          "default": "停用快捷功能"
+        },
+        {
+          "label": "停用聲音名稱",
+          "default": "停用聲音"
+        },
+        {
+          "label": "提醒使用者在繼續之前必須正確回答問題",
+          "default": "繼續之前您需先正確回答所有問題."
+        },
+        {
+          "label": "返回功能鈕名稱",
+          "default": "返回"
+        },
+        {
+          "label": "花費時間-時",
+          "default": "時"
+        },
+        {
+          "label": "花費時間-分",
+          "default": "分"
+        },
+        {
+          "label": "花費時間-秒",
+          "default": "秒"
+        },
+        {
+          "label": "當前時間名稱",
+          "default": "當前時間:"
+        },
+        {
+          "label": "總時間名稱",
+          "default": "總時間:"
+        },
+        {
+          "label": "快捷鍵說明",
+          "default": "隨時皆可使用K鍵啟動及暫停撥放影片"
+        },
+        {
+          "label": "單一互動名稱說明",
+          "default": "顯示互動:"
+        },
+        {
+          "label": "多組互動名稱說明",
+          "default": "顯示多組互動."
+        },
+        {
+          "label": "影像暫停播放",
+          "default": "影片已暫停"
+        },
+        {
+          "label": "內容名稱",
+          "default": "內容"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered answered"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Submit screen information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
+        },
+        {
+          "label": "Submit screen submit button",
+          "default": "Submit Answers"
+        },
+        {
+          "label": "Submit screen submit message",
+          "default": "Your answers have been submitted!"
+        },
+        {
+          "label": "Submit screen table row title: Answered questions",
+          "default": "Answered questions"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "answered"
+        }
+      ]
+    }
+  ]
+}
