@@ -33,7 +33,7 @@ class Bubble {
       .append(this.$content)
       .prepend(this.$innerTail);
 
-    this.$h5pContainer = this.$reference.closest('.h5p-container');
+    this.$h5pContainer = this.$reference.closest('.h5p-interactive-video');
 
     this.$bubble = $('<div/>', {
       class: this.style,
