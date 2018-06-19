@@ -164,8 +164,7 @@
                     "label": "Effetti visivi",
                     "fields": [
                       {
-                        "label": "Colore di sfondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Colore di sfondo"
                       },
                       {
                         "label": "Ombreggiatura a forma di casella",

@@ -164,8 +164,7 @@
                     "label": "Ga naar na klikken",
                     "fields": [
                       {
-                        "label": "Achtergrondkleur",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Achtergrondkleur"
                       },
                       {
                         "label": "Box schaduw",

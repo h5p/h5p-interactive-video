@@ -164,8 +164,7 @@
                     "label": "Efectos visuales",
                     "fields": [
                       {
-                        "label": "Color del fondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Color del fondo"
                       },
                       {
                         "label": "Sombra de caja",
