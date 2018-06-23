@@ -46,7 +46,7 @@
                     "fields": [
                       {
                         "label": "لافتة المسار",
-                        "description": "تستخدم إذا كنت تقدم مسارات متعددة ويجب على المستخدم اختيار المسار. على سبيل المثال ، يمكن أن يكون "الترجمة الإسبانية" عنوانًا لمسار ترجمة مصاحبة باللغة الإسبانية.",
+                        "description": "تستخدم إذا كنت تقدم مسارات متعددة ويجب على المستخدم اختيار المسار. على سبيل المثال ، يمكن أن يكون 'الترجمة الإسبانية' عنوانًا لمسار ترجمة مصاحبة باللغة الإسبانية.",
                         "default": "Subtitles"
                       },
                       {
@@ -156,7 +156,7 @@
                       },
                       {
                         "label": "يتطلب درجة كاملة للمهمة قبل التقدم",
-                        "description": "للحصول على أفضل نتائج ، يجب استخدام هذا الخيار مع الخيار \ "منع تخطي الى الأمام  \" من الفيديو التفاعلي."
+                        "description": "للحصول على أفضل نتائج ، يجب استخدام هذا الخيار مع الخيار 'منع تخطي الى الأمام  ' من الفيديو التفاعلي."
                       }
                     ]
                   },
@@ -258,7 +258,7 @@
         },
         {
           "label": "تجاوز زر \"اظهار الحل \"",
-          "description": "يحدد هذا الخيار ما إذا كان الزر \ "إظهار الحل \" سيظهر لجميع الأسئلة ، أو يتم تعطيله للجميع أو تكوينه لكل سؤال على حدة.",
+          "description": "يحدد هذا الخيار ما إذا كان الزر 'إظهار الحل ' سيظهر لجميع الأسئلة ، أو يتم تعطيله للجميع أو تكوينه لكل سؤال على حدة.",
           "options": [
             {
               "label": "تمكين"
@@ -357,109 +357,109 @@
           "default": "Continue with video"
         },
         {
-          "label": "Set playback rate",
+          "label": "ضبط معدل اعادة الاستماع",
           "default": "Playback Rate"
         },
         {
-          "label": "Rewind 10 Seconds",
+          "label": "الترجيع 10 ثانية",
           "default": "Rewind 10 Seconds"
         },
         {
-          "label": "Navigation is disabled text",
+          "label": "نص التصفح معطل",
           "default": "Navigation is disabled"
         },
         {
-          "label": "Sound is disabled text",
+          "label": "نص الصوت معطل",
           "default": "Sound is disabled"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
+          "label": "تحذير من أن المستخدم يجب أن يجيب على السؤال بشكل صحيح قبل المتابعة",
           "default": "You need to answer all the questions correctly before continuing."
         },
         {
-          "label": "Back button",
+          "label": "زر العودة",
           "default": "Back"
         },
         {
-          "label": "Passed time hours",
+          "label": "تجاوز ساعات الوقت",
           "default": "Hours"
         },
         {
-          "label": "Passed time minutes",
+          "label": "تجاوز دقائق الوقت",
           "default": "Minutes"
         },
         {
-          "label": "Passed time seconds",
+          "label": "تجاوز ثواني الوقت",
           "default": "Seconds"
         },
         {
-          "label": "Label for current time",
+          "label": "لافتة للوقت الحالي",
           "default": "Current time:"
         },
         {
-          "label": "Label for total time",
+          "label": "لافتة للوقت الاجمالي",
           "default": "Total time:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
+          "label": "نص لشرح التصفح بواسطة اختصارات لوحة المفاتيح",
           "default": "Use key k for starting and stopping video at any time"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
+          "label": "نص يوضح أن تفاعلًا فرديًا مع اسم قد ظهر في العرض",
           "default": "Interaction appeared:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
+          "label": "نص يوضح أن العديد من التفاعلات قد ظهرت في العرض",
           "default": "Multiple interactions appeared."
         },
         {
-          "label": "Video is paused announcement",
+          "label": "تم إيقاف الفيديو مؤقتًا",
           "default": "Video is paused"
         },
         {
-          "label": "Content label",
+          "label": "لافتة المحتوى",
           "default": "Content"
         },
         {
-          "label": "Content label",
+          "label": "لافتة المحتوى",
           "default": "Content"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "label": "الرد على الرسالة (سيتم استبدالanswered بعدد الأسئلة التي تمت الإجابة عليها)",
           "default": "@answered answered"
         },
         {
-          "label": "Submit screen title",
+          "label": "عنوان شاشة التقديم",
           "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": " سيتم استبدالanswered بعدد الأسئلة التي تمت الإجابة عنها."
         },
         {
-          "label": "Submit screen information",
+          "label": "معلومات شاشة التقديم",
           "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "سيتم استبدالanswered بعدد الأسئلة التي تمت الإجابة عنها."
         },
         {
-          "label": "Submit screen information for missing answers",
+          "label": "معلومات شاشة التقديم للاجابات المفقودة",
           "default": "You have not answered any questions."
         },
         {
-          "label": "Submit screen information for answer needed",
+          "label": "معلومات شاشة التقديم للاجابات اللازمة",
           "default": "You have to answer at least one question before you can submit your answers."
         },
         {
-          "label": "Submit screen submit button",
+          "label": "زر تقديم شاشة التقديم",
           "default": "Submit Answers"
         },
         {
-          "label": "Submit screen submit message",
+          "label": "رسالة تقديم شاشة التقديم",
           "default": "Your answers have been submitted!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
+          "label": "عنوان سطر جدول شاشة التقديم :اسئلة تمت الاجابة عنها",
           "default": "Answered questions"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "عنوان سطر جدول شاشة التقديم :النتيجة",
           "default": "Score"
         },
         {
