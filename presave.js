@@ -12,11 +12,17 @@ var H5PEditor = H5PEditor || {};
 H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
   var presave = H5PEditor.Presave;
 
-  if (isContentInValid(content)) {
+  if (isContentInValid()) {
     throw new presave.exceptions.InvalidContentSemanticsException('Invalid Interactive Video Error')
   }
 
-  var score = content.interactiveVideo.assets.interactions
+  var librarisToCheck = [].concat(content.interactiveVideo.assets.interactions);
+
+  if( hasSummary() ){
+    librarisToCheck.push({action: content.interactiveVideo.summary.task});
+  }
+
+  var score = librarisToCheck
     .map(function (element) {
       if (element.hasOwnProperty('action')) {
         return element.action;
@@ -46,7 +52,16 @@ H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
    * Check if required parameters is present
    * @return {boolean}
    */
-  function isContentInValid(content) {
+  function isContentInValid() {
     return !presave.checkNestedRequirements(content, 'content.interactiveVideo.assets.interactions') || !Array.isArray(content.interactiveVideo.assets.interactions);
   }
+
+  /**
+   * Check if required summary is present
+   * @return {boolean}
+   */
+  function hasSummary() {
+    return presave.checkNestedRequirements(content, 'content.interactiveVideo.summary.task.library') && presave.checkNestedRequirements(content, 'content.interactiveVideo.summary.task.params');
+  }
+
 };
