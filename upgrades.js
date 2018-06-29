@@ -1,7 +1,7 @@
 /** @namespace H5PUpgrades */
 var H5PUpgrades = H5PUpgrades || {};
 
-H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
+H5PUpgrades['H5P.InteractiveVideo'] = (function () {
   return {
     1: {
       /**
@@ -192,7 +192,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
                   interaction.visuals = {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     boxShadow: true
-                  }
+                  };
                 }
               }
             }
@@ -254,7 +254,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
             parameters.interactiveVideo.assets &&
             parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
-          for (i = 0; i < interactions.length; i++) {
+          for (var i = 0; i < interactions.length; i++) {
             if (interactions[i].buttonOnMobile == undefined) {
               interactions[i].buttonOnMobile = true;
             }
@@ -266,4 +266,4 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
       },
     }
   };
-})(H5P.jQuery);
+})();
