@@ -157,6 +157,9 @@ function Interaction(parameters, player, previousState) {
 
   var isVisible = false;
 
+  // Metadata that might be used by forms
+  var metadata = parameters.action.metadata;
+
   this.on('open-dialog', function () {
     openDialog();
   });
@@ -1524,6 +1527,15 @@ function Interaction(parameters, player, previousState) {
    */
   self.getLibraryName = function () {
     return library;
+  };
+
+  /**
+   * Get the interactions metadata.
+   *
+   * @returns {Object} Metadata.
+   */
+  self.getMetadata = function () {
+    return metadata;
   };
 
   /**
