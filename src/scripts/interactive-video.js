@@ -1093,11 +1093,15 @@ InteractiveVideo.prototype.addBookmarks = function () {
  */
 InteractiveVideo.prototype.addEndscreenMarkers = function () {
   this.endscreensMap = {};
-  if (this.options.assets.endscreens !== undefined && !this.preventSkipping) {
+
+    if (this.options.assets.endscreens !== undefined) {
     for (var i = 0; i < this.options.assets.endscreens.length; i++) {
-      this.addEndscreen(i);
+      if (!this.preventSkipping || this.options.assets.endscreens[i].time === this.getDuration()) {
+        this.addEndscreen(i);
+      }
     }
   }
+
   // We add a default endscreen that can be deleted later and won't be replaced
   if (this.editor && !!this.editor.freshVideo) {
     if (!this.endscreensMap[this.getDuration()]) {
@@ -2740,7 +2744,9 @@ InteractiveVideo.prototype.resizeInteractions = function () {
  * Recreate interactions
  */
 InteractiveVideo.prototype.recreateCurrentInteractions = function () {
-  this.dnb.blurAll();
+  if (this.dnb !== undefined) {
+    this.dnb.blurAll();
+  }
   this.interactions.forEach(function (interaction) {
     interaction.reCreateInteraction();
   });

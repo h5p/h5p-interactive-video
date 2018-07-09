@@ -182,3 +182,6 @@
 .h5p-interactive-video-endscreen-bold-text {
   font-weight: bold;
 }
+.h5p-interactive-video-endscreen-no-link, .h5p-interactive-video-endscreen-no-link:hover {
+  cursor: auto;
+}
