@@ -439,11 +439,11 @@
         },
         {
           "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "default": "Vous n'avez répondu à aucune question."
         },
         {
           "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "default": "Vous devez répondre à au moins une question avant de pouvoir soumettre vos réponses."
         },
         {
           "label": "Submit screen submit button",
