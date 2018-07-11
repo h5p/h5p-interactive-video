@@ -184,4 +184,5 @@
 }
 .h5p-interactive-video-endscreen-no-link, .h5p-interactive-video-endscreen-no-link:hover {
   cursor: auto;
+  background: initial;
 }

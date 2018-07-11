@@ -1094,11 +1094,11 @@ InteractiveVideo.prototype.addBookmarks = function () {
 InteractiveVideo.prototype.addEndscreenMarkers = function () {
   this.endscreensMap = {};
 
-    if (this.options.assets.endscreens !== undefined) {
+  console.log(this.options.assets.endscreens)
+
+  if (this.options.assets.endscreens !== undefined) {
     for (var i = 0; i < this.options.assets.endscreens.length; i++) {
-      if (!this.preventSkipping || this.options.assets.endscreens[i].time === this.getDuration()) {
-        this.addEndscreen(i);
-      }
+      this.addEndscreen(i);
     }
   }
 
