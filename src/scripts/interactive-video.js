@@ -1094,8 +1094,6 @@ InteractiveVideo.prototype.addBookmarks = function () {
 InteractiveVideo.prototype.addEndscreenMarkers = function () {
   this.endscreensMap = {};
 
-  console.log(this.options.assets.endscreens)
-
   if (this.options.assets.endscreens !== undefined) {
     for (var i = 0; i < this.options.assets.endscreens.length; i++) {
       this.addEndscreen(i);
