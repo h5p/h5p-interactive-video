@@ -28,10 +28,6 @@
                 {
                   "label": "Poster",
                   "description": "Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube-video's."
-                },
-                {
-                  "label": "Copyright informatie voor de video",
-                  "description": "Informatie met betrekking tot het copyright op de video en de in de video gebruikte elementen."
                 }
               ]
             },

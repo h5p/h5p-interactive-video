@@ -28,10 +28,6 @@
                 {
                   "label": "Image à la une",
                   "description": "Optionnel. Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas pour les vidéos YouTube."
-                },
-                {
-                  "label": "Informations sur le copyright de la vidéo",
-                  "description": "Informations sur le copyright de la vidéo et des éléments utilisés dans la vidéo."
                 }
               ]
             },
