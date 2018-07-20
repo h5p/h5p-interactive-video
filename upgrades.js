@@ -264,10 +264,10 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         // Done
         finished(null, parameters);
       },
-      18: function (parameters, finished, extras) {
+      20: function (parameters, finished, extras) {
         var title, copyright;
 
-        if (parameters && parameters.interactiveVideo.video && parameters.interactiveVideo.video.startScreenOptions) {
+        if (parameters && parameters.interactiveVideo && parameters.interactiveVideo.video && parameters.interactiveVideo.video.startScreenOptions) {
           title = parameters.interactiveVideo.video.startScreenOptions.title;
           copyright = parameters.interactiveVideo.video.startScreenOptions.copyright;
         }
