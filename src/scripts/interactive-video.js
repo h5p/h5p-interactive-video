@@ -258,8 +258,6 @@ function InteractiveVideo(params, id, contentData) {
         self.timeUpdate(self.video.getCurrentTime());
         self.updateCurrentTime(self.getDuration());
 
-        self.complete();
-
         // Open final endscreen if necessary
         const answeredTotal = self.interactions
           .map (interaction => interaction.getProgress() || 0)
@@ -943,15 +941,6 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     // update state
     if ($.inArray(verb, ['completed', 'answered']) !== -1) {
       event.setVerb('answered');
-      // IV is complete if:
-      // - The event is sent from the "main" summary
-      // - The event sent is not an child of a sub content (grandchild)
-      if (interaction.isMainSummary() && event.isFromChild()) {
-        // Send completed after summary's answered
-        setTimeout(function () {
-          self.complete();
-        }, 0);
-      }
     }
     if (event.data.statement.context.extensions === undefined) {
       event.data.statement.context.extensions = {};
@@ -2973,25 +2962,6 @@ InteractiveVideo.prototype.updateCurrentTime = function(seconds) {
 
   self.controls.$currentTimeSimple.html(humanTime);
   self.controls.$currentTimeA11ySimple.html(`${self.l10n.currentTime} ${a11yTime}`);
-};
-
-/**
- * Call xAPI completed only once
- *
- * @public
- */
-InteractiveVideo.prototype.complete = function () {
-  // Skip for editor
-  if (this.editor) {
-    return;
-  }
-
-  if (!this.completedSent) {
-    // Post user score. Max score is based on how many of the questions the user
-    // actually answered
-    this.triggerXAPIScored(this.getUsersScore(), this.getUsersMaxScore(), 'completed');
-  }
-  this.completedSent = true;
 };
 
 /**
