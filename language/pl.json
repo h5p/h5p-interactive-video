@@ -28,10 +28,6 @@
                 {
                   "label": "Okładka",
                   "description": "Obraz wyświetlany przed rozpoczęciem odtwarzania wideo. Nie działa w przypadku wideo z YouTube."
-                },
-                {
-                  "label": "Informacja o prawach autorskich",
-                  "description": "Informacja dotycząca praw autorskich do wideo i elementów występujących w wideo."
                 }
               ]
             },

@@ -28,10 +28,6 @@
                 {
                   "label": "Poster slika",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
-                  "label": "Video copyright information",
-                  "description": "Information regarding copyright of the video and elements used in the video."
                 }
               ]
             },

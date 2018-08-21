@@ -62,22 +62,6 @@
                 "importance": "low",
                 "optional": true,
                 "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-              },
-              {
-                "name": "copyright",
-                "type": "text",
-                "widget": "html",
-                "enterMode": "p",
-                "label": "Video copyright information",
-                "importance": "low",
-                "optional": true,
-                "description": "Information regarding copyright of the video and elements used in the video.",
-                "tags": [
-                  "strong",
-                  "em",
-                  "del",
-                  "a"
-                ]
               }
             ]
           },
@@ -270,23 +254,74 @@
                   "type": "library",
                   "importance": "low",
                   "options": [
-                    "H5P.Nil 1.0",
-                    "H5P.Text 1.1",
-                    "H5P.Table 1.1",
-                    "H5P.Link 1.3",
-                    "H5P.Image 1.0",
-                    "H5P.Summary 1.9",
-                    "H5P.SingleChoiceSet 1.10",
-                    "H5P.MultiChoice 1.12",
-                    "H5P.TrueFalse 1.4",
-                    "H5P.Blanks 1.10",
-                    "H5P.DragQuestion 1.12",
-                    "H5P.MarkTheWords 1.8",
-                    "H5P.DragText 1.7",
-                    "H5P.GoToQuestion 1.3",
-                    "H5P.IVHotspot 1.2",
-                    "H5P.Questionnaire 1.2",
-                    "H5P.FreeTextQuestion 1.0"
+                    {
+                      "name": "H5P.Nil 1.0",
+                      "hasmetadata": false
+                    },
+                    {
+                      "name": "H5P.Text 1.1",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.Table 1.1",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.Link 1.3",
+                      "hasmetadata": false
+                    },
+                    {
+                      "name": "H5P.Image 1.1",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.Summary 1.1",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.SingleChoiceSet 1.10",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.MultiChoice 1.12",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.TrueFalse 1.4",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.Blanks 1.10",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.DragQuestion 1.12",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.MarkTheWords 1.8",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.DragText 1.7",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.GoToQuestion 1.3",
+                      "hasmetadata": false
+                    },
+                    {
+                      "name": "H5P.IVHotspot 1.2",
+                      "hasmetadata": false
+                    },
+                    {
+                      "name": "H5P.Questionnaire 1.2",
+                      "hasmetadata": true
+                    },
+                    {
+                      "name": "H5P.FreeTextQuestion 1.0",
+                      "hasmetadata": true
+                    }
                   ]
                 },
                 {
