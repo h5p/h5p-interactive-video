@@ -1,0 +1,471 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de vídeo interativo",
+      "fields": [
+        {
+          "label": "Enviar/embutir vídeo",
+          "fields": [
+            {
+              "label": "Adicionar um vídeo",
+              "description": "Clique abaixo para adicionar um vídeo que deseja usar em seu vídeo interativo. Você pode adicionar um link de um vídeo ou enviar um arquivo de vídeo. É possível adicionar diversas versões de um mesmo vídeo com qualidades diferentes. Para garantir suporte máximo em navegadores, adicione pelo menos uma versão em formatos .webm e .mp4 ."
+            },
+            {
+              "label": "Opções da tela inicial (sem suporte para vídeos do YouTube)",
+              "fields": [
+                {
+                  "label": "O título deste vídeo interativo",
+                  "default": "Vídeo Interativo",
+                  "description": "Usado em resumos, estatísticas etc."
+                },
+                {
+                  "label": "Esconder título na tela inicial do vídeo"
+                },
+                {
+                  "label": "Descrição curta(Opcional)",
+                  "description": "Opcional. Mostra uma pequena descrição em texto na tela inicial do vídeo. Não funciona com vídeos do YouTube."
+                },
+                {
+                  "label": "Pôster",
+                  "description": "Imagem mostrada antes do usuário reproduzir o vídeo. Não funciona com vídeos do YouTube."
+                },
+                {
+                  "label": "Informações de direitos autorais do vídeo",
+                  "description": "Informações sobre direitos autorais do vídeo e de elementos usados no vídeo."
+                }
+              ]
+            },
+            {
+              "label": "Faixas de texto (sem suporte para vídeos do YouTube)",
+              "fields": [
+                {
+                  "label": "Faixas de texto disponíveis",
+                  "entity": "Faixa",
+                  "field": {
+                    "label": "Faixa",
+                    "fields": [
+                      {
+                        "label": "Rótulo da faixa",
+                        "description": "Usado se diversas faixas de texto são oferecidas e o usuário pode escolher uma. Por exemplo 'Legendas em espanhol' pode ser um rótulo para uma faixa que contenha legendas em espanhol.",
+                        "default": "Legendas"
+                      },
+                      {
+                        "label": "Tipo de faixa de texto",
+                        "options": [
+                          {
+                            "label": "Legendas"
+                          },
+                          {
+                            "label": "Legendas(Acessibilidade)"
+                          },
+                          {
+                            "label": "Descrições"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Idioma fonte, deve ser definida para legendas",
+                        "default": "en",
+                        "description": "Deve ser um rótulo de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
+                      },
+                      {
+                        "label": "Fonte da faixa (arquivo WebVTT)"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Adicionar interações",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Tempo de exibição"
+                  },
+                  {
+                    "label": "Pausar vídeo"
+                  },
+                  {
+                    "label": "Exibir como:",
+                    "description": "<b>Botão</b> é uma interação onde o usuário necessita apertar para abrir. <b>Poster</b> é uma interação expansiva exibida diretamente sobre o vídeo",
+                    "options": [
+                      {
+                        "label": "Botão"
+                      },
+                      {
+                        "label": "Pôster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Vira um botão em telas pequenas"
+                  },
+                  {
+                    "label": "Rótulo",
+                    "description": "Rótulo exibido próximo ao ícone de interação."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptação",
+                    "fields": [
+                      {
+                        "label": "Ação em todos corretos",
+                        "fields": [
+                          {
+                            "label": "Ir para (busca)",
+                            "description": "Insira o tempo no formato M:SS"
+                          },
+                          {
+                            "label": "Permite que o usuário desative e continue"
+                          },
+                          {
+                            "label": "Mensagem"
+                          },
+                          {
+                            "label": "Rótulo para o botão de busca"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ação quando incorreto",
+                        "fields": [
+                          {
+                            "label": "Ir para",
+                            "description": "Insira o tempo no formato M:SS"
+                          },
+                          {
+                            "label": "Permite que o usuário desative e continue"
+                          },
+                          {
+                            "label": "Mensagem"
+                          },
+                          {
+                            "label": "Rótulo para o botão de busca"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Requer pontuação máxima na tarefa antes de prosseguir",
+                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção \"Evitar pular para frente em um vídeo\" de vídeo interativo."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Visuais",
+                    "fields": [
+                      {
+                        "label": "Cor de fundo"
+                      },
+                      {
+                        "label": "Sombra da caixa",
+                        "description": "Adiciona uma sombra sutil em volta das interações. Você pode querer desativar esta opção se deseja interações transparentes."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ir para em um clique",
+                    "fields": [
+                      {
+                        "label": "Tipo",
+                        "options": [
+                          {
+                            "label": "Tempo"
+                          },
+                          {
+                            "label": "Outra página (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ir para",
+                        "description": "Tempo de destino para o qual o usuário será direcionado ao pressionar o ponto de acesso. Insira o tempo no formato M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocolo",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "outro"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualizar",
+                        "description": "Mostra que a interação pode ser clicada adicionando uma borda e um ícone"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Tarefa de revisão",
+          "fields": [
+            {},
+            {
+              "label": "Mostrar em",
+              "description": "Número de segundos antes do vídeo terminar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Configurações comportamentais",
+      "fields": [
+        {
+          "label": "Começar vídeo em",
+          "description": "Insira o tempo no formato M:SS"
+        },
+        {
+          "label": "Vídeo com auto-reprodução",
+          "description": "A reprodução do vídeo começa automaticamente"
+        },
+        {
+          "label": "Vídeo em loop",
+          "description": "Marque se o vídeo deve rodar em loop"
+        },
+        {
+          "label": "Sobrepor botão \"Mostrar solução\" ",
+          "description": "Esta opção determina se o botão \"Mostrar solução\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "options": [
+            {
+              "label": "Ativado"
+            },
+            {
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "label": "Sobrepor botão \"Tentar novamente\"",
+          "description": "Esta opção determina se o botão \"Tentar novamente\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "options": [
+            {
+              "label": "Ativado"
+            },
+            {
+              "label": "Desativado"
+            }
+          ]
+        },
+        {
+          "label": "Começar com o menu de marcações aberto",
+          "description": "Esta função não está disponível no iPad quando se está usando vídeos do YouTube como fonte."
+        },
+        {
+          "label": "Mostrar botão para voltar 10 segundos"
+        },
+        {
+          "label": "Evitar pular para frente em um vídeo",
+          "description": "Ativar esta opção irá desativar a navegação através dos controles padrões de vídeo do usuário."
+        },
+        {
+          "label": "Desativar som",
+          "description": "Ativar esta opção removerá o som do vídeo e não permitirá que o som seja ligado."
+        }
+      ]
+    },
+    {
+      "label": "Localização",
+      "fields": [
+        {
+          "label": "Título da interação",
+          "default": "Interação"
+        },
+        {
+          "label": "Título de reprodução",
+          "default": "Reproduzir"
+        },
+        {
+          "label": "Título de pausa",
+          "default": "Pausar"
+        },
+        {
+          "label": "Título da função mute",
+          "default": "Mutar"
+        },
+        {
+          "label": "Título da função desmute",
+          "default": "Desmutar"
+        },
+        {
+          "label": "Título da qualidade do vídeo",
+          "default": "Qualidade do vídeo"
+        },
+        {
+          "label": "Título das legendas do vídeo",
+          "default": "Legendas"
+        },
+        {
+          "label": "Texto do botão fechar",
+          "default": "Fechar"
+        },
+        {
+          "label": "Título de tela cheia",
+          "default": "Tela cheia"
+        },
+        {
+          "label": "Título de sair da tela cheia",
+          "default": "Sair da tela cheia"
+        },
+        {
+          "label": "Título do resumo",
+          "default": "Resumo"
+        },
+        {
+          "label": "Título de marcações",
+          "default": "Marcações"
+        },
+        {
+          "label": "Título da tela de submissão",
+          "default": "Tela de submissão"
+        },
+        {
+          "label": "Rótulo padrão do botão de continuar o vídeo",
+          "default": "Continuar o vídeo"
+        },
+        {
+          "label": "Estabelecer velocidade de reprodução",
+          "default": "Velocidade de reprodução"
+        },
+        {
+          "label": "Voltar 10 Segundos",
+          "default": "Voltar 10 Segundos"
+        },
+        {
+          "label": "Texto de navegação desativada",
+          "default": "A navigação está desativada"
+        },
+        {
+          "label": "Texto de som desativado",
+          "default": "O som está desativado"
+        },
+        {
+          "label": "Avisar para o usuário que ele necessita responder todas as questões corretamente antes de continuar",
+          "default": "Você responder todas as questões corretamente antes de continuar."
+        },
+        {
+          "label": "Botão voltar",
+          "default": "Voltar"
+        },
+        {
+          "label": "Tempo passado em horas",
+          "default": "Horas"
+        },
+        {
+          "label": "Tempo passado em minutos",
+          "default": "Minutos"
+        },
+        {
+          "label": "Tempo passado em segundos",
+          "default": "Segundos"
+        },
+        {
+          "label": "Rótulo para tempo atual",
+          "default": "Tempo atual:"
+        },
+        {
+          "label": "Rótulo para tempo total",
+          "default": "Tempo total:"
+        },
+        {
+          "label": "Texto para explicar a tecla de acesso rápido de navegação",
+          "default": "Use a tecla k para reproduzir e parar o vídeo a qualquer momento"
+        },
+        {
+          "label": "Texto explicando que uma interação com um nome foi exibida",
+          "default": "Interação exibida:"
+        },
+        {
+          "label": "Texto para explicar que múltiplas interações foram exibidas",
+          "default": "Múltiplas interações foram exibidas."
+        },
+        {
+          "label": "Anúncio de vídeo pausado",
+          "default": "O vídeo está pausado"
+        },
+        {
+          "label": "Rótulo de conteúdo",
+          "default": "Conteúdo"
+        },
+        {
+          "label": "Rótulo de conteúdo",
+          "default": "Conteúdo"
+        },
+        {
+          "label": "Mensagem de respostas(@answered será substituído pelo número de questões respondidas)",
+          "default": "@answered respondidas"
+        },
+        {
+          "label": "Título da tela de submissão",
+          "default": "@answered questão(ões) respondida(s)",
+          "description": "@answered será substituído pelo número de questões respondidas."
+        },
+        {
+          "label": "Informações da tela de submissão",
+          "default": "Você respondeu @answered questões, clique abaixo para submeter suas respostas.",
+          "description": "@answered será substituído pelo número de questões respondidas."
+        },
+        {
+          "label": "Informação da tela de submissão para ausência de respostas",
+          "default": "Você não respondeu todas as questões."
+        },
+        {
+          "label": "Informação da tela de submissão para respostas requeridas",
+          "default": "Você precisa responder pelo menos uma questão para poder submeter as respostas."
+        },
+        {
+          "label": "Botão de submeter da tela de submissão",
+          "default": "Submeter respostas"
+        },
+        {
+          "label": "Mensagem da tela de submissão",
+          "default": "Suas respostas foram submetidas!"
+        },
+        {
+          "label": "Título da linha da tabela da tela de submissão: Questões respondidas",
+          "default": "Questões respondidas"
+        },
+        {
+          "label": "Título da linha da tabela da tela de submissão: Pontuação",
+          "default": "Pontuação"
+        },
+        {
+          "label": "Pontuação das questões respondidas na tela de submissão",
+          "default": "respondidas"
+        }
+      ]
+    }
+  ]
+}
