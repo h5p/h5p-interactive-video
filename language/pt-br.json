@@ -28,10 +28,6 @@
                 {
                   "label": "Pôster",
                   "description": "Imagem mostrada antes do usuário reproduzir o vídeo. Não funciona com vídeos do YouTube."
-                },
-                {
-                  "label": "Informações de direitos autorais do vídeo",
-                  "description": "Informações sobre direitos autorais do vídeo e de elementos usados no vídeo."
                 }
               ]
             },
