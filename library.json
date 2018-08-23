@@ -41,12 +41,12 @@
     {
       "machineName": "H5P.Video",
       "majorVersion": 1,
-      "minorVersion": 4
+      "minorVersion": 5
     },
     {
       "machineName": "H5P.DragNBar",
       "majorVersion": 1,
-      "minorVersion": 4
+      "minorVersion": 5
     }
   ],
   "editorDependencies": [
@@ -58,7 +58,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 19
+      "minorVersion": 20
     }
   ]
 }

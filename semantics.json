@@ -275,35 +275,35 @@
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.Summary 1.1",
+                      "name": "H5P.Summary 1.10",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.SingleChoiceSet 1.10",
+                      "name": "H5P.SingleChoiceSet 1.11",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.MultiChoice 1.12",
+                      "name": "H5P.MultiChoice 1.13",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.TrueFalse 1.4",
+                      "name": "H5P.TrueFalse 1.5",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.Blanks 1.10",
+                      "name": "H5P.Blanks 1.11",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.DragQuestion 1.12",
+                      "name": "H5P.DragQuestion 1.13",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.MarkTheWords 1.8",
+                      "name": "H5P.MarkTheWords 1.9",
                       "hasMetadata": true
                     },
                     {
-                      "name": "H5P.DragText 1.7",
+                      "name": "H5P.DragText 1.8",
                       "hasMetadata": true
                     },
                     {
@@ -655,10 +655,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.9"
+              "H5P.Summary 1.10"
             ],
             "default": {
-              "library": "H5P.Summary 1.9",
+              "library": "H5P.Summary 1.10",
               "params": {}
             }
           },
