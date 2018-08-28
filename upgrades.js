@@ -264,6 +264,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         // Done
         finished(null, parameters);
       },
+
       20: function (parameters, finished, extras) {
         var title, copyright;
 
