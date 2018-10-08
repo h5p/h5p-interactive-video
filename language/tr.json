@@ -287,38 +287,38 @@
       "label":"Davranış ayarları",
       "fields":[
         {
-          "label":"Start video at",
-          "description":"Enter timecode in the format M:SS"
+          "label":"Videoyu şuradan itibaren başlat",
+          "description":"Zamanı D:SS formatında girin"
         },
         {
-          "label":"Auto-play video",
-          "description":"Start playing the video automatically"
+          "label":"Videoyu otomatik oynat",
+          "description":"Videonun oynatılması otomatik olarak başlasın"
         },
         {
-          "label":"Loop the video",
-          "description":"Check if video should run in a loop"
+          "label":"Video sürekli dönsün ",
+          "description":"Video sürekli başa dönecekse işaretleyin"
         },
         {
-          "label":"Override \"Show Solution\" button",
-          "description":"This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Çözümü göster\" butonunu geçersiz kıl",
+          "description":"Bu seçenek \"Çözümü göster\" butonunun tüm sorular için gösterilip gösterilmeyeceğini belirler, varsayılan olarak tüm sorular için etkin değildir veya her bir soru için ayrı ayrı ayarlanabilir.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Etkin"
             },
             {
-              "label":"Disabled"
+              "label":"Etkin değil"
             }
           ]
         },
         {
-          "label":"Override \"Retry\" button",
-          "description":"This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label":"\"Yeniden dene\" butonunu geçersiz kıl",
+          "description":"Bu seçenek \"Yeniden dene\" butonunun tüm sorular için gösterilip gösterilmeyeceğini belirler, varsayılan olarak tüm sorular için etkin değildir veya her bir soru için ayrı ayrı ayarlanabilir.",
           "options":[
             {
-              "label":"Enabled"
+              "label":"Etkin"
             },
             {
-              "label":"Disabled"
+              "label":"Etkin değil"
             }
           ]
         },
@@ -327,72 +327,72 @@
           "description":"This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label":"Show button for rewinding 10 seconds"
+          "label":"10 sn geri sarma tuşunu göster"
         },
         {
-          "label":"Prevent skipping forward in a video",
-          "description":"Enabling this options will disable user video navigation through default controls."
+          "label":"Bir videoda ileri atlamayı önle",
+          "description":"Bu seçenekleri etkinleştirme, kullanıcının varsayılan kontrollerle videoda gezinmesini engeller."
         },
         {
-          "label":"Deactivate sound",
-          "description":"Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label":"Sesi devre dışı bırak",
+          "description":"Bu seçeneği etkinleştirme, videonun sesini devre dışı bırakır ve açılmasını engeller."
         }
       ]
     },
     {
-      "label":"Localize",
+      "label":"Yerelleştirme",
       "fields":[
         {
-          "label":"Interaction title",
-          "default":"Interaction"
+          "label":"Etkileşim başlığı",
+          "default":"Etkileşim"
         },
         {
-          "label":"Play title",
-          "default":"Play"
+          "label":"Oynatma başlığı",
+          "default":"Oynat"
         },
         {
-          "label":"Pause title",
-          "default":"Pause"
+          "label":"Duraklatma başlığı",
+          "default":"Duraklat"
         },
         {
-          "label":"Mute title",
-          "default":"Mute"
+          "label":"Sessizlik başlığı",
+          "default":"Sessiz"
         },
         {
-          "label":"Unmute title",
-          "default":"Unmute"
+          "label":"Seslilik başlığı",
+          "default":"Sesli"
         },
         {
-          "label":"Video quality title",
-          "default":"Video Quality"
+          "label":"Video kalitesi başlığı",
+          "default":"Video Kalitesi"
         },
         {
-          "label":"Video captions title",
-          "default":"Captions"
+          "label":"Video altyazıları başlığı",
+          "default":"Altyazılar"
         },
         {
-          "label":"Close button text",
-          "default":"Close"
+          "label":"Kapatma butonu metni",
+          "default":"Kapat"
         },
         {
-          "label":"Fullscreen title",
-          "default":"Fullscreen"
+          "label":"Tam ekran başlığı",
+          "default":"Tam ekran"
         },
         {
-          "label":"Exit fullscreen title",
-          "default":"Exit Fullscreen"
+          "label":"Tam ekrandan çık başlığı",
+          "default":"Tam ekrandan çık"
         },
         {
-          "label":"Summary title",
+          "label":"Özet başlığı",
           "default":"Özet"
         },
         {
-          "label":"Bookmarks title",
-          "default":"Bookmarks"
+          "label":"Yer imi başlığı",
+          "default":"Yer imleri"
         },
         {
           "label":"Default label for adaptivity seek button",
-          "default":"Continue"
+          "default":"Devam"
         },
         {
           "label":"Default label for continue video button",
