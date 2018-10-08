@@ -1,76 +1,76 @@
 {
   "semantics":[
     {
-      "label":"Interactive Video Editor",
+      "label":"Etkileşimli Video Düzenleme",
       "fields":[
         {
-          "label":"Upload/embed video",
+          "label":"Video yükle/göm",
           "fields":[
             {
-              "label":"Add a video",
-              "description":"Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label":"Bir video ekleyin",
+              "description":"Etkileşimli videonuzda kullanmak istediğiniz videoyu eklemek için aşağıya tıklayınız. Bir video linki ekleyebilir ya da video dosyalara yükleyebilirsiniz. Videonun farklı kalitelerde birden fazla versiyonunu eklemeniz mümkündür. Tarayıcı desteğinden emin olmak istiyorsanız webm ve mp4 formatlarını kullanabilirsiniz."
             },
             {
-              "label":"Start screen options (unsupported for YouTube videos)",
+              "label":"Başlangıç ekranı ayarları (Youtube videoları için desteklenmiyor)",
               "fields":[
                 {
-                  "label":"The title of this interactive video",
-                  "default":"Interactive Video",
-                  "description":"Used in summaries, statistics etc."
+                  "label":"Etkileşimli videonun başlığı",
+                  "default":"Etkileşimli video",
+                  "description":"ÖZetlerde, istatistiklerde vb kullanıldı."
                 },
                 {
-                  "label":"Hide title on video start screen"
+                  "label":"Başlangıç ekranında başlığı gizle"
                 },
                 {
-                  "label":"Short description (Optional)",
-                  "description":"Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label":"Kısa açıklama (İsteğe bağlı)",
+                  "description":"İsteğe bağlı. Video başlangıç ekranında kısa bir açıklama metni gösterir. Bu özellik Youtube videolarında desteklenmemektedir."
                 },
                 {
-                  "label":"Poster image",
-                  "description":"Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label":"Poster resmi",
+                  "description":"Kullanıcı videoyu başlatmadan önce gösterilen resimdir. Bu özellik Youtube videolarında desteklenmemektedir."
                 },
                 {
-                  "label":"Video copyright information",
-                  "description":"Information regarding copyright of the video and elements used in the video."
+                  "label":"Video telif bilgisi",
+                  "description":"Videonun ve videoda kullanılan öğelerin telif hakkıyla ilgili bilgi."
                 }
               ]
             },
             {
-              "label":"Text tracks (unsupported for YouTube videos)",
+              "label":"Metinden takip (Youtube videoları için desteklenmiyor)",
               "fields":[
                 {
-                  "label":"Available text tracks",
-                  "entity":"Track",
+                  "label":"Erişilebilir metinden takipler",
+                  "entity":"Takip",
                   "field":{
-                    "label":"Track",
+                    "label":"Takip",
                     "fields":[
                       {
-                        "label":"Track label",
-                        "description":"Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default":"Subtitles"
+                        "label":"Takip etiketi",
+                        "description":"Birden fazla metinden takip seçeneği sunduğunuzda kullanıcı bir tanesini seçmesi gerektiği durumda kullanılır. Örneğin 'İspanyolca altyazılar' İspanyolca altyazı takibinin etiketi olabilir.",
+                        "default":"Altyazılar"
                       },
                       {
-                        "label":"Type of text track",
-                        "default":"subtitles",
+                        "label":"Metinden takibin türü",
+                        "default":"altyazılar",
                         "options":[
                           {
-                            "label":"Subtitles"
+                            "label":"Altyazılar"
                           },
                           {
-                            "label":"Captions"
+                            "label":"Başlıklar"
                           },
                           {
-                            "label":"Descriptions"
+                            "label":"Açıklamalar"
                           }
                         ]
                       },
                       {
-                        "label":"Source language, must be defined for subtitles",
+                        "label":"Altyazılar için kaynak dil tanımlanmalı",
                         "default":"en",
-                        "description":"Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description":"Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
-                        "label":"Track source (WebVTT file)"
+                        "label":"Takip kaynağı (WebVTT dosyası)"
                       }
                     ]
                   }
@@ -80,13 +80,13 @@
           ]
         },
         {
-          "label":"Add interactions",
+          "label":"Etkileşim ekle",
           "fields":[
             {
               "field":{
                 "fields":[
                   {
-                    "label":"Display time",
+                    "label":"Görüntüleme süresi",
                     "fields":[
                       {
                         
@@ -97,7 +97,7 @@
                     ]
                   },
                   {
-                    "label":"Pause video"
+                    "label":"Videoyu duraklat"
                   },
                   {
                     "label":"Display as",
@@ -116,7 +116,7 @@
                     "label":"Turn into button on small screens"
                   },
                   {
-                    "label":"Label",
+                    "label":"Etiket",
                     "description":"Label displayed next to interaction icon."
                   },
                   {
@@ -408,43 +408,43 @@
         },
         {
           "label":"Navigation is disabled text",
-          "default":"Navigation is disabled"
+          "default":"Gezinim etkin değil"
         },
         {
           "label":"Sound is disabled text",
-          "default":"Sound is disabled"
+          "default":"Ses etkin değil"
         },
         {
           "label":"Warning that the user must answer the question correctly before continuing",
           "default":"You need to answer all the questions correctly before continuing."
         },
         {
-          "label":"Back button",
-          "default":"Back"
+          "label":"Geri butonu",
+          "default":"Geri"
         },
         {
           "label":"Passed time hours",
-          "default":"Hours"
+          "default":"Saat"
         },
         {
           "label":"Passed time minutes",
-          "default":"Minutes"
+          "default":"Dakika"
         },
         {
           "label":"Passed time seconds",
-          "default":"Seconds"
+          "default":"Saniye"
         },
         {
           "label":"Label for current time",
-          "default":"Current time:"
+          "default":"Şu anki süre:"
         },
         {
           "label":"Label for total time",
-          "default":"Total time:"
+          "default":"Toplam süre:"
         },
         {
           "label":"Text for explaining navigation hotkey",
-          "default":"Use key k for starting and stopping video at any time"
+          "default":"Videoyu herhangi bir zaman başlatmak veya durdurmak için k tuşunu kullanın"
         },
         {
           "label":"Text explaining that a single interaction with a name has come into view",
@@ -452,15 +452,15 @@
         },
         {
           "label":"Text for explaining that multiple interactions have come into view",
-          "default":"Multiple interactions appeared."
+          "default":"Çoklu etkileşim meydana geldi."
         },
         {
-          "label":"Video is paused announcement",
-          "default":"Video is paused"
+          "label":"Video duraklatıldı duyurusu",
+          "default":"Video duraklatıldı"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "İçerik etiketi",
+          "default": "İçerik"
         }
       ]
     }
