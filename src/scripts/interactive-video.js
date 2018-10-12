@@ -157,11 +157,6 @@ function InteractiveVideo(params, id, contentData) {
   // Initial state
   self.lastState = H5P.Video.ENDED;
 
-  // Listen for resize events to make sure we cover our container.
-  self.on('resize', function () {
-    self.resize();
-  });
-
   // Detect whether to add interactivies or just display a plain video.
   self.justVideo = false;
   var iOSMatches = navigator.userAgent.match(/(iPhone|iPod) OS (\d*)_/i);
@@ -187,6 +182,53 @@ function InteractiveVideo(params, id, contentData) {
 
   // determine if video should play automatically
   this.autoplay = params.override && !!params.override.autoplay;
+
+  // Video wrapper
+  self.$videoWrapper = $('<div>', {
+    'class': 'h5p-video-wrapper'
+  });
+
+  // Controls
+  self.$controls = $('<div>', {
+    role: 'toolbar',
+    'class': 'h5p-controls hidden'
+  });
+
+  self.$read = $('<div/>', {
+    'aria-live': 'polite',
+    'class': 'hidden-but-read'
+  });
+
+  // Font size is now hardcoded, since some browsers (At least Android
+  // native browser) will have scaled down the original CSS font size by the
+  // time this is run. (It turned out to have become 13px) Hard coding it
+  // makes it be consistent with the intended size set in CSS.
+  this.fontSize = 16;
+  this.width = 640; // parseInt($container.css('width')); // Get width in px
+
+  /**
+   * Keep track if the video source is loaded.
+   * @private
+   */
+  var isLoaded = false;
+
+  // We need to initialize some stuff the first time the video plays
+  var firstPlay = true;
+
+  var initialized = false;
+
+  self.initialize = function () {
+
+  // Only initialize once:
+  if (initialized)  {
+    return;
+  }
+  initialized = true;
+
+  // Listen for resize events to make sure we cover our container.
+  self.on('resize', function () {
+    self.resize();
+  });
 
   // Start up the video player
   self.video = H5P.newRunnable({
@@ -215,12 +257,6 @@ function InteractiveVideo(params, id, contentData) {
     return;
   }
 
-  /**
-   * Keep track if the video source is loaded.
-   * @private
-   */
-  var isLoaded = false;
-
   // Handle video source loaded events (metadata)
   self.video.on('loaded', function () {
     isLoaded = true;
@@ -233,8 +269,6 @@ function InteractiveVideo(params, id, contentData) {
     self.removeSplash();
   });
 
-  // We need to initialize some stuff the first time the video plays
-  var firstPlay = true;
   self.video.on('stateChange', function (event) {
 
     if (!self.controls && isLoaded) {
@@ -245,7 +279,7 @@ function InteractiveVideo(params, id, contentData) {
 
     var state = event.data;
     if (self.currentState === InteractiveVideo.SEEKING) {
-      return; // Prevent updateing UI while seeking
+      return; // Prevent updating UI while seeking
     }
 
     switch (state) {
@@ -433,6 +467,8 @@ function InteractiveVideo(params, id, contentData) {
     }
   }
   self.accessibility = new Accessibility(self.l10n);
+
+  };
 }
 
 // Inheritance
@@ -546,25 +582,22 @@ InteractiveVideo.prototype.removeSplash = function () {
  */
 InteractiveVideo.prototype.attach = function ($container) {
   var that = this;
+  this.$container = $container;
+
+  this.initialize();
+
   // isRoot is undefined in the editor
   if (this.isRoot !== undefined && this.isRoot()) {
     this.setActivityStarted();
   }
-  this.$container = $container;
 
-  $container.addClass('h5p-interactive-video').html('<div class="h5p-video-wrapper"></div><div role="toolbar" class="h5p-controls"></div>');
-
-  // Font size is now hardcoded, since some browsers (At least Android
-  // native browser) will have scaled down the original CSS font size by the
-  // time this is run. (It turned out to have become 13px) Hard coding it
-  // makes it be consistent with the intended size set in CSS.
-  this.fontSize = 16;
-  this.width = 640; // parseInt($container.css('width')); // Get width in px
+  $container.addClass('h5p-interactive-video');
+  this.$videoWrapper.appendTo($container);
+  this.$controls.appendTo($container);
 
   // 'video only' fallback has no interactions
   let isAnswerable = false;
   if (this.interactions) {
-
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
       interaction.reCreate();
@@ -578,7 +611,6 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.hasStar = this.editor || this.options.assets.endscreens !== undefined && isAnswerable;
 
   // Video with interactions
-  this.$videoWrapper = $container.children('.h5p-video-wrapper');
   this.attachVideo(this.$videoWrapper);
 
   if (this.justVideo) {
@@ -586,16 +618,10 @@ InteractiveVideo.prototype.attach = function ($container) {
     $container.children(':not(.h5p-video-wrapper)').remove();
     return;
   }
-  // read speaker
-  this.$read = $('<div/>', {
-    'aria-live': 'polite',
-    'class': 'hidden-but-read',
-    appendTo: $container
-  });
-  this.readText = null;
 
-  // Controls
-  this.$controls = $container.children('.h5p-controls').addClass('hidden');
+  // read speaker
+  this.$read.appendTo($container);
+  this.readText = null;
 
   if (this.editor === undefined) {
     this.dnb = new H5P.DragNBar([], this.$videoWrapper, this.$container, {disableEditor: true});
