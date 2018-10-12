@@ -217,6 +217,14 @@ function InteractiveVideo(params, id, contentData) {
 
   var initialized = false;
 
+  // Initialize interactions
+  self.interactions = [];
+  if (self.options.assets.interactions) {
+    for (var i = 0; i < self.options.assets.interactions.length; i++) {
+      this.initInteraction(i);
+    }
+  }
+
   self.initialize = function () {
 
     // Only initialize once:
@@ -458,14 +466,6 @@ function InteractiveVideo(params, id, contentData) {
       // Add captions selector
       self.setCaptionTracks(event.data);
     });
-
-    // Initialize interactions
-    self.interactions = [];
-    if (self.options.assets.interactions) {
-      for (var i = 0; i < self.options.assets.interactions.length; i++) {
-        this.initInteraction(i);
-      }
-    }
 
     self.accessibility = new Accessibility(self.l10n);
   };
