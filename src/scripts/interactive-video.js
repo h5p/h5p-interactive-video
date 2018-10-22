@@ -3456,6 +3456,19 @@ InteractiveVideo.prototype.getCopyrights = function () {
     }
   }
 
+  // Adding copyrights for "summary task"
+  if (self.hasMainSummary()) {
+    const instance = H5P.newRunnable(self.options.summary.task, self.contentId);
+
+    if (instance !== undefined) {
+      const summaryCopyrights = new H5P.ContentCopyrights();
+      summaryCopyrights.addContent(H5P.getCopyrights(instance, {action: self.options.summary.task}, self.contentId));
+      summaryCopyrights.setLabel(self.l10n.summary);
+
+      info.addContent(summaryCopyrights);
+    }
+  }
+
   return info;
 };
 
