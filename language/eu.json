@@ -1,0 +1,467 @@
+{
+  "semantics": [
+    {
+      "label": "Bideo interaktiboen editorea",
+      "fields": [
+        {
+          "label": "Kargatu/kapsulatu bideoa",
+          "fields": [
+            {
+              "label": "Gehitu bideo bat",
+              "description": "Egin klik jarraian gehitzeko zure bideo interaktiborako erabiliko duzun bideoa. Gehitu dezakezu bideo baten esteka edo kargatu bideo fitxategiak. Aukera dago bideo beraren kalitate desberdineko hainbat bertsio. Ziurtatzeko nabigatzaileek onartuko dutela bideoa gehitu webm eta mp4 formatuak."
+            },
+            {
+              "label": "Hasierako pantailaren aukerak (Youtubeko bideoetan ez da onartzen)",
+              "fields": [
+                {
+                  "label": "Bideo interaktibo honen titulua",
+                  "default": "Bideo interaktiboa",
+                  "description": "Aurkibideetan, estatistiketan eta abarretan erabilia."
+                },
+                {
+                  "label": "Ezkutatu titulua bideoaren hasierako pantailan” screen"
+                },
+                {
+                  "label": "Deskripzio laburra (aukerakoa)",
+                  "description": "Aukerakoa. Bistaratu deskripzio testu labur bat bideoaren hasierako pantailan."
+                },
+                {
+                  "label": "Poster-irudia",
+                  "description": "Erabiltzaileak bideoa abiarazi aurretik ikusten den irudia. Ez du ibiltzen Youtubeko bideoekin."
+                }
+              ]
+            },
+            {
+              "label": "Testu-pistak (ez dabil Youtubeko bideoekin)",
+              "fields": [
+                {
+                  "label": "Testu-pista eskuragarriak",
+                  "entity": "Pista",
+                  "field": {
+                    "label": "Pista",
+                    "fields": [
+                      {
+                        "label": "Pistaren etiketa",
+                        "description": "Erabiltzen da hainbat pista eskaintzen duzunean eta erabiltzaileak bat aukeratu behar du. Adibidez 'Euskal azpitituluak' izan daiteke euskal azpitituluak dituen pistaren etiketa.",
+                        "default": "Azpitituluak"
+                      },
+                      {
+                        "label": "Testu-pista mota",
+                        "options": [
+                          {
+                            "label": "Azpitituluak"
+                          },
+                          {
+                            "label": "Bideo-oinak"
+                          },
+                          {
+                            "label": "Deskripzioak"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
+                        "default": "eu",
+                        "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
+                      },
+                      {
+                        "label": "Iturburuko pista (WebVTT fitxategia)"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Gehitu interakzioak",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Bistaratu denbora"
+                  },
+                  {
+                    "label": "Pausarazi bideoa"
+                  },
+                  {
+                    "label": "Bistaratu honela",
+                    "description": "<b>Botoia</b> irekitzeko erabiltzaileak sakatu behar duen interakzio trinkoa da. <b>Posterra</b> bideoaren gainean bistaratzen den interakzio hedatua da",
+                    "options": [
+                      {
+                        "label": "Botoia"
+                      },
+                      {
+                        "label": "Posterra"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Botoia bihurtu pantaila txikietan"
+                  },
+                  {
+                    "label": "Etiketa",
+                    "description": "Interakzio-ikonoaren ondoan bistaratzen den etiketa."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Moldagarritasuna",
+                    "fields": [
+                      {
+                        "label": "Dena zuzen dagoeneko ekintza",
+                        "fields": [
+                          {
+                            "label": "Bilatu",
+                            "description": "Sartu denbora M:SS formatuan"
+                          },
+                          {
+                            "label": "Parada ematen dio erabiltzaileari aukeratzeko eta jarraitzeko"
+                          },
+                          {
+                            "label": "Mezua"
+                          },
+                          {
+                            "label": "Bilaketako botoiaren etiketa"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Oker dagoeneko ekintza",
+                        "fields": [
+                          {
+                            "label": "Bilatu",
+                            "description": "Sartu denbora M:SS formatuan"
+                          },
+                          {
+                            "label": "Parada ematen dio erabiltzaileari aukeratzeko eta jarraitzeko"
+                          },
+                          {
+                            "label": "Mezua"
+                          },
+                          {
+                            "label": "Bilaketak botoiaren etiketa"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ekin aurretik eskatu puntuazio osoa",
+                        "description": "Bere funtzionalitatea hobetzeko aukera hau erabili beharko zen Bideo interaktiboko \"Galerazi bideoko aurrerako jauziak\" aukerarekin batera."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ikusizkoak",
+                    "fields": [
+                      {
+                        "label": "Atzeko planoaren kolorea"
+                      },
+                      {
+                        "label": "Kutxaren itzala",
+                        "description": "Interakzioaren inguruan itzal sotil bat gehitzen du. Komeni da aukera hau ezgaitzea interakzioa erabat gardena den kasuetan"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Abiatu klik egitean",
+                    "fields": [
+                      {
+                        "label": "Mota",
+                        "options": [
+                          {
+                            "label": "Denbora-kodea"
+                          },
+                          {
+                            "label": "Beste orria (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Joan horra",
+                        "description": "Erabiltzaileak leku beroa sakatzeko duen denbora helburua. Sartu denbora-kodea M:SS formatuan."
+                      },
+                      {
+                        "label": "URLa",
+                        "fields": [
+                          {
+                            "label": "Protokoloa",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(sustraiarekiko erlatiboa)"
+                              },
+                              {
+                                "label": "besterik"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URLa"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ikusi",
+                        "description": "Erakutsi interakzioan klik egin daitekeela ertz bat eta ikono bat gehituz."
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Aurkibea ataza",
+          "fields": [
+            {},
+            {
+              "label": "Erakutsi",
+              "description": "Zenbat segundo geratzen den bideoa bukatzeko."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Portaera-ezarpenak",
+      "fields": [
+        {
+          "label": "Hasi bideoa une honetan",
+          "description": "Sartu denbora M:SS formatuan"
+        },
+        {
+          "label": "Auto-erreproduzitu bideoa",
+          "description": "Hasi bideoa automatikoki erreproduzitzen"
+        },
+        {
+          "label": "Bideoaren begizta",
+          "description": "Egiaztatzen du bideoa begizta moduan erreproduzitzen dela"
+        },
+        {
+          "label": "Ezeztatu \"Erakutsi soluzioa\" botoia",
+          "description": "Opzio honek adierazten du \"Erakutsi soluzioa\" botoia erakutsi behar den galdera guztietan, bat ere ez edo galdera bakoitzerako ezartzen den.",
+          "options": [
+            {
+              "label": "Altibatuta"
+            },
+            {
+              "label": "Desgaitua"
+            }
+          ]
+        },
+        {
+          "label": "Ezeztatu \"Saiatu berriro\" botoia",
+          "description": "Aukera honen bidez adierazten ahal da  \"Saiatu berriro\" botoia  erakutsi behar den galdera guztietan, bat ere ez edo galdera bakoitzerako ezartzen den.",
+          "options": [
+            {
+              "label": "Aktibatuta"
+            },
+            {
+              "label": "Desgaitu"
+            }
+          ]
+        },
+        {
+          "label": "Hasi lasterbideen menua irekita dagoela",
+          "description": "Funtzio hau ezin da erabili iPadean Youtube iturriko  bideoekin."
+        },
+        {
+          "label": "Erakutsi 10 segundo atzera eramateko botoia"
+        },
+        {
+          "label": "Galerazi bideoan aurrera jauzi egitea",
+          "description": "Aukera hau aktibatuta desgaitzen dira nabigazio ohiko kontrolak."
+        },
+        {
+          "label": "Desgaitu soinua",
+          "description": "Aukera hau aktibatuta bideoaren soinua desaktibatzen da eta galerazten da martxan jartzea."
+        }
+      ]
+    },
+    {
+      "label": "Kokatu",
+      "fields": [
+        {
+          "label": "Interakzioaren titulua",
+          "default": "Interakzioa"
+        },
+        {
+          "label": "Erreproduzitu titulua",
+          "default": "Erreproduzitu"
+        },
+        {
+          "label": "Pausarazi titulua",
+          "default": "Pausarazi"
+        },
+        {
+          "label": "Mututu titulua",
+          "default": "Mututu"
+        },
+        {
+          "label": "Ez mututu titulua",
+          "default": "Ez mututu"
+        },
+        {
+          "label": "Bideoaren kalitatea titulua",
+          "default": "Bideoaren kalitatea"
+        },
+        {
+          "label": "Bideoen azpitituluak titulua",
+          "default": "Azpitituluak"
+        },
+        {
+          "label": "Itxi botoiaren testua",
+          "default": "Itxi"
+        },
+        {
+          "label": "Pantaila osoa titulua",
+          "default": "Pantaila osoa"
+        },
+        {
+          "label": "Irten pantaila osotik titulua",
+          "default": "Irten pantaila osotik"
+        },
+        {
+          "label": "Aurkibidea titulua",
+          "default": "Aurkibidea"
+        },
+        {
+          "label": "Lastermarkak titulua",
+          "default": "Lastermarkak"
+        },
+        {
+          "label": "Bidali pantaila titulua",
+          "default": "Bidali pantaila"
+        },
+        {
+          "label": "Jarraitu botoiaren etiketa lehenetsia",
+          "default": "Jarraitu bideoa"
+        },
+        {
+          "label": "Ezarri erreprodukzio abiadura",
+          "default": "Erreprodukzio abiadura"
+        },
+        {
+          "label": "Atzeratu 10 segundo",
+          "default": "Atzeratu 10 segundo"
+        },
+        {
+          "label": "Nabigazioa desgaituta dago testua",
+          "default": "Nabigazioa desgaituta dago"
+        },
+        {
+          "label": "Soinua desgaituta dago testua",
+          "default": "Soinua desgaituta dago"
+        },
+        {
+          "label": "Aurrera egin aurretik erabiltzaileak erantzun zuzena eman behar duela adierazten duen oharra",
+          "default": "Erantzun guztiak zuzen eman behar dituzu aurrera egin ahal izateko."
+        },
+        {
+          "label": "Atzera botoia",
+          "default": "Atzera"
+        },
+        {
+          "label": "Iragan diren orduak",
+          "default": "Orduak"
+        },
+        {
+          "label": "Iragan diren minutuak",
+          "default": "Minutuak"
+        },
+        {
+          "label": "Iragan diren segundoak",
+          "default": "Segundoak"
+        },
+        {
+          "label": "Uneko denbora etiketa",
+          "default": "Uneko denbora:"
+        },
+        {
+          "label": "Denbora denetara etiketa",
+          "default": "Denbora denetara:"
+        },
+        {
+          "label": "Nabigaziorako laster-tekla aurkezten duen testua",
+          "default": "Erabili k laster-tekla edozein unetan bideoa jarraitzeko eta pausarazteko"
+        },
+        {
+          "label": "Izen bat aurkezten duen interakzio sinplea bistaratu dela azaltzen duen testua",
+          "default": "Interakzioa bistaratu da:"
+        },
+        {
+          "label": "Interakzio anitza bistaratu dela azaltzen duen testua",
+          "default": "Interakzio anitza bistaratu da."
+        },
+        {
+          "label": "Bideoa pausatua dagoela adierazten duen iragarkia",
+          "default": "Bideoa pausarazita dago"
+        },
+        {
+          "label": "Edukia etiketa",
+          "default": "Edukia"
+        },
+        {
+          "label": "Edukia etiketa",
+          "default": "Edukia"
+        },
+        {
+          "label": "Erantzun emana (@answered aldagaian erantzunen kopurua agertuko da)",
+          "default": "@answered erantzun emana"
+        },
+        {
+          "label": "Bidali pantailaren titulua",
+          "default": "@answered erantzun emana",
+          "description": "@answered aldagaian erantzunen kopurua bistaratuko da."
+        },
+        {
+          "label": "Bidali pantailaren informazioa",
+          "default": "@answered galdera erantzun dituzu, egin klik azpian erantzunak bidaltzeko.",
+          "description": "@answered aldagaian erantzundako galdera kopurua bistaratuko da."
+        },
+        {
+          "label": "Bidali erantzun gabeko galderen berri ematen duen pantailaren informazioa",
+          "default": "Ez duzu hainbat galdera erantzun."
+        },
+        {
+          "label": "Bidali erantzutea ezinbestekoa dela iragartzen duen pantaila informazioa",
+          "default": "Gutxienez galdera bat erantzun behar duzu erantzunak bidali ahal izateko."
+        },
+        {
+          "label": "Bidali pantaila bidali botoia",
+          "default": "Bidali erantzunak"
+        },
+        {
+          "label": "Bidali pantaila bideli mezua",
+          "default": "Zure erantzunak bidali dira!"
+        },
+        {
+          "label": "Bidali pantaila taularen lerroaren titulua: Erantzundako galdera kopurua",
+          "default": "Erantzundako galdera kopurua"
+        },
+        {
+          "label": "Bidali pantaila taularen lerroaren titulua: Puntuazioa",
+          "default": "Puntuazioa"
+        },
+        {
+          "label": "Bidali erantzunen puntuazioaren pantaila",
+          "default": "erantzunak"
+        }
+      ]
+    }
+  ]
+}
