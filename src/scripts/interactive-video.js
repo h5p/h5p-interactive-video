@@ -49,6 +49,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Keep track of content ID
   self.contentId = id;
+  self.contentData = contentData;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Create dynamic ids
@@ -1108,11 +1109,13 @@ InteractiveVideo.prototype.addBookmarks = function () {
  */
 InteractiveVideo.prototype.addEndscreenMarkers = function () {
   this.endscreensMap = {};
-  if (this.options.assets.endscreens !== undefined && !this.preventSkipping) {
+
+  if (this.options.assets.endscreens !== undefined) {
     for (var i = 0; i < this.options.assets.endscreens.length; i++) {
       this.addEndscreen(i);
     }
   }
+
   // We add a default endscreen that can be deleted later and won't be replaced
   if (this.editor && !!this.editor.freshVideo) {
     if (!this.endscreensMap[this.getDuration()]) {
@@ -2761,7 +2764,9 @@ InteractiveVideo.prototype.resizeInteractions = function () {
  * Recreate interactions
  */
 InteractiveVideo.prototype.recreateCurrentInteractions = function () {
-  this.dnb.blurAll();
+  if (this.dnb !== undefined) {
+    this.dnb.blurAll();
+  }
   this.interactions.forEach(function (interaction) {
     interaction.reCreateInteraction();
   });
@@ -3329,7 +3334,7 @@ InteractiveVideo.prototype.showSolutions = function () {
  * @returns {string}
  */
 InteractiveVideo.prototype.getTitle = function () {
-  return H5P.createTitle(this.options.video.startScreenOptions.title);
+  return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title : 'Interactive Video');
 };
 
 /**
@@ -3448,6 +3453,19 @@ InteractiveVideo.prototype.getCopyrights = function () {
     var interactionCopyrights = self.interactions[i].getCopyrights();
     if (interactionCopyrights) {
       info.addContent(interactionCopyrights);
+    }
+  }
+
+  // Adding copyrights for "summary task"
+  if (self.hasMainSummary()) {
+    const instance = H5P.newRunnable(self.options.summary.task, self.contentId);
+
+    if (instance !== undefined) {
+      const summaryCopyrights = new H5P.ContentCopyrights();
+      summaryCopyrights.addContent(H5P.getCopyrights(instance, {action: self.options.summary.task}, self.contentId));
+      summaryCopyrights.setLabel(self.l10n.summary);
+
+      info.addContent(summaryCopyrights);
     }
   }
 

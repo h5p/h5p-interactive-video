@@ -62,22 +62,6 @@
                 "importance": "low",
                 "optional": true,
                 "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-              },
-              {
-                "name": "copyright",
-                "type": "text",
-                "widget": "html",
-                "enterMode": "p",
-                "label": "Video copyright information",
-                "importance": "low",
-                "optional": true,
-                "description": "Information regarding copyright of the video and elements used in the video.",
-                "tags": [
-                  "strong",
-                  "em",
-                  "del",
-                  "a"
-                ]
               }
             ]
           },
@@ -274,15 +258,15 @@
                     "H5P.Text 1.1",
                     "H5P.Table 1.1",
                     "H5P.Link 1.3",
-                    "H5P.Image 1.0",
-                    "H5P.Summary 1.9",
-                    "H5P.SingleChoiceSet 1.10",
-                    "H5P.MultiChoice 1.12",
-                    "H5P.TrueFalse 1.4",
-                    "H5P.Blanks 1.10",
-                    "H5P.DragQuestion 1.12",
-                    "H5P.MarkTheWords 1.8",
-                    "H5P.DragText 1.7",
+                    "H5P.Image 1.1",
+                    "H5P.Summary 1.10",
+                    "H5P.SingleChoiceSet 1.11",
+                    "H5P.MultiChoice 1.13",
+                    "H5P.TrueFalse 1.5",
+                    "H5P.Blanks 1.11",
+                    "H5P.DragQuestion 1.13",
+                    "H5P.MarkTheWords 1.9",
+                    "H5P.DragText 1.8",
                     "H5P.GoToQuestion 1.3",
                     "H5P.IVHotspot 1.2",
                     "H5P.Questionnaire 1.2",
@@ -620,10 +604,10 @@
             "name": "task",
             "type": "library",
             "options": [
-              "H5P.Summary 1.9"
+              "H5P.Summary 1.10"
             ],
             "default": {
-              "library": "H5P.Summary 1.9",
+              "library": "H5P.Summary 1.10",
               "params": {}
             }
           },

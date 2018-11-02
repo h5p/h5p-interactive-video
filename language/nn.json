@@ -28,10 +28,6 @@
                 {
                   "label": "Plakat",
                   "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
-                  "label": "Opphavsrettsinformasjon",
-                  "description": "Informasjon om opphavsrett for videoen og andre elementar brukt i interaksjonane."
                 }
               ]
             },
