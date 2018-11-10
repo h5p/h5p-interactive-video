@@ -11,6 +11,35 @@ Translators, make sure to read through the [tips for language contributors](http
 Developers, take a look at the [developer guide](https://h5p.org/developers) which has information on [coding guidelines](https://h5p.org/code-style), [api-references](https://h5p.org/documentation/api/H5P.html) and much more. Before submitting pull-requests, please consider [testing your code thoroughly](https://github.com/h5p/h5p-interactive-video/wiki/Interactive-Video-Testplan-(November-2106-Release)) to speed up the review process.
 
 
+## Building the distribution files
+Downloading these files will not provide you with h5p libraries that you can upload to your system. They will have to be built and packed first.
+
+Pull or download this archive files and go into the main folder. There run
+
+```bash
+npm install
+```
+
+to get the required modules. Then build the project using
+
+```bash
+npm run build
+```
+
+or
+
+```bash
+npm run watch
+```
+
+You can then use [H5P cli](https://github.com/h5p/h5p-cli) to pack the library e.g. using
+
+```
+h5p pack -r <library folder> <output file>
+```
+
+Alternatively, you can arrange and zip files manually, but make sure to adhere to the [H5P specification](https://h5p.org/documentation/developers/h5p-specification).
+
 ## License
 
 (The MIT License)
