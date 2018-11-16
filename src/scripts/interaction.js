@@ -733,8 +733,16 @@ function Interaction(parameters, player, previousState) {
       player.play();
     }
 
+    let time = event.data;
+    if (time === parameters.duration.from) {
+      // Adding 200ms here since people are using this as a resume feature
+      // and some players are inaccurate when seeking so we don't want them
+      // to end up before the interaction is displayed...
+      time += 0.2;
+    }
+
     // Jump to chosen timecode
-    player.seek(event.data);
+    player.seek(time);
   };
 
   /**
