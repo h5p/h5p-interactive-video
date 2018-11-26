@@ -157,11 +157,11 @@ class Endscreen extends H5P.EventDispatcher {
   buildTableRow(time, title, score = this.l10n.answered) {
     const noLink = (this.parent.skippingPrevented()) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
     return $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`})
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: H5P.InteractiveVideo.humanizeTime(time)})
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: H5P.InteractiveVideo.humanizeTime(time), role: 'button'})
         .click(() => {
           this.jump(time);
         }))
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title}))
+      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title, role: 'button'}))
       .click(() => {
         this.jump(time);
       })
