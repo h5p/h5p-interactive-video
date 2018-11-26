@@ -22,7 +22,7 @@ class Endscreen extends H5P.EventDispatcher {
    * @param {string} [params.l10n.tableRowScore] - Row title for score.
    * @param {string} [params.l10n.answeredScore] - Label for answered questions without score.
    */
-  constructor (parent, params = {}) {
+  constructor(parent, params = {}) {
     super();
 
     this.parent = parent;
@@ -44,7 +44,7 @@ class Endscreen extends H5P.EventDispatcher {
   /**
    * Build the DOM elements for the endscreen.
    */
-  buildDOM () {
+  buildDOM() {
     // Title Bar with text and close button
     this.$endscreenIntroductionTitleText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`});
 
@@ -108,7 +108,7 @@ class Endscreen extends H5P.EventDispatcher {
    * been interacted with but have not yet sent 'answered' or completed. Will send
    * a 'completed' xAPI statement for parent (IV) each time.
    */
-  handleSubmit () {
+  handleSubmit() {
     if (this.$endscreenSubmitButton.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
       return;
     }
@@ -142,7 +142,7 @@ class Endscreen extends H5P.EventDispatcher {
    *
    * @return {jQuery} DOM of the endscreen.
    */
-  getDOM () {
+  getDOM() {
     return this.$endscreen;
   }
 
@@ -154,13 +154,17 @@ class Endscreen extends H5P.EventDispatcher {
    * @param {string} [score=this.l10n.answered] - Score as "score / maxscore" for the interaction, 'answered' if undefined.
    * @return {jQuery} DOM element for the table row.
    */
-  buildTableRow (time, title, score = this.l10n.answered) {
+  buildTableRow(time, title, score = this.l10n.answered) {
     const noLink = (this.parent.skippingPrevented()) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
     return $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`})
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: H5P.InteractiveVideo.humanizeTime(time)})
-        .click(() => {this.jump(time);}))
+        .click(() => {
+          this.jump(time);
+        }))
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title}))
-        .click(() => {this.jump(time);})
+      .click(() => {
+        this.jump(time);
+      })
       .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`, html: score || this.l10n.tableAnswered}));
   }
 
@@ -169,7 +173,7 @@ class Endscreen extends H5P.EventDispatcher {
    *
    * @param {number} time - Time in seconds to jump to.
    */
-  jump (time) {
+  jump(time) {
     if (!this.parent.skippingPrevented()) {
       this.parent.seek(time);
       this.parent.toggleEndscreen(false);
@@ -181,11 +185,11 @@ class Endscreen extends H5P.EventDispatcher {
    *
    * @param {H5P.Interaction[]} [interactions] - Interactions from IV.
    */
-  update (interactions = []) {
+  update(interactions = []) {
     // Filter for interactions that have been answered and sort chronologically
     this.answered = interactions
-     .filter(interaction => interaction.getProgress() !== undefined)
-     .sort((a, b) => a.getDuration().from > b.getDuration().from);
+      .filter(interaction => interaction.getProgress() !== undefined)
+      .sort((a, b) => a.getDuration().from > b.getDuration().from);
 
     this.$endscreenBottomTable.empty();
 
@@ -219,7 +223,7 @@ class Endscreen extends H5P.EventDispatcher {
    *
    * @return {string} Task description or interaction title.
    */
-  getDescription (interaction) {
+  getDescription(interaction) {
     if (typeof interaction.getInstance === 'function' && typeof interaction.getInstance().getTitle === 'function') {
       return interaction.getInstance().getTitle();
     }

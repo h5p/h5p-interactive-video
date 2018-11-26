@@ -234,7 +234,8 @@ function Interaction(parameters, player, previousState) {
             (!player.dnb || (player.dnb && !player.dnb.newElement))) {
           player.editor.showInteractionTitle(title, $interaction);
           isHovered = true;
-        } else {
+        }
+        else {
 
           // Hide if interaction is focused, because of coordinates picker
           player.editor.hideInteractionTitle();
@@ -458,7 +459,7 @@ function Interaction(parameters, player, previousState) {
     const $first = $elementList.first();
     const $last = $elementList.last();
 
-    if (tabKeyPressed && event.shiftKey && isCurrent($first)){
+    if (tabKeyPressed && event.shiftKey && isCurrent($first)) {
       $last.focus();
       event.preventDefault();
     }
@@ -505,7 +506,7 @@ function Interaction(parameters, player, previousState) {
       $dialogContent.attr('tabindex', 0);
     }
 
-    if(self.getRequiresCompletion()){
+    if (self.getRequiresCompletion()) {
       $dialogWrapper.keydown(event => {
         const $elements = $dialogWrapper
           .find('[tabindex="0"], button, input')
@@ -574,7 +575,7 @@ function Interaction(parameters, player, previousState) {
      */
     var dialogCloseHandler = function () {
       // Reset the image size to a percentage of the container instead of hardcoded values
-      player.dnb.$dialogContainer.one('transitionend', function() {
+      player.dnb.$dialogContainer.one('transitionend', function () {
         if ($dialogContent.is('.h5p-image')) {
           var $img = $dialogContent.find('img');
           $img.css({
@@ -653,9 +654,11 @@ function Interaction(parameters, player, previousState) {
         // Set size and type of dialog
         if (library === 'H5P.FreeTextQuestion') {
           player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'big');
-        } else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
+        }
+        else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
           player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'medium');
-        } else {
+        }
+        else {
           player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, null);
         }
       }
@@ -899,7 +902,8 @@ function Interaction(parameters, player, previousState) {
       // Determine adaptivity
       if (fullScore) {
         adaptivity = parameters.adaptivity.correct;
-      } else if (!fullScore) {
+      }
+      else if (!fullScore) {
         adaptivity = parameters.adaptivity.wrong;
       }
     }
@@ -953,8 +957,8 @@ function Interaction(parameters, player, previousState) {
 
         self.remove();
         continueWithVideo(adaptivity.seekTo);
-      }
-    ).showButton('iv-adaptivity-' + adaptivityId, 1)
+      })
+      .showButton('iv-adaptivity-' + adaptivityId, 1)
       .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
       .hideButton('check-answer', 1)
       .hideButton('show-solution', 1)
@@ -1170,7 +1174,8 @@ function Interaction(parameters, player, previousState) {
     }
     else if (player.currentState === H5P.Video.PLAYING) {
       player.seek(parameters.duration.from);
-    } else {
+    }
+    else {
       player.play(); // for updating the slider
       player.seek(parameters.duration.from);
       player.pause();
@@ -1203,7 +1208,7 @@ function Interaction(parameters, player, previousState) {
       on: {
         click: self.selectDot,
         keydown: event => {
-          if(event.which === 13 || event.which === 32) {
+          if (event.which === 13 || event.which === 32) {
             self.selectDot();
             return false;
           }
@@ -1447,7 +1452,7 @@ function Interaction(parameters, player, previousState) {
           var parents = event.getVerifiedStatementValue(['context', 'contextActivities', 'parent']) || [];
           var interactiveVideoId = event.getContentXAPIId(player);
           var isCompletedOrAnswered = event.getVerb() === 'completed' || event.getVerb() === 'answered';
-          var isInteractiveVideoParent = parents.some(function(parent){
+          var isInteractiveVideoParent = parents.some(function (parent) {
             return parent.id === interactiveVideoId;
           });
 
