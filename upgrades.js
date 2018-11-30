@@ -1,7 +1,7 @@
 /** @namespace H5PUpgrades */
 var H5PUpgrades = H5PUpgrades || {};
 
-H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
+H5PUpgrades['H5P.InteractiveVideo'] = (function () {
   return {
     1: {
       /**
@@ -192,7 +192,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
                   interaction.visuals = {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     boxShadow: true
-                  }
+                  };
                 }
               }
             }
@@ -254,7 +254,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
             parameters.interactiveVideo.assets &&
             parameters.interactiveVideo.assets.interactions) {
           var interactions = parameters.interactiveVideo.assets.interactions;
-          for (i = 0; i < interactions.length; i++) {
+          for (var i = 0; i < interactions.length; i++) {
             if (interactions[i].buttonOnMobile == undefined) {
               interactions[i].buttonOnMobile = true;
             }
@@ -264,6 +264,22 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function ($) {
         // Done
         finished(null, parameters);
       },
+
+      20: function (parameters, finished, extras) {
+        var title, copyright;
+
+        if (parameters && parameters.interactiveVideo && parameters.interactiveVideo.video && parameters.interactiveVideo.video.startScreenOptions) {
+          title = parameters.interactiveVideo.video.startScreenOptions.title;
+          copyright = parameters.interactiveVideo.video.startScreenOptions.copyright;
+        }
+
+        extras = extras || {};
+        extras.metadata = extras.metadata || {};
+        extras.metadata.title = (title) ? title.replace(/<[^>]*>?/g, '') : ((extras.metadata.title) ? extras.metadata.title : 'Interactive Video');
+        extras.metadata.licenseExtras = (copyright) ? copyright = copyright.replace(/<[^>]*>?/g, '') : ((extras.metadata.licenseExtras) ? extras.metadata.licenseExtras : undefined);
+
+        finished(null, parameters, extras);
+      }
     }
   };
-})(H5P.jQuery);
+})();

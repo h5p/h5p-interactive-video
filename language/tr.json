@@ -1,75 +1,71 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Etkileşimli Video Düzenleme",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Video yükle/göm",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Bir video ekleyin",
+              "description": "Etkileşimli videonuzda kullanmak istediğiniz videoyu eklemek için aşağıya tıklayınız. Bir video linki ekleyebilir ya da video dosyalara yükleyebilirsiniz. Videonun farklı kalitelerde birden fazla versiyonunu eklemeniz mümkündür. Tarayıcı desteğinden emin olmak istiyorsanız webm ve mp4 formatlarını kullanabilirsiniz."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Başlangıç ekranı ayarları (Youtube videoları için desteklenmiyor)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Etkileşimli videonun başlığı",
+                  "default": "Etkileşimli video",
+                  "description": "Özetlerde, istatistiklerde vb kullanıldı."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Başlangıç ekranında başlığı gizle"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Kısa açıklama (İsteğe bağlı)",
+                  "description": "İsteğe bağlı. Video başlangıç ekranında kısa bir açıklama metni gösterir. Bu özellik Youtube videolarında desteklenmemektedir."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
-                },
-                {
-                  "label": "Video copyright information",
-                  "description": "Information regarding copyright of the video and elements used in the video."
+                  "label": "Poster resmi",
+                  "description": "Kullanıcı videoyu başlatmadan önce gösterilen resimdir. Bu özellik Youtube videolarında desteklenmemektedir."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Metinden takip (Youtube videoları için desteklenmiyor)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Erişilebilir metinden takipler",
+                  "entity": "Metinden Takip",
                   "field": {
-                    "label": "Track",
+                    "label": "Metinden Takip",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Metinden Takip Etiketi",
+                        "description": "Birden fazla metinden takip seçeneği sunduğunuzda kullanıcı bir tanesini seçmesi gerektiği durumda kullanılır. Örneğin 'İspanyolca altyazılar' İspanyolca altyazı takibinin etiketi olabilir.",
+                        "default": "Altyazılar"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Metinden takibin türü",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Altyazılar"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Başlıklar"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Açıklamalar"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Takip kaynağı (WebVTT dosyası)"
                       }
                     ]
                   }
@@ -79,23 +75,23 @@
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Etkileşim ekle",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Görüntülenme süresi"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Videoyu duraklat"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Bu şekilde göster",
+                    "description": "<b>Buton</b> daraltılmış etkileşimdir, kullanıcının açması için üzerine tıklaması gerekir. <b>Poster</b> genişletilmiş etkileşimdir, doğrudan videonun üzerinde görüntülenir.",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Buton"
                       },
                       {
                         "label": "Poster"
@@ -103,11 +99,11 @@
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Küçük ekranlarda buton şeklinde gözüksün"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Etiket",
+                    "description": "Etkileşim ikonunun hemen yanında gösterilecek etiket."
                   },
                   {},
                   {},
@@ -116,79 +112,78 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Uyarlama (Adaptivity)",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Tümü doğru olduğunda yapılacak eylem",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Şu noktaya konumlan (Seek to)",
+                            "description": "Zamanı D:SS formatında giriniz"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Kullanıcının vazgeçip ve devam etmesine izin ver"
                           },
                           {
-                            "label": "Message"
+                            "label": "Mesaj"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Şuraya konumlan (Seek) butonu için etiket"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Yanlış olduğnda yapılacak eylem",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Şu noktaya konumlan (Seek to)",
+                            "description": "Zamanı D:SS formatında giriniz"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Kullanıcının vazgeçip ve devam etmesine izin ver"
                           },
                           {
-                            "label": "Message"
+                            "label": "Mesaj"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Şuraya konumlan (Seek) butonu için etiket"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Devam etmeden önce görev için tam puan gerekir",
+                        "description": "Bu seçeneğin iyi bir şekilde çalışması için; \" Videoda ileri atlamayı önle\" seçeneğiyle birlikte kullanılmalıdır"
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Görseller",
                     "fields": [
                       {
-                        "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Arkaplan rengi"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Kutu gölgesi",
+                        "description": "Etkileşimin etrafına ince bir gölge ekler. Tamamen transparan etkileşimler için devre dışı bırakmak isteyebilirsiniz"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Tıklandığında git",
                     "fields": [
                       {
                         "label": "Yazınız",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Zaman kodu"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Diğer sayfa (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
+                        "label": "Git",
                         "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
@@ -207,7 +202,7 @@
                                 "label": "(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label": "diğer"
                               }
                             ]
                           },
@@ -217,8 +212,8 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Görselleştir",
+                        "description": "Bir çerçeve ve bir simge ekleyerek etkileşimin tıklanabilirliğini gösterin"
                       }
                     ]
                   }
@@ -230,12 +225,12 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Özetleme (Toparlama) görevi",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Şu sürede göster",
+              "description": "Video bitmeden kaç saniye önce gösterileceğin yazın."
             }
           ]
         }
@@ -245,108 +240,108 @@
       "label": "Davranış ayarları",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Videoyu şuradan itibaren başlat",
+          "description": "Zamanı D:SS formatında girin"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Videoyu otomatik oynat",
+          "description": "Videonun oynatılması otomatik olarak başlasın"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Video sürekli dönsün",
+          "description": "Video sürekli başa dönecekse işaretleyin"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Çözümü göster\" butonunu geçersiz kıl",
+          "description": "Bu seçenek \"Çözümü göster\" butonunun tüm sorular için gösterilip gösterilmeyeceğini belirler, varsayılan olarak tüm sorular için etkin değildir veya her bir soru için ayrı ayrı ayarlanabilir.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Etkin"
             },
             {
-              "label": "Disabled"
+              "label": "Etkin değil"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Yeniden dene\" butonunu geçersiz kıl",
+          "description": "Bu seçenek \"Yeniden dene\" butonunun tüm sorular için gösterilip gösterilmeyeceğini belirler, varsayılan olarak tüm sorular için etkin değildir veya her bir soru için ayrı ayrı ayarlanabilir.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Etkin"
             },
             {
-              "label": "Disabled"
+              "label": "Etkin değil"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Yer imleri menüsü açık şekilde başlat",
+          "description": "Bu özellik video kaynağı Youtube olduğunda iPad cihazlarda etkin değildir."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "10 saniye geri sar butonunu göster"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Videoda ileri atlamayı önle",
+          "description": "Bu seçenek seçildiğinde kullanıcıya varsayılan video kontrolleri etkisiz kılınacaktır."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Sesi devre dışı bırak",
+          "description": "Bu seçeneği seçiliğinde videonun sesi devre dışı bırakılacak ve açılması önlenecektir."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Yerelleştir",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Etkileşim başlığı",
+          "default": "Etkileşim"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Oynatma başlığı",
+          "default": "Oynat"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "Duraklatma başlığı",
+          "default": "Duraklat"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "Sessiz başlığı",
+          "default": "Sessiz"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "Sesli başlığı",
+          "default": "Sesli"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Video kalitesi başlığı",
+          "default": "Video Kalitesi"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Video başlığı yazısı",
+          "default": "Başlıklar"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Kapatma butonu metni",
+          "default": "Kapat"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Tam ekran başlığı",
+          "default": "Tam ekran"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Tam ekrandan çık başlığı",
+          "default": "Tam ekrandan çık"
         },
         {
-          "label": "Summary title",
+          "label": "Özet başlığı",
           "default": "Özet"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Yer imleri başlığı",
+          "default": "Yer imleri"
         },
         {
           "label": "Submit screen title",
@@ -354,117 +349,117 @@
         },
         {
           "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "default": "Devam (Continue)"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Videoya devam et butonu için varsayılan etiket",
+          "default": "Videoya devam et"
         },
         {
           "label": "Set playback rate",
           "default": "Playback Rate"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "10 Saniye Geri Sar",
+          "default": "10 Saniye Geri Sar"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Gezinim etkin değildir metni",
+          "default": "Gezinim etkin değildir"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Ses etkin değildir metni",
+          "default": "Ses etkin değil"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Devam etmeden önce kulllanıcıyı bu soruyu doğru cevaplaması gerektiği noktasında uyar",
+          "default": "Devam etmeden önce tüm soruları doğru cevaplamalısınız."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Geri butonu",
+          "default": "Geri"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Saat türünden geçen süre",
+          "default": "Saat"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Dakika türünden geçen süre",
+          "default": "Dakika"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Saniye türünden geçen süre",
+          "default": "Saniye"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Şu anki zaman için etiket",
+          "default": "Şu anki süre:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Toplam süre için etiket",
+          "default": "Toplam süre:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "label": "Gezinim kısayol tuşunu açıklamak için metin",
+          "default": "Videoyu istediğiniz zaman başlatmak veya durdurmak için k tuşunu kullanın"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Ekranda bir tekil etkileşim göründüğünü açıklayan metin",
+          "default": "Etkileşim bulunmkatadır:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Ekranda çoklu etkileşimlerin göründüğünü açıklayan metin",
+          "default": "Çoklu Etkileşim bulunmkatadır:"
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Video duraklatıldı duyrusu",
+          "default": "Video duraklatıldı"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "İçerik etiketi",
+          "default": "İçerik"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Cevaplandı mesajı (@answered , cevaplanan soru sayısıyla değiştirilecektir)",
+          "default": "@answered cevaplandı"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Gönderi ekranı başlığı (Submit screen title)",
+          "default": "@answered Soru cevaplandı",
+          "description": "@answered , cevaplanan soru sayısıyla değiştirilecektir."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Gönderi başlığı bilgisi",
+          "default": "Şu ana kadar @answered soru cevapladınız, Cevaplarınızı göndermek için aşağıya tıklayınız.",
+          "description": "@answered , will be replaced by the number of answered questions."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Eksik cevaplar için gönderi ekranı bilgisi",
+          "default": "Heniz bir soru cevaplamadınız."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Cevaplama gerekliliği noktasında gönderi ekranı bilgisi",
+          "default": "Cevaplarınızı göndermeden önce en az bir soru cevaplamak zorundasınız."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Gönderi ekranı, gönder bubutonu",
+          "default": "Cevapları Gönder"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Gönderi ekranı, gönder mesajı",
+          "default": "Cevaplarınız gönderildi!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Gönderi ekranı tablo satır başlığı: Cevaplanan sorular",
+          "default": "Cevaplanan sorular"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Gönderi ekranı tablo satır başlığı: Puan",
+          "default": "Puan"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Gönderi ekranı cevaplama puanı",
+          "default": "cevaplandı"
         }
       ]
     }

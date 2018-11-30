@@ -28,10 +28,6 @@
                 {
                   "label": "Cartel",
                   "description": "Imagen que se muestra antes de que el usuario inicie el video. No funciona para Videos de YouTube."
-                },
-                {
-                  "label": "Derechos de autor del video",
-                  "description": "Información relacionada con los derechos de autor del vídeo y de los elementos usados en el mismo."
                 }
               ]
             },
@@ -164,8 +160,7 @@
                     "label": "Efectos visuales",
                     "fields": [
                       {
-                        "label": "Color del fondo",
-                        "default": "rgb (255, 255, 255)"
+                        "label": "Color del fondo"
                       },
                       {
                         "label": "Sombra de caja",

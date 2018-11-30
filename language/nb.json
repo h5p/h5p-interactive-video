@@ -28,10 +28,6 @@
                 {
                   "label": "Plakat",
                   "description": "Bildet vises før videoen spilles av. Virker ikke for YouTube videoer."
-                },
-                {
-                  "label": "Opphavsrettsinformasjon",
-                  "description": "Informasjon om opphavsrett for videoen og andre elementer brukt i interaksjonene."
                 }
               ]
             },
@@ -164,8 +160,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Bakgrunnsfarge",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Bakgrunnsfarge"
                       },
                       {
                         "label": "Box shadow",
@@ -281,7 +276,7 @@
           ]
         },
         {
-          "label": "Vis knapp for å spole tilbake 10 sekunder",
+          "label": "Vis bokmerkemeny når interaktiv video åpnes",
           "description": "Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
         },
         {

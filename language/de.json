@@ -11,7 +11,7 @@
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Optionen Startbildschirm (nicht unnterstützt für YouTube Videos)",
+              "label": "Optionen Startbildschirm (nicht unterstützt für YouTube Videos)",
               "fields": [
                 {
                   "label": "Der Titel dieses interaktiven Videos",
@@ -28,10 +28,6 @@
                 {
                   "label": "Posterbild",
                   "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
-                },
-                {
-                  "label": "Video-Urheberrechtsinformationen",
-                  "description": "Urheberrechtliche Informationen zum Video und zu den Elementen, die im Video verwendet werden."
                 }
               ]
             },
@@ -164,8 +160,7 @@
                     "label": "Gehe zu bei Klick",
                     "fields": [
                       {
-                        "label": "Hintergrundfarbe",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Hintergrundfarbe"
                       },
                       {
                         "label": "Schatten anzeigen",
@@ -188,7 +183,7 @@
                         ]
                       },
                       {
-                        "label": "Go To",
+                        "label": "Gehe zu",
                         "description": "Die Zeit, die bei Anklicken des Hotspots angesprungen wird. Timecode im Format M:SS eingeben."
                       },
                       {
@@ -254,7 +249,7 @@
         },
         {
           "label": "Videoschleife",
-          "description": "Aktivierenn, wenn das Video in einer Schleife abgespielt werden soll"
+          "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
           "label": "Überschreibe \"Zeige Lösung\" Button",
@@ -421,50 +416,50 @@
           "default": "Video ist angehalten"
         },
         {
-          "label": "Content label",
+          "label": "Beschriftung für \"Inhalt\"",
           "default": "Inhalt"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Hiweis zu beantworteten Aufgaben (@answered wird durch die Anzahl der beantworteten Fragen ersetzt)",
+          "default": "@answered beantwortet"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Absenden-Bildschirm: Titel",
+          "default": "@answered Frage(n) beantwortet",
+          "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Absenden-Bildschirm: Hinweis",
+          "default": "Du hast @answered Fragen beantwortet. Klicke unten, um deine Ergebnisse abzusenden.",
+          "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Absenden-Bildschirm: Hinweis bei fehlenden Antworten",
+          "default": "Du hast noch keine Fragen beantwortet."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Absenden-Bildschirm: Hinweis auf weiteres Vorgehen",
+          "default": "Du musst mindestens eine Frage beantworten, um deine Antworten absenden zu können."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Absenden-Bildschirm: \"Absenden\"-Button",
+          "default": "Antworten absenden"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Absenden-Bildschirm: Hinweis bei abgesendeten Antworten",
+          "default": "Deine Antworten wurden abgeschickt!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Absenden-Bildschirm, Spaltentitel: Beantwortete Fragen",
+          "default": "Beantwortete Fragen"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Absenden-Bildschirm, Spaltentitel: Punkte",
+          "default": "Punkte"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Absenden-Bildschirm: Text für Aufgaben ohne Punkte",
+          "default": "beantwortet"
         }
       ]
     }

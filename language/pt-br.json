@@ -15,7 +15,7 @@
               "fields": [
                 {
                   "label": "O título deste vídeo interativo",
-                  "default": "IVídeo Interativo",
+                  "default": "Vídeo Interativo",
                   "description": "Usado em resumos, estatísticas etc."
                 },
                 {
@@ -225,7 +225,7 @@
           ]
         },
         {
-          "label": "Tarefa de resumo",
+          "label": "Tarefa de revisão",
           "fields": [
             {},
             {
