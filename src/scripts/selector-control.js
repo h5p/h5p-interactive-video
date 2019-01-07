@@ -103,7 +103,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   var createOption = function (option) {
     var isSelected = option.value === selectedOption.value;
 
-    var element = button(null, ButtonType.TEXT, option.label, function() {
+    var element = button(null, ButtonType.TEXT, option.label, function () {
       handleSelect(this, option);
     }, 'li', menuItemType);
 
@@ -116,7 +116,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     element.setAttribute('aria-describedby', id);
     controls.addElement(element);
 
-    if(isSelected) {
+    if (isSelected) {
       element.setAttribute('tabindex', '0');
     }
     else {
