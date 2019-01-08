@@ -218,6 +218,9 @@ function InteractiveVideo(params, id, contentData) {
 
   var initialized = false;
 
+  // Not a task by default, only if has a submit screen and an internaction which is a task
+  self.isTask = false;
+
   // Initialize interactions
   self.interactions = [];
   if (self.options.assets.interactions) {
