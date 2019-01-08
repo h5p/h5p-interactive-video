@@ -80,7 +80,7 @@ class Bubble {
      * Smoothened with CSS transition ease-out when resizing
      */
     setTimeout(() => {
-      const tailPosition = this.getTailPosition(this.$reference, bubblePosition, this.mode);
+      const tailPosition = this.getTailPosition(this.$reference);
       const preparedTailCSS = {
         bottom: `${tailPosition.bottom}px`,
         left: (typeof tailPosition.left === 'string') ? tailPosition.left : `${tailPosition.left}px`
