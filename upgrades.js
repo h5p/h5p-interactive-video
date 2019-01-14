@@ -16,15 +16,15 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        */
       1: function (parameters, finished) {
 
-          // Move interactions into assets container
-          parameters.interactiveVideo.assets = {
-            interactions: parameters.interactiveVideo.interactions,
-            bookmarks: []
-          };
-          delete parameters.interactiveVideo.interactions;
+        // Move interactions into assets container
+        parameters.interactiveVideo.assets = {
+          interactions: parameters.interactiveVideo.interactions,
+          bookmarks: []
+        };
+        delete parameters.interactiveVideo.interactions;
 
-          // Done
-          finished(null, parameters);
+        // Done
+        finished(null, parameters);
       },
 
       /**
@@ -65,7 +65,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
             if (interactions[i].action && interactions[i].action.subContentId === undefined) {
               // NOTE: We avoid using H5P.createUUID since this is an upgrade script and H5P function may change in the
               // future
-              interactions[i].action.subContentId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(char) {
+              interactions[i].action.subContentId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (char) {
                 var random = Math.random()*16|0, newChar = char === 'x' ? random : (random&0x3|0x8);
                 return newChar.toString(16);
               });
@@ -180,7 +180,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
               var interaction = interactions[i];
 
               // Set white background + boxShadow for images and textual posters:
-              if(interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library) {
+              if (interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library) {
                 var lib = interaction.action.library.split(' ')[0];
                 if (['H5P.Text', 'H5P.Image', 'H5P.Table'].indexOf(lib) !== -1) {
                   interaction.visuals = {
@@ -230,8 +230,8 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
 
         }
 
-        if(parameters.interactiveVideo && parameters.interactiveVideo.video){
-          moveOldStartScreenOptions(parameters.interactiveVideo.video);
+        if (parameters.interactiveVideo && parameters.interactiveVideo.video) {
+          moveOldStartScreenOptions (parameters.interactiveVideo.video);
         }
 
         finished(null, parameters);
