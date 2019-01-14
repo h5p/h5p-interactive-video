@@ -279,6 +279,26 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         extras.metadata.licenseExtras = (copyright) ? copyright = copyright.replace(/<[^>]*>?/g, '') : ((extras.metadata.licenseExtras) ? extras.metadata.licenseExtras : undefined);
 
         finished(null, parameters, extras);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.21.
+       *
+       * Change data structure to allow new property defaultTrackLabel
+       * inside textTracks group
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      21: function (parameters, finished) {
+        const textTracks = parameters.interactiveVideo.video.textTracks || [];
+
+        parameters.interactiveVideo.video.textTracks = {
+          videoTrack: textTracks
+        };
+
+        finished(null, parameters);
       }
     }
   };
