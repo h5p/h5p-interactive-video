@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Redigera Interaktiv Video",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Ladda upp/bädda in video",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Lägg till en video",
+              "description": "Klicka för att lägga till en video som du vill använda i din interaktiva video. Du kan lägga till en video-länk eller ladda upp videofiler. Det är möjligt att lägga till flera versioner av videon med olika kvalitet. För att säkerställa maximalt stöd i olika webbläsare så bör du ha minst en version i webm respektive mp4-format."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Inställningar för startskärm (stöds ej vid YouTube-video)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Titel för denna interaktiva video",
+                  "default": "Interaktiv video",
+                  "description": "Används i summeringar, statistik, etc."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Dölj titel på startskärm"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Kort beskrivning (valfri)",
+                  "description": "Valfri. Visar en kort textbeskrivning på videons startskärm. Fungerar inte för YouTube-video."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Startbild",
+                  "description": "Bild som visas före användaren startar videon. Fungerar inte för YouTube-video."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Textspår (stöds ej för YouTube-video)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Tillgängliga textspår",
+                  "entity": "Spår",
                   "field": {
-                    "label": "Track",
+                    "label": "Spår",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Spåretikett",
+                        "description": "Används om du har flera spår som användaren behöver välja blan. Exempelvis kan 'Spanska' vara etiketten för ett textspår på spanska.",
+                        "default": "Undertexter"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Typ av textspår",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Undertexter"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Skyltar"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Beskrivningar"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Källspråk, måste definieras för undertexter",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Spårkälla (WebVTT-fil)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Standard textspår",
+                  "description": "Om detta lämnas tomt eller inte matchar något av textspåren, så kommer det första textspåret användas som standard."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Lägg till interaktioner",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Visningstid"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Pausa video"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Visa som",
+                    "description": "<b>Knapp</b> är en ihopfälld interaktion som användaren måste klicka på för att öppna. <b>Pop-up</b> visas expanderat direkt ovanpå videon",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Knapp"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Pop-up"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Omvandla till knapp på små skärmar"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Etikett",
+                    "description": "Etikett visas bredvid interaktions-ikon."
                   },
                   {},
                   {},
@@ -116,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Anpassningsbarhet",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Händelse vid alla rätt",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Hoppa till",
+                            "description": "Ange tidskod i formatet M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Tillåt användaren att välja bort och fortsätta"
                           },
                           {
-                            "label": "Message"
+                            "label": "Meddelande"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Etikett för hoppa-knapp"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Händelse vid fel",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Hoppa till",
+                            "description": "Ange tidskod i formatet M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Tillåt att användaren väljer bort och fortsätter´"
                           },
                           {
-                            "label": "Message"
+                            "label": "Meddelande"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Etikett för hoppa-knapp"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Kräv full poäng på uppgift innan användaren kan fortsätta",
+                        "description": "För att uppnå bästa funktionalitet bör denna inställning användas ihop med inställningen \"Förhindra att spola framåt i video\" i Interaktiv video."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Visuella effekter",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Bakgrundsfärg"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Skugga",
+                        "description": "Lägger tillen skuggeffekt på interaktionen. Du kan stänga av detta för helt transparenta interaktioner."
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Gå till genom att klicka",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Typ",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Tidskod"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "En annan sida (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Gå till",
+                        "description": "Den tidpunkt som användaren navigeras till vid klickning på en hotspot. Ange tidskod i formatet M:SS."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Protokoll",
                             "options": [
                               {
                                 "label": "http://"
@@ -206,7 +206,7 @@
                                 "label": "(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label": "annan"
                               }
                             ]
                           },
@@ -216,8 +216,8 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Visualisera",
+                        "description": "Visa att interaktion kan klickas på genom att lägga till en ram och en ikon"
                       }
                     ]
                   }
@@ -229,241 +229,241 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Summeringsuppgift",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Visningstid",
+              "description": "Antal sekunder före videon tar slut."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Allmänna inställningar",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Starta video vid tid",
+          "description": "Ange tidskod i formatet M:SS"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Automatisk uppspelning",
+          "description": "Starta uppspelning av video automatiskt"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Kör video i loop",
+          "description": "Aktivera för att visa video i lopp"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Ersätt knapp \"Visa rätt svar\"",
+          "description": "Denna inställning avgör om knappen \"Visa rätt svar\" ska visas för alla frågor, döljas på alla frågor eller konfigureras individuellt på varje fråga.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Aktiverat"
             },
             {
-              "label": "Disabled"
+              "label": "Inaktiverat"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Ersätt knapp \"Försök igen\"",
+          "description": "Denna inställning avgör om knappen \"Försök igen\" ska visas för alla frågor, döljas på alla frågor eller konfigureras individuellt på varje fråga.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Aktiverat"
             },
             {
-              "label": "Disabled"
+              "label": "Inaktiverat"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Starta med bokmärkesmeny öppen",
+          "description": "Denna funktion är inte tillgänglig på iPad när YouTube är videokälla."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Visa knapp för att spola tillbaka 10 sekunder"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Förhindra att spola framåt i video",
+          "description": "Om du väljer denna inställning så inaktiveras möjligheten för användare att navigera i video med standardkontroller."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Inaktivera ljud ",
+          "description": "Om du väljer denna inställning så inaktiveras ljudet i videon och möjligheten för användare att slå på ljud förhindras."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Lokalisera",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Titel för interaktion",
+          "default": "Interaktion"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Titel för uppspelning",
+          "default": "Spela"
         },
         {
-          "label": "Pause title",
+          "label": "Titel för paus",
           "default": "Paus"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "Titel för ljud av",
+          "default": "Ljud av"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "Titel för ljud på",
+          "default": "Ljud på"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Titel för videokvalitet",
+          "default": "Videokvalitet"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Titel för video-skyltar",
+          "default": "Skyltar"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Text för stäng-knapp",
+          "default": "Stäng"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Titel för fullskärm",
+          "default": "Fullskärm"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Titel för avsluta fullskärmsläge",
+          "default": "Avsluta fullskärm"
         },
         {
-          "label": "Summary title",
-          "default": "Summary"
+          "label": "Titel för summering",
+          "default": "Summering"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Titel för bokmärken",
+          "default": "Bokmärken"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Titel för inlämningssida",
+          "default": "Inlämningssida"
         },
         {
-          "label": "Default label for adaptivity seek button",
+          "label": "Standardetikett för anpassningsbar hoppa-knapp",
           "default": "Fortsätt"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Standardetikett för fortsätt med video",
+          "default": "Fortsätt med video"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Ange uppspelningshastighet",
+          "default": "Uppspelningshastighet"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Spola tillbaka 10 sekunder",
+          "default": "Spola tillbaka 10 sekunder"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Text för inaktiverad navigation",
+          "default": "Navigation är inaktiverad"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Text för ljud är inaktiverat",
+          "default": "Ljud är inaktiverat"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Varning om att korrekt svar måste anges innan videon kan fortsätta spelas upp",
+          "default": "Du måste svara korrekt på alla frågor för att kunna fortsätta."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Tillbaka-knapp",
+          "default": "Tillbaka"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Spenderad tid i timmar",
+          "default": "Timmar"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Spenderad tid i minuter",
+          "default": "Minuter"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Spenderad tid i sekunder",
+          "default": "Sekunder"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Etikett för aktuell tid",
+          "default": "Aktuell tid:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Etikett för total tid",
+          "default": "Total tid:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "label": "Text som förklarar genväg för navigering",
+          "default": "Tryck k för att starta eller stoppa uppspelning av video"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Text som förklarar att en interaktion med ett namn är synlig",
+          "default": "Interaktion synlig:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Text som förklarar att flera interaktioner är synliga",
+          "default": "Flera interaktioner synliga."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Meddelande om att video är satt på paus",
+          "default": "Video är pausad"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Innhållsetikett",
+          "default": "Innehåll"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Svarat-meddelande (@answered kommer ersättas med antalet besvarade frågor)",
+          "default": "@answered besvarade"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Titel på inlämningssida",
+          "default": "@answered frågor besvarade",
+          "description": "@answered kommer ersättas med antalet besvarade frågor."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Information på inlämningssida",
+          "default": "Du har svarat på @answered frågor, klicka nedan för att lämna in dina svar.",
+          "description": "@answered kommer ersättas med antalet frågor."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Inlämningssida för saknade svar",
+          "default": "Du har inte svarat på några frågor."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Inlämningssidda med information om att svar krävs",
+          "default": "Du måste svara på åtminstone en fråga för att lämna in dina svar."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Inlämningsknapp på inlämningssida",
+          "default": "Lämna in svar"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Meddelande om inlämning på inlämningssida",
+          "default": "Dina svar har lämnats in!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Titel för tabell på inlämingssida: Besvarade frågor",
+          "default": "Besvarade frågor"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Titel för tabelll på inlämningssida: Poäng",
+          "default": "Poäng"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Inlämningssida svarspoäng",
+          "default": "svarat"
         }
       ]
     }
