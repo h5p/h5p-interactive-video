@@ -292,12 +292,11 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {function} finished
        */
       21: function (parameters, finished) {
-        const textTracks = parameters.interactiveVideo.video.textTracks || [];
-
-        parameters.interactiveVideo.video.textTracks = {
-          videoTrack: textTracks
-        };
-
+        if (parameters && parameters.interactiveVideo && parameters.interactiveVideo.video && parameters.interactiveVideo.video.textTracks) {
+          parameters.interactiveVideo.video.textTracks = {
+            videoTrack: parameters.interactiveVideo.video.textTracks
+          };
+        }
         finished(null, parameters);
       }
     }
