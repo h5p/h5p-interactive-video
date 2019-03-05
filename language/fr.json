@@ -421,41 +421,41 @@
         },
         {
           "label": "Content label",
-          "default": "Content"
+          "default": "Contenu"
         },
         {
           "label": "Answered message (@answered will be replaced with the number of answered questions)",
           "default": "@answered answered"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Titre de l'écran de remise",
+          "default": "@answered Question(s) auxquelles vous avez répondu",
+          "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Information de l'écran de remise",
+          "default": "Vous avez répondu à @answered questions. Cliquez ci-dessous pour les remettre.",
+          "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
-          "label": "Submit screen information for missing answers",
+          "label": "Écran de remise pour réponses manquantes",
           "default": "Vous n'avez répondu à aucune question."
         },
         {
-          "label": "Submit screen information for answer needed",
+          "label": "Écran de remise pour nombre de réponses minimal",
           "default": "Vous devez répondre à au moins une question avant de pouvoir soumettre vos réponses."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Écran de remise bouton de remise",
+          "default": "Remettre vos réponses"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Confirmation de remise",
+          "default": "Vos réponses ont été remises!"
         },
         {
           "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "default": "Questions auxquelles vous avez répondu"
         },
         {
           "label": "Submit screen table row title: Score",
@@ -463,7 +463,7 @@
         },
         {
           "label": "Submit screen answered score",
-          "default": "answered"
+          "default": "Réponses"
         }
       ]
     }
