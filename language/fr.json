@@ -71,8 +71,8 @@
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Texte par défaut de la première piste",
+                  "description": "Si elle est vide ou qu'elle ne correspond à aucune piste de texte existante, cette première piste sera utilisée."
                 }
               ]
             }
@@ -417,15 +417,15 @@
         },
         {
           "label": "Intitulé du contenu",
-          "default": "Contenu vidéo"
-        },
-        {
-          "label": "Content label",
           "default": "Contenu"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Intitulé du contenu",
+          "default": "Contenu"
+        },
+        {
+          "label": "Message relatif aux nombre de réponses données (@answered sera remplacé par le nombre de questions pour lesquelles il une réponse a été donnée)",
+          "default": "@answered réponses données"
         },
         {
           "label": "Titre de l'écran de remise",
@@ -446,7 +446,7 @@
           "default": "Vous devez répondre à au moins une question avant de pouvoir soumettre vos réponses."
         },
         {
-          "label": "Écran de remise bouton de remise",
+          "label": "Bouton de remise de l'écran de remise",
           "default": "Remettre vos réponses"
         },
         {
@@ -454,15 +454,15 @@
           "default": "Vos réponses ont été remises!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
+          "label": "Titre de rangée du tableau de l'écran de remise: Questions avec réponses",
           "default": "Questions auxquelles vous avez répondu"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "Titre de rangée du tableau de l'écran de remise: Score",
           "default": "Score"
         },
         {
-          "label": "Submit screen answered score",
+          "label": "Score de la réponses sur l'écran de remise",
           "default": "Réponses"
         }
       ]
