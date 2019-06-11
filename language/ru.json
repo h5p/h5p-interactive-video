@@ -1,109 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Интерактивный редактор видео",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Загрузить/вставить видео",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Добавить видео",
+              "description": "Нажмите ниже, чтобы добавить видео, которое вы хотите использовать в интерактивном видео. Вы можете добавить ссылку на видео или загрузить видеофайлы. Можно добавить несколько версий видео с разным качеством. Чтобы обеспечить максимальную поддержку в браузере, добавьте хотя бы версию в форматах webm и mp4."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Параметры начального экрана (не поддерживается для видео YouTube)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Название этого интерактивного видео",
+                  "default": "Интерактивное видео",
+                  "description": "Используется в обзоре, статистике и т.д."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Скрыть название на стартовом экране видео"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Краткое описание (необязательно)",
+                  "description": "По желанию. Отобразите текст краткого описания на начальном экране видео. Не работает для видео на YouTube."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Постер изображения",
+                  "description": "Изображение отображается до того, как пользователь запускает видео. Не работает для видео YouTube."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Текстовые дорожки (не поддерживаются для видео на YouTube)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Доступные текстовые дорожки",
+                  "entity": "Дорожка",
                   "field": {
-                    "label": "Track",
+                    "label": "Дорожка",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Метка дорожки",
+                        "description": "Используется, если вы предлагаете несколько треков, и пользователь должен выбрать трек. Например, «Испанские субтитры» могут быть меткой трека испанских субтитров.",
+                        "default": "Субтитры"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Тип текстовой дорожки",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Субтитры"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Титры"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Описания"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Язык должен быть определен для субтитров",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Должен быть действительным языковым тегом BCP 47. Если «Субтитры» - это тип выбранной текстовой дорожки, необходимо определить язык дорожки."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Источник дорожки (файл WebVTT)"
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Текстовая дорожка по умолчанию",
+                  "description": "Если оставить пустым или не соответствует ни одной из текстовых дорожек, первая текстовая дорожка будет использоваться по умолчанию."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Добавить взаимодействия",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Время показа"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Остановить видео"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Показать как",
+                    "description": "<b>Кнопку</b> - это не раскрытое взаимодействие, на которое пользователь должен нажать, чтобы открыть. <b>Постер</b> - расширенное взаимодействие, отображаемое непосредственно в верхней части видео.",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Кнопка"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Постер"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Переключиться в кнопку на маленьких экранах"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Метка",
+                    "description": "Метка отображается рядом с иконкой взаимодействия."
                   },
                   {},
                   {},
@@ -112,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Адаптивность",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Действие, если все правильно",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Перейти к",
+                            "description": "Введите таймкод в формате M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Разрешить пользователю отказаться и продолжить"
                           },
                           {
-                            "label": "Message"
+                            "label": "Сообщение"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Метка для кнопки перехода"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Действие, если неправильно",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Перйти к",
+                            "description": "Введите таймкод в формате M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Разрешить пользователю отказаться и продолжить"
                           },
                           {
-                            "label": "Message"
+                            "label": "Сообщение"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Метка для кнопки перехода"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Требуется полная оценка для задачи, прежде чем продолжить",
+                        "description": "Для лучшей функциональности этот параметр следует использовать вместе с параметром \"Запретить переход вперед в видео\" в интерактивном видео."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Оформление",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Фоновый цвет"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Тень блока",
+                        "description": "Добавляет тонкую тень вокруг взаимодействия. Вы можете отключить это для полностью прозрачных взаимодействий"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Перейти по щелчку",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Тип",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Временной код"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Другая страница (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Перейти к",
+                        "description": "Целевое время, на которое пользователь будет направлен после нажатия горячей точки. Введите временной код в формате M: SS."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Протокол",
                             "options": [
                               {
                                 "label": "http://"
@@ -199,10 +203,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(относительный путь)"
                               },
                               {
-                                "label": "other"
+                                "label": "другое"
                               }
                             ]
                           },
@@ -212,8 +216,8 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Внешний вид",
+                        "description": "Показать, что на взаимодействие можно нажать, добавив границы и иконку"
                       }
                     ]
                   }
@@ -225,241 +229,241 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Подведение итогов",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Показать на",
+              "description": "Количество секунд до окончания видео."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Настройки поведения",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Начать видео в",
+          "description": "Введите временной код в формате M:SS"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Авто-воспроизведение видео",
+          "description": "Начать воспроизведение видео автоматически"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Зациклить видео",
+          "description": "Отметьте, если видео должно запускаться в цикле"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Переопределить кнопку \"Показать решение\"",
+          "description": "Этот параметр определяет, будет ли кнопка \"Показать решение\" отображаться для всех вопросов, отключена для всех или настроена для каждого вопроса отдельно.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Включена"
             },
             {
-              "label": "Disabled"
+              "label": "Выключена"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Переопределить кнопку \"Повторить\"",
+          "description": "Этот параметр определяет, будет ли кнопка \"Повторить\" отображаться для всех вопросов, отключена для всех или настроена для каждого вопроса отдельно.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Включена"
             },
             {
-              "label": "Disabled"
+              "label": "Выключена"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Начните с открытого меню закладок",
+          "description": "Эта функция недоступна на iPad при использовании YouTube в качестве источника видео."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Показать кнопку для перемотки на 10 секунд"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Предотвратить перемотку вперед в видео",
+          "description": "Включение этой опции отключит навигацию пользователя по видео с помощью элементов управления по умолчанию."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Отключить звук",
+          "description": "Включение этого параметра отключит звук видео и предотвратит его включение."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Локализация",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Название взаимодействия",
+          "default": "Взаимодействие"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Заголовок для воспроизведения",
+          "default": "Воспроизвести"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "Заголовок для паузы",
+          "default": "Пауза"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "Заголовок для выключения звука",
+          "default": "Выключить звук"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "Заголовок для включения звука",
+          "default": "Включить звук"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Заголовок для качества видео",
+          "default": "Качество видео"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Заголовок для титров видеоо",
+          "default": "Титры"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Заголовк для кнопки закрытия",
+          "default": "Закрыть"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Заголовк для полноэкранного режима",
+          "default": "Полноэкранный режим"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Заголовок для выхода из полноэкранного режима",
+          "default": "Выйти из полноэкранного режима"
         },
         {
-          "label": "Summary title",
-          "default": "Summary"
+          "label": "Заголовок для обзора",
+          "default": "Обзор"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Заголовок для закладок",
+          "default": "Закладки"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Отправить название экрана",
+          "default": "Отправить экран"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Метка по умолчанию для адаптивной кнопки поиска",
+          "default": "Продолжить"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Метка по умолчанию для кнопки продолжения видео",
+          "default": "Продолжить с видео"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Установите скорость воспроизведения",
+          "default": "Скорость воспроизведения"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Перемотать на 10 секунд",
+          "default": "Перемотать на 10 секунд"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Текст отключенной навигации",
+          "default": "Навигация отключена"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Текст отключенного звука",
+          "default": "Звук отключен"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Предупреждение, что пользователь должен правильно ответить на вопрос, прежде чем продолжить",
+          "default": "Вы должны ответить на все вопросы правильно, прежде чем продолжить."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Кнопка назад",
+          "default": "Назад"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Прошедших часов времени",
+          "default": "Часов"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Прошедших минут времени",
+          "default": "Минут"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Прошедших секунд времени",
+          "default": "Секунд"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Метка для текущего времени",
+          "default": "Текущее время:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Метка для общего времени",
+          "default": "Общее время:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "label": "Текст для объяснения навигации с помощью горячих клавиш",
+          "default": "Используйте клавишу k для запуска и остановки видео в любое время"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Текст, объясняющий, что появилось одно взаимодействие",
+          "default": "Появилось взаимодействие:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Текст для объяснения того, что появилось несколько взаимодействий",
+          "default": "Появилось несколько взаимодействий."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Уведомление о приостановке видео",
+          "default": "Видео приостановлено"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Метка контента",
+          "default": "Контент"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Сообщение об ответах (@answered будет заменено на количество отвеченных вопросов)",
+          "default": "@answered отвечено"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Отправить заголовок экрана",
+          "default": "@answered Вопрос(ов) отвечено",
+          "description": "@answered будет заменено на количество отвеченных вопросов."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Отправить информацию на экран",
+          "default": "Вы ответили на @answered вопросов, нажмите ниже, чтобы отправить свои ответы.",
+          "description": "@answered будет заменено на количество отвеченных вопросов."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Отправить информацию на экран для пропущенных ответов",
+          "default": "Вы не ответили ни на один вопрос."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Отправить информацию на экран для необходимого ответа",
+          "default": "Вы должны ответить хотя бы на один вопрос, прежде чем отправлять свои ответы."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Показать на экране кнопку отправки",
+          "default": "Отправить ответы"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Показать на экране сообщение об отправке",
+          "default": "Ваши ответы были отправлены!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Показать на экране заголовок строки таблицы: Отвеченные вопросы",
+          "default": "Отвеченные вопросы"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Показать на экране заголовок строки таблицы: Счет",
+          "default": "Счет"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Показать на экране счет отченных вопросов",
+          "default": "отвечено"
         }
       ]
     }

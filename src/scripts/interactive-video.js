@@ -218,6 +218,9 @@ function InteractiveVideo(params, id, contentData) {
 
   var initialized = false;
 
+  // Not a task by default, only if has a submit screen and an internaction which is a task
+  self.isTask = false;
+
   // Initialize interactions
   self.interactions = [];
   if (self.options.assets.interactions) {
@@ -239,6 +242,9 @@ function InteractiveVideo(params, id, contentData) {
       self.resize();
     });
 
+    // In the editor, no captions will be shown
+    const textTracks = this.editor ? [] : self.options.video.textTracks.videoTrack || [];
+
     // Start up the video player
     self.video = H5P.newRunnable({
       library: 'H5P.Video 1.3',
@@ -251,7 +257,7 @@ function InteractiveVideo(params, id, contentData) {
           disableRemotePlayback: true
         },
         startAt: startAt,
-        a11y: self.options.video.textTracks
+        a11y: textTracks
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -493,8 +499,15 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     return;
   }
 
+  // Use default track if selected in editor
+  const defaultTrackLabel = this.editor ? undefined : self.options.video.textTracks.defaultTrackLabel;
+  const defaultTrack = tracks.reduce((result, current) => {
+    return (result === undefined && defaultTrackLabel && current.label === defaultTrackLabel) ? current : result;
+  }, undefined);
+
   // Determine current captions track
-  var currentTrack = self.video.getCaptionsTrack();
+  let currentTrack = defaultTrack || self.video.getCaptionsTrack();
+
   if (!currentTrack) {
     // Set default off when no track is selected
     currentTrack = tracks[0];
@@ -722,7 +735,7 @@ InteractiveVideo.prototype.addSplash = function () {
   this.$splash = $(
     '<div class="h5p-splash-wrapper">' +
       '<div class="h5p-splash-outer">' +
-        '<div class="h5p-splash" role="button" tabindex="0" aria-label="' + this.options.video.startScreenOptions.title + '">' +
+        '<div class="h5p-splash" role="button" tabindex="0">' +
           '<div class="h5p-splash-main">' +
             '<div class="h5p-splash-main-outer">' +
               '<div class="h5p-splash-main-inner">' +

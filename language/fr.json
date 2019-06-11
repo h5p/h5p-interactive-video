@@ -69,6 +69,10 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Texte par défaut de la première piste",
+                  "description": "Si elle est vide ou qu'elle ne correspond à aucune piste de texte existante, cette première piste sera utilisée."
                 }
               ]
             }
@@ -413,53 +417,53 @@
         },
         {
           "label": "Intitulé du contenu",
-          "default": "Contenu vidéo"
+          "default": "Contenu"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Intitulé du contenu",
+          "default": "Contenu"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Message relatif aux nombre de réponses données (@answered sera remplacé par le nombre de questions pour lesquelles il une réponse a été donnée)",
+          "default": "@answered réponses données"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Titre de l'écran de remise",
+          "default": "@answered Question(s) auxquelles vous avez répondu",
+          "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Information de l'écran de remise",
+          "default": "Vous avez répondu à @answered questions. Cliquez ci-dessous pour les remettre.",
+          "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
-          "label": "Submit screen information for missing answers",
+          "label": "Écran de remise pour réponses manquantes",
           "default": "Vous n'avez répondu à aucune question."
         },
         {
-          "label": "Submit screen information for answer needed",
+          "label": "Écran de remise pour nombre de réponses minimal",
           "default": "Vous devez répondre à au moins une question avant de pouvoir soumettre vos réponses."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Bouton de remise de l'écran de remise",
+          "default": "Remettre vos réponses"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Confirmation de remise",
+          "default": "Vos réponses ont été remises!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Titre de rangée du tableau de l'écran de remise: Questions avec réponses",
+          "default": "Questions auxquelles vous avez répondu"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "Titre de rangée du tableau de l'écran de remise: Score",
           "default": "Score"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Score de la réponses sur l'écran de remise",
+          "default": "Réponses"
         }
       ]
     }

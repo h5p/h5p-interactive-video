@@ -7,7 +7,7 @@
           "label": "Upload/embed video",
           "fields": [
             {
-              "label": "Add a video",
+              "label": "افزودن ویدئو",
               "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
             },
             {
@@ -309,7 +309,7 @@
         },
         {
           "label": "Pause title",
-          "default": "Παύση"
+          "default": "Pause"
         },
         {
           "label": "Mute title",
@@ -350,10 +350,6 @@
         {
           "label": "Submit screen title",
           "default": "Submit screen"
-        },
-        {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
         },
         {
           "label": "Default label for continue video button",
@@ -418,6 +414,10 @@
         {
           "label": "Video is paused announcement",
           "default": "Video is paused"
+        },
+        {
+          "label": "Content label",
+          "default": "Content"
         },
         {
           "label": "Content label",

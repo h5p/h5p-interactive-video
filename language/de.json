@@ -69,6 +69,10 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Vorgegebene Textspur",
+                  "description": "Wenn das Feld leer gelassen wird oder keiner Spurbeschriftung entspricht, wird die erste Textspur verwendet."
                 }
               ]
             }

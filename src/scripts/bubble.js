@@ -80,7 +80,7 @@ class Bubble {
      * Smoothened with CSS transition ease-out when resizing
      */
     setTimeout(() => {
-      const tailPosition = this.getTailPosition(this.$reference, bubblePosition, this.mode);
+      const tailPosition = this.getTailPosition(this.$reference);
       const preparedTailCSS = {
         bottom: `${tailPosition.bottom}px`,
         left: (typeof tailPosition.left === 'string') ? tailPosition.left : `${tailPosition.left}px`
@@ -202,20 +202,13 @@ class Bubble {
   /**
    * Calculate position for speech bubble tail.
    *
-   * @param {jQuery} reference - Reference object for tail position.
-   * @param {object} bubblePosition - Bubble position.
-   * @param {number} bubblePosition.top - Top position.
-   * @param {number} bubblePosition.bottom - Bottom position.
-   * @param {number} bubblePosition.left - Left position.
-   * @param {string} mode - 'centered' for score bubble, 'full' for endscreen
+   * @param {jQuery} $reference - Reference object for tail position.
    * @return {object} Position for the tail.
    */
-  getTailPosition($reference, bubblePosition, mode) {
+  getTailPosition($reference) {
     // Magic numbers. Tuned by hand so that the tail fits visually within the bounds of the bubble.
-    const left = (mode === 'full') ? ($reference.offset().left - this.$tail.parent().offset().left + 8) : ($reference.offset().left - bubblePosition.left + 6);
-
     return {
-      left: left,
+      left: $reference.offset().left - this.$tail.parent().offset().left + 8,
       top: -6,
       bottom: -6
     };
