@@ -11,7 +11,7 @@
               "description": "Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Opciones de pantalla de inicio (sin soporte para vídeos de YouTube)",
               "fields": [
                 {
                   "label": "Título de este vídeo interactivo",
@@ -32,7 +32,7 @@
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Pistas de texto (sin soporte para vídeos de YouTube)",
               "fields": [
                 {
                   "label": "Pistas de texto disponibles",
@@ -71,8 +71,8 @@
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Texto por defecto de la pista",
+                  "description": "Si se deja vacío o no coincide con ninguna de las pistas de texto, la primera pista de texto se utilizará como predeterminada."
                 }
               ]
             }
@@ -248,16 +248,16 @@
           "description": "Introduzca el código de tiempo en el formato M:SS"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Reproducir en loop",
+          "description": "Seleccionar si el vídeo debería reproducirse en loop"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
+          "label": "Sobre-escribir botón \"Mostrar solución\"",
+          "description": "Esta opción determina si el botón \"Mostrar solución\" se mostrará para todas las preguntas, se desactivará para todos o se configurará para cada pregunta individualmente."
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Sobre-escribir botón  \"Reintentar\"",
+          "description": "Esta opción determina si el botón \"Reintentar\" se mostrará para todas las preguntas, se desactivará para todos o se configurará para cada pregunta individualmente.",
           "options": [
             {
               "label": "Habilitado"
@@ -268,8 +268,8 @@
           ]
         },
         {
-          "label": "Show bookmarks menu on load",
-          "description": "This function is not available on iPad when using YouTube as video source",
+          "label": "Mostrar el menú de marcadores en la carga",
+          "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video",
           "options": [
             {
               "label": "Habilitado"
@@ -280,15 +280,11 @@
           ]
         },
         {
-          "label": "Show button for rewinding 10 seconds",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label": "Mostrar botón para rebobinar 10 segundos",
+          "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video"
         },
         {
-          "label": "Prevent skipping forward in a video"
-        },
-        {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Evitar que se salte hacia adelante en el vídeo"
         },
         {
           "label": "Desactivar sonido",
@@ -348,8 +344,8 @@
           "default": "Marcadores"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Título de pantalla de confirmación",
+          "default": "Confirmar"
         },
         {
           "label": "Etiqueta predeterminada para el botón de búsqueda de adaptabilidad",
@@ -420,50 +416,50 @@
           "default": "Video en pausa"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Etiqueta del contenido",
+          "default": "Contenido"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Mensaje de respondidas (@answered será reemplazada por el número de preguntas respondidas)",
+          "default": "@answered respondidas"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Título de pantalla de confirmación",
+          "default": "@answered pregunta(s) respondidas",
+          "description": "@answered será reemplazada por el número de preguntas respondidas."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Información de la pantalla de confirmación",
+          "default": "Usted ha respondido @answered preguntas, haga click a continuación para confirmar sus respuestas.",
+          "description": "@answered será reemplazada por el número de preguntas respondidas."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Información de pantalla para respuestas faltantes",
+          "default": "Usted no ha respondido ninguna pregunta."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Información de pantalla para respuestas necesarias",
+          "default": "Usted debe responder al menos una pregunta antes de poder confirmar sus respuestas."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Botón de confirmación en la pantalla de confirmación",
+          "default": "Confirmar respuestas"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Mensaje de confirmación en pantalla de confirmación",
+          "default": "¡Sus respuestas han sido enviadas!"
         },
         {
           "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "default": "Preguntas respondidas"
         },
         {
           "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "default": "Puntaje"
         },
         {
           "label": "Submit screen answered score",
-          "default": "answered"
+          "default": "Respondida"
         }
       ]
     }
