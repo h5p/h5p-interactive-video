@@ -280,11 +280,15 @@
           ]
         },
         {
-          "label": "Mostrar botón para rebobinar 10 segundos",
+          "label": "Start with bookmarks menu open",
           "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video"
         },
         {
-          "label": "Evitar que se salte hacia adelante en el vídeo"
+          "label": "Mostrar botón para rebobinar 10 segundos"
+        },
+        {
+          "label": "Evitar que se salte hacia adelante en el vídeo",
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
           "label": "Desactivar sonido",
