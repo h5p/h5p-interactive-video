@@ -67,7 +67,11 @@ function InteractiveVideo(params, id, contentData) {
 
   // Insert default options
   self.options = $.extend({ // Deep is not used since editor uses references.
-    video: {},
+    video: {
+      textTracks: {
+        videoTrack: []
+      }
+    },
     assets: {}
   }, params.interactiveVideo);
   self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
