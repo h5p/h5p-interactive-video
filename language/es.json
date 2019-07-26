@@ -60,7 +60,7 @@
                         ]
                       },
                       {
-                        "label": "Lengua de origen, debe definirse para los subtítulos",
+                        "label": "Idioma de origen, debe definirse para los subtítulos",
                         "default": "en",
                         "description": "Debe ser una etiqueta de idioma válida de BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
@@ -85,14 +85,14 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Mostar duración"
+                    "label": "Mostrar duración"
                   },
                   {
                     "label": "Pausar vídeo"
                   },
                   {
                     "label": "Mostrar como",
-                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe preseionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
+                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe presionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
                     "options": [
                       {
                         "label": "Botón"
@@ -280,7 +280,7 @@
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
+          "label": "Iniciar con el menú de marcadores abierto",
           "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video"
         },
         {
@@ -288,7 +288,7 @@
         },
         {
           "label": "Evitar que se salte hacia adelante en el vídeo",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "description": "Al habilitar esta opción se deshabilitará la navegación del video del usuario por medio de controles predeterminados."
         },
         {
           "label": "Desactivar sonido",
@@ -454,15 +454,15 @@
           "default": "¡Sus respuestas han sido enviadas!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
+          "label": "Título de fila de tabla de enviar pantalla: Preguntas respondidas",
           "default": "Preguntas respondidas"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "Título de fila de tabla de enviar pantalla: Puntaje",
           "default": "Puntaje"
         },
         {
-          "label": "Submit screen answered score",
+          "label": "Puntaje respondidas de enviar pantalla",
           "default": "Respondida"
         }
       ]
