@@ -15,7 +15,7 @@
   "fullscreen": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 19
+    "minorVersion": 22
   },
   "preloadedJs": [
     {
