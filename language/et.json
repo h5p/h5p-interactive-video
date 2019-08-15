@@ -1,97 +1,101 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Interaktiivse video redaktor",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Laadi üles või manusta (embed) video",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Lisa video",
+              "description": "Oma interaktiivses videos kasutatava video lisamiseks kliki siin all. Video saad üles laadida või lisada lingina. Erinevates seadmetes parima ühilduvuse tagamiseks on võimalik video mitmes erinevas formaadis lisada. Brauserite parima toe tagamiseks lisa video vähemalt webm ja mp4 formaatides."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Alguskuva valikud (ei toimi Youtube videote puhul)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Interaktiivse video pealkiri",
+                  "default": "Interaktiivne video",
+                  "description": "Kasutatakse kokkuvõtetes, statistikas jne"
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Peida tiitel video avakuval"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Lühikirjeldus (valikuline)",
+                  "description": "Valikuline. Kuvab video avakuval lühikese kirjelduse. Ei toimi Youtube videote puhul."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Postripilt",
+                  "description": "Pilt, mida näidatakse enne, kui kasutaja video käivitab. Ei toimi Youtube videote puhul."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Tekstirajad (ei toimi Youtube videotega)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Olemasolevad tekstirajad",
+                  "entity": "Rada",
                   "field": {
-                    "label": "Track",
+                    "label": "Rada",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Tekstiraja silt",
+                        "description": "Kasutatakse, kui pakud mitut tekstirada ja kasutaja peab neist ühe valima. Näitaks 'Läti subtiitrid' võiks olla lätikeelsete subtiitrite tekstiraja silt.",
+                        "default": "Subtiitrid"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Tekstiraja tüüp",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Subtiitrid"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Tiitrid"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Kirjeldused"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Algkeel, subtiitrite jaoks peab olema määratud",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Tekstiraja allikas (WebVTT fail)"
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Vaikimisi tekstirada",
+                  "description": "Kui on tühi või ei vasta olemasolevatele tekstiradadele, siis vaikimisi kasutatakse esimest tekstirada."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Lisa interaktsioonid",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Kuva aeg"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Peata video"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Näita nagu",
+                    "description": "<b>Nupp</b> on suletud interaktsioon, mida kasutaja peab avamiseks vajutama. <b>Poster</b> on videole laotatud interaktsioon, mida näidatakse otse video peal",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Nupp"
                       },
                       {
                         "label": "Poster"
@@ -99,11 +103,11 @@
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Muuda väiksel ekraanil nupuks"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Silt",
+                    "description": "Silt, mida näidatakse interaktsiooni ikooni kõrval."
                   },
                   {},
                   {},
@@ -112,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Kohandamine",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Tegevus kõigi õigete puhul",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Otsi üles",
+                            "description": "Sisesta ajakood formaadis M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Luba kasutajal loobuda ja jätkata"
                           },
                           {
-                            "label": "Message"
+                            "label": "Teade"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Otsi üles nupu silt"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Vale tegevus",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Otsi üles",
+                            "description": "Sisesta ajakood formaadis M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Luba kasutajal loobuda ja jätkata"
                           },
                           {
-                            "label": "Message"
+                            "label": "Teade"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Otsi üles nupu silt"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Nõua jätkamiseks täispunktisummat",
+                        "description": "Parimaks toimimiseks tuleks seda valikut kasutada koos interaktiivse video \"Keela videos edasikerimine\" valikuga."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Visuaalid",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Taustavärv"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Kasti vari",
+                        "description": "Lisab interaktsioonile õrna varju. Täiesti läbipaistvate interaktsioonide puhul kaalu selle valiku keelamist"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Kliki puhul mine",
                     "fields": [
                       {
                         "label": "Tüüp",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Ajakood"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Teise lehe link"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Mine",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Sisesta ajakood formaadis M:SS."
                       },
                       {
-                        "label": "URL",
+                        "label": "Link",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Protokoll",
                             "options": [
                               {
                                 "label": "http://"
@@ -199,21 +203,21 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(tüvest sõltuv)"
                               },
                               {
-                                "label": "other"
+                                "label": "muud tüüpi"
                               }
                             ]
                           },
                           {
-                            "label": "URL"
+                            "label": "Link"
                           }
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Visualiseeri",
+                        "description": "Näita raami ja ikooni lisades, et interaktsioonil saab klikkida"
                       }
                     ]
                   }
@@ -225,241 +229,241 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Kokkuvõttev ülesanne",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Näita",
+              "description": "Kuimitu sekundit enne video lõppu."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Käitumisseaded",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Alusta videot",
+          "description": "Sisesta ajakood formaadis M:SS"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Käivita video automaatselt",
+          "description": "Alusta video mängimist automaatselt"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Videokordus",
+          "description": "Märgi, kui video peaks mängima korduses"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Näita lahendust\" nupu olek",
+          "description": "Selle valikuga määratakse, kas \"Näita lahendust\" nuppu näidatakse kõikidele küsimustele, keelatakse kõigil küsimustel või seadistatakse igale küsimusele eraldi.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Lubatud"
             },
             {
-              "label": "Disabled"
+              "label": "Keelatud"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Proovi uuesti\" nupu olek",
+          "description": "Selle valikuga määratakse, kas \"Proovi uuesti\" nuppu näidatakse kõikidele küsimustele, keelatakse kõigil küsimustel või seadistatakse igale küsimusele eraldi.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Lubatud"
             },
             {
-              "label": "Disabled"
+              "label": "Keelatud"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Alusta avatud järjehoidjamenüüga",
+          "description": "See valik ei toimi iPad-iga, kui alusvideo asub Youtubes."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Näita nuppu 10 sekundi tagasikerimiseks"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Keela videos edasikerimine",
+          "description": "Selle võimaluse lubamisel keelatakse kasutajal vaikejuhtnuppudega navigeerimine."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Vaigista heli",
+          "description": "Selle valikuga vaigistatakse video heli nii, et kasutaja ei saa seda sisse lülitada."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Kohanda",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Interaktsiooni pealkiri",
+          "default": "Interaktsioon"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Mängi pealkiri",
+          "default": "Mängi"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "Pausi pealkiri",
+          "default": "Paus"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "Vaigista pealkiri",
+          "default": "Vaigista"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "Taasta heli pealkiri",
+          "default": "Taasta heli"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Video kvaliteedi pealkiri",
+          "default": "Video kvaliteet"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Video tiitrite pealkiri",
+          "default": "Tiitrid"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Sulge nupu tekst",
+          "default": "Sulge"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Täisekraani pealkiri",
+          "default": "Täisekraan"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Välju täisekraanilt pealkiri",
+          "default": "Välju täisekraanilt"
         },
         {
-          "label": "Summary title",
-          "default": "Summary"
+          "label": "Kokkuvõtte pealkiri",
+          "default": "Kokkuvõte"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Järjehoidjate pealkiri",
+          "default": "Järjehoidjad"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Esita kuva pealkiri",
+          "default": "Esita kuva"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Kohandamise Otsi üles nupu vaikesilt",
+          "default": "Jätka"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Jätka videoga nupu vaikesilt",
+          "default": "Jätka videoga"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Määra taasesituse kiirus",
+          "default": "Taasesituse kiirus"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Keri 10 sekundit tagasi",
+          "default": "Keri 10 sekundit tagasi"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Navigatsioon on keelatud tekst",
+          "default": "Navigatsioon on keelatud"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Heli on vaigistatud tekst",
+          "default": "Heli on vaigistatud"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Hoiatus, et kasutaja peab jätkamiseks küsimuse õigesti vastama",
+          "default": "Sul on vaja jätkamiseks kõik küsimused õigesti vastata."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Tagasi nupp",
+          "default": "Tagasi"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Möödunud aeg, tunnid",
+          "default": "Tunnid"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Möödunud aeg, minutid",
+          "default": "Minutid"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Möödunud aeg, sekundid",
+          "default": "Sekundid"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Jooksva aja silt",
+          "default": "Jooksev aeg:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Kogu aja silt",
+          "default": "Kogu aeg:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "label": "Navigatsiooni kiirklahvi seletav tekst",
+          "default": "Kasuta klahvi K video käivitamiseks ja peatamiseks"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Tekst, mis selgitab, et kuvale ilmus üks nimeline interaktsioon",
+          "default": "Interaktsioon ilmus:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Tekst, mis selgitab, et kuvale ilmus mitu interaktsiooni",
+          "default": "Ilmus mitu interaktsiooni."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Video on peatatud teade",
+          "default": "Video on peatatud"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Sisu silt",
+          "default": "Sisu"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Vastatud sõnum (@answered asendatakse vastatud sõnumite arvuta)",
+          "default": "@answered vastatud"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Esita kuva pealkiri",
+          "default": "@answered küsimus(t) vastatud",
+          "description": "@answered asendatakse vastatud küsimuste arvuga."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Esita kuva teave",
+          "default": "Oled vastanud @answered küsimust, kliki all oma vastuste esitamiseks.",
+          "description": "@answered asendatakse vastatud küsimuste arvuga."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Esita kuva teave puuduvatele vastustele",
+          "default": "Sa ei ole vastanud ühelegi küsimusele."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Esita kuva teave vajaminevaile vastustele",
+          "default": "Sa pead vastama vähemalt ühele küsimusele enne vastuste esitamist."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Esita kuva esita nupp",
+          "default": "Esita vastused"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Esita kuva esita sõnum",
+          "default": "Sinu vastused on esitatud!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Esita kuva tabelirea pealkiri: Vastatud küsimused",
+          "default": "Vastatud küsimused"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Esita kuva tabelirea pealkiri: Punktisumma",
+          "default": "Punktisumma"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Esita kuva vastatud punktisumma",
+          "default": "vastatud"
         }
       ]
     }

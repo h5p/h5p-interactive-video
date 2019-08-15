@@ -69,6 +69,10 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Lehenetsitako testu-pista",
+                  "description": "Hutsik utziz gero edo bat datorren testu-pistarik ez aurkituz gero lehen testu-pista erabiliko da lehenetsitako gisa."
                 }
               ]
             }
