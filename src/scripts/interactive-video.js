@@ -247,7 +247,8 @@ function InteractiveVideo(params, id, contentData) {
     });
 
     // In the editor, no captions will be shown
-    const textTracks = this.editor ? [] : self.options.video.textTracks.videoTrack || [];
+    const textTracks = this.editor ? [] :
+      (self.options.video.textTracks && self.options.video.textTracks.videoTrack ? self.options.video.textTracks.videoTrack : []);
 
     // Start up the video player
     self.video = H5P.newRunnable({
