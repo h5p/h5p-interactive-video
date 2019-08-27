@@ -71,8 +71,8 @@
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Προεπιλεγμένο απόσπασμα κειμένου",
+                  "description": "Αν μείνει κενό ή αν δεν υπάρχει ταίριασμα, το πρώτο απόσπασμα θα χρησιμοποιηθεί ως προεπιλεγμένο."
                 }
               ]
             }
@@ -422,7 +422,7 @@
         {
           "label": "Ετικέτα περιεχομένου",
           "default": "Περιεχόμενο"
-        },
+},
         {
           "label": "Μήνυμα απαντήσεων (η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν)",
           "default": "@answered απαντήθηκαν"
