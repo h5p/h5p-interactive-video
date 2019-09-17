@@ -48,7 +48,7 @@ class Endscreen extends H5P.EventDispatcher {
     // Title Bar with text and close button
     this.$endscreenIntroductionTitleText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`});
 
-    const $endscreenCloseButton = $('<div>', {'role': 'button', 'class': `${ENDSCREEN_STYLE_BASE}-close-button`, 'tabindex': '0', 'aria-label': this.parent.l10n.close})
+    this.$endscreenCloseButton = $('<div>', {'role': 'button', 'class': `${ENDSCREEN_STYLE_BASE}-close-button`, 'tabindex': '0', 'aria-label': this.parent.l10n.close})
       .click(() => {
         // This is a little bit like Minsky's useless machine, but necessary because of the dual use of the bubble class.
         this.parent.toggleEndscreen(false);
@@ -61,7 +61,7 @@ class Endscreen extends H5P.EventDispatcher {
       });
 
     const $endscreenIntroductionTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title`})
-      .append([this.$endscreenIntroductionTitleText, $endscreenCloseButton]);
+      .append([this.$endscreenIntroductionTitleText, this.$endscreenCloseButton]);
 
     // Description
     this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
@@ -228,6 +228,13 @@ class Endscreen extends H5P.EventDispatcher {
       return interaction.getInstance().getTitle();
     }
     return interaction.getTitle();
+  }
+
+  /**
+   * Set focus on the close button
+   */
+  focus() {
+    this.$endscreenCloseButton.focus();
   }
 }
 

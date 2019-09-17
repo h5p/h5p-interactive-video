@@ -1171,6 +1171,7 @@ InteractiveVideo.prototype.addBubbles = function () {
       this.$star,
       {
         content: this.endscreen.getDOM(),
+        focus: () => this.endscreen.focus(),
         maxWidth: 'auto',
         style: 'h5p-interactive-video-bubble-endscreen',
         mode: 'full'
@@ -1334,10 +1335,14 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
   show = (show === undefined) ? !this.bubbleEndscreen.isActive() : show;
 
   if (show) {
+    this.disableTabIndexes('.h5p-interactive-video-endscreen');
     this.stateBeforeEndscreen = this.currentState;
     this.video.pause();
   }
   else {
+    this.restoreTabIndexes();
+    this.controls.$endscreensButton.focus();
+
     // Continue video if it had been playing before opening the endscreen
     if (this.stateBeforeEndscreen === H5P.Video.PLAYING) {
       this.video.play();
@@ -3110,14 +3115,14 @@ InteractiveVideo.prototype.restorePosterTabIndexes = function () {
 /**
  * Disable tab indexes hidden behind overlay.
  */
-InteractiveVideo.prototype.disableTabIndexes = function () {
+InteractiveVideo.prototype.disableTabIndexes = function (elementToExclude = '.h5p-dialog-wrapper') {
   var self = this;
   // Make all other elements in container not tabbable. When dialog is open,
   // it's like the elements behind does not exist.
-  var $dialogWrapper = self.$container.find('.h5p-dialog-wrapper');
+  var $elementToExclude = self.$container.find(elementToExclude);
   self.$tabbables = self.$container.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
     var $tabbable = $(this);
-    var insideWrapper = $.contains($dialogWrapper.get(0), $tabbable.get(0));
+    var insideWrapper = $.contains($elementToExclude.get(0), $tabbable.get(0));
 
     // tabIndex has already been modified, keep it in the set.
     if ($tabbable.data('tabindex')) {

@@ -14,11 +14,12 @@ class Bubble {
    * @param {string} [params.mode=centered] - 'centered' or 'full' (could be extended)
    * @return {Bubble} The bubble.
    */
-  constructor($reference, params = {content: '', maxWidth: 'auto', style: 'h5p-interactive-video-bubble', mode: 'centered'}) {
+  constructor($reference, params = {content: '', maxWidth: 'auto', style: 'h5p-interactive-video-bubble', mode: 'centered', focus: () => {}}) {
     this.$reference = $reference;
     this.maxWidth = params.maxWidth;
     this.style = params.style;
     this.mode = params.mode;
+    this.focus = params.focus;
 
     this.$tail = $('<div/>', {class: `${this.style}-tail`});
     this.$innerTail = $('<div/>', {class: `${this.style}-inner-tail`});
@@ -155,6 +156,8 @@ class Bubble {
         this.$bubble
           .removeClass(`${this.style}-preparing`)
           .addClass(`${this.style}-active`);
+
+          setTimeout(() => this.focus(), 400);
       }, 100); // 100ms seem to do the trick
       this.$bubble
         .removeClass(`${this.style}-inactive`)
