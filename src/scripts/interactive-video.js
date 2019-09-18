@@ -2176,7 +2176,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'role': 'menu',
     'class': 'h5p-interactions-container',
     'aria-label': self.l10n.interaction,
-    appendTo: $slider
   });
 
   self.controls.$bookmarksContainer = $('<div/>', {
@@ -2333,6 +2332,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       }
     }
   });
+
+  // Append after ui slider
+  self.controls.$interactionsContainer.appendTo($slider);
 
   // Disable slider
   if (self.preventSkipping) {
