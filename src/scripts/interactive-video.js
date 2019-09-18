@@ -1,6 +1,7 @@
 import SelectorControl from './selector-control';
 import Controls from 'h5p-lib-controls/src/scripts/controls';
 import UIKeyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
+import {Keys, isKey, isSpaceOrEnterKey, onKey} from 'h5p-lib-controls/src/scripts/ui/keys';
 import Interaction from './interaction';
 import Accessibility from './accessibility';
 import Bubble from './bubble';
@@ -11,10 +12,6 @@ const $ = H5P.jQuery;
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
-
-const KEY_CODE_ENTER = 13;
-const KEY_CODE_SPACE = 32;
-const KEY_CODE_K = 75; // 'K' to start/stop, same as youtube
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -140,7 +137,7 @@ function InteractiveVideo(params, id, contentData) {
     seconds: 'Seconds',
     currentTime: 'Current time:',
     totalTime: 'Total time:',
-    navigationHotkeyInstructions: 'Use key \'k\' for starting and stopping video at any time',
+    navigationHotkeyInstructions: 'Use key k or ctrl+shift+P for starting and stopping video at any time. To mute and unmute, use ctrl+shift+M',
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
@@ -481,6 +478,60 @@ function InteractiveVideo(params, id, contentData) {
 
     self.accessibility = new Accessibility(self.l10n);
   };
+
+  /**
+   * Toggle pause/play
+   */
+  self.togglePlayPause = () => {
+    var disabled = self.isDisabled(self.controls.$play);
+
+    if (self.controls.$play.hasClass('h5p-pause') && !disabled) {
+
+      // Auto toggle fullscreen on play if on a small device
+      var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
+      if (!self.hasFullScreen && isSmallDevice && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
+        self.toggleFullScreen();
+      }
+      self.video.play();
+      self.toggleEndscreen(false);
+      self.closePopupMenus();
+    }
+    else {
+      self.video.pause();
+    }
+    self.handleAnswered();
+  }
+
+  /**
+   * Toggle mute
+   * @param {Boolean} [refocus=true]
+   */
+  self.toggleMute = (refocus = true) => {
+    const $muteButton = self.controls.$volume;
+
+    if (!self.deactivateSound) {
+      if ($muteButton.hasClass('h5p-muted')) {
+        $muteButton
+          .removeClass('h5p-muted')
+          .attr('aria-label', self.l10n.mute);
+
+        self.video.unMute();
+      }
+      else {
+        $muteButton
+          .addClass('h5p-muted')
+          .attr('aria-label', self.l10n.unmute);
+
+        self.video.mute();
+      }
+
+      if (refocus) {
+        // refocus for reread button title by screen reader
+        $muteButton.blur();
+        $muteButton.focus();
+      }
+    }
+  };
 }
 
 // Inheritance
@@ -685,24 +736,37 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
-  $container.on('keyup', e => {
+
+  // Toggle mute/unmute on 'ctrl+shift+M'
+  onKey($container, [{
+    key: Keys.M,
+    ctrl: true,
+    shift: true,
+    preventDefault: true
+  }], (e) => that.toggleMute(false));
+
+  // Toggle play/pause on 'K' or 'control+shift+P'
+  onKey($container, [{
+    key: Keys.K
+  }, {
+    key: Keys.P,
+    ctrl: true,
+    shift: true,
+    preventDefault: true
+  }], (e) => {
     const hasPlayButton = that.controls && that.controls.$play;
-    const startVideoKeyCode = (e.which === KEY_CODE_K);
+    // Skip textual input from user
+    if (!hasPlayButton || e.target.nodeName === 'INPUT') {
+      return;
+    }
 
-    if (hasPlayButton && startVideoKeyCode) {
-      // Skip textual input from user
-      if (e.target.nodeName === 'INPUT') {
-        return;
-      }
-
-      if (this.hasUncompletedRequiredInteractions()) {
-        const $currentFocus = $(document.activeElement);
-        const $mask = this.showWarningMask();
-        $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
-      }
-      else {
-        that.controls.$play.click();
-      }
+    if (this.hasUncompletedRequiredInteractions()) {
+      const $currentFocus = $(document.activeElement);
+      const $mask = this.showWarningMask();
+      $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
+    }
+    else {
+      that.togglePlayPause();
     }
   });
 
@@ -769,8 +833,7 @@ InteractiveVideo.prototype.addSplash = function () {
 
   // Add play functionality and title to play icon
   $('.h5p-splash', this.$splash).keydown(function (e) {
-    var code = e.which;
-    if (code === KEY_CODE_SPACE || code === KEY_CODE_ENTER) {
+    if (isSpaceOrEnterKey(e)) {
       that.video.play();
       e.preventDefault();
 
@@ -1521,7 +1584,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   var $li = $(`<li role="menuitem" aria-describedby="${self.bookmarksMenuId}">${bookmark.label}</li>`)
     .click(() => self.onBookmarkSelect($bookmark, bookmark))
     .keydown(e => {
-      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(e)) {
         self.onBookmarkSelect($bookmark, bookmark);
       }
 
@@ -1623,7 +1686,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   var $li = $(`<li role="menuitem" aria-describedby="${self.endscreensMenuId}">${endscreen.label}</li>`)
     .click(() => self.onEndscreenSelect($endscreenMarker, endscreen))
     .keydown(e => {
-      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(e)) {
         self.onEndscreenSelect($endscreenMarker, endscreen);
       }
 
@@ -1692,28 +1755,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls = {};
 
   // Add play button/pause button
-  self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, function () {
-    var disabled = self.isDisabled(self.controls.$play);
-
-    if (self.controls.$play.hasClass('h5p-pause') && !disabled) {
-
-      // Auto toggle fullscreen on play if on a small device
-      var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
-      if (!self.hasFullScreen && isSmallDevice && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
-        self.toggleFullScreen();
-      }
-      self.video.play();
-      self.toggleEndscreen(false);
-      self.closePopupMenus();
-    }
-    else {
-      self.video.pause();
-    }
-    self.handleAnswered();
-  });
+  self.controls.$play = self.createButton('play', 'h5p-control h5p-pause', $left, self.togglePlayPause);
 
   // Add button for rewinding 10 seconds
-
   if (self.showRewind10) {
     self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
       if (self.video.getCurrentTime() > 0) { // video will play otherwise
@@ -1823,7 +1867,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'aria-label': self.l10n.close,
       click: () => self.toggleBookmarksChooser(),
       keydown: event => {
-        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
+        if (isSpaceOrEnterKey(event)) {
           self.toggleBookmarksChooser();
           event.preventDefault();
         }
@@ -1874,7 +1918,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'aria-label': self.l10n.close,
       click: () => self.toggleEndscreensChooser(),
       keydown: event => {
-        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) {
+        if (isSpaceOrEnterKey(event)) {
           self.toggleEndscreensChooser();
           event.preventDefault();
         }
@@ -1984,7 +2028,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'aria-label': self.l10n.close,
     click: () => closePlaybackRateMenu(),
     keydown: event => {
-      if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(event)) {
         closePlaybackRateMenu();
         event.preventDefault();
       }
@@ -2002,30 +2046,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
-    self.controls.$volume = self.createButton('mute', 'h5p-control', $right, function () {
-      const $muteButton = self.controls.$volume;
-
-      if (!self.deactivateSound) {
-        if ($muteButton.hasClass('h5p-muted')) {
-          $muteButton
-            .removeClass('h5p-muted')
-            .attr('aria-label', self.l10n.mute);
-
-          self.video.unMute();
-        }
-        else {
-          $muteButton
-            .addClass('h5p-muted')
-            .attr('aria-label', self.l10n.unmute);
-
-          self.video.mute();
-        }
-
-        // refocus for reread button title by screen reader
-        $muteButton.blur();
-        $muteButton.focus();
-      }
-    });
+    self.controls.$volume = self.createButton('mute', 'h5p-control', $right, self.toggleMute);
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
@@ -2066,7 +2087,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     'aria-label': self.l10n.close,
     click: () => closeQualityMenu(),
     keydown: event => {
-      if (event.which === KEY_CODE_SPACE || event.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(event)) {
         closeQualityMenu();
         event.preventDefault();
       }
@@ -2234,14 +2255,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.$overlay.addClass('h5p-visible');
     },
     slide: function (event, ui) {
-      const arrowKeys = ['Right', 'Left', 'ArrowRight', 'ArrowLeft'];
-      const isKeyboardNav = arrowKeys.indexOf(event.key) !== -1;
-      const continueHandlingEvents = !isKeyboardNav;
+      const isKeyboardNav = isKey(event, [Keys.ARROW_LEFT, Keys.ARROW_RIGHT]);
       let time = ui.value;
 
       if (isKeyboardNav) {
+        const moveforward = isKey(event, [Keys.ARROW_RIGHT]);
         const endTime = self.getDuration();
-        time = (event.key.indexOf('Right') !== -1) ?
+        time = moveforward ?
           Math.min(time + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
           Math.max(time - KEYBOARD_STEP_LENGTH_SECONDS, 0);
         self.timeUpdate(time, true);
@@ -2252,7 +2272,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       self.updateInteractions(time);
       self.updateCurrentTime(time);
 
-      return continueHandlingEvents;
+      return !isKeyboardNav;
     },
     stop: function (e, ui) {
       self.currentState = self.lastState;
@@ -2398,7 +2418,7 @@ InteractiveVideo.prototype.createButton = function (type, extraClass, $target, h
         handler.call(this);
       },
       keydown: function (event) {
-        if (event.which === KEY_CODE_ENTER || event.which === KEY_CODE_SPACE) { // Space or enter
+        if (isSpaceOrEnterKey(event)) {
           handler.call(this);
           event.preventDefault();
           event.stopPropagation();
@@ -2451,7 +2471,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
       self.updateQuality(quality);
     })
     .keydown(function (e) {
-      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(e)) {
         const quality = $(this).attr('data-quality');
         self.updateQuality(quality);
       }
@@ -2532,7 +2552,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
       self.updatePlaybackRate(rate);
     })
     .keydown(function (e) {
-      if (e.which === KEY_CODE_SPACE || e.which === KEY_CODE_ENTER) {
+      if (isSpaceOrEnterKey(e)) {
         const rate = $(this).attr('playback-rate');
         self.updatePlaybackRate(rate);
       }
@@ -3710,4 +3730,4 @@ var getXAPIDataFromChildren = function (children) {
 };
 
 export default InteractiveVideo;
-export const KEY_CODE_START_PAUSE = KEY_CODE_K;
+export const KEY_CODE_START_PAUSE = Keys.K;

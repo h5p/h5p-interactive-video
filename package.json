@@ -29,7 +29,7 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
-    "h5p-lib-controls": "0.0.10",
+    "h5p-lib-controls": "0.0.13",
     "resolve-url-loader": "^2.1.0",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0"

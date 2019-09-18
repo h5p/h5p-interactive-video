@@ -952,7 +952,7 @@
         "type": "text",
         "label": "Text for explaining navigation hotkey",
         "importance": "low",
-        "default": "Use key k for starting and stopping video at any time",
+        "default": "Use key k or ctrl+shift+P for starting and stopping video at any time. To mute and unmute, use ctrl+shift+M",
         "optional": true
       },
       {
