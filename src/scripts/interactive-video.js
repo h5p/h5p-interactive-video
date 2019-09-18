@@ -1391,7 +1391,7 @@ InteractiveVideo.prototype.resumeVideo = function (override) {
  * @param {boolean} show - If true will show, if false will hide, toggle otherwise
  */
 InteractiveVideo.prototype.toggleEndscreen = function (show) {
-  if (this.editor || !this.hasStar) {
+  if (this.editor || !this.hasStar || show === this.bubbleEndscreen.isActive()) {
     return;
   }
 
