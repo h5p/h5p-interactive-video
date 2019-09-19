@@ -84,9 +84,13 @@
   display: none;
 }
 .h5p-interactive-video-endscreen-submit-button:hover,
-.h5p-interactive-video-endscreen-submit-button:active,
 .h5p-interactive-video-endscreen-submit-button:focus {
   background: #4e8c3a;
+}
+
+.h5p-interactive-video-endscreen-submit-button:active {
+  background: #3c6f2c;
+  box-shadow: inset 0 4px 0 #305c23;
 }
 .h5p-interactive-video-endscreen-submit-button:before {
   content: "\F058";
