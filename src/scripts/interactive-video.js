@@ -137,7 +137,7 @@ function InteractiveVideo(params, id, contentData) {
     seconds: 'Seconds',
     currentTime: 'Current time:',
     totalTime: 'Total time:',
-    navigationHotkeyInstructions: 'Use key k or ctrl+shift+P for starting and stopping video at any time. To mute and unmute, use ctrl+shift+M',
+    navigationHotkeyInstructions: 'Use key k for starting and stopping video at any time. To mute and unmute, use the M key.',
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
@@ -737,22 +737,14 @@ InteractiveVideo.prototype.attach = function ($container) {
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
 
-  // Toggle mute/unmute on 'ctrl+shift+M'
+  // Toggle mute/unmute on 'M'
   onKey($container, [{
     key: Keys.M,
-    ctrl: true,
-    shift: true,
-    preventDefault: true
   }], (e) => that.toggleMute(false));
 
-  // Toggle play/pause on 'K' or 'control+shift+P'
+  // Toggle play/pause on 'K'
   onKey($container, [{
     key: Keys.K
-  }, {
-    key: Keys.P,
-    ctrl: true,
-    shift: true,
-    preventDefault: true
   }], (e) => {
     const hasPlayButton = that.controls && that.controls.$play;
     // Skip textual input from user
