@@ -46,19 +46,24 @@ class Endscreen extends H5P.EventDispatcher {
    */
   buildDOM() {
     // Title Bar with text and close button
-    this.$endscreenIntroductionTitleText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`});
+    this.$endscreenIntroductionTitleText = $('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`
+    });
 
-    this.$endscreenCloseButton = $('<div>', {'role': 'button', 'class': `${ENDSCREEN_STYLE_BASE}-close-button`, 'tabindex': '0', 'aria-label': this.parent.l10n.close})
-      .click(() => {
-        // This is a little bit like Minsky's useless machine, but necessary because of the dual use of the bubble class.
+    this.$endscreenCloseButton = $('<div>', {
+      'role': 'button',
+      'class': `${ENDSCREEN_STYLE_BASE}-close-button`,
+      'tabindex': '0',
+      'aria-label': this.parent.l10n.close
+    }).click(() => {
+      // This is a little bit like Minsky's useless machine, but necessary because of the dual use of the bubble class.
+      this.parent.toggleEndscreen(false);
+    }).keydown(event => {
+      if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
         this.parent.toggleEndscreen(false);
-      })
-      .keydown(event => {
-        if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
-          this.parent.toggleEndscreen(false);
-          event.preventDefault();
-        }
-      });
+        event.preventDefault();
+      }
+    });
 
     const $endscreenIntroductionTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title`})
       .append([this.$endscreenIntroductionTitleText, this.$endscreenCloseButton]);
@@ -67,20 +72,22 @@ class Endscreen extends H5P.EventDispatcher {
     this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
 
     // Submit button
-    this.$endscreenSubmitButton = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`})
-      .addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
-      .append(H5P.JoubelUI.createButton({class: `${ENDSCREEN_STYLE_BASE}-submit-button`, html: this.l10n.submitButton})
-        .click(event => {
+    this.$endscreenSubmitButton = $('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`
+    }).addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
+      .append(H5P.JoubelUI.createButton({
+        class: `${ENDSCREEN_STYLE_BASE}-submit-button`,
+        html: this.l10n.submitButton
+      }).click(event => {
+        this.handleSubmit();
+        event.preventDefault();
+      }).keydown(event => {
+        if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
           this.handleSubmit();
           event.preventDefault();
-        })
-        .keydown(event => {
-          if ([KEY_CODE_ENTER, KEY_CODE_SPACE].indexOf(event.which) !== -1) {
-            this.handleSubmit();
-            event.preventDefault();
-          }
-        })
-      );
+        }
+      })
+    );
 
     // Title row for the table at the bottom
     this.$endscreenOverviewTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title`})
@@ -156,16 +163,23 @@ class Endscreen extends H5P.EventDispatcher {
    */
   buildTableRow(time, title, score = this.l10n.answered) {
     const noLink = (this.parent.skippingPrevented()) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
-    return $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`})
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`, html: H5P.InteractiveVideo.humanizeTime(time), role: 'button'})
-        .click(() => {
-          this.jump(time);
-        }))
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`, html: title, role: 'button'}))
-      .click(() => {
-        this.jump(time);
-      })
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`, html: score || this.l10n.tableAnswered}));
+    return $('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`
+    }).append($('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`,
+      html: H5P.InteractiveVideo.humanizeTime(time), role: 'button'
+    }).click(() => {
+      this.jump(time);
+    })).append($('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`,
+      html: title,
+      role: 'button'
+    })).click(() => {
+      this.jump(time);
+    }).append($('<div/>', {
+      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`,
+      html: score || this.l10n.tableAnswered
+    }));
   }
 
   /**
