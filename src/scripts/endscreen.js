@@ -47,7 +47,7 @@ class Endscreen extends H5P.EventDispatcher {
   buildDOM() {
     // Title Bar with text and close button
     this.$endscreenIntroductionTitleText = $('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-introduction-title-text`
+      'class': `${ENDSCREEN_STYLE_BASE}-introduction-title-text`
     });
 
     this.$endscreenCloseButton = $('<div>', {
@@ -65,18 +65,18 @@ class Endscreen extends H5P.EventDispatcher {
       }
     });
 
-    const $endscreenIntroductionTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-title`})
+    const $endscreenIntroductionTitle = $('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction-title`})
       .append([this.$endscreenIntroductionTitleText, this.$endscreenCloseButton]);
 
     // Description
-    this.$endscreenIntroductionText = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-text`});
+    this.$endscreenIntroductionText = $('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction-text`});
 
     // Submit button
     this.$endscreenSubmitButton = $('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-submit-button-container`
+      'class': `${ENDSCREEN_STYLE_BASE}-submit-button-container`
     }).addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)
       .append(H5P.JoubelUI.createButton({
-        class: `${ENDSCREEN_STYLE_BASE}-submit-button`,
+        'class': `${ENDSCREEN_STYLE_BASE}-submit-button`,
         html: this.l10n.submitButton
       }).click(event => {
         this.handleSubmit();
@@ -90,20 +90,27 @@ class Endscreen extends H5P.EventDispatcher {
     );
 
     // Title row for the table at the bottom
-    this.$endscreenOverviewTitle = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title`})
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title-answered-questions`, 'html': this.l10n.tableRowAnswered}))
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-title-score`, 'html': this.l10n.tableRowScore}));
+    this.$endscreenOverviewTitle = $('<div/>', {
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-title`
+    }).append($('<div/>', {
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-title-answered-questions`,
+      'html': this.l10n.tableRowAnswered
+    })).append($('<div/>', {
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-title-score`,
+      'html': this.l10n.tableRowScore
+    }));
 
     // Table for answered interactions
-    this.$endscreenBottomTable = $('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview-table`});
+    this.$endscreenBottomTable = $('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-overview-table`});
 
     // Endscreen DOM root
-    this.$endscreen = $('<div/>', {class: ENDSCREEN_STYLE_BASE})
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction`})
-        .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-star-symbol`}))
-        .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-introduction-container`})
+    this.$endscreen = $('<div/>', {
+      'class': ENDSCREEN_STYLE_BASE
+    }).append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction`})
+        .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-star-symbol`}))
+        .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction-container`})
           .append([$endscreenIntroductionTitle, this.$endscreenIntroductionText, this.$endscreenSubmitButton])))
-      .append($('<div/>', {class: `${ENDSCREEN_STYLE_BASE}-overview`})
+      .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-overview`})
         .append(this.$endscreenOverviewTitle)
         .append(this.$endscreenBottomTable));
   }
@@ -164,20 +171,20 @@ class Endscreen extends H5P.EventDispatcher {
   buildTableRow(time, title, score = this.l10n.answered) {
     const noLink = (this.parent.skippingPrevented()) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
     return $('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`
     }).append($('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`,
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`,
       html: H5P.InteractiveVideo.humanizeTime(time), role: 'button'
     }).click(() => {
       this.jump(time);
     })).append($('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`,
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`,
       html: title,
       role: 'button'
     })).click(() => {
       this.jump(time);
     }).append($('<div/>', {
-      class: `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`,
+      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`,
       html: score || this.l10n.tableAnswered
     }));
   }
