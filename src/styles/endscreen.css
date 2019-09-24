@@ -134,6 +134,7 @@
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: 16em;
 }
 .h5p-interactive-video-endscreen-overview-table::-webkit-scrollbar {
   width: 0.4em;
@@ -161,7 +162,8 @@
   border-color: #2b2929;
   border-bottom-style: solid;
 }
-.h5p-interactive-video-endscreen-overview-table-row:hover {
+.h5p-interactive-video-endscreen-overview-table-row:hover,
+.h5p-interactive-video-endscreen-overview-table-row:focus {
   cursor: pointer;
   background: #2a2728;
 }

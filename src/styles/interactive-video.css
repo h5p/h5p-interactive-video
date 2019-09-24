@@ -836,6 +836,7 @@
   border-radius: 0;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
+  z-index: 1;
 }
 
 .h5p-interactive-video [aria-disabled="true"].h5p-slider .ui-slider {

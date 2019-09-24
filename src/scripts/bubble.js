@@ -37,10 +37,9 @@ class Bubble {
     this.$h5pContainer = this.$reference.closest('.h5p-interactive-video');
 
     this.$bubble = $('<div/>', {
-      class: this.style,
-      'aria-live': 'assertive'
-    })
-      .append([this.$tail, this.$innerBubble])
+      'class': this.style,
+      'aria-live': 'polite',
+    }).append([this.$tail, this.$innerBubble])
       .addClass(`${this.style}-inactive`)
       .appendTo(this.$h5pContainer);
 

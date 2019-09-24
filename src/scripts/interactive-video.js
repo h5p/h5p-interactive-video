@@ -1217,7 +1217,9 @@ InteractiveVideo.prototype.addBubbles = function () {
         submitMessage: this.l10n.endcardSubmitMessage,
         tableRowAnswered: this.l10n.endcardTableRowAnswered,
         tableRowScore: this.l10n.endcardTableRowScore,
-        answeredScore: this.l10n.endcardAnsweredScore
+        answeredScore: this.l10n.endcardAnsweredScore,
+        tableRowSummary: this.l10n.endCardTableRowSummary,
+        tableRowSummaryWithoutScore: this.l10n.endCardTableRowSummaryWithoutScore
       }
     });
     this.endscreen.update(this.interactions);
