@@ -464,6 +464,14 @@
         {
           "label": "提交画面表单中得分的标题",
           "default": "得分"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }
