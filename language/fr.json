@@ -106,7 +106,7 @@
                     "label": "Devient Bouton sur de petits écrans"
                   },
                   {
-                    "label": "Etiquette",
+                    "label": "Étiquette",
                     "description": "L'étiquette est affichée à côté de l'icône d'interaction."
                   },
                   {},
@@ -396,7 +396,7 @@
           "default": "Durée actuelle :"
         },
         {
-          "label": "Etiquette pour le temps total",
+          "label": "Étiquette pour le temps total",
           "default": "Temps total :"
         },
         {
@@ -458,7 +458,7 @@
           "default": "Questions auxquelles vous avez répondu"
         },
         {
-          "label": "Titre de rangée du tableau de l'écran de remise: Score",
+          "label": "Titre de rangée du tableau de l'écran de remise : Score",
           "default": "Score"
         },
         {
