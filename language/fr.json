@@ -249,7 +249,7 @@
         },
         {
           "label": "Démarrage automatique",
-          "description": "Démarrez la vidéo automatiquement"
+          "description": "Démarrer la vidéo automatiquement"
         },
         {
           "label": "Vidéo en boucle",
@@ -429,7 +429,7 @@
         },
         {
           "label": "Titre de l'écran de remise",
-          "default": "@answered Question(s) auxquelles vous avez répondu",
+          "default": "@answered question(s) auxquelles vous avez répondu",
           "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
@@ -454,7 +454,7 @@
           "default": "Vos réponses ont été remises !"
         },
         {
-          "label": "Titre de rangée du tableau de l'écran de remise: Questions avec réponses",
+          "label": "Titre de rangée du tableau de l'écran de remise : Questions avec réponses",
           "default": "Questions auxquelles vous avez répondu"
         },
         {
@@ -462,7 +462,7 @@
           "default": "Score"
         },
         {
-          "label": "Score de la réponses sur l'écran de remise",
+          "label": "Score de la réponse sur l'écran de remise",
           "default": "Réponses"
         },
         {
