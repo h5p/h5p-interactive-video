@@ -22,8 +22,8 @@
                   "label": "Cacher le titre sur l'écran de lancement de la vidéo"
                 },
                 {
-                  "label": "Courte description (en option)",
-                  "description": "Afficher une courte description (facultative) sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                  "label": "Courte description",
+                  "description": "Optionnel. Afficher une courte description sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
                 },
                 {
                   "label": "Image à la une",
@@ -38,7 +38,7 @@
                   "label": "Pistes de textes disponibles",
                   "entity": "Piste",
                   "field": {
-                    "label": "Piste de sous titres",
+                    "label": "Piste de sous-titres",
                     "fields": [
                       {
                         "label": "Intitulé de la piste",
@@ -46,7 +46,7 @@
                         "default": "Sous-titres"
                       },
                       {
-                        "label": "Type  de texte",
+                        "label": "Type de texte",
                         "options": [
                           {
                             "label": "Sous-titres"
@@ -65,7 +65,7 @@
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
-                        "label": "Source de texte (file WebVTT)"
+                        "label": "Source de texte (fichier WebVTT)"
                       }
                     ]
                   }
@@ -132,7 +132,7 @@
                             "label": "Message"
                           },
                           {
-                            "label": "Etiquette pour le bouton \"Aller vers\""
+                            "label": "Étiquette pour le bouton \"Aller vers\""
                           }
                         ]
                       },
@@ -150,7 +150,7 @@
                             "label": "Message"
                           },
                           {
-                            "label": "Etiquette pour le bouton \"Aller vers\""
+                            "label": "Étiquette pour le bouton \"Aller vers\""
                           }
                         ]
                       },
@@ -392,7 +392,7 @@
           "default": "Secondes"
         },
         {
-          "label": "Etiquette pour la durée actuelle",
+          "label": "Étiquette pour la durée actuelle",
           "default": "Durée actuelle :"
         },
         {
@@ -424,7 +424,7 @@
           "default": "Contenu"
         },
         {
-          "label": "Message relatif aux nombre de réponses données (@answered sera remplacé par le nombre de questions pour lesquelles il une réponse a été donnée)",
+          "label": "Message relatif aux nombre de réponses données (@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée)",
           "default": "@answered réponses données"
         },
         {
@@ -451,7 +451,7 @@
         },
         {
           "label": "Confirmation de remise",
-          "default": "Vos réponses ont été remises!"
+          "default": "Vos réponses ont été remises !"
         },
         {
           "label": "Titre de rangée du tableau de l'écran de remise: Questions avec réponses",
@@ -466,11 +466,11 @@
           "default": "Réponses"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Résultat, incluant le score (pour la synthèse vocale)",
+          "default": "Vous avez obtenu de @score sur un total de @points pour la question @question qui apparaissait à @minutes minutes et @secondes secondes."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
+          "label": "Résultat, sans le score (pour la synthèse vocale)",
           "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
