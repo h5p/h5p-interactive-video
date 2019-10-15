@@ -352,6 +352,10 @@
           "default": "Submit screen"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Default label for continue video button",
           "default": "Continue with video"
         },
@@ -401,7 +405,7 @@
         },
         {
           "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "default": "Use key k for starting and stopping video at any time. To mute and unmute, use the M key."
         },
         {
           "label": "Text explaining that a single interaction with a name has come into view",
@@ -414,10 +418,6 @@
         {
           "label": "Video is paused announcement",
           "default": "Video is paused"
-        },
-        {
-          "label": "Content label",
-          "default": "Content"
         },
         {
           "label": "Content label",
@@ -464,6 +464,14 @@
         {
           "label": "Submit screen answered score",
           "default": "answered"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }

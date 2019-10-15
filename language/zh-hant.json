@@ -352,6 +352,10 @@
           "default": "提交畫面"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "繼續播放的的顯示文字",
           "default": "繼續播放"
         },
@@ -420,10 +424,6 @@
           "default": "內容"
         },
         {
-          "label": "內容的顯示文字",
-          "default": "內容"
-        },
-        {
           "label": "已回答題數的顯示文字（@answered 為已回答數)",
           "default": "已回答 @answered 題"
         },
@@ -464,6 +464,14 @@
         {
           "label": "提交畫面表單中得分的標題",
           "default": "得分"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }

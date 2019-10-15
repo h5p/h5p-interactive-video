@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "Επεξεργαστής διαδραστικού βίντεο",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Μεταφόρτωση/ενσωμάτωση βίντεο",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Προσθήκη βίντεο",
+              "description": "Κάντε κλικ παρακάτω για να προσθέσετε ένα βίντεο που θέλετε να χρησιμοποιήσετε. Μπορείτε να προσθέσετε έναν σύνδεσμο προς ένα βίντεο ή να ανεβάσετε ένα αρχείο βίντεο. Είναι δυνατή η προσθήκη πολλαπλών εκδόσεων του βίντεο σε διαφορετική ποιότητα. Για να εξασφαλίσετε ότι τα αρχεία βίντεο θα υποστηρίζονται από τους περισσότερους φυλλομετρητές, προσθέστε τουλάχιστον μια έκδοση σε μορφή webm και mp4."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Επιλογές εναρκτήριας οθόνης (Δεν υποστηρίζονται σε βίντεο από το Youtube)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Τίτλος διαδραστικού βίντεο",
+                  "default": "Διαδραστικό βίντεο",
+                  "description": "Χρησιμοποιείται σε συνόψεις, στατιστικά κ.λπ."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Απόκρυψη τίτλου στην εναρκτήρια οθόνη"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Σύντομη περιγραφή (προαιρετικό)",
+                  "description": "Εμφανίζεται ένα σύντομο κείμενο στην εναρκτήρια οθόνη του βίντεο (προαιρετικό). Δεν μπορεί να λειτουργήσει σε βίντεο από το Youtube."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Αρχική εικόνα",
+                  "description": "Η εικόνα εμφανίζεται πριν την έναρξη αναπαραγωγής του βίντεο. Δεν μπορεί να λειτουργήσει σε βίντεο από το Youtube."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Πακέτα υποτίτλων (Δεν υποστηρίζονται σε βίντεο από το Youtube)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Διαθέσιμα πακέτα υποτίτλων",
+                  "entity": "Πακέτο",
                   "field": {
-                    "label": "Track",
+                    "label": "Πακέτο",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Ετικέτα για πακέτο υποτίτλων",
+                        "description": "Χρησιμοποιείται αν προσφέρετε πολλά κομμάτια και ο χρήστης πρέπει να επιλέξει ένα από αυτά. Για παράδειγμα, οι ισπανικοί υπότιτλοι θα μπορούσαν να είναι η ετικέτα ενός ισπανικού κομματιού υποτίτλων.",
+                        "default": "Υπότιτλοι"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Τύπος",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "Υπότιτλοι"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Λεζάντες"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "Περιγραφές"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Γλώσσα προέλευσης, πρέπει να προσδιοριστεί για υποτίτλους",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Πρέπει να είναι έγκυρη ετικέτα γλώσσας BCP 47. Εάν οι \"Υπότιτλοι\" είναι ο επιλεγμένος τύπος, πρέπει να οριστεί η γλώσσα προέλευσης."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Αρχείο προέλευσης (WebVTT file)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Προεπιλεγμένο απόσπασμα κειμένου",
+                  "description": "Αν μείνει κενό ή αν δεν υπάρχει ταίριασμα, το πρώτο απόσπασμα θα χρησιμοποιηθεί ως προεπιλεγμένο."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Προσθήκη διαδραστικών στοιχείων",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Εμφάνιση χρόνου"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Παύση βίντεο"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Εμφάνιση ως",
+                    "description": "Το Κουμπί είναι ένα συμπτυγμένο διαδραστικό στοιχείο το οποίο ο χρήστης πρέπει να πιέσει για να ανοίξει. Το Πλαίσιο είναι ένα επεκταμένο διαδραστικό στοιχείο που εμφανίζεται απευθείας πάνω στο βίντεο",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Κουμπί"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Πλαίσιο"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Να μετατρέπεται σε κουμπί σε μικρές οθόνες"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Ετικέτα",
+                    "description": "Ετικέτα που εμφανίζεται δίπλα στο εικονίδιο του διαδραστικού στοιχείου."
                   },
                   {},
                   {},
@@ -116,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Προσαρμοστικότητα",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Ενέργεια για όλες τις σωστές απαντήσεις",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Μετάβαση σε",
+                            "description": "Εισαγωγή κωδικοποίησης ώρας σε μορφή M:SS (λεπτά:δευτερόλεπτα)"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Να επιτρέπεται στον χρήστη να αποχωρήσει και να συνεχίσει"
                           },
                           {
-                            "label": "Message"
+                            "label": "Μήνυμα"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Ετικέτα για κουμπί μετάβασης"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Ενέργεια σε περίπτωση λάθους",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Μετάβαση σε",
+                            "description": "Εισαγωγή κωδικοποίησης ώρας σε μορφή M:SS (λεπτά:δευτερόλεπτα)"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Να επιτρέπεται στον χρήστη να αποχωρήσει και να συνεχίσει"
                           },
                           {
-                            "label": "Message"
+                            "label": "Μήνυμα"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Ετικέτα για κουμπί μετάβασης"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "Απαιτείται να έχει ολοκληρώσει ο χρήστης την άσκηση προτού συνεχίσει",
+                        "description": "Για βέλτιστη λειτουργικότητα αυτή η επιλογή πρέπει να χρησιμοποιηθεί σε συνδυασμό με την επιλογή \"Να μην επιτρέπεται η παράκαμψη ενός τμήματος του βίντεο\"."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Οπτικά στοιχεία",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Χρώμα φόντου"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Σκίαση πλαισίου",
+                        "description": "Προστίθεται μια λεπτή σκιά γύρω από το διαδραστικό στοιχείο. Ίσως θελήσετε να απενεργοποιήσετε τη ρύθμιση για πλήρως διαφανή διαδραστικά στοιχεία"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "\"Μετάβαση σε\" με το κλικ",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Τύπος",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Κωδικοποίηση ώρας "
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Άλλη σελίδα (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Μετάβαση σε",
+                        "description": "Η χρονική στιγμή του βίντεο στην οποία θα μεταφερθεί ο χρήστης μετά το πάτημα του hotspot. Εισάγετε κωδικοποίηση ώρας σε μορφή M:SS (λεπτά:δευτερόλεπτα)."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Πρωτόκολλο",
                             "options": [
                               {
                                 "label": "http://"
@@ -206,7 +206,7 @@
                                 "label": "(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label": "άλλο"
                               }
                             ]
                           },
@@ -216,8 +216,8 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Οπτικοποίηση",
+                        "description": "Με την προσθήκη περιγράμματος ή εικονιδίου δηλώνεται ότι μπορεί να γίνει κλικ σε αυτό το διαδραστικό στοιχείο"
                       }
                     ]
                   }
@@ -229,241 +229,249 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Σύνοψη",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Εμφάνιση σε",
+              "description": "Αριθμός δευτερόλεπτων που απομένουν πριν την ολοκλήρωση της αναπαραγωγής του βίντεο."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Ρυθμίσεις",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Έναρξη βίντεο σε",
+          "description": "Εισαγωγή κωδικοποίησης ώρας σε μορφή M:SS (λεπτά:δευτερόλεπτα)"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Αυτόματη αναπαραγωγή βίντεο",
+          "description": "Το βίντεο ξεκινά να παίζει αυτόματα"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Αυτόματη επανάληψη αναπαραγωγής",
+          "description": "Επιλέξτε εάν η αναπαραγωγή του βίντεο θα επαναλαμβάνεται κάθε φορά που τελειώνει"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Αντικατάσταση προεπιλεγμένων ρυθμίσεων κουμπιού \"Λύση\"",
+          "description": "Αυτή η επιλογή καθορίζει εάν το κουμπί \"Λύση\" θα εμφανίζεται σε όλες τις ερωτήσεις, εάν θα είναι απενεργοποιημένο για όλες τις ερωτήσεις ή θα ρυθμίζεται για κάθε ερώτηση χωριστά.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Ενεργοποιημένη"
             },
             {
-              "label": "Disabled"
+              "label": "Απενεργοποιημένη"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Αντικατάσταση προεπιλεγμένων ρυθμίσεων κουμπιού \"Επανάληψη\"",
+          "description": "Αυτή η επιλογή καθορίζει εάν το κουμπί \"Επανάληψη\" θα εμφανίζεται σε όλες τις ερωτήσεις, εάν θα είναι απενεργοποιημένο για όλες τις ερωτήσεις ή θα ρυθμίζεται για κάθε ερώτηση χωριστά.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Ενεργοποιημένη"
             },
             {
-              "label": "Disabled"
+              "label": "Απενεργοποιημένη"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Έναρξη με ορατό το μενού σελιδοδεικτών",
+          "description": "Αυτή η λειτουργία δεν είναι διαθέσιμη στο iPad, όταν τα βίντεο προέρχονται από το Youtube."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Εμφάνιση κουμπιού επαναφοράς 10 δευτερολέπτων (rewind)"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Να μην επιτρέπεται η παράκαμψη ενός τμήματος του βίντεο",
+          "description": "Η ενεργοποίηση αυτής της επιλογής θα απενεργοποιήσει την πλοήγηση του χρήστη στο βίντεο μέσω των προεπιλεγμένων κουμπιών."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Απενεργοποίηση ήχου",
+          "description": "Η ενεργοποίηση αυτής της επιλογής θα απενεργοποιήσει τον ήχο του βίντεο και θα αποτρέψει την ενεργοποίησή του."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Προσαρμογή",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Κείμενο διαδραστικού στοιχείου",
+          "default": "Διαδραστικό στοιχείο"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Τίτλος για αναπαραγωγή",
+          "default": "Αναπαραγωγή"
         },
         {
-          "label": "Pause title",
+          "label": "Τίτλος για παύση",
           "default": "Παύση"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "Τίτλος για σίγαση",
+          "default": "Σίγαση"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "Τίτλος για κατάργηση σίγασης",
+          "default": "Κατάργηση σίγασης"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Τίτλος για ποιότητα βίντεο",
+          "default": "Ποιότητα βίντεο"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Τίτλος για λεζάντες βίντεο",
+          "default": "Λεζάντες"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Ετικέτα κουμπιού κλεισίματος",
+          "default": "Κλείσιμο"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Ετικέτα προβολής πλήρους οθόνης",
+          "default": "Πλήρης οθόνη"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Ετικέτα κλεισίματος προβολής πλήρους οθόνης",
+          "default": "Κλείσιμο προβολής πλήρους οθόνης"
         },
         {
-          "label": "Summary title",
-          "default": "Summary"
+          "label": "Τίτλος σύνοψης",
+          "default": "Σύνοψη"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Τίτλος σελιδοδεικτών",
+          "default": "Σελιδοδείκτες"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Τίτλος οθόνης υποβολής",
+          "default": "Οθόνη υποβολής"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Βασική ετικέτα για κουμπί μετάβασης",
+          "default": "Συνέχεια"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Βασική ετικέτα για  κουμπί \"Συνέχεια του βίντεο\"",
+          "default": "Συνέχεια του βίντεο"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Καθορισμός ρυθμού αναπαραγωγής",
+          "default": "Ρυθμός αναπαραγωγής"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Ετικέτα για επαναφορά 10 δευτερολέπτων (rewind)",
+          "default": "Επαναφορά 10 δευτερολέπτων (rewind)"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Κείμενο για απενεργοποιημένη πλοήγηση",
+          "default": "Η πλοήγηση είναι απενεργοποιημένη"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Κείμενο για απενεργοποιημένο ήχο",
+          "default": "Ο ήχος είναι απενεργοποιημένος"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Προειδοποίηση ότι ο χρήστης πρέπει να απαντήσει σωστά στην ερώτηση πριν συνεχίσει",
+          "default": "Πρέπει να απαντήσεις σωστά σε όλες τις ερωτήσεις πριν συνεχίσεις."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Κουμπί για \"Πίσω\"",
+          "default": "Πίσω"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Χρόνος που πέρασε σε ώρες",
+          "default": "Ώρες"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Χρόνος που πέρασε σε λεπτά",
+          "default": "Λεπτά"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Χρόνος που πέρασε σε δευτερόλεπτα",
+          "default": "Δευτερόλεπτα"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Ετικέτα για τρέχουσα χρονική στιγμή",
+          "default": "Χρόνος:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Ετικέτα συνολικού χρόνου",
+          "default": "Συνολικός χρόνος:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "label": "Κείμενο που εξηγεί το πλήκτρο πλοήγησης",
+          "default": "Χρησιμοποίησε το πλήκτρο k για την έναρξη και τη διακοπή του βίντεο ανά πάσα στιγμή"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Κείμενο που εξηγεί ότι έχει ξεκινήσει να προβάλλεται ένα διαδραστικό στοιχείο με συγκεκριμένο όνομα",
+          "default": "Εμφανίστηκε το διαδραστικό στοιχείο:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Κείμενο που εξηγεί ότι έχουν ξεκινήσει να προβάλλονται πολλαπλά διαδραστικά στοιχεία",
+          "default": "Εμφανίστηκαν πολλαπλά διαδραστικά στοιχεία."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Μήνυμα παύσης βίντεο",
+          "default": "Έχει γίνει παύση (pause) του βίντεο"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Ετικέτα περιεχομένου",
+          "default": "Περιεχόμενο"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Μήνυμα απαντήσεων (η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν)",
+          "default": "@answered απαντήθηκαν"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Τίτλος οθόνης υποβολής",
+          "default": "@answered ερωτήσεις απαντήθηκαν",
+          "description": "Η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Πληροφορία οθόνης υποβολής για ερωτήσεις που απαντήθηκαν",
+          "default": "Έχεις απαντήσει @answered ερωτήσεις, κάνε κλικ παρακάτω για να υποβάλλεις τις απαντήσεις σου.",
+          "description": "Η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Πληροφορία οθόνης υποβολής για απαντήσεις που λείπουν",
+          "default": "Δεν έχεις απαντήσει σε καμμία ερώτηση."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Πληροφορία οθόνης υποβολής για απαντήσεις που απαιτούνται",
+          "default": "Πρέπει να έχεις απαντήσει τουλάχιστον σε μία ερώτηση για να μπορέσεις να προχωρήσεις στην υποβολή."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Κουμπί υποβολής οθόνης υποβολής",
+          "default": "Υποβολή απαντήσεων"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Μήνυμα υποβολής οθόνης υποβολής",
+          "default": "Έγινε υποβολή των απαντήσεών σου!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Οθόνη υποβολής - Τίτλος γραμμής πίνακα: Ερωτήσεις που απαντήθηκαν",
+          "default": "Ερωτήσεις που απαντήθηκαν"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Οθόνη υποβολής - Τίτλος γραμμής πίνακα: Βαθμολογία",
+          "default": "Βαθμολογία"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Οθόνη υποβολής - Βαθμολογία απαντήσεων",
+          "default": "απαντήθηκαν"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }

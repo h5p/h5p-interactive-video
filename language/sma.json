@@ -176,7 +176,7 @@
                     "label": "Go to on click",
                     "fields": [
                       {
-                        "label": "Tipus",
+                        "label": "Type",
                         "options": [
                           {
                             "label": "Timecode"
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "label": "Opcions de comportament",
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Start video at",
@@ -341,7 +341,7 @@
         },
         {
           "label": "Summary title",
-          "default": "Resum"
+          "default": "Summary"
         },
         {
           "label": "Bookmarks title",
@@ -405,7 +405,7 @@
         },
         {
           "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time"
+          "default": "Use key k for starting and stopping video at any time. To mute and unmute, use the M key."
         },
         {
           "label": "Text explaining that a single interaction with a name has come into view",
@@ -464,6 +464,14 @@
         {
           "label": "Submit screen answered score",
           "default": "answered"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }

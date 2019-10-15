@@ -1,0 +1,479 @@
+{
+  "semantics": [
+    {
+      "label": "Urejevalnik interaktivnega videoposnetka",
+      "fields": [
+        {
+          "label": "Izbira videoposnetka",
+          "fields": [
+            {
+              "label": "Dodaj videoposnetek",
+              "description": "S klikom na okvir se odpre okno za dodajanje videoposnetka. Na voljo je pretok datoteke iz računalnika ali dodajanje spletne povezave posnetka (npr. iz YouTube). Za povečanje združljivosti z brskalniki, se lahko posnetek doda tudi v več različnih datotekah/formatih (npr. mp4, webm) ali različnih kakovostih (npr. HD, za mobilne naprave)."
+            },
+            {
+              "label": "Nastavitve začetnega zaslona (nepodprto za posnetke iz YouTuba)",
+              "fields": [
+                {
+                  "label": "Naslov interaktivnega videoposnetka",
+                  "default": "Interaktivni videoposnetek",
+                  "description": "Uporablja se v povzetkih, statistikah itd."
+                },
+                {
+                  "label": "Skrij naslov na začetnem zaslonu videoposnetka"
+                },
+                {
+                  "label": "Kratek opis",
+                  "description": "Neobvezno. Kratek opis je prikazan na začetnem zaslonu posnetka. Možnost ni podprta za videoposnetke iz YouTuba."
+                },
+                {
+                  "label": "Začetna sličica",
+                  "description": "Slika je udeležencem prikazana pred predvajanjem videoposnetka. Možnost ni podprta za videoposnetke iz YouTuba."
+                }
+              ]
+            },
+            {
+              "label": "Sledi z besedilom (nepodprto za posnetke iz YouTuba)",
+              "fields": [
+                {
+                  "label": "Dosegljive sledi",
+                  "entity": "Sled",
+                  "field": {
+                    "label": "Sled",
+                    "fields": [
+                      {
+                        "label": "Naslov sledi",
+                        "description": "Uporabno predvsem, ko lahko udeleženci izbirajo med množico različni sledi (npr. podnapisi v različnih jezikih).",
+                        "default": "Podnapisi"
+                      },
+                      {
+                        "label": "Tip sledi",
+                        "options": [
+                          {
+                            "label": "Podnapisi"
+                          },
+                          {
+                            "label": "Napisi"
+                          },
+                          {
+                            "label": "Opisi"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Za podnapise mora biti določen jezik vira",
+                        "default": "sl",
+                        "description": "Veljavne so oznake jezikov po BCP 47."
+                      },
+                      {
+                        "label": "Datoteka za sled (WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Privzeta sled z besedilom",
+                  "description": "V primeru praznega polja ali neujemanja z drugimi sledmi, bo kot privzeta uporabljena prva sled z besedilom."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Dodajanje interakcij",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Čas prikaza"
+                  },
+                  {
+                    "label": "Začasno zaustavi posnetek"
+                  },
+                  {
+                    "label": "Prikaži kot",
+                    "description": "<b>Gumb</b> omogoča prikaz aktivnosti šele po kliku. Nasprotje je oblika <b>postra</b> oz. prikaz neposredno v videoposnetku.",
+                    "options": [
+                      {
+                        "label": "Gumb"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "V primeru majhnega zaslona spremeni v gumb"
+                  },
+                  {
+                    "label": "Oznaka",
+                    "description": "Besedilo je prikazano ob ikoni za interakcijo."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Prilagodljivost",
+                    "fields": [
+                      {
+                        "label": "Ukrep ob vseh pravilnih odgovorih",
+                        "fields": [
+                          {
+                            "label": "Pojdi na",
+                            "description": "Vnos časa za nadaljevanje ogleda posnetka v formatu M:SS"
+                          },
+                          {
+                            "label": "Udeležencem je dovoljen izklop in nadaljevanje po ustaljeni poti"
+                          },
+                          {
+                            "label": "Sporočilo"
+                          },
+                          {
+                            "label": "Besedilo gumba za nadaljevanje ogleda na izbranem času"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ukrep ob vseh nepravilnih odgovorih",
+                        "fields": [
+                          {
+                            "label": "Pojdi na",
+                            "description": "Vnos časa za nadaljevanje ogleda posnetka v formatu M:SS"
+                          },
+                          {
+                            "label": "Udeležencem je dovoljen izklop in nadaljevanje po ustaljeni poti"
+                          },
+                          {
+                            "label": "Sporočilo"
+                          },
+                          {
+                            "label": "Besedilo gumba za nadaljevanje ogleda na izbranem času"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Za nadaljevanje aktivnosti so zahtevane vse točke",
+                        "description": "Nastavitev je smiselno uporabiti v kombinaciji z nastavitvijo \"Prepreči preskok naprej\"."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Vizualna podoba",
+                    "fields": [
+                      {
+                        "label": "Barva ozadja"
+                      },
+                      {
+                        "label": "Senca",
+                        "description": "Interakciji je dodana senca. Nastavitev se odsvetuje pri prosojnih elementih interakcij."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ob kliku",
+                    "fields": [
+                      {
+                        "label": "Tip",
+                        "options": [
+                          {
+                            "label": "Čas"
+                          },
+                          {
+                            "label": "Spletna stran (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Pojdi na",
+                        "description": "Vnos časa za nadaljevanje ogleda posnetka (v formatu M:SS), na katerega bo udeleženca vodil klik."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protokol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(korensko sorodna stran)"
+                              },
+                              {
+                                "label": "drugo"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Vizualiziraj",
+                        "description": "Možnost povezave je izpostavljena z obrobo in ikono."
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Povzetek",
+          "fields": [
+            {},
+            {
+              "label": "Čas prikaza",
+              "description": "Število sekund pred zaključkom videoposnetka."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Nastavitve interakcije",
+      "fields": [
+        {
+          "label": "Začetek ogleda videoposnetka",
+          "description": "Vnos časa v formatu M:SS."
+        },
+        {
+          "label": "Samodejno predvajaj",
+          "description": "Videoposnetek se začne predvajati samodejno."
+        },
+        {
+          "label": "Predvajaj v zanki",
+          "description": "Predlagan je premislek o smiselnosti predvajanja posnetka v zanki."
+        },
+        {
+          "label": "Določi prikaz gumba \"Prikaži rešitev\"",
+          "description": "Nastavitev vpliva na prikaz rešitve v vseh vprašanjih (npr. onemogočeno povsod, omogočeno individualno).",
+          "options": [
+            {
+              "label": "Omogoči"
+            },
+            {
+              "label": "Onemogoči"
+            }
+          ]
+        },
+        {
+          "label": "Določi prikaz gumba \"Poskusi ponovno\"",
+          "description": "Nastavitev vpliva na možnost ponovnega poskusa v vseh vprašanjih (npr. onemogočeno povsod, omogočeno individualno).",
+          "options": [
+            {
+              "label": "Omogoči"
+            },
+            {
+              "label": "Onemogoči"
+            }
+          ]
+        },
+        {
+          "label": "Začni z odprtim menijem zaznamkov",
+          "description": "Nastavitev ni podprta za predvajanje YouTube posnetkov na iPadu."
+        },
+        {
+          "label": "Prevrti videoposnetek za 10 sekund nazaj"
+        },
+        {
+          "label": "Prepreči preskok naprej",
+          "description": "Z onemogočenimi kontrolniki za predvajanje videoposnetka bo možen le ogled v enem kosu."
+        },
+        {
+          "label": "Onemogoči zvok",
+          "description": "Videoposnetek se bo predvajal v nemem načinu."
+        }
+      ]
+    },
+    {
+      "label": "Določitev",
+      "fields": [
+        {
+          "label": "Naslov interakcije",
+          "default": "Interakcija"
+        },
+        {
+          "label": "Besedilo za predvajanje videoposnetka",
+          "default": "Predvajaj"
+        },
+        {
+          "label": "Besedilo za premor predvajanja",
+          "default": "Premor predvajanja"
+        },
+        {
+          "label": "Besedilo za vklop v nemi način predvajanja",
+          "default": "Utišaj zvok"
+        },
+        {
+          "label": "Besedilo za izhod iz nemega načina predvajanja",
+          "default": "Povrni zvok"
+        },
+        {
+          "label": "Besedilo za kvaliteto videoposnetka",
+          "default": "Kvaliteta videoposnetka"
+        },
+        {
+          "label": "Besedilo za napise v videoposnetku",
+          "default": "Napisi"
+        },
+        {
+          "label": "Besedilo gumba Zapri",
+          "default": "Zapri"
+        },
+        {
+          "label": "Besedilo za celozaslonski način",
+          "default": "Celozaslonski način"
+        },
+        {
+          "label": "Besedilo za zaključek celozaslonskega načina",
+          "default": "Zapusti celozaslonski način"
+        },
+        {
+          "label": "Naslov strani s povzetkom dosežkov",
+          "default": "Povzetek"
+        },
+        {
+          "label": "Besedilo za prikaz zaznamkov",
+          "default": "Zaznamki"
+        },
+        {
+          "label": "Naslov zaslona za potrditev odgovorov",
+          "default": "Zaslon za potrditev odgovorov"
+        },
+        {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
+          "label": "Privzeta oznaka gumba za nadaljevanje ogleda videoposnetka",
+          "default": "Nadaljuj"
+        },
+        {
+          "label": "Nastavitev stopnje hitrosti predvajanja",
+          "default": "Hitrost predvajanja"
+        },
+        {
+          "label": "Besedilo za vrtenje posnetka 10 sekund nazaj",
+          "default": "Prevrti 10 sekund nazaj"
+        },
+        {
+          "label": "Besedilo za onemogočanje navigacije",
+          "default": "Navigacija je onemogočena"
+        },
+        {
+          "label": "Besedilo za onemogočanje zvoka",
+          "default": "Zvok je onemogočen"
+        },
+        {
+          "label": "Opozorilo udeležencu, da je potrebno pred nadaljevanjem pravilno odgovoriti na vsa vprašanja",
+          "default": "Za nadaljevanje aktivnosti so zahtevane vse točke."
+        },
+        {
+          "label": "Besedilo gumba Nazaj",
+          "default": "Nazaj"
+        },
+        {
+          "label": "Pretekli čas v urah",
+          "default": "Ur"
+        },
+        {
+          "label": "Pretekli čas v minutah",
+          "default": "Minut"
+        },
+        {
+          "label": "Pretekli čas v sekundah",
+          "default": "Sekund"
+        },
+        {
+          "label": "Besedilo za zapis trenutnega časa",
+          "default": "Trenutni čas:"
+        },
+        {
+          "label": "Besedilo za zapis porabljenega časa",
+          "default": "Porabljen čas:"
+        },
+        {
+          "label": "Besedilo za pojasnilo bližnjice za navigacijo",
+          "default": "Tipka K je bližnjica za začetek ali zaustavitev predvajanja videoposnetka."
+        },
+        {
+          "label": "Besedilo za pojasnilo o pojavu interakcije",
+          "default": "Prikazana interakcija:"
+        },
+        {
+          "label": "Besedilo za pojasnilo o pojavu množice interakcije",
+          "default": "Prikazanih več interakcij."
+        },
+        {
+          "label": "Besedilo za informacijo o začasnem premoru",
+          "default": "Predvajanje je začasno zaustavljeno"
+        },
+        {
+          "label": "Besedilo za oznako vsebine",
+          "default": "Vsebina"
+        },
+        {
+          "label": "Besedilo sporočila o opravljenih aktivnostih (@answered je spremenljivka)",
+          "default": "Število opravljenih aktivnosti: @answered"
+        },
+        {
+          "label": "Naslov Zaslona za potrditev odgovorov",
+          "default": "Število opravljenih aktivnosti: @answered",
+          "description": "@answered je spremenljivka."
+        },
+        {
+          "label": "Vsebina sporočilo Zaslona za potrditev odgovorov",
+          "default": "Trenutno je opravljena vsaj ena aktivnost (točno število: @answered), ki jo je možno potrditi.",
+          "description": "@answered je spremenljivka."
+        },
+        {
+          "label": "Sporočilo Zaslona za potrditev odgovorov o manjkajočem odgovoru",
+          "default": "Ni odgovorov na vprašanja."
+        },
+        {
+          "label": "Sporočilo Zaslona za potrditev odgovorov o potrebi po oddaji odgovora",
+          "default": "Potrebno je odgovoriti na vsaj eno vprašanje, preden je možno aktivnost potrditi."
+        },
+        {
+          "label": "Besedilo gumba za potrditev odgovorov",
+          "default": "Potrdi aktivnosti"
+        },
+        {
+          "label": "Sporočilo o potrditvi odgovorov",
+          "default": "Aktivnosti so potrjene!"
+        },
+        {
+          "label": "Naslov tabele Zaslona za potrditev odgovorov, stolpec: Opravljene aktivnosti",
+          "default": "Opravljene aktivnosti"
+        },
+        {
+          "label": "Naslov tabele Zaslona za potrditev odgovorov, stolpec: Točke",
+          "default": "Točke"
+        },
+        {
+          "label": "Sporočilo Zaslona za potrditev odgovorov o opravljeni aktivnosti",
+          "default": "opravljeno"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+        }
+      ]
+    }
+  ]
+}

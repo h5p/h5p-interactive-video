@@ -345,7 +345,7 @@
         },
         {
           "label": "Kirjanmerkit",
-          "default": "Kirjanmerki"
+          "default": "Kirjanmerkit"
         },
         {
           "label": "Yhteenvetonäkymän otsikko",
@@ -464,6 +464,14 @@
         {
           "label": "Yhteenvetonäkymän vastattujen summa",
           "default": "Vastattu"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }
