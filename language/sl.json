@@ -352,6 +352,10 @@
           "default": "Zaslon za potrditev odgovorov"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Privzeta oznaka gumba za nadaljevanje ogleda videoposnetka",
           "default": "Nadaljuj"
         },
@@ -414,10 +418,6 @@
         {
           "label": "Besedilo za informacijo o začasnem premoru",
           "default": "Predvajanje je začasno zaustavljeno"
-        },
-        {
-          "label": "Besedilo za oznako vsebine",
-          "default": "Vsebina"
         },
         {
           "label": "Besedilo za oznako vsebine",

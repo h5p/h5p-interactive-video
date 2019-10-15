@@ -352,6 +352,10 @@
           "default": "Bidali pantaila"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Jarraitu botoiaren etiketa lehenetsia",
           "default": "Jarraitu bideoa"
         },
@@ -414,10 +418,6 @@
         {
           "label": "Bideoa pausatua dagoela adierazten duen iragarkia",
           "default": "Bideoa pausarazita dago"
-        },
-        {
-          "label": "Edukia etiketa",
-          "default": "Edukia"
         },
         {
           "label": "Edukia etiketa",

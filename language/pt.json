@@ -352,6 +352,10 @@
           "default": "Tela de submissão"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Rótulo padrão do botão de continuar o vídeo",
           "default": "Continuar o vídeo"
         },
@@ -414,10 +418,6 @@
         {
           "label": "Anúncio de vídeo pausado",
           "default": "O vídeo está pausado"
-        },
-        {
-          "label": "Rótulo de conteúdo",
-          "default": "Conteúdo"
         },
         {
           "label": "Rótulo de conteúdo",

@@ -352,6 +352,10 @@
           "default": "Continuer"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Intitulé par défaut du bouton de reprise",
           "default": "Reprendre la lecture"
         },
@@ -414,10 +418,6 @@
         {
           "label": "Annonce vidéo en pause",
           "default": "La vidéo est en pause"
-        },
-        {
-          "label": "Intitulé du contenu",
-          "default": "Contenu"
         },
         {
           "label": "Intitulé du contenu",

@@ -280,14 +280,14 @@
           ]
         },
         {
-          "label": "Show button for rewinding 10 seconds",
-          "description": "This function is not available on iPad when using YouTube as video source"
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label": "Prevent skipping forward in a video"
+          "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Deactivate sound",
+          "label": "Prevent skipping forward in a video",
           "description": "Enabling this options will disable user video navigation through default controls."
         },
         {

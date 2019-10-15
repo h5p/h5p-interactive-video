@@ -352,6 +352,10 @@
           "default": "Submit screen"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Default label for continue video button",
           "default": "Continue with video"
         },
@@ -414,10 +418,6 @@
         {
           "label": "Video is paused announcement",
           "default": "Video is paused"
-        },
-        {
-          "label": "Content label",
-          "default": "Content"
         },
         {
           "label": "Content label",

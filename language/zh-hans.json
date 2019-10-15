@@ -352,6 +352,10 @@
           "default": "提交画面"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "继续播放的显示文字",
           "default": "继续播放"
         },
@@ -414,10 +418,6 @@
         {
           "label": "影片暂停的显示文字",
           "default": "影片暂停"
-        },
-        {
-          "label": "内容的显示文字",
-          "default": "内容"
         },
         {
           "label": "內容的显示文字",
