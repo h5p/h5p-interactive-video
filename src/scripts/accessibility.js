@@ -44,7 +44,6 @@ export default class Accessibility {
     const announcer = document.createElement('div');
     announcer.classList.add('h5p-iv-interactions-announcer');
     announcer.setAttribute('aria-live', 'polite');
-    announcer.setAttribute('aria-hidden', 'true');
     this.interactionsAnnouncer = announcer;
 
     // Hot key instructions
@@ -86,7 +85,7 @@ export default class Accessibility {
     if (newInteractions.length > 0) {
       this.interactionsAnnouncer.textContent = ''; // reset content
       this.interactionsAnnouncer.textContent = `
-        ${this.getAnnouncementMessage(newInteractions.length)} 
+        ${this.getAnnouncementMessage(newInteractions.length)}
         ${this.getTitleAnnouncement(newInteractions.length, newInteractions[0])}
         ${this.getPauseAnnouncement(newInteractions)}`;
     }

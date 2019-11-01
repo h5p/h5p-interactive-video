@@ -352,6 +352,10 @@
           "default": "Tela de submissão"
         },
         {
+          "label": "Default label for adaptivity seek button",
+          "default": "Continue"
+        },
+        {
           "label": "Rótulo padrão do botão de continuar o vídeo",
           "default": "Continuar o vídeo"
         },
@@ -420,10 +424,6 @@
           "default": "Conteúdo"
         },
         {
-          "label": "Rótulo de conteúdo",
-          "default": "Conteúdo"
-        },
-        {
           "label": "Mensagem de respostas(@answered será substituído pelo número de questões respondidas)",
           "default": "@answered respondidas"
         },
@@ -464,6 +464,14 @@
         {
           "label": "Pontuação das questões respondidas na tela de submissão",
           "default": "respondidas"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         }
       ]
     }

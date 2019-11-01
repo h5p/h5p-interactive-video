@@ -952,7 +952,7 @@
         "type": "text",
         "label": "Text for explaining navigation hotkey",
         "importance": "low",
-        "default": "Use key k for starting and stopping video at any time",
+        "default": "Use key k for starting and stopping video at any time. To mute and unmute, use the M key.",
         "optional": true
       },
       {
@@ -1067,6 +1067,22 @@
         "label": "Submit screen answered score",
         "importance": "low",
         "default": "answered",
+        "optional": true
+      },
+      {
+        "name": "endCardTableRowSummaryWithScore",
+        "type": "text",
+        "label": "Submit screen row summary including score (for readspeakers)",
+        "importance": "low",
+        "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.",
+        "optional": true
+      },
+      {
+        "name": "endCardTableRowSummaryWithoutScore",
+        "type": "text",
+        "label": "Submit screen row summary for no score (for readspeakers)",
+        "importance": "low",
+        "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds.",
         "optional": true
       }
     ]
