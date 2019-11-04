@@ -466,12 +466,12 @@
           "default": "απαντήθηκαν"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Οθόνη υποβολής - Απάντηση που ως σωστή έλαβε βαθμολογία (κείμενο ακουστικής υποβοήθησης)",
+          "default": "Έλαβες @score από @total πόντους για την @question που εμφανίστηκε μετά από @minutes λεπτά και @seconds δευτερόλεπτα."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Οθόνη υποβολής - Απάντηση που ως λάθος δεν έλαβε βαθμολογία (κείμενο ακουστικής υποβοήθησης)",
+          "default": "Απάντησες την @question που εμφανίστηκε μετά από @minutes λεπτά και @seconds δευτερόλεπτα."
         }
       ]
     }
