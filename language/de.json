@@ -11,67 +11,67 @@
               "description": "Wähle die Videodateien, die in dem interaktiven Video verwendet werden sollen. Um alle Browser bestmöglich zu unterstützen, muss zumindest eine Version des Videos im webm-Format und eine im mp4-Format hinzugefügt werden."
             },
             {
-              "label": "Optionen Startbildschirm (nicht unterstützt für YouTube Videos)",
+              "label": "Optionen Startbildschirm (nicht unterstützt für YouTube-Videos)",
               "fields": [
                 {
-                  "label": "Der Titel dieses interaktiven Videos",
+                  "label": "Titel des interaktiven Videos",
                   "default": "Interaktives Video",
-                  "description": "Wird benutzt in Zusammenfassungen, Statistiken, usw."
+                  "description": "Wird in Zusammenfassungen, Statistiken usw. benutzt"
                 },
                 {
-                  "label": "Titel auf Video-Startbildschirm ausblenden"
+                  "label": "Titel auf Startbildschirm ausblenden"
                 },
                 {
-                  "label": "Kurze Beschreibung (optional)",
-                  "description": "Optional. Blende einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
+                  "label": "Kurzbeschreibung (optional)",
+                  "description": "Blendet einen kurzen Beschreibungstext auf dem Startbildschirm des Videos ein."
                 },
                 {
-                  "label": "Posterbild",
+                  "label": "Vorschaubild",
                   "description": "Bild, das angezeigt wird, bevor das Video abgespielt wird. Funktioniert nicht mit YouTube-Videos."
                 }
               ]
             },
             {
-              "label": "Textspuren (nicht unterstützt für YouTube Videos)",
+              "label": "Textspuren (nicht unterstützt für YouTube-Videos)",
               "fields": [
                 {
                   "label": "Verfügbare Textspuren",
-                  "entity": "Track",
+                  "entity": "Spur",
                   "field": {
                     "label": "Spur",
                     "fields": [
                       {
                         "label": "Spurbeschriftung",
-                        "description": "Benutzt, wenn Sie mehrere Spuren anbieten und der Benutzer eine Spur auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
+                        "description": "Benutzt, wenn der Benutzer eine aus mehreren Spuren auswählen muss. \"Spanische Untertitel\" könnte z. B. die Bezeichnung einer spanischen Untertitelspur sein.",
                         "default": "Untertitel"
                       },
                       {
                         "label": "Art der Textspur",
                         "options": [
                           {
-                            "label": "Untertitel"
+                            "label": "Untertitel (subtitles)"
                           },
                           {
-                            "label": "Bildunterschriften"
+                            "label": "Untertitel für Hörgeschädigte (captions)"
                           },
                           {
-                            "label": "Beschreibungen"
+                            "label": "Beschreibungen für Vorlesewerkzeuge (descriptions)"
                           }
                         ]
                       },
                       {
-                        "label": "Ausgangssprache, muss für Untertitel definiert werden",
+                        "label": "Sprache der Spur",
                         "default": "de",
-                        "description": "Muss ein gültiges BCP 47 Sprachtag (z.B. de=Deutsch, en=Englisch) sein. Wenn die ausgewählte Art der Textspur \"Untertitel\" ist, muss die Ausgangssprache der Spur definiert werden."
+                        "description": "Muss ein gültiger BCP 47 Sprach-Tag sein. Wenn die Spurart auf \"Untertitel (subtitles)\" gestellt ist, muss die Sprache definiert werden."
                       },
                       {
-                        "label": "Quelldatei der Spur (WebVTT-Datei)"
+                        "label": "Spurdatei (WebVTT)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Vorgegebene Textspur",
+                  "label": "Standard-Textspur",
                   "description": "Wenn das Feld leer gelassen wird oder keiner Spurbeschriftung entspricht, wird die erste Textspur verwendet."
                 }
               ]
@@ -88,22 +88,22 @@
                     "label": "Anzeigezeit"
                   },
                   {
-                    "label": "Video pausieren"
+                    "label": "Video pausieren, wenn es bei der Startzeit ankommt"
                   },
                   {
                     "label": "Anzeigen als",
-                    "description": "<b>Button</b> ist eine eingeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. <b>Poster</b> ist eine ausgeklappte Interaktion, die direkt über dem Video angezeigt wird",
+                    "description": "<b>Button</b> ist eine eingeklappte Interaktion, die der Benutzer anklicken muss, um sie zu öffnen. Ein <b>Popup</b> wird direkt über dem Video angezeigt",
                     "options": [
                       {
                         "label": "Button"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Popup"
                       }
                     ]
                   },
                   {
-                    "label": "Auf kleinen Bildschirmen als Button verwenden"
+                    "label": "Auf kleinen Bildschirmen immer als Button anzeigen"
                   },
                   {
                     "label": "Beschriftung",
@@ -116,17 +116,17 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivität",
+                    "label": "Reaktionen auf Nutzereingaben",
                     "fields": [
                       {
                         "label": "Aktion, wenn alles richtig",
                         "fields": [
                           {
-                            "label": "Sprung nach",
-                            "description": "Den Zeitcode im Format M:SS angeben"
+                            "label": "Springe zu",
+                            "description": "Die Stelle im Format M:SS angeben"
                           },
                           {
-                            "label": "Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
+                            "label": "Dem Nutzer erlauben, nicht zu springen, sondern das Video fortzusetzen"
                           },
                           {
                             "label": "Nachricht"
@@ -140,11 +140,11 @@
                         "label": "Aktion, wenn falsch",
                         "fields": [
                           {
-                            "label": "Sprung nach",
-                            "description": "Den Zeitcode im Format M:SS eingeben"
+                            "label": "Springe zu",
+                            "description": "Die Stelle im Format M:SS eingeben"
                           },
                           {
-                            "label": "Erlaube dem Nutzer, abzubrechen und weiter zu gehen"
+                            "label": "Dem Nutzer erlauben, nicht zu springen, sondern das Video fortzusetzen"
                           },
                           {
                             "label": "Nachricht"
@@ -155,13 +155,13 @@
                         ]
                       },
                       {
-                        "label": "Zum Fortsetzen der Aufgabe volle Punktzahl benötigt",
-                        "description": "Für die optimale Funktionalität sollte diese Option in Verbindung mit  \"Unterbindung von Vorwärtssprüngen\" verwendet werden."
+                        "label": "Video kann nur bei voller Punktzahl fortgesetzt werden",
+                        "description": "Diese Option sollte in Verbindung mit \"Vorspulen verbieten\" eingesetzt werden, um den gewünschten Effekt zu erreichen."
                       }
                     ]
                   },
                   {
-                    "label": "Gehe zu bei Klick",
+                    "label": "Darstellung",
                     "fields": [
                       {
                         "label": "Hintergrundfarbe"
@@ -173,25 +173,25 @@
                     ]
                   },
                   {
-                    "label": "Gehe zu bei Klick",
+                    "label": "Gehe bei Klick zu",
                     "fields": [
                       {
-                        "label": "Typ",
+                        "label": "Art des Ziels",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Stelle im Video"
                           },
                           {
-                            "label": "Andere Seite (URL)"
+                            "label": "Andere Webseite (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Gehe zu",
-                        "description": "Die Zeit, die bei Anklicken des Hotspots angesprungen wird. Timecode im Format M:SS eingeben."
+                        "label": "Springe zu",
+                        "description": "Die Zeit im Video, zu der bei Anklicken des Hotspots gespult wird. Stelle im Format M:SS eingeben."
                       },
                       {
-                        "label": "URLs",
+                        "label": "URL",
                         "fields": [
                           {
                             "label": "Protokoll",
@@ -203,7 +203,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(relativ zum Hauptverzeichnis)"
+                                "label": "(relativer Pfad auf aktueller Domain)"
                               },
                               {
                                 "label": "anderes"
@@ -211,13 +211,13 @@
                             ]
                           },
                           {
-                            "label": "URLs"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
                         "label": "Darstellung",
-                        "description": "Zeige dass eine Interaktion angeklickt werden kann durch Hinzufügung von Rand und Icon."
+                        "description": "Durch Hinzufügen von Rand und Icon anzeigen, dass eine Interaktion angeklickt werden kann"
                       }
                     ]
                   }
@@ -234,142 +234,142 @@
             {},
             {
               "label": "Anzeigen bei",
-              "description": "Anzahl der Sekunden vor Ende des Videos."
+              "description": "Anzahl der Sekunden vor Ende des Videos"
             }
           ]
         }
       ]
     },
     {
-      "label": "Interaktionseinstellungen",
+      "label": "Verhaltenseinstellungen",
       "fields": [
         {
           "label": "Starte Video bei",
-          "description": "Timecode im Format M:SS eingeben"
+          "description": "Stelle im Format M:SS eingeben"
         },
         {
           "label": "Video automatisch abspielen",
-          "description": "Video automatisch abspielen"
+          "description": "Das Video startet automatisch, wenn es aufgerufen wird"
         },
         {
-          "label": "Videoschleife",
+          "label": "Video als Schleife spielen",
           "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
-          "label": "Überschreibe \"Zeige Lösung\" Button",
-          "description": "Diese Option bestimmt, ob der \"Zeige Lösung\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
+          "label": "Überschreiben der Anzeigeoptionen des \"Lösungen anzeigen\"-Buttons",
+          "description": "Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options": [
             {
-              "label": "Anzeigen"
+              "label": "Immer anzeigen"
             },
             {
-              "label": "Ausblenden"
+              "label": "Immer ausblenden"
             }
           ]
         },
         {
-          "label": "Überschreibe \"Wiederholen\" Button",
-          "description": "Diese Option bestimmt, ob der \"Wiederholen\" Button für alle Fragen angezeigt wird. Wahlweise für alle deaktivieren oder für jede Frage einzeln.",
+          "label": "Überschreiben der Anzeigeoptionen des \"Wiederholen\"-Buttons",
+          "description": "Diese Option gibt an, ob der \"Wiederholen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options": [
             {
-              "label": "Anzeigen"
+              "label": "Immer anzeigen"
             },
             {
-              "label": "Ausblenden"
+              "label": "Immer ausblenden"
             }
           ]
         },
         {
-          "label": "Mit geöffnetem Lesezeichenmenü starten",
-          "description": "Diese Funktion ist auf dem iPad nicht verfügbar, wenn das Video von YouTube stammt"
+          "label": "Mit geöffnetem Lesezeichen-Menü starten",
+          "description": "Diese Funktion ist auf iPads nicht verfügbar, wenn das Video von YouTube stammt"
         },
         {
-          "label": "Zeige den Button, um 10 Sekunden zurück zu springen"
+          "label": "Button zeigen, um 10 Sekunden zurück zu springen"
         },
         {
-          "label": "Unterbindung eines Vorwärtssprungs im Video",
-          "description": "Aktivieren, um die Videonavigation zu unterbinden."
+          "label": "Vorspulen verbieten",
+          "description": "Aktivieren, um die Videonavigation zu unterbinden"
         },
         {
           "label": "Ton deaktivieren",
-          "description": "Aktivieren, um die Audio-Ausgabe zu unterbinden."
+          "description": "Auswählen, um die Audio-Ausgabe zu deaktivieren."
         }
       ]
     },
     {
-      "label": "Sprache anpassen",
+      "label": "Bezeichnungen und Beschriftungen",
       "fields": [
         {
-          "label": "Interaktionstitel",
+          "label": "Bezeichnung einer Interaktion",
           "default": "Interaktion"
         },
         {
-          "label": "Titel zum Abspielen",
-          "default": "Start"
+          "label": "Beschriftung des \"Abspielen\"-Buttons",
+          "default": "Abspielen"
         },
         {
-          "label": "Titel zum Pausieren",
+          "label": "Beschriftung des \"Pause\"-Buttons",
           "default": "Pause"
         },
         {
-          "label": "Titel zum Stummschalten",
-          "default": "Stummschaltung aktivieren"
+          "label": "Beschriftung des \"Stummschalten\"-Buttons",
+          "default": "Stummschalten"
         },
         {
-          "label": "Titel, um Stummmodus aufzuheben",
-          "default": "Stummschaltung aufheben"
+          "label": "Beschriftung des \"Lautschalten\"-Buttons",
+          "default": "Lautschalten"
         },
         {
-          "label": "Titel für die Videoqualität",
-          "default": "Video-Qualität"
+          "label": "Beschriftung des \"Videoqualität\"-Buttons",
+          "default": "Videoqualität"
         },
         {
-          "label": "Titel für Video-Untertitel",
-          "default": "Bildunterschriften"
+          "label": "Beschriftung des Video-Untertitels",
+          "default": "Untertitel"
         },
         {
-          "label": "Text für Schließen-Button",
+          "label": "Text des \"Schließen\"-Buttons",
           "default": "Schließen"
         },
         {
-          "label": "Titel für den Vollbildmodus",
+          "label": "Beschriftung des \"Vollbild\"-Buttons",
           "default": "Vollbild"
         },
         {
-          "label": "Titel zum Verlassen des Vollbildmodus",
-          "default": "Vollbildmodus verlassen"
+          "label": "Beschriftung des \"Vollbild beenden\"-Buttons",
+          "default": "Vollbild beenden"
         },
         {
-          "label": "Titel für die Zusammenfassung",
+          "label": "Titel der Zusammenfassung",
           "default": "Zusammenfassung"
         },
         {
-          "label": "Titel für Lesezeichen",
+          "label": "Beschriftung des \"Lesezeichen\"-Buttons",
           "default": "Lesezeichen"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Bezeichnung des Einsendebildschirms",
+          "default": "Einsendebildschirm"
         },
         {
-          "label": "Standardbeschriftung für Springen-Button",
+          "label": "Beschriftung des \"Video fortsetzen\"-Buttons, wenn als Reaktion auf Nutzereingabe gesprungen wird",
           "default": "Fortfahren"
         },
         {
-          "label": "Standardbeschriftung für Weiter-mit-dem-Video-Button",
-          "default": "Weiter mit dem Video"
+          "label": "Standard-Beschriftung des \"Video fortsetzen\"-Buttons",
+          "default": "Video fortsetzen"
         },
         {
-          "label": "Abspielgeschwindigkeit setzen",
+          "label": "Abspielgeschwindigkeit festlegen",
           "default": "Abspielgeschwindigkeit"
         },
         {
-          "label": "10 Sekunden zurück",
-          "default": "10 Sekunden zurückspringen"
+          "label": "Beschriftung von \"10 Sekunden zurückspulen\"",
+          "default": "10 Sekunden zurückspulen"
         },
         {
-          "label": "Text für deaktivierte Navigation",
-          "default": "Navigation ist deaktiviert"
+          "label": "Beschriftung von \"Vor- und Zurückspulen ist deaktiviert\"",
+          "default": "Vor- und Zurückspulen ist deaktiviert"
         },
         {
           "label": "Hinweis auf deaktivierten Ton",
@@ -377,7 +377,7 @@
         },
         {
           "label": "Warnung, dass der Benutzer die Frage richtig beantworten muss, um weitermachen zu können",
-          "default": "Es müssen alle Fragen richtig beantwortet, um weitermachen zu können."
+          "default": "Es müssen alle Fragen richtig beantwortet werden, um weitermachen zu können."
         },
         {
           "label": "Beschriftung des \"Zurück\"-Buttons",
@@ -404,19 +404,19 @@
           "default": "Gesamtzeit:"
         },
         {
-          "label": "Hilfetext für den Hotkey der Navigation",
-          "default": "Drücke Taste k, um das Video jederzeit zu starten und zu stoppen"
+          "label": "Hilfetext, der die Navigation mit der Tastatur erklärt",
+          "default": "Drücke die Taste K, um das Video jederzeit zu starten und zu stoppen. Drücke M, um den den Ton aus- bzw. anzuschalten."
         },
         {
-          "label": "Hilfetext, dass eine einzelne Interaktion im Sichtfeld erscheint",
-          "default": "Interaktion erscheint:"
+          "label": "Text der erklärt, dass eine (einzige) Interaktion mit einem Titel erschienen ist",
+          "default": "Interaktion ist erschienen:"
         },
         {
-          "label": "Hilfetext, dass mehrere Interaktionen im Sichtfeld erscheinen",
-          "default": "Mehrere Interaktionen erscheinen."
+          "label": "Text der erklärt, dass mehrere Interaktionen erschienen sind",
+          "default": "Mehrere Interaktionen sind erscheinen."
         },
         {
-          "label": "Ankündigung einer Videopause",
+          "label": "Meldung, dass das Video pausiert wurde",
           "default": "Video ist angehalten"
         },
         {
@@ -424,54 +424,54 @@
           "default": "Inhalt"
         },
         {
-          "label": "Hiweis zu beantworteten Aufgaben (@answered wird durch die Anzahl der beantworteten Fragen ersetzt)",
+          "label": "Text, der erklärt, wie viele Fragen beantwortet wurden (@answered wird durch die Anzahl der beantworteten Fragen ersetzt)",
           "default": "@answered beantwortet"
         },
         {
-          "label": "Absenden-Bildschirm: Titel",
+          "label": "Titel des Einsendebildschirms",
           "default": "@answered Frage(n) beantwortet",
           "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
-          "label": "Absenden-Bildschirm: Hinweis",
+          "label": "Text auf dem Einsendebildschirm",
           "default": "Du hast @answered Fragen beantwortet. Klicke unten, um deine Ergebnisse abzusenden.",
           "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
-          "label": "Absenden-Bildschirm: Hinweis bei fehlenden Antworten",
+          "label": "Einsendebildschirm: Hinweis bei fehlenden Antworten",
           "default": "Du hast noch keine Fragen beantwortet."
         },
         {
-          "label": "Absenden-Bildschirm: Hinweis auf weiteres Vorgehen",
+          "label": "Einsendebildschirm: Hinweis auf weiteres Vorgehen",
           "default": "Du musst mindestens eine Frage beantworten, um deine Antworten absenden zu können."
         },
         {
-          "label": "Absenden-Bildschirm: \"Absenden\"-Button",
+          "label": "Einsendebildschirm: \"Absenden\"-Button",
           "default": "Antworten absenden"
         },
         {
-          "label": "Absenden-Bildschirm: Hinweis bei abgesendeten Antworten",
+          "label": "Einsendebildschirm: Hinweis bei abgesendeten Antworten",
           "default": "Deine Antworten wurden abgeschickt!"
         },
         {
-          "label": "Absenden-Bildschirm, Spaltentitel: Beantwortete Fragen",
+          "label": "Einsendebildschirm, Spaltentitel: Beantwortete Fragen",
           "default": "Beantwortete Fragen"
         },
         {
-          "label": "Absenden-Bildschirm, Spaltentitel: Punkte",
+          "label": "Einsendebildschirm, Spaltentitel: Punkte",
           "default": "Punkte"
         },
         {
-          "label": "Absenden-Bildschirm: Text für Aufgaben ohne Punkte",
+          "label": "Einsendebildschirm: Text für Aufgaben ohne Punkte",
           "default": "beantwortet"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Einsendebildschirm: Zusammenfassung einer Zeile mit Punkten (für Vorlesewerkzeuge)",
+          "default": "Du hast @score von @total Punkten für die @question erhalten, die bei @minutes Minuten und @seconds Sekunden erschienen ist."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Einsendebildschirm: Zusammenfassung einer Zeile ohne Punkte (für Vorlesewerkzeuge)",
+          "default": "Du hast die @question beantwortet, die bei @minutes Minuten und @seconds Sekunden erschienen ist."
         }
       ]
     }
