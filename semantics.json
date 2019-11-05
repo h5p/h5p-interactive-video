@@ -314,7 +314,8 @@
                             "strong",
                             "em",
                             "del",
-                            "a"
+                            "a",
+                            "code"
                           ],
                           "label": "Message"
                         },
@@ -351,7 +352,8 @@
                             "strong",
                             "em",
                             "del",
-                            "a"
+                            "a",
+                            "code"
                           ],
                           "label": "Message"
                         },
