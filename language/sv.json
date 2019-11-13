@@ -466,12 +466,12 @@
           "default": "svarat"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Inlämningssida, sammanfattning inklusive poäng (för skärmläsare)",
+          "default": "Du fick @score av @total poäng för @question som visades efter @minutes minuter och @seconds sekunder."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Inlämningssida, sammanfattning utan poäng (för skärmläsare)",
+          "default": "Du har svarat på @question som visades efter @minutes minuter och @seconds sekunder."
         }
       ]
     }
