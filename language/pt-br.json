@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
-                        "default": "en",
                         "description": "Deve ser um rótulo de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {

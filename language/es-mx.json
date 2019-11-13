@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma de origen, debe definirse para los subtítulos",
-                        "default": "en",
                         "description": "Debe ser una etiqueta de idioma válida de BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {

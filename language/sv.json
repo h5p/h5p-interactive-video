@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        "default": "en",
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
