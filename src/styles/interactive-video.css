@@ -910,9 +910,10 @@
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container,
 .h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-endscreens-container {
   position: absolute;
-  width: 100%;
   height: 100%;
   top: 0;
+  left: 8px;
+  right: 8px;
 }
 
 .h5p-interactive-video .h5p-seekbar-interaction {
