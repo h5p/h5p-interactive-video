@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Za prijevod se mora navesti izvorni jezik",
-                        "default": "en",
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
