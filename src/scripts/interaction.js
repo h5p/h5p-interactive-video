@@ -1,4 +1,4 @@
-import { KEY_CODE_START_PAUSE } from './interactive-video';
+import { GLOBAL_CONTROL_KEYS } from './interactive-video';
 
 const $ = H5P.jQuery;
 
@@ -209,7 +209,7 @@ function Interaction(parameters, player, previousState) {
         }
       }
     });
-    $interaction.on('keyup', disableGlobalVideoControls);
+    $interaction.on('keydown', disableGlobalVideoControls);
 
     // if requires completion -> open dialog right away
     if (self.getRequiresCompletion() &&
@@ -316,7 +316,7 @@ function Interaction(parameters, player, previousState) {
    * @param {Event} event
    */
   const disableGlobalVideoControls = (event) => {
-    if (event.which === KEY_CODE_START_PAUSE) {
+    if (GLOBAL_CONTROL_KEYS.indexOf(event.which) !== -1) {
       event.stopPropagation();
     }
   };
@@ -495,7 +495,7 @@ function Interaction(parameters, player, previousState) {
       $dialogContent.attr('tabindex', '0'); // Make content scrollable
     }
 
-    $dialogContent.on('keyup', disableGlobalVideoControls);
+    $dialogContent.on('keydown', disableGlobalVideoControls);
 
     // Disable tabbing when editing
     if (player.editor !== undefined) {
@@ -812,7 +812,7 @@ function Interaction(parameters, player, previousState) {
         height: dimensions.height
       }
     });
-    $interaction.on('keyup', disableGlobalVideoControls);
+    $interaction.on('keydown', disableGlobalVideoControls);
 
     if (library !== 'H5P.IVHotspot') {
       // Add background

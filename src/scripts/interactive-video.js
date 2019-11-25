@@ -737,10 +737,18 @@ InteractiveVideo.prototype.attach = function ($container) {
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
 
+  const ignoreEventForShortcutKey = (event) => {
+    return event.target.nodeName === 'INPUT';
+  };
+
   // Toggle mute/unmute on 'M'
   onKey($container, [{
     key: Keys.M,
-  }], (e) => that.toggleMute(false));
+  }], (e) => {
+    if (!ignoreEventForShortcutKey(e)) {
+      that.toggleMute(false);
+    }
+  });
 
   // Toggle play/pause on 'K'
   onKey($container, [{
@@ -748,13 +756,13 @@ InteractiveVideo.prototype.attach = function ($container) {
   }], (e) => {
     const hasPlayButton = that.controls && that.controls.$play;
     // Skip textual input from user
-    if (!hasPlayButton || e.target.nodeName === 'INPUT') {
+    if (!hasPlayButton || ignoreEventForShortcutKey(e)) {
       return;
     }
 
-    if (this.hasUncompletedRequiredInteractions()) {
+    if (that.hasUncompletedRequiredInteractions()) {
       const $currentFocus = $(document.activeElement);
-      const $mask = this.showWarningMask();
+      const $mask = that.showWarningMask();
       $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
     }
     else {
@@ -3726,4 +3734,4 @@ var getXAPIDataFromChildren = function (children) {
 };
 
 export default InteractiveVideo;
-export const KEY_CODE_START_PAUSE = Keys.K;
+export const GLOBAL_CONTROL_KEYS = [Keys.K, Keys.M];
