@@ -1,5 +1,3 @@
-import { GLOBAL_CONTROL_KEYS } from './interactive-video';
-
 const $ = H5P.jQuery;
 
 /**
@@ -209,7 +207,6 @@ function Interaction(parameters, player, previousState) {
         }
       }
     });
-    $interaction.on('keydown', disableGlobalVideoControls);
 
     // if requires completion -> open dialog right away
     if (self.getRequiresCompletion() &&
@@ -307,18 +304,6 @@ function Interaction(parameters, player, previousState) {
     }, 0);
 
     return $interaction;
-  };
-
-  /**
-   * Do not propagate global hotkey to pause/play video through to video player when interacting
-   * with interactions.
-   *
-   * @param {Event} event
-   */
-  const disableGlobalVideoControls = (event) => {
-    if (GLOBAL_CONTROL_KEYS.indexOf(event.which) !== -1) {
-      event.stopPropagation();
-    }
   };
 
   /**
@@ -494,8 +479,6 @@ function Interaction(parameters, player, previousState) {
     if (!isGotoClickable && isScrollableLibrary(library)) {
       $dialogContent.attr('tabindex', '0'); // Make content scrollable
     }
-
-    $dialogContent.on('keydown', disableGlobalVideoControls);
 
     // Disable tabbing when editing
     if (player.editor !== undefined) {
@@ -812,7 +795,6 @@ function Interaction(parameters, player, previousState) {
         height: dimensions.height
       }
     });
-    $interaction.on('keydown', disableGlobalVideoControls);
 
     if (library !== 'H5P.IVHotspot') {
       // Add background

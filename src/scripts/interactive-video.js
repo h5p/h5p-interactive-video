@@ -737,26 +737,29 @@ InteractiveVideo.prototype.attach = function ($container) {
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
 
-  const ignoreEventForShortcutKey = (event) => {
-    return event.target.nodeName === 'INPUT';
+  const ignoreEventForShortcutKey = (event, buttonName) => {
+    const $button = (that.controls && that.controls[buttonName]) ? that.controls[buttonName] : undefined;
+    const tabable = $button !== undefined && $button.attr('tabindex') !== '-1';
+    return (!tabable || event.target.nodeName === 'INPUT');
   };
 
   // Toggle mute/unmute on 'M'
   onKey($container, [{
     key: Keys.M,
   }], (e) => {
-    if (!ignoreEventForShortcutKey(e)) {
-      that.toggleMute(false);
+    if (ignoreEventForShortcutKey(e, '$volume')) {
+      return;
     }
+
+    that.toggleMute(false);
   });
 
   // Toggle play/pause on 'K'
   onKey($container, [{
     key: Keys.K
   }], (e) => {
-    const hasPlayButton = that.controls && that.controls.$play;
     // Skip textual input from user
-    if (!hasPlayButton || ignoreEventForShortcutKey(e)) {
+    if (ignoreEventForShortcutKey(e, '$play')) {
       return;
     }
 
@@ -3734,4 +3737,3 @@ var getXAPIDataFromChildren = function (children) {
 };
 
 export default InteractiveVideo;
-export const GLOBAL_CONTROL_KEYS = [Keys.K, Keys.M];
