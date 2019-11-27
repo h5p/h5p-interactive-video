@@ -4,30 +4,30 @@
       "label": "Editor de vídeo interativo",
       "fields": [
         {
-          "label": "Enviar/embutir vídeo",
+          "label": "Enviar/incorporar vídeo",
           "fields": [
             {
               "label": "Adicionar um vídeo",
-              "description": "Clique abaixo para adicionar um vídeo que deseja usar em seu vídeo interativo. Você pode adicionar um link de um vídeo ou enviar um arquivo de vídeo. É possível adicionar diversas versões de um mesmo vídeo com qualidades diferentes. Para garantir suporte máximo em navegadores, adicione pelo menos uma versão em formatos .webm e .mp4 ."
+              "description": "Clique abaixo para adicionar um vídeo que pretenda usar no seu vídeo interativo. Pode adicionar uma hiperligação de um vídeo ou enviar um ficheiro de vídeo. É possível adicionar diversas versões do mesmo vídeo com qualidades diferentes. Para garantir suporte para a maioria dos navegadores, adicione pelo menos uma versão nos formatos .webm e .mp4 ."
             },
             {
-              "label": "Opções da tela inicial (sem suporte para vídeos do YouTube)",
+              "label": "Opções do ecrã inicial (sem suporte para vídeos do YouTube)",
               "fields": [
                 {
                   "label": "O título deste vídeo interativo",
-                  "default": "IVídeo Interativo",
-                  "description": "Usado em resumos, estatísticas etc."
+                  "default": "Vídeo Interativo",
+                  "description": "Usado em resumos, estatísticas, etc."
                 },
                 {
-                  "label": "Esconder título na tela inicial do vídeo"
+                  "label": "Ocultar título na tela inicial do vídeo"
                 },
                 {
-                  "label": "Descrição curta(Opcional)",
-                  "description": "Opcional. Mostra uma pequena descrição em texto na tela inicial do vídeo. Não funciona com vídeos do YouTube."
+                  "label": "Descrição curta (opcional)",
+                  "description": "Opcional. Mostrar uma pequena descrição em texto no ecrã inicial do vídeo. Não funciona com vídeos do YouTube."
                 },
                 {
-                  "label": "Pôster",
-                  "description": "Imagem mostrada antes do usuário reproduzir o vídeo. Não funciona com vídeos do YouTube."
+                  "label": "Poster",
+                  "description": "Imagem mostrada antes do utilizador reproduzir o vídeo. Não funciona com vídeos do YouTube."
                 }
               ]
             },
@@ -41,8 +41,8 @@
                     "label": "Faixa",
                     "fields": [
                       {
-                        "label": "Rótulo da faixa",
-                        "description": "Usado se diversas faixas de texto são oferecidas e o usuário pode escolher uma. Por exemplo 'Legendas em espanhol' pode ser um rótulo para uma faixa que contenha legendas em espanhol.",
+                        "label": "Etiqueta da faixa",
+                        "description": "Usado se são oferecidas diversas faixas de texto e o utilizador pode escolher uma. Por exemplo 'Legendas em português' pode ser uma etiqueta para uma faixa que contenha legendas em portugês.",
                         "default": "Legendas"
                       },
                       {
@@ -52,7 +52,7 @@
                             "label": "Legendas"
                           },
                           {
-                            "label": "Legendas(Acessibilidade)"
+                            "label": "Legendas (acessibilidade)"
                           },
                           {
                             "label": "Descrições"
@@ -60,18 +60,18 @@
                         ]
                       },
                       {
-                        "label": "Idioma fonte, deve ser definida para legendas",
-                        "description": "Deve ser um rótulo de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
+                        "label": "Origem do idioma, deve ser definida para legendas",
+                        "description": "Deve ser uma etiqueta de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto selecionado, o idioma original da faixa de texto deve ser definido."
                       },
                       {
-                        "label": "Fonte da faixa (arquivo WebVTT)"
+                        "label": "Origem da faixa (ficheiro WebVTT)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Faixa de texto predefinida",
+                  "description": "Se deixar em branco ou não corresponder a nenhuma faixa de texto, será usada a primeira faixa de texto como predefinição."
                 }
               ]
             }
@@ -91,22 +91,22 @@
                   },
                   {
                     "label": "Exibir como:",
-                    "description": "<b>Botão</b> é uma interação onde o usuário necessita apertar para abrir. <b>Poster</b> é uma interação expansiva exibida diretamente sobre o vídeo",
+                    "description": "<b>Botão</b> é uma interação onde o utilizador tem de clicar para abrir. <b>Poster</b> é uma interação expansiva mostrada diretamente sobre o vídeo",
                     "options": [
                       {
                         "label": "Botão"
                       },
                       {
-                        "label": "Pôster"
+                        "label": "Poster"
                       }
                     ]
                   },
                   {
-                    "label": "Vira um botão em telas pequenas"
+                    "label": "Mudar para botão em ecrãs pequenos"
                   },
                   {
-                    "label": "Rótulo",
-                    "description": "Rótulo exibido próximo ao ícone de interação."
+                    "label": "Etiqueta",
+                    "description": "Etiqueta mostrada próximo do ícone de interação."
                   },
                   {},
                   {},
@@ -121,17 +121,17 @@
                         "label": "Ação em todos corretos",
                         "fields": [
                           {
-                            "label": "Ir para (busca)",
+                            "label": "Ir para (procura)",
                             "description": "Insira o tempo no formato M:SS"
                           },
                           {
-                            "label": "Permite que o usuário desative e continue"
+                            "label": "Permite que o utilizador desative e continue"
                           },
                           {
                             "label": "Mensagem"
                           },
                           {
-                            "label": "Rótulo para o botão de busca"
+                            "label": "Etiqueta para o botão de busca"
                           }
                         ]
                       },
@@ -143,36 +143,36 @@
                             "description": "Insira o tempo no formato M:SS"
                           },
                           {
-                            "label": "Permite que o usuário desative e continue"
+                            "label": "Permite que o utilizador desative e continue"
                           },
                           {
                             "label": "Mensagem"
                           },
                           {
-                            "label": "Rótulo para o botão de busca"
+                            "label": "Etiqueta para o botão de busca"
                           }
                         ]
                       },
                       {
-                        "label": "Requer pontuação máxima na tarefa antes de prosseguir",
-                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção \"Evitar pular para frente em um vídeo\" de vídeo interativo."
+                        "label": "Requer a pontuação máxima na tarefa antes de prosseguir",
+                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção \"Evitar a opção de avanço num vídeo\" de Vídeo interativo."
                       }
                     ]
                   },
                   {
-                    "label": "Visuais",
+                    "label": "Efeitos visuais",
                     "fields": [
                       {
                         "label": "Cor de fundo"
                       },
                       {
                         "label": "Sombra da caixa",
-                        "description": "Adiciona uma sombra sutil em volta das interações. Você pode querer desativar esta opção se deseja interações transparentes."
+                        "description": "Adiciona uma sombra subtil em volta das interações. Pode pretender desativar esta opção se deseja interações transparentes."
                       }
                     ]
                   },
                   {
-                    "label": "Ir para em um clique",
+                    "label": "Ir para ao clicar",
                     "fields": [
                       {
                         "label": "Tipo",
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "Ir para",
-                        "description": "Tempo de destino para o qual o usuário será direcionado ao pressionar o ponto de acesso. Insira o tempo no formato M:SS."
+                        "description": "Tempo de destino para o qual o utilizador será direcionado ao pressionar o ponto de acesso. Insira o tempo no formato M:SS."
                       },
                       {
                         "label": "URL",
@@ -202,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(relativo à raiz)"
                               },
                               {
                                 "label": "outro"
@@ -216,7 +216,7 @@
                       },
                       {
                         "label": "Visualizar",
-                        "description": "Mostra que a interação pode ser clicada adicionando uma borda e um ícone"
+                        "description": "Mostra que a interação pode ser clicada adicionando uma bordadura e um ícone"
                       }
                     ]
                   }
@@ -232,18 +232,18 @@
           "fields": [
             {},
             {
-              "label": "Mostrar em",
-              "description": "Número de segundos antes do vídeo terminar."
+              "label": "Mostrar aos",
+              "description": "Segundos antes do vídeo terminar."
             }
           ]
         }
       ]
     },
     {
-      "label": "Configurações comportamentais",
+      "label": "Configurações da açãocomportamentais",
       "fields": [
         {
-          "label": "Começar vídeo em",
+          "label": "Começar vídeo aos",
           "description": "Insira o tempo no formato M:SS"
         },
         {
@@ -251,12 +251,12 @@
           "description": "A reprodução do vídeo começa automaticamente"
         },
         {
-          "label": "Vídeo em loop",
-          "description": "Marque se o vídeo deve rodar em loop"
+          "label": "Vídeo em ciclo",
+          "description": "Marque se o vídeo deve repetir"
         },
         {
           "label": "Sobrepor botão \"Mostrar solução\" ",
-          "description": "Esta opção determina se o botão \"Mostrar solução\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "description": "Esta opção determina se o botão \"Mostrar solução\" será mostrado para todas as perguntas, se estará desativado para todas ou configurado individualmente para cada pergunta.",
           "options": [
             {
               "label": "Ativado"
@@ -268,7 +268,7 @@
         },
         {
           "label": "Sobrepor botão \"Tentar novamente\"",
-          "description": "Esta opção determina se o botão \"Tentar novamente\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
+          "description": "Esta opção determina se o botão \"Tentar novamente\" será mostrado para todas as perguntas, se estará desativado para todas ou configurado individualmente para cada pergunta.",
           "options": [
             {
               "label": "Ativado"
@@ -279,19 +279,19 @@
           ]
         },
         {
-          "label": "Começar com o menu de marcações aberto",
-          "description": "Esta função não está disponível no iPad quando se está usando vídeos do YouTube como fonte."
+          "label": "Iniciar com o menu dos marcadores aberto",
+          "description": "Esta função não está disponível no iPad quando se usa vídeos do YouTube como fonte."
         },
         {
-          "label": "Mostrar botão para voltar 10 segundos"
+          "label": "Mostrar botão de voltar 10 segundos"
         },
         {
-          "label": "Evitar pular para frente em um vídeo",
-          "description": "Ativar esta opção irá desativar a navegação através dos controles padrões de vídeo do usuário."
+          "label": "Evitar saltar para frente no vídeo",
+          "description": "Ativar esta opção irá desativar a navegação de vídeo do utilizador através dos controlos predefinidos."
         },
         {
           "label": "Desativar som",
-          "description": "Ativar esta opção removerá o som do vídeo e não permitirá que o som seja ligado."
+          "description": "Ativar esta opção desativará o som do vídeo e impedirá que seja ligado."
         }
       ]
     },
@@ -308,15 +308,15 @@
         },
         {
           "label": "Título de pausa",
-          "default": "Pausar"
+          "default": "Pausa"
         },
         {
-          "label": "Título da função mute",
-          "default": "Mutar"
+          "label": "Título da função mudo",
+          "default": "Sem som"
         },
         {
-          "label": "Título da função desmute",
-          "default": "Desmutar"
+          "label": "Título da função com som",
+          "default": "Som"
         },
         {
           "label": "Título da qualidade do vídeo",
@@ -331,31 +331,31 @@
           "default": "Fechar"
         },
         {
-          "label": "Título de tela cheia",
-          "default": "Tela cheia"
+          "label": "Título do ecrã inteiro",
+          "default": "Ecrã inteiro"
         },
         {
-          "label": "Título de sair da tela cheia",
-          "default": "Sair da tela cheia"
+          "label": "Título de sair do ecrã inteiro",
+          "default": "Sair do ecrã inteiro"
         },
         {
           "label": "Título do resumo",
           "default": "Resumo"
         },
         {
-          "label": "Título de marcações",
-          "default": "Marcações"
+          "label": "Título dos marcadores",
+          "default": "Marcadores"
         },
         {
-          "label": "Título da tela de submissão",
-          "default": "Tela de submissão"
+          "label": "Título do ecrã de submissão",
+          "default": "Ecrã de submissão"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Etiqueta predefinida para o botão de busca de adaptabilidade",
+          "default": "Continuar"
         },
         {
-          "label": "Rótulo padrão do botão de continuar o vídeo",
+          "label": "Etiqueta predefinida do botão de continuar o vídeo",
           "default": "Continuar o vídeo"
         },
         {
@@ -375,39 +375,39 @@
           "default": "O som está desativado"
         },
         {
-          "label": "Avisar para o usuário que ele necessita responder todas as questões corretamente antes de continuar",
-          "default": "Você responder todas as questões corretamente antes de continuar."
+          "label": "Aviso para o utilizador que é necessário responder corretamente a todas as perguntas antes de continuar",
+          "default": "Tem de responder corretamente a todas as perguntas para continuar."
         },
         {
           "label": "Botão voltar",
           "default": "Voltar"
         },
         {
-          "label": "Tempo passado em horas",
+          "label": "Tempo decorrido em horas",
           "default": "Horas"
         },
         {
-          "label": "Tempo passado em minutos",
+          "label": "Tempo decorrido em minutos",
           "default": "Minutos"
         },
         {
-          "label": "Tempo passado em segundos",
+          "label": "Tempo decorrido em segundos",
           "default": "Segundos"
         },
         {
-          "label": "Rótulo para tempo atual",
+          "label": "Etiqueta para tempo atual",
           "default": "Tempo atual:"
         },
         {
-          "label": "Rótulo para tempo total",
+          "label": "Etiqueta para tempo total",
           "default": "Tempo total:"
         },
         {
           "label": "Texto para explicar a tecla de acesso rápido de navegação",
-          "default": "Use a tecla k para reproduzir e parar o vídeo a qualquer momento"
+          "default": "Use a tecla k para reproduzir e parar o vídeo a qualquer instante. Para ativar e desativar o som, use a tecla M."
         },
         {
-          "label": "Texto explicando que uma interação com um nome foi exibida",
+          "label": "Texto para explicar que foi exibida uma única interação com um nome",
           "default": "Interação exibida:"
         },
         {
@@ -415,62 +415,62 @@
           "default": "Múltiplas interações foram exibidas."
         },
         {
-          "label": "Anúncio de vídeo pausado",
-          "default": "O vídeo está pausado"
+          "label": "Anúncio de vídeo em pausa",
+          "default": "O vídeo está em pausa"
         },
         {
-          "label": "Rótulo de conteúdo",
+          "label": "Etiqueta de conteúdo",
           "default": "Conteúdo"
         },
         {
-          "label": "Mensagem de respostas(@answered será substituído pelo número de questões respondidas)",
+          "label": "Mensagem de respostas (@answered será substituído pelo número de perguntas respondidas)",
           "default": "@answered respondidas"
         },
         {
-          "label": "Título da tela de submissão",
-          "default": "@answered questão(ões) respondida(s)",
-          "description": "@answered será substituído pelo número de questões respondidas."
+          "label": "Título do ecrã de submissão",
+          "default": "@answered pergunta(s) respondida(s)",
+          "description": "@answered será substituído pelo número de perguntas respondidas."
         },
         {
-          "label": "Informações da tela de submissão",
-          "default": "Você respondeu @answered questões, clique abaixo para submeter suas respostas.",
-          "description": "@answered será substituído pelo número de questões respondidas."
+          "label": "Informações do ecrã de submissão",
+          "default": "Respondeu a @answered perguntas. Clique abaixo para submeter as suas respostas.",
+          "description": "@answered será substituído pelo número de perguntas respondidas."
         },
         {
-          "label": "Informação da tela de submissão para ausência de respostas",
-          "default": "Você não respondeu todas as questões."
+          "label": "Informação do ecrã de submissão para a ausência de respostas",
+          "default": "Não respondeu a qualquer pergunta."
         },
         {
-          "label": "Informação da tela de submissão para respostas requeridas",
-          "default": "Você precisa responder pelo menos uma questão para poder submeter as respostas."
+          "label": "Informação do ecrã de submissão para respostas obrigatórias",
+          "default": "Tem de responder a pelo menos uma pergunta para poder submeter as respostas."
         },
         {
-          "label": "Botão de submeter da tela de submissão",
+          "label": "Botão de submeter do ecrã de submissão",
           "default": "Submeter respostas"
         },
         {
-          "label": "Mensagem da tela de submissão",
-          "default": "Suas respostas foram submetidas!"
+          "label": "Mensagem do ecrã de submissão",
+          "default": "As suas respostas foram submetidas!"
         },
         {
-          "label": "Título da linha da tabela da tela de submissão: Questões respondidas",
-          "default": "Questões respondidas"
+          "label": "Título da linha da tabela do ecrã de submissão: Perguntas respondidas",
+          "default": "Perguntas respondidas"
         },
         {
-          "label": "Título da linha da tabela da tela de submissão: Pontuação",
+          "label": "Título da linha da tabela do ecrã de submissão: Pontuação",
           "default": "Pontuação"
         },
         {
-          "label": "Pontuação das questões respondidas na tela de submissão",
+          "label": "Pontuação das perguntas respondidas no ecrã de submissão",
           "default": "respondidas"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Enviar resumo da linha do ecrã, incluindo a pontuação",
+          "default": "Obteve @score de @total pontos para a pergunta @question que apareceu após @minutes minutos e @seconds segundos."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Enviar resumo da linha do ecrã, incluindo a pontuação",
+          "default": "Respondeu à pergunta @question que apareceu após @minutes minutos e @seconds segundos."
         }
       ]
     }

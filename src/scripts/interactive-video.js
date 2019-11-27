@@ -737,24 +737,35 @@ InteractiveVideo.prototype.attach = function ($container) {
   // Make sure navigation hotkey works for container
   $container.attr('tabindex', '-1');
 
+  const ignoreEventForShortcutKey = (event, buttonName) => {
+    const $button = (that.controls && that.controls[buttonName]) ? that.controls[buttonName] : undefined;
+    const tabable = $button !== undefined && $button.attr('tabindex') !== '-1';
+    return (!tabable || event.target.nodeName === 'INPUT');
+  };
+
   // Toggle mute/unmute on 'M'
   onKey($container, [{
     key: Keys.M,
-  }], (e) => that.toggleMute(false));
+  }], (e) => {
+    if (ignoreEventForShortcutKey(e, '$volume')) {
+      return;
+    }
+
+    that.toggleMute(false);
+  });
 
   // Toggle play/pause on 'K'
   onKey($container, [{
     key: Keys.K
   }], (e) => {
-    const hasPlayButton = that.controls && that.controls.$play;
     // Skip textual input from user
-    if (!hasPlayButton || e.target.nodeName === 'INPUT') {
+    if (ignoreEventForShortcutKey(e, '$play')) {
       return;
     }
 
-    if (this.hasUncompletedRequiredInteractions()) {
+    if (that.hasUncompletedRequiredInteractions()) {
       const $currentFocus = $(document.activeElement);
-      const $mask = this.showWarningMask();
+      const $mask = that.showWarningMask();
       $mask.find('.h5p-button-back').click(() => $currentFocus.focus());
     }
     else {
@@ -3726,4 +3737,3 @@ var getXAPIDataFromChildren = function (children) {
 };
 
 export default InteractiveVideo;
-export const KEY_CODE_START_PAUSE = Keys.K;
