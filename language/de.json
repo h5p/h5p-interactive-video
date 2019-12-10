@@ -215,16 +215,14 @@
                         ]
                       },
                       {
-                        "label": "Darstellung",
+                        "label": "Als klickbar darstellen",
                         "description": "Durch Hinzufügen von Rand und Icon anzeigen, dass eine Interaktion angeklickt werden kann"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
