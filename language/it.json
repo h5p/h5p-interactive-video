@@ -8,7 +8,7 @@
           "fields": [
             {
               "label": "Aggiungi un video",
-              "description": "Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungerlo con un link o caricarlo con un file. È possibile usare differenti versioni di video di diverse qualità. Per assicurarsi la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4."
+              "description": "Clicca qui sotto per aggiungere un video che vorresti utilizzare nel tuo video interattivo. Puoi aggiungerlo mediante un link o caricando un file. Puoi usare differenti versioni di video di diverse qualità. Per la massima compatibilità dei browser aggiungi almeno una versione nei formati WebM e MP4"
             },
             {
               "label": "Opzioni della schermata di avvio (non supportato per video di YouTube)",
@@ -23,11 +23,11 @@
                 },
                 {
                   "label": "Breve descrizione (facoltativa)",
-                  "description": "Facoltativo. Visualizza un breve testo di descrizione sulla schermata di avvio. Non funziona per i video di YouTube."
+                  "description": "Facoltativo. Visualizza un breve testo di descrizione sulla schermata di avvio. Non funziona per i video di YouTube"
                 },
                 {
                   "label": "Immagine popup",
-                  "description": "Immagine visualizzata prima che l'utente avvii il video. Non funziona per i video di YouTube."
+                  "description": "Immagine visualizzata prima che l'utente avvii il video. Non funziona per i video di YouTube"
                 }
               ]
             },
@@ -42,7 +42,7 @@
                     "fields": [
                       {
                         "label": "Etichetta della traccia",
-                        "description": "Utilizzato se si offrono tracce multiple e l'utente deve sceglierne una. Per esempio, 'Sottotitoli in spagnolo' potrebbe essere l'etichetta di una traccia di sottotitoli in spagnolo.",
+                        "description": "Usato se si offrono tracce multiple e l'utente deve sceglierne una. Es. 'Sottotitoli in spagnolo' potrebbe essere l'etichetta di una traccia di sottotitoli in spagnolo",
                         "default": "Sottotitoli"
                       },
                       {
@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
-                        "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita."
+                        "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
                         "label": "Traccia di origine (file WebVTT)"
@@ -71,7 +71,7 @@
                 },
                 {
                   "label": "Traccia di testo predefinita",
-                  "description": "Se lasciato vuoto o non corrispondente a nessuna delle tracce di testo, la prima di esse sarà utilizzata come predefinita."
+                  "description": "Se lasciato vuoto o non corrispondente a nessuna delle tracce di testo, la prima di esse sarà utilizzata come predefinita"
                 }
               ]
             }
@@ -91,10 +91,10 @@
                   },
                   {
                     "label": "Visualizza come",
-                    "description": "<b>Icona</b> è un'interazione chiusa su cui l'utente deve cliccare per espanderla. <b>Popup</b> è un'interazione aperta visualizzata direttamente sul video",
+                    "description": "<b>Pulsante</b> è un'interazione chiusa su cui l'utente deve cliccare per espanderla. <b>Popup</b> è un'interazione aperta visualizzata direttamente sul video",
                     "options": [
                       {
-                        "label": "Icona"
+                        "label": "Pulsante"
                       },
                       {
                         "label": "Popup"
@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Richiede un punteggio pieno nell'attività prima di procedere",
-                        "description": "Per una migliore funzionalità, questa opzione deve essere utilizzata in combinazione con quest'altra: \"Impedisci di saltare avanti in un video\", di Video interattivo."
+                        "description": "Per una migliore funzionalità, questa opzione deve essere usata in combinazione con l'opzione di Video interattivo 'Impedisci di saltare avanti in un video'"
                       }
                     ]
                   },
@@ -172,7 +172,7 @@
                     ]
                   },
                   {
-                    "label": "Vai con un clic",
+                    "label": "Vai a facendo un clic",
                     "fields": [
                       {
                         "label": "Tipo",
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "Vai a",
-                        "description": "Il tempo a disposizione dell'utente dopo aver premuto sull'hotspot. Inserisci il tempo in formato M:SS."
+                        "description": "Il tempo a disposizione dell'utente dopo aver premuto sull'hotspot. Inserisci il tempo in formato M:SS"
                       },
                       {
                         "label": "URL",
@@ -231,7 +231,7 @@
             {},
             {
               "label": "Visualizza a",
-              "description": "Numero di secondi prima della fine del video."
+              "description": "Numero di secondi prima della fine del video"
             }
           ]
         }
@@ -254,7 +254,7 @@
         },
         {
           "label": "Sovrascrivi il pulsante Mostra soluzione",
-          "description": "Questa opzione stabilisce se il pulsante \"Mostra soluzione\" sarà visualizzato o disabilitato per tutte le domande o se sarà configurato di volta in volta per ognuna.",
+          "description": "Questa opzione stabilisce se il pulsante \"Mostra soluzione\" sarà visualizzato o disabilitato per tutte le domande o se sarà configurato di volta in volta per ognuna",
           "options": [
             {
               "label": "Abilitato"
@@ -266,7 +266,7 @@
         },
         {
           "label": "Sovrascrivi il pulsante \"Riprova\"",
-          "description": "Questa opzione stabilisce se il pulsante \"Riprova\" sarà visualizzato o disabilitato per tutte le domande o se sarà configurato di volta in volta per ognuna.",
+          "description": "Questa opzione stabilisce se il pulsante \"Riprova\" sarà visualizzato o disabilitato per tutte le domande o se sarà configurato di volta in volta per ognuna",
           "options": [
             {
               "label": "Abilitato"
@@ -278,18 +278,18 @@
         },
         {
           "label": "Inizia con il menu dei segnalibri aperto",
-          "description": "Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video."
+          "description": "Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video"
         },
         {
           "label": "Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
           "label": "Impedisci di saltare avanti in un video",
-          "description": "Abilitare questa opzione disattiverà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti."
+          "description": "Abilitare questa opzione disattiverà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti"
         },
         {
-          "label": "Disattiva il suono",
-          "description": "Abilitare questa opzione disattiverà il sonoro di un video e ne impedirà l'accensione."
+          "label": "Disattiva il sonoro",
+          "description": "Abilitare questa opzione disattiverà il sonoro di un video e ne impedirà l'accensione"
         }
       ]
     },
@@ -374,7 +374,7 @@
         },
         {
           "label": "Attenzione: l'utente deve rispondere correttamente alla domanda prima di continuare",
-          "default": "Devi rispondere correttamente a tutte le domande prima di continuare."
+          "default": "Devi rispondere correttamente a tutte le domande prima di continuare"
         },
         {
           "label": "Pulsante Indietro",
@@ -402,7 +402,7 @@
         },
         {
           "label": "Testo di spiegazione per i tasti di scelta rapida di navigazione",
-          "default": "Utilizza il tasto k per avviare e fermare il video in qualsiasi momento. Per disattivare e riattivare l'audio, usa il tasto M."
+          "default": "Utilizza il tasto k per avviare e fermare il video in qualsiasi momento. Per disattivare e riattivare l'audio, usa il tasto M"
         },
         {
           "label": "Testo per spiegare che è apparsa un'interazione con un nome",
@@ -410,7 +410,7 @@
         },
         {
           "label": "Testo per spiegare che sono apparse interazioni multiple",
-          "default": "Sono apparse interazioni multiple."
+          "default": "Sono apparse interazioni multiple"
         },
         {
           "label": "Avviso di video in pausa",
@@ -427,20 +427,20 @@
         {
           "label": "Invia il titolo della schermata",
           "default": "@answered Domanda/e con risposta",
-          "description": "@answered sarà sostituito dal numero di domande con risposta."
+          "description": "@answered sarà sostituito dal numero di domande con risposta"
         },
         {
           "label": "Invia schermata di informazioni",
-          "default": "Hai risposto a @answered domande. Clicca qui sotto per inviare le tue risposte.",
-          "description": "@answered sarà sostituito dal numero di domande con risposta."
+          "default": "Hai risposto a @answered domande. Clicca qui sotto per inviare le tue risposte",
+          "description": "@answered sarà sostituito dal numero di domande con risposta"
         },
         {
           "label": "Invia la schermata di informazioni per le risposte mancanti",
-          "default": "Non hai risposto a nessuna domanda."
+          "default": "Non hai risposto a nessuna domanda"
         },
         {
           "label": "Invia la schermata di informazioni per la risposta richiesta",
-          "default": "Devi rispondere ad almeno una domanda prima di inviare le tue risposte."
+          "default": "Devi rispondere ad almeno una domanda prima di inviare le tue risposte"
         },
         {
           "label": "Pulsante di invio della schermata di invio",
@@ -464,11 +464,11 @@
         },
         {
           "label": "Invia il riepilogo delle stringhe di risultato passate a schermo, incluso il punteggio (per i lettori vocali)",
-          "default": "Hai ottenuto @score su @total punti per la @question apparsa dopo @minutes minuti e @seconds secondi."
+          "default": "Hai ottenuto @score su @total punti per la @question apparsa dopo @minutes minuti e @seconds secondi"
         },
         {
           "label": "Invia il riepilogo delle stringhe di risultato passate a schermo senza punteggio (per i lettori vocali)",
-          "default": "Hai risposto alla @question apparsa dopo @minutes minuti e @seconds secondi."
+          "default": "Hai risposto alla @question apparsa dopo @minutes minuti e @seconds secondi"
         }
       ]
     }
