@@ -340,7 +340,7 @@
         },
         {
           "label": "Summary title",
-          "default": "Summary"
+          "default": "Open summary dialog"
         },
         {
           "label": "Bookmarks title",
