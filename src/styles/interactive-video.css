@@ -1792,13 +1792,6 @@
   overflow:hidden;
 }
 
-.h5p-iv-hotkey-instructions {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
 .h5p-interactive-video .h5p-control.h5p-star {
   position: relative;
   margin-left: -3px;

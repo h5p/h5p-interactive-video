@@ -403,10 +403,6 @@
           "default": "Tid i alt:"
         },
         {
-          "label": "Tekst til at forklare genvejstast til navigation",
-          "default": "Benyt tasten k til at starte eller stoppe en video"
-        },
-        {
           "label": "Tekst som forklarer at en interaktion med navn er synlig",
           "default": "Interaktion synlig:"
         },

@@ -403,10 +403,6 @@
           "default": "Tempo total:"
         },
         {
-          "label": "Texto para explicar a tecla de acesso rápido de navegação",
-          "default": "Use a tecla k para reproduzir e parar o vídeo a qualquer momento"
-        },
-        {
           "label": "Texto explicando que uma interação com um nome foi exibida",
           "default": "Interação exibida:"
         },

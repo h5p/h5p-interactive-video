@@ -403,10 +403,6 @@
           "default": "Tiempo total:"
         },
         {
-          "label": "Texto para explicar los atajos de teclado para navegacion",
-          "default": "Use la tecla K para iniciar y pausar el vide en cualquier momento"
-        },
-        {
           "label": "Texto explicando que una interacción simple con un nombre ha aparecido",
           "default": "Interacción aparecida:"
         },

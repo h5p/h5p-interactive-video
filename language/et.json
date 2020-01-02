@@ -403,10 +403,6 @@
           "default": "Kogu aeg:"
         },
         {
-          "label": "Navigatsiooni kiirklahvi seletav tekst",
-          "default": "Kasuta klahvi K video käivitamiseks ja peatamiseks"
-        },
-        {
           "label": "Tekst, mis selgitab, et kuvale ilmus üks nimeline interaktsioon",
           "default": "Interaktsioon ilmus:"
         },

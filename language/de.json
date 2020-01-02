@@ -403,10 +403,6 @@
           "default": "Gesamtzeit:"
         },
         {
-          "label": "Hilfetext, der die Navigation mit der Tastatur erklärt",
-          "default": "Drücke die Taste K, um das Video jederzeit zu starten und zu stoppen. Drücke M, um den den Ton aus- bzw. anzuschalten."
-        },
-        {
           "label": "Text der erklärt, dass eine (einzige) Interaktion mit einem Titel erschienen ist",
           "default": "Interaktion ist erschienen:"
         },

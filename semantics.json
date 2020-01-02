@@ -950,14 +950,6 @@
         "optional": true
       },
       {
-        "name": "navigationHotkeyInstructions",
-        "type": "text",
-        "label": "Text for explaining navigation hotkey",
-        "importance": "low",
-        "default": "Use key k for starting and stopping video at any time. To mute and unmute, use the M key.",
-        "optional": true
-      },
-      {
         "name": "singleInteractionAnnouncement",
         "type": "text",
         "label": "Text explaining that a single interaction with a name has come into view",

@@ -403,10 +403,6 @@
           "default": "Total tid:"
         },
         {
-          "label": "Text som förklarar genväg för navigering",
-          "default": "Tryck k för att starta eller stoppa uppspelning av video"
-        },
-        {
           "label": "Text som förklarar att en interaktion med ett namn är synlig",
           "default": "Interaktion synlig:"
         },

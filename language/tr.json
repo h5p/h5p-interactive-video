@@ -403,10 +403,6 @@
           "default": "Toplam süre:"
         },
         {
-          "label": "Gezinim kısayol tuşunu açıklamak için metin",
-          "default": "Videoyu istediğiniz zaman başlatmak veya durdurmak için k tuşunu kullanın"
-        },
-        {
           "label": "Ekranda bir tekil etkileşim göründüğünü açıklayan metin",
           "default": "Etkileşim bulunmkatadır:"
         },

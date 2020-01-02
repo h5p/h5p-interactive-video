@@ -403,10 +403,6 @@
           "default": "Denbora denetara:"
         },
         {
-          "label": "Nabigaziorako laster-tekla aurkezten duen testua",
-          "default": "Erabili k laster-tekla edozein unetan bideoa jarraitzeko eta pausarazteko"
-        },
-        {
           "label": "Izen bat aurkezten duen interakzio sinplea bistaratu dela azaltzen duen testua",
           "default": "Interakzioa bistaratu da:"
         },

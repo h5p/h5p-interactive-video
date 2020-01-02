@@ -23,8 +23,6 @@ export default class Accessibility {
    * Translations for assistive technologies
    *
    * @typedef {Object} IVAccessibilityTranslations
-   * @property {string} navigationHotkeyInstructions
-   *    Describes how to use hotkey(s)
    * @property {string} singleInteractionAnnouncement
    *    Prefix for announcing interaction by its title
    * @property {string} multipleInteractionsAnnouncement
@@ -46,24 +44,10 @@ export default class Accessibility {
     announcer.setAttribute('aria-live', 'polite');
     this.interactionsAnnouncer = announcer;
 
-    // Hot key instructions
-    const hotkeyInstructor = document.createElement('div');
-    hotkeyInstructor.classList.add('h5p-iv-hotkey-instructions');
-    hotkeyInstructor.setAttribute('tabindex', '0');
-    hotkeyInstructor.textContent = l10n.navigationHotkeyInstructions;
-    this.hotkeyInstructor = hotkeyInstructor;
     /**
      * @type {string[]}
      */
     this.announcedInteractionIds = [];
-  }
-
-  /**
-   * Get element which describes hotkeys
-   * @return {Element|*}
-   */
-  getHotkeyInstructor() {
-    return this.hotkeyInstructor;
   }
 
   /**

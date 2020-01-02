@@ -403,10 +403,6 @@
           "default": "Temps total :"
         },
         {
-          "label": "Message pour expliquer le fonctionnement de la touche rapide de navigation dans la vidéo",
-          "default": "Utilisez la touche K pour reprendre et arrêter la vidéo à tout moment"
-        },
-        {
           "label": "Message pour expliquer qu'une interaction simple est apparue",
           "default": "Une interaction est apparue "
         },

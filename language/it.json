@@ -403,10 +403,6 @@
           "default": "Tempo totale:"
         },
         {
-          "label": "Testo di spiegazione per i tasti di scelta rapida di navigazione",
-          "default": "Utilizza il tasto k per avviare e fermare il video in qualsiasi momento. Per disattivare e riattivare l'audio, usa il tasto M"
-        },
-        {
           "label": "Testo per spiegare che è apparsa un'interazione con un nome",
           "default": "È apparsa un'interazione:"
         },

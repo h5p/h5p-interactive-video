@@ -403,10 +403,6 @@
           "default": "トータル時間:"
         },
         {
-          "label": "Text for explaining navigation hotkey",
-          "default": "Use key k for starting and stopping video at any time. To mute and unmute, use the M key."
-        },
-        {
           "label": "Text explaining that a single interaction with a name has come into view",
           "default": "Interaction appeared:"
         },

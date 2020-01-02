@@ -403,10 +403,6 @@
           "default": "Porabljen čas:"
         },
         {
-          "label": "Besedilo za pojasnilo bližnjice za navigacijo",
-          "default": "Tipka K je bližnjica za začetek ali zaustavitev predvajanja videoposnetka."
-        },
-        {
           "label": "Besedilo za pojasnilo o pojavu interakcije",
           "default": "Prikazana interakcija:"
         },

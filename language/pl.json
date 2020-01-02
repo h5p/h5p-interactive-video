@@ -403,10 +403,6 @@
           "default": "Łączny czas:"
         },
         {
-          "label": "Instrukcja nawigacji",
-          "default": "Możesz w każdej chwili zatrzymać lub włączyć odtwarzanie wciskając klawisz k."
-        },
-        {
           "label": "Komunikat o pojawieniu się pojedynczej interakcji",
           "default": "Pojawiło się zadanie:"
         },

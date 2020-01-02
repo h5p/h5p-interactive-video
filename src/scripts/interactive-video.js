@@ -137,13 +137,18 @@ function InteractiveVideo(params, id, contentData) {
     seconds: 'Seconds',
     currentTime: 'Current time:',
     totalTime: 'Total time:',
-    navigationHotkeyInstructions: 'Use key k for starting and stopping video at any time. To mute and unmute, use the M key.',
     singleInteractionAnnouncement: 'Interaction appeared:',
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
     answered: '@answered answered!'
   }, params.l10n);
+
+  // Add shortcut key to label
+  self.l10n.play += ' (k)';
+  self.l10n.pause += ' (k)';
+  self.l10n.mute += ' (m)';
+  self.l10n.unmute += ' (m)';
 
   // Make it possible to restore from previous state
   if (contentData &&
@@ -773,7 +778,6 @@ InteractiveVideo.prototype.attach = function ($container) {
     }
   });
 
-  this.$container.prepend($(this.accessibility.getHotkeyInstructor()));
   this.$container.append($(this.accessibility.getInteractionAnnouncer()));
 
   this.currentState = InteractiveVideo.ATTACHED;

@@ -403,10 +403,6 @@
           "default": "Tempo total:"
         },
         {
-          "label": "Texto para explicar a tecla de acesso rápido de navegação",
-          "default": "Use a tecla k para reproduzir e parar o vídeo a qualquer instante. Para ativar e desativar o som, use a tecla M."
-        },
-        {
           "label": "Texto para explicar que foi exibida uma única interação com um nome",
           "default": "Interação exibida:"
         },

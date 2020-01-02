@@ -403,10 +403,6 @@
           "default": "Pituus:"
         },
         {
-          "label": "Navigoinnin pikanäppäin",
-          "default": "Käytä näppäintä k käynnistääksesi tai pysäyttääksesi videon"
-        },
-        {
           "label": "Ilmoitusteksti, kun nimetty vuorovaikutteinen toiminto on näkyvillä",
           "default": "Toiminto näkyvillä:"
         },
