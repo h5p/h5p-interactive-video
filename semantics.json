@@ -826,7 +826,7 @@
         "type": "text",
         "label": "Summary title",
         "importance": "low",
-        "default": "Summary",
+        "default": "Open summary dialog",
         "optional": true
       },
       {
