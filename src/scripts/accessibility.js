@@ -49,6 +49,7 @@ export default class Accessibility {
     // Hot key instructions
     const hotkeyInstructor = document.createElement('div');
     hotkeyInstructor.classList.add('h5p-iv-hotkey-instructions');
+    hotkeyInstructor.setAttribute('tabindex', '0');
     hotkeyInstructor.textContent = l10n.navigationHotkeyInstructions;
     this.hotkeyInstructor = hotkeyInstructor;
     /**
