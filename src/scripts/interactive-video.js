@@ -120,7 +120,7 @@ function InteractiveVideo(params, id, contentData) {
     close: 'Close',
     fullscreen: 'Fullscreen',
     exitFullscreen: 'Exit fullscreen',
-    summary: 'Summary',
+    summary: 'Open summary dialog',
     bookmarks: 'Bookmarks',
     endscreens: 'Submit Screens',
     defaultAdaptivitySeekLabel: 'Continue',
