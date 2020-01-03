@@ -672,7 +672,12 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // 'video only' fallback has no interactions
   let isAnswerable = false;
-  if (this.interactions) {
+  
+    // Summary questions are answerable
+  if (this.hasMainSummary()){
+    isAnswerable = true;
+  }
+  else if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
       interaction.reCreate();
