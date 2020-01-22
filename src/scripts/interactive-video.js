@@ -677,7 +677,7 @@ InteractiveVideo.prototype.attach = function ($container) {
   if (this.hasMainSummary()){
     isAnswerable = true;
   }
-  else if (this.interactions) {
+  if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
       interaction.reCreate();
