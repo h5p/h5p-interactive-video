@@ -403,7 +403,7 @@
           "default": "Celkový čas:"
         },
         {
-          "label": "bel " : " Text vysvětlující, že se objevila jediná interakce se jménem",
+          "label": " Text vysvětlující, že se objevila jediná interakce se jménem",
           "default": "Objevila se interakce:"
         },
         {
