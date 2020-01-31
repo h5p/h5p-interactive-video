@@ -59,6 +59,7 @@ function InteractiveVideo(params, id, contentData) {
   // IDs of popup menus that could need closing
   self.popupMenuButtons = [];
   self.popupMenuChoosers = [];
+  this.visibleInteractions = [];
 
   self.isMinimal = false;
 
@@ -326,7 +327,7 @@ function InteractiveVideo(params, id, contentData) {
             self.video.play();
             // we must check the parameter because the video might have started at previousState.progress
             var loopTime = (params.override && !!params.override.startVideoAt) ? params.override.startVideoAt : 0;
-            self.video.seek(loopTime);
+            self.seek(loopTime);
           }
 
           break;
@@ -1513,7 +1514,7 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
     self.toggleBookmarksChooser(false);
   }
   self.video.play();
-  self.video.seek(bookmark.time);
+  self.seek(bookmark.time);
 
   const l11yTime = InteractiveVideo.formatTimeForA11y(bookmark.time, self.l10n);
   setTimeout(() => self.read(`${self.l10n.currentTime} ${l11yTime}`), 150);
@@ -1542,7 +1543,7 @@ InteractiveVideo.prototype.onEndscreenSelect = function ($endscreenMarker, endsc
     self.toggleEndscreensChooser(false);
   }
   self.video.play();
-  self.video.seek(endscreen.time);
+  self.seek(endscreen.time);
 
   const l11yTime = InteractiveVideo.formatTimeForA11y(endscreen.time, self.l10n);
   setTimeout(() => self.read(`${self.l10n.currentTime} ${l11yTime}`), 150);
@@ -1771,7 +1772,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$rewind10 = self.createButton('rewind10', 'h5p-control', $left, function () {
       if (self.video.getCurrentTime() > 0) { // video will play otherwise
         var newTime = Math.max(self.video.getCurrentTime()-10, 0);
-        self.video.seek(newTime);
+        self.seek(newTime);
         if (self.currentState === H5P.Video.PAUSED) {
           self.timeUpdate(newTime);
         }
@@ -2276,7 +2277,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       }
 
       // Update elapsed time
-      self.video.seek(time);
+      self.seek(time);
       self.updateInteractions(time);
       self.updateCurrentTime(time);
 
@@ -2284,7 +2285,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     },
     stop: function (e, ui) {
       self.currentState = self.lastState;
-      self.video.seek(ui.value);
+      self.seek(ui.value);
 
       // Must recreate interactions because "continue" detaches them and they
       // are not "re-updated" if they have only been detached (not completely removed)
@@ -2988,6 +2989,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
     return;
   }
 
+  // TODO: We should probably use 'ontimeupdate' if supported by source
   setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
       (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
@@ -3024,11 +3026,11 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
   }
   self.lastTenth = tenth;
 
+  self.toggleInteractions(time);
+
   // Some UI elements are updated every second.
   var second = Math.floor(time);
   if (second !== self.lastSecond) {
-    self.toggleInteractions(second);
-
     if (self.currentState === H5P.Video.PLAYING || self.currentState === H5P.Video.PAUSED) {
       // Update elapsed time
       self.updateCurrentTime(second);
@@ -3392,16 +3394,112 @@ InteractiveVideo.prototype.getTitle = function () {
 };
 
 /**
- * Display and remove interactions for the given second.
- * @param {number} second
+ * Figure out which interaction to display next.
+ *
+ * @param {number} time The current video time code
+ * @param {number} index In case the time is the same for two interactions we will use the index to determine who to display first and last (this is important since interactions moved to the top comes last in the array)
+ * @return {number} Index for interactions array
  */
-InteractiveVideo.prototype.toggleInteractions = function (second) {
+InteractiveVideo.prototype.findNextInteractionToShow = function (time, index) {
+  let candidate;
   for (var i = 0; i < this.interactions.length; i++) {
-    this.interactions[i].toggle(second);
-    this.interactions[i].repositionToWrapper(this.$videoWrapper);
+    const duration = this.interactions[i].getDuration();
+    if (this.interactions[i].visibleAt(time) && !this.interactions[i].isVisible()) {
+      candidate = i; // This is supposed to be visible but it's not...
+      break;         // so, we display this first.
+    }
+    else if ((duration.from > time || (duration.from == time && (index === undefined || i > index)))
+        && (candidate === undefined || duration.from < this.interactions[candidate].getDuration().from)) {
+      candidate = i;
+    }
+  }
+  return candidate;
+};
+
+/**
+ * Goes through all the visible interactions and figures out which to hide next.
+ *
+ * @param {number} time The current video time code
+ * @return {number} Index for visibleInteractions array
+ */
+InteractiveVideo.prototype.findNextInteractionToHide = function (time) {
+  let candidate;
+  for (var i = 0; i < this.visibleInteractions.length; i++) {
+    const duration = this.interactions[this.visibleInteractions[i]].getDuration();
+    if (!candidate || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
+      candidate = i;
+    }
+  }
+  return candidate;
+};
+
+/**
+ * Remove any visible interactions that are not supposed to be displayed at
+ * the current time.
+ * @param {number} time
+ */
+InteractiveVideo.prototype.hideInteractions = function (time) {
+  // Start by figuring out which interaction we're going to be hiding next
+  if (this.nextInteractionToHide === undefined) {
+    this.nextInteractionToHide = this.findNextInteractionToHide(time);
   }
 
-  this.accessibility.announceInteractions(this.interactions);
+  let interaction = this.nextInteractionToHide !== undefined ? this.interactions[this.visibleInteractions[this.nextInteractionToHide]] : null;
+  while (interaction && !interaction.visibleAt(time)) {
+    // Hide this interaction
+    interaction.toggle(time);
+
+    // Successfully removed interaction, clean up our array
+    this.visibleInteractions.splice(this.nextInteractionToHide, 1);
+
+    // Are there more interactions for us to hide?
+    this.nextInteractionToHide = this.findNextInteractionToHide(time);
+    interaction = this.nextInteractionToHide !== undefined ? this.interactions[this.visibleInteractions[this.nextInteractionToHide]] : null;
+  }
+};
+
+/**
+ * Remove any visible interactions that are not supposed to be displayed at
+ * the current time.
+ * @param {number} time
+ */
+InteractiveVideo.prototype.showInteractions = function (time) {
+  if (this.nextInteractionToShow === undefined) {
+    this.nextInteractionToShow = this.findNextInteractionToShow(time);
+  }
+
+  const newInteractions = [];
+  let interaction = this.nextInteractionToShow !== undefined ? this.interactions[this.nextInteractionToShow] : null;
+  while (interaction && interaction.getDuration().from <= time) {
+    // Show this interaction
+    interaction.toggle(time);
+    interaction.repositionToWrapper(this.$videoWrapper);
+
+    // Make sure we remove this interaction again when the time comes
+    this.visibleInteractions.push(this.nextInteractionToShow);
+    this.nextInteractionToHide = undefined;
+
+    // Group interactions for A11y announcement
+    newInteractions.push(interaction);
+
+    // Are there more interactions for us to show?
+    this.nextInteractionToShow = this.findNextInteractionToShow(time, this.nextInteractionToShow);
+    interaction = this.nextInteractionToShow !== undefined ? this.interactions[this.nextInteractionToHide] : null;
+  }
+
+  this.accessibility.announceInteractions(newInteractions);
+};
+
+/**
+ * Display and remove interactions for the given time.
+ * @param {number} time
+ */
+InteractiveVideo.prototype.toggleInteractions = function (time) {
+  // First, we check if there are any interactions for us to hide
+  this.hideInteractions(time);
+
+  // Next, we check if there are any interactions we should display
+  this.showInteractions(time);
 };
 
 /**
@@ -3416,6 +3514,7 @@ InteractiveVideo.prototype.play = function () {
  * @param {number} time
  */
 InteractiveVideo.prototype.seek = function (time) {
+  this.nextInteractionToShow = this.nextInteractionToHide = undefined; // Reset next interactions on seek
   this.video.seek(time);
 };
 
