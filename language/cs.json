@@ -1,0 +1,474 @@
+{
+  "semantics": [
+    {
+      "label": "Editor Interaktivního Videa ",
+      "fields": [
+        {
+          "label": "Nahrát/vložit video",
+          "fields": [
+            {
+              "label": "Přidat video",
+              "description": "Kliknutím níže přidáte video, které chcete použít v interaktivním videu. Můžete přidat odkaz na video nebo nahrát video soubory. Je možné přidat několik verzí videa s různými vlastnostmi. Pro zajištění maximální podpory v prohlížeče přidejte alespoň verzi ve formátech webm a mp4.."
+            },
+            {
+              "label": "Možnosti úvodní obrazovky (nepodporované pro videa YouTube)",
+              "fields": [
+                {
+                  "label": "Název interaktivního videa",
+                  "default": "Interaktivní video",
+                  "description": "Používá se v souhrnech, statistikách atd."
+                },
+                {
+                  "label": "Skrýt název na úvodní obrazovce videa"
+                },
+                {
+                  "label": "Stručný popis (volitelné)",
+                  "description": "Volitelné. Na úvodní obrazovce videa zobrazte krátký popisný text. Pro videa YouTube to nefunguje."
+                },
+                {
+                  "label": "Obrázek úvodu",
+                  "description": "Obrázek zobrazený před spuštěním videa. Nefunguje pro videa YouTube."
+                }
+              ]
+            },
+            {
+              "label": "Textové stopy (nepodporované pro videa YouTube)",
+              "fields": [
+                {
+                  "label": "Dostupné textové stopy",
+                  "entity": "Stopa",
+                  "field": {
+                    "label": "Stopa",
+                    "fields": [
+                      {
+                        "label": "Popisek stopyl",
+                        "description": "Používá se, pokud nabízíte více stop a uživatel si musí vybrat stopu. Například 'španělské titulky' mohou být označení španělské stopy titulků.",
+                        "default": "Titulky"
+                      },
+                      {
+                        "label": "Typ textové stop",
+                        "options": [
+                          {
+                            "label": "Titulky"
+                          },
+                          {
+                            "label": "Legenda"
+                          },
+                          {
+                            "label": "Popisy"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Zdrojový jazyk, musí být definován pro titulky",
+                        "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy 'Titulky', musí být definován zdrojový jazyk stopy."
+                      },
+                      {
+                        "label": "Sledovat zdroj (soubor WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Výchozí textová stopa",
+                  "description": "Pokud zůstane prázdné nebo neodpovídá žádné z textových stop, první textová stopa bude použita jako výchozí."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Přidat interakce",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Zobrazit čas"
+                  },
+                  {
+                    "label": "Pozastavit video"
+                  },
+                  {
+                    "label": "Zobrazit jako",
+                    "description": "<b> Tlačítko </b> je sbalená interakce, kterou musí uživatel stisknout, aby se otevřel. <b> Poster </b> je rozšířená interakce zobrazená přímo v horní části videa",
+                    "options": [
+                      {
+                        "label": "Tlačítko"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Na malých obrazovkách se změní na tlačítko"
+                  },
+                  {
+                    "label": "Popisek",
+                    "description": "Popisek zobrazený vedle ikony interakce."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivita",
+                    "fields": [
+                      {
+                        "label": "Akce na vše správně",
+                        "fields": [
+                          {
+                            "label": "Vyhledat",
+                            "description": "Zadejte časo ve formátu M:SS"
+                          },
+                          {
+                            "label": "Povolit uživateli odhlásit se a pokračovat"
+                          },
+                          {
+                            "label": "Zpráva"
+                          },
+                          {
+                            "label": "Popisek pro tlačítko hledání"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Akce při chybě",
+                        "fields": [
+                          {
+                            "label": "Vyhledat",
+                            "description": "Zadejte časo ve formátu M:SS"
+                          },
+                          {
+                            "label": "Povolit uživateli odhlásit se a pokračovat"
+                          },
+                          {
+                            "label": "Zpráva"
+                          },
+                          {
+                            "label": "Popisek pro tlačítko hledání"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "RPřed pokračováním vyžadovat úplné splnění úkolu",
+                        "description": "Pro nejlepší funkčnost by měla být tato volba použita ve spojení s možností \"Zabránit přeskakování vpřed ve videu \" u interaktivního videa."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Vizuál",
+                    "fields": [
+                      {
+                        "label": "Barva pozadí"
+                      },
+                      {
+                        "label": "Stín pole",
+                        "description": "Okolo interakce přidá jemný stín. Možná budete chtít zakázat toto pro zcela transparentní interakce"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Přejít po kliknutí",
+                    "fields": [
+                      {
+                        "label": "Typ",
+                        "options": [
+                          {
+                            "label": "Časový údaj"
+                          },
+                          {
+                            "label": "Další stránka (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Přejít na",
+                        "description": "Cílový čas, ke kterému bude uživatel při stisknutí hotspotu přesunut. Zadejte časový údaj ve formátu M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protokol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(ralativní kořen)"
+                              },
+                              {
+                                "label": "jiný"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Vizuál",
+                        "description": "Ukažte, že na interakci lze kliknout přidáním ohraničení a ikony"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Shrnutí úkolu",
+          "fields": [
+            {},
+            {
+              "label": "Zobrazit v",
+              "description": "Počet sekund před koncem videa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Nastavení chování",
+      "fields": [
+        {
+          "label": "Spustit video v",
+          "description": "Zadejte časový údaj ve formátu M:SS"
+        },
+        {
+          "label": "Automatické spuštění",
+          "description": "Spustit automatické přehrávání videa"
+        },
+        {
+          "label": "Smyčka videa",
+          "description": "Zkontrolujte, zda by se video nemělo spustit ve smyčce"
+        },
+        {
+          "label": "Přepis \"Zobrazit řešení\" tlačítka",
+          "description": "Tato volba určuje, zda se u všech otázek zobrazí tlačítko \" Zobrazit řešení \" , zakázáno pro všechny nebo nakonfigurováno pro každou otázku samostatně.",
+          "options": [
+            {
+              "label": "Povoleno"
+            },
+            {
+              "label": "Zakázáno"
+            }
+          ]
+        },
+        {
+          "label": "Přepis \"Opakovat\" tlačítka",
+          "description": "Tato volba určuje, zda se u všech otázek zobrazí tlačítko \"Opakovat\" , deaktivováno pro všechny nebo nakonfigurováno pro každou otázku samostatně.",
+          "options": [
+            {
+              "label": "Povoleno"
+            },
+            {
+              "label": "Zakázáno"
+            }
+          ]
+        },
+        {
+          "label": "Začít otevřením nabídky záložek",
+          "description": "Tato funkce není na iPadu dostupná, pokud používáte YouTube jako zdroj videa."
+        },
+        {
+          "label": "Zobrazit tlačítko pro přetočení zpět o 10 sekund"
+        },
+        {
+          "label": "Zabránit přeskakování videa dopředu",
+          "description": "Povolením této možnosti zakážete navigaci uživatele videa pomocí výchozích ovládacích prvků."
+        },
+        {
+          "label": "Deaktivovat zvuk",
+          "description": "Povolením této možnosti deaktivujete zvuk videa a zabráníte jeho zapnutí."
+        }
+      ]
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Název interakce",
+          "default": "Interakce"
+        },
+        {
+          "label": "Nadpis přehrát",
+          "default": "Přehrát"
+        },
+        {
+          "label": "Nadpis pauzy",
+          "default": "Pauza"
+        },
+        {
+          "label": "Nadpis ztlumit",
+          "default": "Ztlumit"
+        },
+        {
+          "label": "Nadpis nahlas",
+          "default": "Nahlas"
+        },
+        {
+          "label": "Nadpis kvality videa",
+          "default": "Kvalita videa"
+        },
+        {
+          "label": "Nadpis titulky videa",
+          "default": "Titulky"
+        },
+        {
+          "label": "Nadpis zavřítt",
+          "default": "Zavřít"
+        },
+        {
+          "label": "Nadpis celá obrazovka",
+          "default": "Celá obrazovka"
+        },
+        {
+          "label": "Nadpis ukončit celou obrazovku",
+          "default": "Ukončit celou obrazovku"
+        },
+        {
+          "label": "Nadpis souhrnný dialoge",
+          "default": "Otevřít souhrnný dialog "
+        },
+        {
+          "label": "Nadpis záložky",
+          "default": "Záložky"
+        },
+        {
+          "label": "Nadpis odeslat obrazovku",
+          "default": "Odeslat obrazovku"
+        },
+        {
+          "label": "Výchozí nadpis tlačítka pro adaptivní hledání ",
+          "default": "Pokračovat"
+        },
+        {
+          "label": "Výchozího nadpis tlačítka pro pokračování videa",
+          "default": "Pokračovat s videem"
+        },
+        {
+          "label": "Nastavit rychlost přehrávání",
+          "default": "Rychlost přehrávání"
+        },
+        {
+          "label": "Převinout zpět o 10 vteřin",
+          "default": "Převinout zpět o 10 vteřin"
+        },
+        {
+          "label": "Text Navigace je zakázána",
+          "default": "Navigace je zakázána"
+        },
+        {
+          "label": "Text Zvuk je deaktivován",
+          "default": "Zvuk je deaktivován"
+        },
+        {
+          "label": "Upozornění, že uživatel musí před pokračováním odpovědět na otázku",
+          "default": "Před pokračováním musíte odpovědět na všechny otázky správně."
+        },
+        {
+          "label": "Tlačítko Zpět",
+          "default": "Zpět"
+        },
+        {
+          "label": "Uplynulý čas v hodinách",
+          "default": "Hodiny"
+        },
+        {
+          "label": "Uplynulý čas v minutách",
+          "default": "Minuty"
+        },
+        {
+          "label": "Uplynulý čas ve vteřinách",
+          "default": "Vteřiny"
+        },
+        {
+          "label": "Nadpis pro aktuální čas",
+          "default": "Aktuální čas:"
+        },
+        {
+          "label": "Nadpis pro celkový čas",
+          "default": "Celkový čas:"
+        },
+        {
+          "label": " Text vysvětlující, že se objevila jediná interakce se jménem",
+          "default": "Objevila se interakce:"
+        },
+        {
+          "label": "Text vysvětlující, že se objevilo více interakcí",
+          "default": "Objevilo se více interakcí."
+        },
+        {
+          "label": "Oznámení Video je pozastaveno",
+          "default": "Video je pozastaveno"
+        },
+        {
+          "label": "Nadpis obsah",
+          "default": "Obsah"
+        },
+        {
+          "label": "Zpráva odpovědí (@answered bude nahrazen počtem zodpovězených otázek)",
+          "default": "@answered odpověděl"
+        },
+        {
+          "label": "Nadpis obrazovky odpovědí",
+          "default": "Odpovězeno @answered otázek",
+          "description": "@answered bude nahrazeno počtem zodpovězených otázek."
+        },
+        {
+          "label": "Informace obrazovky odpovědí",
+          "default": "Odpověděl jste na @answered otázek, odpovědi odešlete kliknutím níže.",
+          "description": "@answeredbude nahrazeno počtem zodpovězených otázek."
+        },
+        {
+          "label": "Informace obrazovky odpovědí pro chybějící odpovědi",
+          "default": "Neodpověděli jste žádné otázky."
+        },
+        {
+          "label": "Informace obrazovky odpovědí pro nutné odpovědi",
+          "default": "Před odesláním odpovědí musíte odpovědět alespoň na jednu otázku."
+        },
+        {
+          "label": "Tlačítko odeslání obrazovky odpovědí ",
+          "default": "Odeslat odpovědi"
+        },
+        {
+          "label": "Zpráva obrazovky odpovědí ",
+          "default": "Vaše odpovědi byly odeslány!"
+        },
+        {
+          "label": "Nadpis řádku tabulky obrazovky: Zodpovězené otázky",
+          "default": "Zodpovězené otázky"
+        },
+        {
+          "label": "Nadpis řádku tabulky obrazovky: Skóre",
+          "default": "Skóre"
+        },
+        {
+          "label": "Obrazovka odpovědí skóre odpovědí",
+          "default": "odpovězeno"
+        },
+        {
+          "label": "Odeslat souhrnný řádek obrazovky včetně skóre (pro čtecí zařízení)",
+          "default": "Získal jste @score ze @total celkových bodů z @question která se objevila po @minutes minutách a @seconds vteřinách."
+        },
+        {
+          "label": "Odeslat souhrnný řádek obrazovky bez skóre (pro čtenáře)",
+          "default": "Odpověděli jste na @question , který se objevil po @minutes minutách a @seconds vteřinách."
+        }
+      ]
+    }
+  ]
+}
