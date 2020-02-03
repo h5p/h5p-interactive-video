@@ -3426,7 +3426,7 @@ InteractiveVideo.prototype.findNextInteractionToHide = function (time) {
   let candidate;
   for (var i = 0; i < this.visibleInteractions.length; i++) {
     const duration = this.interactions[this.visibleInteractions[i]].getDuration();
-    if (!candidate || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
+    if (candidate === undefined || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
       candidate = i;
     }
   }
@@ -3484,7 +3484,7 @@ InteractiveVideo.prototype.showInteractions = function (time) {
 
     // Are there more interactions for us to show?
     this.nextInteractionToShow = this.findNextInteractionToShow(time, this.nextInteractionToShow);
-    interaction = this.nextInteractionToShow !== undefined ? this.interactions[this.nextInteractionToHide] : null;
+    interaction = this.nextInteractionToShow !== undefined ? this.interactions[this.nextInteractionToShow] : null;
   }
 
   this.accessibility.announceInteractions(newInteractions);
