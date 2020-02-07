@@ -22,7 +22,7 @@
                   "label": "Esconder título na tela inicial do vídeo"
                 },
                 {
-                  "label": "Descrição curta(Opcional)",
+                  "label": "Descrição curta (Opcional)",
                   "description": "Opcional. Mostra uma pequena descrição em texto na tela inicial do vídeo. Não funciona com vídeos do YouTube."
                 },
                 {
@@ -52,7 +52,7 @@
                             "label": "Legendas"
                           },
                           {
-                            "label": "Legendas(Acessibilidade)"
+                            "label": "Legendas (Acessibilidade)"
                           },
                           {
                             "label": "Descrições"
@@ -64,7 +64,7 @@
                         "description": "Deve ser um rótulo de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
-                        "label": "Fonte da faixa (arquivo WebVTT)"
+                        "label": "Fonte da faixa (Arquivo WebVTT)"
                       }
                     ]
                   }
@@ -368,7 +368,7 @@
         },
         {
           "label": "Texto de navegação desativada",
-          "default": "A navigação está desativada"
+          "default": "A navegação está desativada"
         },
         {
           "label": "Texto de som desativado",
