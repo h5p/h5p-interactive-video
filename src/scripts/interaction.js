@@ -1072,7 +1072,7 @@ function Interaction(parameters, player, previousState) {
   self.getDuration = function () {
     return {
       from: parameters.duration.from,
-      to: parameters.duration.to
+      to: parameters.duration.to + 1 // Make sure that all interactions display at least one second to be consistent with the old behaviour
     };
   };
 
@@ -1218,25 +1218,24 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
-   * Check if the interaction is visible at the given second
+   * Check if the interaction is visible at the given time
    *
-   * @param {number} second
+   * @param {number} time
    * @return {boolean}
    */
-  self.visibleAt = function (second) {
-    return !(second < parameters.duration.from || second > parameters.duration.to);
+  self.visibleAt = function (time) {
+    return !(time < parameters.duration.from || time > parameters.duration.to + 1); // Make sure that all interactions display at least one second to be consistent with the old behaviour
   };
 
   /**
    * Display or remove the interaction depending on the video time.
    *
-   * @param {number} second video time
+   * @param {number} time The current video time
    * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
    * @returns {H5P.jQuery|undefined} interaction button or container
    */
-  self.toggle = function (second, preventAnimation) {
-    second = Math.floor(second);
-    if (!self.visibleAt(second)) {
+  self.toggle = function (time, preventAnimation) {
+    if (!self.visibleAt(time)) {
       isVisible = false;
 
       if ($interaction) {

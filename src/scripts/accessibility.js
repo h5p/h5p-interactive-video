@@ -43,11 +43,6 @@ export default class Accessibility {
     announcer.classList.add('h5p-iv-interactions-announcer');
     announcer.setAttribute('aria-live', 'polite');
     this.interactionsAnnouncer = announcer;
-
-    /**
-     * @type {string[]}
-     */
-    this.announcedInteractionIds = [];
   }
 
   /**
@@ -63,20 +58,13 @@ export default class Accessibility {
    * @param {H5P.InteractiveVideoInteraction[]} interactions
    */
   announceInteractions(interactions) {
-    const visibleInteractions = interactions.filter(i => i.isVisible());
-    const newInteractions = visibleInteractions
-      .filter(i => !contains(this.announcedInteractionIds, i.getSubcontentId()));
-
-    if (newInteractions.length > 0) {
+    if (interactions.length > 0) {
       this.interactionsAnnouncer.textContent = ''; // reset content
       this.interactionsAnnouncer.textContent = `
-        ${this.getAnnouncementMessage(newInteractions.length)}
-        ${this.getTitleAnnouncement(newInteractions.length, newInteractions[0])}
-        ${this.getPauseAnnouncement(newInteractions)}`;
+        ${this.getAnnouncementMessage(interactions.length)}
+        ${this.getTitleAnnouncement(interactions.length, interactions[0])}
+        ${this.getPauseAnnouncement(interactions)}`;
     }
-
-    // sets announced interactions to be equal to the visible ones
-    this.announcedInteractionIds = visibleInteractions.map(i => i.getSubcontentId());
   }
 
   /**
