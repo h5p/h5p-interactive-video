@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Video kann nur bei voller Punktzahl fortgesetzt werden",
-                        "description": "Diese Option sollte in Verbindung mit \"Vorspulen verbieten\" eingesetzt werden, um den gewünschten Effekt zu erreichen."
+                        "description": "Diese Option sollte in Verbindung mit \"Springen deaktivieren\" eingesetzt werden, um den gewünschten Effekt zu erreichen."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Button zeigen, um 10 Sekunden zurück zu springen"
         },
         {
-          "label": "Vorspulen verbieten",
-          "description": "Aktivieren, um die Videonavigation zu unterbinden"
+          "label": "Springen deaktivieren",
+          "description": "Wenn ausgewählt, muss der Lernende das Video anschauen, ohne selbst an andere Stellen springen zu können"
         },
         {
           "label": "Ton deaktivieren",

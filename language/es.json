@@ -36,7 +36,7 @@
               "fields": [
                 {
                   "label": "Pistas de texto disponibles",
-                  "entity": "Track",
+                  "entity": "Pista",
                   "field": {
                     "label": "Pista",
                     "fields": [
@@ -461,12 +461,12 @@
           "default": "Respondida"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Resumen de fila de pantalla de envío incluyendo puntaje (para lectores de voz)",
+          "default": "Usted tuvo @score de un total de @total puntos para la @question que apareció después de @minutes minutos y @seconds segundos."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de voz)",
+          "default": "Usted ha contestado la @question que apareció después de @minutes minutos y @seconds segundos."
         }
       ]
     }
