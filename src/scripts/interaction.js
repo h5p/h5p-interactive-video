@@ -1224,7 +1224,7 @@ function Interaction(parameters, player, previousState) {
    * @return {boolean}
    */
   self.visibleAt = function (time) {
-    return !(time < parameters.duration.from || time > parameters.duration.to + 1); // Make sure that all interactions display at least one second to be consistent with the old behaviour
+    return !(time < parameters.duration.from || time >= parameters.duration.to + 1); // Make sure that all interactions display at least one second to be consistent with the old behaviour
   };
 
   /**
