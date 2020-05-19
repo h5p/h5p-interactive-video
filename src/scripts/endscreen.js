@@ -234,7 +234,7 @@ class Endscreen extends H5P.EventDispatcher {
     // Filter for interactions that have been answered and sort chronologically
     this.answered = interactions
       .filter(interaction => interaction.getProgress() !== undefined)
-      .sort((a, b) => a.getDuration().from > b.getDuration().from);
+      .sort((a, b) => a.getDuration().from - b.getDuration().from);
 
     this.$endscreenBottomTable.empty();
 

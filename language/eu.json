@@ -351,8 +351,8 @@
           "default": "Bidali pantaila"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Bilaketa moldagarriaren botoirako etiketa lehenetsia",
+          "default": "Jarraitu"
         },
         {
           "label": "Jarraitu botoiaren etiketa lehenetsia",
@@ -461,12 +461,12 @@
           "default": "erantzunak"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Bidali pantaila ilararen laburpena puntuazioa barne (bozgorailu-irakurgailuentzako)",
+          "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galderaren @total puntutik zuk @score lortu dituzu"
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Bidali pantaila ilararen laburpena puntuaziorik gabe (bozgorailu-irakurgailuentzako)",
+          "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galdera erantzun duzu."
         }
       ]
     }
