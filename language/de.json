@@ -433,6 +433,11 @@
           "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
+          "label": "Text auf dem Einsendebildschirm, wenn noch nicht fertig",
+          "default": "Du kannst deine Ergebnisse nicht absenden, bevor das Video das Ende erreicht hat.",
+          "description": "Blendet den Button zum Ansenden der Ergebnisse aus, bis das Video das Ende erreicht hat."
+        },
+        {
           "label": "Einsendebildschirm: Hinweis bei fehlenden Antworten",
           "default": "Du hast noch keine Fragen beantwortet."
         },

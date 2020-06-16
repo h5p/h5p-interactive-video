@@ -107,6 +107,7 @@ function InteractiveVideo(params, id, contentData) {
     self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
     self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
     self.preventSkipping = params.override.preventSkipping || false;
+    self.disableSubmitButton = params.override.disableSubmitButton || false;
     self.deactivateSound = params.override.deactivateSound || false;
   }
   // Translated UI text defaults
@@ -308,6 +309,11 @@ function InteractiveVideo(params, id, contentData) {
       switch (state) {
         case H5P.Video.ENDED: {
           self.currentState = H5P.Video.ENDED;
+
+          // Make sure submit button is now enabled
+          self.disableSubmitButton = false;
+          self.endscreen.update(self.interactions);
+
           self.controls.$play
             .addClass('h5p-pause')
             .attr('aria-label', self.l10n.play);
@@ -1229,6 +1235,7 @@ InteractiveVideo.prototype.addBubbles = function () {
         information: this.l10n.endcardInformation,
         informationNoAnswers: this.l10n.endcardInformationNoAnswers,
         informationMustHaveAnswer: this.l10n.endcardInformationMustHaveAnswer,
+        informationNotFinished: this.l10n.endcardInformationNotFinished,
         submitButton: this.l10n.endcardSubmitButton,
         submitMessage: this.l10n.endcardSubmitMessage,
         tableRowAnswered: this.l10n.endcardTableRowAnswered,

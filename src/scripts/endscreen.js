@@ -35,6 +35,7 @@ class Endscreen extends H5P.EventDispatcher {
       information: 'You have answered @answered questions, click below to submit your answers.',
       informationNoAnswers: 'You have not answered any questions.',
       informationMustHaveAnswer: 'You have to answer at least one question before you can submit your answers.',
+      informationNotFinished: 'You cannot submit your answers before the video has reached the end.',
       submitButton: 'Submit Answers',
       submitMessage: 'Your answers have been submitted!',
       tableRowAnswered: 'Answered questions',
@@ -255,12 +256,15 @@ class Endscreen extends H5P.EventDispatcher {
     if (number === 0) {
       this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div><div>${this.l10n.informationMustHaveAnswer}<div>`);
     }
+    else if (this.parent.disableSubmitButton) {
+      this.$endscreenIntroductionText.html(this.l10n.informationNotFinished);
+    }
     else {
       this.$endscreenIntroductionText.html(this.l10n.information.replace('@answered', number));
     }
 
     // Only show submit button (again) if there are answered interactions
-    if (number > 0) {
+    if (number > 0 && !this.parent.disableSubmitButton) {
       this.$submitButtonContainer.removeClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
     }
   }
