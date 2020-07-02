@@ -1,0 +1,474 @@
+{
+  "semantics": [
+    {
+      "label": "Interactive Video Editor",
+      "fields": [
+        {
+          "label": "Upload/embed video",
+          "fields": [
+            {
+              "label": "Add a video",
+              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+            },
+            {
+              "label": "Start screen options (unsupported for YouTube videos)",
+              "fields": [
+                {
+                  "label": "The title of this interactive video",
+                  "default": "Interactive Video",
+                  "description": "Used in summaries, statistics etc."
+                },
+                {
+                  "label": "Hide title on video start screen"
+                },
+                {
+                  "label": "Short description (Optional)",
+                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                },
+                {
+                  "label": "Poster image",
+                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                }
+              ]
+            },
+            {
+              "label": "Text tracks (unsupported for YouTube videos)",
+              "fields": [
+                {
+                  "label": "Available text tracks",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Track",
+                    "fields": [
+                      {
+                        "label": "Track label",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Subtitles"
+                      },
+                      {
+                        "label": "Type of text track",
+                        "options": [
+                          {
+                            "label": "Subtitles"
+                          },
+                          {
+                            "label": "Captions"
+                          },
+                          {
+                            "label": "Descriptions"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Source language, must be defined for subtitles",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                      },
+                      {
+                        "label": "Track source (WebVTT file)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Default text track",
+                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Add interactions",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Display time"
+                  },
+                  {
+                    "label": "Pause video"
+                  },
+                  {
+                    "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "options": [
+                      {
+                        "label": "Button"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Turn into button on small screens"
+                  },
+                  {
+                    "label": "Label",
+                    "description": "Label displayed next to interaction icon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivity",
+                    "fields": [
+                      {
+                        "label": "Action on all correct",
+                        "fields": [
+                          {
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
+                          },
+                          {
+                            "label": "Allow the user to opt out and continue"
+                          },
+                          {
+                            "label": "Message"
+                          },
+                          {
+                            "label": "Label for seek button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Action on wrong",
+                        "fields": [
+                          {
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
+                          },
+                          {
+                            "label": "Allow the user to opt out and continue"
+                          },
+                          {
+                            "label": "Message"
+                          },
+                          {
+                            "label": "Label for seek button"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Require full score for task before proceeding",
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Visuals",
+                    "fields": [
+                      {
+                        "label": "Background color"
+                      },
+                      {
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Go to on click",
+                    "fields": [
+                      {
+                        "label": "Type",
+                        "options": [
+                          {
+                            "label": "Timecode"
+                          },
+                          {
+                            "label": "Another page (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "other"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualize",
+                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Summary task",
+          "fields": [
+            {},
+            {
+              "label": "Display at",
+              "description": "Number of seconds before the video ends."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Behavioural settings",
+      "fields": [
+        {
+          "label": "Start video at",
+          "description": "Enter timecode in the format M:SS"
+        },
+        {
+          "label": "Auto-play video",
+          "description": "Start playing the video automatically"
+        },
+        {
+          "label": "Loop the video",
+          "description": "Check if video should run in a loop"
+        },
+        {
+          "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "options": [
+            {
+              "label": "Enabled"
+            },
+            {
+              "label": "Disabled"
+            }
+          ]
+        },
+        {
+          "label": "Start with bookmarks menu open",
+          "description": "This function is not available on iPad when using YouTube as video source."
+        },
+        {
+          "label": "Show button for rewinding 10 seconds"
+        },
+        {
+          "label": "Prevent skipping forward in a video",
+          "description": "Enabling this options will disable user video navigation through default controls."
+        },
+        {
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+        }
+      ]
+    },
+    {
+      "label": "Localize",
+      "fields": [
+        {
+          "label": "Interaction title",
+          "default": "អន្តរកម្ម"
+        },
+        {
+          "label": "Play title",
+          "default": "លេង"
+        },
+        {
+          "label": "Pause title",
+          "default": "ផ្អាក"
+        },
+        {
+          "label": "Mute title",
+          "default": "បិទសម្លេង"
+        },
+        {
+          "label": "Unmute title",
+          "default": "បើកសម្លេង"
+        },
+        {
+          "label": "Video quality title",
+          "default": "គុណភាពវីដេអូ"
+        },
+        {
+          "label": "Video captions title",
+          "default": "អក្សររត់"
+        },
+        {
+          "label": "Close button text",
+          "default": "បិទ"
+        },
+        {
+          "label": "Fullscreen title",
+          "default": "ពេញអេក្រង់"
+        },
+        {
+          "label": "Exit fullscreen title",
+          "default": "បិទពេញអេក្រង់"
+        },
+        {
+          "label": "Summary title",
+          "default": "បើកផ្ទាំងសង្ខេប"
+        },
+        {
+          "label": "Bookmarks title",
+          "default": "កំណត់ចំណាំ"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "ផ្ទាំងប្រគល់កិច្ចការ"
+        },
+        {
+          "label": "Default label for adaptivity seek button",
+          "default": "បន្ត"
+        },
+        {
+          "label": "Default label for continue video button",
+          "default": "បន្តវីដេអូ"
+        },
+        {
+          "label": "Set playback rate",
+          "default": "ល្បឿនវីដេអូ"
+        },
+        {
+          "label": "Rewind 10 Seconds",
+          "default": "ថយក្រោម 10 វិនាទី"
+        },
+        {
+          "label": "Navigation is disabled text",
+          "default": "បិទការផ្លាស់ទីលើវីដេអូ"
+        },
+        {
+          "label": "Sound is disabled text",
+          "default": "សម្លេងបានបិទ"
+        },
+        {
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "អ្នកត្រូវឆ្លើយចម្លើយឲ្យបានត្រឹមត្រូវទាំងអស់សិនមុននឹងអាចបន្តទៅមុខបាន"
+        },
+        {
+          "label": "Back button",
+          "default": "ត្រឡប់"
+        },
+        {
+          "label": "Passed time hours",
+          "default": "ម៉ោង"
+        },
+        {
+          "label": "Passed time minutes",
+          "default": "នាទី"
+        },
+        {
+          "label": "Passed time seconds",
+          "default": "វិនាទី"
+        },
+        {
+          "label": "Label for current time",
+          "default": "ពេលបច្ចុប្បន្ន:"
+        },
+        {
+          "label": "Label for total time",
+          "default": "ពេលសរុប:"
+        },
+        {
+          "label": "Text explaining that a single interaction with a name has come into view",
+          "default": "អន្តរកម្មដែលបានចេញមក:"
+        },
+        {
+          "label": "Text for explaining that multiple interactions have come into view",
+          "default": "អន្តរកម្មជាច្រើនបានលេចចេញមក។"
+        },
+        {
+          "label": "Video is paused announcement",
+          "default": "វីដេអូត្រូវបានផ្អាក"
+        },
+        {
+          "label": "Content label",
+          "default": "មាតិកា"
+        },
+        {
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "បានឆ្លើយ @answered"
+        },
+        {
+          "label": "Submit screen title",
+          "default": "សំណួរ @answered បានឆ្លើយហើយ",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information",
+          "default": "អ្នកបានឆ្លើយ @answered សំណួរ។ ចុចខាងក្រោមដើម្បីប្រគល់ចម្លើយរបស់អ្នក។",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "អ្នកមិនទាន់បានឆ្លើយសំណួរណាមួយនៅឡើយទេ។"
+        },
+        {
+          "label": "Submit screen information for answer needed",
+          "default": "អ្នកត្រូវតែឆ្លើយយ៉ាងហោចណាស់មួយសំណួរសិនមុននឹងអាចប្រគល់ចម្លើយរបស់បាន។"
+        },
+        {
+          "label": "Submit screen submit button",
+          "default": "ប្រគល់ចម្លើយ"
+        },
+        {
+          "label": "Submit screen submit message",
+          "default": "ចម្លើយរបស់អ្នកត្រូវបានប្រគល់ដោយជោគជ័យ!"
+        },
+        {
+          "label": "Submit screen table row title: Answered questions",
+          "default": "សំណួរដែលបានឆ្លើយ"
+        },
+        {
+          "label": "Submit screen table row title: Score",
+          "default": "ពិន្ទុ"
+        },
+        {
+          "label": "Submit screen answered score",
+          "default": "បានឆ្លើយ"
+        },
+        {
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "អ្នកបានពិន្ទុ @score លើ @total សម្រាប់ @question ដែលបានលេចចេញនៅនាទីទី @minutes និង @seconds វិនាទី។"
+        },
+        {
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "អ្នកបានឆ្លើយសំណួរ @question ដែលបានលេចចេញនៅនាទីទី @minutes និង @seconds វិនាទី។"
+        }
+      ]
+    }
+  ]
+}
