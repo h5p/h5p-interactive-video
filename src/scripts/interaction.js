@@ -620,7 +620,7 @@ function Interaction(parameters, player, previousState) {
       }
       else {
         // Wait for image to load
-        $img.load(function () {
+        $img.on('load', function () {
           if ($img.is(':visible')) {
             resizeImage($img, max, {
               width: this.width,
