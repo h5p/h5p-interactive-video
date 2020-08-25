@@ -340,7 +340,7 @@
         },
         {
           "label": "Titel der Zusammenfassung",
-          "default": "Zusammenfassung"
+          "default": "Zusammenfassung öffnen"
         },
         {
           "label": "Beschriftung des \"Lesezeichen\"-Buttons",

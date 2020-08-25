@@ -2070,6 +2070,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.video.mute();
   }
 
+  if (self.video.isMuted()) {
+    // Toggle initial mute button state
+    self.controls.$volume
+      .addClass('h5p-muted')
+      .attr('aria-label', self.l10n.sndDisabled);
+  }
+
   // TODO: Do not add until qualities are present?
   // Add popup for selecting video quality
   self.controls.$qualityChooser = H5P.jQuery('<div/>', {
