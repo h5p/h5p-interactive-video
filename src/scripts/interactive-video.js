@@ -672,7 +672,8 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.$controls.appendTo($container);
 
   // 'video only' fallback has no interactions
-  let isAnswerable = false;
+  let isAnswerable = this.hasMainSummary();
+  
   if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
