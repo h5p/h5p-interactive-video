@@ -1444,6 +1444,14 @@ function Interaction(parameters, player, previousState) {
             return parent.id === interactiveVideoId;
           });
 
+          // Update scores on any action, overwrite with event score if it exists
+          if (instance.getScore) {
+            self.score = instance.getScore();
+          }
+          if (instance.getMaxScore) {
+            self.maxScore = instance.getMaxScore();
+          }
+
           if (isInteractiveVideoParent && isCompletedOrAnswered && event.getMaxScore()) {
             // Allow subcontent types to have null scores so that they can be dynamically graded
             // See H5P.FreeTextQuestion
