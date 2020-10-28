@@ -282,6 +282,16 @@ function InteractiveVideo(params, id, contentData) {
 
     // Handle video source loaded events (metadata)
     self.video.on('loaded', function () {
+      // If already loaded, just trigger resize. This is necessary
+      //  because some browsers does not handle certain events from
+      //  video, e.g. Safari only handles the 'loadedmetadata' event,
+      //  while FF handles both 'loadedMetadata' and 'canplay' so we want
+      //  to make sure we resize after the last load event we get.
+      if (isLoaded) {
+        self.trigger('resize');
+        return;
+      }
+
       isLoaded = true;
       // Update IV player UI
       self.loaded();
