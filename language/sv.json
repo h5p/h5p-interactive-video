@@ -167,7 +167,7 @@
                       },
                       {
                         "label": "Skugga",
-                        "description": "Lägger tillen skuggeffekt på interaktionen. Du kan stänga av detta för helt transparenta interaktioner."
+                        "description": "Lägger till en skuggeffekt på interaktionen. Du kan stänga av detta för helt transparenta interaktioner"
                       }
                     ]
                   },
@@ -202,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(relativ till rot)"
                               },
                               {
                                 "label": "annan"
@@ -223,7 +223,7 @@
                 ]
               }
             },
-            {},
+            {},	
             {}
           ]
         },
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "label": "Allmänna inställningar",
+      "label": "Beteende-inställningar",
       "fields": [
         {
           "label": "Starta video vid tid",
@@ -290,7 +290,7 @@
           "description": "Om du väljer denna inställning så inaktiveras möjligheten för användare att navigera i video med standardkontroller."
         },
         {
-          "label": "Inaktivera ljud ",
+          "label": "Inaktivera ljud",
           "description": "Om du väljer denna inställning så inaktiveras ljudet i videon och möjligheten för användare att slå på ljud förhindras."
         }
       ]
@@ -340,7 +340,7 @@
         },
         {
           "label": "Titel för summering",
-          "default": "Summering"
+          "default": "Summering av öppen dialog"
         },
         {
           "label": "Titel för bokmärken",
@@ -351,7 +351,7 @@
           "default": "Inlämningssida"
         },
         {
-          "label": "Standardetikett för anpassningsbar hoppa-knapp",
+          "label": "Standardetikett för anpassningsbar sök-knapp",
           "default": "Fortsätt"
         },
         {
@@ -403,12 +403,12 @@
           "default": "Total tid:"
         },
         {
-          "label": "Text som förklarar att en interaktion med ett namn är synlig",
-          "default": "Interaktion synlig:"
+          "label": "Text som förklarar att en interaktion med ett namn har blivit synligt",
+          "default": "Interaktion blev synlig:"
         },
         {
-          "label": "Text som förklarar att flera interaktioner är synliga",
-          "default": "Flera interaktioner synliga."
+          "label": "Text som förklarar att flera interaktioner har blivit synliga",
+          "default": "Flera interaktioner har blivit synliga."
         },
         {
           "label": "Meddelande om att video är satt på paus",
