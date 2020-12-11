@@ -1,0 +1,474 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de vídeos interactius",
+      "fields": [
+        {
+          "label": "Carrega/incrusta el vídeo",
+          "fields": [
+            {
+              "label": "Afegeix un video",
+              "description": "Feu clic a sota per afegir un vídeo que vulgueu utilitzar en el vídeo interactiu. Podeu afegir un enllaç de vídeo o pujar fitxers de vídeo. És possible afegir diverses versions del vídeo amb diferents qualitats. Per assegurar el màxim suport en els navegadors com a mínim afegiu una versió en els formats webm i mp4."
+            },
+            {
+              "label": "Opcions de la pantalla d’inici (no s’admet per a vídeos de YouTube)",
+              "fields": [
+                {
+                  "label": "Títol d’aquest vídeo interactiu",
+                  "default": "Vídeo interactiu",
+                  "description": "S’utilitza en resums, estadístiques, etc."
+                },
+                {
+                  "label": "Amaga el títol a la pantalla d’inici de vídeo"
+                },
+                {
+                  "label": "Descripció breu (opcional)",
+                  "description": "Opcional. Mostra una descripció curta a la pantalla d’inici del vídeo. No funciona amb vídeos de YouTube."
+                },
+                {
+                  "label": "Imatge de pòster",
+                  "description": "La imatge s’ha mostrat abans que l’usuari iniciés el vídeo. No funciona amb vídeos de YouTube."
+                }
+              ]
+            },
+            {
+              "label": "Pistes de text (no s’admet per a vídeos de YouTube)",
+              "fields": [
+                {
+                  "label": "Pistes de text disponibles",
+                  "entity": "Pista",
+                  "field": {
+                    "label": "Pista",
+                    "fields": [
+                      {
+                        "label": "Etiqueta de la pista",
+                        "description": "S’utilitza quan s’ofereixen diverses pistes i l’usuari n’ha de triar una. Per exemple, \"Subtítols en espanyol\" podria ser l’etiqueta d’una pista de subtítols en espanyol.",
+                        "default": "Subtítols"
+                      },
+                      {
+                        "label": "Tipus de pista de text",
+                        "options": [
+                          {
+                            "label": "Subtítols"
+                          },
+                          {
+                            "label": "Peus de recurs"
+                          },
+                          {
+                            "label": "Descripcions"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Idioma d’origen; cal definir-lo per als subtítols.",
+                        "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
+                      },
+                      {
+                        "label": "Origen de la pista (fitxer WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Pista de text predeterminada",
+                  "description": "Si no s’emplena o no hi ha cap pista de text coincident, s’utilitzarà la primera pista de text de manera predeterminada."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Afegeix interaccions",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Mostra l’hora"
+                  },
+                  {
+                    "label": "Posa en pausa el vídeo"
+                  },
+                  {
+                    "label": "Mostra com a",
+                    "description": "<b>Botó</b> és una interacció reduïda que l’usuari ha de prémer perquè s’obri. <b>Pòster</b> és una interacció ampliada que es mostra directament a la part superior del vídeo.",
+                    "options": [
+                      {
+                        "label": "Botó"
+                      },
+                      {
+                        "label": "Pòster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Converteix en botó a les pantalles petites"
+                  },
+                  {
+                    "label": "Etiqueta",
+                    "description": "Etiqueta que es mostra al costat de la icona d’interacció."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptabilitat",
+                    "fields": [
+                      {
+                        "label": "Acció en totes les respostes correctes",
+                        "fields": [
+                          {
+                            "label": "Cerca a",
+                            "description": "Introdueix el codi de temps en format M:SS"
+                          },
+                          {
+                            "label": "Permet a l’usuari sortir i continua"
+                          },
+                          {
+                            "label": "Missatge"
+                          },
+                          {
+                            "label": "Etiqueta del botó de cerca"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Acció en cas d’error",
+                        "fields": [
+                          {
+                            "label": "Cerca a",
+                            "description": "Introdueix el codi de temps en format M:SS"
+                          },
+                          {
+                            "label": "Permet a l’usuari sortir i continua"
+                          },
+                          {
+                            "label": "Missatge"
+                          },
+                          {
+                            "label": "Etiqueta del botó de cerca"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Requereix que la tasca tingui la màxima puntuació per poder continuar",
+                        "description": "Perquè aquesta opció funcioni millor, es recomana utilitzar-la juntament amb l’opció \"Impedeix avançar el vídeo\" del vídeo interactiu."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Elements visuals",
+                    "fields": [
+                      {
+                        "label": "Color de fons"
+                      },
+                      {
+                        "label": "Ombra de quadre",
+                        "description": "Afegeix una ombra subtil al voltant de la interacció. Perquè les interaccions siguin completament transparents, desactiveu aquesta funció."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "\"Ves a\" en fer clic",
+                    "fields": [
+                      {
+                        "label": "Tipus",
+                        "options": [
+                          {
+                            "label": "Codi de temps"
+                          },
+                          {
+                            "label": "Una altra pàgina (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ves a",
+                        "description": "Temps objectiu en el qual se situarà l’usuari en prémer la zona sensible. Introduïu el codi de temps en format M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(root relative)"
+                              },
+                              {
+                                "label": "altres"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualitza",
+                        "description": "Indiqueu que es pot fer clic a la interacció afegint una vora i una icona."
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Tasca de resum",
+          "fields": [
+            {},
+            {
+              "label": "Mostra a",
+              "description": "Nombre de segons abans que acabi el vídeo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Opcions de comportament",
+      "fields": [
+        {
+          "label": "Inicia el vídeo a",
+          "description": "Introdueix el codi de temps en format M:SS"
+        },
+        {
+          "label": "Reprodueix automàticament el vídeo",
+          "description": "Comença a reproduir el vídeo automàticament"
+        },
+        {
+          "label": "Repeteix el vídeo",
+          "description": "Marqueu aquesta opció si el vídeo s’ha de reproduir en bucle."
+        },
+        {
+          "label": "Substitueix el botó \"Mostra la solució\"",
+          "description": "Aquesta opció determina si el botó \"Mostra la solució\" es mostrarà per a totes les preguntes, es desactivarà per a totes o es configurarà per a cada pregunta individualment.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Desactivat"
+            }
+          ]
+        },
+        {
+          "label": "Substitueix el botó \"Torna-ho a provar\"",
+          "description": "Aquesta opció determina si es mostrarà el botó \"Torna-ho a provar\" per a totes les preguntes, es desactivarà per a totes o es configurarà per a cada pregunta individualment.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Desactivat"
+            }
+          ]
+        },
+        {
+          "label": "Inicia amb el menú de marcadors obert",
+          "description": "Aquesta funció no està disponible a l’iPad quan s’utilitza YouTube com a font de vídeo."
+        },
+        {
+          "label": "Mostra el botó per rebobinar 10 segons"
+        },
+        {
+          "label": "Impedeix avançar el vídeo",
+          "description": "Si habiliteu aquesta opció es desactivarà la navegació de vídeo de l’usuari mitjançant controls predeterminats."
+        },
+        {
+          "label": "Desactiva el so",
+          "description": "Si habiliteu aquesta opció, es desactivarà el so del vídeo i no es podrà activar."
+        }
+      ]
+    },
+    {
+      "label": "Localitza",
+      "fields": [
+        {
+          "label": "Títol de la interacció",
+          "default": "Interacció"
+        },
+        {
+          "label": "Títol de la reproducció",
+          "default": "Reprodueix"
+        },
+        {
+          "label": "Posa en pausa el títol",
+          "default": "Pausa"
+        },
+        {
+          "label": "Silencia el títol",
+          "default": "Silencia"
+        },
+        {
+          "label": "Activa el títol",
+          "default": "Activa el so"
+        },
+        {
+          "label": "Títol de la qualitat del vídeo",
+          "default": "Qualitat de vídeo"
+        },
+        {
+          "label": "Títol dels subtítols de vídeo",
+          "default": "Peus de recurs"
+        },
+        {
+          "label": "Text del botó de tancar",
+          "default": "Tanca"
+        },
+        {
+          "label": "Títol en pantalla completa",
+          "default": "Pantalla completa"
+        },
+        {
+          "label": "Títol de sortir de paraula completa",
+          "default": "Surt de la pantalla completa"
+        },
+        {
+          "label": "Títol del resum",
+          "default": "Obre el quadre de diàleg de resum"
+        },
+        {
+          "label": "Títol dels marcadors",
+          "default": "Marcadors"
+        },
+        {
+          "label": "Títol de la pantalla d’enviament",
+          "default": "Pantalla d’enviament"
+        },
+        {
+          "label": "Etiqueta predeterminada per al botó de cerca d’adaptació",
+          "default": "Continua"
+        },
+        {
+          "label": "Etiqueta predeterminada per al botó de continuar el vídeo",
+          "default": "Continua amb el vídeo"
+        },
+        {
+          "label": "Estableix la velocitat de reproducció",
+          "default": "Velocitat de reproducció"
+        },
+        {
+          "label": "Rebobina 10 segons",
+          "default": "Rebobina 10 segons"
+        },
+        {
+          "label": "Text que indica que la navegació està desactivada",
+          "default": "La navegació està desactivada"
+        },
+        {
+          "label": "Text que indica que el so està desactivat",
+          "default": "El so està desactivat"
+        },
+        {
+          "label": "Advertiment que indica que l’usuari ha de respondre correctament a la pregunta per poder continuar",
+          "default": "Heu de respondre a totes les preguntes correctament per poder continuar."
+        },
+        {
+          "label": "Botó \"Enrere\"",
+          "default": "Enrere"
+        },
+        {
+          "label": "Temps transcorregut en hores",
+          "default": "Hores"
+        },
+        {
+          "label": "Temps transcorregut en minuts",
+          "default": "Minuts"
+        },
+        {
+          "label": "Temps transcorregut en segons",
+          "default": "Segons"
+        },
+        {
+          "label": "Etiqueta per a l’hora actual",
+          "default": "Tems actual:"
+        },
+        {
+          "label": "Etiqueta per al temps total",
+          "default": "Temps total:"
+        },
+        {
+          "label": "Text que explica que es visualitza una sola interacció amb un nom",
+          "default": "Interacció emergent:"
+        },
+        {
+          "label": "Text per explicar que es mostren diverses interaccions",
+          "default": "S’han mostrat diverses interaccions."
+        },
+        {
+          "label": "Anunci que indica que el vídeo està en pausa",
+          "default": "El vídeo està en pausa"
+        },
+        {
+          "label": "Etiqueta de contingut",
+          "default": "Contingut"
+        },
+        {
+          "label": "Missatge respost (@answered serà substituït pel nombre de preguntes contestades)",
+          "default": "@answered contestades"
+        },
+        {
+          "label": "Títol de la pantalla d’enviament",
+          "default": "@answered Pregunta(es) contestada(es)",
+          "description": "@answered serà substituït pel nombre de preguntes contestades."
+        },
+        {
+          "label": "Informació de la pantalla d’enviament",
+          "default": "Heu respost @answered preguntes, feu clic a sota per enviar les respostes.",
+          "description": "@answered serà substituït pel nombre de preguntes contestades."
+        },
+        {
+          "label": "Informació de la pantalla d’enviament per a les respostes que falten",
+          "default": "No ha contestat cap pregunta."
+        },
+        {
+          "label": "Es requereix informació de la pantalla d’enviament per a la resposta",
+          "default": "Heu de respondre com a mínim a una pregunta per poder enviar les respostes."
+        },
+        {
+          "label": "Envia el botó d’enviament de la pantalla",
+          "default": "Envia les respostes"
+        },
+        {
+          "label": "Envia el missatge d’enviament de la pantalla",
+          "default": "S’han enviat les respostes!"
+        },
+        {
+          "label": "Títol per a la fila de la taula de la pantalla d’enviament: Preguntes respostes",
+          "default": "Preguntes respostes"
+        },
+        {
+          "label": "Títol per a la fila de la taula de la pantalla d’enviament: Puntuació",
+          "default": "Puntuació"
+        },
+        {
+          "label": "Puntuació de les respostes a la pantalla d’enviament",
+          "default": "respost"
+        },
+        {
+          "label": "Resum de les files de la pantalla d’enviament, inclosa la puntuació (per a altaveus de lectura)",
+          "default": "Heu obtingut @score de @total punts a la pregunta @question que s’ha mostrat després de @minutes minuts i @seconds segons."
+        },
+        {
+          "label": "Resum de les files de la pantalla d’enviament quan no hi ha puntuació (per a altaveus de lectura)",
+          "default": "Heu respost a la @question que va aparèixer després de @minutes minuts i @segons segons."
+        }
+      ]
+    }
+  ]
+}
