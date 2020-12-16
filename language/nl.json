@@ -256,7 +256,7 @@
         },
         {
           "label": "\"Toon oplossing\" knop overrulen",
-          "description": "Deze optie bepaalt of de \"Opnieuw proberen\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "description": "Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options": [
             {
               "label": "Ingeschakeld"
@@ -437,7 +437,7 @@
           "default": "Je hebt geen vragen beantwoord."
         },
         {
-          "label": "Vezend scherminformatie voor het gewenste antwoord",
+          "label": "Verzend scherminformatie voor het gewenste antwoord",
           "default": "Je moet ten minste één vraag beantwoorden voordat je je antwoorden kunt verzenden."
         },
         {
@@ -461,12 +461,12 @@
           "default": "Beantwoord"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Verzend schermrij samenvatting inclusief score (voor readspeakers)",
+          "default": "Je hebt @score van de @total punten voor de @question die verscheen na @minutes minuten en @seconds seconden."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Verzend schermrij samenvatting bij geen score (voor readspeakers)",
+          "default": "Je hebt de @question beantwoord die verscheen na @minutes minuten en @seconds seconden."
         }
       ]
     }
