@@ -1,12 +1,12 @@
 {
-  "title": "Interactive Video Dev",
+  "title": "Interactive Video",
   "description": "Put texts, tasks and other medias on top of your video.",
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 22,
-  "patchVersion": 4,
-  "machineName": "H5P.InteractiveVideoDev",
+  "patchVersion": 5,
+  "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",
   "embedTypes": [
     "iframe"
