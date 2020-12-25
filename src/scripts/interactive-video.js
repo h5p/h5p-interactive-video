@@ -547,9 +547,9 @@ function InteractiveVideo(params, id, contentData) {
       }
       else {
         $muteButton
-        .addClass('h5p-muted')
-        .attr('aria-label', self.l10n.unmute);
-        
+          .addClass('h5p-muted')
+          .attr('aria-label', self.l10n.unmute);
+
         self.video.mute();
         // Set slider to 0 (but do not adjust volume)
         $volumeSlider.slider('value', 0);
@@ -2084,7 +2084,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   if (!isAndroid() && !isIpad()) {
     self.controls.$volumeWrapper = $('<div/>', {
       tabindex: 0,
-      class: 'h5p-control ' + 'h5p-' + 'volume-wrapper',
+      class: 'h5p-control h5p-volume-wrapper',
       on: {
         mouseenter: function (event) {
           self.controls.$volumeSliderWrapper.addClass('h5p-show');
@@ -2097,7 +2097,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     });
   }
   
-  // TODO: Maintain slider focus when mouse is moved outside of wrapper
   // Add volume slider
   if (!isAndroid() && !isIpad()) {
     self.controls.$volumeSliderWrapper = $('<div/>', {
@@ -2116,18 +2115,18 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       create: function (event) {
         const $handle = $(event.target).find('.ui-slider-handle');
         const volumeNow = self.video.getVolume();
-        // Prepend rail
+        // Prepend slider rail
         $(event.target).prepend('<div class="ui-slider-range ui-widget-header ui-corner-all h5p-volume-rail"></div>')
 
         $handle
           .attr('role', 'slider')
           .attr('aria-valuemin', '0')
           .attr('aria-valuemax', '100')
-          .attr('aria-valuetext', volumeNow) // TODO: l10n
+          .attr('aria-valuetext', volumeNow) // TODO: l10n, eg. "Volume 30%
           .attr('aria-valuenow', volumeNow);
 
         if (self.deactivateSound) {
-          // TODO: self.setDisabled($handle).attr('aria-hidden', 'true');
+          self.setDisabled($handle).attr('aria-hidden', 'true');
         }
       },
       slide: function (event, ui) {
@@ -2135,7 +2134,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         let volume = Math.floor(ui.value);
         self.controls.$volumeSliderWrapper.addClass('h5p-active');
 
-        // When the slider is dragged to 0, toggle the mute button
+        // When the slider is dragged to/from 0, toggle the mute button
         if (volume < 1 && !self.video.isMuted()) {
           self.toggleMute.call(this);
         }
@@ -2146,19 +2145,25 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         // Update volume
         self.video.setVolume(volume);
         $handle
-          .attr('aria-valuetext', volume) // TODO: l10n
+          .attr('aria-valuetext', volume) // TODO: l10n, eg. "Volume 30%"
           .attr('aria-valuenow', volume);
+        
+        // Make overlay visible to catch mouseup/move events.
+        self.$overlay.addClass('h5p-visible');
       },
       stop: function (event, ui) {
         self.controls.$volumeSliderWrapper.removeClass('h5p-active');
+
+        // Done catching mouse events
+        self.$overlay.removeClass('h5p-visible');
       }
-      // TODO: on: keydown adjust volume
+      // TODO: on: keydown adjust volume ?
     });
   }
 
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
-    var options = {
+    self.controls.$volume = $('<div/>', {
       role: 'button',
       tabindex: 0,
       class: 'h5p-control h5p-mute',
@@ -2175,9 +2180,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         },
       },
       appendTo: self.controls.$volumeWrapper
-    };
-    options['aria-label'] = self.l10n['mute'];
-    self.controls.$volume = $('<div/>', options);
+    });
+    self.controls.$volume
+      .attr('aria-label', self.l10n.mute);
 
     if (self.deactivateSound) {
       self.controls.$volume
