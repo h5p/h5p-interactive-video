@@ -535,7 +535,7 @@ function InteractiveVideo(params, id, contentData) {
 
         self.video.unMute();
 
-        // Set slider to a low volume if video was muted by dragging the slider down to 0
+        // Set slider to a default low volume if video was muted by dragging the slider down to 0
         if (self.video.getVolume() < 1) {
           self.video.setVolume(defaultVol);
           $volumeSlider.slider('value', defaultVol);
@@ -551,7 +551,7 @@ function InteractiveVideo(params, id, contentData) {
           .attr('aria-label', self.l10n.unmute);
 
         self.video.mute();
-        // Set slider to 0 (but do not adjust volume)
+        // Set slider to 0 (but do not adjust volume), getVolume() will persist our previous volume level
         $volumeSlider.slider('value', 0);
       }
 
@@ -2079,7 +2079,6 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   self.controls.$playbackRateChooser.insertAfter(self.controls.$playbackRateButton);
 
-  // * Volume Control (wrapper, mute, slider) *
   // Add volume control wrapper
   if (!isAndroid() && !isIpad()) {
     self.controls.$volumeWrapper = $('<div/>', {
@@ -2087,10 +2086,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       class: 'h5p-control h5p-volume-wrapper',
       on: {
         mouseenter: function (event) {
-          self.controls.$volumeSliderWrapper.addClass('h5p-show');
+          self.controls.$volumeSliderOverlay.addClass('h5p-show');
         },
         mouseleave: function (event) {
-          self.controls.$volumeSliderWrapper.removeClass('h5p-show');
+          self.controls.$volumeSliderOverlay.removeClass('h5p-show');
         }
       },
       appendTo: $right
@@ -2099,13 +2098,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   
   // Add volume slider
   if (!isAndroid() && !isIpad()) {
-    self.controls.$volumeSliderWrapper = $('<div/>', {
+    self.controls.$volumeSliderOverlay = $('<div/>', {
       class: 'h5p-volume-slider',
       appendTo: self.controls.$volumeWrapper
     });
 
     self.controls.$volumeSlider = $('<div/>', {
-      appendTo: self.controls.$volumeSliderWrapper
+      appendTo: self.controls.$volumeSliderOverlay
     }).slider({
       value: self.video.getVolume(),
       step: 1,
@@ -2115,14 +2114,14 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       create: function (event) {
         const $handle = $(event.target).find('.ui-slider-handle');
         const volumeNow = self.video.getVolume();
-        // Prepend slider rail
+        // Slider style are wide to capture events, add another slider rail
         $(event.target).prepend('<div class="ui-slider-range ui-widget-header ui-corner-all h5p-volume-rail"></div>')
 
         $handle
           .attr('role', 'slider')
           .attr('aria-valuemin', '0')
           .attr('aria-valuemax', '100')
-          .attr('aria-valuetext', volumeNow) // TODO: l10n, eg. "Volume 30%
+          .attr('aria-valuetext', volumeNow) // TODO: l10n, eg. "Volume 30%" ?
           .attr('aria-valuenow', volumeNow);
 
         if (self.deactivateSound) {
@@ -2132,7 +2131,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       slide: function (event, ui) {
         const $handle = $(event.target).find('.ui-slider-handle');
         let volume = Math.floor(ui.value);
-        self.controls.$volumeSliderWrapper.addClass('h5p-active');
+        self.controls.$volumeSliderOverlay.addClass('h5p-active');
 
         // When the slider is dragged to/from 0, toggle the mute button
         if (volume < 1 && !self.video.isMuted()) {
@@ -2145,19 +2144,19 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         // Update volume
         self.video.setVolume(volume);
         $handle
-          .attr('aria-valuetext', volume) // TODO: l10n, eg. "Volume 30%"
+          .attr('aria-valuetext', volume) // TODO: l10n, eg. "Volume 30%" ?
           .attr('aria-valuenow', volume);
         
         // Make overlay visible to catch mouseup/move events.
         self.$overlay.addClass('h5p-visible');
       },
       stop: function (event, ui) {
-        self.controls.$volumeSliderWrapper.removeClass('h5p-active');
+        self.controls.$volumeSliderOverlay.removeClass('h5p-active');
 
         // Done catching mouse events
         self.$overlay.removeClass('h5p-visible');
       }
-      // TODO: on: keydown adjust volume ?
+      // TODO: add event on: keydown -> adjust volume ?
     });
   }
 
