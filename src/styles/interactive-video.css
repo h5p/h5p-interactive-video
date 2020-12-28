@@ -1928,6 +1928,7 @@
 .h5p-interactive-video .h5p-volume-slider .ui-slider-range.h5p-volume-rail {
   height: 100%;
   background: #7a7a7a;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .4);
 }
 .h5p-volume-slider .ui-slider .ui-slider-handle.ui-state-active {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, .4), 0px 0px 0px 6px rgba(255, 255, 255, .2);

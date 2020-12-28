@@ -2162,27 +2162,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
-    self.controls.$volume = $('<div/>', {
-      role: 'button',
-      tabindex: 0,
-      class: 'h5p-control h5p-mute',
-      on: {
-        click: function () {
-          self.toggleMute.call(this);
-        },
-        keydown: function (event) {
-          if (isSpaceOrEnterKey(event)) {
-            self.toggleMute.call(this);
-            event.preventDefault();
-            event.stopPropagation();
-          }
-        },
-      },
-      appendTo: self.controls.$volumeWrapper
-    });
-    self.controls.$volume
-      .attr('aria-label', self.l10n.mute);
-
+    self.controls.$volume = self.createButton('mute', 'h5p-control', self.controls.$volumeWrapper, self.toggleMute);
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
