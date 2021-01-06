@@ -1,10 +1,10 @@
 {
-  "title": "Interactive Video",
+  "title": "Interactive Video - Testing Branch",
   "description": "Put texts, tasks and other medias on top of your video.",
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 22,
+  "minorVersion": 23,
   "patchVersion": 4,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",

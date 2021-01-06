@@ -621,12 +621,16 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
  */
 InteractiveVideo.prototype.getCurrentState = function () {
   var self = this;
+  var videoProgress;
   if (!self.video.play) {
-    return; // Missing video
+    videoProgress = null;
+  }
+  else {
+    videoProgress = self.video.getCurrentTime();
   }
 
   var state = {
-    progress: self.video.getCurrentTime(),
+    progress: videoProgress,
     answers: [],
     interactionsProgress: self.interactions
       .slice()
