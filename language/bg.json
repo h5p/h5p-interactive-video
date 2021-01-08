@@ -461,12 +461,12 @@
           "default": "отговори"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Изпратете резюме на реда на екрана, включително резултат (преобразуване на текст в реч)",
+          "default": "Имате @score от @total точки за @question решени @minutes минути и @seconds секунди."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Изпратете резюме на реда на екрана без резултат (преобразуване на текст в реч)",
+          "default": "Имате отговори на @question ,които са решени след @minutes минути и @seconds секунди."
         }
       ]
     }
