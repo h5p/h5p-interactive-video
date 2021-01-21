@@ -1,0 +1,474 @@
+{
+  "semantics": [
+    {
+      "label": "Editor de Vídeo Interactivo",
+      "fields": [
+        {
+          "label": "Subir/Inserir vídeo",
+          "fields": [
+            {
+              "label": "Engadir un vídeo",
+              "description": "Preme na parte inferior para engadir o vídeo que queres usar no teu vídeo interactivo. Podes engadir un enlace ao vídeo ou cargar un ficheiro de vídeo. Pódense engadir varias versións dun mesmo vídeo con diferentes calidades. Para asegurar a máxima compatibilidade cos navegadores, e aconsellable endagir polo menos unha versión nos formatos webm é mp4."
+            },
+            {
+              "label": "Opcións da pantala de inicio (non válido para vídeos de Youtube)",
+              "fields": [
+                {
+                  "label": "O título deste vídeo interactivo",
+                  "default": "Vídeo Interactivo",
+                  "description": "Usase en resumos, estatísticas, etc."
+                },
+                {
+                  "label": "Agocha o título na pantalla de inicio do vídeo"
+                },
+                {
+                  "label": "Descrición curta (Opcional)",
+                  "description": "Opcional. Amosa un texto curto descritivo na pantalla de inicio do vídeo. Non funciona con vídeos de Youtube."
+                },
+                {
+                  "label": "Imaxe de póster",
+                  "description": "Imaxe amosada antes de que o usuario inicie a reprodución do vídeo. Non funciona con vídeos de Youtube."
+                }
+              ]
+            },
+            {
+              "label": "Fontes de texto (Non funciona con vídeos de Youtube)",
+              "fields": [
+                {
+                  "label": "Fontes de texto dispoñibles",
+                  "entity": "Fonte",
+                  "field": {
+                    "label": "Fonte",
+                    "fields": [
+                      {
+                        "label": "Etiqueta da fonte",
+                        "description": "Usase se se ofrecen múltiples fontes de texto e o usuario ten que escoller unha. Por exemplo, 'Subtítulos en galego' podería ser a etiqueta para a fonte de subtítulos en galego.",
+                        "default": "Subtítulos"
+                      },
+                      {
+                        "label": "Tipo de fonte de texto",
+                        "options": [
+                          {
+                            "label": "Subtítulos"
+                          },
+                          {
+                            "label": "Lenda"
+                          },
+                          {
+                            "label": "Descricións"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
+                        "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
+                      },
+                      {
+                        "label": "Orixe da fonte (ficheiro WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Fonte de texto por defecto",
+                  "description": "Se se deixa en branco ou non coincide con ningunha fonte, usarase a primeira fonte como fonte por defecto."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Engadir interaccións",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Amosar tempo"
+                  },
+                  {
+                    "label": "Pausar vídeo"
+                  },
+                  {
+                    "label": "Amosar como",
+                    "description": "<b>Botón</b> é unha interacción contraída na que o usuario debe premer para que se abra. <b>Póster</b> é unha interacción expandida amosada directamete enriba do vídeo",
+                    "options": [
+                      {
+                        "label": "Botón"
+                      },
+                      {
+                        "label": "Póster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Converter en botón en pantallas pequenas"
+                  },
+                  {
+                    "label": "Etiqueta",
+                    "description": "Etiqueta amosada a carón da icona de interacción."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptabilidade",
+                    "fields": [
+                      {
+                        "label": "Acción se todo é correcto",
+                        "fields": [
+                          {
+                            "label": "Buscar ata",
+                            "description": "Escribe código temporal co formato M:SS"
+                          },
+                          {
+                            "label": "Permitir que o usuario saia e continúe"
+                          },
+                          {
+                            "label": "Mensaxe"
+                          },
+                          {
+                            "label": "Etiqueta para o botón buscar"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Acción se é incorrecto",
+                        "fields": [
+                          {
+                            "label": "Buscar ata",
+                            "description": "Escribe o código temporal co formato M:SS"
+                          },
+                          {
+                            "label": "Permitir que o usuario saia e continúe"
+                          },
+                          {
+                            "label": "Mensaxe"
+                          },
+                          {
+                            "label": "Etiqueta para o botón buscar"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Requerir puntuación completa na tarefa antes de continuar",
+                        "description": "Para conseguir a mellor funcionalidade, deberíase usar esta opción xunto coa opción \"Impedir saltar cara adiante no vídeo\" do Vídeo Interactivo."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Visuais",
+                    "fields": [
+                      {
+                        "label": "Cor de fondo"
+                      },
+                      {
+                        "label": "Sombreado da caixa",
+                        "description": "Engade unha lixeira sombra ao redor da interacción. Deberíase desactivar se queres interaccións completamente transparentes"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ir ao facer clic",
+                    "fields": [
+                      {
+                        "label": "Tipo",
+                        "options": [
+                          {
+                            "label": "Código de tempo"
+                          },
+                          {
+                            "label": "Outra páxina (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Ir a",
+                        "description": "O punto temporal ao que se enviará ao usuario cando prema no punto clave. Escribe o código de tempo co formato M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocolo",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(relativo á raíz)"
+                              },
+                              {
+                                "label": "outras"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualizar",
+                        "description": "Indica que se pode premer na interacción engadindo un bordo e unha icona"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Tarefa de resumo",
+          "fields": [
+            {},
+            {
+              "label": "Amosar en",
+              "description": "Número de segundos antes do remate do vídeo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Configuración do comportamento",
+      "fields": [
+        {
+          "label": "Empezar o vídeo en",
+          "description": "Escribe o código de tempo co formato M:SS"
+        },
+        {
+          "label": "Auto-reprodución do vídeo",
+          "description": "Iniciar a reprodución do vídeo automaticamente"
+        },
+        {
+          "label": "Repodución continua",
+          "description": "Marcar para que o vídeo se reproduza continuamente"
+        },
+        {
+          "label": "Anular o botón \"Amosar Solución\"",
+          "description": "Esta opción determina se aparece o botón \"Amosar Solución\" para todas as preguntas, se se desactiva para todas ou se se configura para cada pregunta individualmente.",
+          "options": [
+            {
+              "label": "Activado"
+            },
+            {
+              "label": "Desactivado"
+            }
+          ]
+        },
+        {
+          "label": "Anular o botón \"Reintentar\"",
+          "description": "Esta opción determina se aparece o botón \"Reintentar\" para todas as preguntas, se se desactiva para todas ou se se configura para cada pregunta individualmente.",
+          "options": [
+            {
+              "label": "Activado"
+            },
+            {
+              "label": "Desactivado"
+            }
+          ]
+        },
+        {
+          "label": "Iniciar co menú de marcadores aberto",
+          "description": "Esta función non está dispoñible no iPad cando se usa Youtube como fonte do vídeo."
+        },
+        {
+          "label": "Amosar botón para rebobinar 10 segundos"
+        },
+        {
+          "label": "Impedir o salto cara adiante no vídeo",
+          "description": "Esta opción impide que o usuario se mova polo vídeo usando os controles de navegación por defecto."
+        },
+        {
+          "label": "Desactivar son",
+          "description": "Esta opción desactiva o son do vídeo e impide que se poda activar."
+        }
+      ]
+    },
+    {
+      "label": "Localizar",
+      "fields": [
+        {
+          "label": "Título da interacción",
+          "default": "Interacción"
+        },
+        {
+          "label": "Reproducir",
+          "default": "Reproducir"
+        },
+        {
+          "label": "Pausa",
+          "default": "Pausa"
+        },
+        {
+          "label": "Silenciar",
+          "default": "Silenciar"
+        },
+        {
+          "label": "Desactivar silencio",
+          "default": "Desactivar Silencio"
+        },
+        {
+          "label": "Calidade do vídeo",
+          "default": "Calidade do vídeo"
+        },
+        {
+          "label": "Lendas",
+          "default": "Lendas"
+        },
+        {
+          "label": "Botón pechar",
+          "default": "Pechar"
+        },
+        {
+          "label": "Pantalla completa",
+          "default": "Pantalla completa"
+        },
+        {
+          "label": "Saír de pantalla completa",
+          "default": "Saír de Pantalla Completa"
+        },
+        {
+          "label": "Resumo",
+          "default": "Abrir o diálogo do resumo"
+        },
+        {
+          "label": "Marcadores",
+          "default": "Marcadores"
+        },
+        {
+          "label": "Pantalla de envío",
+          "default": "Pantalla de envío"
+        },
+        {
+          "label": "Etiqueta por defecto para o botón de busca de adaptabilidade",
+          "default": "Continuar"
+        },
+        {
+          "label": "Etiqueta por defecto para o botón continuar co vídeo",
+          "default": "Continuar co vídeo"
+        },
+        {
+          "label": "Establecer a velocidade da reprodución",
+          "default": "Velocidade da Reprodución"
+        },
+        {
+          "label": "Rebobinar 10 Segundos",
+          "default": "Rebobinar 10 Segundos"
+        },
+        {
+          "label": "Texto para navegación desactivada",
+          "default": "A navegación está desactivada"
+        },
+        {
+          "label": "Texto para son desactivado",
+          "default": "O son está desactivado"
+        },
+        {
+          "label": "Advertencia de que o usuario debe contestar a pregunta correctamente antes de continuar",
+          "default": "Debes contestar todas as preguntas correctamente antes de continuar."
+        },
+        {
+          "label": "Atrás",
+          "default": "Atrás"
+        },
+        {
+          "label": "Horas transcorridas",
+          "default": "Horas"
+        },
+        {
+          "label": "Minutos transcorridos",
+          "default": "Minutos"
+        },
+        {
+          "label": "Segundos transcorridos",
+          "default": "Segundos"
+        },
+        {
+          "label": "Etiqueta para tempo actual",
+          "default": "Tempo actual:"
+        },
+        {
+          "label": "Etiqueta para tempo total",
+          "default": "Tempo total:"
+        },
+        {
+          "label": "Texto explicando que apareceu unha interacción simple cun nome",
+          "default": "Interacción aparecida:"
+        },
+        {
+          "label": "Texto explicando que apareceron múltiples interaccións",
+          "default": "Apareceron múltiples interaccións."
+        },
+        {
+          "label": "Anuncio de vídeo en pausa",
+          "default": "O vídeo está en pausa"
+        },
+        {
+          "label": "Etiqueta do contido",
+          "default": "Contido"
+        },
+        {
+          "label": "Mensaxe de preguntas respondidas (substituirase @answered polo número de preguntas respondidas)",
+          "default": "@answered respondidas"
+        },
+        {
+          "label": "Título da pantalla de envío",
+          "default": "@answered Pregunta(s) respondidas",
+          "description": "substituirase @answered polo número de preguntas respondidas."
+        },
+        {
+          "label": "Información da pantalla de envío",
+          "default": "Respondiches @answered preguntas, preme máis abaixo para enviar as túas respostas.",
+          "description": "substituirase @answered polo número de preguntas respondidas."
+        },
+        {
+          "label": "Información da pantalla de envío para preguntas non respondidas",
+          "default": "Non respondiches ningunha pregunta."
+        },
+        {
+          "label": "Información da pantalla de envío para resposta requerida",
+          "default": "Tes que responder polo menos unha pregunta para poder enviar as túas respostas."
+        },
+        {
+          "label": "Botón enviar da pantalla de envío",
+          "default": "Enviar Respostas"
+        },
+        {
+          "label": "Mensaxe de envío da pantalla de envío",
+          "default": "Enviáronse as túas respostas!"
+        },
+        {
+          "label": "Título da fila da táboa da pantalla de envío: Preguntas respondidas",
+          "default": "Preguntas respondidas"
+        },
+        {
+          "label": "Título da fila da táboa da pantalla de envío: Puntuación",
+          "default": "Puntuación"
+        },
+        {
+          "label": "Puntuación de preguntas respondidas na pantalla de envío",
+          "default": "respondidas"
+        },
+        {
+          "label": "Resumo das filas da pantalla de envío incluíndo a puntuación (para lectores de pantalla)",
+          "default": "Conseguiches @score puntos dun total de @total para a @question que apareceu despois de @minutes minutos e @seconds segundos."
+        },
+        {
+          "label": "Resumo das filas da pantalla de envío sen puntuación (para lectores de pantalla)",
+          "default": "Respondiches a @question que apareceu despois de @minutes minutos e @seconds segundos."
+        }
+      ]
+    }
+  ]
+}
