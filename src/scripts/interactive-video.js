@@ -1653,6 +1653,9 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
  * @returns {H5P.jQuery}
  */
 InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
+    if(typeof this.parent !== 'undefined'){
+        return false;
+    }
   var self = this;
   var endscreen = self.options.assets.endscreens[id];
 
