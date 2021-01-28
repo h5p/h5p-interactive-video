@@ -151,6 +151,11 @@ class Endscreen extends H5P.EventDispatcher {
      * This is subject to being changed.
      */
     this.parent.triggerXAPIScored(this.parent.getUsersScore(), this.parent.getUsersMaxScore(), 'completed');
+    
+    if( typeof this.parent.contentData.standalone !== undefined && this.parent.contentData.standalone){
+      this.parent.triggerXAPIScored(this.parent.getUsersScore(), this.parent.getUsersMaxScore(), 'submitted-curriki');
+    }
+    
   }
 
   /**
