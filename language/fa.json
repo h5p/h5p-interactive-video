@@ -1,112 +1,112 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "ویرایشگر ویدئو تعاملی",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "بارگذاری/جاسازی ویدئو",
           "fields": [
             {
               "label": "افزودن ویدئو",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "description": "برای افزودن ویدئویی که می‌خواهید از آن در ویدئو تعاملی خود استفاده کنید، در زیر کلیک کنید. می‌توانید یک لینک از ویدئو را اضافه کنید یا فایل‌ ویدئویی را بارگذاری کنید. می‌توانید نسخه‌های متعددی از ویدئو را با کیفیت‌های متفاوت اضافه کنید."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "تنظیمات صفحه آغاز (برای ویدئوهای یوتیوب پشتیبانی نمی‌شود)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "عنوان این ویدئو تعاملی",
+                  "default": "ویدئو تعاملی",
+                  "description": "مورد استفاده در خلاصه‌ها، آمار و غیره."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "پنهان کردن عنوان در صفحه آغاز ویدئو"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "توصیف کوتاه (اختیاری)",
+                  "description": "اختیاری. نمایش یک متن توصیف کوتاه در صفحه آغاز ویدئو. برای ویدئوهای یوتیوب کار نمی‌کند."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "تصویر پوستر",
+                  "description": "تصویر نمایش داده شده پیش از اینکه کاربر ویدئو را آغاز کند. برای ویدئوهای یوتیوب کار نمی‌کند."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "مسیرهای متن (برای ویدئوهای یوتیوب پشتیبانی نمی‌شود)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "مسیرهای متن در دسترس",
+                  "entity": "مسیر",
                   "field": {
-                    "label": "Track",
+                    "label": "مسیر",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "برچسب مسیر",
+                        "description": "مورد استفاده در صورتی که مسیرهای متعدد ارائه دهید و کاربر ملزم به انتخاب یک مسیر باشد. برای مثال برچسب یک مسیر زیرنویس اسپانیایی می‌تواند «زیرنویس اسپانیایی» باشد.",
+                        "default": "زیرنویس"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "نوع مسیر متن",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "زیرنویس"
                           },
                           {
-                            "label": "Captions"
+                            "label": "کپشن‌ها"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "توضیحات"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "label": "زبان مبدأ، باید برای زیرنویس تعریف شود",
+                        "description": "باید یک تگ زبان BCP 47 تأیید شده باشد. اگر نوع مسیر انتخاب شده «زیرنویس» باشد، زبان مبدأ مسیر باید تعریف شود."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "منبع مسیر (فایل WebVTT)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "مسیر متن پیش‌فرض",
+                  "description": "اگر خالی گذاشته شود یا با هیچ کدام از مسیرهای متن تطابق نداشته باشد، مسیر متن اول به عنوان پیش‌فرض مورد استفاده قرار می‌گیرد."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "افزودن تعامل",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "زمان نمایش"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "مکث ویدئو"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "نمایش به عنوان",
+                    "description": "<b>دکمه</b> یک عنصر تعاملی بسته شده است که کاربر باید کلیک کند تا باز شود. <b>پوستر</b> یک عنصر تعاملی باز شده است که مستقیماً روی ویدئو نمایش داده می‌شود",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "دکمه"
                       },
                       {
-                        "label": "Poster"
+                        "label": "پوستر"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "در صفحات کوچک به دکمه تبدیل شود"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "برچسب",
+                    "description": "برچسب در کنار آیکون تعامل نمایش داده شود."
                   },
                   {},
                   {},
@@ -115,47 +115,47 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "تطبیق‌پذیری",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "اقدام در مورد همه پاسخ‌های صحیح",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "رفتن به",
+                            "description": "کد زمان را به فرمت ‎M:SS وارد کنید"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "به کاربر اجازه بده انصراف و ادامه دهد"
                           },
                           {
-                            "label": "Message"
+                            "label": "پیام"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "برچسب دکمه پوییدن"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "اقدام در مورد پاسخ‌های غلط",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "رفتن به",
+                            "description": "کد زمان را با فرمت ‎M:SS وارد کنید"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "به کاربر اجازه بده انصراف و ادامه دهد"
                           },
                           {
-                            "label": "Message"
+                            "label": "پیام"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "برچسب دکمه پوییدن"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "الزام به دریافت نمره کامل برای تکلیف پیش از ادامه",
+                        "description": "برای بهترین عملکرد این گزینه باید همزمان با گزینه «جلوگیری از پرش به جلو در ویدئو» در ویدئو تعاملی استفاده شود."
                       }
                     ]
                   },
@@ -163,37 +163,37 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "رنگ پس‌زمینه"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "سایه کادر",
+                        "description": "سایه ظریفی حول عنصر تعاملی اضافه می‌کند. ممکن است بخواهید برای تعامل‌های کاملاً شفاف این را غیرفعال کنید"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "به محض کلیک، برو به",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "نوع",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "کد زمان"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "صفحه‌ای دیگر (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "برو به",
+                        "description": "زمان هدفی که کاربر با کلیک hotspot به آن برده خواهد شد. کد زمان را به فرمت M:SS وارد کنید."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "پروتکل",
                             "options": [
                               {
                                 "label": "http://"
@@ -202,10 +202,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(نسبت به ریشه)"
                               },
                               {
-                                "label": "other"
+                                "label": "سایر"
                               }
                             ]
                           },
@@ -215,258 +215,256 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "نمای کلی",
+                        "description": "با اضافه کردن یک حاشیه و یک آیکون، نشان دهید که می‌توان روی عنصر تعاملی کلیک کرد"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Summary task",
+          "label": "خلاصه",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "نشان بده در",
+              "description": "تعداد ثانیه پیش از اینکه ویدئو به پایان برسد."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "تنظیمات رفتاری",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "شروع ویدئو در",
+          "description": "کد زمان را با فرمت M:SS وارد کنید"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "پخش خودکار ویدئو",
+          "description": "آغاز یه پخش ویدئو به صورت خودکار"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "حلقه زدن ویدئو",
+          "description": "تیک بزن، اگر ویدئو باید در یک حلقه تکرار شود"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "حذف دکمه «جواب را نمایش بده»",
+          "description": "این گزینه تعیین می‌کند که دکمه «جواب را نشان بده» برای همه سؤالات نشان داده خواهد شد، غیر فعال خواهد شد یا برای هر سؤال به صورت منفرد تنظیم خواهد شد.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "فعال"
             },
             {
-              "label": "Disabled"
+              "label": "غیرفعال"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "حذف دکمه «تلاش مجدد»",
+          "description": "این گزینه تعیین می‌کند که دکمه «تلاش مجدد» برای همه سؤالات نشان داده خواهد شد، غیر فعال خواهد شد یا برای هر سؤال به صورت منفرد تنظیم خواهد شد.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "فعال"
             },
             {
-              "label": "Disabled"
+              "label": "غیرفعال"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "با منوی نشانک باز آغاز کن",
+          "description": "وقتی از ویدئو یوتیوب استفاده می‌شود، این عملکرد روی iPad در دسترس نیست."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "نمایش دکمه ۱۰ ثانیه برگشت به عقب"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "جلوگیری از پرش به جلو در ویدئو",
+          "description": "فعال‌سازی این گزینه، پیمایش ویدئو توسط کاربر را از طریق کنترل‌های پیش‌فرض غیرفعال خواهد کرد."
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "غیرفعال کردن صدا",
+          "description": "فعال‌سازی این گزینه صدای ویدئو را غیرفعال خواهد کرد و مانع روشن شدن آن خواهد شد."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "بومی‌سازی",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "عنوان تعامل",
+          "default": "تعامل"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "عنوان پخش",
+          "default": "پخش"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "عنوان مکث",
+          "default": "مکث"
         },
         {
-          "label": "Mute title",
-          "default": "Mute"
+          "label": "عنوان بی‌صدا",
+          "default": "بی‌صدا"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute"
+          "label": "عنوان صدادار",
+          "default": "صدادار"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "عنوان کیفیت ویدئو",
+          "default": "کیفیت ویدئو"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "عنوان کپشن‌های ویدئو",
+          "default": "کپشن‌ها"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "متن دکمه بستن",
+          "default": "بستن"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "عنوان تمام‌صفحه",
+          "default": "تمام‌صفحه"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "عنوان خروج از تمام‌صفحه",
+          "default": "خروج از تمام‌صفحه"
         },
         {
-          "label": "Summary title",
-          "default": "Open summary dialog"
+          "label": "عنوان خلاصه",
+          "default": "باز کردن دیالوگ خلاصه"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "عنوان نشانک‌ها",
+          "default": "نشانک‌ها"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "عنوان صفحه ارسال",
+          "default": "صفحه ارسال"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "برچسب پیش‌فرض برای دکمه پوییدن تطبیق‌پذیری",
+          "default": "ادامه"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "برچسب پیش‌فرض برای دکمه ادامه ویدئو",
+          "default": "ادامه ویدئو"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "تنظیم سرعت پخش",
+          "default": "سرعت پخش"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "۱۰ ثانیه برگشت به عقب",
+          "default": "۱۰ ثانیه برگشت به عقب"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "متن پیمایش غیر فعال است",
+          "default": "پیمایش غیرفعال است"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "متن صدا غیرفعال است",
+          "default": "صدا غیرفعال است"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "اخطار که کاربر باید، پیش از ادامه، به سؤال پاسخ صحیح دهد",
+          "default": "پیش از ادامه، باید به همه سؤالات پاسخ صحیح دهید."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "دکمه برگشت",
+          "default": "برگشت"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "ساعت‌های گذارنده شده",
+          "default": "ساعت"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "دقیقه‌های گذرانده شده",
+          "default": "دقیقه"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "ثانیه‌های گذرانده شده",
+          "default": "ثانیه"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "برچسب زمان کنونی",
+          "default": "زمان کنونی:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "برچسب زمان کل",
+          "default": "زمان کل:"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "متنی برای توضیح اینکه یک تعامل منفرد با یک نام به نمایش گذاشته شده است",
+          "default": "تعامل ظاهر شده:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "متنی برای توضیح اینکه تعامل‌های متعددی به نمایش گذاشته شده‌اند",
+          "default": "تعامل‌های متعدد ظاهر شده‌."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "اعلان مکث ویدئو",
+          "default": "ویدئو نگه داشته شده است"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "برچسب محتوا",
+          "default": "محتوا"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "پیام پاسخ داده شده (@answered با تعداد سؤالات پاسخ داده شده جایگزین می‌شود)",
+          "default": "@answered پاسخ داده شده"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "عنوان صفحه ارسال",
+          "default": "@answered سؤال پاسخ داده شده",
+          "description": "@answered با تعداد سؤال‌های پاسخ داده شده جایگزین می‌شود."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "اطلاعات صفحه ارسال",
+          "default": "شما به @answered سؤال پاسخ دادید، برای ارسال پاسخ‌هایتان در زیر کلیک کنید.",
+          "description": "@answered با تعداد سؤالات پاسخ داده شده جایگزین می‌شود."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "اطلاعات صفحه ارسال برای پاسخ‌های از دست رفته",
+          "default": "شما به هیچ سؤالی پاسخ نداده‌اید."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "اطلاعات صفحه ارسال برای پاسخ‌ مورد نیاز",
+          "default": "پیش از اینکه بتوانید پاسخ‌هایتان را ارسال کنید، لازم است حداقل به یک سؤال پاسخ دهید."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "دکمه ارسال صفحه ارسال",
+          "default": "ارسال پاسخ‌ها"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "پیام ارسال صفحه ارسال",
+          "default": "پاسخ‌هایتان ارسال شد!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "عنوان ردیف جدول صفحه ارسال: سؤالات پاسخ داده شده",
+          "default": "سؤالات پاسخ داده شده"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "عنوان ردیف جدول صفحه ارسال: نمره",
+          "default": "نمره"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "نمره پاسخ داده شده صفحه ارسال",
+          "default": "پاسخ داده شده"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "خلاصه ردیف صفحه ارسال شامل نمره (برای تبدیل متن به گفتار)",
+          "default": "شما برای ‎@question که پس از ‎@minutes دقیقه و ‎@seconds ثانیه ظاهر شد، از ‎@total امتیاز، ‎@score امتیاز دریافت کردید."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "خلاصه ردیف صفحه ارسال بدون نمره (برای تبدیل متن به گفتار)",
+          "default": "شما به @question که پس از @minutes دقیقه و @seconds ثانیه ظاهر شد پاسخ دادید."
         }
       ]
     }
