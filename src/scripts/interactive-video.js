@@ -518,6 +518,77 @@ function InteractiveVideo(params, id, contentData) {
     self.handleAnswered();
   }
 
+
+  /**
+   * Disable tab indexes hidden behind overlay.
+   */
+  self.disableTabIndexes = (elementToExclude = '.h5p-dialog-wrapper') => {
+    var self = this;
+    // Make all other elements in container not tabbable. When dialog is open,
+    // it's like the elements behind does not exist.
+    var $elementToExclude = self.$container.find(elementToExclude);
+    self.$tabbables = self.$container.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
+      var $tabbable = $(this);
+      var insideWrapper = $.contains($elementToExclude.get(0), $tabbable.get(0));
+
+      // tabIndex has already been modified, keep it in the set.
+      if ($tabbable.data('tabindex')) {
+        return true;
+      }
+
+      if (!insideWrapper) {
+        // Store current tabindex, so we can set it back when dialog closes
+        var tabIndex = $tabbable.attr('tabindex');
+        $tabbable.data('tabindex', tabIndex);
+
+        // Make it non tabbable
+        $tabbable.attr('tabindex', '-1');
+        return true;
+      }
+      // If element is part of dialog wrapper, just ignore it
+      return false;
+    });
+  };
+
+  /**
+   * Restore tab indexes that was previously disabled.
+   * @param {H5P.jQuery} [$withinContainer] Only restore tab indexes of elements within this container.
+   */
+  self.restoreTabIndexes = ($withinContainer) => {
+    var self = this;
+    // Resetting tabindex on background elements
+    if (self.$tabbables) {
+      self.$tabbables.each(function () {
+        var $element = $(this);
+        var tabindex = $element.data('tabindex');
+  
+        // Only restore elements within container when specified
+        if ($withinContainer && !$.contains($withinContainer.get(0), $element.get(0))) {
+          return true;
+        }
+  
+        // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
+        if ($element.hasClass('ui-slider-handle')) {
+          $element.attr('tabindex', 0);
+          $element.removeData('tabindex');
+        }
+        else if (tabindex !== undefined) {
+          $element.attr('tabindex', tabindex);
+          $element.removeData('tabindex');
+        }
+        else {
+          $element.removeAttr('tabindex');
+        }
+      });
+  
+      // Do not remove reference if only restored partially
+      if (!$withinContainer) {
+        // Has been restored, remove reference
+        self.$tabbables = undefined;
+      }
+    }
+  };
+
   /**
    * Toggle mute
    * @param {Boolean} [refocus=true]
@@ -3160,77 +3231,6 @@ InteractiveVideo.prototype.restorePosterTabIndexes = function () {
   self.$overlay.find('.h5p-interaction.h5p-poster').each(function () {
     self.restoreTabIndexes($(this));
   });
-};
-
-
-/**
- * Disable tab indexes hidden behind overlay.
- */
-InteractiveVideo.prototype.disableTabIndexes = function (elementToExclude = '.h5p-dialog-wrapper') {
-  var self = this;
-  // Make all other elements in container not tabbable. When dialog is open,
-  // it's like the elements behind does not exist.
-  var $elementToExclude = self.$container.find(elementToExclude);
-  self.$tabbables = self.$container.find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]').filter(function () {
-    var $tabbable = $(this);
-    var insideWrapper = $.contains($elementToExclude.get(0), $tabbable.get(0));
-
-    // tabIndex has already been modified, keep it in the set.
-    if ($tabbable.data('tabindex')) {
-      return true;
-    }
-
-    if (!insideWrapper) {
-      // Store current tabindex, so we can set it back when dialog closes
-      var tabIndex = $tabbable.attr('tabindex');
-      $tabbable.data('tabindex', tabIndex);
-
-      // Make it non tabbable
-      $tabbable.attr('tabindex', '-1');
-      return true;
-    }
-    // If element is part of dialog wrapper, just ignore it
-    return false;
-  });
-};
-
-/**
- * Restore tab indexes that was previously disabled.
- * @param {H5P.jQuery} [$withinContainer] Only restore tab indexes of elements within this container.
- */
-InteractiveVideo.prototype.restoreTabIndexes = function ($withinContainer) {
-  var self = this;
-  // Resetting tabindex on background elements
-  if (self.$tabbables) {
-    self.$tabbables.each(function () {
-      var $element = $(this);
-      var tabindex = $element.data('tabindex');
-
-      // Only restore elements within container when specified
-      if ($withinContainer && !$.contains($withinContainer.get(0), $element.get(0))) {
-        return true;
-      }
-
-      // Specifically handle jquery ui slider, since it overwrites data in an inconsistent way
-      if ($element.hasClass('ui-slider-handle')) {
-        $element.attr('tabindex', 0);
-        $element.removeData('tabindex');
-      }
-      else if (tabindex !== undefined) {
-        $element.attr('tabindex', tabindex);
-        $element.removeData('tabindex');
-      }
-      else {
-        $element.removeAttr('tabindex');
-      }
-    });
-
-    // Do not remove reference if only restored partially
-    if (!$withinContainer) {
-      // Has been restored, remove reference
-      self.$tabbables = undefined;
-    }
-  }
 };
 
 /**
