@@ -694,8 +694,8 @@ InteractiveVideo.prototype.attach = function ($container) {
     });
   }
 
-  // Show the score star if there are endscreens and interactions available or user is editing
-  this.hasStar = this.editor || this.options.assets.endscreens !== undefined && isAnswerable;
+  // Show the score star if there are endscreens and interactions available
+  this.hasStar = this.options.assets.endscreens !== undefined && isAnswerable;
 
   // Video with interactions
   this.attachVideo(this.$videoWrapper);
