@@ -1,29 +1,29 @@
 {
   "semantics": [
     {
-      "label": "Editor de video interactivo",
+      "label": "Editor de Video Interactivo",
       "fields": [
         {
           "label": "Subir/Insertar video",
           "fields": [
             {
-              "label": "Añadir un vídeo",
-              "description": "Haga clic aquí para añadir un vídeo que desea utilizar en su vídeo interactivo. Puede añadir un enlace de vídeo o cargar archivos de vídeo. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máxima compatibilidad en los navegadores por lo menos agregar una versión en formato webm y mp4."
+              "label": "Añadir un video",
+              "description": "Haga clic debajo para añadir un video que desea utilizar en su video interactivo. Puede añadir un enlace de video o subir archivos de video. Es posible añadir varias versiones del video en diferentes calidades. Para asegurar máximo soporte en los navegadores por lo menos agregar una versión en formatos webm y mp4."
             },
             {
-              "label": "Opciones de pantalla de inicio (sin soporte para vídeos de YouTube)",
+              "label": "Opciones de pantalla de inicio (no soportado para videos de YouTube)",
               "fields": [
                 {
-                  "label": "Título de este vídeo interactivo",
-                  "default": "Vídeo interactivo",
-                  "description": "Utilizado en extractos, estadísticas, etc."
+                  "label": "El título de este video interactivo",
+                  "default": "Video Interactivo",
+                  "description": "Usado en resúmenes, estadísticas, etc."
                 },
                 {
-                  "label": "Ocultar el título al inicio del video"
+                  "label": "Ocultar el título en pantalla de inicio del video"
                 },
                 {
                   "label": "Descripción corta (Opcional)",
-                  "description": "Opcional. Mostrar un texto con una breve descripción en la pantalla inicial del vídeo. No funciona para vídeos de YouTube."
+                  "description": "Opcional. Mostrar un texto con una breve descripción en la pantalla inicial del video. No funciona para videos de YouTube."
                 },
                 {
                   "label": "Cartel",
@@ -32,7 +32,7 @@
               ]
             },
             {
-              "label": "Pistas de texto (sin soporte para vídeos de YouTube)",
+              "label": "Pistas de texto (no soportado para vídeos de YouTube)",
               "fields": [
                 {
                   "label": "Pistas de texto disponibles",
@@ -42,7 +42,7 @@
                     "fields": [
                       {
                         "label": "Etiqueta de pista",
-                        "description": "Se usa si ofreces múltiples pistas y el usuario tiene que elegir una. Por ejemplo \"Subtítulos español\" podría ser la etiqueta para una pista con subtítulos en ese idioma.",
+                        "description": "Se usa si ofreces múltiples pistas y el usuario tiene que elegir una. Por ejemplo \"Subtítulos en español\" podría ser la etiqueta para una pista con subtítulos en ese idioma.",
                         "default": "Subtítulos"
                       },
                       {
@@ -52,7 +52,7 @@
                             "label": "Subtítulos"
                           },
                           {
-                            "label": "Títulos"
+                            "label": "Letreritos"
                           },
                           {
                             "label": "Descripciones"
@@ -60,8 +60,8 @@
                         ]
                       },
                       {
-                        "label": "Idioma de origen, debe definirse para los subtítulos",
-                        "description": "Debe ser una etiqueta de idioma válida de BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
+                        "label": "Idioma de origen, debe estar definido para los subtítulos",
+                        "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
                         "label": "Origen de la pista (archivo WebVTT)"
@@ -70,7 +70,7 @@
                   }
                 },
                 {
-                  "label": "Texto por defecto de la pista",
+                  "label": "Pista de texto predeterminada",
                   "description": "Si se deja vacío o no coincide con ninguna de las pistas de texto, la primera pista de texto se utilizará como predeterminada."
                 }
               ]
@@ -78,20 +78,20 @@
           ]
         },
         {
-          "label": "Agregar una interacción",
+          "label": "Agregar interacciones",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Mostrar duración"
+                    "label": "Mostrar tiempo"
                   },
                   {
-                    "label": "Pausar vídeo"
+                    "label": "Pausar video"
                   },
                   {
                     "label": "Mostrar como",
-                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe presionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente por delante del video.",
+                    "description": "<b>Botón</b> es una interacción colapsada que el usuario debe presionar para abrir. <b>Cartel</b> es una interacción expandida mostrada directamente sobre del video",
                     "options": [
                       {
                         "label": "Botón"
@@ -118,7 +118,7 @@
                     "label": "Adaptabilidad",
                     "fields": [
                       {
-                        "label": "Acción en todas las correctas",
+                        "label": "Acción en todas correctas",
                         "fields": [
                           {
                             "label": "Buscar",
@@ -136,14 +136,14 @@
                         ]
                       },
                       {
-                        "label": "Acción para incorrecta",
+                        "label": "Acción en incorrecta",
                         "fields": [
                           {
                             "label": "Ir a",
                             "description": "Introduzca el código de tiempo en el formato M:SS"
                           },
                           {
-                            "label": "Permitir al usuario no responder y seguir"
+                            "label": "Permitir al usuario no responder y continuar"
                           },
                           {
                             "label": "Mensaje"
@@ -154,8 +154,8 @@
                         ]
                       },
                       {
-                        "label": "Requerir puntuación máxima para la tarea antes de seguir",
-                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un vídeo\" del vídeo interactivo."
+                        "label": "Requerir puntaje máximo para el trabajo antes de seguir",
+                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un video\" del Video Interactivo."
                       }
                     ]
                   },
@@ -172,7 +172,7 @@
                     ]
                   },
                   {
-                    "label": "Ir a al hacer click",
+                    "label": "Ir a al hacer clic",
                     "fields": [
                       {
                         "label": "Tipo",
@@ -186,8 +186,8 @@
                         ]
                       },
                       {
-                        "label": "Ir a",
-                        "description": "El punto del vídeo al que moverá el usuario al pulsar el hotspot. Introduzca el código de tiempo en el formato M:SS."
+                        "label": "Ir A",
+                        "description": "El punto del video al que moverá el usuario al pulsar el hotspot. Introduzca el código de tiempo en el formato M:SS."
                       },
                       {
                         "label": "URL",
@@ -202,10 +202,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(raíz relativa)"
+                                "label": "(relativa a raíz)"
                               },
                               {
-                                "label": "Otro"
+                                "label": "otro"
                               }
                             ]
                           },
@@ -222,13 +222,11 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Resúmen del ejercicio",
+          "label": "Resumen del trabajo",
           "fields": [
             {},
             {
@@ -240,35 +238,35 @@
       ]
     },
     {
-      "label": "Ajustes de comportamiento",
+      "label": "Configuraciones del comportamiento",
       "fields": [
         {
           "label": "Iniciar vídeo en",
           "description": "Introduzca el código de tiempo en el formato M:SS"
         },
         {
-          "label": "Reproducir en loop",
-          "description": "Seleccionar si el vídeo debería reproducirse en loop"
+          "label": "Auto-reproducir video",
+          "description": "Comenzar a reproducir el video automáticamente"
         },
         {
-          "label": "Sobre-escribir botón \"Mostrar solución\"",
-          "description": "Esta opción determina si el botón \"Mostrar solución\" se mostrará para todas las preguntas, se desactivará para todos o se configurará para cada pregunta individualmente."
+          "label": "Bucle de video",
+          "description": "Activar si el video debería correr en un bucle"
         },
         {
-          "label": "Sobre-escribir botón  \"Reintentar\"",
-          "description": "Esta opción determina si el botón \"Reintentar\" se mostrará para todas las preguntas, se desactivará para todos o se configurará para cada pregunta individualmente.",
+          "label": "Anular botón \"Mostrar Solución\"",
+          "description": "Esta opción determina si el botón \"Mostrar Solución\" se mostrará para todas las preguntas, se desactivará para todas o se configurará para cada pregunta individualmente.",
           "options": [
             {
               "label": "Habilitado"
             },
             {
-              "label": "Desactivado"
+              "label": "Deshabilitado"
             }
           ]
         },
         {
-          "label": "Mostrar el menú de marcadores en la carga",
-          "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video",
+          "label": "Anular botón \"Reintentar\"",
+          "description": "Esta opción determina si el botón \"Reintentar\" será mostrado para todas las preguntas, deshabilitado para todas, o configurado para cada pregunta individualmente.",
           "options": [
             {
               "label": "Habilitado"
@@ -280,7 +278,7 @@
         },
         {
           "label": "Iniciar con el menú de marcadores abierto",
-          "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video"
+          "description": "Esta función no está disponible en iPad cuando se utiliza YouTube como fuente de video."
         },
         {
           "label": "Mostrar botón para rebobinar 10 segundos"
@@ -291,7 +289,7 @@
         },
         {
           "label": "Desactivar sonido",
-          "description": "Habilitar esta opción desactiva el sonido del vídeo y evitar que se active."
+          "description": "Habilitar esta opción desactiva el sonido del vídeo y evitará que se active."
         }
       ]
     },
@@ -299,56 +297,56 @@
       "label": "Localizar",
       "fields": [
         {
-          "label": "Título de la actividad",
+          "label": "Título de la interacción",
           "default": "Interacción"
         },
         {
-          "label": "Reproducir",
+          "label": "Reproducir título",
           "default": "Reproducir"
         },
         {
-          "label": "Pausar",
+          "label": "Pausar título",
           "default": "Pausa"
         },
         {
-          "label": "Silenciar",
+          "label": "Silenciar título",
           "default": "Silenciar"
         },
         {
-          "label": "Habilitar sonido",
+          "label": "Activar sonido del título",
           "default": "Activar sonido"
         },
         {
           "label": "Título de la calidad de vídeo",
-          "default": "Calidad de vídeo"
+          "default": "Calidad del Video"
         },
         {
-          "label": "Nombre de los títulos del vídeo",
-          "default": "Títulos"
+          "label": "Título de los letreritos del video",
+          "default": "Letreritos"
         },
         {
-          "label": "Texto del botón cerrar",
+          "label": "Texto del botón Cerrar",
           "default": "Cerrar"
         },
         {
-          "label": "Pantalla completa",
-          "default": "Pantalla completa"
+          "label": "Título de PantallaCompleta",
+          "default": "PantallaCompleta"
         },
         {
-          "label": "Título de Salir de pantalla completa",
-          "default": "Salir de pantalla completa"
+          "label": "Título de Salir de PantallaCompleta",
+          "default": "Salir de PantallaCompleta"
         },
         {
-          "label": "Título de Resumen",
-          "default": "Resumen"
+          "label": "Título del Resumen",
+          "default": "Abrir diálogo de resumen"
         },
         {
           "label": "Título de marcadores",
           "default": "Marcadores"
         },
         {
-          "label": "Título de pantalla de confirmación",
-          "default": "Confirmar"
+          "label": "Título de pantalla de envío",
+          "default": "Pantalla de Envío"
         },
         {
           "label": "Etiqueta predeterminada para el botón de búsqueda de adaptabilidad",
@@ -356,7 +354,7 @@
         },
         {
           "label": "Etiqueta predeterminada para el botón de continuar video",
-          "default": "Continuar con el vídeo"
+          "default": "Continuar con el video"
         },
         {
           "label": "Establecer la velocidad de reproducción",
@@ -367,11 +365,11 @@
           "default": "Retroceder 10 segundos"
         },
         {
-          "label": "Texto para navegación deshabilitada",
+          "label": "Texto para navegación está deshabilitada",
           "default": "La navegación está deshabilitada"
         },
         {
-          "label": "Texto para el sonido deshabilitado",
+          "label": "Texto para el sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {
@@ -380,26 +378,26 @@
         },
         {
           "label": "Botón de retroceso",
-          "default": "Retroceso"
+          "default": "Retroceder"
         },
         {
-          "label": "Tiempo transcurrido (horas)",
+          "label": "Tiempo transcurrido en horas",
           "default": "Horas"
         },
         {
-          "label": "Tiempo transcurrido (minutos)",
+          "label": "Tiempo transcurrido en minutos",
           "default": "Minutos"
         },
         {
-          "label": "Tiempo transcurrido segundos",
+          "label": "Tiempo transcurrido en segundos",
           "default": "Segundos"
         },
         {
           "label": "Etiqueta de tiempo actual",
-          "default": "Hora actual:"
+          "default": "Tiempo actual:"
         },
         {
-          "label": "Etiqueta de tiempo total",
+          "label": "Etiqueta para tiempo total",
           "default": "Tiempo total:"
         },
         {
@@ -419,53 +417,53 @@
           "default": "Contenido"
         },
         {
-          "label": "Mensaje de respondidas (@answered será reemplazada por el número de preguntas respondidas)",
-          "default": "@answered respondidas"
+          "label": "Mensaje de contestadas (@answered será reemplazada por el número de preguntas contestadas)",
+          "default": "@answered contestadas"
         },
         {
-          "label": "Título de pantalla de confirmación",
-          "default": "@answered pregunta(s) respondidas",
-          "description": "@answered será reemplazada por el número de preguntas respondidas."
+          "label": "Título de pantalla de envío",
+          "default": "@answered pregunta(s) contestada(s)",
+          "description": "@answered será reemplazada por el número de preguntas contestadas."
         },
         {
-          "label": "Información de la pantalla de confirmación",
-          "default": "Usted ha respondido @answered preguntas, haga click a continuación para confirmar sus respuestas.",
-          "description": "@answered será reemplazada por el número de preguntas respondidas."
+          "label": "Información de la pantalla de envío",
+          "default": "Usted ha contestado @answered preguntas, haga clic a continuación para confirmar sus respuestas.",
+          "description": "@answered será reemplazada por el número de preguntas contestadas."
         },
         {
-          "label": "Información de pantalla para respuestas faltantes",
+          "label": "Información de pantalla de envío para respuestas faltantes",
           "default": "Usted no ha respondido ninguna pregunta."
         },
         {
-          "label": "Información de pantalla para respuestas necesarias",
-          "default": "Usted debe responder al menos una pregunta antes de poder confirmar sus respuestas."
+          "label": "Información de pantalla de envío para respuesta necesaria",
+          "default": "Usted debe responder al menos una pregunta antes de poder enviar sus respuestas."
         },
         {
-          "label": "Botón de confirmación en la pantalla de confirmación",
-          "default": "Confirmar respuestas"
+          "label": "Botón de envío en la pantalla de envío",
+          "default": "Enviar Respuestas"
         },
         {
-          "label": "Mensaje de confirmación en pantalla de confirmación",
+          "label": "Mensaje de envío en pantalla de envío",
           "default": "¡Sus respuestas han sido enviadas!"
         },
         {
-          "label": "Título de fila de tabla de enviar pantalla: Preguntas respondidas",
+          "label": "Título de fila de tabla en pantalla de envío: Preguntas respondidas",
           "default": "Preguntas respondidas"
         },
         {
-          "label": "Título de fila de tabla de enviar pantalla: Puntaje",
+          "label": "Título de fila de tabla de pantalla de envío: Puntaje",
           "default": "Puntaje"
         },
         {
-          "label": "Puntaje respondidas de enviar pantalla",
-          "default": "Respondida"
+          "label": "Puntaje respondidas de pantalla de envío",
+          "default": "respondidas"
         },
         {
-          "label": "Resumen de fila de pantalla de envío incluyendo puntaje (para lectores de voz)",
+          "label": "Resumen de fila de pantalla de envío incluyendo puntaje (para lectores de texto en voz alta)",
           "default": "Usted tuvo @score de un total de @total puntos para la @question que apareció después de @minutes minutos y @seconds segundos."
         },
         {
-          "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de voz)",
+          "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de texto en voz alta)",
           "default": "Usted ha contestado la @question que apareció después de @minutes minutos y @seconds segundos."
         }
       ]

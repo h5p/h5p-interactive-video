@@ -1,0 +1,472 @@
+{
+  "semantics": [
+    {
+      "label": "Interaktiewe video redigeerder",
+      "fields": [
+        {
+          "label": "Oplaai/inbed video",
+          "fields": [
+            {
+              "label": "Voeg 'n video by",
+              "description": "Klik hieronder om 'n video wat jy in jou interaktiewe video wil gebruik, by te voeg. Jy kan 'n videoskakel byvoeg of videolêers oplaai. Dit is moontlik om verskillende gehalte weergawes van die video by te voeg. Om maksimum ondersteuning in blaaiers te verseker, moet jy ten minste 'n weergawe in webm- en mp4-formate byvoeg."
+            },
+            {
+              "label": "Beginskermopsies (word nie vir YouTube videos gesteun nie)",
+              "fields": [
+                {
+                  "label": "Die titel van die interaktiewe video",
+                  "default": "Interaktiewe video",
+                  "description": "Gebruik in opsommings, statistieke ens."
+                },
+                {
+                  "label": "Versteek titel op video beginskerm"
+                },
+                {
+                  "label": "Kort beskrywing (Opsioneel)",
+                  "description": "Opsioneel. Vertoon 'n kort beskrywingteks op die videobeginskerm. Dit werk nie vir YouTube video's nie."
+                },
+                {
+                  "label": "Plakkaatbeeld",
+                  "description": "Beeld wat vertoon voordat die gebruiker die video begin. Dit werk nie vir YouTube-video's nie."
+                }
+              ]
+            },
+            {
+              "label": "Teks-snitte (word nie ondersteun vir YouTube-video's nie)",
+              "fields": [
+                {
+                  "label": "Beskikbare teks-snitte",
+                  "entity": "Snit",
+                  "field": {
+                    "label": "Snit",
+                    "fields": [
+                      {
+                        "label": "Snitetiket",
+                        "description": "Word gebruik as jy verskeie snitte aanbied en die gebruiker 'n snit moet kies. 'Spaanse byskrif' kan byvoorbeeld die etiket van 'n Spaanse byskrifsnit wees.",
+                        "default": "Byskrifte"
+                      },
+                      {
+                        "label": "Soort teks-snit",
+                        "options": [
+                          {
+                            "label": "Byskrifte"
+                          },
+                          {
+                            "label": "Onderskrifte"
+                          },
+                          {
+                            "label": "Beskrywings"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Brontaal, moet vasgestel word vir byskrifte",
+                        "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
+                      },
+                      {
+                        "label": "Snitbron (WebVTT-lêer)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Verstek teks-snit",
+                  "description": "Indien dit leeg gelaat word of nie by enige van die tekssnitte pas nie, sal die eerste teksbaan as standaard gebruik word."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Voeg interaksies by",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Vertoon tyd"
+                  },
+                  {
+                    "label": "Pouseer video"
+                  },
+                  {
+                    "label": "Vertoon as",
+                    "description": "<b>Knoppie</b> is 'n ingevoude interaksie wat die gebruiker moet druk om oop te maak. <b>Plakkaat</b> is 'n uitgebreide interaksie wat direk bo op die video vertoon word",
+                    "options": [
+                      {
+                        "label": "Knoppie"
+                      },
+                      {
+                        "label": "Plakkaat"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Verander in knoppie op klein skerms"
+                  },
+                  {
+                    "label": "Etiket",
+                    "description": "Etiket word langsaan interaksieikoon vertoon."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Aanpasbaarheid",
+                    "fields": [
+                      {
+                        "label": "Aksie as alles reg is",
+                        "fields": [
+                          {
+                            "label": "Soek om",
+                            "description": "Voer tydkode in die formaat M:SS in"
+                          },
+                          {
+                            "label": "Laat gebruiker toe om uit te gaan en voort te gaan"
+                          },
+                          {
+                            "label": "Boodskap"
+                          },
+                          {
+                            "label": "Etiket vir soekknoppie"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Aksie indien verkeerd",
+                        "fields": [
+                          {
+                            "label": "Soek om",
+                            "description": "Voer tydkode in die formaat M:SS in"
+                          },
+                          {
+                            "label": "Laat gebruiker toe om uit te gaan en aan te gaan"
+                          },
+                          {
+                            "label": "Boodskap"
+                          },
+                          {
+                            "label": "Etiket vir soekknoppie"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Vereis volpunte vir taak voordat verder gegaan word",
+                        "description": "Vir die beste funksionaliteit moet hierdie opsie in kombinasie met die opsie \"Voorkom dat jy in 'n video vorentoe spring\" van Interaktiewe Video gebruik word."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Beeldmateriaal",
+                    "fields": [
+                      {
+                        "label": "Agtergrondkleur"
+                      },
+                      {
+                        "label": "Boks skaduwee",
+                        "description": "Voeg 'n subtiele skaduwee by die interaksie. Jy wil dit dalk uitskakel vir volledig deursigtige interaksies"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Gaan na met klik",
+                    "fields": [
+                      {
+                        "label": "Soort",
+                        "options": [
+                          {
+                            "label": "Tydkode"
+                          },
+                          {
+                            "label": "Ander blad (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Gaan na",
+                        "description": "Die teikentyd wat die gebruiker sal gebruik deur op die warmkol te druk. Voer die tydkode in die formaat M:SS in."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protokol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(wortel relatief)"
+                              },
+                              {
+                                "label": "ander"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Visualiseer",
+                        "description": "Wys dat interaksie geklik kan word deur 'n randtjie of 'n ikoon by te voeg"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Opsomming taak",
+          "fields": [
+            {},
+            {
+              "label": "Vertoon by",
+              "description": "Aantal sekondes voor die video eindig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Gedragsinstellings",
+      "fields": [
+        {
+          "label": "Begin video by",
+          "description": "Voer tydkode in die formaat M:SS in"
+        },
+        {
+          "label": "Speel video outomaties",
+          "description": "Begin video outomaties te speel"
+        },
+        {
+          "label": "Lusloop die video",
+          "description": "Kyk of video in 'n lusloop gewys moet word"
+        },
+        {
+          "label": "Oorskry \"Wys oplossing\" knoppie",
+          "description": "Hierdie opsie bepaal of die \"Wys antwoord\" -knoppie vir alle vrae getoon word, vir almal uitgeskakel of afsonderlik vir elke vraag ingestel word.",
+          "options": [
+            {
+              "label": "Aktiveer"
+            },
+            {
+              "label": "Deaktiveer"
+            }
+          ]
+        },
+        {
+          "label": "Oorskry \"Probeer weer\" knoppie",
+          "description": "Hierdie opsie bepaal of die \"Probeer weer\" -knoppie vir alle vrae getoon word, vir almal uitgeskakel of afsonderlik vir elke vraag ingestel word.",
+          "options": [
+            {
+              "label": "Aktiveer"
+            },
+            {
+              "label": "Deaktiveer"
+            }
+          ]
+        },
+        {
+          "label": "Begin met oop boekmerkmenu",
+          "description": "Hierdie funksie is nie beskikbaar op iPad wanneer YouTube as videobron gebruik word nie."
+        },
+        {
+          "label": "Wys 10 sekondes terugspeelknoppie"
+        },
+        {
+          "label": "Verhoed vooruitspring in video",
+          "description": "Aktivering van hierdie opsie sal gebruikernavigasiekontrole deur verstekkontroles deaktiveer."
+        },
+        {
+          "label": "Deaktiveer klank",
+          "description": "Aktivering van hierdie opsie sal die video se klank deaktiveer en verhoed dat dit aangeskakel kan word."
+        }
+      ]
+    },
+    {
+      "label": "Lokaliseer",
+      "fields": [
+        {
+          "label": "Interaksie titel",
+          "default": "Interaksie"
+        },
+        {
+          "label": "Wys titel",
+          "default": "Speel"
+        },
+        {
+          "label": "Pouseer titel",
+          "default": "Pouse"
+        },
+        {
+          "label": "Demp titel",
+          "default": "Demp"
+        },
+        {
+          "label": "Ontdemp titel",
+          "default": "Ontdemp"
+        },
+        {
+          "label": "Video kwaliteit titel",
+          "default": "Video kwaliteit"
+        },
+        {
+          "label": "Video onderskriftitel",
+          "default": "Onderskrifte"
+        },
+        {
+          "label": "Sluit knoppieteks",
+          "default": "Sluit"
+        },
+        {
+          "label": "Volskerm titel",
+          "default": "Volskerm"
+        },
+        {
+          "label": "Verlaat volskermtitel",
+          "default": "Vertlaat volskerm"
+        },
+        {
+          "label": "Opsomming titel",
+          "default": "Maak opsomming dialoog oop"
+        },
+        {
+          "label": "Boekmerk titel",
+          "default": "Boekmerke"
+        },
+        {
+          "label": "Dien in skermtitel",
+          "default": "Dien in skerm"
+        },
+        {
+          "label": "Versteketiket vir aanpasbare soekknoppie",
+          "default": "Gaan voort"
+        },
+        {
+          "label": "Versteketiket vir gaan voort met video knoppie",
+          "default": "Gaan voort met video"
+        },
+        {
+          "label": "Stel die terugspeelkoers",
+          "default": "Terugspeelkoers"
+        },
+        {
+          "label": "Terugspeel 10 sekondes",
+          "default": "Terugspeel 10 sekondes"
+        },
+        {
+          "label": "Navigasie is deaktiveer teks",
+          "default": "Navigasie is deaktiveer"
+        },
+        {
+          "label": "Klank is deaktiveer teks",
+          "default": "Klank is deaktiveer"
+        },
+        {
+          "label": "Waarskuwing dat die gebruiker die vraag reg moet antwoord voordat hy/sy verder gaan",
+          "default": "Jy moet al die vrae reg beantwoord voor jy kan verder gaan."
+        },
+        {
+          "label": "Terug knoppie",
+          "default": "Terug"
+        },
+        {
+          "label": "Ure verloop",
+          "default": "Ure"
+        },
+        {
+          "label": "Minute verloop",
+          "default": "Minute"
+        },
+        {
+          "label": "Sekondes verloop",
+          "default": "Sekondes"
+        },
+        {
+          "label": "Etiket vir teenwoordige tyd",
+          "default": "Teenwoordige tyd:"
+        },
+        {
+          "label": "Etiket vir totale tyd",
+          "default": "Totale tyd:"
+        },
+        {
+          "label": "Teks wat verduidelik dat 'n enkele interaksie met 'n naam sigbaar geword het",
+          "default": "Interaksie verskyn:"
+        },
+        {
+          "label": "Teks wat verduidelik dat verskeie interaksies sigbaar geword het",
+          "default": "Verskeie interaksies verskyn."
+        },
+        {
+          "label": "Video gepouseer aankondiging",
+          "default": "Video is gepouseer"
+        },
+        {
+          "label": "Inhoudetiket",
+          "default": "Inhoud"
+        },
+        {
+          "label": "Beantwoorde boodskap (@answered sal vervang word met die aantal beantwoorde vrae)",
+          "default": "@answered beantwoord"
+        },
+        {
+          "label": "Dien skermtitel in",
+          "default": "@answered Vraag/Vrae beantwoord",
+          "description": "@answered sal vervang word met die aantal beantwoorde vrae."
+        },
+        {
+          "label": "Dien skerm in informasie",
+          "default": "Jy het @answered vrae beantwoord, klik hieronder om jou vrae in te dien.",
+          "description": "@answered sal vervang word met die aantal beantwoorde vrae."
+        },
+        {
+          "label": "Dien skerminformasie vir ontbrekende antwoorde in",
+          "default": "Jy het geen vrae beantwoord nie."
+        },
+        {
+          "label": "Dien-in-skerm-informasie vir benodigde antwoorde",
+          "default": "Jy moet ten minste een vraag beantwoord voor jy jou antwoorde kan indien."
+        },
+        {
+          "label": "Indienskerm indien knoppie",
+          "default": "Dien antwoorde in"
+        },
+        {
+          "label": "Indienskerm indienboodskap",
+          "default": "Jou antwoorde is ingedien!"
+        },
+        {
+          "label": "Indienskerm tabelrytitel: Beantwoorde vrae",
+          "default": "Beantwoorde vrae"
+        },
+        {
+          "label": "Indienskerm tabelrytitel: Telling",
+          "default": "Telling"
+        },
+        {
+          "label": "Indienskerm beantwoorde telling",
+          "default": "beantwoord"
+        },
+        {
+          "label": "Indienskerm ry opsomming insluitend telling (vir spreeklesers)",
+          "default": "Jy het @score uit @total punte vir die @question wat verskyn het na @minutes minute en @seconds sekondes gekry."
+        },
+        {
+          "label": "Indienskerm ry opsomming vir geen telling (vir spreeklesers)",
+          "default": "Jy het die @question wat verskyn het na @minutes minute en @seconds sekondes beantwoord."
+        }
+      ]
+    }
+  ]
+}
