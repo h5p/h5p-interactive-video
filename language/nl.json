@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -340,7 +338,7 @@
         },
         {
           "label": "Samenvatting",
-          "default": "Samenvatting"
+          "default": "Open samenvattingsvenster"
         },
         {
           "label": "Bladwijzers",
