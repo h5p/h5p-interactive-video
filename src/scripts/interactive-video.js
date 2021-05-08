@@ -3811,6 +3811,14 @@ InteractiveVideo.prototype.getXAPIData = function () {
   };
 };
 
+InteractiveVideo.prototype.getAnswerGiven = function () {
+  var self = this;
+  const answeredTotal = self.interactions
+            .map (interaction => interaction.getProgress() || 0)
+            .reduce((a, b) => a + b, 0);
+  return answeredTotal;
+};
+
 /**
  * Add the question itself to the definition part of an xAPIEvent
  */
