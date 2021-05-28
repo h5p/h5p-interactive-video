@@ -913,6 +913,16 @@ InteractiveVideo.prototype.addControls = function () {
   // Add bookmarks
   this.addBookmarks();
 
+  // If we change to a shorter video we need to remove the endscreens that are after the new length
+  if (this.options.assets.endscreens && this.options.assets.endscreens.length >0) {
+    for (let i = 0; i<this.options.assets.endscreens.length; i++) {
+      const endscreen = this.options.assets.endscreens[i];
+      if(endscreen.time > this.getDuration()) {
+        this.options.assets.endscreens.splice(i,1);
+      }
+    }
+  }
+
   // Add endscreens
   this.addEndscreenMarkers();
 
