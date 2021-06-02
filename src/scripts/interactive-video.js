@@ -280,6 +280,11 @@ function InteractiveVideo(params, id, contentData) {
       return;
     }
 
+    // Handle video container loaded
+    self.video.on('containerLoaded', function () {
+      self.trigger('resize');
+    });
+
     // Handle video source loaded events (metadata)
     self.video.on('loaded', function () {
       isLoaded = true;
