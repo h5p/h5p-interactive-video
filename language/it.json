@@ -340,7 +340,7 @@
         },
         {
           "label": "Titolo di riepilogo",
-          "default": "Riepilogo"
+          "default": "Apri la finestra di dialogo del sommario"
         },
         {
           "label": "Titolo dei segnalibri",

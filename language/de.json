@@ -280,14 +280,14 @@
         },
         {
           "label": "Mit geöffnetem Lesezeichen-Menü starten",
-          "description": "Diese Funktion ist auf iPads nicht verfügbar, wenn das Video von YouTube stammt"
+          "description": "Diese Funktion ist auf iPads nicht verfügbar, wenn das Video von YouTube stammt."
         },
         {
           "label": "Button zeigen, um 10 Sekunden zurück zu springen"
         },
         {
           "label": "Springen deaktivieren",
-          "description": "Wenn ausgewählt, muss der Lernende das Video anschauen, ohne selbst an andere Stellen springen zu können"
+          "description": "Wenn ausgewählt, muss der Lernende das Video anschauen, ohne selbst an andere Stellen springen zu können."
         },
         {
           "label": "Ton deaktivieren",
@@ -340,7 +340,7 @@
         },
         {
           "label": "Titel der Zusammenfassung",
-          "default": "Zusammenfassung"
+          "default": "Zusammenfassung öffnen"
         },
         {
           "label": "Beschriftung des \"Lesezeichen\"-Buttons",

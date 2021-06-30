@@ -281,11 +281,21 @@ function InteractiveVideo(params, id, contentData) {
       return;
     }
 
+    // Handle video container loaded
+    self.video.on('containerLoaded', function () {
+      self.trigger('resize');
+    });
+
     // Handle video source loaded events (metadata)
     self.video.on('loaded', function () {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
+    });
+
+    // Video may change size on canplay, so we must react by resizing
+    self.video.on('canplay', function () {
+      self.trigger('resize');
     });
 
     self.video.on('error', function () {
@@ -501,7 +511,12 @@ function InteractiveVideo(params, id, contentData) {
 
       // Auto toggle fullscreen on play if on a small device
       var isSmallDevice = screen ? Math.min(screen.width, screen.height) <= self.width : true;
-      if (!self.hasFullScreen && isSmallDevice && self.$container.hasClass('h5p-standalone') && self.$container.hasClass('h5p-minimal')) {
+      const canPlayInFullScreen = H5P.fullscreenSupported
+        && !self.hasFullScreen
+        && isSmallDevice
+        && self.$container.hasClass('h5p-standalone')
+        && self.$container.hasClass('h5p-minimal');
+      if (canPlayInFullScreen) {
         self.toggleFullScreen();
       }
       self.video.play();
@@ -678,7 +693,8 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.$controls.appendTo($container);
 
   // 'video only' fallback has no interactions
-  let isAnswerable = false;
+  let isAnswerable = this.hasMainSummary();
+  
   if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
@@ -689,8 +705,8 @@ InteractiveVideo.prototype.attach = function ($container) {
     });
   }
 
-  // Show the score star if there are endscreens and interactions available or user is editing
-  this.hasStar = this.editor || this.options.assets.endscreens !== undefined && isAnswerable;
+  // Show the score star if there are endscreens and interactions available
+  this.hasStar = this.editor || (this.options.assets.endscreens !== undefined && this.options.assets.endscreens.length) && isAnswerable;
 
   // Video with interactions
   this.attachVideo(this.$videoWrapper);
@@ -907,6 +923,16 @@ InteractiveVideo.prototype.addControls = function () {
 
   // Add bookmarks
   this.addBookmarks();
+
+  // If we change to a shorter video we need to remove the endscreens that are after the new length
+  if (this.options.assets.endscreens && this.options.assets.endscreens.length >0) {
+    for (let i = 0; i<this.options.assets.endscreens.length; i++) {
+      const endscreen = this.options.assets.endscreens[i];
+      if(endscreen.time > this.getDuration()) {
+        this.options.assets.endscreens.splice(i,1);
+      }
+    }
+  }
 
   // Add endscreens
   this.addEndscreenMarkers();
@@ -2075,6 +2101,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   if (self.deactivateSound) {
     self.video.mute();
+  }
+
+  if (self.video.isMuted()) {
+    // Toggle initial mute button state
+    self.controls.$volume
+      .addClass('h5p-muted')
+      .attr('aria-label', self.l10n.sndDisabled);
   }
 
   // TODO: Do not add until qualities are present?
