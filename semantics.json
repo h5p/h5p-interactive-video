@@ -724,6 +724,14 @@
         "description": "Enabling this options will disable user video navigation through default controls."
       },
       {
+        "name": "disableSubmitButton",
+        "type": "boolean",
+        "default": false,
+        "label": "Disable submit button",
+        "importance": "low",
+        "description": "Enabling this option will disable the submit button until the video finished playing."
+      },
+      {
         "name": "deactivateSound",
         "type": "boolean",
         "default": false,
@@ -1005,6 +1013,15 @@
         "importance": "low",
         "default": "You have answered @answered questions, click below to submit your answers.",
         "description": "@answered will be replaced by the number of answered questions.",
+        "optional": true
+      },
+      {
+        "name": "endcardInformationNotFinished",
+        "type": "text",
+        "label": "Submit screen information for not finished",
+        "importance": "low",
+        "default": "You cannot submit your answers before the video has reached the end.",
+        "description": "Will disable the submit button until the video has reached the end.",
         "optional": true
       },
       {

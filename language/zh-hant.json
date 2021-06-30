@@ -433,6 +433,11 @@
           "description": "@answered 為已回答數"
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "提交畫面中的未回答訊息文字",
           "default": "你沒有回答任何問題。"
         },

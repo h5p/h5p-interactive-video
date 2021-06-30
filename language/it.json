@@ -433,6 +433,11 @@
           "description": "@answered sarà sostituito dal numero di domande con risposta"
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "Invia la schermata di informazioni per le risposte mancanti",
           "default": "Non hai risposto a nessuna domanda"
         },

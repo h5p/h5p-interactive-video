@@ -433,6 +433,11 @@
           "description": "@answered zal worden vervangen door het aantal beantwoorde vragen."
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "Verzend scherminformatie voor ontbrekende antwoorden",
           "default": "Je hebt geen vragen beantwoord."
         },

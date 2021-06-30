@@ -433,6 +433,11 @@
           "description": "@answered , will be replaced by the number of answered questions."
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "Eksik cevaplar için gönderi ekranı bilgisi",
           "default": "Heniz bir soru cevaplamadınız."
         },
