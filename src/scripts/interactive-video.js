@@ -590,6 +590,8 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     currentTrack = tracks[0];
   }
 
+  self.video.setCaptionsTrack(null);
+
   // Create new track selector
   self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n, self.contentId);
 
