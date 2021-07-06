@@ -91,7 +91,7 @@
                   },
                   {
                     "label": "Mostra com a",
-                    "description": "<b>Botó</b> és una interacció reduïda que l’usuari ha de prémer perquè s’obri. <b>Pòster</b> és una interacció ampliada que es mostra directament a la part superior del vídeo.",
+                    "description": "<b>Botó</b> és una interacció reduïda que l’usuari ha de prémer perquè s’obri. <b>Pòster</b> és una interacció ampliada que es mostra directament a la part superior del vídeo",
                     "options": [
                       {
                         "label": "Botó"
@@ -167,7 +167,7 @@
                       },
                       {
                         "label": "Ombra de quadre",
-                        "description": "Afegeix una ombra subtil al voltant de la interacció. Perquè les interaccions siguin completament transparents, desactiveu aquesta funció."
+                        "description": "Afegeix una ombra subtil al voltant de la interacció. Perquè les interaccions siguin completament transparents, desactiveu aquesta funció"
                       }
                     ]
                   },
@@ -202,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(relativa a l'arrel)"
                               },
                               {
                                 "label": "altres"
@@ -216,15 +216,13 @@
                       },
                       {
                         "label": "Visualitza",
-                        "description": "Indiqueu que es pot fer clic a la interacció afegint una vora i una icona."
+                        "description": "Indiqueu que es pot fer clic a la interacció afegint una vora i una icona"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -252,7 +250,7 @@
         },
         {
           "label": "Repeteix el vídeo",
-          "description": "Marqueu aquesta opció si el vídeo s’ha de reproduir en bucle."
+          "description": "Marqueu aquesta opció si el vídeo s’ha de reproduir en bucle"
         },
         {
           "label": "Substitueix el botó \"Mostra la solució\"",
@@ -466,7 +464,7 @@
         },
         {
           "label": "Resum de les files de la pantalla d’enviament quan no hi ha puntuació (per a altaveus de lectura)",
-          "default": "Heu respost a la @question que va aparèixer després de @minutes minuts i @segons segons."
+          "default": "Heu respost a la @question que va aparèixer després de @minutes minuts i @seconds segons."
         }
       ]
     }
