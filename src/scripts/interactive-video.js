@@ -1177,6 +1177,20 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
         }
       }
     });
+  
+  // Maintain single tabindex through out all interactions
+  self.interactionKeyboardControls.on('afterNextElement', (event) => this.handleInteractionTabIndex(event));
+  self.interactionKeyboardControls.on('afterPreviousElement', (event) => this.handleInteractionTabIndex(event));
+};
+
+/**
+ * Handle after next and previous events, remove tabindex for better traversal between interactions.
+ *
+ * @method handleInteractionTabIndex
+ * @param {event} [event] event
+ */
+InteractiveVideo.prototype.handleInteractionTabIndex = function (event) {
+  event.element.removeAttribute("tabindex");
 };
 
 /**
