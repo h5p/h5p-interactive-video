@@ -1288,8 +1288,9 @@ InteractiveVideo.prototype.addBubbles = function () {
  * @param {object} [params] Extra parameters.
  * @param {boolean} [params.keepStopped] If true, will not resume a stopped video.
  * @param {boolean} [params.firstPlay] If first time.
+ * @param {boolean} [params.initialLoad] On page load flag.
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {keepStopped: false, firstPlay: false}) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {initialLoad: false, keepStopped: false, firstPlay: false}) {
   if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
@@ -1307,7 +1308,11 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {ke
   if (show) {
     // Close other popups
     this.closePopupMenus(this.controls.$bookmarksButton);
-    this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+
+    // Do not focus element on initial load and showBookmarksmenuOnLoad is enabled
+    if (!this.showBookmarksmenuOnLoad || !params.initialLoad) {
+      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+    }
 
     if (this.editor) {
       this.interruptVideo();
@@ -2390,7 +2395,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   /* Show bookmarks, except when youtube is used on iPad */
   if (self.displayBookmarks() && self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
-    self.toggleBookmarksChooser(true);
+    self.toggleBookmarksChooser(true, {initialLoad: true});
   }
 
   // Add buffered status to seekbar
