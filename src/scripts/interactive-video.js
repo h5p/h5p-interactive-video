@@ -335,6 +335,11 @@ function InteractiveVideo(params, id, contentData) {
             self.seek(loopTime);
           }
 
+          // If there are no tasks in the interactions or summary, trigger completed verb
+          if (!self.isTask) {
+            this.parent.triggerXAPIScored(1, 1, 'completed');
+          }
+
           break;
         }
         case H5P.Video.PLAYING:
