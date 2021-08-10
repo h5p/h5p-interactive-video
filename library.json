@@ -20,11 +20,20 @@
   "preloadedJs": [
     {
       "path": "dist/h5p-interactive-video.js"
+    },
+    {
+      "path": "src/scripts/custom-integration.js"
+    },
+    {
+      "path": "src/scripts/config.js"
     }
   ],
   "preloadedCss": [
     {
       "path": "dist/h5p-interactive-video.css"
+    },
+    {
+      "path": "src/styles/modal.css"
     }
   ],
   "preloadedDependencies": [

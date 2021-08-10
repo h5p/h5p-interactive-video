@@ -1,0 +1,247 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 200px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 800px;
+    height: 300px;
+    overflow: auto;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hide-playlist {
+    display: none;
+  }
+
+  .hide-playlist-search {
+    display: none;
+  }
+
+  .modal-content nav .pagination {
+    list-style: none;
+    display: flex;
+  }
+
+  .modal-content nav .pagination .page-item {
+    margin-left: 5px;
+  }
+
+
+  .h5p-playlist-button {
+    margin-left: 15px;
+}
+
+/* Tabs */
+
+
+.tabset {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  min-width: 320px; 
+  /* max-width: 500px; */
+}
+
+.tabset section {
+  background: #fff; 
+  color: #373737;
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+.tabset > section {
+  display: none;
+}
+input[name="tabset"] {
+  display: none;
+}
+.tabset label {
+  display: inline-block; 
+  padding: 15px 25px; 
+  font-weight: 600; 
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  transition: all .3s ease-out 0.1s;
+}
+.tabset label:hover {
+  color: #fff; 
+  cursor: pointer;
+}
+input[name="tabset"]:checked + label {
+  background: #ffffff;
+  color: #fd7034;
+  border-bottom: 1px solid;
+}
+
+#kaltura:checked ~ section#kalturaPlaylist,
+#youtube:checked ~ section#youtubePlaylist,
+#vimeo:checked ~ section#vimeoPlaylist {
+  display: block;
+  animation-name: inUp;
+  animation-timing-function: ease-in-out;
+  animation-duration: .6s;
+}
+
+
+
+.loadPlaylist {
+    background-color: #0a78d1;
+    color: #fff;
+    border-color: #0a78d1;
+    font-family: Open Sans,sans-serif;
+    font-size: .95em;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1em;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color .35s ease;
+    padding: .65em 1.5em;
+    border-radius: 1.375em;
+}
+
+.loadPlaylist:hover {
+    background-color: #096ab9;
+    border-color: #096ab9;
+}    
+
+
+.h5p-add-dialog-table .h5p-file-url-wrapper {
+  display: flex;
+}
+
+
+.h5p-add-dialog-table .h5p-file-url-wrapper input.h5peditor-text {
+    width: 316px;
+    font-size: 15px;
+    border-radius: 1.375em !important;
+}
+
+.loadPlaylist {
+    background-color: #0a78d1;
+    color: #fff;
+    border-color: #0a78d1;
+    font-family: Open Sans,sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    line-height: 1em;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: background-color .35s ease;
+    padding: 10px 13px;
+    border-radius: 1.375em;
+}
+
+.h5p-playlist-button-wrapper {
+    margin-left: 15px;
+}
+
+#playlistContent .play-lists {
+    overflow: hidden;
+    text-align: center;
+    margin-top: 25px;
+}
+
+#playlistContent .play-lists .play-item {
+    width: 30%;
+    display: inline-block;
+    padding: 0 10px;
+    margin: 20px 0;
+    vertical-align: top;
+}
+
+#playlistContent .play-lists .play-item img {
+    height: 135px;
+    width: 100%;
+    object-fit: cover;
+}
+
+#playlistContent .modal-content {
+    padding: 30px;
+    position: relative;
+}
+
+#playlistContent .modal-content .search-playlist {
+    text-align: center;
+}
+
+#playlistContent .modal-content .search-playlist input {
+    height: 32px;
+    font-size: 15px;
+    text-transform: capitalize;
+    padding-left: 15px;
+    border-radius: 50px;
+}
+
+#playlistContent .modal-content .search-playlist input:focus {
+  outline: none;
+}
+
+
+#playlistContent .modal-content .close {
+    position: absolute;
+    right: 48px;
+    top: 28px;
+}
+
+.modal-content nav .pagination {
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.modal-content nav .pagination .page-item .page-link {
+    background: #0a78d1;
+    color: #fff;
+    padding: 2px 9px;
+    border-radius: 50px;
+    text-align: center;
+    transition: 0.3s all;
+}
+
+.modal-content nav .pagination .page-item.active .page-link {
+    background: #dd0505;
+}
+
+.modal-content nav .pagination .page-item {
+    margin: 0 4px;
+}
+
+
+#playlistContent .play-lists .play-item .kaltura-video-title {
+    font-weight: 600;
+    margin-top: 5px;
+    display: block;
+}
