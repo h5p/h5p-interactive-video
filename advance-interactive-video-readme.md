@@ -7,14 +7,7 @@ To install the additional features such as the Kaltura, Youtube and Vimeo Pro pl
 ```
 # For Kaltura integration:-
 
-1) There is a folder KalturaGeneratedAPIClientsPHP place this 
-   into your Project's root directory and copy its Path.
-
-2) Now open this folder and inside 'get-kaltura-playlist.php'
-   file add your Kaltura account login details.
-
-3) Open custom-integration.js file inside the src/scripts and 
-   replace the {DIRECTORY_PATH} with your copied path.
+Please Enter your Login details in KalturaGeneratedAPIClientsPHP/get-kaltura-playlist.php.
 
 #For Youtube and Vimeo Pro Integration:-
 

@@ -78,17 +78,26 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function (
       };
       var totalVideoCount;
       async function getPlaylistData(pageSize, pageIndex, searchText) {
+        let getDirectory = window.H5PIntegration.loadedJs;
+        let fullDirectoryPath;
+        getDirectory.forEach(function(value, index) {
+          if(value.includes("custom-integration.js")) {
+            fullDirectoryPath = value;
+            return false;
+          }
+        });
+        let h5pDirectoryPath = fullDirectoryPath.split("src");
         $.ajax({
           type: "GET",
-          dataType: "text",
+          dataType: "json",
           data: {
             pageSize: pageSize,
             pageIndex: pageIndex,
             searchText: searchText,
           },
-          url: "{DIRECTORY_PATH}/get-kaltura-playlist.php",
+          url: h5pDirectoryPath[0] + "KalturaGeneratedAPIClientsPHP/get-kaltura-playlist.php",
           success: function (data) {
-            data = $.parseJSON(data);
+            // data = $.parseJSON(data);
             // console.log(data);
             if (data.results) {
               var results = data.results;
