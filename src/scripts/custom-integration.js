@@ -95,7 +95,7 @@ H5PEditor.widgets.interactiveVideo = H5PEditor.InteractiveVideo = (function (
             pageIndex: pageIndex,
             searchText: searchText,
           },
-          url: h5pDirectoryPath[0] + "KalturaGeneratedAPIClientsPHP/get-kaltura-playlist.php",
+          url: h5pDirectoryPath[0] + "KalturaGeneratedAPIClientsPHP/GetKalturaMediaEntry.php",
           success: function (data) {
             // data = $.parseJSON(data);
             // console.log(data);
