@@ -5,7 +5,7 @@
 To install the additional features such as the Kaltura, Youtube and Vimeo Pro playlist follow the below instructions.
 
 ```
-# For Kaltura integration:-
+# For Kaltura integration:- 
 
 Please Enter your Login details in KalturaGeneratedAPIClientsPHP/get-kaltura-playlist.php.
 
