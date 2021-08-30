@@ -362,6 +362,10 @@ function InteractiveVideo(params, id, contentData) {
             self.toggleEndscreensChooser(false, {firstPlay: firstPlay});
 
             firstPlay = false;
+
+            setTimeout(() => {
+              self.trigger('resize');
+            }, 400);
           }
 
           self.currentState = H5P.Video.PLAYING;
