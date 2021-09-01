@@ -363,9 +363,13 @@ function InteractiveVideo(params, id, contentData) {
 
             firstPlay = false;
 
-            setTimeout(() => {
-              self.trigger('resize');
-            }, 400);
+            var poster = self.options.video.startScreenOptions.poster;
+            // Resize if poster image is set
+            if (poster && poster.copyright !== undefined && poster.path !== undefined) {
+              setTimeout(() => {
+                self.trigger('resize');
+              }, 400);
+            }
           }
 
           self.currentState = H5P.Video.PLAYING;
