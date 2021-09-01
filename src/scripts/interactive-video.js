@@ -365,7 +365,7 @@ function InteractiveVideo(params, id, contentData) {
 
             var poster = self.options.video.startScreenOptions.poster;
             // Resize if poster image is set
-            if (poster && poster.copyright !== undefined && poster.path !== undefined) {
+            if (poster && poster.path !== undefined) {
               setTimeout(() => {
                 self.trigger('resize');
               }, 400);
