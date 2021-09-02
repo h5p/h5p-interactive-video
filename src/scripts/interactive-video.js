@@ -3829,6 +3829,21 @@ InteractiveVideo.prototype.getXAPIData = function () {
 };
 
 /**
+ * Get context data.
+ * Contract used for confusion report.
+ */
+ InteractiveVideo.prototype.getContext = function () {
+  var self = this;
+
+  // Get time and make it readable for users
+  const duration = self.getDuration();
+  return {
+    type: 'time',
+    value: duration
+  };
+};
+
+/**
  * Add the question itself to the definition part of an xAPIEvent
  */
 var addQuestionToXAPI = function (xAPIEvent) {
