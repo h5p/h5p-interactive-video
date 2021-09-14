@@ -601,6 +601,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
   self.captionsTrackSelector.on('close', function () {
+    self.controls.$overlayButtons.removeClass('h5p-hide');
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
