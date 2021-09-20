@@ -465,6 +465,10 @@
         {
           "label": "Inlämningssida, sammanfattning utan poäng (för skärmläsare)",
           "default": "Du har svarat på @question som visades efter @minutes minuter och @seconds sekunder."
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }

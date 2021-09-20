@@ -465,6 +465,10 @@
         {
           "label": "",
           "default": ""
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }

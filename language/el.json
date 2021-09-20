@@ -467,6 +467,10 @@
         {
           "label": "Οθόνη υποβολής - Απάντηση που ως λάθος δεν έλαβε βαθμολογία (κείμενο ακουστικής υποβοήθησης)",
           "default": "Απάντησες την @question που εμφανίστηκε μετά από @minutes λεπτά και @seconds δευτερόλεπτα."
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }
