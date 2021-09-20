@@ -467,6 +467,10 @@
         {
           "label": "Изпратете резюме на реда на екрана без резултат (преобразуване на текст в реч)",
           "default": "Имате отговори на @question ,които са решени след @minutes минути и @seconds секунди."
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }

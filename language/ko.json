@@ -467,6 +467,10 @@
         {
           "label": "점수가 없는 경우 제출 화면 행 요약 (자동 읽어주기 용)",
           "default": "@minutes 분 그리고 @seconds 초 이후에 @question 문제에 답을 하였습니다."
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }

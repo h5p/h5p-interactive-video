@@ -465,6 +465,10 @@
         {
           "label": "Odeslat souhrnný řádek obrazovky bez skóre (pro čtecí zařízení)",
           "default": "Odpověděli jste na @question , který se objevil po @minutes minutách a @seconds vteřinách."
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }

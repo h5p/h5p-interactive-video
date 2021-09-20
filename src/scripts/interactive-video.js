@@ -142,14 +142,14 @@ function InteractiveVideo(params, id, contentData) {
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
-    answered: '@answered answered!'
+    answered: '@answered answered!',
+    buttonMuteUnmutelabel: '@action, currently @state.'
   }, params.l10n);
 
   // Add shortcut key to label
   self.l10n.play += ' (k)';
   self.l10n.pause += ' (k)';
-  self.l10n.mute += ' (m)';
-  self.l10n.unmute += ' (m)';
+  self.l10n.buttonMuteUnmutelabel += ' (m)';
 
   // Make it possible to restore from previous state
   if (contentData &&
@@ -534,14 +534,14 @@ function InteractiveVideo(params, id, contentData) {
       if ($muteButton.hasClass('h5p-muted')) {
         $muteButton
           .removeClass('h5p-muted')
-          .attr('aria-label', self.l10n.mute);
+          .attr('aria-label', self.l10n.buttonMuteUnmutelabel.replace('@action', self.l10n.mute).replace('@state', self.l10n.unmute));
 
         self.video.unMute();
       }
       else {
         $muteButton
           .addClass('h5p-muted')
-          .attr('aria-label', self.l10n.unmute);
+          .attr('aria-label', self.l10n.buttonMuteUnmutelabel.replace('@action', self.l10n.unmute).replace('@state', self.l10n.mute));
 
         self.video.mute();
       }
@@ -2102,6 +2102,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
     self.controls.$volume = self.createButton('mute', 'h5p-control', $right, self.toggleMute);
+    self.controls.$volume.attr('aria-label', self.l10n.buttonMuteUnmutelabel.replace('@action', self.l10n.mute).replace('@state', self.l10n.unmute));
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')

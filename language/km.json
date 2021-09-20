@@ -467,6 +467,10 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "អ្នកបានឆ្លើយសំណួរ @question ដែលបានលេចចេញនៅនាទីទី @minutes និង @seconds វិនាទី។"
+        },
+        {
+          "label": "Mute/Unmute button label",
+          "default": "@action, currently @state."
         }
       ]
     }
