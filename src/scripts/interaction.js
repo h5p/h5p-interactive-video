@@ -661,6 +661,17 @@ function Interaction(parameters, player, previousState) {
       });
     }
 
+    // Move sound button to titlebar and this is where we have close button as well
+    if ($dialogWrapper.find('.h5p-sc-sound-control').length) {
+      const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
+      const $sound = $dialogWrapper.find('.h5p-sc-sound-control');
+      $sound.css({
+        top: '0.25em',
+        right: '1.75em'
+      });
+      $titleBar.append($sound);
+    }
+
     setTimeout(function () {
       H5P.trigger(instance, 'resize');
     }, 0);
