@@ -971,7 +971,8 @@ InteractiveVideo.prototype.loaded = function () {
     for (var i=this.options.assets.interactions.length-1; i>=0; i--) {
       if (this.options.assets.interactions[i].duration.to > duration) {
         const interactionDuration = this.options.assets.interactions[i].duration.to - this.options.assets.interactions[i].duration.from;
-        this.options.assets.interactions[i].duration.from = duration - interactionDuration;
+        const from = duration - interactionDuration <= 0 ? 0 : duration - interactionDuration;
+        this.options.assets.interactions[i].duration.from = from;
         this.options.assets.interactions[i].duration.to = duration;
       }
     }
