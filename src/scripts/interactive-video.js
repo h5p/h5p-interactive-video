@@ -966,6 +966,18 @@ InteractiveVideo.prototype.loaded = function () {
     }
   }
 
+  // Move interactions to the end if the video is shorten  
+  if (this.options.assets.interactions && this.options.assets.interactions.length>0) {
+    for (var i=this.options.assets.interactions.length-1; i>=0; i--) {
+      if (this.options.assets.interactions[i].duration.to > duration) {
+        const interactionDuration = this.options.assets.interactions[i].duration.to - this.options.assets.interactions[i].duration.from;
+        const from = duration - interactionDuration <= 0 ? 0 : duration - interactionDuration;
+        this.options.assets.interactions[i].duration.from = from;
+        this.options.assets.interactions[i].duration.to = duration;
+      }
+    }
+  }
+
   // Add summary interaction
   if (this.hasMainSummary()) {
     var displayAt = duration - this.options.summary.displayAt;
