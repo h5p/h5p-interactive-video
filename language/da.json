@@ -467,10 +467,6 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

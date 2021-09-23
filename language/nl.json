@@ -467,10 +467,6 @@
         {
           "label": "Verzend schermrij samenvatting bij geen score (voor readspeakers)",
           "default": "Je hebt de @question beantwoord die verscheen na @minutes minuten en @seconds seconden."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

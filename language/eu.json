@@ -467,10 +467,6 @@
         {
           "label": "Bidali pantaila ilararen laburpena puntuaziorik gabe (bozgorailu-irakurgailuentzako)",
           "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galdera erantzun duzu."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

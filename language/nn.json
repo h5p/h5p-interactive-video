@@ -467,10 +467,6 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "Du har svart på @question som kom etter @minutes minutt and @seconds sekund."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

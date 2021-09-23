@@ -467,10 +467,6 @@
         {
           "label": "Indienskerm ry opsomming vir geen telling (vir spreeklesers)",
           "default": "Jy het die @question wat verskyn het na @minutes minute en @seconds sekondes beantwoord."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }
