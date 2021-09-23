@@ -1223,7 +1223,8 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.h5p-interactive-video .h5p-dialog-close, .h5p-interactive-video .h5p-sc-sound-control {
+.h5p-interactive-video .h5p-dialog-close, 
+.h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-titlebar .h5p-sc-sound-control {
   position: absolute;
   top: 0.25em;
   right: 0.5em;

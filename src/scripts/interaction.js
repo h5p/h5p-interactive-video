@@ -665,10 +665,16 @@ function Interaction(parameters, player, previousState) {
     if ($dialogWrapper.find('.h5p-sc-sound-control').length) {
       const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
       const $sound = $dialogWrapper.find('.h5p-sc-sound-control');
-      $sound.css({
-        top: '0.25em',
-        right: '1.75em'
-      });
+      const $close = $dialogWrapper.find('.h5p-dialog-close');
+
+      // Check that close button is exist and visible
+      if ($close.length && $close.css('display') !== 'none') {
+        // multiply 4 time means 2 times button size then two times paddings
+        const rightPos = ((parseFloat($close.css('right')) * 2) + (parseFloat($close.css('padding-right')) * 2));
+        $sound.css({
+          right: rightPos + 'px'
+        });
+      }
       $titleBar.append($sound);
     }
 
