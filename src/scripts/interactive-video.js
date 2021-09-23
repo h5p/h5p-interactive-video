@@ -591,7 +591,11 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   // Insert popup and button
   self.controls.$captionsButton = $(self.captionsTrackSelector.control);
   self.popupMenuButtons.push(self.controls.$captionsButton);
-  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  if (self.controls.$volume) {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  } else {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
+  }
   $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
   self.popupMenuChoosers.push($(self.captionsTrackSelector.popup));
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
