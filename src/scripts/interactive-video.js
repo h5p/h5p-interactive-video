@@ -923,7 +923,7 @@ InteractiveVideo.prototype.addControls = function () {
   if (this.options.assets.endscreens && this.options.assets.endscreens.length >0) {
     var haveEndscreenMovedToEnd = false;
     const endTime = this.getDuration();
-    for (let i = 0; i<this.options.assets.endscreens.length; i++) {
+    for (let i = this.options.assets.endscreens.length-1; i>=0; i--) {
       const endscreen = this.options.assets.endscreens[i];
       if (endscreen.time > endTime) {
         if (!haveEndscreenMovedToEnd) {
@@ -938,7 +938,6 @@ InteractiveVideo.prototype.addControls = function () {
       }
     }
   }
-  
 
   // Add endscreens
   this.addEndscreenMarkers();
