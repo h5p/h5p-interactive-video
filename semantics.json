@@ -1078,14 +1078,6 @@
         "importance": "low",
         "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds.",
         "optional": true
-      },
-      {
-        "name": "buttonMuteUnmutelabel",
-        "type": "text",
-        "label": "Mute/Unmute button label",
-        "importance": "low",
-        "default": "@action, currently @state.",
-        "optional": true
       }
     ]
   }

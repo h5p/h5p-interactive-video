@@ -467,10 +467,6 @@
         {
           "label": "Resumo das filas da pantalla de envío sen puntuación (para lectores de pantalla)",
           "default": "Respondiches a @question que apareceu despois de @minutes minutos e @seconds segundos."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

@@ -467,10 +467,6 @@
         {
           "label": "Resultados, excluindo a pontuação",
           "default": "Respondeu à pergunta @question que apareceu após @minutes minutos e @seconds segundos."
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }

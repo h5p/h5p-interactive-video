@@ -467,10 +467,6 @@
         {
           "label": "Invia il riepilogo delle stringhe di risultato passate a schermo senza punteggio (per i lettori vocali)",
           "default": "Hai risposto alla @question apparsa dopo @minutes minuti e @seconds secondi"
-        },
-        {
-          "label": "Mute/Unmute button label",
-          "default": "@action, currently @state."
         }
       ]
     }
