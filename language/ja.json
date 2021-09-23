@@ -312,11 +312,11 @@
         },
         {
           "label": "ミュートのタイトル",
-          "default": "ミュート"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "ミュートを解除のタイトル",
-          "default": "ミュートを解除"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "ビデオ品質のタイトル",

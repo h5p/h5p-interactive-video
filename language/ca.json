@@ -310,11 +310,11 @@
         },
         {
           "label": "Silencia el títol",
-          "default": "Silencia"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Activa el títol",
-          "default": "Activa el so"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Títol de la qualitat del vídeo",

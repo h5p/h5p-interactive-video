@@ -312,11 +312,11 @@
         },
         {
           "label": "Lyd av-tittel",
-          "default": "Lyd av"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Lyd på-tittel",
-          "default": "Lyd på"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Videokvalitetstittel",

@@ -312,11 +312,11 @@
         },
         {
           "label": "নি:্শব্দকরণ শিরোনাম",
-          "default": "নি:শব্দ"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "সশব্দকরণ শিরোনাম",
-          "default": "সশব্দকরণ"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "ভিডিও মান শিরোনাম",

@@ -770,7 +770,7 @@
         "type": "text",
         "label": "Mute title",
         "importance": "low",
-        "default": "Mute",
+        "default": "Mute, currently unmuted",
         "optional": true
       },
       {
@@ -778,7 +778,7 @@
         "type": "text",
         "label": "Unmute title",
         "importance": "low",
-        "default": "Unmute",
+        "default": "Unmute, currently muted",
         "optional": true
       },
       {

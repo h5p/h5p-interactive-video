@@ -310,11 +310,11 @@
         },
         {
           "label": "Titel för ljud av",
-          "default": "Ljud av"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Titel för ljud på",
-          "default": "Ljud på"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Titel för videokvalitet",

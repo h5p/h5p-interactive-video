@@ -312,11 +312,11 @@
         },
         {
           "label": "Demp titel",
-          "default": "Demp"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Ontdemp titel",
-          "default": "Ontdemp"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Video kwaliteit titel",

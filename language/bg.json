@@ -312,11 +312,11 @@
         },
         {
           "label": "Спри звука",
-          "default": "Спри звука"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Пусни звука",
-          "default": "Пусни звука"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Качество на видеото",

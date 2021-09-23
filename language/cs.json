@@ -310,11 +310,11 @@
         },
         {
           "label": "Nadpis ztlumit",
-          "default": "Ztlumit"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Nadpis nahlas",
-          "default": "Nahlas"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Nadpis kvality videa",
