@@ -596,7 +596,11 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   // Insert popup and button
   self.controls.$captionsButton = $(self.captionsTrackSelector.control);
   self.popupMenuButtons.push(self.controls.$captionsButton);
-  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  if (self.controls.$volume) {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  } else {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
+  }
   $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
   self.popupMenuChoosers.push($(self.captionsTrackSelector.popup));
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
@@ -606,6 +610,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
   self.captionsTrackSelector.on('close', function () {
+    self.controls.$overlayButtons.removeClass('h5p-hide');
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
