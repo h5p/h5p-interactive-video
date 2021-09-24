@@ -462,6 +462,7 @@ function Interaction(parameters, player, previousState) {
    */
   var openDialog = function (checkScore) {
     const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
+    const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
 
     if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
       instance.setActivityStarted();
@@ -590,6 +591,15 @@ function Interaction(parameters, player, previousState) {
       if (instance) {
         instance.trigger('hide');
       }
+
+      // Move sound button to its original place
+      const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
+      const $sound = $titleBar.find('.h5p-sc-sound-control');
+
+      if ($sound.length) {
+        const $dialogInnerWrapper = $dialogWrapper.find('.h5p-sc-set-wrapper');
+        $dialogInnerWrapper.append($sound);
+      }
     };
     // A dialog can be closed only once
     player.dnb.dialog.once('close', dialogCloseHandler);
@@ -662,8 +672,8 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Move sound button to titlebar and this is where we have close button as well
+    $titleBar.find('.h5p-sc-sound-control').remove();
     if ($dialogWrapper.find('.h5p-sc-sound-control').length) {
-      const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
       const $sound = $dialogWrapper.find('.h5p-sc-sound-control');
       const $close = $dialogWrapper.find('.h5p-dialog-close');
 
