@@ -310,11 +310,11 @@
         },
         {
           "label": "השתקת כותרת",
-          "default": "השתקה"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "הפעלת כותרת",
-          "default": "הפעלת שמע"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "כותרת איכות סרטון",

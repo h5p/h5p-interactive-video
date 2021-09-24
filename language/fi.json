@@ -312,11 +312,11 @@
         },
         {
           "label": "Vaimenna",
-          "default": "Vaimenna"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Ääni päälle",
-          "default": "Ääni päälle"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Videon laatu",

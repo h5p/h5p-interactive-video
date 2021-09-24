@@ -310,11 +310,11 @@
         },
         {
           "label": "Sessiz başlığı",
-          "default": "Sessiz"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Sesli başlığı",
-          "default": "Sesli"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Video kalitesi başlığı",

@@ -312,11 +312,11 @@
         },
         {
           "label": "静音的显示文字",
-          "default": "静音"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "取消静音的显示文字",
-          "default": "取消静音"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "影片品质的显示文字",

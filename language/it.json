@@ -312,11 +312,11 @@
         },
         {
           "label": "Titolo della modalità muto",
-          "default": "Silenzia"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Titolo di disattivazione modalità muto",
-          "default": "Riattiva l'audio"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Titolo di qualità del video",

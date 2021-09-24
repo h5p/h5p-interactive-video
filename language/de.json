@@ -312,11 +312,11 @@
         },
         {
           "label": "Beschriftung des \"Stummschalten\"-Buttons",
-          "default": "Stummschalten"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Beschriftung des \"Lautschalten\"-Buttons",
-          "default": "Lautschalten"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Beschriftung des \"Videoqualität\"-Buttons",

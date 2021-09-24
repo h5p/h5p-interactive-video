@@ -312,11 +312,11 @@
         },
         {
           "label": "Silenciar",
-          "default": "Silenciar"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Desactivar silencio",
-          "default": "Desactivar Silencio"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Calidade do vídeo",

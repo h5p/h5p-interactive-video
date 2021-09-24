@@ -310,11 +310,11 @@
         },
         {
           "label": "عنوان بی‌صدا",
-          "default": "بی‌صدا"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "عنوان صدادار",
-          "default": "صدادار"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "عنوان کیفیت ویدئو",

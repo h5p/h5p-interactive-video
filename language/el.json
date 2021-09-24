@@ -312,11 +312,11 @@
         },
         {
           "label": "Τίτλος για σίγαση",
-          "default": "Σίγαση"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Τίτλος για κατάργηση σίγασης",
-          "default": "Κατάργηση σίγασης"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Τίτλος για ποιότητα βίντεο",

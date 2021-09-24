@@ -312,11 +312,11 @@
         },
         {
           "label": "Vaigista pealkiri",
-          "default": "Vaigista"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Taasta heli pealkiri",
-          "default": "Taasta heli"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Video kvaliteedi pealkiri",
