@@ -123,6 +123,7 @@ function InteractiveVideo(params, id, contentData) {
     exitFullscreen: 'Exit fullscreen',
     summary: 'Open summary dialog',
     bookmarks: 'Bookmarks',
+    endscreen: 'Submit Screen',
     endscreens: 'Submit Screens',
     defaultAdaptivitySeekLabel: 'Continue',
     continueWithVideo: 'Continue with video',
@@ -925,10 +926,20 @@ InteractiveVideo.prototype.addControls = function () {
 
   // If we change to a shorter video we need to remove the endscreens that are after the new length
   if (this.options.assets.endscreens && this.options.assets.endscreens.length >0) {
-    for (let i = 0; i<this.options.assets.endscreens.length; i++) {
+    var haveEndscreenMovedToEnd = false;
+    const endTime = this.getDuration();
+    for (let i = this.options.assets.endscreens.length-1; i>=0; i--) {
       const endscreen = this.options.assets.endscreens[i];
-      if(endscreen.time > this.getDuration()) {
-        this.options.assets.endscreens.splice(i,1);
+      if (endscreen.time > endTime) {
+        if (!haveEndscreenMovedToEnd) {
+          this.options.assets.endscreens[i].time = endTime;
+          this.options.assets.endscreens[i].label = InteractiveVideo.humanizeTime(endTime) + ' ' + this.l10n.endscreen;
+          this.trigger('endscreensChanged', {'index': i, 'number': 1});
+          haveEndscreenMovedToEnd = true;
+        } else {
+          this.options.assets.endscreens.splice(i,1);
+          this.trigger('endscreensChanged', {'index': i, 'number': -1});
+        }
       }
     }
   }
