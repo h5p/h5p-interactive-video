@@ -312,11 +312,11 @@
         },
         {
           "label": "Mute title",
-          "default": "Mute"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Unmute title",
-          "default": "Unmute"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Video quality title",

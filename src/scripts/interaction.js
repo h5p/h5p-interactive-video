@@ -129,7 +129,7 @@ function Interaction(parameters, player, previousState) {
 
 
   var isLabelRelevant = (library !== 'H5P.Nil' && parameters.displayType === 'button');
-  var title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', parameters.libraryTitle]
+  var title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', library === 'H5P.Link' && action.params.title !== undefined  ? action.params.title : parameters.libraryTitle]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.

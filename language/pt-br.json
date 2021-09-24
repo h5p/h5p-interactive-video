@@ -312,11 +312,11 @@
         },
         {
           "label": "Título da função mute",
-          "default": "Mutar"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Título da função desmute",
-          "default": "Desmutar"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Título da qualidade do vídeo",

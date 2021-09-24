@@ -312,11 +312,11 @@
         },
         {
           "label": "Título da função mudo",
-          "default": "Sem som"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Título da função com som",
-          "default": "Som"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Título da qualidade do vídeo",

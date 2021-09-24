@@ -312,11 +312,11 @@
         },
         {
           "label": "Заголовок для выключения звука",
-          "default": "Выключить звук"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Заголовок для включения звука",
-          "default": "Включить звук"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Заголовок для качества видео",
