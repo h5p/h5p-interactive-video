@@ -363,6 +363,14 @@ function InteractiveVideo(params, id, contentData) {
             self.toggleEndscreensChooser(false, {firstPlay: firstPlay});
 
             firstPlay = false;
+
+            var poster = self.options.video.startScreenOptions.poster;
+            // Resize if poster image is set
+            if (poster && poster.path !== undefined) {
+              setTimeout(() => {
+                self.trigger('resize');
+              }, 400);
+            }
           }
 
           self.currentState = H5P.Video.PLAYING;
