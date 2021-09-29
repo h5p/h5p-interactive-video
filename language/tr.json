@@ -8,7 +8,7 @@
           "fields": [
             {
               "label": "Bir video ekleyin",
-              "description": "Etkileşimli videonuzda kullanmak istediğiniz videoyu eklemek için aşağıya tıklayınız. Bir video linki ekleyebilir ya da video dosyalara yükleyebilirsiniz. Videonun farklı kalitelerde birden fazla versiyonunu eklemeniz mümkündür. Tarayıcı desteğinden emin olmak istiyorsanız webm ve mp4 formatlarını kullanabilirsiniz."
+              "description": "Etkileşimli videonuzda kullanmak istediğiniz videoyu eklemek için aşağıya tıklayınız. Bir video linki ekleyebilir ya da video dosyaları yükleyebilirsiniz. Videonun farklı kalitelerde birden fazla versiyonunu eklemeniz mümkündür. Tarayıcı desteğinden emin olmak istiyorsanız webm ve mp4 formatlarını kullanabilirsiniz."
             },
             {
               "label": "Başlangıç ekranı ayarları (Youtube videoları için desteklenmiyor)",
@@ -16,7 +16,7 @@
                 {
                   "label": "Etkileşimli videonun başlığı",
                   "default": "Etkileşimli video",
-                  "description": "Özetlerde, istatistiklerde vb kullanıldı."
+                  "description": "Özetlerde, istatistiklerde vb kullanılır."
                 },
                 {
                   "label": "Başlangıç ekranında başlığı gizle"
@@ -42,7 +42,7 @@
                     "fields": [
                       {
                         "label": "Metinden Takip Etiketi",
-                        "description": "Birden fazla metinden takip seçeneği sunduğunuzda kullanıcı bir tanesini seçmesi gerektiği durumda kullanılır. Örneğin 'İspanyolca altyazılar' İspanyolca altyazı takibinin etiketi olabilir.",
+                        "description": "Birden fazla metinden takip seçeneği sunduğunuzda kullanıcı bir tanesini seçmesi gerektiği durumda kullanılır. Örneğin 'İspanyolca altyazı' İspanyolca altyazı takibinin etiketi olabilir.",
                         "default": "Altyazılar"
                       },
                       {
@@ -91,7 +91,7 @@
                   },
                   {
                     "label": "Bu şekilde göster",
-                    "description": "<b>Buton</b> daraltılmış etkileşimdir, kullanıcının açması için üzerine tıklaması gerekir. <b>Poster</b> genişletilmiş etkileşimdir, doğrudan videonun üzerinde görüntülenir.",
+                    "description": "<b>Buton</b> daraltılmış etkileşimdir. Kullanıcının etkileşimi açması için üzerine tıklaması gerekir. <b>Poster</b> genişletilmiş etkileşimdir. Etkileşim doğrudan videonun üzerinde görüntülenir.",
                     "options": [
                       {
                         "label": "Buton"
@@ -121,7 +121,7 @@
                         "label": "Tümü doğru olduğunda yapılacak eylem",
                         "fields": [
                           {
-                            "label": "Şu noktaya konumlan (Seek to)",
+                            "label": "Videonun şu noktasına konumlan",
                             "description": "Zamanı D:SS formatında giriniz"
                           },
                           {
@@ -131,7 +131,7 @@
                             "label": "Mesaj"
                           },
                           {
-                            "label": "Şuraya konumlan (Seek) butonu için etiket"
+                            "label": "Videonun şu noktasına konumlan butonu için etiket"
                           }
                         ]
                       },
@@ -139,7 +139,7 @@
                         "label": "Yanlış olduğnda yapılacak eylem",
                         "fields": [
                           {
-                            "label": "Şu noktaya konumlan",
+                            "label": "Videonun şu noktasına konumlan",
                             "description": "Zamanı D:SS formatında giriniz"
                           },
                           {
@@ -149,7 +149,7 @@
                             "label": "Mesaj"
                           },
                           {
-                            "label": "Şuraya konumlan (Seek) butonu için etiket"
+                            "label": "Videonun şu noktasına konumlan butonu için etiket"
                           }
                         ]
                       },
@@ -160,7 +160,7 @@
                     ]
                   },
                   {
-                    "label": "Görseller",
+                    "label": "Görsellik",
                     "fields": [
                       {
                         "label": "Arkaplan rengi"
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "Git",
-                        "description": "Kullanıcı hotspot'a tıkladığında hedef zamanına götürülecektir. Zamanlama saat kodu D:SMS formatında."
+                        "description": "Kullanıcı hotspot'a tıkladığında, videonun hedeflenen zamanına götürülecektir. Zamanı D:SS formatında giriniz."
                       },
                       {
                         "label": "URL",
@@ -289,7 +289,7 @@
         },
         {
           "label": "Sesi devre dışı bırak",
-          "description": "Bu seçeneği seçiliğinde videonun sesi devre dışı bırakılacak ve açılması önlenecektir."
+          "description": "Bu seçenek seçildiğinde videonun sesi devre dışı bırakılacak ve açılması önlenecektir."
         }
       ]
     },
@@ -309,20 +309,20 @@
           "default": "Duraklat"
         },
         {
-          "label": "Sessiz başlığı",
-          "default": "Mute, currently unmuted"
+          "label": "Sesi kapat başlığı",
+          "default": "Sesi kapat, şu anda sesi açık"
         },
         {
-          "label": "Sesli başlığı",
-          "default": "Unmute, currently muted"
+          "label": "Sesi aç başlığı",
+          "default": "Sesi aç, şu anda sesi kapalı"
         },
         {
           "label": "Video kalitesi başlığı",
-          "default": "Video Kalitesi"
+          "default": "Video kalitesi"
         },
         {
           "label": "Video başlığı yazısı",
-          "default": "Başlıklar"
+          "default": "Başlık"
         },
         {
           "label": "Kapatma butonu metni",
@@ -345,20 +345,20 @@
           "default": "Yer imleri"
         },
         {
-          "label": "Ekran başlığı sun",
-          "default": "Ekran sun"
+          "label": "Gönder ekranı başlığı",
+          "default": "Gönder ekranı"
         },
         {
-          "label": "Varsayılan etiket için uyarlanabilirlik arama butonu",
-          "default": "Devam"
+          "label": "Uyarlanabilirlik arama butonu için varsayılan etiket",
+          "default": "Devam et"
         },
         {
           "label": "Videoya devam et butonu için varsayılan etiket",
           "default": "Videoya devam et"
         },
         {
-          "label": "Oynatma oranı",
-          "default": "Oynatma oranı"
+          "label": "Oynatma hızını ayarla",
+          "default": "Oynatma hızı"
         },
         {
           "label": "10 Saniye Geri Sar",
@@ -373,8 +373,8 @@
           "default": "Ses etkin değil"
         },
         {
-          "label": "Devam etmeden önce kulllanıcıyı bu soruyu doğru cevaplaması gerektiği noktasında uyar",
-          "default": "Devam etmeden önce tüm soruları doğru cevaplamalısınız."
+          "label": "Kullanıcının devam etmeden önce soruyu doğru yanıtlaması gerektiğine dair uyarı",
+          "default": "Devam etmeden önce tüm soruları doğru cevaplamanız gerekmektedir."
         },
         {
           "label": "Geri butonu",
@@ -402,11 +402,11 @@
         },
         {
           "label": "Ekranda bir tekil etkileşim göründüğünü açıklayan metin",
-          "default": "Etkileşim bulunmaktadır:"
+          "default": "Etkileşim ortaya çıktı:"
         },
         {
           "label": "Ekranda çoklu etkileşimlerin göründüğünü açıklayan metin",
-          "default": "Çoklu Etkileşim bulunmkatadır:"
+          "default": "Çoklu etkileşim ortaya çıktı:"
         },
         {
           "label": "Video duraklatıldı duyrusu",
@@ -422,7 +422,7 @@
         },
         {
           "label": "Gönderi ekranı başlığı",
-          "default": "@answered Soru cevaplandı",
+          "default": "@answered soru cevaplandı",
           "description": "@answered , cevaplanan soru sayısıyla değiştirilecektir."
         },
         {
@@ -443,28 +443,28 @@
           "default": "Cevapları Gönder"
         },
         {
-          "label": "Ekran sun, sunma mesajı",
+          "label": "Cevapları gönderme ekranında başarılı gönderme mesajı",
           "default": "Cevaplarınız gönderildi!"
         },
         {
-          "label": "Gönderi ekranı tablo satır başlığı: Cevaplanan sorular",
+          "label": "Cevapları gönderme ekranında tablo satır başlığı: Cevaplanan sorular",
           "default": "Cevaplanan sorular"
         },
         {
-          "label": "Gönderi ekranı tablo satır başlığı: Puan",
+          "label": "Cevapları gönderme ekranında tablo satır başlığı: Puan",
           "default": "Puan"
         },
         {
-          "label": "Gönderi ekranı cevaplama puanı",
+          "label": "Cevapları gönderme ekranında cevaplama puanı",
           "default": "Cevaplandı"
         },
         {
-          "label": "Puan ile sıra özeti ekran sun (sesli okuma )",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Puan ile sıra özeti gönderme ekranı (sesli okuma)",
+          "default": "@minutes dakika ve @seconds saniye sonra görünen @question için @total puan üzerinden @score aldınız."
         },
         {
-          "label": "Puansız sıra özeti ekran sun (sesli okuma )",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Puansız sıra özeti gönderme ekranı (sesli okuma)",
+          "default": "@minutes dakika ve @seconds saniyeden sonra gelen @question yanıtladınız."
         }
       ]
     }
