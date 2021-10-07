@@ -3887,6 +3887,10 @@ InteractiveVideo.prototype.getXAPIData = function () {
 
   // Get time and make it readable for users
   const duration = self.video.getCurrentTime();
+  if (duration === undefined) {
+    return {};
+  }
+
   return {
     type: 'time',
     value: duration
