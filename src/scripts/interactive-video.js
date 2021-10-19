@@ -49,6 +49,12 @@ function InteractiveVideo(params, id, contentData) {
   self.contentData = contentData;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
+  // Check that the submit button is enabled
+  self.isSubmitButtonEnabled = false;
+  if (contentData.isScoringEnabled && contentData.isReportingEnabled) {
+    self.isSubmitButtonEnabled = true;
+  }
+
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
   self.endscreensMenuId = 'interactive-video-' + this.contentId + '-endscreens-chooser';
@@ -1303,6 +1309,7 @@ InteractiveVideo.prototype.addBubbles = function () {
       l10n: {
         title: this.l10n.endcardTitle,
         information: this.l10n.endcardInformation,
+        informationOnSubmitButtonDisabled: this.l10n.endcardInformationOnSubmitButtonDisabled,
         informationNoAnswers: this.l10n.endcardInformationNoAnswers,
         informationMustHaveAnswer: this.l10n.endcardInformationMustHaveAnswer,
         submitButton: this.l10n.endcardSubmitButton,

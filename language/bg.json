@@ -428,6 +428,11 @@
           "description": "@answered ще бъде заменен с броя на въпросите, на които е отговорено."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Изпращане - информационен екран",
           "default": "Вие отговорихте на @answered въпроси, кликнете по-долу, за да изпратите своите отговопри.",
           "description": "@answered ще бъде заменен с броя на отговорените въпроси."

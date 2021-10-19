@@ -33,6 +33,7 @@ class Endscreen extends H5P.EventDispatcher {
     this.l10n = $.extend({
       title: '@answered Questions answered',
       information: 'You have answered @answered questions, click below to submit your answers.',
+      informationOnSubmitButtonDisabled: 'You have answered @answered questions.',
       informationNoAnswers: 'You have not answered any questions.',
       informationMustHaveAnswer: 'You have to answer at least one question before you can submit your answers.',
       submitButton: 'Submit Answers',
@@ -43,6 +44,9 @@ class Endscreen extends H5P.EventDispatcher {
       tableRowSummaryWithScore: 'You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.',
       tableRowSummaryWithoutScore: 'You have answered the @question that appeared after @minutes minutes and @seconds seconds.',
     }, params.l10n);
+
+    // Submit button needs to be enabled when the content type used as subcontent
+    this.isSubmitButtonEnabled = !this.parent.$container.hasClass('h5p-standalone') ? true: this.parent.isSubmitButtonEnabled;
 
     this.buildDOM();
   }
@@ -76,17 +80,19 @@ class Endscreen extends H5P.EventDispatcher {
       'id': `${ENDSCREEN_STYLE_BASE}-introduction-text`
     });
 
-    // Submit button
-    this.$submitButtonContainer = $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-submit-button-container ${ENDSCREEN_STYLE_BUTTON_HIDDEN}`
-    });
+    if (this.isSubmitButtonEnabled) {
+      // Submit button
+      this.$submitButtonContainer = $('<div/>', {
+        'class': `${ENDSCREEN_STYLE_BASE}-submit-button-container ${ENDSCREEN_STYLE_BUTTON_HIDDEN}`
+      });
 
-    this.$submitButton = H5P.JoubelUI.createButton({
-      'class': `${ENDSCREEN_STYLE_BASE}-submit-button`,
-      html: this.l10n.submitButton,
-      appendTo: this.$submitButtonContainer,
-      click: () => this.handleSubmit()
-    });
+      this.$submitButton = H5P.JoubelUI.createButton({
+        'class': `${ENDSCREEN_STYLE_BASE}-submit-button`,
+        html: this.l10n.submitButton,
+        appendTo: this.$submitButtonContainer,
+        click: () => this.handleSubmit()
+      });
+    }
 
     // Title row for the table at the bottom
     this.$endscreenOverviewTitle = $('<div/>', {
@@ -253,14 +259,18 @@ class Endscreen extends H5P.EventDispatcher {
     this.$endscreenIntroductionTitleText.html(this.l10n.title.replace('@answered', number));
 
     if (number === 0) {
-      this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div><div>${this.l10n.informationMustHaveAnswer}<div>`);
+      this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div>
+      ${this.isSubmitButtonEnabled ? `<div>${this.l10n.informationMustHaveAnswer}<div>` : ``}`);
     }
     else {
-      this.$endscreenIntroductionText.html(this.l10n.information.replace('@answered', number));
+      this.$endscreenIntroductionText.html(
+        this.isSubmitButtonEnabled 
+          ? this.l10n.information.replace('@answered', number)
+          : this.l10n.informationOnSubmitButtonDisabled.replace('@answered', number));
     }
 
     // Only show submit button (again) if there are answered interactions
-    if (number > 0) {
+    if (this.isSubmitButtonEnabled && number > 0) {
       this.$submitButtonContainer.removeClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
     }
   }
@@ -281,7 +291,7 @@ class Endscreen extends H5P.EventDispatcher {
    * Set focus on the close button
    */
   focus() {
-    if (this.$submitButtonContainer.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
+    if (!this.isSubmitButtonEnabled || this.$submitButtonContainer.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
       this.$closeButton.focus();
     }
     else {

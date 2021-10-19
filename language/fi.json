@@ -428,6 +428,11 @@
           "description": "muuttuja @answered korvataan automaattisesti vastattujen kysymysten lukumäärällä"
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Yhteenvetonäkymän tiedot",
           "default": "Olet vastannut @answered kysymykseen, klikkaa alapuolelta palauttaksesi kysymyksesi.",
           "description": "muuttuja @answered korvataan automaattisesti vastattujen kysymysten lukumäärällä"
