@@ -51,7 +51,7 @@ function InteractiveVideo(params, id, contentData) {
 
   // Check that the submit button is enabled
   self.isSubmitButtonEnabled = false;
-  if (contentData.isScoringEnabled && contentData.isReportingEnabled) {
+  if (contentData.isScoringEnabled || contentData.isReportingEnabled) {
     self.isSubmitButtonEnabled = true;
   }
 
