@@ -312,11 +312,11 @@
         },
         {
           "label": "Mututu titulua",
-          "default": "Mututu"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Ez mututu titulua",
-          "default": "Ez mututu"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Bideoaren kalitatea titulua",

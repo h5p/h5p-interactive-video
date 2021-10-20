@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Editor Interaktivního Videa ",
+      "label": "Editor Interaktivního Videa",
       "fields": [
         {
           "label": "Nahrát/vložit video",
@@ -42,7 +42,7 @@
                     "fields": [
                       {
                         "label": "Popisek stopyl",
-                        "description": "Používá se, pokud nabízíte více stop a uživatel si musí vybrat stopu. Například 'španělské titulky' mohou být označení španělské stopy titulků.",
+                        "description": "Používá se, pokud nabízíte více stop a uživatel si musí vybrat stopu. Například \"španělské titulky\" mohou být označení španělské stopy titulků.",
                         "default": "Titulky"
                       },
                       {
@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí být definován pro titulky",
-                        "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy 'Titulky', musí být definován zdrojový jazyk stopy."
+                        "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy \"Titulky\", musí být definován zdrojový jazyk stopy."
                       },
                       {
                         "label": "Sledovat zdroj (soubor WebVTT)"
@@ -97,7 +97,7 @@
                         "label": "Tlačítko"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Plakát"
                       }
                     ]
                   },
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -296,7 +294,7 @@
       ]
     },
     {
-      "label": "Localize",
+      "label": "Lokalizovat",
       "fields": [
         {
           "label": "Název interakce",
@@ -312,11 +310,11 @@
         },
         {
           "label": "Nadpis ztlumit",
-          "default": "Ztlumit"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Nadpis nahlas",
-          "default": "Nahlas"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Nadpis kvality videa",
@@ -340,7 +338,7 @@
         },
         {
           "label": "Nadpis souhrnný dialoge",
-          "default": "Otevřít souhrnný dialog "
+          "default": "Otevřít souhrnný dialog"
         },
         {
           "label": "Nadpis záložky",
@@ -351,7 +349,7 @@
           "default": "Odeslat obrazovku"
         },
         {
-          "label": "Výchozí nadpis tlačítka pro adaptivní hledání ",
+          "label": "Výchozí nadpis tlačítka pro adaptivní hledání",
           "default": "Pokračovat"
         },
         {
@@ -403,7 +401,7 @@
           "default": "Celkový čas:"
         },
         {
-          "label": " Text vysvětlující, že se objevila jediná interakce se jménem",
+          "label": "Text vysvětlující, že se objevila jediná pojmenovaná interakce",
           "default": "Objevila se interakce:"
         },
         {
@@ -441,11 +439,11 @@
           "default": "Před odesláním odpovědí musíte odpovědět alespoň na jednu otázku."
         },
         {
-          "label": "Tlačítko odeslání obrazovky odpovědí ",
+          "label": "Tlačítko odeslání obrazovky odpovědi",
           "default": "Odeslat odpovědi"
         },
         {
-          "label": "Zpráva obrazovky odpovědí ",
+          "label": "Zpráva obrazovky odpovědi",
           "default": "Vaše odpovědi byly odeslány!"
         },
         {
@@ -465,7 +463,7 @@
           "default": "Získal jste @score ze @total celkových bodů z @question která se objevila po @minutes minutách a @seconds vteřinách."
         },
         {
-          "label": "Odeslat souhrnný řádek obrazovky bez skóre (pro čtenáře)",
+          "label": "Odeslat souhrnný řádek obrazovky bez skóre (pro čtecí zařízení)",
           "default": "Odpověděli jste na @question , který se objevil po @minutes minutách a @seconds vteřinách."
         }
       ]

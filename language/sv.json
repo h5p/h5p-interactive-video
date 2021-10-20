@@ -42,7 +42,7 @@
                     "fields": [
                       {
                         "label": "Spåretikett",
-                        "description": "Används om du har flera spår som användaren behöver välja blan. Exempelvis kan 'Spanska' vara etiketten för ett textspår på spanska.",
+                        "description": "Används om du har flera spår som användaren behöver välja bland. Exempelvis kan 'Spanska' vara etiketten för ett textspår på spanska.",
                         "default": "Undertexter"
                       },
                       {
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},	
-            {}
+            }
           ]
         },
         {
@@ -312,11 +310,11 @@
         },
         {
           "label": "Titel för ljud av",
-          "default": "Ljud av"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Titel för ljud på",
-          "default": "Ljud på"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Titel för videokvalitet",

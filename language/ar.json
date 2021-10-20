@@ -312,11 +312,11 @@
         },
         {
           "label": "عنوان كتم الصوت",
-          "default": "Mute"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "عنوان عدم كتمان الصوت",
-          "default": "Unmute"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "عنوان جودة الفيديو",

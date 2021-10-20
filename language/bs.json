@@ -312,11 +312,11 @@
         },
         {
           "label": "Naziv za utišaj",
-          "default": "Utišaj"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Naziv za isključi utišavanje",
-          "default": "Isključi utišavanje"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Nazv za video kvalitet",

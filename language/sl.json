@@ -312,11 +312,11 @@
         },
         {
           "label": "Besedilo za vklop v nemi način predvajanja",
-          "default": "Utišaj zvok"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Besedilo za izhod iz nemega načina predvajanja",
-          "default": "Povrni zvok"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Besedilo za kvaliteto videoposnetka",

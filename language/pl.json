@@ -312,11 +312,11 @@
         },
         {
           "label": "Przycisk wyciszenia",
-          "default": "Wyłącz dźwięk"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Przycisk odgłaśniania",
-          "default": "Włącz dźwięk"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Przycisk wyboru jakości",

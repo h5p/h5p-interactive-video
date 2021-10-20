@@ -312,11 +312,11 @@
         },
         {
           "label": "Intitulé \"Couper le son\"",
-          "default": "Couper le son"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Intitulé \"Remettre le son\"",
-          "default": "Rétablir le son"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Intitulé \"Qualité de la vidéo\"",

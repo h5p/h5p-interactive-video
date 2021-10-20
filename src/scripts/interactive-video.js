@@ -114,8 +114,8 @@ function InteractiveVideo(params, id, contentData) {
     interaction: 'Interaction',
     play: 'Play',
     pause: 'Pause',
-    mute: 'Mute',
-    unmute: 'Unmute',
+    mute: 'Mute, currently unmuted',
+    unmute: 'Unmute, currently muted',
     quality: 'Video quality',
     captions: 'Captions',
     close: 'Close',
@@ -123,6 +123,7 @@ function InteractiveVideo(params, id, contentData) {
     exitFullscreen: 'Exit fullscreen',
     summary: 'Open summary dialog',
     bookmarks: 'Bookmarks',
+    endscreen: 'Submit Screen',
     endscreens: 'Submit Screens',
     defaultAdaptivitySeekLabel: 'Continue',
     continueWithVideo: 'Continue with video',
@@ -280,6 +281,11 @@ function InteractiveVideo(params, id, contentData) {
       return;
     }
 
+    // Handle video container loaded
+    self.video.on('containerLoaded', function () {
+      self.trigger('resize');
+    });
+
     // Handle video source loaded events (metadata)
     self.video.on('loaded', function () {
       isLoaded = true;
@@ -357,6 +363,14 @@ function InteractiveVideo(params, id, contentData) {
             self.toggleEndscreensChooser(false, {firstPlay: firstPlay});
 
             firstPlay = false;
+
+            var poster = self.options.video.startScreenOptions.poster;
+            // Resize if poster image is set
+            if (poster && poster.path !== undefined) {
+              setTimeout(() => {
+                self.trigger('resize');
+              }, 400);
+            }
           }
 
           self.currentState = H5P.Video.PLAYING;
@@ -591,7 +605,11 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   // Insert popup and button
   self.controls.$captionsButton = $(self.captionsTrackSelector.control);
   self.popupMenuButtons.push(self.controls.$captionsButton);
-  $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  if (self.controls.$volume) {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$volume);
+  } else {
+    $(self.captionsTrackSelector.control).insertAfter(self.controls.$qualityButton);
+  }
   $(self.captionsTrackSelector.popup).css(self.controlsCss).insertAfter($(self.captionsTrackSelector.control));
   self.popupMenuChoosers.push($(self.captionsTrackSelector.popup));
   $(self.captionsTrackSelector.overlayControl).insertAfter(self.controls.$qualityButtonMinimal);
@@ -601,6 +619,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
   });
   self.captionsTrackSelector.on('close', function () {
+    self.controls.$overlayButtons.removeClass('h5p-hide');
     if (self.controls.$more.attr('aria-expanded') === 'true') {
       self.controls.$more.click();
     }
@@ -913,6 +932,26 @@ InteractiveVideo.prototype.addControls = function () {
   // Add bookmarks
   this.addBookmarks();
 
+  // If we change to a shorter video we need to remove the endscreens that are after the new length
+  if (this.options.assets.endscreens && this.options.assets.endscreens.length >0) {
+    var haveEndscreenMovedToEnd = false;
+    const endTime = this.getDuration();
+    for (let i = this.options.assets.endscreens.length-1; i>=0; i--) {
+      const endscreen = this.options.assets.endscreens[i];
+      if (endscreen.time > endTime) {
+        if (!haveEndscreenMovedToEnd) {
+          this.options.assets.endscreens[i].time = endTime;
+          this.options.assets.endscreens[i].label = InteractiveVideo.humanizeTime(endTime) + ' ' + this.l10n.endscreen;
+          this.trigger('endscreensChanged', {'index': i, 'number': 1});
+          haveEndscreenMovedToEnd = true;
+        } else {
+          this.options.assets.endscreens.splice(i,1);
+          this.trigger('endscreensChanged', {'index': i, 'number': -1});
+        }
+      }
+    }
+  }
+
   // Add endscreens
   this.addEndscreenMarkers();
 
@@ -947,6 +986,18 @@ InteractiveVideo.prototype.loaded = function () {
     for (var i = 0; i < adaptivityFields.length; i++) {
       if (adaptivityFields[i].fields) {
         findField('seekTo', adaptivityFields[i].fields).max = duration;
+      }
+    }
+  }
+
+  // Move interactions to the end if the video is shorten
+  if (this.options.assets.interactions && this.options.assets.interactions.length>0) {
+    for (var i=this.options.assets.interactions.length-1; i>=0; i--) {
+      if (this.options.assets.interactions[i].duration.to > duration) {
+        const interactionDuration = this.options.assets.interactions[i].duration.to - this.options.assets.interactions[i].duration.from;
+        const from = duration - interactionDuration <= 0 ? 0 : duration - interactionDuration;
+        this.options.assets.interactions[i].duration.from = from;
+        this.options.assets.interactions[i].duration.to = duration;
       }
     }
   }
@@ -1162,6 +1213,20 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
         }
       }
     });
+
+  // Maintain single tabindex through out all interactions
+  self.interactionKeyboardControls.on('afterNextElement', (event) => this.handleInteractionTabIndex(event));
+  self.interactionKeyboardControls.on('afterPreviousElement', (event) => this.handleInteractionTabIndex(event));
+};
+
+/**
+ * Handle after next and previous events, remove tabindex for better traversal between interactions.
+ *
+ * @method handleInteractionTabIndex
+ * @param {event} [event] event
+ */
+InteractiveVideo.prototype.handleInteractionTabIndex = function (event) {
+  event.element.removeAttribute("tabindex");
 };
 
 /**
@@ -1273,8 +1338,9 @@ InteractiveVideo.prototype.addBubbles = function () {
  * @param {object} [params] Extra parameters.
  * @param {boolean} [params.keepStopped] If true, will not resume a stopped video.
  * @param {boolean} [params.firstPlay] If first time.
+ * @param {boolean} [params.initialLoad] On page load flag.
  */
-InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {keepStopped: false, firstPlay: false}) {
+InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {initialLoad: false, keepStopped: false, firstPlay: false}) {
   if (this.controls.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
@@ -1292,7 +1358,11 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {ke
   if (show) {
     // Close other popups
     this.closePopupMenus(this.controls.$bookmarksButton);
-    this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+
+    // Do not focus element on initial load and showBookmarksmenuOnLoad is enabled
+    if (!this.showBookmarksmenuOnLoad || !params.initialLoad) {
+      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+    }
 
     if (this.editor) {
       this.interruptVideo();
@@ -2375,7 +2445,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   /* Show bookmarks, except when youtube is used on iPad */
   if (self.displayBookmarks() && self.showBookmarksmenuOnLoad && self.video.pressToPlay === false) {
-    self.toggleBookmarksChooser(true);
+    self.toggleBookmarksChooser(true, {initialLoad: true});
   }
 
   // Add buffered status to seekbar
@@ -3817,6 +3887,10 @@ InteractiveVideo.prototype.getXAPIData = function () {
 
   // Get time and make it readable for users
   const duration = self.video.getCurrentTime();
+  if (duration === undefined) {
+    return {};
+  }
+
   return {
     type: 'time',
     value: duration

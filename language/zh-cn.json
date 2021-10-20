@@ -70,7 +70,7 @@
                   }
                 },
                 {
-                  "label": "Default text track",
+                  "label": "默认文本轨道",
                   "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
                 }
               ]
@@ -352,7 +352,7 @@
         },
         {
           "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "default": "继续"
         },
         {
           "label": "继续播放的显示文字",

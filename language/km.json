@@ -312,11 +312,11 @@
         },
         {
           "label": "Mute title",
-          "default": "បិទសម្លេង"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Unmute title",
-          "default": "បើកសម្លេង"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Video quality title",

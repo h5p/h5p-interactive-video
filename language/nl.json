@@ -312,11 +312,11 @@
         },
         {
           "label": "Geluid uitschakelen",
-          "default": "Geluid uitschakelen"
+          "default": "Mute, currently unmuted"
         },
         {
           "label": "Geluid inschakelen",
-          "default": "Geluid inschakelen"
+          "default": "Unmute, currently muted"
         },
         {
           "label": "Videokwaliteit",
