@@ -428,6 +428,11 @@
           "description": "@answered будет заменено на количество отвеченных вопросов."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Отправить информацию на экран",
           "default": "Вы ответили на @answered вопросов, нажмите ниже, чтобы отправить свои ответы.",
           "description": "@answered будет заменено на количество отвеченных вопросов."

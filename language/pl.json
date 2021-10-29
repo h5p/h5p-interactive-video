@@ -428,6 +428,11 @@
           "description": "@answered zostanie zamienione na liczbę rozwiązanych zadań."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Ekran wyników: podsumowanie",
           "default": "@answered zaliczonych zadań. Kliknij przycisk, aby przesłać wyniki.",
           "description": "@answered zostanie zamienione na liczbę rozwiązanych zadań."

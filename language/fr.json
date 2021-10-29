@@ -428,6 +428,11 @@
           "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Information de l'écran de remise",
           "default": "Vous avez répondu à @answered questions. Cliquez ci-dessous pour les remettre.",
           "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
