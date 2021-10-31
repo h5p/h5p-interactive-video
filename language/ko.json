@@ -312,11 +312,11 @@
         },
         {
           "label": "음소거 제목",
-          "default": "Mute, currently unmuted"
+          "default": "음소거하기, 현재는 음소거 비활성화됨"
         },
         {
           "label": "음소거 해제 제목",
-          "default": "Unmute, currently muted"
+          "default": "음소거 해제 하기, 현재는 "
         },
         {
           "label": "비디오 화질 제목",
