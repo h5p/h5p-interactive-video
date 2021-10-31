@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -467,6 +465,10 @@
         {
           "label": "Einsendebildschirm: Zusammenfassung einer Zeile ohne Punkte (für Vorlesewerkzeuge)",
           "default": "Du hast die @question beantwortet, die bei @minutes Minuten und @seconds Sekunden erschienen ist."
+        },
+        {
+          "label": "Beschriftung des \"Stumm-/Lautschalten\"-Buttons",
+          "default": "@action, derzeit @state."
         }
       ]
     }
