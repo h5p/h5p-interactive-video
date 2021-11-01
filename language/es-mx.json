@@ -222,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -465,10 +467,6 @@
         {
           "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de texto en voz alta)",
           "default": "Usted ha contestado la @question que apareció después de @minutes minutos y @seconds segundos."
-        },
-        {
-          "label": "Etiqueta de botón para Enmudecer/Activar sonido",
-          "default": "@action, actualmente @state."
         }
       ]
     }
