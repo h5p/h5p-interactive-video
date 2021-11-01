@@ -433,6 +433,11 @@
           "description": "@answered će biti zamijenjeno sa brojem odgovorenih pitanja."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Submit screen information for missing answers",
           "default": "Niste odgovoritli ni na jedno pitanje."
         },

@@ -428,6 +428,11 @@
           "description": "@answered 为已回答数"
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "提交画面中的已回答讯息文字",
           "default": "你已回答了 @answered 个问题，点击下方按钮提交你的答案。",
           "description": "@answered 为已回答数"
