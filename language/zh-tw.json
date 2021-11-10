@@ -433,13 +433,13 @@
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
-        },
-        {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
           "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
         },
         {
           "label": "Submit screen information for answer needed",
