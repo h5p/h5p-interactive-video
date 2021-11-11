@@ -433,6 +433,11 @@
           "description": "@answered je spremenljivka."
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "Sporočilo Zaslona za potrditev odgovorov o manjkajočem odgovoru",
           "default": "Ni odgovorov na vprašanja."
         },

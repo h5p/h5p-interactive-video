@@ -433,6 +433,11 @@
           "description": "@answered با تعداد سؤالات پاسخ داده شده جایگزین می‌شود."
         },
         {
+          "label": "Submit screen information for not finished",
+          "default": "You cannot submit your answers before the video has reached the end.",
+          "description": "Will disable the submit button until the video has reached the end."
+        },
+        {
           "label": "اطلاعات صفحه ارسال برای پاسخ‌های از دست رفته",
           "default": "شما به هیچ سؤالی پاسخ نداده‌اید."
         },
