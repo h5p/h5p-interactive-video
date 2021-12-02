@@ -428,6 +428,11 @@
           "description": "@answered , cevaplanan soru sayısıyla değiştirilecektir."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Gönderi başlığı bilgisi",
           "default": "Şu ana kadar @answered soru cevapladınız, cevaplarınızı göndermek için aşağıya tıklayınız.",
           "description": "@answered , cevaplanan soru sayısıyla değiştirilecektir."

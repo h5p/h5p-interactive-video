@@ -428,6 +428,11 @@
           "description": "@answered serà substituït pel nombre de preguntes contestades."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Informació de la pantalla d’enviament",
           "default": "Heu respost @answered preguntes, feu clic a sota per enviar les respostes.",
           "description": "@answered serà substituït pel nombre de preguntes contestades."

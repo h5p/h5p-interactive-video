@@ -428,6 +428,11 @@
           "description": "@answered با تعداد سؤال‌های پاسخ داده شده جایگزین می‌شود."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "اطلاعات صفحه ارسال",
           "default": "شما به @answered سؤال پاسخ دادید، برای ارسال پاسخ‌هایتان در زیر کلیک کنید.",
           "description": "@answered با تعداد سؤالات پاسخ داده شده جایگزین می‌شود."

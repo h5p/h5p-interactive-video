@@ -428,6 +428,11 @@
           "description": "@answered 는 답한 질문 수로 대체될 것."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "제출 화면 정보",
           "default": "@answered 질문에 답하였습니다, 답변을 제출하려면 아래를 클릭하십시오.",
           "description": "@answered 는 답한 질문 수로 대체될 것."

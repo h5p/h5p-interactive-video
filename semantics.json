@@ -1008,6 +1008,15 @@
         "optional": true
       },
       {
+        "name": "endcardInformationOnSubmitButtonDisabled",
+        "type": "text",
+        "label": "Submit screen information when submit button is disabled",
+        "importance": "low",
+        "default": "You have answered @answered questions.",
+        "description": "@answered will be replaced by the number of answered questions.",
+        "optional": true
+      },
+      {
         "name": "endcardInformationNoAnswers",
         "type": "text",
         "label": "Submit screen information for missing answers",

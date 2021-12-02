@@ -428,6 +428,11 @@
           "description": "@answered bude nahrazeno počtem zodpovězených otázek."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Informace obrazovky odpovědí",
           "default": "Odpověděl jste na @answered otázek, odpovědi odešlete kliknutím níže.",
           "description": "@answeredbude nahrazeno počtem zodpovězených otázek."
