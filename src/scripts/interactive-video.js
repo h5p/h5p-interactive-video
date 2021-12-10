@@ -50,7 +50,7 @@ function InteractiveVideo(params, id, contentData) {
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
-  self.isSubmitButtonEnabled = function () {
+  self.isSubmitButtonEnabled = () => {
     // Hide submit button if IV is subcontent of CP and missing reporting facility
     if (self.contentData !== undefined
       && (self.contentData.isScoringEnabled || self.contentData.isReportingEnabled)
