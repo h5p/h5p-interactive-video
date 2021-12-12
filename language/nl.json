@@ -4,17 +4,17 @@
       "label": "Editor Interactieve Video",
       "fields": [
         {
-          "label": "Video uploaden/embedden",
+          "label": "Video uploaden/insluiten",
           "fields": [
             {
               "label": "Voeg een video toe",
-              "description": "Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm en mp4 formats."
+              "description": "Selecteer de videobestanden die je wilt gebruiken in je interactieve video. Gebruik voor maximale ondersteuning in browsers ten minste een versie van de video in webm- en mp4-opmaak."
             },
             {
               "label": "Opties voor beginscherm (werkt niet voor YouTube-video's)",
               "fields": [
                 {
-                  "label": "Titel",
+                  "label": "De titel van de interactieve video",
                   "default": "Interactieve Video",
                   "description": "Gebruikt in samenvattingen, statistieken, enz."
                 },
@@ -26,7 +26,7 @@
                   "description": "Optioneel. Toon een korte beschrijving op het beginscherm van de video. Werkt niet voor YouTube-video's."
                 },
                 {
-                  "label": "Poster",
+                  "label": "Poster-afbeelding",
                   "description": "Afbeelding getoond voordat de gebruiker de video start. Werkt niet voor YouTube-video's."
                 }
               ]
@@ -41,8 +41,8 @@
                     "label": "Spoor",
                     "fields": [
                       {
-                        "label": "Spoorlabel",
-                        "description": "Gebruik wanneer je meerdere sporen aanbiedt en de gebruiker een spoor moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitel spoor.",
+                        "label": "Label voor spoor",
+                        "description": "Gebruik wanneer je meerdere sporen aanbiedt en de gebruiker een spoor moet kiezen. Bijvoorbeeld 'Spaanse ondertitels' kan het label zijn van een Spaans ondertitel-spoor.",
                         "default": "Ondertitels"
                       },
                       {
@@ -70,8 +70,8 @@
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Standaardtekst spoor",
+                  "description": "Indien leeg gelaten of niet overeenkomend met één van de tekstsporen, wordt het eerste tekstspoor als standaard gebruikt."
                 }
               ]
             }
@@ -84,14 +84,14 @@
               "field": {
                 "fields": [
                   {
-                    "label": "Toon duur"
+                    "label": "Tijd tonen"
                   },
                   {
-                    "label": "Pauzeren"
+                    "label": "Pauzeer video"
                   },
                   {
                     "label": "Tonen als",
-                    "description": "<b>Knop</b> is een samengevouwde interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwde interactie die direct getoond wordt bovenop de video.",
+                    "description": "<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video.",
                     "options": [
                       {
                         "label": "Knop"
@@ -106,7 +106,7 @@
                   },
                   {
                     "label": "Label",
-                    "description": "Toon label naast interactie-icoon."
+                    "description": "Toon label naast interactie-pictogram."
                   },
                   {},
                   {},
@@ -118,56 +118,56 @@
                     "label": "Aanpasbaar",
                     "fields": [
                       {
-                        "label": "Alle acties zijn correct",
+                        "label": "Alle acties zijn juist",
                         "fields": [
                           {
                             "label": "Zoeken naar",
-                            "description": "Voer de tijdcode in als M:SS format"
+                            "description": "Voer de tijdcode in als M:SS opmaak"
                           },
                           {
-                            "label": "Sta de gebruiker opt out toe en ga door"
+                            "label": "Sta de gebruiker opt-out toe en ga door"
                           },
                           {
                             "label": "Bericht"
                           },
                           {
-                            "label": "Label voor de zoekknop"
+                            "label": "Label voor zoekknop"
                           }
                         ]
                       },
                       {
-                        "label": "Actie bij incorrect",
+                        "label": "Actie bij onjuist",
                         "fields": [
                           {
                             "label": "Zoeken naar",
-                            "description": "Voer de tijdcode in als M:SS format"
+                            "description": "Voer de tijdcode in als M:SS opmaak"
                           },
                           {
-                            "label": "Sta de gebruiker opt out toe en ga door"
+                            "label": "Sta de gebruiker opt-out toe en ga door"
                           },
                           {
                             "label": "Bericht"
                           },
                           {
-                            "label": "Label voor de zoekknop"
+                            "label": "Label voor zoekknop"
                           }
                         ]
                       },
                       {
-                        "label": "De volledige score van de taak is vereist voordat je verder kan gaan",
-                        "description": "Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Prevent skipping forward in a video\" van de Interactieve Video."
+                        "label": "Volledige score voor de taak is vereist voordat je verder kan gaan",
+                        "description": "Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Voorkom voorwaarts navigeren in video\" van de Interactieve Video."
                       }
                     ]
                   },
                   {
-                    "label": "Ga naar na klikken",
+                    "label": "Visuele effecten",
                     "fields": [
                       {
                         "label": "Achtergrondkleur"
                       },
                       {
                         "label": "Box schaduw",
-                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
+                        "description": "Voegt een subtiele schaduw toe rond de interactie. Voor volledig transparante interacties kun je dit uitschakelen"
                       }
                     ]
                   },
@@ -178,7 +178,7 @@
                         "label": "Type",
                         "options": [
                           {
-                            "label": "Tijdscode"
+                            "label": "Tijdcode"
                           },
                           {
                             "label": "Andere pagina (URL)"
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "Ga naar",
-                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS formaat."
+                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS opmaak."
                       },
                       {
                         "label": "URL",
@@ -202,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(t.o.v. root)"
                               },
                               {
                                 "label": "andere"
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -243,20 +241,20 @@
       "label": "Gedragsinstellingen",
       "fields": [
         {
-          "label": "Video starten na",
-          "description": "Voer de tijdscode in als M:SS formaat"
+          "label": "Video starten op",
+          "description": "Voer de tijdscode in als M:SS opmaak"
         },
         {
           "label": "Video automatisch afspelen",
-          "description": "Laat de video automatisch starten"
+          "description": "Speel de video automatisch af"
         },
         {
           "label": "Video opnieuw afspelen",
-          "description": "Ga na of de video opnieuw moet worden afgespeeld"
+          "description": "Controleer of de video opnieuw moet worden afgespeeld"
         },
         {
-          "label": "\"Toon oplossing\" knop overrulen",
-          "description": "Deze optie bepaalt of de \"Toon oplossing\" knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
+          "label": "Overschrijf \"Toon oplossing\"-knop",
+          "description": "Deze optie bepaalt of de \"Toon oplossing\"-knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options": [
             {
               "label": "Ingeschakeld"
@@ -267,8 +265,8 @@
           ]
         },
         {
-          "label": "\"Opnieuw\" knop overrulen",
-          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt",
+          "label": "Overschrijf \"Opnieuw\"-knop",
+          "description": "Deze optie bepaalt of de \"Opnieuw\"-knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options": [
             {
               "label": "Ingeschakeld"
@@ -279,15 +277,15 @@
           ]
         },
         {
-          "label": "Toon knop om 10 seconden terug te spoelen",
-          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt"
+          "label": "Start met snelkoppelingsmenu open",
+          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt."
         },
         {
           "label": "Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label": "Voorkom scrollen in een video",
-          "description": "Met deze optie kan een gebruiker niet door de video scrollen met de standaard knoppen."
+          "label": "Voorkom voorwaartse navigatie in een video",
+          "description": "Met deze opties ingeschakeld, kan een gebruiker niet door de video scrollen met de standaard knoppen."
         },
         {
           "label": "Geluid uitschakelen",
@@ -296,67 +294,67 @@
       ]
     },
     {
-      "label": "Localiseer",
+      "label": "Lokaliseren",
       "fields": [
         {
-          "label": "Titel van de activiteit",
+          "label": "Titel van interactie",
           "default": "Interactie"
         },
         {
-          "label": "Afspelen titel",
+          "label": "Label voor \"Afspelen\"-knop",
           "default": "Afspelen"
         },
         {
-          "label": "Pauzeren titel",
+          "label": "Label voor \"Pauze\"-knop",
           "default": "Pauze"
         },
         {
-          "label": "Geluid uitschakelen",
-          "default": "Mute, currently unmuted"
+          "label": "Label voor \"Dempen\"-knop",
+          "default": "Dempen, nu niet-gedempt"
         },
         {
-          "label": "Geluid inschakelen",
-          "default": "Unmute, currently muted"
+          "label": "Label voor \"Dempen uit\"-knop",
+          "default": "Dempen uit, nu gedempt"
         },
         {
-          "label": "Videokwaliteit",
+          "label": "Titel voor \"Videokwaliteit\"-knop",
           "default": "Videokwaliteit"
         },
         {
-          "label": "Bijschriften",
-          "default": "Bijschriften"
+          "label": "Label voor \"Ondertitels\"-knop",
+          "default": "Ondertitels"
         },
         {
-          "label": "Sluiten",
-          "default": "Sluiten"
+          "label": "Tekst \"Afsluiten\"-knop",
+          "default": "Afsluiten"
         },
         {
-          "label": "Volledig scherm",
+          "label": "Label voor \"Volledig scherm\"-knop",
           "default": "Volledig scherm"
         },
         {
-          "label": "Volledig scherm verlaten",
-          "default": "Volledig scherm verlaten"
+          "label": "Label voor \"Volledig scherm afsluiten\"-knop",
+          "default": "Volledig scherm afsluiten"
         },
         {
-          "label": "Samenvatting",
-          "default": "Open samenvattingsvenster"
+          "label": "Titel voor samenvatting",
+          "default": "Open samenvattingsdialoog"
         },
         {
-          "label": "Bladwijzers",
+          "label": "Label voor \"Bladwijzers\"-knop",
           "default": "Bladwijzers"
         },
         {
-          "label": "Verzend schermtitel",
-          "default": "Verzend scherm"
+          "label": "Titel van verzendscherm",
+          "default": "Verzendscherm"
         },
         {
-          "label": "Standaardlabel voor zoekknop",
-          "default": "Hervatten"
+          "label": "Standaardlabel voor zoek-knop",
+          "default": "Doorgaan"
         },
         {
-          "label": "Standaardknop om door te gaan met afspelen van video",
-          "default": "Doorgaan met afspelen"
+          "label": "Standaardlabel voor \"Video doorgaan\"-knop",
+          "default": "Doorgaan met video"
         },
         {
           "label": "Afspeelsnelheid instellen",
@@ -367,31 +365,31 @@
           "default": "10 seconden terug"
         },
         {
-          "label": "Tekst navigatie uitgeschakeld",
+          "label": "Tekst voor \"Navigatie is uitgeschakeld\"",
           "default": "Navigatie is uitgeschakeld"
         },
         {
-          "label": "Tekst geluid uitgeschakeld",
+          "label": "Tekst voor \"Geluid is uitgeschakeld\"",
           "default": "Geluid is uitgeschakeld"
         },
         {
-          "label": "Melding dat de gebruiker een correct antwoord moet geven op de vraag om verder te gaan",
-          "default": "Je moet een correct antwoord geven op alle vragen om verder te kunnen gaan."
+          "label": "Melding dat de gebruiker een juist antwoord moet geven op de vraag om verder te gaan",
+          "default": "Je moet een juist antwoord geven op alle vragen om verder te kunnen gaan."
         },
         {
-          "label": "Terugknop",
+          "label": "Tekst van \"Terug\"-knop",
           "default": "Terug"
         },
         {
-          "label": "Uren",
+          "label": "Verstreken tijd in uren",
           "default": "Uren"
         },
         {
-          "label": "Minuten",
+          "label": "Verstreken tijd in minuten",
           "default": "Minuten"
         },
         {
-          "label": "Seconden",
+          "label": "Verstreken tijd in seconden",
           "default": "Seconden"
         },
         {
@@ -408,10 +406,10 @@
         },
         {
           "label": "Tekst om uit te leggen dat er meerdere interacties zichtbaar zijn geworden",
-          "default": "Meerdere interacties verschenen."
+          "default": "Meerdere interacties zijn verschenen."
         },
         {
-          "label": "Video is gepauzeerd",
+          "label": "Melding dat video is gepauzeerd",
           "default": "Video is gepauzeerd"
         },
         {
@@ -423,9 +421,9 @@
           "default": "@answered beantwoord"
         },
         {
-          "label": "Verzend schermtitel",
+          "label": "Titel van verzendscherm",
           "default": "@answered Vraag (vragen) beantwoord",
-          "description": "@answered zal worden vervangen door het aantal beantwoorde vragen"
+          "description": "@answered zal worden vervangen door het aantal beantwoorde vragen."
         },
         {
           "label": "Submit screen information when submit button is disabled",
@@ -438,39 +436,39 @@
           "description": "@answered zal worden vervangen door het aantal beantwoorde vragen."
         },
         {
-          "label": "Verzend scherminformatie voor ontbrekende antwoorden",
+          "label": "Informatie op verzendscherm over ontbrekende antwoorden",
           "default": "Je hebt geen vragen beantwoord."
         },
         {
-          "label": "Verzend scherminformatie voor het gewenste antwoord",
-          "default": "Je moet ten minste één vraag beantwoorden voordat je je antwoorden kunt verzenden."
+          "label": "Informatie voor verzendscherm over het gewenste antwoord",
+          "default": "Je moet tenminste één vraag beantwoorden voordat je je antwoorden kunt verzenden."
         },
         {
-          "label": "Verzend schermverzendknop",
+          "label": "Verzendscherm: \"Verzend\"-knop",
           "default": "Verzend antwoorden"
         },
         {
-          "label": "Verzend schermverzendbericht",
-          "default": "Je zijn antwoorden zijn verzonden!"
+          "label": "Verzendscherm: bericht over verzenden",
+          "default": "Je antwoorden zijn verzonden!"
         },
         {
-          "label": "Verzend tabelrijtitel van scherm: Beantwoorde vragen",
+          "label": "Tabelrijtitel van verzendscherm: Beantwoorde vragen",
           "default": "Beantwoorde vragen"
         },
         {
-          "label": "Verzend tabelrijtitel van scherm: Score",
+          "label": "Tabelrijtitel van verzendscherm: Score",
           "default": "Score"
         },
         {
-          "label": "Verzend scherm beantwoorde score",
-          "default": "Beantwoord"
+          "label": "Verzendscherm: Beantwoorde score",
+          "default": "beantwoord"
         },
         {
-          "label": "Verzend schermrij samenvatting inclusief score (voor readspeakers)",
+          "label": "Verzendscherm: Rij-samenvatting inclusief score (voor voorlezers)",
           "default": "Je hebt @score van de @total punten voor de @question die verscheen na @minutes minuten en @seconds seconden."
         },
         {
-          "label": "Verzend schermrij samenvatting bij geen score (voor readspeakers)",
+          "label": "Verzendscherm: Rij-samenvatting bij geen score (voor voorlezers)",
           "default": "Je hebt de @question beantwoord die verscheen na @minutes minuten en @seconds seconden."
         }
       ]
