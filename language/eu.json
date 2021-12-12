@@ -255,8 +255,8 @@
           "description": "Egiaztatzen du bideoa begizta moduan erreproduzitzen dela"
         },
         {
-          "label": "Ezeztatu \"Erakutsi soluzioa\" botoia",
-          "description": "Opzio honek adierazten du \"Erakutsi soluzioa\" botoia erakutsi behar den galdera guztietan, bat ere ez edo galdera bakoitzerako ezartzen den.",
+          "label": "Baliogabetu \"Erakutsi emaitza\" botoia",
+          "description": "Opzio honek adierazten du \"Erakutsi emaitza\" botoia erakutsi behar den galdera guztietan, bat ere ez edo galdera bakoitzerako ezartzen den.",
           "options": [
             {
               "label": "Altibatuta"
@@ -267,7 +267,7 @@
           ]
         },
         {
-          "label": "Ezeztatu \"Saiatu berriro\" botoia",
+          "label": "Baliogabetu \"Saiatu berriro\" botoia",
           "description": "Aukera honen bidez adierazten ahal da \"Saiatu berriro\" botoia erakutsi behar den galdera guztietan, bat ere ez edo galdera bakoitzerako ezartzen den.",
           "options": [
             {
