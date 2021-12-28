@@ -428,6 +428,11 @@
           "description": "@answered sal vervang word met die aantal beantwoorde vrae."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Dien skerm in informasie",
           "default": "Jy het @answered vrae beantwoord, klik hieronder om jou vrae in te dien.",
           "description": "@answered sal vervang word met die aantal beantwoorde vrae."

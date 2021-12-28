@@ -428,6 +428,11 @@
           "description": "@answered je spremenljivka."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Vsebina sporočilo Zaslona za potrditev odgovorov",
           "default": "Trenutno je opravljena vsaj ena aktivnost (točno število: @answered), ki jo je možno potrditi.",
           "description": "@answered je spremenljivka."

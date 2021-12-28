@@ -428,6 +428,11 @@
           "description": "@answered será substituído pelo número de perguntas respondidas."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Informações do ecrã de submissão",
           "default": "Respondeu a @answered perguntas. Clique abaixo para submeter as suas respostas.",
           "description": "@answered será substituído pelo número de perguntas respondidas."

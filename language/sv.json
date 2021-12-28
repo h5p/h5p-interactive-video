@@ -222,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -424,6 +426,11 @@
           "label": "Titel på inlämningssida",
           "default": "@answered frågor besvarade",
           "description": "@answered kommer ersättas med antalet besvarade frågor."
+        },
+        {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Information på inlämningssida",

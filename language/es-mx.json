@@ -4,7 +4,7 @@
       "label": "Editor de Video Interactivo",
       "fields": [
         {
-          "label": "Subir/Insertar video",
+          "label": "Subir/incrustar video",
           "fields": [
             {
               "label": "Añadir un video",
@@ -312,11 +312,11 @@
         },
         {
           "label": "Silenciar título",
-          "default": "Mute, currently unmuted"
+          "default": "Enmudecer, actualmente sonoro"
         },
         {
           "label": "Activar sonido del título",
-          "default": "Unmute, currently muted"
+          "default": "Activar sonido, actualmente mudo"
         },
         {
           "label": "Título de la calidad de vídeo",
@@ -426,6 +426,11 @@
           "label": "Título de pantalla de envío",
           "default": "@answered pregunta(s) contestada(s)",
           "description": "@answered será reemplazada por el número de preguntas contestadas."
+        },
+        {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Información de la pantalla de envío",

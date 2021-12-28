@@ -49,6 +49,12 @@ function InteractiveVideo(params, id, contentData) {
   self.contentData = contentData;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
+  // Check that the submit button is enabled
+  self.isSubmitButtonEnabled = false;
+  if (self.contentData !== undefined && (self.contentData.isScoringEnabled || self.contentData.isReportingEnabled)) {
+    self.isSubmitButtonEnabled = true;
+  }
+
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
   self.endscreensMenuId = 'interactive-video-' + this.contentId + '-endscreens-chooser';
@@ -640,7 +646,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
  */
 InteractiveVideo.prototype.getCurrentState = function () {
   var self = this;
-  if (!self.video.play) {
+  if (!self.video || !self.video.play) {
     return; // Missing video
   }
 
@@ -1303,6 +1309,7 @@ InteractiveVideo.prototype.addBubbles = function () {
       l10n: {
         title: this.l10n.endcardTitle,
         information: this.l10n.endcardInformation,
+        informationOnSubmitButtonDisabled: this.l10n.endcardInformationOnSubmitButtonDisabled,
         informationNoAnswers: this.l10n.endcardInformationNoAnswers,
         informationMustHaveAnswer: this.l10n.endcardInformationMustHaveAnswer,
         submitButton: this.l10n.endcardSubmitButton,
@@ -3623,7 +3630,11 @@ InteractiveVideo.prototype.resetTask = function () {
     return; // Content has not been used
   }
 
-  this.seek(0); // Rewind
+  // Do not seek to 0 if the video hasn't been started
+  var time = this.video.getCurrentTime();
+  if (time > 0) {
+    this.seek(0); // Rewind 
+  }
   this.timeUpdate(-1);
   this.controls.$slider.slider('option', 'value', 0);
 

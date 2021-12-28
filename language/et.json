@@ -428,6 +428,11 @@
           "description": "@answered asendatakse vastatud küsimuste arvuga."
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "Esita kuva teave",
           "default": "Oled vastanud @answered küsimust, kliki all oma vastuste esitamiseks.",
           "description": "@answered asendatakse vastatud küsimuste arvuga."

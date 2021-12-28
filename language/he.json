@@ -115,23 +115,23 @@
                   {},
                   {},
                   {
-                    "label": "",
+                    "label": "Action on all correct",
                     "fields": [
                       {
                         "label": "פעולה כשכל התשובות נכונות",
                         "fields": [
                           {
-                            "label": "",
-                            "description": ""
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": ""
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
                             "label": "הודעה"
                           },
                           {
-                            "label": ""
+                            "label": "Label for seek button"
                           }
                         ]
                       },
@@ -139,17 +139,17 @@
                         "label": "פעולה על תשובה שגויה",
                         "fields": [
                           {
-                            "label": "",
-                            "description": ""
+                            "label": "Seek to",
+                            "description": "Enter timecode in the format M:SS"
                           },
                           {
-                            "label": ""
+                            "label": "Allow the user to opt out and continue"
                           },
                           {
                             "label": "הודעה"
                           },
                           {
-                            "label": ""
+                            "label": "Label for seek button"
                           }
                         ]
                       },
@@ -160,25 +160,25 @@
                     ]
                   },
                   {
-                    "label": "",
+                    "label": "Visuals",
                     "fields": [
                       {
                         "label": "צבע רקע"
                       },
                       {
-                        "label": "",
-                        "description": ""
+                        "label": "Box shadow",
+                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
                       }
                     ]
                   },
                   {
-                    "label": "",
+                    "label": "Go to on click",
                     "fields": [
                       {
-                        "label": "",
+                        "label": "סוג",
                         "options": [
                           {
-                            "label": ""
+                            "label": "Timecode"
                           },
                           {
                             "label": "עמוד נוסף (URL)"
@@ -186,8 +186,8 @@
                         ]
                       },
                       {
-                        "label": "",
-                        "description": ""
+                        "label": "Go To",
+                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
                         "label": "URL",
@@ -196,16 +196,16 @@
                             "label": "פרוטוקול",
                             "options": [
                               {
-                                "label": ""
+                                "label": "http://"
                               },
                               {
-                                "label": ""
+                                "label": "https://"
                               },
                               {
-                                "label": ""
+                                "label": "(root relative)"
                               },
                               {
-                                "label": "אחר"
+                                "label": "other"
                               }
                             ]
                           },
@@ -215,14 +215,16 @@
                         ]
                       },
                       {
-                        "label": "",
+                        "label": "Visualize",
                         "description": "הראו שניתן ללחוץ על אינטראקציה על ידי הוספת גבול ואייקון"
                       }
                     ]
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -230,7 +232,7 @@
           "fields": [
             {},
             {
-              "label": "",
+              "label": "תצוגה ב-",
               "description": "מספר השניות לפני סוף הסרטון."
             }
           ]
@@ -242,10 +244,10 @@
       "fields": [
         {
           "label": "התחילו סרטון ב-",
-          "description": ""
+          "description": "Enter timecode in the format M:SS"
         },
         {
-          "label": "",
+          "label": "סרטון מופעל אוטומטית",
           "description": "התחילו להריץ את הסרטון אוטומטית"
         },
         {
@@ -257,10 +259,10 @@
           "description": "אפשרות זו קובעת האם כפתור \"הצגת פתרון\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
           "options": [
             {
-              "label": ""
+              "label": "Enabled"
             },
             {
-              "label": ""
+              "label": "Disabled"
             }
           ]
         },
@@ -269,10 +271,10 @@
           "description": "אפשרות זו קובעת האם כפתור \"ניסיון חוזר\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
           "options": [
             {
-              "label": ""
+              "label": "Enabled"
             },
             {
-              "label": ""
+              "label": "Disabled"
             }
           ]
         },
@@ -281,15 +283,15 @@
           "description": "פונקציה זו לא קיימת ב-iPad כאשר משתמשים ב-YouTube בסרטון המקור."
         },
         {
-          "label": ""
+          "label": "Show button for rewinding 10 seconds"
         },
         {
           "label": "מנעו דילוג קדימה בסרטון",
-          "description": ""
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
           "label": "כיבוי שמע",
-          "description": ""
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
@@ -301,7 +303,7 @@
           "default": "אינטראקציה"
         },
         {
-          "label": "",
+          "label": "כותרת נגן",
           "default": "נגן"
         },
         {
@@ -321,7 +323,7 @@
           "default": "איכות סרטון"
         },
         {
-          "label": "",
+          "label": "כותרת כיתובי סרטון",
           "default": "כתוביות"
         },
         {
@@ -338,7 +340,7 @@
         },
         {
           "label": "כותרת סיכום",
-          "default": ""
+          "default": "Open summary dialog"
         },
         {
           "label": "כותרת סימניות",
@@ -349,7 +351,7 @@
           "default": "מסך הגשה"
         },
         {
-          "label": "",
+          "label": "Default label for adaptivity seek button",
           "default": "המשך"
         },
         {
@@ -357,7 +359,7 @@
           "default": "המשך סרטון"
         },
         {
-          "label": "",
+          "label": "הגדרת מהירות ניגון הסרטון",
           "default": "מהירות ניגון סרטון"
         },
         {
@@ -365,12 +367,12 @@
           "default": "חזרה אחורה 10 שניות"
         },
         {
-          "label": "",
-          "default": ""
+          "label": "Navigation is disabled text",
+          "default": "Navigation is disabled"
         },
         {
-          "label": "",
-          "default": ""
+          "label": "Sound is disabled text",
+          "default": "Sound is disabled"
         },
         {
           "label": "אזהרה שהמשתמש מוכרח לענות על השאלה נכון לפני שממשיך",
@@ -381,15 +383,15 @@
           "default": "הקודם"
         },
         {
-          "label": "",
+          "label": "זמן שעבר: שעות",
           "default": "שעות"
         },
         {
-          "label": "",
+          "label": "זמן שעבר: דקות",
           "default": "דקות"
         },
         {
-          "label": "",
+          "label": "זמן שעבר: שניות",
           "default": "שניות"
         },
         {
@@ -401,11 +403,11 @@
           "default": "זמן כולל:"
         },
         {
-          "label": "",
+          "label": "תוכן שמסביר שאינטראקציה בודדת עם שם הופיעה",
           "default": "אינטראקציה הופיעה:"
         },
         {
-          "label": "",
+          "label": "תוכן שמסביר שמספר אינטראקציות הופיעו",
           "default": "מספר איטראקציות הופיעו."
         },
         {
@@ -417,18 +419,23 @@
           "default": "תוכן"
         },
         {
-          "label": "",
-          "default": ""
+          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "default": "@answered נענו"
         },
         {
           "label": "כותרת מסך הזנה",
-          "default": "",
-          "description": ""
+          "default": "@answered שאלה/ות נענו",
+          "description": "@answered יוחלף במספר השאלות שענו עליהן."
         },
         {
-          "label": "",
-          "default": "",
-          "description": ""
+          "label": "מידע מסך הגשה",
+          "default": "עניתם על @answered שאלות, לחצו למטה כדי להזין את התשובות.",
+          "description": "@answered יוחלף במספר השאלות שענו עליהן."
+        },
+        {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "מידע של מסך הזנה על תשובות חסרות",
@@ -451,20 +458,20 @@
           "default": "תשובות עם מענה"
         },
         {
-          "label": "",
-          "default": "ציון"
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
         },
         {
-          "label": "",
-          "default": ""
+          "label": "Submit screen answered score",
+          "default": "answered"
         },
         {
-          "label": "",
-          "default": ""
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "קיבלתם @score מתוך @total נקודות עבור ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
         },
         {
-          "label": "",
-          "default": ""
+          "label": "מסך הזנה שורת סיכום עבור אין ציון (לקוראי-מסך)",
+          "default": "עניתם על ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
         }
       ]
     }

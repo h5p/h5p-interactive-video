@@ -428,6 +428,11 @@
           "description": "@answered র বদলে মোট উত্তর দেয়ার সংখ্যা দেখা যাবে।"
         },
         {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
+        },
+        {
           "label": "দাখিল স্ক্রিনের তথ্য",
           "default": "আপনি @answered টি প্রশ্নের উত্তর দিয়েছেন, আপনার উত্তরগুলো দাখিল করতে নিচে ক্লিক করুন।",
           "description": "@answered র বদলে মোট উত্তর দেয়ার সংখ্যা দেখা যাবে।"

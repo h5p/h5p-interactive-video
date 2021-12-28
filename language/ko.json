@@ -312,11 +312,11 @@
         },
         {
           "label": "음소거 제목",
-          "default": "Mute, currently unmuted"
+          "default": "음소거하기, 현재는 음소거 비활성화됨"
         },
         {
           "label": "음소거 해제 제목",
-          "default": "Unmute, currently muted"
+          "default": "음소거 해제 하기, 현재는 "
         },
         {
           "label": "비디오 화질 제목",
@@ -426,6 +426,11 @@
           "label": "제출 화면 제목",
           "default": "@answered 질문들은 답변되었습니다.",
           "description": "@answered 는 답한 질문 수로 대체될 것."
+        },
+        {
+          "label": "Submit screen information when submit button is disabled",
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "제출 화면 정보",
