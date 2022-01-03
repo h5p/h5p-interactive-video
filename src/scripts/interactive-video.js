@@ -54,6 +54,9 @@ function InteractiveVideo(params, id, contentData) {
   if (self.contentData !== undefined && (self.contentData.isScoringEnabled || self.contentData.isReportingEnabled)) {
     self.isSubmitButtonEnabled = true;
   }
+  else if (H5PIntegration.reportingIsEnabled !== undefined) { // (Never use H5PIntegration directly in a content type. It's only here for backwards compatibility)
+    this.isSubmitButtonEnabled = H5PIntegration.reportingIsEnabled;
+  }
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
@@ -708,7 +711,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // 'video only' fallback has no interactions
   let isAnswerable = this.hasMainSummary();
-  
+
   if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
@@ -3633,7 +3636,7 @@ InteractiveVideo.prototype.resetTask = function () {
   // Do not seek to 0 if the video hasn't been started
   var time = this.video.getCurrentTime();
   if (time > 0) {
-    this.seek(0); // Rewind 
+    this.seek(0); // Rewind
   }
   this.timeUpdate(-1);
   this.controls.$slider.slider('option', 'value', 0);
