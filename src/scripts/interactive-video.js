@@ -50,10 +50,7 @@ function InteractiveVideo(params, id, contentData) {
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
-  self.isSubmitButtonEnabled = false;
-  if (self.contentData !== undefined && (self.contentData.isScoringEnabled || self.contentData.isReportingEnabled)) {
-    self.isSubmitButtonEnabled = true;
-  }
+  self.isSubmitButtonEnabled = (contentData === undefined || contentData.isScoringEnabled === undefined || contentData.isReportingEnabled === undefined || contentData.isScoringEnabled || contentData.isReportingEnabled);
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
