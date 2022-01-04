@@ -360,7 +360,7 @@
         },
         {
           "label": "Establecer la velocidad de reproducción",
-          "default": "Velocidad de reproducción"
+          "default": "Velocidad de Reproducción"
         },
         {
           "label": "Retroceder 10 segundos",
@@ -379,7 +379,7 @@
           "default": "Debe responder correctamente a todas las preguntas antes de continuar."
         },
         {
-          "label": "Botón de retroceso",
+          "label": "Botón de Retroceso",
           "default": "Retroceder"
         },
         {
@@ -424,17 +424,17 @@
         },
         {
           "label": "Título de pantalla de envío",
-          "default": "@answered pregunta(s) contestada(s)",
+          "default": "@answered Pregunta(s) contestada(s)",
           "description": "@answered será reemplazada por el número de preguntas contestadas."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Información de pantalla de envío",
+          "default": "Usted ha contestado @answered preguntas.",
+          "description": "@answered será remplazado por el número de preguntas no contestadas."
         },
         {
-          "label": "Información de la pantalla de envío",
-          "default": "Usted ha contestado @answered preguntas, haga clic a continuación para confirmar sus respuestas.",
+          "label": "Información de la pantalla de envío cuando el botón de envío está deshabilitado",
+          "default": "Usted ha contestado @answered preguntas.",
           "description": "@answered será reemplazada por el número de preguntas contestadas."
         },
         {
