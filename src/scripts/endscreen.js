@@ -46,7 +46,7 @@ class Endscreen extends H5P.EventDispatcher {
     }, params.l10n);
 
     // Submit button needs to be enabled when the content type used as subcontent
-    this.isSubmitButtonEnabled = this.parent.isSubmitButtonEnabled();
+    this.isSubmitButtonEnabled = this.parent.isSubmitButtonEnabled;
 
     this.buildDOM();
   }

@@ -50,16 +50,7 @@ function InteractiveVideo(params, id, contentData) {
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
-  self.isSubmitButtonEnabled = () => {
-    // Hide submit button if IV is subcontent of CP and missing reporting facility
-    if (self.contentData !== undefined
-      && (self.contentData.isScoringEnabled || self.contentData.isReportingEnabled)
-      && (contentData.parent === undefined
-        || (contentData.parent !== undefined && H5PIntegration.contents['cid-' + contentData.parent.contentId].library.split(' ')[0] !== 'H5P.CoursePresentation'))) {
-      return true;
-    }
-    return false;
-  };
+  self.isSubmitButtonEnabled = (contentData.isScoringEnabled === undefined || contentData.isReportingEnabled === undefined || contentData.isScoringEnabled || contentData.isReportingEnabled);
 
   // Create dynamic ids
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
