@@ -3623,20 +3623,18 @@ InteractiveVideo.prototype.pause = function () {
  * Reset all interaction progress and answers
  */
 InteractiveVideo.prototype.resetTask = function () {
-  if (this.controls === undefined) {
-    return; // Content has not been used
-  }
-
-  // Do not seek to 0 if the video hasn't been started
-  var time = this.video.getCurrentTime();
-  if (time > 0) {
-    this.seek(0); // Rewind 
-  }
-  this.timeUpdate(-1);
-  this.controls.$slider.slider('option', 'value', 0);
-
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
+  }
+
+  if (this.controls !== undefined) {
+    // Do not seek to 0 if the video hasn't been started
+    var time = this.video.getCurrentTime();
+    if (time > 0) {
+      this.seek(0); // Rewind
+    }
+    this.timeUpdate(-1);
+    this.controls.$slider.slider('option', 'value', 0);
   }
 };
 
