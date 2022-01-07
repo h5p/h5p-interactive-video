@@ -1,0 +1,477 @@
+{
+  "semantics": [
+    {
+      "label": "Interaktīvā video redaktors",
+      "fields": [
+        {
+          "label": "Augšupielādēt/iegult video",
+          "fields": [
+            {
+              "label": "Video pievienošana",
+              "description": "Noklikšķiniet zemāk, lai pievienotu videoklipu, ko vēlaties izmantot savā interaktīvajā video. Varat pievienot video saiti vai augšupielādēt video failus. Ir iespējams pievienot vairākas video versijas ar atšķirīgu kvalitāti. Lai nodrošinātu maksimālu atbalstu pārlūkprogrammās, pievienojiet vismaz versiju webm un mp4 formātos."
+            },
+            {
+              "label": "Sākuma ekrāna opcijas (netiek atbalstītas YouTube videoklipiem)",
+              "fields": [
+                {
+                  "label": "Šī interaktīvā videoklipa nosaukums",
+                  "default": "Interaktīvais video",
+                  "description": "Tiek izmantots apkopojumos, statistikā utt."
+                },
+                {
+                  "label": "Paslēpt nosaukumu video sākuma ekrānā"
+                },
+                {
+                  "label": "Īss apraksts (neobligāts)",
+                  "description": "Neobligāti. Parādiet īsu apraksta tekstu video sākuma ekrānā. Nedarbojas YouTube videoklipiem."
+                },
+                {
+                  "label": "Afišas attēls",
+                  "description": "Attēls tiek parādīts, pirms lietotājs palaiž video. Nedarbojas YouTube videoklipiem."
+                }
+              ]
+            },
+            {
+              "label": "Teksta celiņi (YouTube videoklipiem netiek atbalstīti)",
+              "fields": [
+                {
+                  "label": "Pieejamie teksta celiņi",
+                  "entity": "Celiņš",
+                  "field": {
+                    "label": "Celiņš",
+                    "fields": [
+                      {
+                        "label": "Celiņa etiķete",
+                        "default": "Subtitri",
+                        "description": "Tiek izmantots, ja piedāvājat vairākus celiņus un lietotājam ir jāizvēlas celiņš. Piemēram, “subtitri spāņu valodā” varētu būt spāņu valodas subtitru celiņa etiķete."
+                      },
+                      {
+                        "label": "Teksta celiņa veids",
+                        "options": [
+                          {
+                            "label": "Subtitri"
+                          },
+                          {
+                            "label": "Titri"
+                          },
+                          {
+                            "label": "Apraksti"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Subtitriem jānorāda avota valoda",
+                        "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
+                      },
+                      {
+                        "label": "Celiņa avots (WebVTT fails)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Noklusējuma teksta celiņš",
+                  "description": "Ja atstāts tukšs vai neatbilst nevienam teksta celiņam, pirmais teksta celiņš tiks izmantots kā noklusējuma celiņš."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Pievienot mijiedarbības",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Parādīšanas laiks"
+                  },
+                  {
+                    "label": "Pauzēt video"
+                  },
+                  {
+                    "label": "Parādīt kā",
+                    "description": "<b>Poga</b> ir sakļauta mijiedarbība, kas lietotājam ir jānospiež, lai to atvērtu. <b>Afiša</b> ir paplašināta mijiedarbība, kas tiek parādīta tieši video priekšplānā",
+                    "options": [
+                      {
+                        "label": "Poga"
+                      },
+                      {
+                        "label": "Afiša"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Mazos ekrānos pārvērst par pogu"
+                  },
+                  {
+                    "label": "Etiķete",
+                    "description": "Etiķete kas tiek rādīta blakus mijiedarbības ikonai."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptivitāte",
+                    "fields": [
+                      {
+                        "fields": [
+                          {
+                            "description": "Ievadiet laika kodu formātā M:SS",
+                            "label": "Doties uz"
+                          },
+                          {
+                            "label": "Ļaut lietotājam atteikties un turpināt"
+                          },
+                          {
+                            "label": "Ziņa"
+                          },
+                          {
+                            "label": "Etiķete meklēšanas pogai"
+                          }
+                        ],
+                        "label": "Rīcība ja viss pareizi"
+                      },
+                      {
+                        "label": "Rīcība ja nepareizi",
+                        "fields": [
+                          {
+                            "label": "Doties uz",
+                            "description": "Ievadiet laika kodu formātā M:SS"
+                          },
+                          {
+                            "label": "Ļaut lietotājam atteikties un turpināt"
+                          },
+                          {
+                            "label": "Ziņa"
+                          },
+                          {
+                            "label": "Meklēšanas pogas etiķete"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Pirms turpināt, pieprasīt pilnu punktu skaitu par uzdevumu",
+                        "description": "Lai nodrošinātu vislabāko funkcionalitāti, šī opcija ir jāizmanto kopā ar interaktīvā video opciju “Novērst pārlēkšanu uz priekšu videoklipā”."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Noformējums",
+                    "fields": [
+                      {
+                        "label": "Fona krāsa"
+                      },
+                      {
+                        "label": "Rāmīša ēnojums",
+                        "description": "Pievieno smalku ēnu ap mijiedarbību. Iespējams, vēlēsieties to atspējot mijiedarbībām ar caurspīdīgu fonu"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Pēc klikšķa doties uz",
+                    "fields": [
+                      {
+                        "label": "Tips",
+                        "options": [
+                          {
+                            "label": "Laika kods"
+                          },
+                          {
+                            "label": "Cita lapa (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Iet uz",
+                        "description": "Mērķa laiks uz kuru lietotājs tiks novirzīts pēc klikšķa uz aktīvā punkta. Ievadiet laika kodu šādā formātā: M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protokols",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(relatīvais ceļš)"
+                              },
+                              {
+                                "label": "cits"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Vizualizēt",
+                        "description": "Parādiet, ka mijiedarbība ir klikšķināma, pievienojot apmali un ikonu"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Kopsavilkuma uzdevums",
+          "fields": [
+            {},
+            {
+              "label": "Parādīt plkst",
+              "description": "Sekunžu skaits pirms videoklipa beigām."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Sākt video no",
+          "description": "Ievadiet laika kodu formātā M:SS"
+        },
+        {
+          "label": "Video automātiskā atskaņošana",
+          "description": "Sākt automātiski atskaņot videoklipu"
+        },
+        {
+          "label": "Automātiski atkārtot videoklipu",
+          "description": "Atzīmējiet, ja videoklipam jādarbojas ciklā"
+        },
+        {
+          "options": [
+            {
+              "label": "Iespējota"
+            },
+            {
+              "label": "Atspējota"
+            }
+          ],
+          "label": "Ignorēt pogu \"Rādīt risinājumu\"",
+          "description": "Šī opcija nosaka, vai poga \"Rādīt risinājumu\" tiks rādīta visiem jautājumiem, atspējota visiem vai konfigurēta katram jautājumam atsevišķi."
+        },
+        {
+          "label": "Ignorēt pogu \"Mēģināt vēlreiz\"",
+          "description": "Šī opcija nosaka, vai poga \"Mēģināt vēlreiz\" tiks rādīta visiem jautājumiem, atspējota visiem vai konfigurēta katram jautājumam atsevišķi.",
+          "options": [
+            {
+              "label": "Iespējota"
+            },
+            {
+              "label": "Atspējota"
+            }
+          ]
+        },
+        {
+          "label": "Sākt ar atvērtu grāmatzīmju izvēlni",
+          "description": "Šī funkcionalitāte nav pieejama uz iPad kad tiek izmantots YouTube video avots."
+        },
+        {
+          "label": "Rādīt pogu attīšanai par 10 sekundēm"
+        },
+        {
+          "description": "Šīs opcijas ieslēgšana lietotājam atspējos video navigāciju ar noklusējuma vadīklām.",
+          "label": "Novērsiet pārlēkšanu uz priekšu videoklipā"
+        },
+        {
+          "label": "Atslēgt skaņu",
+          "description": "Šīs opcijas aktivizēšana, atslēgs videoklipa skaņu un liegs tās ieslēgšanu."
+        }
+      ],
+      "label": "Uzvedības iestatījumi"
+    },
+    {
+      "label": "Lokalizēt",
+      "fields": [
+        {
+          "label": "Mijiedarbības nosaukums",
+          "default": "Mijiedarbība"
+        },
+        {
+          "default": "Atskaņot",
+          "label": "Atskaņošanas nosaukums"
+        },
+        {
+          "label": "Pauzes nosaukums",
+          "default": "Pauze"
+        },
+        {
+          "default": "Izslēgt skaņu, pašlaik skaņa ieslēgta",
+          "label": "Skaņas izslēgšanas nosaukums"
+        },
+        {
+          "default": "Ieslēgt skaņu, pašlaik skaņa izslēgta",
+          "label": "Skaņas ieslēgšanas nosaukums"
+        },
+        {
+          "default": "Video kvalitāte",
+          "label": "Video kvalitātes nosaukums"
+        },
+        {
+          "label": "Video titru nosaukums",
+          "default": "Titri"
+        },
+        {
+          "label": "Aizvēršanas pogas teksts",
+          "default": "Aizvērt"
+        },
+        {
+          "label": "Pilnekrāna nosaukums",
+          "default": "Pilnekrāna režīms"
+        },
+        {
+          "default": "Iziet no pilnekrāna režīma",
+          "label": "Nosaukums iziešanai no pilnekrāna režīma"
+        },
+        {
+          "label": "Kopsavilkuma virsraksts",
+          "default": "Atvērt kopsavilkuma dialogu"
+        },
+        {
+          "label": "Grāmatzīmju nosaukums",
+          "default": "Grāmatzīmes"
+        },
+        {
+          "label": "Iesniegšanas ekrāna nosaukums",
+          "default": "Iesniegšanas ekrāns"
+        },
+        {
+          "label": "Noklusējuma etiķete adaptivitātes meklēšanas pogai",
+          "default": "Turpināt"
+        },
+        {
+          "default": "Turpināt ar video",
+          "label": "Noklusējuma etiķete pogai \"Turpināt video\""
+        },
+        {
+          "label": "Iestatīt atskaņošanas ātrumu",
+          "default": "Atskaņošanas ātrums"
+        },
+        {
+          "label": "Attīt 10 sekundes",
+          "default": "Attīt 10 sekundes"
+        },
+        {
+          "label": "Navigācijas atspējošanas teksts",
+          "default": "Navigācija ir atspējota"
+        },
+        {
+          "label": "Skaņa ir atspējota teksts",
+          "default": "Skaņa ir atspējota"
+        },
+        {
+          "default": "Pirms turpināt, jums pareizi jāatbild uz visiem jautājumiem.",
+          "label": "Brīdinājums, ka lietotājam ir pareizi jāatbild uz jautājumu pirms turpināt"
+        },
+        {
+          "label": "Poga navigācijai atpakaļ",
+          "default": "Atpakaļ"
+        },
+        {
+          "label": "Pagājušā laika stundas",
+          "default": "Stundas"
+        },
+        {
+          "label": "Pagājušā laika minūtes",
+          "default": "Minūtes"
+        },
+        {
+          "label": "Pagājušā laika sekundes",
+          "default": "Sekundes"
+        },
+        {
+          "default": "Pašreizējais laiks:",
+          "label": "Pašreizējā laika etiķete"
+        },
+        {
+          "label": "Etiķete kopējam laikam",
+          "default": "Kopējais laiks:"
+        },
+        {
+          "default": "Parādījās mijiedarbība:",
+          "label": "Teksts, kurā paskaidrots, ka ir parādījusies viena mijiedarbība ar vārdu"
+        },
+        {
+          "label": "Paskaidrojošais teksts, ka parādījušās vairākas mijiedarbības",
+          "default": "Parādījušās vairākas mijiedarbības."
+        },
+        {
+          "label": "Paziņojums, ka video ir apturēts",
+          "default": "Videoklips ir apturēts"
+        },
+        {
+          "label": "Satura etiķete",
+          "default": "Saturs"
+        },
+        {
+          "label": "Ziņa par atbildi (@answered tiks aizstāts ar atbildēto jautājumu skaitu)",
+          "default": "@answered atbildētas"
+        },
+        {
+          "label": "Iesniegšanas ekrāna nosaukums",
+          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu.",
+          "default": "@answered jautājums(i) atbildēti"
+        },
+        {
+          "label": "Iesniegšanas ekrāna informācija",
+          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu.",
+          "default": "Jūs esat atbildējis uz @answered jautājumiem, noklikšķiniet tālāk, lai iesniegtu atbildes."
+        },
+        {
+          "label": "Iesniegšanas ekrāna informācija, kad iesniegšanas poga ir atspējota",
+          "default": "Jūs esat atbildējis uz @answered jautājumiem.",
+          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu."
+        },
+        {
+          "default": "Jūs neesat atbildējis ne uz vienu jautājumu.",
+          "label": "Iesniegšanas ekrāna informācija par trūkstošajām atbildēm"
+        },
+        {
+          "label": "Iesniegšanas ekrāna informācija, kad nepieciešama atbilde",
+          "default": "Lai varētu iesniegt atbildes, jums ir jāatbild vismaz uz vienu jautājumu."
+        },
+        {
+          "label": "Iesniegšanas ekrāna iesniegšanas poga",
+          "default": "Iesniegt atbildes"
+        },
+        {
+          "label": "Iesniegšanas ekrāna iesniegšanas ziņojums",
+          "default": "Jūsu atbildes ir iesniegtas!"
+        },
+        {
+          "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Atbildētie jautājumi",
+          "default": "Atbildētie jautājumi"
+        },
+        {
+          "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Rezultāts",
+          "default": "Rezultāts"
+        },
+        {
+          "default": "atbildēts",
+          "label": "Iesniegšanas ekrāna atbilžu skaits"
+        },
+        {
+          "label": "Iesniegšanas ekrāna rindas kopsavilkums, ieskaitot punktu skaitu (asistīvajām tehnoloģijām)",
+          "default": "Tu ieguvi @score no @total punktiem par @question, kas parādījās pēc @minutes minūtēm un @seconds sekundēm."
+        },
+        {
+          "label": "Iesniegšanas ekrāna rindas kopsavilkums par neiegūtiem punktiem (asistīvajām tehnoloģijām)",
+          "default": "Tu esi atbildējis uz @question, kas parādījās pēc @minutes minūtēm un @seconds sekundēm."
+        }
+      ]
+    }
+  ]
+}
