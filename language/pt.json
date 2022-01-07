@@ -19,14 +19,14 @@
                   "description": "Usado em resumos, estatísticas, etc."
                 },
                 {
-                  "label": "Ocultar título na tela inicial do vídeo"
+                  "label": "Ocultar título no ecrã inicial do vídeo"
                 },
                 {
                   "label": "Descrição curta (opcional)",
                   "description": "Opcional. Mostrar uma pequena descrição em texto no ecrã inicial do vídeo. Não funciona com vídeos do YouTube."
                 },
                 {
-                  "label": "Poster",
+                  "label": "Póster",
                   "description": "Imagem mostrada antes do utilizador reproduzir o vídeo. Não funciona com vídeos do YouTube."
                 }
               ]
@@ -60,7 +60,7 @@
                         ]
                       },
                       {
-                        "label": "Origem do idioma, deve ser definida para legendas",
+                        "label": "Idioma original, deve ser definido para legendas",
                         "description": "Deve ser uma etiqueta de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto selecionado, o idioma original da faixa de texto deve ser definido."
                       },
                       {
@@ -90,14 +90,14 @@
                     "label": "Pausar vídeo"
                   },
                   {
-                    "label": "Exibir como:",
-                    "description": "<b>Botão</b> é uma interação onde o utilizador tem de clicar para abrir. <b>Poster</b> é uma interação expansiva mostrada diretamente sobre o vídeo",
+                    "label": "Exibir como",
+                    "description": "<b>Botão</b> é uma interação onde o utilizador tem de clicar para abrir. <b>Póster</b> é uma interação expansiva mostrada diretamente sobre o vídeo",
                     "options": [
                       {
                         "label": "Botão"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Póster"
                       }
                     ]
                   },
@@ -106,7 +106,7 @@
                   },
                   {
                     "label": "Etiqueta",
-                    "description": "Etiqueta mostrada próximo do ícone de interação."
+                    "description": "Etiqueta mostrada próxima do ícone de interação."
                   },
                   {},
                   {},
@@ -118,7 +118,7 @@
                     "label": "Adaptação",
                     "fields": [
                       {
-                        "label": "Ação em todos corretos",
+                        "label": "Ação em todos os corretos",
                         "fields": [
                           {
                             "label": "Ir para (procura)",
@@ -154,8 +154,8 @@
                         ]
                       },
                       {
-                        "label": "Requer a pontuação máxima na tarefa antes de prosseguir",
-                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção \"Evitar a opção de avanço num vídeo\" de Vídeo interativo."
+                        "label": "Requer a pontuação máxima na atividade antes de prosseguir",
+                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção \"Evitar a opção de avanço num vídeo\" do Vídeo interativo."
                       }
                     ]
                   },
@@ -167,7 +167,7 @@
                       },
                       {
                         "label": "Sombra da caixa",
-                        "description": "Adiciona uma sombra subtil em volta das interações. Pode pretender desativar esta opção se deseja interações transparentes."
+                        "description": "Adiciona uma sombra subtil em volta das interações. Pode pretender desativar esta opção se deseja interações transparentes"
                       }
                     ]
                   },
@@ -222,13 +222,11 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Tarefa de resumo",
+          "label": "Resumo da atividade",
           "fields": [
             {},
             {
@@ -240,7 +238,7 @@
       ]
     },
     {
-      "label": "Opções gerais",
+      "label": "Configurações gerais",
       "fields": [
         {
           "label": "Começar vídeo aos",
@@ -248,14 +246,14 @@
         },
         {
           "label": "Vídeo com auto-reprodução",
-          "description": "A reprodução do vídeo começa automaticamente"
+          "description": "A reprodução do vídeo inicia automaticamente"
         },
         {
           "label": "Repetir automaticamente",
-          "description": "Marque se o vídeo deve repetir quando terminar"
+          "description": "Marque se deve repetir o vídeo quando terminar"
         },
         {
-          "label": "Sobrepor botão \"Mostrar solução\" ",
+          "label": "Sobrepor botão \"Mostrar solução\"",
           "description": "Esta opção determina se o botão \"Mostrar solução\" será mostrado para todas as perguntas, se estará desativado para todas ou configurado individualmente para cada pergunta.",
           "options": [
             {
@@ -280,14 +278,14 @@
         },
         {
           "label": "Iniciar com o menu dos marcadores aberto",
-          "description": "Esta função não está disponível no iPad quando se usa vídeos do YouTube como fonte."
+          "description": "Esta função não está disponível no iPad quando usa vídeos do YouTube como fonte."
         },
         {
           "label": "Mostrar botão de voltar 10 segundos"
         },
         {
           "label": "Evitar saltar para frente no vídeo",
-          "description": "Ativar esta opção irá desativar a navegação no vídeo através dos controlos predefinidos."
+          "description": "Ativar esta opção desativará a navegação no vídeo através dos controlos predefinidos."
         },
         {
           "label": "Desativar som",
@@ -303,20 +301,20 @@
           "default": "Interação"
         },
         {
-          "label": "Título de reprodução",
+          "label": "Título da reprodução",
           "default": "Reproduzir"
         },
         {
-          "label": "Título de pausa",
+          "label": "Título da pausa",
           "default": "Pausa"
         },
         {
-          "label": "Título da função mudo",
-          "default": "Mute, currently unmuted"
+          "label": "Título da função Sem som",
+          "default": "Sem som, atualmente não silenciado"
         },
         {
           "label": "Título da função com som",
-          "default": "Unmute, currently muted"
+          "default": "Com som, atualmente silenciado"
         },
         {
           "label": "Título da qualidade do vídeo",
@@ -415,7 +413,7 @@
           "default": "O vídeo está em pausa"
         },
         {
-          "label": "Etiqueta de conteúdo",
+          "label": "Etiqueta do conteúdo",
           "default": "Conteúdo"
         },
         {
@@ -428,12 +426,12 @@
           "description": "@answered será substituído pelo número de perguntas respondidas."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Informação do ecrã de submissão",
+          "default": "Respondeu a @answered perguntas, clique abaixo para submeter as suas respostas.",
+          "description": "@answered será substituído pelo número de perguntas respondidas."
         },
         {
-          "label": "Informações do ecrã de submissão",
+          "label": "Informação do ecrã de submissão quando o botão de submissão está desativado",
           "default": "Respondeu a @answered perguntas. Clique abaixo para submeter as suas respostas.",
           "description": "@answered será substituído pelo número de perguntas respondidas."
         },
