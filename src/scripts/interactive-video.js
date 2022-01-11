@@ -3057,6 +3057,14 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
  *  i.e. searching through video.
  */
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
+  if (typeof time !== 'number') {
+    return; // Might be called while video is changing
+  }
+
+  if (time === 0 && this.currentState !== H5P.Video.PLAYING) {
+    return; // Prevent jumping to 0 when changing videos
+  }
+
   var self = this;
 
   // Scroll slider
