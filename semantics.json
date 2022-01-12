@@ -838,6 +838,15 @@
         "optional": true
       },
       {
+        "name": "audiotrack",
+        "type": "text",
+        "label": "Audio track",
+        "importance": "low",
+        "default": "Audio track",
+        "optional": true,
+        "state": "new"
+      },
+      {
         "name": "captions",
         "type": "text",
         "label": "Video captions title",

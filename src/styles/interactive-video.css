@@ -564,6 +564,10 @@
 .h5p-interactive-video .h5p-minimal-overlay .h5p-quality:before {
   content: "\f013";
 }
+.h5p-interactive-video .h5p-control.h5p-audiotrack:before,
+.h5p-interactive-video .h5p-minimal-overlay .h5p-audiotrack:before {
+  content: "\f1ab";
+}
 .h5p-interactive-video .h5p-control.h5p-captions:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-captions:before {
   content: "\f20a";
@@ -591,6 +595,7 @@
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-bookmarks,
 .h5p-interactive-video.h5p-minimal .h5p-time,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-quality,
+.h5p-interactive-video.h5p-minimal .h5p-control.h5p-audiotrack,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-captions,
 .h5p-interactive-video.h5p-minimal .h5p-control.h5p-playbackRate,
 .h5p-interactive-video .h5p-more,
@@ -685,6 +690,9 @@
   visibility: visible;
 }
 .h5p-interactive-video .h5p-chooser.h5p-quality {
+  right: 12px;
+}
+.h5p-interactive-video .h5p-chooser.h5p-audiotrack {
   right: 12px;
 }
 .h5p-interactive-video .h5p-chooser.h5p-captions {
@@ -1223,7 +1231,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.h5p-interactive-video .h5p-dialog-close, 
+.h5p-interactive-video .h5p-dialog-close,
 .h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-titlebar .h5p-sc-sound-control {
   position: absolute;
   top: 0.25em;

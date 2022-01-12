@@ -56,6 +56,7 @@ function InteractiveVideo(params, id, contentData) {
   self.bookmarksMenuId = 'interactive-video-' + this.contentId + '-bookmarks-chooser';
   self.endscreensMenuId = 'interactive-video-' + this.contentId + '-endscreens-chooser';
   self.qualityMenuId = 'interactive-video-' + this.contentId + '-quality-chooser';
+  self.audioTrackMenuId = 'interactive-video-' + this.contentId + '-audiotrack-chooser';
   self.captionsMenuId = 'interactive-video-' + this.contentId + '-captions-chooser';
   self.playbackRateMenuId = 'interactive-video-' + this.contentId + '-playback-rate-chooser';
 
@@ -78,6 +79,11 @@ function InteractiveVideo(params, id, contentData) {
   }, params.interactiveVideo);
   self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
   self.options.video.audioTracks = sanitizeAudioTracks(self.options.video.audioTracks);
+
+  self.hasAudioTracks = self.options.video.audioTracks.audioTracks.length > 0;
+  if (self.hasAudioTracks) {
+    self.currentAudioTrack = 'at-0';
+  }
 
   // Video quality options that may become available
   self.qualities = undefined;
@@ -114,6 +120,7 @@ function InteractiveVideo(params, id, contentData) {
     self.preventSkipping = params.override.preventSkipping || false;
     self.deactivateSound = params.override.deactivateSound || false;
   }
+
   // Translated UI text defaults
   self.l10n = $.extend({
     interaction: 'Interaction',
@@ -122,6 +129,7 @@ function InteractiveVideo(params, id, contentData) {
     mute: 'Mute, currently unmuted',
     unmute: 'Unmute, currently muted',
     quality: 'Video quality',
+    audiotrack: 'Audio tracks',
     captions: 'Captions',
     close: 'Close',
     fullscreen: 'Fullscreen',
@@ -353,6 +361,8 @@ function InteractiveVideo(params, id, contentData) {
           if (firstPlay) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
+
+            self.addAudioTrackChooser();
 
             self.addPlaybackRateChooser();
 
@@ -2209,6 +2219,49 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityButton.attr('aria-expanded', 'false');
   self.controls.$qualityChooser.insertAfter(self.controls.$qualityButton);
 
+  if (self.hasAudioTracks) {
+    // Add popup for selecting audio track
+    self.controls.$audioTrackChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-audiotrack',
+      'role': 'dialog',
+      html: `<h3 id="${self.audioTrackMenuId}">${self.l10n.audiotrack}</h3>`,
+    });
+    self.popupMenuChoosers.push(self.controls.$qualityChooser);
+
+    const closeAudioTrackMenu = () => {
+      if (self.isMinimal) {
+        self.controls.$more.click();
+      }
+      else {
+        self.controls.$audioTrackButton.click();
+      }
+      self.resumeVideo();
+    };
+
+    // Adding close button to audio-track-menu
+    self.controls.$audioTrackChooser.append($('<span>', {
+      'role': 'button',
+      'class': 'h5p-chooser-close-button',
+      'tabindex': '0',
+      'aria-label': self.l10n.close,
+      click: () => closeAudioTrackMenu(),
+      keydown: event => {
+        if (isSpaceOrEnterKey(event)) {
+          closeAudioTrackMenu();
+          event.preventDefault();
+        }
+      }
+    }));
+
+    // Button for opening audio track selection dialog
+    self.controls.$audioTrackButton = self.createButton('audiotrack', 'h5p-control', $right, createPopupMenuHandler('$audioTrackButton', '$audioTrackChooser'));
+    self.popupMenuButtons.push(self.controls.$audioTrackButton);
+    self.setDisabled(self.controls.$audioTrackButton);
+    self.controls.$audioTrackButton.attr('aria-haspopup', 'true');
+    self.controls.$audioTrackButton.attr('aria-expanded', 'false');
+    self.controls.$audioTrackChooser.insertAfter(self.controls.$audioTrackButton);
+  }
+
   // Add fullscreen button
   if (!self.editor && H5P.fullscreenSupported !== false) {
     self.controls.$fullscreen = self.createButton('fullscreen', 'h5p-control', $right, function () {
@@ -2261,6 +2314,20 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
 
+  if (self.hasAudioTracks) {
+    // Audio tracks
+    self.controls.$audioTrackButtonMinimal = self.createButton('audiotrack', 'h5p-minimal-button', $minimalWrap, function () {
+      if (!self.isDisabled(self.controls.$audioTrackButton)) {
+        self.controls.$overlayButtons.addClass('h5p-hide');
+        self.controls.$audioTrackButton.click();
+      }
+    }, true);
+    self.setDisabled(self.controls.$audioTrackButtonMinimal);
+    self.controls.$audioTrackButtonMinimal.attr('role', 'menuitem');
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$audioTrackButtonMinimal);
+    self.minimalMenuKeyboardControls.addElement(self.controls.$audioTrackButtonMinimal.get(0));
+  }
+
   // Playback rate
   self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
     if (!self.isDisabled(self.controls.$playbackRateButton)) {
@@ -2274,6 +2341,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
 
   self.addQualityChooser();
+  self.addAudioTrackChooser();
   self.addPlaybackRateChooser();
 
   self.interactionKeyboardControls = new Controls([new UIKeyboard()]);
@@ -2599,7 +2667,86 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   self.removeDisabled(this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal));
 };
 
+/**
+ * Get audio tracks data.
+ * @return {object[]} Audio tracks data.
+ */
+InteractiveVideo.prototype.getAudioTracks = function () {
+  let audioTracks = this.options.video.audioTracks.audioTracks.map((track, index) => {
+    return {
+      name: `at-${index + 1}`,
+      label: track.label
+    };
+  });
 
+  // Put default label at front position
+  audioTracks.splice(0, 0, {
+    name: 'at-0',
+    label: this.options.video.audioTracks.defaultLabel
+  });
+
+  audioTracks = audioTracks.reverse();
+
+  return audioTracks
+};
+
+/**
+ * Add a dialog for selecting audio track.
+ */
+InteractiveVideo.prototype.addAudioTrackChooser = function () {
+  var self = this;
+
+  if (!self.hasAudioTracks) {
+    return;
+  }
+
+  self.audioTrackMenuKeyboardControls = new Controls([new UIKeyboard()]);
+  self.audioTrackMenuKeyboardControls.on('close', () => self.controls.$audioTrackButton.click());
+
+  self.audioTracks = self.getAudioTracks();
+  if (!self.audioTracks || this.controls.$audioTrackButton === undefined || !(self.isDisabled(self.controls.$audioTrackButton))) {
+    return;
+  }
+
+  var currentAudioTrack = self.currentAudioTrack;
+
+  var audioTracks = self.audioTracks;
+
+  var html = '';
+  for (var i = 0; i < audioTracks.length; i++) {
+    var audioTrack = audioTracks[i];
+    const isChecked = audioTrack.name === currentAudioTrack;
+    html += `<li role="menuitemradio" data-audio-track="${audioTrack.name}" aria-checked="${isChecked}" aria-describedby="${self.audioTrackMenuId}">${audioTrack.label}</li>`;
+  }
+
+  var $list = $(`<ul role="menu">${html}</ul>`).appendTo(this.controls.$audioTrackChooser);
+
+  $list.children()
+    .click(function () {
+      const audioTrack = $(this).attr('data-audio-track');
+      self.updateAudioTrack(audioTrack);
+    })
+    .keydown(function (e) {
+      if (isSpaceOrEnterKey(e)) {
+        const audioTrack = $(this).attr('data-audio-track');
+        self.updateAudioTrack(audioTrack);
+      }
+
+      e.stopPropagation();
+    });
+
+  const menuElements = $list.find('li').get();
+  menuElements.forEach(el => {
+    self.audioTrackMenuKeyboardControls.addElement(el);
+
+    // updates tabindex based on if it's selected
+    const isSelected = el.getAttribute('aria-checked') === 'true';
+    toggleTabIndex(el, isSelected);
+  });
+
+  // Enable audio track chooser button
+  self.removeDisabled(this.controls.$audioTrackButton.add(this.controls.$audioTrackButtonMinimal));
+};
 
 /**
  * Updates the quality of the video, and toggles menus
@@ -2615,6 +2762,26 @@ InteractiveVideo.prototype.updateQuality = function (quality) {
   else {
     self.controls.$qualityButton.click();
     self.controls.$qualityButton.focus();
+  }
+};
+
+/**
+ * Updates the quality of the video, and toggles menus
+ *
+ * @param {string} quality
+ */
+InteractiveVideo.prototype.updateAudioTrack = function (audioTrack) {
+  var self = this;
+
+  // Update audio track selector
+  self.controls.$audioTrackChooser.find('li').attr('aria-checked', 'false').filter('[data-audio-track="' + audioTrack + '"]').attr('aria-checked', 'true');
+
+  if (self.controls.$more.attr('aria-expanded') === 'true') {
+    self.controls.$more.click();
+  }
+  else {
+    self.controls.$audioTrackButton.click();
+    self.controls.$audioTrackButton.focus();
   }
 };
 
