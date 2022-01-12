@@ -71,11 +71,13 @@ function InteractiveVideo(params, id, contentData) {
     video: {
       textTracks: {
         videoTrack: []
-      }
+      },
+      audioTracks: {}
     },
     assets: {}
   }, params.interactiveVideo);
   self.options.video.startScreenOptions = self.options.video.startScreenOptions || {};
+  self.options.video.audioTracks = sanitizeAudioTracks(self.options.video.audioTracks);
 
   // Video quality options that may become available
   self.qualities = undefined;
@@ -3980,6 +3982,31 @@ var getXAPIDataFromChildren = function (children) {
   return children.map(function (child) {
     return child.getXAPIData();
   }).filter(data => !!data);
+};
+
+/**
+ * Sanitize audio tracks.
+ * @param {object} tracks Audio tracks from semantics.
+ * @return {object} Sanitized track object.
+ */
+var sanitizeAudioTracks = (tracks) => {
+  if (typeof tracks !== 'object') {
+    tracks = {};
+  }
+
+  tracks.defaultLabel = tracks.defaultLabel || 'Default';
+
+  if (!Array.isArray(tracks.audioTracks)) {
+    tracks.audioTracks = [];
+  }
+
+  tracks.audioTracks = tracks.audioTracks.filter((track) => {
+    return typeof track === 'object' &&
+      typeof track.label === 'string' && track.label !== '' &&
+      Array.isArray(track.audioFile) && track.audioFile.length && track.audioFile[0].path
+  });
+
+  return tracks;
 };
 
 export default InteractiveVideo;

@@ -66,6 +66,54 @@
             ]
           },
           {
+            "name": "audioTracks",
+            "type": "group",
+            "label": "Alternate audio tracks",
+            "importance": "low",
+            "fields": [
+              {
+                "name": "defaultLabel",
+                "type": "text",
+                "label": "Default track label",
+                "description": "Label for audio track in video. Only relevant if you add more audio tracks.",
+                "importance": "low",
+                "default": "Default"
+              },
+              {
+                "name": "audioTracks",
+                "type": "list",
+                "label": "Alternate audio tracks",
+                "importance": "low",
+                "optional": true,
+                "entity": "Track",
+                "min": 0,
+                "defaultNum": 1,
+                "field": {
+                  "name": "track",
+                  "type": "group",
+                  "label": "Track",
+                  "importance": "low",
+                  "expanded": false,
+                  "fields": [
+                    {
+                      "name": "label",
+                      "type": "text",
+                      "label": "Track label",
+                      "description": "Used if you offer multiple audio tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                      "importance": "low"
+                    },
+                    {
+                      "name": "audioFile",
+                      "type": "audio",
+                      "label": "Audio file",
+                      "importance": "low"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
             "name": "textTracks",
             "type": "group",
             "label": "Text tracks (unsupported for YouTube videos)",
