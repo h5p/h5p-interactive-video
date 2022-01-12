@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "כותרת איכות סרטון",
-          "default": "איכות סרטון"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "כותרת כיתובי סרטון",

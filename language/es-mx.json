@@ -321,8 +321,8 @@
           "default": "Activar sonido, actualmente mudo"
         },
         {
-          "label": "Título de la calidad de vídeo",
-          "default": "Calidad del Video"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Título de los letreritos del video",

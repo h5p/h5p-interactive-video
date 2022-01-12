@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Nadpis kvality videa",
-          "default": "Kvalita videa"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Nadpis titulky videa",

@@ -321,8 +321,8 @@
           "default": "Activar sonido, actualmente silenciado"
         },
         {
-          "label": "Título para la calidad de vídeo",
-          "default": "Calidad del Vídeo"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Título de la leyenda del vídeo",

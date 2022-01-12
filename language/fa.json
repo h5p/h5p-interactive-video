@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "عنوان کیفیت ویدئو",
-          "default": "کیفیت ویدئو"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "عنوان کپشن‌های ویدئو",

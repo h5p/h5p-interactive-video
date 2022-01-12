@@ -321,8 +321,8 @@
           "default": "Com som, atualmente silenciado"
         },
         {
-          "label": "Título da qualidade do vídeo",
-          "default": "Qualidade do vídeo"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Título das legendas do vídeo",

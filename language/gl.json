@@ -321,8 +321,8 @@
           "default": "Activar, neste momento silenciado"
         },
         {
-          "label": "Calidade do vídeo",
-          "default": "Calidade do vídeo"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Lendas",

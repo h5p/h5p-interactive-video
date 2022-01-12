@@ -784,9 +784,9 @@
       {
         "name": "quality",
         "type": "text",
-        "label": "Video quality title",
+        "label": "Video version title",
         "importance": "low",
-        "default": "Video Quality",
+        "default": "Video Version",
         "optional": true
       },
       {

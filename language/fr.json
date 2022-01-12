@@ -321,8 +321,8 @@
           "default": "Activer le son, présentement en sourdine."
         },
         {
-          "label": "Intitulé \"Qualité de la vidéo\"",
-          "default": "Qualité de la vidéo"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Intitulé des pistes de textes",

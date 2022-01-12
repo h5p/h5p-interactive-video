@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "影像品質標題",
-          "default": "影像品質"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "影像字幕標題",

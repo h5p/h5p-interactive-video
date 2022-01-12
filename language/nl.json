@@ -321,8 +321,8 @@
           "default": "Dempen uit, nu gedempt"
         },
         {
-          "label": "Titel voor \"Videokwaliteit\"-knop",
-          "default": "Videokwaliteit"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Label voor \"Ondertitels\"-knop",

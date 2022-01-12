@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Przycisk wyboru jakości",
-          "default": "Jakość wideo"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Przycisk ścieżek dialogowych",

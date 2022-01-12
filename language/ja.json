@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "ビデオ品質のタイトル",
-          "default": "ビデオ品質"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "ビデオのキャプションタイトル",

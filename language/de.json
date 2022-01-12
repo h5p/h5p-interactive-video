@@ -321,8 +321,8 @@
           "default": "Laut schalten, derzeit stumm geschaltet"
         },
         {
-          "label": "Beschriftung des \"Videoqualität\"-Buttons",
-          "default": "Videoqualität"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Beschriftung des Video-Untertitels",

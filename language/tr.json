@@ -321,8 +321,8 @@
           "default": "Sesi aç, şu anda sesi kapalı"
         },
         {
-          "label": "Video kalitesi başlığı",
-          "default": "Video kalitesi"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Video başlığı yazısı",

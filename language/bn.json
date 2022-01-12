@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "ভিডিও মান শিরোনাম",
-          "default": "ভিডিও মান"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "ভিডিও ক্যাপশন শিরোনাম",

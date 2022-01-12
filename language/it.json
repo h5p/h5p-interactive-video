@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Titolo di qualità del video",
-          "default": "Qualità del video"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Titolo delle didascalie video",

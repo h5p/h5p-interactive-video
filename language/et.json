@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video kvaliteedi pealkiri",
-          "default": "Video kvaliteet"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Video tiitrite pealkiri",

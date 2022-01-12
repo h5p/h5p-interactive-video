@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Качество на видеото",
-          "default": "Качество на видеото"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Видео надписи",

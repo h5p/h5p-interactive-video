@@ -321,8 +321,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Videokvalitetstittel",
-          "default": "Videokvalitet"
+          "label": "Video version title",
+          "default": "Video Version"
         },
         {
           "label": "Video captions title",
