@@ -834,7 +834,7 @@
         "type": "text",
         "label": "Video version title",
         "importance": "low",
-        "default": "Video Version",
+        "default": "Video version",
         "optional": true
       },
       {
