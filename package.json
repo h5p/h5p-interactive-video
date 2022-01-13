@@ -1,6 +1,6 @@
 {
   "name": "h5p-interactive-video",
-  "version": "1.17.0",
+  "version": "1.22.15",
   "description": "Put texts, tasks and other medias on top of your video.",
   "private": true,
   "scripts": {
