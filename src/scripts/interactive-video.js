@@ -3017,6 +3017,11 @@ InteractiveVideo.prototype.resize = function () {
   }
 
   this.isMinimal = this.$container.hasClass('h5p-minimal');
+  // Allow to adjust
+  if (this.controls) {
+    const $minimalWrapper = this.controls.$minimalOverlay.find('.h5p-minimal-wrap');
+    $minimalWrapper.toggleClass('crowded', this.isMinimal && $minimalWrapper.children().length > 2);
+  }
 
   // Reset control popup calculations
   var popupControlsHeight = this.$videoWrapper.height();

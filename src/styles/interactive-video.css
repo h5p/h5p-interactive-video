@@ -21,6 +21,24 @@
   font-style: normal;
 }
 
+@media only screen and (max-width: 480px) {
+  .h5p-interactive-video .h5p-minimal-wrap.crowded {
+    font-size: .75em;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .h5p-interactive-video .h5p-minimal-wrap.crowded {
+    font-size: .5em;
+  }
+}
+
+@media only screen and (max-width: 200px) {
+  .h5p-interactive-video .h5p-minimal-wrap.crowded {
+    font-size: .25em;
+  }
+}
+
 .h5p-interactive-video {
   position: relative;
   background: #000;
