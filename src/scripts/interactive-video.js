@@ -612,7 +612,7 @@ InteractiveVideo.prototype.playAudioTrack = function () {
 
   this.stopAudioTrack();
 
-  if (this.currentAudioTrack === 'at-0') {
+  if (this.currentAudioTrack === `${AUDIO_TRACK_PREFIX}0`) {
     this.video.unMute();
   }
   else {
@@ -2728,14 +2728,14 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 InteractiveVideo.prototype.getAudioTracks = function () {
   let audioTracks = this.options.video.audioTracks.audioTracks.map((track, index) => {
     return {
-      name: `${InteractiveVideo.AUDIO_TRACK_PREFIX}${index + 1}`,
+      name: `${AUDIO_TRACK_PREFIX}${index + 1}`,
       label: track.label
     };
   });
 
   // Put default label at front position
   audioTracks.splice(0, 0, {
-    name: `${InteractiveVideo.AUDIO_TRACK_PREFIX}0`,
+    name: `${AUDIO_TRACK_PREFIX}0`,
     label: this.options.video.audioTracks.defaultLabel
   });
 
@@ -4244,7 +4244,7 @@ var initializeAudioTracks = function (tracks, contentId) {
   H5P.SoundJS.alternateExtensions = ['mp3'];
 
   tracks.forEach((track, index) => {
-    H5P.SoundJS.registerSound(H5P.getPath(track.audioFile[0].path, contentId), `${InteractiveVideo.AUDIO_TRACK_PREFIX}${index + 1}`);
+    H5P.SoundJS.registerSound(H5P.getPath(track.audioFile[0].path, contentId), `${AUDIO_TRACK_PREFIX}${index + 1}`);
   });
 }
 
