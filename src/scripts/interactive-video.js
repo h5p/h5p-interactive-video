@@ -13,6 +13,8 @@ const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
 
+const AUDIO_TRACK_PREFIX = 'at-';
+
 /**
  * @typedef {Object} InteractiveVideoParameters
  * @property {Object} interactiveVideo View parameters
@@ -82,7 +84,12 @@ function InteractiveVideo(params, id, contentData) {
 
   self.hasAudioTracks = self.options.video.audioTracks.audioTracks.length > 0;
   if (self.hasAudioTracks) {
-    self.currentAudioTrack = 'at-0';
+    self.currentAudioTrack = `${AUDIO_TRACK_PREFIX}0`;
+  }
+
+  if (self.hasAudioTracks) {
+    initializeAudioTracks(self.options.video.audioTracks.audioTracks, self.contentId);
+    this.isAudioInitialized = true;
   }
 
   // Video quality options that may become available
@@ -333,6 +340,7 @@ function InteractiveVideo(params, id, contentData) {
       switch (state) {
         case H5P.Video.ENDED: {
           self.currentState = H5P.Video.ENDED;
+          self.stopAudioTrack();
           self.controls.$play
             .addClass('h5p-pause')
             .attr('aria-label', self.l10n.play);
@@ -358,6 +366,9 @@ function InteractiveVideo(params, id, contentData) {
           break;
         }
         case H5P.Video.PLAYING:
+          self.currentState = H5P.Video.PLAYING;
+          self.playAudioTrack();
+
           if (firstPlay) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
@@ -389,7 +400,6 @@ function InteractiveVideo(params, id, contentData) {
             }
           }
 
-          self.currentState = H5P.Video.PLAYING;
           self.controls.$play
             .removeClass('h5p-pause')
             .attr('aria-label', self.l10n.pause);
@@ -405,6 +415,7 @@ function InteractiveVideo(params, id, contentData) {
 
         case H5P.Video.PAUSED:
           self.currentState = H5P.Video.PAUSED;
+          self.stopAudioTrack();
           self.controls.$play
             .addClass('h5p-pause')
             .attr('aria-label', self.l10n.play);
@@ -582,6 +593,49 @@ function InteractiveVideo(params, id, contentData) {
 // Inheritance
 InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
 InteractiveVideo.prototype.constructor = InteractiveVideo;
+
+/**
+ * Play current audio track.
+ */
+InteractiveVideo.prototype.playAudioTrack = function () {
+  if (!this.hasAudioTracks || !this.isAudioInitialized) {
+    return; // Cannot play
+  }
+
+  if (this.currentState !== H5P.Video.PLAYING) {
+    return; // Don't start without video playing
+  }
+
+  if (this.video.getCurrentTime() === this.video.getDuration()) {
+    return; // Audio might be longer than video
+  }
+
+  this.stopAudioTrack();
+
+  if (this.currentAudioTrack === 'at-0') {
+    this.video.unMute();
+  }
+  else {
+    this.video.mute();
+
+    this.currentAudioTrackInstance = H5P.SoundJS.play(
+      this.currentAudioTrack,
+      {
+        interrupt: H5P.SoundJS.INTERRUPT_ANY,
+        offset: parseInt(this.video.getCurrentTime() * 1000)
+      },
+    );
+  }
+}
+
+/**
+ * Stop current audio track.
+ */
+InteractiveVideo.prototype.stopAudioTrack = function () {
+  if (this.currentAudioTrackInstance) {
+    this.currentAudioTrackInstance.stop();
+  }
+}
 
 /**
  * Set caption tracks for current interactive video
@@ -2674,14 +2728,14 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 InteractiveVideo.prototype.getAudioTracks = function () {
   let audioTracks = this.options.video.audioTracks.audioTracks.map((track, index) => {
     return {
-      name: `at-${index + 1}`,
+      name: `${InteractiveVideo.AUDIO_TRACK_PREFIX}${index + 1}`,
       label: track.label
     };
   });
 
   // Put default label at front position
   audioTracks.splice(0, 0, {
-    name: 'at-0',
+    name: `${InteractiveVideo.AUDIO_TRACK_PREFIX}0`,
     label: this.options.video.audioTracks.defaultLabel
   });
 
@@ -2771,17 +2825,18 @@ InteractiveVideo.prototype.updateQuality = function (quality) {
  * @param {string} quality
  */
 InteractiveVideo.prototype.updateAudioTrack = function (audioTrack) {
-  var self = this;
+  this.currentAudioTrack = audioTrack;
+  this.playAudioTrack();
 
   // Update audio track selector
-  self.controls.$audioTrackChooser.find('li').attr('aria-checked', 'false').filter('[data-audio-track="' + audioTrack + '"]').attr('aria-checked', 'true');
+  this.controls.$audioTrackChooser.find('li').attr('aria-checked', 'false').filter('[data-audio-track="' + audioTrack + '"]').attr('aria-checked', 'true');
 
-  if (self.controls.$more.attr('aria-expanded') === 'true') {
-    self.controls.$more.click();
+  if (this.controls.$more.attr('aria-expanded') === 'true') {
+    this.controls.$more.click();
   }
   else {
-    self.controls.$audioTrackButton.click();
-    self.controls.$audioTrackButton.focus();
+    this.controls.$audioTrackButton.click();
+    this.controls.$audioTrackButton.focus();
   }
 };
 
@@ -4175,5 +4230,22 @@ var sanitizeAudioTracks = (tracks) => {
 
   return tracks;
 };
+
+/**
+ * Initialize audio tracks.
+ * @param {object[]} tracks Audio params.
+ * @param {number} contentId ContentId.
+ */
+var initializeAudioTracks = function (tracks, contentId) {
+  if (!H5P.SoundJS.initializeDefaultPlugins()) {
+    return null;
+  }
+
+  H5P.SoundJS.alternateExtensions = ['mp3'];
+
+  tracks.forEach((track, index) => {
+    H5P.SoundJS.registerSound(H5P.getPath(track.audioFile[0].path, contentId), `${InteractiveVideo.AUDIO_TRACK_PREFIX}${index + 1}`);
+  });
+}
 
 export default InteractiveVideo;
