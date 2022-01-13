@@ -566,7 +566,7 @@
 }
 .h5p-interactive-video .h5p-control.h5p-audiotrack:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-audiotrack:before {
-  content: "\f1ab";
+  content: "\f001";
 }
 .h5p-interactive-video .h5p-control.h5p-captions:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-captions:before {
