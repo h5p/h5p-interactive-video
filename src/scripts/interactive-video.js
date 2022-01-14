@@ -580,18 +580,23 @@ function InteractiveVideo(params, id, contentData) {
 
     if (!self.deactivateSound) {
       if ($muteButton.hasClass('h5p-muted')) {
+        self.isMuted = false;
         $muteButton
           .removeClass('h5p-muted')
           .attr('aria-label', self.l10n.mute);
 
         self.video.unMute();
+        this.playAudioTrack();
       }
       else {
+        self.isMuted = true;
+
         $muteButton
           .addClass('h5p-muted')
           .attr('aria-label', self.l10n.unmute);
 
         self.video.mute();
+        this.stopAudioTrack();
       }
 
       if (refocus) {
@@ -613,6 +618,10 @@ InteractiveVideo.prototype.constructor = InteractiveVideo;
  * @param {number} [params.time] Time offset to start playing at.
  */
 InteractiveVideo.prototype.playAudioTrack = function (params = {}) {
+  if (this.isMuted) {
+    return; // IV is muted
+  }
+
   if (!this.hasAudioTracks || !this.isAudioInitialized) {
     return; // Cannot play
   }
@@ -2237,6 +2246,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   if (self.deactivateSound) {
     self.video.mute();
+    this.stopAudioTrack();
+    self.isMuted = true;
   }
 
   if (self.video.isMuted()) {
@@ -3302,7 +3313,7 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
  */
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   // Keep video and alternative audio in sync
-  if (this.currentState === H5P.Video.PLAYING && this.currentAudioTrackInstance) {
+  if (this.currentState === H5P.Video.PLAYING && this.currentAudioTrackInstance && !this.isMuted) {
     if (Math.abs(time * 1000 - this.currentAudioTrackInstance.getPosition()) > MAX_AV_SYNC_DIFF_MS) {
       this.playAudioTrack({ time: time * 1000 });
     }
