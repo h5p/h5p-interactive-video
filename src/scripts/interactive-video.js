@@ -334,10 +334,17 @@ function InteractiveVideo(params, id, contentData) {
 
       var state = event.data;
       if (self.currentState === InteractiveVideo.SEEKING) {
+        self.stopAudioTrack();
         return; // Prevent updating UI while seeking
       }
 
       switch (state) {
+        case H5P.Video.BUFFERING: {
+          self.currentState = H5P.Video.BUFFERING;
+          self.stopAudioTrack();
+          break;
+        }
+
         case H5P.Video.ENDED: {
           self.currentState = H5P.Video.ENDED;
           self.stopAudioTrack();
