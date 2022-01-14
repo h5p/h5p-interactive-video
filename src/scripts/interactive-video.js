@@ -15,6 +15,12 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
 
 const AUDIO_TRACK_PREFIX = 'at-';
 
+/*
+ * Maximum audio/video sync difference in ms
+ * Should be below 22 ms, https://ieeexplore.ieee.org/document/7269993
+ */
+const MAX_AV_SYNC_DIFF_MS = 22;
+
 /**
  * @typedef {Object} InteractiveVideoParameters
  * @property {Object} interactiveVideo View parameters
@@ -603,8 +609,10 @@ InteractiveVideo.prototype.constructor = InteractiveVideo;
 
 /**
  * Play current audio track.
+ * @param {object} [params={}] Parameters.
+ * @param {number} [params.time] Time offset to start playing at.
  */
-InteractiveVideo.prototype.playAudioTrack = function () {
+InteractiveVideo.prototype.playAudioTrack = function (params = {}) {
   if (!this.hasAudioTracks || !this.isAudioInitialized) {
     return; // Cannot play
   }
@@ -629,7 +637,7 @@ InteractiveVideo.prototype.playAudioTrack = function () {
       this.currentAudioTrack,
       {
         interrupt: H5P.SoundJS.INTERRUPT_ANY,
-        offset: parseInt(this.video.getCurrentTime() * 1000)
+        offset: params.time || parseInt(this.video.getCurrentTime() * 1000)
       },
     );
   }
@@ -3293,6 +3301,13 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
  *  i.e. searching through video.
  */
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
+  // Keep video and alternative audio in sync
+  if (this.currentState === H5P.Video.PLAYING && this.currentAudioTrackInstance) {
+    if (Math.abs(time * 1000 - this.currentAudioTrackInstance.getPosition()) > MAX_AV_SYNC_DIFF_MS) {
+      this.playAudioTrack({ time: time * 1000 });
+    }
+  }
+
   if (typeof time !== 'number') {
     return; // Might be called while video is changing
   }
