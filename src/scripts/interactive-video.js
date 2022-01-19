@@ -1194,6 +1194,9 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
   // Remove old dots
   this.controls.$interactionsContainer.children().remove();
 
+  // Reset keyboard elements
+  this.interactionKeyboardControls.elements = [];
+
   // Add new dots
   H5P.jQuery.extend([], this.interactions)
     .sort((a, b) => a.getDuration().from - b.getDuration().from)
@@ -3623,11 +3626,24 @@ InteractiveVideo.prototype.pause = function () {
  * Reset all interaction progress and answers
  */
 InteractiveVideo.prototype.resetTask = function () {
+
+  // Reset progress
+  this.interactionsProgress = [];
+
+  // Reset tasks
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
   }
 
+  // Hide end-screen if visible
+  if (this.bubbleEndscreen !== undefined) {
+    this.bubbleEndscreen.toggle(false, false);
+  }
+
   if (this.controls !== undefined) {
+    // Recreate slider interactions
+    this.addSliderInteractions();
+
     // Do not seek to 0 if the video hasn't been started
     var time = this.video.getCurrentTime();
     if (time > 0) {
