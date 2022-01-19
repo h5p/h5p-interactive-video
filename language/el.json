@@ -428,14 +428,14 @@
           "description": "Η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Υποβολή πληροφοριών οθόνης όταν το κουμπί υποβολής είναι απενεργοποιημένο",
+          "default": "Έχετε απαντήσει σε @answered ερωτήσεις.",
+          "description": "Η μεταβλητή @answered θα αντικατασταθεί από τον αριθμό των απαντημένων ερωτήσεων."
         },
         {
           "label": "Πληροφορία οθόνης υποβολής για ερωτήσεις που απαντήθηκαν",
           "default": "Έχεις απαντήσει @answered ερωτήσεις, κάνε κλικ παρακάτω για να υποβάλλεις τις απαντήσεις σου.",
-          "description": "Η μεταβλητή @answered θα αντικατασταθεί από τις ερωτήσεις που απαντήθηκαν."
+          "description": "Η μεταβλητή @answered θα αντικατασταθεί από τον αριθμό των απαντημένων ερωτήσεων."
         },
         {
           "label": "Πληροφορία οθόνης υποβολής για απαντήσεις που λείπουν",
