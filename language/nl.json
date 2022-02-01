@@ -429,8 +429,8 @@
         },
         {
           "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "default": "Je hebt @answered vragen beantwoord.",
+          "description": "@answered zal worden vervangen door het aantal beantwoorde vragen."
         },
         {
           "label": "Verzend scherminformatie",
