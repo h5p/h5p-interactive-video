@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -312,11 +310,11 @@
         },
         {
           "label": "Mututu titulua",
-          "default": "Mute, currently unmuted"
+          "default": "Mututu, une honetan mututu gabe"
         },
         {
           "label": "Ez mututuren titulua",
-          "default": "Unmute, currently muted"
+          "default": "Zabaldu mikrofonoa, une honetan mutututa"
         },
         {
           "label": "Bideoaren kalitatea titulua",
@@ -430,7 +428,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered erantzundako galdera kopuruarekin ordezkatuko da."
         },
         {
           "label": "Bidali pantailaren informazioa",

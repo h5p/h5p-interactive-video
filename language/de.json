@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -312,11 +310,11 @@
         },
         {
           "label": "Beschriftung des \"Stummschalten\"-Buttons",
-          "default": "Mute, currently unmuted"
+          "default": "Stummschalten, derzeit nicht laut geschaltet"
         },
         {
           "label": "Beschriftung des \"Lautschalten\"-Buttons",
-          "default": "Unmute, currently muted"
+          "default": "Laut schalten, derzeit stumm geschaltet"
         },
         {
           "label": "Beschriftung des \"Videoqualität\"-Buttons",
@@ -429,8 +427,8 @@
         },
         {
           "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "default": "Du hast @answered Fragen beantwortet.",
+          "description": "@answered wird durch die Anzahl der beantworteten Fragen ersetzt."
         },
         {
           "label": "Text auf dem Einsendebildschirm",
