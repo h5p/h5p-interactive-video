@@ -66,6 +66,47 @@
             ]
           },
           {
+            "name": "alternativeOptions",
+            "type": "group",
+            "label": "Multiple videos",
+            "importance": "low",
+            "fields": [
+              {
+                "name": "offsetX",
+                "type": "number",
+                "label": "Horizontal offset",
+                "description": "If your alternative videos contain a version of the original video that has been repositioned, set the horizontal offset in % here.",
+                "importance": "low",
+                "min": -100,
+                "max": 100,
+                "default": 0,
+                "optional": true
+              },
+              {
+                "name": "offsetY",
+                "type": "number",
+                "label": "Vertical offset",
+                "description": "If your alternative videos contain a version of the original video that has been repositioned, set the vertical offset in % here.",
+                "importance": "low",
+                "min": -100,
+                "max": 100,
+                "default": 0,
+                "optional": true
+              },
+              {
+                "name": "scale",
+                "type": "number",
+                "label": "Scale",
+                "description": "If your alternative videos contain a version of the original video that has been scaled, set the relative size in % here.",
+                "importance": "low",
+                "min": 1,
+                "max": 200,
+                "default": 100,
+                "optional": true
+              }
+            ]
+          },
+          {
             "name": "audioTracks",
             "type": "group",
             "label": "Alternate audio tracks",
@@ -843,8 +884,7 @@
         "label": "Audio track",
         "importance": "low",
         "default": "Audio track",
-        "optional": true,
-        "state": "new"
+        "optional": true
       },
       {
         "name": "captions",

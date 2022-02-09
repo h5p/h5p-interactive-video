@@ -32,6 +32,23 @@
               ]
             },
             {
+              "label": "Multiple videos",
+              "fields": [
+                {
+                  "label": "Horizontal offset",
+                  "description": "If your alternative videos contain a version of the original video that has been repositioned, set the horizontal offset in % here."
+                },
+                {
+                  "label": "Vertical offset",
+                  "description": "If your alternative videos contain a version of the original video that has been repositioned, set the vertical offset in % here."
+                },
+                {
+                  "label": "Scale",
+                  "description": "If your alternative videos contain a version of the original video that has been scaled, set the relative size in % here."
+                }
+              ]
+            },
+            {
               "label": "Alternate audio tracks",
               "fields": [
                 {
@@ -351,8 +368,12 @@
           "default": "Video version"
         },
         {
-          "label": "Título de la leyenda del vídeo",
-          "default": "Leyendas"
+          "label": "Audio track",
+          "default": "Audio track"
+        },
+        {
+          "label": "Título de los letreritos del vídeo",
+          "default": "Letreritos"
         },
         {
           "label": "Texto del botón Cerrar",

@@ -78,6 +78,11 @@ function InteractiveVideo(params, id, contentData) {
   // Insert default options
   self.options = $.extend({ // Deep is not used since editor uses references.
     video: {
+      alternativeOptions: {
+        offsetX: 0,
+        offsetY: 0,
+        scale: 100
+      },
       textTracks: {
         videoTrack: []
       },
@@ -2843,6 +2848,7 @@ InteractiveVideo.prototype.updateQuality = function (quality) {
     self.controls.$qualityButton.click();
     self.controls.$qualityButton.focus();
   }
+  this.updateInteractionsTransformation();
 };
 
 /**
@@ -4196,6 +4202,42 @@ InteractiveVideo.prototype.getXAPIData = function () {
 };
 
 /**
+ * Determine whether an alternative video is active.
+ * @return {boolean} True, if an an alternative video is active.
+ */
+InteractiveVideo.prototype.isAlternativeVideoActive = function () {
+  const qualities = this.video.getQualities();
+  if (!qualities || qualities.length === 1) {
+    return false;
+  }
+
+  return qualities[qualities.length - 1].name !== this.video.getQuality();
+};
+
+/**
+ * Get options for transforming interactions.
+ * @return {object} Transformation parameters.
+ */
+InteractiveVideo.prototype.updateInteractionsTransformation = function () {
+  if (this.editor) {
+    return; // Don't mess with positioning
+  }
+
+  this.options.assets.interactions.forEach((interactionParams, index) => {
+    if (this.isAlternativeVideoActive()) {
+      this.interactions[index].transform(
+        this.options.video.alternativeOptions.offsetX,
+        this.options.video.alternativeOptions.offsetY,
+        this.options.video.alternativeOptions.scale
+      )
+    }
+    else {
+      this.interactions[index].transform();
+    }
+  });
+};
+
+/**
  * Add the question itself to the definition part of an xAPIEvent
  */
 var addQuestionToXAPI = function (xAPIEvent) {
@@ -4284,6 +4326,6 @@ var initializeAudioTracks = function (tracks, contentId) {
   tracks.forEach((track, index) => {
     H5P.SoundJS.registerSound(H5P.getPath(track.audioFile[0].path, contentId), `${AUDIO_TRACK_PREFIX}${index + 1}`);
   });
-}
+};
 
 export default InteractiveVideo;

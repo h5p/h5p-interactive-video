@@ -111,6 +111,13 @@ const isScrollableLibrary = function (library) {
 function Interaction(parameters, player, previousState) {
   var self = this;
 
+  this.originalTransformationValues = {
+    x: parameters.x,
+    y: parameters.y,
+    width: parameters.width,
+    height: parameters.height
+  };
+
   // Initialize event inheritance
   H5P.EventDispatcher.call(self);
 
@@ -1383,6 +1390,49 @@ function Interaction(parameters, player, previousState) {
   };
 
   /**
+   * Transform interaction overlay.
+   * @param {number} offsetX Horizontal offset from original position in %.
+   * @param {number} offsetY Vertical offset from original position in %.
+   * @param {number} scale Scale based on original size in %.
+   */
+  self.transform = function (offsetX, offsetY, scale) {
+    // Default: no offset, no scaling
+    offsetX = offsetX || 0;
+    offsetY = offsetY || 0;
+    scale = (scale || 100) / 100;
+
+    // Compute new values
+    let x = offsetX + this.originalTransformationValues.x * scale;
+    x = Math.max(0, Math.min(x, 97.5));
+
+    let y = offsetY + this.originalTransformationValues.y * scale;
+    y = Math.max(0, Math.min(y, 97.5));
+
+    self.setPosition(x, y);
+
+    // Scale if not button
+    if (parameters.displayType !== 'button') {
+      let width = this.originalTransformationValues.width * scale;
+      let height = this.originalTransformationValues.height * scale;
+
+      // TODO: Limit width/height
+
+      parameters.width = width;
+      parameters.height = height;
+
+      if ($interaction) {
+        const dimensions = getDimensions();
+        $interaction.css({
+          'width': dimensions.width,
+          'height': dimensions.height
+        });
+      }
+
+      H5P.trigger(instance, 'resize');
+    }
+  }
+
+  /**
    * Update element position.
    *
    * @param {number} x left
@@ -1391,10 +1441,13 @@ function Interaction(parameters, player, previousState) {
   self.setPosition = function (x, y) {
     parameters.x = x;
     parameters.y = y;
-    $interaction.css({
-      'left': x + '%',
-      'top': y + '%'
-    });
+
+    if ($interaction) {
+      $interaction.css({
+        'left': x + '%',
+        'top': y + '%'
+      });
+    }
   };
 
   /**
