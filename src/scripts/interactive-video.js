@@ -3161,13 +3161,12 @@ InteractiveVideo.prototype.resizeInteractions = function () {
   }
 
   var self = this;
+  this.updateInteractionsTransformation();
   this.interactions.forEach(function (interaction) {
     interaction.resizeInteraction();
     interaction.repositionToWrapper(self.$videoWrapper);
     interaction.positionLabel(self.$videoWrapper.width());
   });
-
-  this.updateInteractionsTransformation();
 };
 
 /**
