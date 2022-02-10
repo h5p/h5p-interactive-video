@@ -4226,6 +4226,10 @@ InteractiveVideo.prototype.updateInteractionsTransformation = function () {
     return; // Don't mess with positioning
   }
 
+  if (!Array.isArray(this.options.assets.interactions)) {
+    return; // No interactions set
+  }
+
   this.options.assets.interactions.forEach((interactionParams, index) => {
     if (this.isAlternativeVideoActive()) {
       this.interactions[index].transform(
