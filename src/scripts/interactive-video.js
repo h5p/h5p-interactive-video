@@ -2848,6 +2848,9 @@ InteractiveVideo.prototype.updateQuality = function (quality) {
     self.controls.$qualityButton.click();
     self.controls.$qualityButton.focus();
   }
+
+  // Required to transform interactions for alternative videos
+  this.resizeInteractions();
 };
 
 /**
