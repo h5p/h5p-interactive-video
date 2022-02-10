@@ -390,7 +390,6 @@ function InteractiveVideo(params, id, contentData) {
           if (firstPlay) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
-            self.updateInteractionsTransformation();
 
             self.addAudioTrackChooser();
 
@@ -2849,7 +2848,6 @@ InteractiveVideo.prototype.updateQuality = function (quality) {
     self.controls.$qualityButton.click();
     self.controls.$qualityButton.focus();
   }
-  this.updateInteractionsTransformation();
 };
 
 /**
@@ -3168,6 +3166,8 @@ InteractiveVideo.prototype.resizeInteractions = function () {
     interaction.repositionToWrapper(self.$videoWrapper);
     interaction.positionLabel(self.$videoWrapper.width());
   });
+
+  this.updateInteractionsTransformation();
 };
 
 /**
