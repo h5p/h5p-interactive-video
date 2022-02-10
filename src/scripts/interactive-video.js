@@ -390,6 +390,7 @@ function InteractiveVideo(params, id, contentData) {
           if (firstPlay) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
+            self.updateInteractionsTransformation();
 
             self.addAudioTrackChooser();
 
