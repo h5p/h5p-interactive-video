@@ -91,7 +91,7 @@
                   },
                   {
                     "label": "Tonen als",
-                    "description": "<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video.",
+                    "description": "<b>Knop</b> is een samengevouwen interactie die de gebruiker moet aanklikken om te openen. <b>Poster</b> is een uitgevouwen interactie die direct getoond wordt bovenop de video",
                     "options": [
                       {
                         "label": "Knop"
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "Ga naar",
-                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in in M:SS opmaak."
+                        "description": "De doeltijd waar de gebruiker naartoe gaat als hij op de hotspot klikt. Voer de tijdscode in de M:SS-opmaak in."
                       },
                       {
                         "label": "URL",
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
