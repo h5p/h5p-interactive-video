@@ -125,7 +125,7 @@
                             "description": "Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label": "Autoriser l’utilisateur à se retirer et continuer"
+                            "label": "Autoriser l'utilisateur à se retirer et continuer"
                           },
                           {
                             "label": "Message"
@@ -143,7 +143,7 @@
                             "description": "Veuillez saisir le temps au format M:SS"
                           },
                           {
-                            "label": "Autoriser l’utilisateur à se retirer et continuer"
+                            "label": "Autoriser l'utilisateur à se retirer et continuer"
                           },
                           {
                             "label": "Message"
@@ -167,7 +167,7 @@
                       },
                       {
                         "label": "Ombrage",
-                        "description": "Ajoute une ombre subtile autour de l’interaction. Vous voudriez peut-être désactiver ceci pour les interactions complètement transparentes"
+                        "description": "Ajoute une ombre subtile autour de l'interaction. Vous voudrez peut-être désactiver cette option pour les interactions complètement transparentes."
                       }
                     ]
                   },
@@ -216,7 +216,7 @@
                       },
                       {
                         "label": "Aperçu",
-                        "description": "Pour montrez que l'interaction est cliquable ajoutez une bordure et une icône"
+                        "description": "Pour montrer que l'interaction est cliquable, ajouter une bordure et une icône."
                       }
                     ]
                   }
@@ -312,11 +312,11 @@
         },
         {
           "label": "Intitulé \"Couper le son\"",
-          "default": "Mute, currently unmuted"
+          "default": "Sourdine, présentement le son est activé."
         },
         {
           "label": "Intitulé \"Remettre le son\"",
-          "default": "Unmute, currently muted"
+          "default": "Activer le son, présentement en sourdine."
         },
         {
           "label": "Intitulé \"Qualité de la vidéo\"",
@@ -404,7 +404,7 @@
         },
         {
           "label": "Message pour expliquer qu'une interaction simple est apparue",
-          "default": "Une interaction est apparue "
+          "default": "Une interaction est apparue."
         },
         {
           "label": "Message pour expliquer que de multiples interactions sont apparues",
@@ -412,7 +412,7 @@
         },
         {
           "label": "Annonce vidéo en pause",
-          "default": "La vidéo est en pause"
+          "default": "La vidéo est en pause."
         },
         {
           "label": "Intitulé du contenu",
@@ -428,8 +428,8 @@
           "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "@answered question(s) auxquelles vous avez répondu",
+          "label": "Information de l'écran de remise quand le bouton Envoyer est désactivé",
+          "default": "Vous avez répondu à @answered questions.",
           "description": "@answered sera remplacé par le nombre de questions pour lesquelles une réponse a été donnée."
         },
         {
@@ -471,7 +471,7 @@
         },
         {
           "label": "Résultat, sans le score (pour la synthèse vocale)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "default": "Vous avez répondu aux @question qui sont apparues après @minutes minutes et @seconds secondes."
         }
       ]
     }
