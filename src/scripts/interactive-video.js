@@ -344,6 +344,11 @@ function InteractiveVideo(params, id, contentData) {
             self.seek(loopTime);
           }
 
+          // If there are no tasks in the interactions or summary, trigger completed verb
+          if (!self.isTask) {
+            this.parent.triggerXAPIScored(1, 1, 'completed');
+          }
+
           break;
         }
         case H5P.Video.PLAYING:
@@ -1730,6 +1735,9 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
  * @returns {H5P.jQuery}
  */
 InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
+    if(typeof this.parent !== 'undefined'){
+        return false;
+    }
   var self = this;
   var endscreen = self.options.assets.endscreens[id];
 
@@ -3520,6 +3528,8 @@ InteractiveVideo.prototype.findNextInteractionToShow = function (time, index) {
 InteractiveVideo.prototype.findNextInteractionToHide = function (time) {
   let candidate;
   for (var i = 0; i < this.visibleInteractions.length; i++) {
+    if(this.interactions[this.visibleInteractions[i]] === undefined) ///check if interations are 0 then return back
+      return candidate;
     const duration = this.interactions[this.visibleInteractions[i]].getDuration();
     if (candidate === undefined || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
       candidate = i;
@@ -3898,6 +3908,14 @@ InteractiveVideo.prototype.getXAPIData = function () {
     statement: xAPIEvent.data.statement,
     children: childrenData
   };
+};
+
+InteractiveVideo.prototype.getAnswerGiven = function () {
+  var self = this;
+  const answeredTotal = self.interactions
+            .map (interaction => interaction.getProgress() || 0)
+            .reduce((a, b) => a + b, 0);
+  return answeredTotal;
 };
 
 /**

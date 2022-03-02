@@ -156,7 +156,39 @@ class Endscreen extends H5P.EventDispatcher {
      * submissions basically mean a new attempt of the parent (IV).
      * This is subject to being changed.
      */
+
+    
+      
+        
+       
+
+    
     this.parent.triggerXAPIScored(this.parent.getUsersScore(), this.parent.getUsersMaxScore(), 'completed');
+    for (const iv_interaction of this.parent.interactions) {
+      if(typeof iv_interaction.getLastXAPIVerb() != "undefined") {
+        console.log(iv_interaction.getLastXAPIVerb());
+       
+      }
+      else{
+        //this.parent.triggerXAPIScored(this.parent.getUsersScore(), this.parent.getUsersMaxScore(), 'skipped');
+        const customProgressedEvent = this.parent.createXAPIEventTemplate('skipped');
+        //console.log(iv_interaction.content.metadata.title);
+        //console.log('Updated 170');
+        //console.log(iv_interaction.getMetadata());
+        var metaDataArr = iv_interaction.getMetadata();
+        if (customProgressedEvent.data.statement.object) {
+          customProgressedEvent.data.statement.object.definition['name'] = {'en-US': metaDataArr.title};
+          //console.log(customProgressedEvent);
+          //section.instance.triggerXAPIScored(0,1,customProgressedEvent);
+          this.parent.trigger(customProgressedEvent);
+        }
+      }
+    }
+    
+    if( typeof this.parent.contentData.standalone !== undefined && this.parent.contentData.standalone){
+      this.parent.triggerXAPIScored(this.parent.getUsersScore(), this.parent.getUsersMaxScore(), 'submitted-curriki');
+    }
+    
   }
 
   /**

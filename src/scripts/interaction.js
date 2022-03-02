@@ -323,7 +323,7 @@ function Interaction(parameters, player, previousState) {
         if (event.which === 32) {
           goto({data: parameters.goto.time});
         }
-      }).attr('href', '#')
+      }).attr('href', 'javascript:void(0)') // default href = '#'
         .attr('tabindex', '0');
     }
     else { // URL
