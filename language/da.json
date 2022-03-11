@@ -364,8 +364,8 @@
           "default": "Lyd til"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Videokvalitetstitel",
+          "default": "Videokvalitet"
         },
         {
           "label": "Audio track",

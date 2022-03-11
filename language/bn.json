@@ -364,8 +364,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "ভিডিও মান শিরোনাম",
+          "default": "ভিডিও মান"
         },
         {
           "label": "Audio track",

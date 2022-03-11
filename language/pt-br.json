@@ -364,8 +364,8 @@
           "default": "Sem alterações, atualmente mudo"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Título da qualidade do vídeo",
+          "default": "Qualidade do vídeo"
         },
         {
           "label": "Audio track",

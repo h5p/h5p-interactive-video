@@ -364,8 +364,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Przycisk wyboru jakości",
+          "default": "Jakość wideo"
         },
         {
           "label": "Audio track",

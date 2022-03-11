@@ -364,8 +364,8 @@
           "default": "Dempen uit, nu gedempt"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Titel voor \"Videokwaliteit\"-knop",
+          "default": "Videokwaliteit"
         },
         {
           "label": "Audio track",

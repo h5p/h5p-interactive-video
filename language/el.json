@@ -364,8 +364,8 @@
           "default": "Κατάργηση Σίγασης, (τρέχουσα κατάσταση : ενεργή σίγαση)"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Τίτλος για ποιότητα βίντεο",
+          "default": "Ποιότητα βίντεο"
         },
         {
           "label": "Audio track",

@@ -364,8 +364,8 @@
           "default": "Activar, neste momento silenciado"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Calidade do vídeo",
+          "default": "Calidade do vídeo"
         },
         {
           "label": "Audio track",

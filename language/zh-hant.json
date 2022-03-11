@@ -364,8 +364,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "影片品質的顯示文字",
+          "default": "影片品質"
         },
         {
           "label": "Audio track",

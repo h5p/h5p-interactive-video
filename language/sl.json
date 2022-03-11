@@ -364,8 +364,8 @@
           "default": "Povrni zvok"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Besedilo za kvaliteto videoposnetka",
+          "default": "Kvaliteta videoposnetka"
         },
         {
           "label": "Audio track",

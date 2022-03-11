@@ -364,8 +364,8 @@
           "default": "Laut schalten, derzeit stumm geschaltet"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Beschriftung des \"Videoqualität\"-Buttons",
+          "default": "Videoqualität"
         },
         {
           "label": "Audio track",

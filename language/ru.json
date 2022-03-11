@@ -364,8 +364,8 @@
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video version title",
-          "default": "Video version"
+          "label": "Заголовок для качества видео",
+          "default": "Качество видео"
         },
         {
 <<<<<<< HEAD
