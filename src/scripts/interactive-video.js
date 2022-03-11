@@ -4214,7 +4214,12 @@ InteractiveVideo.prototype.isAlternativeVideoActive = function () {
     return false;
   }
 
-  return qualities[qualities.length - 1].name !== this.video.getQuality();
+  const currentQuality = qualities.find((quality) => quality.name === this.video.getQuality());
+  if (!currentQuality) {
+    return false;
+  }
+
+  return currentQuality.isSignLanguage;
 };
 
 /**
