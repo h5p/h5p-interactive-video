@@ -879,6 +879,14 @@
         "optional": true
       },
       {
+        "name": "signLanguage",
+        "type": "text",
+        "label": "Sign language title",
+        "importance": "low",
+        "default": "Sign Language",
+        "optional": true
+      },
+      {
         "name": "audiotrack",
         "type": "text",
         "label": "Audio track",

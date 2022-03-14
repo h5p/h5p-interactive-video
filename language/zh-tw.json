@@ -368,6 +368,10 @@
           "default": "影像品質"
         },
         {
+          "label": "Sign language title",
+          "default": "Sign Language"
+        },
+        {
           "label": "Audio track",
           "default": "Audio track"
         },

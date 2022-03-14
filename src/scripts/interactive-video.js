@@ -147,6 +147,7 @@ function InteractiveVideo(params, id, contentData) {
     mute: 'Mute, currently unmuted',
     unmute: 'Unmute, currently muted',
     quality: 'Video quality',
+    signLanguage: 'Sign language',
     audiotrack: 'Audio tracks',
     captions: 'Captions',
     close: 'Close',
@@ -2717,15 +2718,25 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   var qualities = self.qualities;
 
   var html = '';
+  var htmlSignLanguage = '';
   for (var i = 0; i < qualities.length; i++) {
     var quality = qualities[i];
     const isChecked = quality.name === currentQuality;
-    html += `<li role="menuitemradio" data-quality="${quality.name}" aria-checked="${isChecked}" aria-describedby="${self.qualityMenuId}">${quality.label}</li>`;
+    if (!quality.isSignLanguage) {
+      html += `<li role="menuitemradio" data-quality="${quality.name}" aria-checked="${isChecked}" aria-describedby="${self.qualityMenuId}">${quality.label}</li>`;
+    }
+    else {
+      htmlSignLanguage += `<li role="menuitemradio" data-quality="${quality.name}" aria-checked="${isChecked}" aria-describedby="${self.qualityMenuId}">${quality.label}</li>`;
+    }
   }
 
   var $list = $(`<ul role="menu">${html}</ul>`).appendTo(this.controls.$qualityChooser);
 
-  $list.children()
+  var $listSignLanguage = (htmlSignLanguage !== '') ?
+    $(`<h3 class="h5p-interactive-video-menu-title">${self.l10n.signLanguage}</h3><ul role="menu">${htmlSignLanguage}</ul>`).appendTo(this.controls.$qualityChooser) :
+    $('');
+
+  $.merge($list.children(), $listSignLanguage.children())
     .click(function () {
       const quality = $(this).attr('data-quality');
       self.updateQuality(quality);
@@ -2739,7 +2750,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
       e.stopPropagation();
     });
 
-  const menuElements = $list.find('li').get();
+  const menuElements = $.merge($list.find('li'), $listSignLanguage.find('li')).get();
   menuElements.forEach(el => {
     self.qualityMenuKeyboardControls.addElement(el);
 

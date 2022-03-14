@@ -368,6 +368,10 @@
           "default": "Качество на видеото"
         },
         {
+          "label": "Sign language title",
+          "default": "Sign Language"
+        },
+        {
           "label": "Audio track",
           "default": "Audio track"
         },

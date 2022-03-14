@@ -368,15 +368,15 @@
           "default": "Качество видео"
         },
         {
-<<<<<<< HEAD
-          "label": "Заголовок для титров видео",
-=======
+          "label": "Sign language title",
+          "default": "Sign Language"
+        },
+        {
           "label": "Audio track",
           "default": "Audio track"
         },
         {
           "label": "Заголовок для титров видеоо",
->>>>>>> f6ffe1f (Add first draft of transforming interactions for alt videos)
           "default": "Титры"
         },
         {
