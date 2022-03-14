@@ -2705,6 +2705,8 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   self.qualityMenuKeyboardControls.on('close', () => self.controls.$qualityButton.click());
 
   if (!this.video.getQualities) {
+    // Fallback for when no qualities can get loaded
+    $(`<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`).appendTo(this.controls.$qualityChooser);
     return;
   }
 
@@ -2730,11 +2732,17 @@ InteractiveVideo.prototype.addQualityChooser = function () {
     }
   }
 
-  var $list = $(`<ul role="menu">${html}</ul>`).appendTo(this.controls.$qualityChooser);
+  var $list = $('');
+  if (html !== '') {
+    $(`<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`).appendTo(this.controls.$qualityChooser);
+    $list = $(`<ul role="menu">${html}</ul>`).appendTo(this.controls.$qualityChooser);
+  }
 
-  var $listSignLanguage = (htmlSignLanguage !== '') ?
-    $(`<h3 class="h5p-interactive-video-menu-title">${self.l10n.signLanguage}</h3><ul role="menu">${htmlSignLanguage}</ul>`).appendTo(this.controls.$qualityChooser) :
-    $('');
+  var $listSignLanguage = $('');
+  if (htmlSignLanguage !== '') {
+    $(`<h3 class="h5p-interactive-video-menu-title">${self.l10n.signLanguage}</h3>`).appendTo(this.controls.$qualityChooser);
+    $listSignLanguage = $(`<ul role="menu">${htmlSignLanguage}</ul>`).appendTo(this.controls.$qualityChooser);
+  }
 
   $.merge($list.children(), $listSignLanguage.children())
     .click(function () {
