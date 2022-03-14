@@ -2311,7 +2311,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       'role': 'dialog',
       html: `<h3 id="${self.audioTrackMenuId}">${self.l10n.audiotrack}</h3>`,
     });
-    self.popupMenuChoosers.push(self.controls.$qualityChooser);
+    self.popupMenuChoosers.push(self.controls.$audioChooser);
 
     const closeAudioTrackMenu = () => {
       if (self.isMinimal) {
