@@ -32,6 +32,49 @@
               ]
             },
             {
+              "label": "Multiple videos",
+              "fields": [
+                {
+                  "label": "Horizontal offset",
+                  "description": "If your alternative videos contain a version of the original video that has been repositioned, set the horizontal offset in % here."
+                },
+                {
+                  "label": "Vertical offset",
+                  "description": "If your alternative videos contain a version of the original video that has been repositioned, set the vertical offset in % here."
+                },
+                {
+                  "label": "Scale",
+                  "description": "If your alternative videos contain a version of the original video that has been scaled, set the relative size in % here."
+                }
+              ]
+            },
+            {
+              "label": "Alternate audio tracks",
+              "fields": [
+                {
+                  "label": "Default track label",
+                  "description": "Label for audio track in video. Only relevant if you add more audio tracks.",
+                  "default": "Default"
+                },
+                {
+                  "label": "Alternate audio tracks",
+                  "entity": "Track",
+                  "field": {
+                    "label": "Track",
+                    "fields": [
+                      {
+                        "label": "Track label",
+                        "description": "Used if you offer multiple audio tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track."
+                      },
+                      {
+                        "label": "Audio file"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
               "label": "Text tracks (unsupported for YouTube videos)",
               "fields": [
                 {
@@ -324,6 +367,14 @@
           "label": "Video quality title",
           "default": "Video Quality"
         },
+        {
+          "label": "Sign language title",
+          "default": "Sign Language"
+        },
+        {
+          "label": "Audio track",
+          "default": "Audio track"
+        },        
         {
           "label": "Video captions title",
           "default": "Captions"
