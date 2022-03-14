@@ -2740,7 +2740,12 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 
   var $listSignLanguage = $('');
   if (htmlSignLanguage !== '') {
-    $(`<h3 class="h5p-interactive-video-menu-title">${self.l10n.signLanguage}</h3>`).appendTo(this.controls.$qualityChooser);
+    var classesSignLanguage = 'h5p-interactive-video-menu-title';
+    if (html !== 0) {
+      // Only secondary title
+      classesSignLanguage += ' h5p-interactive-video-menu-title-secondary';
+    }
+    $(`<h3 class="${classesSignLanguage}">${self.l10n.signLanguage}</h3>`).appendTo(this.controls.$qualityChooser);
     $listSignLanguage = $(`<ul role="menu">${htmlSignLanguage}</ul>`).appendTo(this.controls.$qualityChooser);
   }
 

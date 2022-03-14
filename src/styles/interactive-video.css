@@ -746,6 +746,9 @@
   border-bottom: 1px solid #fbfbfb;
   color: #fbfbfb;
 }
+.h5p-interactive-video .h5p-chooser > h3.h5p-interactive-video-menu-title-secondary {
+  font-style: italic;
+}
 .h5p-interactive-video .h5p-chooser > [role="menu"] {
   list-style: none;
   padding: 0 2px 8px;
