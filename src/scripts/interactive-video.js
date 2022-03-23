@@ -1675,7 +1675,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
   // Creat list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$bookmarksList === undefined) {
     self.controls.$bookmarksList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$bookmarksChooser.find('h3'));
+      .insertAfter(self.controls.$bookmarksChooser.find('h2'));
   }
 
   // Create list element for bookmark
@@ -1777,7 +1777,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$endscreensList === undefined) {
     self.controls.$endscreensList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$endscreensChooser.find('h3'));
+      .insertAfter(self.controls.$endscreensChooser.find('h2'));
   }
 
   // Create list element for endscreen
@@ -1953,7 +1953,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-bookmarks',
       'role': 'dialog',
-      html: `<h3 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h3>`,
+      html: `<h2 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h2>`,
     });
     self.popupMenuChoosers.push(self.controls.$bookmarksChooser);
 
@@ -2004,7 +2004,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$endscreensChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-endscreens',
       'role': 'dialog',
-      html: `<h3 id="${self.endscreensMenuId}">${self.l10n.endscreens}</h3>`,
+      html: `<h2 id="${self.endscreensMenuId}">${self.l10n.endscreens}</h2>`,
     });
     self.popupMenuChoosers.push(self.controls.$endscreensChooser);
 
@@ -2104,7 +2104,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
     'class': 'h5p-chooser h5p-playbackRate',
     'role': 'dialog',
-    html: `<h3 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h3>`,
+    html: `<h2 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h2>`,
   });
   self.popupMenuChoosers.push(self.controls.$playbackRateChooser);
 
@@ -2170,7 +2170,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityChooser = H5P.jQuery('<div/>', {
     'class': 'h5p-chooser h5p-quality',
     'role': 'dialog',
-    html: `<h3 id="${self.qualityMenuId}">${self.l10n.quality}</h3>`,
+    html: `<h2 id="${self.qualityMenuId}">${self.l10n.quality}</h2>`,
   });
   self.popupMenuChoosers.push(self.controls.$qualityChooser);
 

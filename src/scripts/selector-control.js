@@ -151,7 +151,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   };
 
   // Create the popup which will contain the list of options
-  self.popup = element('h5p-chooser h5p-' + name, `<h3 id="${id}">${l10n[name]}</h3>`);
+  self.popup = element('h5p-chooser h5p-' + name, `<h2 id="${id}">${l10n[name]}</h2>`);
   self.popup.setAttribute('role', 'dialog');
 
   // Add a close button inside the popup
