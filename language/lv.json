@@ -287,6 +287,10 @@
           "label": "Novērsiet pārlēkšanu uz priekšu videoklipā"
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Atslēgt skaņu",
           "description": "Šīs opcijas aktivizēšana, atslēgs videoklipa skaņu un liegs tās ieslēgšanu."
         }

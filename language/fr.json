@@ -290,6 +290,10 @@
           "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video"
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Désactiver le son",
           "description": "Cette option désactive le son de la vidéo."
         }

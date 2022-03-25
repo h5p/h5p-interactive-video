@@ -290,6 +290,10 @@
           "description": "Slå på for å nekte at brukere hopper over innhold i video ved hjelp av standard kontrollere."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Deaktiver lyd",
           "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }

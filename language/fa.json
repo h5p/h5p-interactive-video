@@ -290,6 +290,10 @@
           "description": "فعال‌سازی این گزینه، پیمایش ویدئو توسط کاربر را از طریق کنترل‌های پیش‌فرض غیرفعال خواهد کرد."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "غیرفعال کردن صدا",
           "description": "فعال‌سازی این گزینه صدای ویدئو را غیرفعال خواهد کرد و مانع روشن شدن آن خواهد شد."
         }

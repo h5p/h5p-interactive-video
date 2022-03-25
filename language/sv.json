@@ -290,6 +290,10 @@
           "description": "Om du väljer denna inställning så inaktiveras möjligheten för användare att navigera i video med standardkontroller."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Inaktivera ljud",
           "description": "Om du väljer denna inställning så inaktiveras ljudet i videon och möjligheten för användare att slå på ljud förhindras."
         }

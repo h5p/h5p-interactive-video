@@ -290,6 +290,10 @@
           "description": "啟用此選項時，使用者將不能任意跳換."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "關閉聲音",
           "description": "啟用此選項時將關閉影片的聲音，且無法再被開啟聲音"
         }

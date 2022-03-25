@@ -290,6 +290,10 @@
           "description": "Активирането на тези опции ще деактивира видео навигацията на потребителя чрез контроли по подразбиране."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Изключване на звука",
           "description": "Активирането на тази опция ще дезактивира звука на видеото и ще предотврати включването му."
         }

@@ -290,6 +290,10 @@
           "description": "Z onemogočenimi kontrolniki za predvajanje videoposnetka bo možen le ogled v enem kosu."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Onemogoči zvok",
           "description": "Videoposnetek se bo predvajal v nemem načinu."
         }

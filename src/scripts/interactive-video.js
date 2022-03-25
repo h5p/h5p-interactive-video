@@ -110,6 +110,7 @@ function InteractiveVideo(params, id, contentData) {
     self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
     self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
     self.preventSkipping = params.override.preventSkipping || false;
+    self.deactivatePlaybackRateChooser = params.override.deactivatePlaybackRateChooser || false;
     self.deactivateSound = params.override.deactivateSound || false;
   }
   // Translated UI text defaults
@@ -351,7 +352,9 @@ function InteractiveVideo(params, id, contentData) {
             // Qualities might not be available until after play.
             self.addQualityChooser();
 
-            self.addPlaybackRateChooser();
+            if (this.deactivatePlaybackRateChooser !== true) {
+              self.addPlaybackRateChooser();
+            }
 
             // Make sure splash screen is removed.
             self.removeSplash();
@@ -437,15 +440,17 @@ function InteractiveVideo(params, id, contentData) {
       }
     });
 
-    self.video.on('playbackRateChange', function (event) {
-      var playbackRate = event.data;
-      // Firefox fires a "ratechange" event immediately upon changing source, at this
-      // point controls has not been initialized, so we must check for controls
-      if (self.controls && self.controls.$playbackRateChooser) {
-        // Update playbackRate selector
-        self.controls.$playbackRateChooser.find('li').attr('aria-checked', 'false').filter('[playback-rate="' + playbackRate + '"]').attr('aria-checked', 'true');
-      }
-    });
+    if (self.deactivatePlaybackRateChooser !== true) {
+      self.video.on('playbackRateChange', function (event) {
+        var playbackRate = event.data;
+        // Firefox fires a "ratechange" event immediately upon changing source, at this
+        // point controls has not been initialized, so we must check for controls
+        if (self.controls && self.controls.$playbackRateChooser) {
+          // Update playbackRate selector
+          self.controls.$playbackRateChooser.find('li').attr('aria-checked', 'false').filter('[playback-rate="' + playbackRate + '"]').attr('aria-checked', 'true');
+        }
+      });
+    }
 
     // Handle entering fullscreen
     self.on('enterFullScreen', function () {
@@ -705,7 +710,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // 'video only' fallback has no interactions
   let isAnswerable = this.hasMainSummary();
-  
+
   if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
@@ -2100,47 +2105,49 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.closePopupMenus();
   });
 
-  // Add popup for selecting playback rate
-  self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
-    'class': 'h5p-chooser h5p-playbackRate',
-    'role': 'dialog',
-    html: `<h2 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h2>`,
-  });
-  self.popupMenuChoosers.push(self.controls.$playbackRateChooser);
+  if (self.deactivatePlaybackRateChooser !== true) {
+    // Add popup for selecting playback rate
+    self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
+      'class': 'h5p-chooser h5p-playbackRate',
+      'role': 'dialog',
+      html: `<h2 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h2>`,
+    });
+    self.popupMenuChoosers.push(self.controls.$playbackRateChooser);
 
-  const closePlaybackRateMenu = () => {
-    if (self.isMinimal) {
-      self.controls.$more.click();
-    }
-    else {
-      self.controls.$playbackRateButton.click();
-    }
-    self.resumeVideo();
-  };
-
-  // Adding close button to playback rate-menu
-  self.controls.$playbackRateChooser.append($('<span>', {
-    'role': 'button',
-    'class': 'h5p-chooser-close-button',
-    'tabindex': '0',
-    'aria-label': self.l10n.close,
-    click: () => closePlaybackRateMenu(),
-    keydown: event => {
-      if (isSpaceOrEnterKey(event)) {
-        closePlaybackRateMenu();
-        event.preventDefault();
+    const closePlaybackRateMenu = () => {
+      if (self.isMinimal) {
+        self.controls.$more.click();
       }
-    }
-  }));
+      else {
+        self.controls.$playbackRateButton.click();
+      }
+      self.resumeVideo();
+    };
 
-  // Button for opening video playback rate selection dialog
-  self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
-  self.popupMenuButtons.push(self.controls.$playbackRateButton);
-  self.setDisabled(self.controls.$playbackRateButton);
-  self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
-  self.controls.$playbackRateButton.attr('aria-expanded', 'false');
+    // Adding close button to playback rate-menu
+    self.controls.$playbackRateChooser.append($('<span>', {
+      'role': 'button',
+      'class': 'h5p-chooser-close-button',
+      'tabindex': '0',
+      'aria-label': self.l10n.close,
+      click: () => closePlaybackRateMenu(),
+      keydown: event => {
+        if (isSpaceOrEnterKey(event)) {
+          closePlaybackRateMenu();
+          event.preventDefault();
+        }
+      }
+    }));
 
-  self.controls.$playbackRateChooser.insertAfter(self.controls.$playbackRateButton);
+    // Button for opening video playback rate selection dialog
+    self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+    self.popupMenuButtons.push(self.controls.$playbackRateButton);
+    self.setDisabled(self.controls.$playbackRateButton);
+    self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
+    self.controls.$playbackRateButton.attr('aria-expanded', 'false');
+
+    self.controls.$playbackRateChooser.insertAfter(self.controls.$playbackRateButton);
+  }
 
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
@@ -2258,21 +2265,22 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$qualityButtonMinimal.attr('role', 'menuitem');
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$qualityButtonMinimal);
   self.minimalMenuKeyboardControls.addElement(self.controls.$qualityButtonMinimal.get(0));
-
-  // Playback rate
-  self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
-    if (!self.isDisabled(self.controls.$playbackRateButton)) {
-      self.controls.$overlayButtons.addClass('h5p-hide');
-      self.controls.$playbackRateButton.click();
-    }
-  }, true);
-  self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
-  self.setDisabled(self.controls.$playbackRateButtonMinimal);
-  self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
-  self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
-
   self.addQualityChooser();
-  self.addPlaybackRateChooser();
+
+  if (self.deactivatePlaybackRateChooser !== true) {
+    // Playback rate
+    self.controls.$playbackRateButtonMinimal = self.createButton('playbackRate', 'h5p-minimal-button', $minimalWrap, function () {
+      if (!self.isDisabled(self.controls.$playbackRateButton)) {
+        self.controls.$overlayButtons.addClass('h5p-hide');
+        self.controls.$playbackRateButton.click();
+      }
+    }, true);
+    self.controls.$playbackRateButtonMinimal.attr('role', 'menuitem');
+    self.setDisabled(self.controls.$playbackRateButtonMinimal);
+    self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.controls.$playbackRateButtonMinimal);
+    self.minimalMenuKeyboardControls.addElement(self.controls.$playbackRateButtonMinimal.get(0));
+    self.addPlaybackRateChooser();
+  }
 
   self.interactionKeyboardControls = new Controls([new UIKeyboard()]);
 

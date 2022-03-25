@@ -290,6 +290,10 @@
           "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "כיבוי שמע",
           "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }

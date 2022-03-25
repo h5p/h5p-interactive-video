@@ -290,6 +290,10 @@
           "description": "Si habiliteu aquesta opció es desactivarà la navegació de vídeo de l’usuari mitjançant controls predeterminats."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Desactiva el so",
           "description": "Si habiliteu aquesta opció, es desactivarà el so del vídeo i no es podrà activar."
         }

@@ -290,6 +290,10 @@
           "description": "Włączenie tej opcji uniemożliwi widzowi używanie paska postępu do zmiany odtwarzanego fragmentu wideo."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Wyłącz dźwięk",
           "description": "Włączenie tej opcji wyłączy ścieżkę dźwiękową i uniemożliwi jej włączenie."
         }

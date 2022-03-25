@@ -290,6 +290,10 @@
           "description": "Povolením této možnosti zakážete navigaci uživatele videa pomocí výchozích ovládacích prvků."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Deaktivovat zvuk",
           "description": "Povolením této možnosti deaktivujete zvuk videa a zabráníte jeho zapnutí."
         }

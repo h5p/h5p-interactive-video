@@ -288,6 +288,10 @@
           "description": "Met deze opties ingeschakeld, kan een gebruiker niet door de video scrollen met de standaard knoppen."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Geluid uitschakelen",
           "description": "Met deze optie wordt het geluid van de video uitgeschakeld en kan het niet worden ingeschakeld."
         }

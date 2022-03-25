@@ -290,6 +290,10 @@
           "description": "এই অপশন সক্রিয় করা হলে ব্যবহারকারী ভিডিও কনট্রোল ব্যবহার করে সামনে যেতে পারবে না।"
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "শব্দ নিষ্ক্রিয় করো",
           "description": "এই অপশন সক্রিয় করা হলে ভিডিওর শব্দ নিষ্ক্রিয় হবে এবং সেই শব্দকে আবার চালু করা যাবে না।"
         }

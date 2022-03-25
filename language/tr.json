@@ -290,6 +290,10 @@
           "description": "Bu seçenek seçildiğinde kullanıcıya varsayılan video kontrolleri etkisiz kılınacaktır."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Sesi devre dışı bırak",
           "description": "Bu seçenek seçildiğinde videonun sesi devre dışı bırakılacak ve açılması önlenecektir."
         }
