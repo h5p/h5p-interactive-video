@@ -280,7 +280,7 @@
         },
         {
           "label": "Iniciar co menú de marcadores aberto",
-          "description": "Esta función non está dispoñible no iPad cando se usa Youtube como fonte do vídeo."
+          "description": "Esta función non está dispoñible no iPad (before Safari 13) cando se usa Youtube como fonte do vídeo."
         },
         {
           "label": "Amosar botón para rebobinar 10 segundos"

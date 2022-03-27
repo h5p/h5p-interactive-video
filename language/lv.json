@@ -277,7 +277,7 @@
         },
         {
           "label": "Sākt ar atvērtu grāmatzīmju izvēlni",
-          "description": "Šī funkcionalitāte nav pieejama uz iPad kad tiek izmantots YouTube video avots."
+          "description": "Šī funkcionalitāte nav pieejama uz iPad (before Safari 13) kad tiek izmantots YouTube video avots."
         },
         {
           "label": "Rādīt pogu attīšanai par 10 sekundēm"

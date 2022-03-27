@@ -280,7 +280,7 @@
         },
         {
           "label": "Démarrer avec le menu des Signets ouvert",
-          "description": "Cette fonction n'est pas disponible sur iPad si la vidéo source est hébergée sur Youtube"
+          "description": "Cette fonction n'est pas disponible sur iPad (before Safari 13) si la vidéo source est hébergée sur Youtube"
         },
         {
           "label": "Afficher le bouton pour revenir en arrière de 10 secondes"

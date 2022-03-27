@@ -280,7 +280,7 @@
         },
         {
           "label": "Začni z odprtim menijem zaznamkov",
-          "description": "Nastavitev ni podprta za predvajanje YouTube posnetkov na iPadu."
+          "description": "Nastavitev ni podprta za predvajanje YouTube posnetkov na iPadu (before Safari 13)."
         },
         {
           "label": "Prevrti videoposnetek za 10 sekund nazaj"

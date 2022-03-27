@@ -280,7 +280,7 @@
         },
         {
           "label": "Vis bokmerkemeny når interaktiv video åpnes",
-          "description": "Denne funksjonen er ikke tilgjengelig på iPad når YouTube kilde er brukt."
+          "description": "Denne funksjonen er ikke tilgjengelig på iPad (before Safari 13) når YouTube kilde er brukt."
         },
         {
           "label": "Vis knapp for å spole tilbake 10 sekunder"

@@ -280,7 +280,7 @@
         },
         {
           "label": "התחילו עם תפריט סימניות פתוח",
-          "description": "פונקציה זו לא קיימת ב-iPad כאשר משתמשים ב-YouTube בסרטון המקור."
+          "description": "פונקציה זו לא קיימת ב-iPad (before Safari 13) כאשר משתמשים ב-YouTube בסרטון המקור."
         },
         {
           "label": "Show button for rewinding 10 seconds"

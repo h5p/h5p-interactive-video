@@ -278,7 +278,7 @@
         },
         {
           "label": "Mit geöffnetem Lesezeichen-Menü starten",
-          "description": "Diese Funktion ist auf iPads nicht verfügbar, wenn das Video von YouTube stammt."
+          "description": "Diese Funktion ist auf iPads (vor Safari 13) nicht verfügbar, wenn das Video von YouTube stammt."
         },
         {
           "label": "Button zeigen, um 10 Sekunden zurück zu springen"

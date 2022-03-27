@@ -280,7 +280,7 @@
         },
         {
           "label": "Yer imleri menüsü açık şekilde başlat",
-          "description": "Bu özellik video kaynağı Youtube olduğunda iPad cihazlarda etkin değildir."
+          "description": "Bu özellik video kaynağı Youtube olduğunda iPad (before Safari 13) cihazlarda etkin değildir."
         },
         {
           "label": "10 saniye geri sar butonunu göster"

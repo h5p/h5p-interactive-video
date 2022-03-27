@@ -280,7 +280,7 @@
         },
         {
           "label": "Pokaż zakładki przy starcie",
-          "description": "Funkcja niedostępna w przypadku odtwarzania wideo z YouTube na iPadzie."
+          "description": "Funkcja niedostępna w przypadku odtwarzania wideo z YouTube na iPadzie (before Safari 13)."
         },
         {
           "label": "Pokaż przycisk cofania o 10 sekund"
