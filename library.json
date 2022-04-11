@@ -4,8 +4,8 @@
   "license": "MIT",
   "contentType": "Media",
   "majorVersion": 1,
-  "minorVersion": 23,
-  "patchVersion": 1,
+  "minorVersion": 24,
+  "patchVersion": 0,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",
   "embedTypes": [
@@ -41,7 +41,7 @@
     {
       "machineName": "H5P.Video",
       "majorVersion": 1,
-      "minorVersion": 5
+      "minorVersion": 6
     },
     {
       "machineName": "H5P.DragNBar",
@@ -58,7 +58,7 @@
     {
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
-      "minorVersion": 23
+      "minorVersion": 24
     }
   ]
 }
