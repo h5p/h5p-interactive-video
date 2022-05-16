@@ -361,6 +361,10 @@
           "default": "Reprendre la lecture"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Préciser la vitesse de lecture",
           "default": "Vitesse de lecture"
         },

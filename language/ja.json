@@ -361,6 +361,10 @@
           "default": "ビデオを続行"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "再生速度を設定",
           "default": "再生速度"
         },

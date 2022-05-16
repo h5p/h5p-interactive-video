@@ -361,6 +361,10 @@
           "default": "Videoya devam et"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Oynatma hızını ayarla",
           "default": "Oynatma hızı"
         },

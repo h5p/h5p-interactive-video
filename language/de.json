@@ -361,6 +361,10 @@
           "default": "Video fortsetzen"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Abspielgeschwindigkeit festlegen",
           "default": "Abspielgeschwindigkeit"
         },

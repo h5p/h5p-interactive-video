@@ -361,6 +361,10 @@
           "default": "Продължи с видеото"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Задаване на скоростта на възпроизвеждане",
           "default": "Скорост на възпроизвеждане"
         },

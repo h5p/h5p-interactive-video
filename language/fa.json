@@ -361,6 +361,10 @@
           "default": "ادامه ویدئو"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "تنظیم سرعت پخش",
           "default": "سرعت پخش"
         },

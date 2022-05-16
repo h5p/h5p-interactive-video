@@ -361,6 +361,10 @@
           "default": "Pokračovat s videem"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Nastavit rychlost přehrávání",
           "default": "Rychlost přehrávání"
         },

@@ -361,6 +361,10 @@
           "default": "Fortsätt med video"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Ange uppspelningshastighet",
           "default": "Uppspelningshastighet"
         },

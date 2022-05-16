@@ -361,6 +361,10 @@
           "default": "המשך סרטון"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "הגדרת מהירות ניגון הסרטון",
           "default": "מהירות ניגון סרטון"
         },

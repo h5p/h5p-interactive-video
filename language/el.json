@@ -361,6 +361,10 @@
           "default": "Συνέχεια του βίντεο"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Καθορισμός ρυθμού αναπαραγωγής",
           "default": "Ρυθμός αναπαραγωγής"
         },

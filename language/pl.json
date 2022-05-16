@@ -361,6 +361,10 @@
           "default": "Kontynuuj"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Przycisk prędkości odtwarzania",
           "default": "Prędkość odtwarzania"
         },

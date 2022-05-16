@@ -361,6 +361,10 @@
           "default": "Turpināt ar video"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Iestatīt atskaņošanas ātrumu",
           "default": "Atskaņošanas ātrums"
         },

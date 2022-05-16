@@ -361,6 +361,10 @@
           "default": "Jarraitu bideoa"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Ezarri erreprodukzio abiadura",
           "default": "Erreprodukzio abiadura"
         },

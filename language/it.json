@@ -361,6 +361,10 @@
           "default": "Continua con il video"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Imposta la velocità di riproduzione",
           "default": "Velocità di riproduzione"
         },

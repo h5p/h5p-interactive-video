@@ -361,6 +361,10 @@
           "default": "Nadaljuj"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Nastavitev stopnje hitrosti predvajanja",
           "default": "Hitrost predvajanja"
         },

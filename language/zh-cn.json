@@ -361,6 +361,10 @@
           "default": "继续播放"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "播放速度的显示文字",
           "default": "播放速度"
         },

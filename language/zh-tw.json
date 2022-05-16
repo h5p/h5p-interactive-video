@@ -361,6 +361,10 @@
           "default": "繼續撥放影片"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "設置撥放速度",
           "default": "撥放速度"
         },

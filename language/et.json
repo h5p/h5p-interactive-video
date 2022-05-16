@@ -361,6 +361,10 @@
           "default": "Jätka videoga"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Määra taasesituse kiirus",
           "default": "Taasesituse kiirus"
         },

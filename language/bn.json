@@ -361,6 +361,10 @@
           "default": "ভিডিও চালিয়ে যাও"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "প্লেব্যাক রেট নির্ধারণ",
           "default": "প্লেব্যাক রেট"
         },
