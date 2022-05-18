@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Idioma d’origen; cal definir-lo per als subtítols",
+                        "default": "en",
                         "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Elements visuals",
                     "fields": [
                       {
-                        "label": "Color de fons"
+                        "label": "Color de fons",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Ombra de quadre",
@@ -357,6 +359,10 @@
         {
           "label": "Etiqueta predeterminada per al botó de continuar el vídeo",
           "default": "Continua amb el vídeo"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Estableix la velocitat de reproducció",

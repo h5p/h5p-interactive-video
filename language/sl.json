@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
+                        "default": "en",
                         "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Vizualna podoba",
                     "fields": [
                       {
-                        "label": "Barva ozadja"
+                        "label": "Barva ozadja",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Senca",
@@ -357,6 +359,10 @@
         {
           "label": "Privzeta oznaka gumba za nadaljevanje ogleda videoposnetka",
           "default": "Nadaljuj"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Nastavitev stopnje hitrosti predvajanja",

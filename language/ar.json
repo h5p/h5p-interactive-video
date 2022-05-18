@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
+                        "default": "en",
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Background color",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -357,6 +359,10 @@
         {
           "label": "Default label for continue video button",
           "default": "Continue with video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Set playback rate",

@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Język – musi być określony dla tłumaczenia",
+                        "default": "en",
                         "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Wygląd",
                     "fields": [
                       {
-                        "label": "Kolor tła"
+                        "label": "Kolor tła",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Cień ramki",
@@ -357,6 +359,10 @@
         {
           "label": "Przycisk kontynuowania bez przeskoku",
           "default": "Kontynuuj"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Przycisk prędkości odtwarzania",

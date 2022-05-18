@@ -130,7 +130,7 @@ function InteractiveVideo(params, id, contentData) {
     endscreens: 'Submit Screens',
     defaultAdaptivitySeekLabel: 'Continue',
     continueWithVideo: 'Continue with video',
-    more: 'More',
+    more: 'More player options',
     playbackRate: 'Playback rate',
     rewind10: 'Rewind 10 seconds',
     navDisabled: 'Navigation is disabled',

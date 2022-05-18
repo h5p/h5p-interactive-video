@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "שפת המקור, חייבים להגדיר עבור כתוביות",
+                        "default": "en",
                         "description": "חייבת להיות תווית שפה BCP 47 תקפה. שם \"כתוביות\" זה סוג רצועת הטקסט הנבחר, יש להגדיר את שפת המקור של הרצועה."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "צבע רקע"
+                        "label": "צבע רקע",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -357,6 +359,10 @@
         {
           "label": "תווית ברירת מחדל עבור כפתור המשך סרטון",
           "default": "המשך סרטון"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "הגדרת מהירות ניגון הסרטון",

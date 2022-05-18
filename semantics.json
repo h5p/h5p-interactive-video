@@ -862,6 +862,14 @@
         "optional": true
       },
       {
+        "name": "more",
+        "type": "text",
+        "label": "Default label for more player options",
+        "importance": "low",
+        "default": "More player options",
+        "optional": true
+      },
+      {
         "name": "playbackRate",
         "type": "text",
         "label": "Set playback rate",

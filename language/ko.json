@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "소스 언어, 자막에 대해 정의되어야 함",
+                        "default": "en",
                         "description": "유효한 BCP 47 언어 태그여야 함. '자막'이 선택한 텍스트 트랙의 유형인 경우 트랙의 소스 언어를 정의해야 함."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "비주얼",
                     "fields": [
                       {
-                        "label": "배경색"
+                        "label": "배경색",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "상자 그림자",
@@ -357,6 +359,10 @@
         {
           "label": "비디오 계속하기 버튼의 기본 라벨",
           "default": "비디오 계속하기"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "재생 속도 설정",

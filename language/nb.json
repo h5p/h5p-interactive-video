@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
+                        "default": "en",
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Bakgrunnsfarge"
+                        "label": "Bakgrunnsfarge",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -357,6 +359,10 @@
         {
           "label": "Merkelapp for å fortsette videoen",
           "default": "Fortsett video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Sett avspillingshastighet",

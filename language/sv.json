@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
+                        "default": "en",
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuella effekter",
                     "fields": [
                       {
-                        "label": "Bakgrundsfärg"
+                        "label": "Bakgrundsfärg",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Skugga",
@@ -357,6 +359,10 @@
         {
           "label": "Standardetikett för fortsätt med video",
           "default": "Fortsätt med video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Ange uppspelningshastighet",

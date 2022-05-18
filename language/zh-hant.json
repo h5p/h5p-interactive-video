@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "語言代碼",
+                        "default": "en",
                         "description": "若字軌是字幕的話，必須要定義。需符合 BCP 47 的語言標記，例如 en 為英文、zh 為中文。"
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "外觀",
                     "fields": [
                       {
-                        "label": "背景顏色"
+                        "label": "背景顏色",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "盒式陰影",
@@ -357,6 +359,10 @@
         {
           "label": "繼續播放的的顯示文字",
           "default": "繼續播放"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "播放速度的顯示文字",

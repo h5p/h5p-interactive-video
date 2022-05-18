@@ -38,6 +38,7 @@
                   "label": "Available text tracks",
                   "entity": "Track",
                   "field": {
+                    "label": "Track",
                     "fields": [
                       {
                         "label": "Track label",
@@ -45,6 +46,7 @@
                         "default": "Subtitles"
                       },
                       {
+                        "label": "Type of text track",
                         "options": [
                           {
                             "label": "Subtitles"
@@ -55,18 +57,17 @@
                           {
                             "label": "Descriptions"
                           }
-                        ],
-                        "label": "Type of text track"
+                        ]
                       },
                       {
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined.",
-                        "label": "Source language, must be defined for subtitles"
+                        "label": "Source language, must be defined for subtitles",
+                        "default": "en",
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
                         "label": "Track source (WebVTT file)"
                       }
-                    ],
-                    "label": "Track"
+                    ]
                   }
                 },
                 {
@@ -91,6 +92,7 @@
                   },
                   {
                     "label": "Display as",
+                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options": [
                       {
                         "label": "Button"
@@ -98,8 +100,7 @@
                       {
                         "label": "Poster"
                       }
-                    ],
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video"
+                    ]
                   },
                   {
                     "label": "Turn into button on small screens"
@@ -118,6 +119,7 @@
                     "label": "Adaptivity",
                     "fields": [
                       {
+                        "label": "Action on all correct",
                         "fields": [
                           {
                             "label": "Seek to",
@@ -132,8 +134,7 @@
                           {
                             "label": "Label for seek button"
                           }
-                        ],
-                        "label": "Action on all correct"
+                        ]
                       },
                       {
                         "label": "Action on wrong",
@@ -163,7 +164,8 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Background color",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -175,6 +177,7 @@
                     "label": "Go to on click",
                     "fields": [
                       {
+                        "label": "Type",
                         "options": [
                           {
                             "label": "Timecode"
@@ -182,8 +185,7 @@
                           {
                             "label": "Another page (URL)"
                           }
-                        ],
-                        "label": "Type"
+                        ]
                       },
                       {
                         "label": "Go To",
@@ -240,6 +242,7 @@
       ]
     },
     {
+      "label": "Behavioural settings",
       "fields": [
         {
           "label": "Start video at",
@@ -292,15 +295,14 @@
           "label": "Deactivate sound",
           "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
-      ],
-      "label": "Behavioural settings"
+      ]
     },
     {
       "label": "Localize",
       "fields": [
         {
-          "default": "Interaction",
-          "label": "Interaction title"
+          "label": "Interaction title",
+          "default": "Interaction"
         },
         {
           "label": "Play title",
@@ -339,8 +341,8 @@
           "default": "Exit Fullscreen"
         },
         {
-          "default": "Open summary dialog",
-          "label": "Summary title"
+          "label": "Summary title",
+          "default": "Open summary dialog"
         },
         {
           "label": "Bookmarks title",
@@ -359,6 +361,10 @@
           "default": "Continue with video"
         },
         {
+          "label": "Default label for more player options",
+          "default": "More player options"
+        },
+        {
           "label": "Set playback rate",
           "default": "Playback Rate"
         },
@@ -375,8 +381,8 @@
           "default": "Sound is disabled"
         },
         {
-          "default": "You need to answer all the questions correctly before continuing.",
-          "label": "Warning that the user must answer the question correctly before continuing"
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "You need to answer all the questions correctly before continuing."
         },
         {
           "label": "Back button",
@@ -387,8 +393,8 @@
           "default": "Hours"
         },
         {
-          "default": "Minutes",
-          "label": "Passed time minutes"
+          "label": "Passed time minutes",
+          "default": "Minutes"
         },
         {
           "label": "Passed time seconds",
@@ -415,8 +421,8 @@
           "default": "Video is paused"
         },
         {
-          "default": "Content",
-          "label": "Content label"
+          "label": "Content label",
+          "default": "Content"
         },
         {
           "label": "Answered message (@answered will be replaced with the number of answered questions)",
@@ -424,13 +430,13 @@
         },
         {
           "label": "Submit screen title",
-          "description": "@answered will be replaced by the number of answered questions.",
-          "default": "@answered Question(s) answered"
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information",
-          "description": "@answered will be replaced by the number of answered questions.",
-          "default": "You have answered @answered questions, click below to submit your answers."
+          "default": "You have answered @answered questions, click below to submit your answers.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information when submit button is disabled",

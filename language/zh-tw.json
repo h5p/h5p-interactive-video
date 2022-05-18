@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "語言別,必須為字幕定義",
+                        "default": "en",
                         "description": "需符合BCP 47語言標籤標示. 當軌道預設為 '字幕' 時, 則必須定義軌道語言別."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "視覺效果",
                     "fields": [
                       {
-                        "label": "背景顏色"
+                        "label": "背景顏色",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "視窗陰影",
@@ -357,6 +359,10 @@
         {
           "label": "影像持續播放功能鈕預設名稱",
           "default": "繼續撥放影片"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "設置撥放速度",

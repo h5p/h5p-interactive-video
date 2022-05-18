@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
+                        "default": "en",
                         "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Effetti visivi",
                     "fields": [
                       {
-                        "label": "Colore di sfondo"
+                        "label": "Colore di sfondo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Ombreggiatura a forma di casella",
@@ -357,6 +359,10 @@
         {
           "label": "Etichetta predefinita per il pulsante di continuazione video",
           "default": "Continua con il video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Imposta la velocità di riproduzione",

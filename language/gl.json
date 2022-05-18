@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
+                        "default": "en",
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fondo"
+                        "label": "Cor de fondo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombreado da caixa",
@@ -357,6 +359,10 @@
         {
           "label": "Etiqueta por defecto para o botón continuar co vídeo",
           "default": "Continuar co vídeo"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Establecer a velocidade da reprodución",

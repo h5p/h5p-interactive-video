@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
+                        "default": "en",
                         "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuelle effekter",
                     "fields": [
                       {
-                        "label": "Baggrundsfarve"
+                        "label": "Baggrundsfarve",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Skygge på afkrydsningsfelt",
@@ -357,6 +359,10 @@
         {
           "label": "Standardetiket til at fortsætte videoen",
           "default": "Fortsæt video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Angiv afspilningshastighed",

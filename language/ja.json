@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "字幕のソース言語を定義する必要があります。",
+                        "default": "en",
                         "description": "有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "クリックしてください",
                     "fields": [
                       {
-                        "label": "背景色"
+                        "label": "背景色",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "ボックスシャドウ",
@@ -357,6 +359,10 @@
         {
           "label": "ビデを続行ボタンの既定のラベル",
           "default": "ビデオを続行"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "再生速度を設定",

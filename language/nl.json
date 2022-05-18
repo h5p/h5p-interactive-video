@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
+                        "default": "en",
                         "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuele effecten",
                     "fields": [
                       {
-                        "label": "Achtergrondkleur"
+                        "label": "Achtergrondkleur",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box schaduw",
@@ -357,6 +359,10 @@
         {
           "label": "Standaardlabel voor \"Video doorgaan\"-knop",
           "default": "Doorgaan met video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Afspeelsnelheid instellen",

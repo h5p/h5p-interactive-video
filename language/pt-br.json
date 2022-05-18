@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
+                        "default": "en",
                         "description": "Deve ser um rótulo de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fundo"
+                        "label": "Cor de fundo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombra da caixa",
@@ -357,6 +359,10 @@
         {
           "label": "Rótulo padrão do botão de continuar o vídeo",
           "default": "Continuar o vídeo"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Estabelecer velocidade de reprodução",

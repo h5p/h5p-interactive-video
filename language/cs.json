@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí být definován pro titulky",
+                        "default": "en",
                         "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy \"Titulky\", musí být definován zdrojový jazyk stopy."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Vizuál",
                     "fields": [
                       {
-                        "label": "Barva pozadí"
+                        "label": "Barva pozadí",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Stín pole",
@@ -357,6 +359,10 @@
         {
           "label": "Výchozího nadpis tlačítka pro pokračování videa",
           "default": "Pokračovat s videem"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Nastavit rychlost přehrávání",

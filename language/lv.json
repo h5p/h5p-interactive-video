@@ -42,8 +42,8 @@
                     "fields": [
                       {
                         "label": "Celiņa etiķete",
-                        "default": "Subtitri",
-                        "description": "Tiek izmantots, ja piedāvājat vairākus celiņus un lietotājam ir jāizvēlas celiņš. Piemēram, “subtitri spāņu valodā” varētu būt spāņu valodas subtitru celiņa etiķete."
+                        "description": "Tiek izmantots, ja piedāvājat vairākus celiņus un lietotājam ir jāizvēlas celiņš. Piemēram, “subtitri spāņu valodā” varētu būt spāņu valodas subtitru celiņa etiķete.",
+                        "default": "Subtitri"
                       },
                       {
                         "label": "Teksta celiņa veids",
@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
+                        "default": "en",
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -118,10 +119,11 @@
                     "label": "Adaptivitāte",
                     "fields": [
                       {
+                        "label": "Rīcība ja viss pareizi",
                         "fields": [
                           {
-                            "description": "Ievadiet laika kodu formātā M:SS",
-                            "label": "Doties uz"
+                            "label": "Doties uz",
+                            "description": "Ievadiet laika kodu formātā M:SS"
                           },
                           {
                             "label": "Ļaut lietotājam atteikties un turpināt"
@@ -132,8 +134,7 @@
                           {
                             "label": "Etiķete meklēšanas pogai"
                           }
-                        ],
-                        "label": "Rīcība ja viss pareizi"
+                        ]
                       },
                       {
                         "label": "Rīcība ja nepareizi",
@@ -163,7 +164,8 @@
                     "label": "Noformējums",
                     "fields": [
                       {
-                        "label": "Fona krāsa"
+                        "label": "Fona krāsa",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Rāmīša ēnojums",
@@ -240,6 +242,7 @@
       ]
     },
     {
+      "label": "Uzvedības iestatījumi",
       "fields": [
         {
           "label": "Sākt video no",
@@ -254,6 +257,8 @@
           "description": "Atzīmējiet, ja videoklipam jādarbojas ciklā"
         },
         {
+          "label": "Ignorēt pogu \"Rādīt risinājumu\"",
+          "description": "Šī opcija nosaka, vai poga \"Rādīt risinājumu\" tiks rādīta visiem jautājumiem, atspējota visiem vai konfigurēta katram jautājumam atsevišķi.",
           "options": [
             {
               "label": "Iespējota"
@@ -261,9 +266,7 @@
             {
               "label": "Atspējota"
             }
-          ],
-          "label": "Ignorēt pogu \"Rādīt risinājumu\"",
-          "description": "Šī opcija nosaka, vai poga \"Rādīt risinājumu\" tiks rādīta visiem jautājumiem, atspējota visiem vai konfigurēta katram jautājumam atsevišķi."
+          ]
         },
         {
           "label": "Ignorēt pogu \"Mēģināt vēlreiz\"",
@@ -285,15 +288,14 @@
           "label": "Rādīt pogu attīšanai par 10 sekundēm"
         },
         {
-          "description": "Šīs opcijas ieslēgšana lietotājam atspējos video navigāciju ar noklusējuma vadīklām.",
-          "label": "Novērsiet pārlēkšanu uz priekšu videoklipā"
+          "label": "Novērsiet pārlēkšanu uz priekšu videoklipā",
+          "description": "Šīs opcijas ieslēgšana lietotājam atspējos video navigāciju ar noklusējuma vadīklām."
         },
         {
           "label": "Atslēgt skaņu",
           "description": "Šīs opcijas aktivizēšana, atslēgs videoklipa skaņu un liegs tās ieslēgšanu."
         }
-      ],
-      "label": "Uzvedības iestatījumi"
+      ]
     },
     {
       "label": "Lokalizēt",
@@ -303,24 +305,24 @@
           "default": "Mijiedarbība"
         },
         {
-          "default": "Atskaņot",
-          "label": "Atskaņošanas nosaukums"
+          "label": "Atskaņošanas nosaukums",
+          "default": "Atskaņot"
         },
         {
           "label": "Pauzes nosaukums",
           "default": "Pauze"
         },
         {
-          "default": "Izslēgt skaņu, pašlaik skaņa ieslēgta",
-          "label": "Skaņas izslēgšanas nosaukums"
+          "label": "Skaņas izslēgšanas nosaukums",
+          "default": "Izslēgt skaņu, pašlaik skaņa ieslēgta"
         },
         {
-          "default": "Ieslēgt skaņu, pašlaik skaņa izslēgta",
-          "label": "Skaņas ieslēgšanas nosaukums"
+          "label": "Skaņas ieslēgšanas nosaukums",
+          "default": "Ieslēgt skaņu, pašlaik skaņa izslēgta"
         },
         {
-          "default": "Video kvalitāte",
-          "label": "Video kvalitātes nosaukums"
+          "label": "Video kvalitātes nosaukums",
+          "default": "Video kvalitāte"
         },
         {
           "label": "Video titru nosaukums",
@@ -335,8 +337,8 @@
           "default": "Pilnekrāna režīms"
         },
         {
-          "default": "Iziet no pilnekrāna režīma",
-          "label": "Nosaukums iziešanai no pilnekrāna režīma"
+          "label": "Nosaukums iziešanai no pilnekrāna režīma",
+          "default": "Iziet no pilnekrāna režīma"
         },
         {
           "label": "Kopsavilkuma virsraksts",
@@ -355,8 +357,12 @@
           "default": "Turpināt"
         },
         {
-          "default": "Turpināt ar video",
-          "label": "Noklusējuma etiķete pogai \"Turpināt video\""
+          "label": "Noklusējuma etiķete pogai \"Turpināt video\"",
+          "default": "Turpināt ar video"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Iestatīt atskaņošanas ātrumu",
@@ -375,8 +381,8 @@
           "default": "Skaņa ir atspējota"
         },
         {
-          "default": "Pirms turpināt, jums pareizi jāatbild uz visiem jautājumiem.",
-          "label": "Brīdinājums, ka lietotājam ir pareizi jāatbild uz jautājumu pirms turpināt"
+          "label": "Brīdinājums, ka lietotājam ir pareizi jāatbild uz jautājumu pirms turpināt",
+          "default": "Pirms turpināt, jums pareizi jāatbild uz visiem jautājumiem."
         },
         {
           "label": "Poga navigācijai atpakaļ",
@@ -395,16 +401,16 @@
           "default": "Sekundes"
         },
         {
-          "default": "Pašreizējais laiks:",
-          "label": "Pašreizējā laika etiķete"
+          "label": "Pašreizējā laika etiķete",
+          "default": "Pašreizējais laiks:"
         },
         {
           "label": "Etiķete kopējam laikam",
           "default": "Kopējais laiks:"
         },
         {
-          "default": "Parādījās mijiedarbība:",
-          "label": "Teksts, kurā paskaidrots, ka ir parādījusies viena mijiedarbība ar vārdu"
+          "label": "Teksts, kurā paskaidrots, ka ir parādījusies viena mijiedarbība ar vārdu",
+          "default": "Parādījās mijiedarbība:"
         },
         {
           "label": "Paskaidrojošais teksts, ka parādījušās vairākas mijiedarbības",
@@ -424,13 +430,13 @@
         },
         {
           "label": "Iesniegšanas ekrāna nosaukums",
-          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu.",
-          "default": "@answered jautājums(i) atbildēti"
+          "default": "@answered jautājums(i) atbildēti",
+          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu."
         },
         {
           "label": "Iesniegšanas ekrāna informācija",
-          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu.",
-          "default": "Jūs esat atbildējis uz @answered jautājumiem, noklikšķiniet tālāk, lai iesniegtu atbildes."
+          "default": "Jūs esat atbildējis uz @answered jautājumiem, noklikšķiniet tālāk, lai iesniegtu atbildes.",
+          "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu."
         },
         {
           "label": "Iesniegšanas ekrāna informācija, kad iesniegšanas poga ir atspējota",
@@ -438,8 +444,8 @@
           "description": "@answered tiks aizstāts ar atbildēto jautājumu skaitu."
         },
         {
-          "default": "Jūs neesat atbildējis ne uz vienu jautājumu.",
-          "label": "Iesniegšanas ekrāna informācija par trūkstošajām atbildēm"
+          "label": "Iesniegšanas ekrāna informācija par trūkstošajām atbildēm",
+          "default": "Jūs neesat atbildējis ne uz vienu jautājumu."
         },
         {
           "label": "Iesniegšanas ekrāna informācija, kad nepieciešama atbilde",
@@ -462,8 +468,8 @@
           "default": "Rezultāts"
         },
         {
-          "default": "atbildēts",
-          "label": "Iesniegšanas ekrāna atbilžu skaits"
+          "label": "Iesniegšanas ekrāna atbilžu skaits",
+          "default": "atbildēts"
         },
         {
           "label": "Iesniegšanas ekrāna rindas kopsavilkums, ieskaitot punktu skaitu (asistīvajām tehnoloģijām)",

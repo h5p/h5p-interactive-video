@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Lähdekieli, pakollinen tekstityksille",
+                        "default": "en",
                         "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Ulkoasu",
                     "fields": [
                       {
-                        "label": "Taustaväri"
+                        "label": "Taustaväri",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Varjostus",
@@ -357,6 +359,10 @@
         {
           "label": "Videossa eteenpäin jatkaminen",
           "default": "Jatka videon katsomista"
+        },
+        {
+          "label": "Default label for more player options",
+          "default": "More player options"
         },
         {
           "label": "Aseta toistonopeus",
