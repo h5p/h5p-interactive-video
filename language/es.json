@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -361,8 +359,8 @@
           "default": "Continuar con el vídeo"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Etiqueta predeterminada para más opciones del jugador",
+          "default": "Más opciones del jugador"
         },
         {
           "label": "Establecer la velocidad de reproducción",
@@ -373,11 +371,11 @@
           "default": "Retroceder 10 segundos"
         },
         {
-          "label": "Texto para navegación está deshabilitada",
+          "label": "Texto para Navegación está deshabilitada",
           "default": "La navegación está deshabilitada"
         },
         {
-          "label": "Texto para el sonido está deshabilitado",
+          "label": "Texto para Sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {
@@ -401,7 +399,7 @@
           "default": "Segundos"
         },
         {
-          "label": "Etiqueta de tiempo actual",
+          "label": "Etiqueta para tiempo actual",
           "default": "Tiempo actual:"
         },
         {
@@ -439,8 +437,8 @@
           "description": "@answered será remplazado por el número de preguntas no contestadas."
         },
         {
-          "label": "Información de la pantalla de envío",
-          "default": "Usted ha contestado @answered preguntas, haga clic a continuación para confirmar sus respuestas.",
+          "label": "Información de la pantalla de envío cuando el botón de envío está deshabilitado",
+          "default": "Usted ha contestado @answered preguntas.",
           "description": "@answered será reemplazada por el número de preguntas contestadas."
         },
         {
@@ -468,7 +466,7 @@
           "default": "Puntaje"
         },
         {
-          "label": "Puntaje respondidas de pantalla de envío",
+          "label": "Puntaje de respondidas de pantalla de envío",
           "default": "respondidas"
         },
         {
