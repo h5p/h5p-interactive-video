@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -314,11 +312,11 @@
         },
         {
           "label": "Silenciar",
-          "default": "Mute, currently unmuted"
+          "default": "Silenciar, neste momento activado"
         },
         {
           "label": "Desactivar silencio",
-          "default": "Unmute, currently muted"
+          "default": "Activar, neste momento silenciado"
         },
         {
           "label": "Calidade do vídeo",
@@ -361,8 +359,8 @@
           "default": "Continuar co vídeo"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Etiqueta por defecto para ofrecer máis opcións ao xogador",
+          "default": "Máis opcións para o xogador"
         },
         {
           "label": "Establecer a velocidade da reprodución",
@@ -436,7 +434,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "Substituirase @answered polo número de preguntas contestadas."
         },
         {
           "label": "Información da pantalla de envío",
