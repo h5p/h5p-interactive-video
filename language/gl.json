@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
+                        "default": "en",
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fondo"
+                        "label": "Cor de fondo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombreado da caixa",
@@ -222,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -316,11 +316,11 @@
         },
         {
           "label": "Silenciar",
-          "default": "Mute, currently unmuted"
+          "default": "Silenciar, neste momento activado"
         },
         {
           "label": "Desactivar silencio",
-          "default": "Unmute, currently muted"
+          "default": "Activar, neste momento silenciado"
         },
         {
           "label": "Calidade do vídeo",
@@ -361,6 +361,10 @@
         {
           "label": "Etiqueta por defecto para o botón continuar co vídeo",
           "default": "Continuar co vídeo"
+        },
+        {
+          "label": "Etiqueta por defecto para ofrecer máis opcións ao xogador",
+          "default": "Máis opcións para o xogador"
         },
         {
           "label": "Establecer a velocidade da reprodución",
@@ -434,7 +438,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "Substituirase @answered polo número de preguntas contestadas."
         },
         {
           "label": "Información da pantalla de envío",
