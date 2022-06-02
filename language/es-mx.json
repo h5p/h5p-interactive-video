@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -361,8 +359,8 @@
           "default": "Continuar con el video"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Etiqueta predeterminada para más opciones del jugador",
+          "default": "Más opciones del jugador"
         },
         {
           "label": "Establecer la velocidad de reproducción",
@@ -373,11 +371,11 @@
           "default": "Retroceder 10 segundos"
         },
         {
-          "label": "Texto para navegación está deshabilitada",
+          "label": "Texto para Navegación está deshabilitada",
           "default": "La navegación está deshabilitada"
         },
         {
-          "label": "Texto para el sonido está deshabilitado",
+          "label": "Texto para El sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {
@@ -401,7 +399,7 @@
           "default": "Segundos"
         },
         {
-          "label": "Etiqueta de tiempo actual",
+          "label": "Etiqueta para tiempo actual",
           "default": "Tiempo actual:"
         },
         {
@@ -435,7 +433,7 @@
         },
         {
           "label": "Información de pantalla de envío",
-          "default": "Usted ha contestado @answered preguntas.",
+          "default": "Usted ha contestado @answered preguntas; haga clic debajo para enviar sus respuestas.",
           "description": "@answered será remplazado por el número de preguntas no contestadas."
         },
         {
@@ -468,7 +466,7 @@
           "default": "Puntaje"
         },
         {
-          "label": "Puntaje respondidas de pantalla de envío",
+          "label": "Puntaje de respondidas de pantalla de envío",
           "default": "respondidas"
         },
         {
