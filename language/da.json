@@ -302,7 +302,7 @@
       "fields": [
         {
           "label": "Interaktionstitel",
-          "default": "Interaktion"
+          "default": "Interaktiv video"
         },
         {
           "label": "Afspilningstitel",
@@ -314,11 +314,11 @@
         },
         {
           "label": "Lyd fra-titel",
-          "default": "Mute, currently unmuted"
+          "default": "Lyd fra"
         },
         {
           "label": "Lyd til-titel",
-          "default": "Unmute, currently muted"
+          "default": "Lyd til"
         },
         {
           "label": "Videokvalitetstitel",
@@ -326,7 +326,7 @@
         },
         {
           "label": "Videoundertitel",
-          "default": "Billedtekster"
+          "default": "Undertekster"
         },
         {
           "label": "Tekst til luk-knap",
@@ -334,15 +334,15 @@
         },
         {
           "label": "Fuldskærmstitel",
-          "default": "Fuldskærm"
+          "default": "Fuld skærm"
         },
         {
           "label": "Titel på Afslut fuldskærm",
-          "default": "Afslut fuldskærm"
+          "default": "Afslut fuld skærm"
         },
         {
           "label": "Opsummeringstitel",
-          "default": "Resumé"
+          "default": "Se dine resultater"
         },
         {
           "label": "Bogmærketitel",
@@ -350,7 +350,7 @@
         },
         {
           "label": "Submit screen title",
-          "default": "Submit screen"
+          "default": "Send besvarelse"
         },
         {
           "label": "Standardetiket til adaptiv søgeknap",
@@ -358,31 +358,31 @@
         },
         {
           "label": "Standardetiket til at fortsætte videoen",
-          "default": "Fortsæt video"
+          "default": "Fortsæt videoen"
         },
         {
           "label": "Default label for more player options",
-          "default": "More player options"
+          "default": "Flere afspilningsmuligheder"
         },
         {
           "label": "Angiv afspilningshastighed",
-          "default": "Afspilningshastighed"
+          "default": "Hastighed"
         },
         {
           "label": "Spol 10 sekunder tilbage",
-          "default": "Spol 10 sekunder tilbage"
+          "default": "Hop 10 sekunder tilbage"
         },
         {
           "label": "Tekst til Navigation er deaktiveret",
-          "default": "Navigation er deaktiveret"
+          "default": "Handling ikke mulig"
         },
         {
           "label": "Tekst til Lyd er deaktiveret",
-          "default": "Lyd er deaktiveret"
+          "default": "Lyden er slået fra"
         },
         {
           "label": "Advarsel til brugeren om at besvare spørgsmålet korrekt før hun kan fortsætte",
-          "default": "Du skal svare korrekt på alle spørgsmål før du kan fortsætte."
+          "default": "Du skal være rigtigt på alle spørgsmål for at fortsætte"
         },
         {
           "label": "Tilbage-knap",
@@ -402,11 +402,11 @@
         },
         {
           "label": "Titel til aktuel tid",
-          "default": "Aktuel tid"
+          "default": "Tid:"
         },
         {
           "label": "Etiket til tid i alt",
-          "default": "Tid i alt:"
+          "default": "Længde:"
         },
         {
           "label": "Tekst som forklarer at en interaktion med navn er synlig",
@@ -422,54 +422,54 @@
         },
         {
           "label": "Content label",
-          "default": "Content"
+          "default": "Indhold"
         },
         {
           "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "default": "Du har svaret på @answered spørgsmål"
         },
         {
           "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
+          "default": "@answered spørgsmål besvaret",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
+          "default": "",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
+          "default": "Du har svaret på @answered spørgsmål.",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "default": "Du har ikke svaret på nogen spørgsmål."
         },
         {
           "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "default": "Du skal svare på mindst et spørgsmål for at sende din besvarelse."
         },
         {
           "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "default": "Send besvarelse."
         },
         {
           "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "default": "Din besvarelse er sendt!"
         },
         {
           "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "default": "Besvarede spørgsmål"
         },
         {
           "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "default": "Point"
         },
         {
           "label": "Submit screen answered score",
-          "default": "answered"
+          "default": "besvaret"
         },
         {
           "label": "Submit screen row summary including score (for readspeakers)",
