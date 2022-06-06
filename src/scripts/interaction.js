@@ -644,16 +644,16 @@ function Interaction(parameters, player, previousState) {
     else {
       // Position dialog. Use medium dialog for all interactive dialogs.
       if (!player.isMobileView) {
+        let dialogSize = null;
+
         // Set size and type of dialog
         if (library === 'H5P.FreeTextQuestion') {
-          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'big');
+          dialogSize = 'big';
         }
         else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
-          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, 'medium');
+          dialogSize = 'medium';
         }
-        else {
-          player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, null);
-        }
+        player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, dialogSize);
       }
     }
 
