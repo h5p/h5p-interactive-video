@@ -2267,8 +2267,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add popup for selecting video quality
   self.controls.$qualityChooser = H5P.jQuery('<div/>', {
     'class': 'h5p-chooser h5p-quality',
-    'role': 'dialog',
-    html: `<h2 id="${self.qualityMenuId}">${self.l10n.quality}</h2>`,
+    'role': 'dialog'
   });
   self.popupMenuChoosers.push(self.controls.$qualityChooser);
 

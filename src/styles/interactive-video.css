@@ -738,7 +738,8 @@
 .h5p-interactive-video .h5p-chooser.h5p-endscreens.h5p-show * {
   visibility: visible;
 }
-.h5p-interactive-video .h5p-chooser > h2 {
+.h5p-interactive-video .h5p-chooser > h2,
+.h5p-interactive-video .h5p-chooser > h3 {
   margin: 0 0 8px 0;
   padding: 8px 24px 8px 12px;
   font-size: 19px;
