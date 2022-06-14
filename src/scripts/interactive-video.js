@@ -2740,7 +2740,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   var $listSignLanguage = $('');
   if (htmlSignLanguage !== '') {
     var classesSignLanguage = 'h5p-interactive-video-menu-title';
-    if (html !== 0) {
+    if (html !== '') {
       // Only secondary title
       classesSignLanguage += ' h5p-interactive-video-menu-title-secondary';
     }
