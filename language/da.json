@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -435,8 +433,8 @@
         },
         {
           "label": "Submit screen information",
-          "default": "",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered will be replaced by the number of answered questions.",
+          "default": "You have answered @answered questions, click below to submit your answers."
         },
         {
           "label": "Submit screen information when submit button is disabled",
