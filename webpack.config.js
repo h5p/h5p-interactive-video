@@ -4,9 +4,13 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = (nodeEnv === 'production');
+const libraryName = process.env.npm_package_name;
 
 module.exports = {
   mode: nodeEnv,
+  context: path.resolve(__dirname, 'src'),
+  // Disabled by default on production
+  cache: true,
   optimization: {
     minimize: isProd,
     minimizer: [
@@ -21,14 +25,14 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'h5p-interactive-video.css'
-    })
+      filename: `${libraryName}.css`
+    }),
   ],
   entry: {
-    dist: './src/entries/dist.js'
+    dist: "./entries/dist.js"
   },
   output: {
-    filename: 'h5p-interactive-video.js',
+    filename: `${libraryName}.js`,
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -47,7 +51,9 @@ module.exports = {
               publicPath: ''
             }
           },
-          { loader: "css-loader" },
+          {
+            loader: "css-loader"
+          },
           {
             loader: "sass-loader"
           }
@@ -75,4 +81,3 @@ module.exports = {
   },
   devtool: (isProd) ? undefined : 'eval-cheap-module-source-map'
 };
-
