@@ -1497,11 +1497,13 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
 
   if (show) {
     this.disableTabIndexes('.h5p-interactive-video-endscreen');
+    this.controls.$endscreensButton.attr('aria-expanded', true);
     this.stateBeforeEndscreen = this.currentState;
     this.video.pause();
   }
   else {
     this.restoreTabIndexes();
+    this.controls.$endscreensButton.attr('aria-expanded', false);
     this.controls.$endscreensButton.focus();
 
     // Continue video if it had been playing before opening the endscreen
@@ -1994,7 +1996,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     const starClick = (self.editor) ? (() => self.toggleEndscreensChooser()) : (() => self.toggleEndscreen());
 
     self.controls.$endscreensButton = self.createButton(starClass, 'h5p-control', self.$star, starClick);
-    self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
+    self.controls.$endscreensButton
+        .attr('aria-label', self.l10n.summary)
+        .attr('aria-haspopup', 'dialog')
+        .attr('aria-expanded', 'false');
     self.popupMenuButtons.push(self.controls.$endscreensButton);
   }
 
