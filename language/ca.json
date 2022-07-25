@@ -478,6 +478,10 @@
         {
           "label": "Resum de les files de la pantalla d’enviament quan no hi ha puntuació (per a altaveus de lectura)",
           "default": "Heu respost a la @question que va aparèixer després de @minutes minuts i @seconds segons."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

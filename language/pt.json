@@ -478,6 +478,10 @@
         {
           "label": "Resultados, excluindo a pontuação",
           "default": "Respondeu à pergunta @question que apareceu após @minutes minutos e @seconds segundos."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

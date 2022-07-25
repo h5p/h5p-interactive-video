@@ -478,6 +478,10 @@
         {
           "label": "Résultat, sans le score (pour la synthèse vocale)",
           "default": "Vous avez répondu aux @question qui sont apparues après @minutes minutes et @seconds secondes."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

@@ -478,6 +478,10 @@
         {
           "label": "দাখিল স্ক্রিনে সারির সারসংক্ষেপ যার মধ্যে নম্বরও থাকবে না (পড়ে শোনানোর জন্য)",
           "default": "@minutes মিনিট ও @seconds সেকেন্ডে দেখতে পাওয়া @question টি প্রশ্নের উত্তর আপনি দিয়েছেন।"
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

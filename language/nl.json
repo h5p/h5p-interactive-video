@@ -478,6 +478,10 @@
         {
           "label": "Verzendscherm: Rij-samenvatting bij geen score (voor voorlezers)",
           "default": "Je hebt de @question beantwoord die verscheen na @minutes minuten en @seconds seconden."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }
