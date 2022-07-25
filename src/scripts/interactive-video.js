@@ -1497,13 +1497,11 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
 
   if (show) {
     this.disableTabIndexes('.h5p-interactive-video-endscreen');
-    this.controls.$endscreensButton.attr('aria-expanded', true);
     this.stateBeforeEndscreen = this.currentState;
     this.video.pause();
   }
   else {
     this.restoreTabIndexes();
-    this.controls.$endscreensButton.attr('aria-expanded', false);
     this.controls.$endscreensButton.focus();
 
     // Continue video if it had been playing before opening the endscreen
@@ -1513,6 +1511,7 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
     }
   }
 
+  this.controls.$endscreensButton.attr('aria-expanded', show);
   this.controls.$endscreensButton.toggleClass('h5p-star-active', show);
   this.bubbleEndscreen.toggle(show, true);
 };
