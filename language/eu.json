@@ -478,6 +478,10 @@
         {
           "label": "Bidali pantaila ilararen laburpena puntuaziorik gabe (bozgorailu-irakurgailuentzako)",
           "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galdera erantzun duzu."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

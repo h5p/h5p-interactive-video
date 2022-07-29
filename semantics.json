@@ -1095,6 +1095,14 @@
         "importance": "low",
         "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds.",
         "optional": true
+      },
+      {
+        "name": "videoProgressBar",
+        "type": "text",
+        "label": "Video Progressbar",
+        "importance": "low",
+        "default": "Video progress",
+        "optional": true
       }
     ]
   }

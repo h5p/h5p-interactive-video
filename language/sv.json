@@ -478,6 +478,10 @@
         {
           "label": "Inlämningssida, sammanfattning utan poäng (för skärmläsare)",
           "default": "Du har svarat på @question som visades efter @minutes minuter och @seconds sekunder."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

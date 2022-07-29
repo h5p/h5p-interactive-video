@@ -478,6 +478,10 @@
         {
           "label": "Puansız sıra özeti gönderme ekranı (sesli okuma)",
           "default": "@minutes dakika ve @seconds saniyeden sonra gelen @question yanıtladınız."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

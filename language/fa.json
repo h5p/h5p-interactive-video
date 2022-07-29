@@ -478,6 +478,10 @@
         {
           "label": "خلاصه ردیف صفحه ارسال بدون نمره (برای تبدیل متن به گفتار)",
           "default": "شما به @question که پس از @minutes دقیقه و @seconds ثانیه ظاهر شد پاسخ دادید."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }
