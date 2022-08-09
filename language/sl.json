@@ -314,11 +314,11 @@
         },
         {
           "label": "Besedilo za vklop v nemi način predvajanja",
-          "default": "Mute, currently unmuted"
+          "default": "Utišaj zvok"
         },
         {
           "label": "Besedilo za izhod iz nemega načina predvajanja",
-          "default": "Unmute, currently muted"
+          "default": "Povrni zvok"
         },
         {
           "label": "Besedilo za kvaliteto videoposnetka",
@@ -353,16 +353,16 @@
           "default": "Zaslon za potrditev odgovorov"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
-        },
-        {
-          "label": "Privzeta oznaka gumba za nadaljevanje ogleda videoposnetka",
+          "label": "Privzeta oznaka gumba za nadaljevanje",
           "default": "Nadaljuj"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Privzeta oznaka gumba za nadaljevanje ogleda videoposnetka",
+          "default": "Nadaljuj z videoposnetkom"
+        },
+        {
+          "label": "Privzeta oznaka gumba za več možnosti predvajalnika",
+          "default": "Več možnosti predvajalnika"
         },
         {
           "label": "Nastavitev stopnje hitrosti predvajanja",
@@ -434,12 +434,12 @@
           "description": "@answered je spremenljivka."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Vsebina sporočila Zaslona za potrditev odgovorov ob onemogočenem gumbu za oddajo",
+          "default": "Število opravljenih aktivnosti: @answered",
+          "description": "@answered je spremenljivka."
         },
         {
-          "label": "Vsebina sporočilo Zaslona za potrditev odgovorov",
+          "label": "Vsebina sporočila Zaslona za potrditev odgovorov",
           "default": "Trenutno je opravljena vsaj ena aktivnost (točno število: @answered), ki jo je možno potrditi.",
           "description": "@answered je spremenljivka."
         },
@@ -472,12 +472,12 @@
           "default": "opravljeno"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Povzetek Zaslona za potrditev odgovorov ob točkovanju (za bralnike zaslona)",
+          "default": "Doseženo število točk je @score od @total. Vprašanje @question se je pojavilo po @minutes minutah in @seconds sekundah."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Povzetek Zaslona za potrditev odgovorov brez točkovanja (za bralnike zaslona)",
+          "default": "Sprejet je odgovor na vprašanje @question, ki se je pojavilo po @minutes minutah in @seconds sekundah."
         },
         {
           "label": "Video Progressbar",
