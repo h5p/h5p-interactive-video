@@ -478,6 +478,10 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "Odgovorili ste na @question koje se pojavilo nakon @minutes minuta i @seconds sekundi."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

@@ -478,6 +478,10 @@
         {
           "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de pantalla)",
           "default": "Has contestado contestado la @question que apareció después de @minutes minutos y @seconds segundos."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

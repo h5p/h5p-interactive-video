@@ -478,6 +478,10 @@
         {
           "label": "Povzetek Zaslona za potrditev odgovorov brez točkovanja (za bralnike zaslona)",
           "default": "Sprejet je odgovor na vprašanje @question, ki se je pojavilo po @minutes minutah in @seconds sekundah."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

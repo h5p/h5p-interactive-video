@@ -478,6 +478,10 @@
         {
           "label": "Enviar resumo da linha da tela para nenhuma pontuação (para leitores de tela)",
           "default": "Você respondeu à @question que apareceu após @minutes minutos e @seconds segundos."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

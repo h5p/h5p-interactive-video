@@ -478,6 +478,10 @@
         {
           "label": "מסך הזנה שורת סיכום עבור אין ציון (לקוראי-מסך)",
           "default": "עניתם על ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }

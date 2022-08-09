@@ -146,7 +146,8 @@ function InteractiveVideo(params, id, contentData) {
     multipleInteractionsAnnouncement: 'Multiple interactions appeared:',
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
-    answered: '@answered answered!'
+    answered: '@answered answered!',
+    videoProgressBar: 'Video progress'
   }, params.l10n);
 
   // Add shortcut key to label
@@ -705,7 +706,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // 'video only' fallback has no interactions
   let isAnswerable = this.hasMainSummary();
-  
+
   if (this.interactions) {
     // interactions require parent $container, recreate with input
     this.interactions.forEach(function (interaction) {
@@ -1511,6 +1512,7 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
     }
   }
 
+  this.controls.$endscreensButton.attr('aria-expanded', show);
   this.controls.$endscreensButton.toggleClass('h5p-star-active', show);
   this.bubbleEndscreen.toggle(show, true);
 };
@@ -1994,7 +1996,10 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     const starClick = (self.editor) ? (() => self.toggleEndscreensChooser()) : (() => self.toggleEndscreen());
 
     self.controls.$endscreensButton = self.createButton(starClass, 'h5p-control', self.$star, starClick);
-    self.controls.$endscreensButton.attr('aria-label', self.l10n.summary);
+    self.controls.$endscreensButton
+        .attr('aria-label', self.l10n.summary)
+        .attr('aria-haspopup', 'dialog')
+        .attr('aria-expanded', 'false');
     self.popupMenuButtons.push(self.controls.$endscreensButton);
   }
 
@@ -2311,7 +2316,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         .attr('aria-valuemin', '0')
         .attr('aria-valuemax',  self.getDuration().toString())
         .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
-        .attr('aria-valuenow', '0');
+        .attr('aria-valuenow', '0')
+        .attr('aria-label', self.l10n.videoProgressBar)
+        .attr('tabindex', '-1');
 
       if (self.preventSkipping) {
         self.setDisabled($handle).attr('aria-hidden', 'true');

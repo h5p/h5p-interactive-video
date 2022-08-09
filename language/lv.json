@@ -478,6 +478,10 @@
         {
           "label": "Iesniegšanas ekrāna rindas kopsavilkums par neiegūtiem punktiem (asistīvajām tehnoloģijām)",
           "default": "Tu esi atbildējis uz @question, kas parādījās pēc @minutes minūtēm un @seconds sekundēm."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
       ]
     }
