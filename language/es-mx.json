@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -480,8 +478,8 @@
           "default": "Usted ha contestado la @question que apareció después de @minutes minutos y @seconds segundos."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Barra de progreso del vídeo",
+          "default": "Progreso del video"
         }
       ]
     }
