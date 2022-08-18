@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -361,8 +359,8 @@
           "default": "Doorgaan met video"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Standaardlabel voor meer afspeler opties",
+          "default": "Meer afspeler opties"
         },
         {
           "label": "Afspeelsnelheid instellen",
@@ -480,8 +478,8 @@
           "default": "Je hebt de @question beantwoord die verscheen na @minutes minuten en @seconds seconden."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Video Voortgangsbalk",
+          "default": "Video voortgang"
         }
       ]
     }

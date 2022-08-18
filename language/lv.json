@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -361,8 +359,8 @@
           "default": "Turpināt ar video"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Noklusējuma etiķete papildus atskaņotāja opcijām",
+          "default": "Papildus atskaņotāja opcijas"
         },
         {
           "label": "Iestatīt atskaņošanas ātrumu",

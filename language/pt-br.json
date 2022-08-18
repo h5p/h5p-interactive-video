@@ -165,7 +165,7 @@
                     "fields": [
                       {
                         "label": "Cor de fundo",
-                        "default": "rgb(255, 255, 255)"
+                        "default": "rgb(255,255,255)"
                       },
                       {
                         "label": "Sombra da caixa",
@@ -361,8 +361,8 @@
           "default": "Continuar o vídeo"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Rótulo padrão para mais opções de player",
+          "default": "Mais opções de jogadores"
         },
         {
           "label": "Estabelecer velocidade de reprodução",
@@ -425,7 +425,7 @@
           "default": "Conteúdo"
         },
         {
-          "label": "Mensagem de respostas(@answered será substituído pelo número de questões respondidas)",
+          "label": "Mensagem de respostas (@answered será substituído pelo número de questões respondidas)",
           "default": "@answered respondidas"
         },
         {
@@ -452,7 +452,7 @@
           "default": "Você deve responder pelo menos uma questão antes de enviar suas respostas."
         },
         {
-          "label": "Enviar botão de envio da tela",
+          "label": "Enviar tela botão de envio",
           "default": "Enviar respostas"
         },
         {
