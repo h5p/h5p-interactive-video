@@ -270,7 +270,10 @@ function InteractiveVideo(params, id, contentData) {
           disableRemotePlayback: true
         },
         startAt: startAt,
-        a11y: textTracks
+        a11y: textTracks,
+        playback: {
+          autoplay: self.autoplay
+        }
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -393,15 +396,17 @@ function InteractiveVideo(params, id, contentData) {
 
         case H5P.Video.PAUSED:
           self.currentState = H5P.Video.PAUSED;
-          self.controls.$play
-            .addClass('h5p-pause')
-            .attr('aria-label', self.l10n.play);
+          if (self.controls && self.controls.$play) {
+            self.controls.$play
+              .addClass('h5p-pause')
+              .attr('aria-label', self.l10n.play);
+          }
           // refocus for re-read button title by screen reader
           if (self.focusInteraction) {
             self.focusInteraction.focusOnFirstTabbableElement();
             delete self.focusInteraction;
           }
-          else if (self.controls.$play.is(":focus")) {
+          else if (self.controls && self.controls.$play.is(":focus")) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
