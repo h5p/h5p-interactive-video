@@ -393,17 +393,15 @@ function InteractiveVideo(params, id, contentData) {
 
         case H5P.Video.PAUSED:
           self.currentState = H5P.Video.PAUSED;
-          if (self.controls && self.controls.$play) {
-            self.controls.$play
-              .addClass('h5p-pause')
-              .attr('aria-label', self.l10n.play);
-          }
+          self.controls.$play
+            .addClass('h5p-pause')
+            .attr('aria-label', self.l10n.play);
           // refocus for re-read button title by screen reader
           if (self.focusInteraction) {
             self.focusInteraction.focusOnFirstTabbableElement();
             delete self.focusInteraction;
           }
-          else if (self.controls && self.controls.$play.is(":focus")) {
+          else if (self.controls.$play.is(":focus")) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
