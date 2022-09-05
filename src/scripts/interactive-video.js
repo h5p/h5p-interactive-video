@@ -193,9 +193,6 @@ function InteractiveVideo(params, id, contentData) {
   // determine if video should be looped
   loopVideo = params.override && !!params.override.loop;
 
-  // determine if video should play automatically
-  this.autoplay = params.override && !!params.override.autoplay;
-
   // Video wrapper
   self.$videoWrapper = $('<div>', {
     'class': 'h5p-video-wrapper'
@@ -260,7 +257,7 @@ function InteractiveVideo(params, id, contentData) {
 
     // Start up the video player
     self.video = H5P.newRunnable({
-      library: 'H5P.Video 1.3',
+      library: 'H5P.Video 1.6',
       params: {
         sources: self.options.video.files,
         visuals: {
@@ -270,7 +267,10 @@ function InteractiveVideo(params, id, contentData) {
           disableRemotePlayback: true
         },
         startAt: startAt,
-        a11y: textTracks
+        a11y: textTracks,
+        playback: {
+          autoplay: params.override && !!params.override.autoplay
+        }
       }
     }, self.contentId, undefined, undefined, {parent: self});
 
@@ -816,10 +816,6 @@ InteractiveVideo.prototype.attach = function ($container) {
   this.$container.append($(this.accessibility.getInteractionAnnouncer()));
 
   this.currentState = InteractiveVideo.ATTACHED;
-
-  if (this.autoplay) {
-    that.video.play();
-  }
 };
 
 /**
