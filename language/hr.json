@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -242,7 +240,7 @@
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Postavke ponašanja",
       "fields": [
         {
           "label": "Start video at",
