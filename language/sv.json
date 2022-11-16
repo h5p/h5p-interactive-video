@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -480,8 +478,8 @@
           "default": "Du har svarat på @question som visades efter @minutes minuter och @seconds sekunder."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Framstegsindikator för video",
+          "default": "Framsteg i video"
         }
       ]
     }
