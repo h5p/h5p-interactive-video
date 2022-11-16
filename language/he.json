@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -480,8 +478,8 @@
           "default": "עניתם על ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "סרגל ציר-זמן של הוידאו",
+          "default": "התקדמות הסרטון"
         }
       ]
     }
