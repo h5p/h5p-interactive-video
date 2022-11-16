@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -426,7 +424,7 @@
         },
         {
           "label": "Erantzun emana (@answered aldagaian erantzunen kopurua agertuko da)",
-          "default": "@answered erantzun emana"
+          "default": "@answered erantzun dira"
         },
         {
           "label": "Bidali pantailaren titulua",
@@ -480,8 +478,8 @@
           "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galdera erantzun duzu."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Bideoaren Aurrerapen-barra",
+          "default": "Bideoaren aurrerapena"
         }
       ]
     }
