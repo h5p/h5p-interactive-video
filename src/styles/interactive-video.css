@@ -23,7 +23,7 @@
 
 .h5p-interactive-video {
   position: relative;
-  background: #000 !important;
+  background: #000;
   overflow: hidden;
   line-height: 1.25em;
   font-size: 16px;
