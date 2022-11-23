@@ -542,6 +542,8 @@ function InteractiveVideo(params, id, contentData) {
    */
   self.toggleMute = (refocus = true) => {
     const $muteButton = self.controls.$volume;
+    const $volumeSlider = self.controls.$volumeSlider;
+    const defaultVol = 15;
 
     if (!self.deactivateSound) {
       if ($muteButton.hasClass('h5p-muted')) {
@@ -550,6 +552,16 @@ function InteractiveVideo(params, id, contentData) {
           .attr('aria-label', self.l10n.mute);
 
         self.video.unMute();
+
+        // Set slider to a default low volume if video was muted by dragging the slider down to 0
+        if (self.video.getVolume() < 1) {
+          self.video.setVolume(defaultVol);
+          $volumeSlider.slider('value', defaultVol);
+        }
+        // Otherwise reset to the previous volume level
+        else {
+          $volumeSlider.slider('value', self.video.getVolume());
+        }
       }
       else {
         $muteButton
@@ -557,6 +569,8 @@ function InteractiveVideo(params, id, contentData) {
           .attr('aria-label', self.l10n.unmute);
 
         self.video.mute();
+        // Set slider to 0 (but do not adjust volume), getVolume() will persist our previous volume level
+        $volumeSlider.slider('value', 0);
       }
 
       if (refocus) {
@@ -2143,9 +2157,90 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   self.controls.$playbackRateChooser.insertAfter(self.controls.$playbackRateButton);
 
+  // Add volume control wrapper
+  if (!isAndroid() && !isIpad()) {
+    self.controls.$volumeWrapper = $('<div/>', {
+      tabindex: 0,
+      class: 'h5p-control h5p-volume-wrapper',
+      on: {
+        mouseenter: function (event) {
+          self.controls.$volumeSliderOverlay.addClass('h5p-show');
+        },
+        mouseleave: function (event) {
+          self.controls.$volumeSliderOverlay.removeClass('h5p-show');
+        }
+      },
+      appendTo: $right
+    });
+  }
+  
+  // Add volume slider
+  if (!isAndroid() && !isIpad()) {
+    self.controls.$volumeSliderOverlay = $('<div/>', {
+      class: 'h5p-volume-slider',
+      appendTo: self.controls.$volumeWrapper
+    });
+
+    self.controls.$volumeSlider = $('<div/>', {
+      appendTo: self.controls.$volumeSliderOverlay
+    }).slider({
+      value: self.video.getVolume(),
+      step: 1,
+      orientation: 'vertical',
+      range: 'min',
+      max: 100,
+      create: function (event) {
+        const $handle = $(event.target).find('.ui-slider-handle');
+        const volumeNow = self.video.getVolume();
+        // Slider style are wide to capture events, add another slider rail
+        $(event.target).prepend('<div class="ui-slider-range ui-widget-header ui-corner-all h5p-volume-rail"></div>')
+
+        $handle
+          .attr('role', 'slider')
+          .attr('aria-valuemin', '0')
+          .attr('aria-valuemax', '100')
+          .attr('aria-valuetext', volumeNow) // TODO: l10n, eg. "Volume 30%" ?
+          .attr('aria-valuenow', volumeNow);
+
+        if (self.deactivateSound) {
+          self.setDisabled($handle).attr('aria-hidden', 'true');
+        }
+      },
+      slide: function (event, ui) {
+        const $handle = $(event.target).find('.ui-slider-handle');
+        let volume = Math.floor(ui.value);
+        self.controls.$volumeSliderOverlay.addClass('h5p-active');
+
+        // When the slider is dragged to/from 0, toggle the mute button
+        if (volume < 1 && !self.video.isMuted()) {
+          self.toggleMute.call(this);
+        }
+        if (volume > 0 && self.video.isMuted()) {
+          self.toggleMute.call(this);
+        }
+
+        // Update volume
+        self.video.setVolume(volume);
+        $handle
+          .attr('aria-valuetext', volume) // TODO: l10n, eg. "Volume 30%" ?
+          .attr('aria-valuenow', volume);
+        
+        // Make overlay visible to catch mouseup/move events.
+        self.$overlay.addClass('h5p-visible');
+      },
+      stop: function (event, ui) {
+        self.controls.$volumeSliderOverlay.removeClass('h5p-active');
+
+        // Done catching mouse events
+        self.$overlay.removeClass('h5p-visible');
+      }
+      // TODO: add event on: keydown -> adjust volume ?
+    });
+  }
+
   // Add volume button control (toggle mute)
   if (!isAndroid() && !isIpad()) {
-    self.controls.$volume = self.createButton('mute', 'h5p-control', $right, self.toggleMute);
+    self.controls.$volume = self.createButton('mute', 'h5p-control', self.controls.$volumeWrapper, self.toggleMute);
     if (self.deactivateSound) {
       self.controls.$volume
         .addClass('h5p-muted')
