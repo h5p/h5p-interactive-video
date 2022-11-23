@@ -292,6 +292,10 @@
           "description": "Ativar esta opção desativará a navegação no vídeo através dos controlos predefinidos."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Desativar som",
           "description": "Ativar esta opção desativará o som do vídeo e impedirá que seja ligado."
         }

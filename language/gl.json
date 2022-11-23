@@ -292,6 +292,10 @@
           "description": "Esta opción impide que o usuario se mova polo vídeo usando os controles de navegación por defecto."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Desactivar son",
           "description": "Esta opción desactiva o son do vídeo e impide que se poda activar."
         }

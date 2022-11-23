@@ -292,6 +292,10 @@
           "description": "Abilitare questa opzione disattiverà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti"
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Disattiva il sonoro",
           "description": "Abilitare questa opzione disattiverà il sonoro di un video e ne impedirà l'accensione"
         }

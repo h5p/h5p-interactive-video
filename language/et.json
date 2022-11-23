@@ -292,6 +292,10 @@
           "description": "Selle võimaluse lubamisel keelatakse kasutajal vaikejuhtnuppudega navigeerimine."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Vaigista heli",
           "description": "Selle valikuga vaigistatakse video heli nii, et kasutaja ei saa seda sisse lülitada."
         }

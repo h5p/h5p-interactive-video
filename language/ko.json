@@ -292,6 +292,10 @@
           "description": "이 옵션을 활성화하면 기본 컨트롤을 통해 사용자 비디오 탐색이 비활성화됨."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "사운드 비활성화",
           "description": "이 옵션을 활성화하면 동영상의 사운드가 비활성화되고 소리가 켜지지 않게 됨."
         }

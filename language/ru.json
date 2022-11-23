@@ -292,6 +292,10 @@
           "description": "Включение этой опции отключит навигацию пользователя по видео с помощью элементов управления по умолчанию."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Отключить звук",
           "description": "Включение этого параметра отключит звук видео и предотвратит его включение."
         }

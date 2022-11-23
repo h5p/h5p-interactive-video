@@ -292,6 +292,10 @@
           "description": "Aktivering van hierdie opsie sal gebruikernavigasiekontrole deur verstekkontroles deaktiveer."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Deaktiveer klank",
           "description": "Aktivering van hierdie opsie sal die video se klank deaktiveer en verhoed dat dit aangeskakel kan word."
         }

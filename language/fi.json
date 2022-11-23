@@ -292,6 +292,10 @@
           "description": "Tämän valinta estää käyttäjän navigoinnnin videossa oletusohjaimilla."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Estä ääni",
           "description": "Tämä valinta estää äänen ja sen kytkemisen päälle."
         }

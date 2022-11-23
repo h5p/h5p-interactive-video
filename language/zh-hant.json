@@ -292,6 +292,10 @@
           "description": "勾選後，會停用影片的時間巡覽功能。用戶就不能在播放時跳過影片片段。"
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "關閉影片音量",
           "description": "勾選後，會關閉影片的聲音。用戶就不能在播放時開啟影片聲音。"
         }

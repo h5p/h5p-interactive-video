@@ -292,6 +292,10 @@
           "description": "Wenn ausgewählt, muss der Lernende das Video anschauen, ohne selbst an andere Stellen springen zu können."
         },
         {
+          "label": "Hide playback rate chooser",
+          "description": "Enabling this option will hide the playback rate chooser."
+        },
+        {
           "label": "Ton deaktivieren",
           "description": "Auswählen, um die Audio-Ausgabe zu deaktivieren."
         }
