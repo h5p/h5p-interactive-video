@@ -288,8 +288,19 @@
           "label": "Erakutsi 10 segundo atzera eramateko botoia"
         },
         {
-          "label": "Galerazi bideoan aurrera jauzi egitea",
-          "description": "Aukera hau aktibatuta desgaitzen dira nabigazio ohiko kontrolak."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Desgaitu soinua",
@@ -375,6 +386,10 @@
         {
           "label": "Nabigazioa desgaituta dago testua",
           "default": "Nabigazioa desgaituta dago"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Soinua desgaituta dago testua",

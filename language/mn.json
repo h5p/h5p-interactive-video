@@ -288,8 +288,19 @@
           "label": "10 секундаар ухраах товчийг харуулах"
         },
         {
-          "label": "Видеог гүйлгэхийг болиулах",
-          "description": "Энэ сонголтыг идэвхжүүлснээр хэрэглэгч видеог ухраах болон гүйлгэж үзэхийг идэвхгүй болгоно."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Дууг идэвхгүй болгох",
@@ -375,6 +386,10 @@
         {
           "label": "Хөтөч текстийг идэвхгүйжүүлсэн",
           "default": "Хөтөч идэвхгүй болсон"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Дуу текстийг идэвхгүй болгосон",

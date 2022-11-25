@@ -288,8 +288,19 @@
           "label": "Näita nuppu 10 sekundi tagasikerimiseks"
         },
         {
-          "label": "Keela videos edasikerimine",
-          "description": "Selle võimaluse lubamisel keelatakse kasutajal vaikejuhtnuppudega navigeerimine."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Vaigista heli",
@@ -375,6 +386,10 @@
         {
           "label": "Navigatsioon on keelatud tekst",
           "default": "Navigatsioon on keelatud"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Heli on vaigistatud tekst",

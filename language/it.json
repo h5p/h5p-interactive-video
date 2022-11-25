@@ -288,8 +288,19 @@
           "label": "Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
-          "label": "Impedisci di saltare avanti in un video",
-          "description": "Abilitare questa opzione disattiverà la navigazione dei video da parte dell'utente attraverso i controlli predefiniti"
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Disattiva il sonoro",
@@ -375,6 +386,10 @@
         {
           "label": "Testo di navigazione disabilitata",
           "default": "La navigazione è disabilitata"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Testo di audio disabilitato",

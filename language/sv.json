@@ -288,8 +288,19 @@
           "label": "Visa knapp för att spola tillbaka 10 sekunder"
         },
         {
-          "label": "Förhindra att spola framåt i video",
-          "description": "Om du väljer denna inställning så inaktiveras möjligheten för användare att navigera i video med standardkontroller."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Inaktivera ljud",
@@ -375,6 +386,10 @@
         {
           "label": "Text för inaktiverad navigation",
           "default": "Navigation är inaktiverad"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Text för ljud är inaktiverat",

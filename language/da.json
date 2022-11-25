@@ -288,8 +288,19 @@
           "label": "Vis knap til at spole 10 sekunder tilbage"
         },
         {
-          "label": "Undgå at spole frem i en video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Deaktiver lyd",
@@ -375,6 +386,10 @@
         {
           "label": "Tekst til Navigation er deaktiveret",
           "default": "Handling ikke mulig"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Tekst til Lyd er deaktiveret",

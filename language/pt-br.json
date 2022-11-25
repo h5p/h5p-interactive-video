@@ -288,8 +288,19 @@
           "label": "Mostrar o botão para voltar 10 segundos"
         },
         {
-          "label": "Evitar pular para frente em um vídeo",
-          "description": "Ativar esta opção irá desativar a navegação através dos controles padrões de vídeo do usuário."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Desativar o som",
@@ -375,6 +386,10 @@
         {
           "label": "Texto de navegação desativada",
           "default": "A navegação está desativada"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Texto de som desativado",

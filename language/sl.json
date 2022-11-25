@@ -288,8 +288,19 @@
           "label": "Prevrti videoposnetek za 10 sekund nazaj"
         },
         {
-          "label": "Prepreči preskok naprej",
-          "description": "Z onemogočenimi kontrolniki za predvajanje videoposnetka bo možen le ogled v enem kosu."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Onemogoči zvok",
@@ -375,6 +386,10 @@
         {
           "label": "Besedilo za onemogočanje navigacije",
           "default": "Navigacija je onemogočena"
+        },
+        {
+          "label": "You cannot go there",
+          "default": "You cannot go there"
         },
         {
           "label": "Besedilo za onemogočanje zvoka",

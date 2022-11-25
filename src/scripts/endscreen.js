@@ -181,7 +181,7 @@ class Endscreen extends H5P.EventDispatcher {
     const hasScore = isset(score) && isset(maxScore);
     const ariaLabel = hasScore ?
       this.l10n.tableRowSummaryWithScore : this.l10n.tableRowSummaryWithoutScore;
-    const noLink = (this.parent.skippingPrevented()) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
+    const noLink = (this.parent.isSkippingProhibited(time)) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
     const $row = $('<div/>', {
       'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`,
       role: 'row',
@@ -225,7 +225,7 @@ class Endscreen extends H5P.EventDispatcher {
    * @param {number} time - Time in seconds to jump to.
    */
   jump(time) {
-    if (!this.parent.skippingPrevented()) {
+    if (!this.parent.isSkippingProhibited(time)) {
       this.parent.seek(time);
       this.parent.toggleEndscreen(false);
     }
@@ -264,7 +264,7 @@ class Endscreen extends H5P.EventDispatcher {
     }
     else {
       this.$endscreenIntroductionText.html(
-        this.isSubmitButtonEnabled 
+        this.isSubmitButtonEnabled
           ? this.l10n.information.replace('@answered', number)
           : this.l10n.informationOnSubmitButtonDisabled.replace('@answered', number));
     }
