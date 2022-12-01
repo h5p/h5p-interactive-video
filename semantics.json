@@ -908,11 +908,11 @@
         "optional": true
       },
       {
-        "name": "cannotGoThere",
+        "name": "navForwardDisabled",
         "type": "text",
-        "label": "You cannot go there",
+        "label": "Navigating forward is disabled text",
         "importance": "low",
-        "default": "You cannot go there",
+        "default": "Navigating forward is disabled",
         "optional": true
       },
       {

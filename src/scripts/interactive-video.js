@@ -134,7 +134,7 @@ function InteractiveVideo(params, id, contentData) {
     playbackRate: 'Playback rate',
     rewind10: 'Rewind 10 seconds',
     navDisabled: 'Navigation is disabled',
-    cannotGoThere: 'You cannot go there',
+    navForwardDisabled: 'Navigating forward is disabled',
     sndDisabled: 'Sound is disabled',
     requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
     back: 'Back',
@@ -1610,7 +1610,7 @@ InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
           self.controls.$slider.get(0).offsetWidth + 2,
         y: -23
       },
-      self.l10n.cannotGoThere
+      self.l10n.navForwardDisabled
     );
     return;
   }
@@ -2482,7 +2482,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
             x: ui.value / self.video.getDuration() *
               self.controls.$slider.get(0).offsetWidth
           },
-          self.l10n.cannotGoThere
+          self.l10n.navForwardDisabled
         );
         self.setSliderPosition(targetTime);
       }

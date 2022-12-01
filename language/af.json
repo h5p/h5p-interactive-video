@@ -388,8 +388,8 @@
           "default": "Navigasie is deaktiveer"
         },
         {
-          "label": "You cannot go there",
-          "default": "You cannot go there"
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Klank is deaktiveer teks",

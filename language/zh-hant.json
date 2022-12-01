@@ -388,8 +388,8 @@
           "default": "巡覽功能已停用"
         },
         {
-          "label": "You cannot go there",
-          "default": "You cannot go there"
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "聲音功能已關閉的顯示文字",

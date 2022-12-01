@@ -1166,7 +1166,7 @@ function Interaction(parameters, player, previousState) {
             player.controls.$slider.get(0).offsetWidth,
           y: -13
         },
-        player.l10n.cannotGoThere
+        player.l10n.navForwardDisabled
       );
       return;
     }

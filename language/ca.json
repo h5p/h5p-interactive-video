@@ -388,8 +388,8 @@
           "default": "La navegació està desactivada"
         },
         {
-          "label": "You cannot go there",
-          "default": "You cannot go there"
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Text que indica que el so està desactivat",

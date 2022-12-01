@@ -388,8 +388,8 @@
           "default": "Навігація вимкнена"
         },
         {
-          "label": "You cannot go there",
-          "default": "You cannot go there"
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Текст вимкненого звуку",
