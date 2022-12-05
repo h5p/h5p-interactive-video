@@ -3682,9 +3682,11 @@ InteractiveVideo.prototype.play = function () {
 /**
  * Seek interactive video to the given time
  * @param {number} [time = 0] Time in seconds to seek to.
+ * @param {object} [options = {}] Options.
+ * @param {boolean} [options.force] If true, ignore skipping prohibited.
  */
-InteractiveVideo.prototype.seek = function (time = 0) {
-  if (this.isSkippingProhibited(time)) {
+InteractiveVideo.prototype.seek = function (time = 0, options = {}) {
+  if (this.isSkippingProhibited(time) && !options.force) {
     return;
   }
 

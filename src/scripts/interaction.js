@@ -1028,7 +1028,7 @@ function Interaction(parameters, player, previousState) {
     if (player.currentState !== H5P.Video.ENDED) {
       if (seekTo !== undefined) {
         player.pause();
-        player.seek(seekTo);
+        player.seek(seekTo, { force: true });
       }
       player.play();
       player.controls.$play.focus();
