@@ -278,7 +278,8 @@
                     "H5P.GoToQuestion 1.3",
                     "H5P.IVHotspot 1.2",
                     "H5P.Questionnaire 1.3",
-                    "H5P.FreeTextQuestion 1.0"
+                    "H5P.FreeTextQuestion 1.0",
+                    "H5P.MultiMediaChoice 0.3"
                   ]
                 },
                 {
