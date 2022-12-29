@@ -3826,6 +3826,10 @@ InteractiveVideo.prototype.getCopyrights = function () {
  * @returns {boolean} True, if skipping to or beyond time is prohibited.
  */
 InteractiveVideo.prototype.isSkippingProhibited = function (time = 0) {
+  if (this.editor) {
+    return false;
+  }
+
   if (this.preventSkippingMode === 'both') {
     return true;
   }
