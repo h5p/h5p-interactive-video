@@ -755,7 +755,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Jump to chosen timecode
-    player.seek(time);
+    player.seek(time, { force: true });
   };
 
   /**
