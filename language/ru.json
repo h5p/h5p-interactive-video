@@ -288,8 +288,19 @@
           "label": "Показать кнопку для перемотки на 10 секунд"
         },
         {
-          "label": "Предотвратить перемотку вперед в видео",
-          "description": "Включение этой опции отключит навигацию пользователя по видео с помощью элементов управления по умолчанию."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Отключить звук",
@@ -375,6 +386,10 @@
         {
           "label": "Текст отключенной навигации",
           "default": "Навигация отключена"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Текст отключенного звука",

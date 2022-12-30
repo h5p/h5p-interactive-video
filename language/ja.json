@@ -288,8 +288,19 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping forward in a video",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "サウンド無効化",
@@ -375,6 +386,10 @@
         {
           "label": "ナビゲーションが無効のテキスト",
           "default": "ナビゲーションが無効"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "サウンドが無効のテキスト",

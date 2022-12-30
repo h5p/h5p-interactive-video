@@ -288,8 +288,19 @@
           "label": "顯示倒退 10 秒按鈕"
         },
         {
-          "label": "防止跳播影片",
-          "description": "勾選後，會停用影片的時間巡覽功能。用戶就不能在播放時跳過影片片段。"
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "關閉影片音量",
@@ -375,6 +386,10 @@
         {
           "label": "巡覽功能已停用的顯示文字",
           "default": "巡覽功能已停用"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "聲音功能已關閉的顯示文字",

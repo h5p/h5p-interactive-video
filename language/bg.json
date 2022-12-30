@@ -288,8 +288,19 @@
           "label": "Покажи бутона за нагласяване 10 секунди"
         },
         {
-          "label": "Предотвратяване на прескачането напред във видеото",
-          "description": "Активирането на тези опции ще деактивира видео навигацията на потребителя чрез контроли по подразбиране."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Изключване на звука",
@@ -375,6 +386,10 @@
         {
           "label": "Навигацията е отменена",
           "default": "Навигацията е отменена"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Звукът е изключен",

@@ -288,8 +288,19 @@
           "label": "Button zeigen, um 10 Sekunden zurück zu springen"
         },
         {
-          "label": "Springen deaktivieren",
-          "description": "Wenn ausgewählt, muss der Lernende das Video anschauen, ohne selbst an andere Stellen springen zu können."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Ton deaktivieren",
@@ -375,6 +386,10 @@
         {
           "label": "Beschriftung von \"Vor- und Zurückspulen ist deaktiviert\"",
           "default": "Vor- und Zurückspulen ist deaktiviert"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Hinweis auf deaktivierten Ton",

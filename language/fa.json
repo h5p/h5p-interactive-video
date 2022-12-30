@@ -288,8 +288,19 @@
           "label": "نمایش دکمه ۱۰ ثانیه برگشت به عقب"
         },
         {
-          "label": "جلوگیری از پرش به جلو در ویدئو",
-          "description": "فعال‌سازی این گزینه، پیمایش ویدئو توسط کاربر را از طریق کنترل‌های پیش‌فرض غیرفعال خواهد کرد."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "غیرفعال کردن صدا",
@@ -375,6 +386,10 @@
         {
           "label": "متن پیمایش غیر فعال است",
           "default": "پیمایش غیرفعال است"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "متن صدا غیرفعال است",

@@ -288,8 +288,19 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Evitar que se salte hacia adelante en el vídeo",
-          "description": "Al habilitar esta opción se deshabilitará la navegación del video del usuario por medio de controles predeterminados."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Desactivar sonido",
@@ -375,6 +386,10 @@
         {
           "label": "Texto para Navegación está deshabilitada",
           "default": "La navegación está deshabilitada"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Texto para El sonido está deshabilitado",

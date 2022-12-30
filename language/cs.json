@@ -288,8 +288,19 @@
           "label": "Zobrazit tlačítko pro přetočení zpět o 10 sekund"
         },
         {
-          "label": "Zabránit přeskakování videa dopředu",
-          "description": "Povolením této možnosti zakážete navigaci uživatele videa pomocí výchozích ovládacích prvků."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Deaktivovat zvuk",
@@ -375,6 +386,10 @@
         {
           "label": "Text Navigace je zakázána",
           "default": "Navigace je zakázána"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Text Zvuk je deaktivován",

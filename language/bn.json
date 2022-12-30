@@ -288,8 +288,19 @@
           "label": "১০ সেকেন্ড আগে যাওয়ার জন্য বাটন দেখাও"
         },
         {
-          "label": "ভিডিওর কিছু অংশ না দেখে সামনে যাওয়া বন্ধ করো",
-          "description": "এই অপশন সক্রিয় করা হলে ব্যবহারকারী ভিডিও কনট্রোল ব্যবহার করে সামনে যেতে পারবে না।"
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "শব্দ নিষ্ক্রিয় করো",
@@ -375,6 +386,10 @@
         {
           "label": "নেভিগেশন নিষ্ক্রিয় শিরোনাম",
           "default": "নেভিগেশন নিষ্ক্রিয় করা"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "শব্দ নিষ্ক্রিয় করা শিরোনাম",

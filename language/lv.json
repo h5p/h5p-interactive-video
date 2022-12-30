@@ -288,8 +288,19 @@
           "label": "Rādīt pogu attīšanai par 10 sekundēm"
         },
         {
-          "label": "Novērsiet pārlēkšanu uz priekšu videoklipā",
-          "description": "Šīs opcijas ieslēgšana lietotājam atspējos video navigāciju ar noklusējuma vadīklām."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Atslēgt skaņu",
@@ -375,6 +386,10 @@
         {
           "label": "Navigācijas atspējošanas teksts",
           "default": "Navigācija ir atspējota"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Skaņa ir atspējota teksts",

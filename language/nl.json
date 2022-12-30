@@ -288,8 +288,19 @@
           "label": "Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label": "Voorkom voorwaartse navigatie in een video",
-          "description": "Met deze opties ingeschakeld, kan een gebruiker niet door de video scrollen met de standaard knoppen."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Geluid uitschakelen",
@@ -375,6 +386,10 @@
         {
           "label": "Tekst voor \"Navigatie is uitgeschakeld\"",
           "default": "Navigatie is uitgeschakeld"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Tekst voor \"Geluid is uitgeschakeld\"",
