@@ -755,7 +755,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Jump to chosen timecode
-    player.seek(time);
+    player.seek(time, { force: true });
   };
 
   /**
@@ -1028,7 +1028,7 @@ function Interaction(parameters, player, previousState) {
     if (player.currentState !== H5P.Video.ENDED) {
       if (seekTo !== undefined) {
         player.pause();
-        player.seek(seekTo);
+        player.seek(seekTo, { force: true });
       }
       player.play();
       player.controls.$play.focus();
@@ -1159,7 +1159,15 @@ function Interaction(parameters, player, previousState) {
    * Update video when user interacts with dot
    */
   self.selectDot = function () {
-    if (player.preventSkipping) {
+    if (player.isSkippingProhibited(parameters.duration.from)) {
+      player.showPreventSkippingMessage(
+        {
+          x: parameters.duration.from / player.video.getDuration() *
+            player.controls.$slider.get(0).offsetWidth,
+          y: -13
+        },
+        player.l10n.navForwardDisabled
+      );
       return;
     }
 

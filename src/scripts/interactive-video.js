@@ -109,7 +109,7 @@ function InteractiveVideo(params, id, contentData) {
   if (params.override !== undefined) {
     self.showRewind10 = (params.override.showRewind10 !== undefined ? params.override.showRewind10 : false);
     self.showBookmarksmenuOnLoad = (params.override.showBookmarksmenuOnLoad !== undefined ? params.override.showBookmarksmenuOnLoad : false);
-    self.preventSkipping = params.override.preventSkipping || false;
+    self.preventSkippingMode = params.override.preventSkippingMode || 'none';
     self.deactivateSound = params.override.deactivateSound || false;
   }
   // Translated UI text defaults
@@ -134,6 +134,7 @@ function InteractiveVideo(params, id, contentData) {
     playbackRate: 'Playback rate',
     rewind10: 'Rewind 10 seconds',
     navDisabled: 'Navigation is disabled',
+    navForwardDisabled: 'Navigating forward is disabled',
     sndDisabled: 'Sound is disabled',
     requiresCompletionWarning: 'You need to answer all the questions correctly before continuing.',
     back: 'Back',
@@ -183,6 +184,10 @@ function InteractiveVideo(params, id, contentData) {
   if (startAt === 0 && params.override && !!params.override.startVideoAt) {
     startAt = params.override.startVideoAt;
   }
+
+  this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
+    self.previousState.maxTimeReached :
+    0;
 
   // Keep track of interactions that have been answered (interactions themselves don't know about their state)
   self.interactionsProgress = [];
@@ -295,6 +300,8 @@ function InteractiveVideo(params, id, contentData) {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
+      self.seek(startAt);
+      self.updateCurrentTime(startAt);
     });
 
     // Video may change size on canplay, so we must react by resizing
@@ -650,6 +657,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
 
   var state = {
     progress: self.video.getCurrentTime(),
+    maxTimeReached: this.maxTimeReached,
     answers: [],
     interactionsProgress: self.interactions
       .slice()
@@ -1211,7 +1219,7 @@ InteractiveVideo.prototype.addSliderInteractions = function () {
       if ($menuitem !== undefined) {
         $menuitem.appendTo(this.controls.$interactionsContainer);
 
-        if (!this.preventSkipping) {
+        if (self.preventSkippingMode !== 'both') {
           this.interactionKeyboardControls.addElement($menuitem.get(0));
         }
       }
@@ -1257,7 +1265,7 @@ InteractiveVideo.prototype.closePopupMenus = function ($exceptButton) {
 InteractiveVideo.prototype.displayBookmarks = function () {
   return this.options.assets.bookmarks &&
          this.options.assets.bookmarks.length &&
-         !this.preventSkipping;
+         this.preventSkippingMode !== 'both';
 };
 
 /**
@@ -1265,7 +1273,7 @@ InteractiveVideo.prototype.displayBookmarks = function () {
  */
 InteractiveVideo.prototype.addBookmarks = function () {
   this.bookmarksMap = {};
-  if (this.options.assets.bookmarks !== undefined && !this.preventSkipping) {
+  if (this.options.assets.bookmarks !== undefined && this.preventSkippingMode !== 'both') {
     for (var i = 0; i < this.options.assets.bookmarks.length; i++) {
       this.addBookmark(i);
     }
@@ -1496,6 +1504,7 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
     this.disableTabIndexes('.h5p-interactive-video-endscreen');
     this.stateBeforeEndscreen = this.currentState;
     this.video.pause();
+    this.endscreen.update(this.interactions);
   }
   else {
     this.restoreTabIndexes();
@@ -1516,10 +1525,18 @@ InteractiveVideo.prototype.toggleEndscreen = function (show) {
 /**
  * Show message saying that skipping in the video is not allowed.
  *
- * @param {number} offsetX offset in pixels from left side of the seek bar
+ * @param {object} [offset={}] Offset parameters.
+ * @param {number} [offset.x = 0] Pixel offset from left side of the seek bar.
+ * @param {number} [offset.y = 0] Pixel offset from center of the seek bar.
+ * @param {string} [message] Message to display. Default is "navigation disabled".
  */
-InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
+InteractiveVideo.prototype.showPreventSkippingMessage = function (offset = {}, message) {
   var self = this;
+
+  // Sanitize
+  offset.x = offset.x ?? 0;
+  offset.y = (typeof offset.y === 'number') ? 25 - offset.y : 25;
+  message = message ?? self.l10n.navDisabled;
 
   // Already displaying message
   if (self.preventSkippingWarningTimeout) {
@@ -1540,20 +1557,21 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
 
     self.$preventSkippingMessageText = $('<div>', {
       'class': 'h5p-prevent-skipping-message-text',
-      html: self.l10n.navDisabled,
+      html: message,
       appendTo: self.$preventSkippingMessage
     });
 
     self.$preventSkippingMessageTextA11y = $('<div>', {
       'class': 'hidden-but-read',
-      html: self.l10n.navDisabled,
+      html: message,
       appendTo: self.controls.$slider
     });
   }
 
 
   // Move element to offset position
-  self.$preventSkippingMessage.css('left', offsetX);
+  self.$preventSkippingMessage.css('left', offset.x);
+  self.$preventSkippingMessage.css('bottom', offset.y);
 
   // Show message
   setTimeout(function () {
@@ -1585,6 +1603,17 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offsetX) {
  */
 InteractiveVideo.prototype.onBookmarkSelect = function ($bookmark, bookmark) {
   const self = this;
+
+  if (this.isSkippingProhibited(bookmark.time)) {
+    this.showPreventSkippingMessage(
+      { x: bookmark.time / self.video.getDuration() *
+          self.controls.$slider.get(0).offsetWidth + 2,
+        y: -23
+      },
+      self.l10n.navForwardDisabled
+    );
+    return;
+  }
 
   if (self.currentState !== H5P.Video.PLAYING) {
     $bookmark.mouseover().mouseout();
@@ -1843,7 +1872,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   }
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
-  if (self.preventSkipping) {
+  if (self.preventSkippingMode === 'both') {
     self.setDisabled($slider);
   }
 
@@ -2316,7 +2345,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         .attr('aria-label', self.l10n.videoProgressBar)
         .attr('tabindex', '-1');
 
-      if (self.preventSkipping) {
+      if (self.preventSkippingMode === 'both') {
         self.setDisabled($handle).attr('aria-hidden', 'true');
       }
     },
@@ -2365,12 +2394,21 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
       const isKeyboardNav = isKey(event, [Keys.ARROW_LEFT, Keys.ARROW_RIGHT]);
       let time = ui.value;
 
+      if (self.isSkippingProhibited(time)) {
+        time = self.maxTimeReached;
+      }
+
       if (isKeyboardNav) {
         const moveforward = isKey(event, [Keys.ARROW_RIGHT]);
         const endTime = self.getDuration();
         time = moveforward ?
           Math.min(time + KEYBOARD_STEP_LENGTH_SECONDS, endTime) :
           Math.max(time - KEYBOARD_STEP_LENGTH_SECONDS, 0);
+
+        if (self.isSkippingProhibited(time)) {
+          time = self.maxTimeReached;
+        }
+
         self.timeUpdate(time, true);
       }
 
@@ -2383,7 +2421,13 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     },
     stop: function (e, ui) {
       self.currentState = self.lastState;
-      self.seek(ui.value);
+
+      // Limit position that can be jumped to
+      const targetTime = self.isSkippingProhibited(ui.value) ?
+        self.maxTimeReached :
+        ui.value;
+
+      self.seek(targetTime);
 
       // Must recreate interactions because "continue" detaches them and they
       // are not "re-updated" if they have only been detached (not completely removed)
@@ -2428,7 +2472,19 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         }
       }
       else {
-        self.timeUpdate(ui.value);
+        self.timeUpdate(targetTime);
+      }
+
+      // Handle sliding beyond last watched time code
+      if (self.isSkippingProhibited(ui.value)) {
+        self.showPreventSkippingMessage(
+          {
+            x: ui.value / self.video.getDuration() *
+              self.controls.$slider.get(0).offsetWidth
+          },
+          self.l10n.navForwardDisabled
+        );
+        self.setSliderPosition(targetTime);
       }
 
       // Done catching mouse events
@@ -2445,10 +2501,16 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   self.controls.$interactionsContainer.appendTo($slider);
 
   // Disable slider
-  if (self.preventSkipping) {
+  if (self.preventSkippingMode === 'both') {
     self.controls.$slider.slider('disable');
-    self.controls.$slider.click(function (e) {
-      self.showPreventSkippingMessage(e.offsetX);
+    self.controls.$slider.parent().click(function (e) {
+      const offsetX = (self.menuitems
+        .map(($item) => $item.get(0)).includes(e.target)
+      ) ? e.target.offsetLeft : e.offsetX;
+
+      const offsetY = -13;
+
+      self.showPreventSkippingMessage({ x: offsetX, y: offsetY });
       return false;
     });
   }
@@ -3066,18 +3128,8 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
 
   // Scroll slider
   if (time >= 0) {
-    try {
-      const sliderHandle = self.controls.$slider.find('.ui-slider-handle');
-      const timePassedText = InteractiveVideo.formatTimeForA11y(time, self.l10n);
-
-      self.controls.$slider.slider('option', 'value', time);
-      sliderHandle.attr('aria-valuetext', timePassedText);
-      sliderHandle.attr('aria-valuenow', time.toString());
-    }
-    catch (err) {
-      // Prevent crashing when changing lib. Exit function
-      return;
-    }
+    this.maxTimeReached = Math.max(this.maxTimeReached, time);
+    this.setSliderPosition(time);
   }
 
   self.updateInteractions(time);
@@ -3095,6 +3147,26 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
       self.timeUpdate(self.video.getCurrentTime());
     }
   }, 40); // 25 fps
+};
+
+/**
+ * Set slider position.
+ *
+ * @param {number} time Time to set slider to.
+ */
+InteractiveVideo.prototype.setSliderPosition = function (time) {
+  try {
+    const sliderHandle = this.controls.$slider.find('.ui-slider-handle');
+    const timePassedText = InteractiveVideo.formatTimeForA11y(time, this.l10n);
+
+    this.controls.$slider.slider('option', 'value', time);
+    sliderHandle.attr('aria-valuetext', timePassedText);
+    sliderHandle.attr('aria-valuenow', time.toString());
+  }
+  catch (err) {
+    // Prevent crashing when changing lib. Exit function
+    return;
+  }
 };
 
 /**
@@ -3609,9 +3681,16 @@ InteractiveVideo.prototype.play = function () {
 
 /**
  * Seek interactive video to the given time
- * @param {number} time
+ * @param {number} [time = 0] Time in seconds to seek to.
+ * @param {object} [options = {}] Options.
+ * @param {boolean} [options.force] If true, ignore skipping prohibited.
  */
-InteractiveVideo.prototype.seek = function (time) {
+InteractiveVideo.prototype.seek = function (time = 0, options = {}) {
+  if (this.isSkippingProhibited(time) && !options.force) {
+    return;
+  }
+
+  this.maxTimeReached = Math.max(this.maxTimeReached, time);
   this.nextInteractionToShow = this.nextInteractionToHide = undefined; // Reset next interactions on seek
   this.video.seek(time);
 };
@@ -3655,6 +3734,8 @@ InteractiveVideo.prototype.resetTask = function () {
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
   }
+
+  this.maxTimeReached = 0;
 };
 
 /**
@@ -3739,12 +3820,26 @@ InteractiveVideo.prototype.getCopyrights = function () {
 };
 
 /**
- * Detect whether skipping shall be prevented
+ * Detect whether skipping is prohibized.
  *
- * @return {boolean} True, if skipping shall be prevented
+ * @param {number} [time] Time to check.
+ * @returns {boolean} True, if skipping to or beyond time is prohibited.
  */
-InteractiveVideo.prototype.skippingPrevented = function () {
-  return this.preventSkipping;
+InteractiveVideo.prototype.isSkippingProhibited = function (time = 0) {
+  if (this.editor) {
+    return false;
+  }
+
+  if (this.preventSkippingMode === 'both') {
+    return true;
+  }
+
+  if (this.preventSkippingMode === 'none') {
+    return false;
+  }
+
+  // Only skipping forward is prevented
+  return (this.maxTimeReached < time);
 };
 
 // Additional player states

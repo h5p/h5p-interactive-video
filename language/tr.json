@@ -288,8 +288,19 @@
           "label": "10 saniye geri sar butonunu göster"
         },
         {
-          "label": "Videoda ileri atlamayı önle",
-          "description": "Bu seçenek seçildiğinde kullanıcıya varsayılan video kontrolleri etkisiz kılınacaktır."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Sesi devre dışı bırak",
@@ -375,6 +386,10 @@
         {
           "label": "Gezinim etkin değildir metni",
           "default": "Gezinim etkin değildir"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Ses etkin değildir metni",

@@ -288,8 +288,19 @@
           "label": "Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label": "Empêcher de sauter en avant dans la vidéo",
-          "description": "Cette option empêchera les utilisateurs de naviguer au sein de la video"
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Désactiver le son",
@@ -375,6 +386,10 @@
         {
           "label": "Message pour la navigation désactivée",
           "default": "La navigation est désactivée"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Message pour le son est désactivé",

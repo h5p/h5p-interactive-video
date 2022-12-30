@@ -288,8 +288,19 @@
           "label": "Wys 10 sekondes terugspeelknoppie"
         },
         {
-          "label": "Verhoed vooruitspring in video",
-          "description": "Aktivering van hierdie opsie sal gebruikernavigasiekontrole deur verstekkontroles deaktiveer."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Deaktiveer klank",
@@ -375,6 +386,10 @@
         {
           "label": "Navigasie is deaktiveer teks",
           "default": "Navigasie is deaktiveer"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Klank is deaktiveer teks",

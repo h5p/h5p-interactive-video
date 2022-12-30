@@ -288,8 +288,19 @@
           "label": "Pokaż przycisk cofania o 10 sekund"
         },
         {
-          "label": "Zapobiegaj przeskakiwaniu do przodu",
-          "description": "Włączenie tej opcji uniemożliwi widzowi używanie paska postępu do zmiany odtwarzanego fragmentu wideo."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Wyłącz dźwięk",
@@ -375,6 +386,10 @@
         {
           "label": "Komunikat o wyłączeniu paska postępu",
           "default": "Funkcja jest wyłączona"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Komunikat o wyłączeniu ścieżki dźwiękowej",

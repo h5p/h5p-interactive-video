@@ -688,7 +688,6 @@
         "label": "Override \"Retry\" button",
         "importance": "low",
         "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
-        "optional": true,
         "options": [
           {
             "value": "on",
@@ -716,12 +715,27 @@
         "default": false
       },
       {
-        "name": "preventSkipping",
-        "type": "boolean",
-        "default": false,
-        "label": "Prevent skipping forward in a video",
+        "name": "preventSkippingMode",
+        "type": "select",
+        "label": "Prevent skipping",
         "importance": "low",
-        "description": "Enabling this options will disable user video navigation through default controls."
+        "description": "Enabling this options will disable user video navigation as specified.",
+        "optional": true,
+        "options": [
+          {
+            "label": "None",
+            "value": "none"
+          },
+          {
+            "label": "Forward",
+            "value": "forward"
+          },
+          {
+            "label": "Forward and backward",
+            "value": "both"
+          }
+        ],
+        "default": "none"
       },
       {
         "name": "deactivateSound",
@@ -891,6 +905,14 @@
         "label": "Navigation is disabled text",
         "importance": "low",
         "default": "Navigation is disabled",
+        "optional": true
+      },
+      {
+        "name": "navForwardDisabled",
+        "type": "text",
+        "label": "Navigating forward is disabled text",
+        "importance": "low",
+        "default": "Navigating forward is disabled",
         "optional": true
       },
       {

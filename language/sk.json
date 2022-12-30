@@ -1,20 +1,22 @@
 {
   "semantics": [
     {
+      "label": "Editor interaktívneho videa",
       "fields": [
         {
           "label": "Nahrať/vložiť video",
           "fields": [
             {
-              "description": "Kliknutím nižšie pridáte video, ktoré chcete použiť vo svojom interaktívnom videu. Môžete pridať odkaz na video, alebo nahrať video súbory. Je možné pridať niekoľko verzií videa s rôznou kvalitou. Pre zaistenie maximálnej podpory v prehliadačoch pridajte aspoň jednu verziu vo formátoch webm a mp4.",
-              "label": "Pridať video"
+              "label": "Pridať video",
+              "description": "Kliknutím nižšie pridáte video, ktoré chcete použiť vo svojom interaktívnom videu. Môžete pridať odkaz na video, alebo nahrať video súbory. Je možné pridať niekoľko verzií videa s rôznou kvalitou. Pre zaistenie maximálnej podpory v prehliadačoch pridajte aspoň jednu verziu vo formátoch webm a mp4."
             },
             {
+              "label": "Možnosti úvodnej obrazovky (nepodporované pre videá YouTube)",
               "fields": [
                 {
                   "label": "Názov tohto interaktívneho videa",
-                  "description": "Používa sa v súhrnoch, štatistikách atď.",
-                  "default": "Interaktívne video"
+                  "default": "Interaktívne video",
+                  "description": "Používa sa v súhrnoch, štatistikách atď."
                 },
                 {
                   "label": "Skryť názov na úvodnej obrazovke videa"
@@ -27,22 +29,24 @@
                   "label": "Plagátový obrázok",
                   "description": "Obrázok zobrazený predtým, ako používateľ spustí video. Nefunguje pre videá YouTube."
                 }
-              ],
-              "label": "Možnosti úvodnej obrazovky (nepodporované pre videá YouTube)"
+              ]
             },
             {
               "label": "Textové stopy (nepodporované pre videá YouTube)",
               "fields": [
                 {
+                  "label": "Dostupné textové stopy",
                   "entity": "Stopa",
                   "field": {
+                    "label": "Stopa",
                     "fields": [
                       {
                         "label": "Názov stopy",
-                        "default": "Titulky",
-                        "description": "Používa sa, ak ponúkate viacero skladieb a používateľ si musí vybrať skladbu. Napríklad „španielske titulky“ môže byť označenie španielskej titulkovej stopy."
+                        "description": "Používa sa, ak ponúkate viacero skladieb a používateľ si musí vybrať skladbu. Napríklad „španielske titulky“ môže byť označenie španielskej titulkovej stopy.",
+                        "default": "Titulky"
                       },
                       {
+                        "label": "Typ textovej stopy",
                         "options": [
                           {
                             "label": "Titulky"
@@ -53,31 +57,29 @@
                           {
                             "label": "Popisy"
                           }
-                        ],
-                        "label": "Typ textovej stopy"
+                        ]
                       },
                       {
-                        "default": "en",
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
+                        "default": "en",
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
                         "label": "Sledovať zdroj (súbor WebVTT)"
                       }
-                    ],
-                    "label": "Stopa"
-                  },
-                  "label": "Dostupné textové stopy"
+                    ]
+                  }
                 },
                 {
-                  "description": "Ak zostane prázdne alebo sa nezhoduje so žiadnou z textových stôp, ako predvolená sa použije prvá textová stopa.",
-                  "label": "Predvolená textová stopa"
+                  "label": "Predvolená textová stopa",
+                  "description": "Ak zostane prázdne alebo sa nezhoduje so žiadnou z textových stôp, ako predvolená sa použije prvá textová stopa."
                 }
               ]
             }
           ]
         },
         {
+          "label": "Pridať interakcie",
           "fields": [
             {
               "field": {
@@ -90,6 +92,7 @@
                   },
                   {
                     "label": "Zobraziť ako",
+                    "description": "<b>Tlačidlo</b> je zbalená interakcia, ktorú musí používateľ stlačiť, aby ju otvoril. <b>Plagát</b> je rozšírená interakcia zobrazená priamo v hornej časti videa",
                     "options": [
                       {
                         "label": "Tlačidlo"
@@ -97,15 +100,14 @@
                       {
                         "label": "Plagát"
                       }
-                    ],
-                    "description": "<b>Tlačidlo</b> je zbalená interakcia, ktorú musí používateľ stlačiť, aby ju otvoril. <b>Plagát</b> je rozšírená interakcia zobrazená priamo v hornej časti videa"
+                    ]
                   },
                   {
                     "label": "Premeniť na tlačidlo na malých obrazovkách"
                   },
                   {
-                    "description": "Štítok zobrazený vedľa ikony interakcie.",
-                    "label": "Štítok - označenie"
+                    "label": "Štítok - označenie",
+                    "description": "Štítok zobrazený vedľa ikony interakcie."
                   },
                   {},
                   {},
@@ -114,13 +116,14 @@
                   {},
                   {},
                   {
+                    "label": "Prispôsobivosť",
                     "fields": [
                       {
                         "label": "Akcia ak je všetko správne",
                         "fields": [
                           {
-                            "description": "Zadajte časový kód vo formáte M:SS",
-                            "label": "Vyhľadať"
+                            "label": "Vyhľadať",
+                            "description": "Zadajte časový kód vo formáte M:SS"
                           },
                           {
                             "label": "Umožniť používateľovi odhlásiť sa a pokračovať"
@@ -137,8 +140,8 @@
                         "label": "Akcia ak je odpoveď nesprávna",
                         "fields": [
                           {
-                            "description": "Zadajte časový kód vo formáte M:SS",
-                            "label": "Vyhľadať"
+                            "label": "Vyhľadať",
+                            "description": "Zadajte časový kód vo formáte M:SS"
                           },
                           {
                             "label": "Umožniť používateľovi odhlásiť sa a pokračovať"
@@ -155,23 +158,23 @@
                         "label": "Pred pokračovaním sa vyžaduje plné skóre za otázku",
                         "description": "Pre najlepšiu funkčnosť by sa táto možnosť mala používať v spojení s možnosťou „Zabrániť preskakovaniu dopredu vo videu“ v interaktívnom videu."
                       }
-                    ],
-                    "label": "Prispôsobivosť"
+                    ]
                   },
                   {
                     "label": "Vzhľady",
                     "fields": [
                       {
-                        "default": "rgb(255, 255, 255)",
-                        "label": "Farba pozadia"
+                        "label": "Farba pozadia",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "description": "Pridáva okolo interakcie jemný tieň. Možno budete chcieť toto vypnúť pre úplne transparentné interakcie",
-                        "label": "Tieňovanie oblasti"
+                        "label": "Tieňovanie oblasti",
+                        "description": "Pridáva okolo interakcie jemný tieň. Možno budete chcieť toto vypnúť pre úplne transparentné interakcie"
                       }
                     ]
                   },
                   {
+                    "label": "Kliknutím prejdite ďalej",
                     "fields": [
                       {
                         "label": "Typ",
@@ -185,10 +188,11 @@
                         ]
                       },
                       {
-                        "description": "Cieľový čas, na ktorý sa používateľ dostane po stlačení hotspotu. Zadajte časový kód vo formáte M:SS.",
-                        "label": "Vstúpiť"
+                        "label": "Vstúpiť",
+                        "description": "Cieľový čas, na ktorý sa používateľ dostane po stlačení hotspotu. Zadajte časový kód vo formáte M:SS."
                       },
                       {
+                        "label": "URL adresa",
                         "fields": [
                           {
                             "label": "Protokol",
@@ -210,38 +214,35 @@
                           {
                             "label": "URL adresa"
                           }
-                        ],
-                        "label": "URL adresa"
+                        ]
                       },
                       {
                         "label": "Predstaviť vzhľad",
                         "description": "Pridaním orámovania a ikony zvýraznite, že na interakciu je možné kliknúť"
                       }
-                    ],
-                    "label": "Kliknutím prejdite ďalej"
+                    ]
                   }
                 ]
               }
             },
             {},
             {}
-          ],
-          "label": "Pridať interakcie"
+          ]
         },
         {
           "label": "Summary task",
           "fields": [
             {},
             {
-              "description": "Počet sekúnd pred koncom videa.",
-              "label": "Zobraziť o"
+              "label": "Zobraziť o",
+              "description": "Počet sekúnd pred koncom videa."
             }
           ]
         }
-      ],
-      "label": "Editor interaktívneho videa"
+      ]
     },
     {
+      "label": "Nastavenie správania",
       "fields": [
         {
           "label": "Spustiť video o",
@@ -257,6 +258,7 @@
         },
         {
           "label": "Override \"Show Solution\" button",
+          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
               "label": "Enabled"
@@ -264,11 +266,11 @@
             {
               "label": "Disabled"
             }
-          ],
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually."
+          ]
         },
         {
           "label": "Override \"Retry\" button",
+          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
               "label": "Enabled"
@@ -276,8 +278,7 @@
             {
               "label": "Disabled"
             }
-          ],
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually."
+          ]
         },
         {
           "label": "Start with bookmarks menu open",
@@ -287,17 +288,28 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "description": "Enabling this options will disable user video navigation through default controls.",
-          "label": "Prevent skipping forward in a video"
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on.",
-          "label": "Deactivate sound"
+          "label": "Deactivate sound",
+          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
-      ],
-      "label": "Nastavenie správania"
+      ]
     },
     {
+      "label": "Localize",
       "fields": [
         {
           "label": "Interaction title",
@@ -376,6 +388,10 @@
           "default": "Navigation is disabled"
         },
         {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
+        },
+        {
           "label": "Sound is disabled text",
           "default": "Sound is disabled"
         },
@@ -429,61 +445,60 @@
         },
         {
           "label": "Submit screen title",
-          "description": "@answered will be replaced by the number of answered questions.",
-          "default": "@answered Question(s) answered"
+          "default": "@answered Question(s) answered",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "default": "You have answered @answered questions, click below to submit your answers.",
           "label": "Submit screen information",
+          "default": "You have answered @answered questions, click below to submit your answers.",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information when submit button is disabled",
-          "description": "@answered will be replaced by the number of answered questions.",
-          "default": "You have answered @answered questions."
+          "default": "You have answered @answered questions.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "default": "You have not answered any questions.",
-          "label": "Submit screen information for missing answers"
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
         },
         {
-          "default": "You have to answer at least one question before you can submit your answers.",
-          "label": "Submit screen information for answer needed"
+          "label": "Submit screen information for answer needed",
+          "default": "You have to answer at least one question before you can submit your answers."
         },
         {
-          "default": "Submit Answers",
-          "label": "Submit screen submit button"
+          "label": "Submit screen submit button",
+          "default": "Submit Answers"
         },
         {
-          "default": "Your answers have been submitted!",
-          "label": "Submit screen submit message"
+          "label": "Submit screen submit message",
+          "default": "Your answers have been submitted!"
         },
         {
-          "default": "Answered questions",
-          "label": "Submit screen table row title: Answered questions"
+          "label": "Submit screen table row title: Answered questions",
+          "default": "Answered questions"
         },
         {
-          "default": "Score",
-          "label": "Submit screen table row title: Score"
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
         },
         {
-          "default": "answered",
-          "label": "Submit screen answered score"
+          "label": "Submit screen answered score",
+          "default": "answered"
         },
         {
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.",
-          "label": "Submit screen row summary including score (for readspeakers)"
+          "label": "Submit screen row summary including score (for readspeakers)",
+          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
         },
         {
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds.",
-          "label": "Submit screen row summary for no score (for readspeakers)"
+          "label": "Submit screen row summary for no score (for readspeakers)",
+          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
         },
         {
-          "default": "Video progress",
-          "label": "Video Progressbar"
+          "label": "Video Progressbar",
+          "default": "Video progress"
         }
-      ],
-      "label": "Localize"
+      ]
     }
   ]
 }

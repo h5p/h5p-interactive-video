@@ -288,8 +288,19 @@
           "label": "Εμφάνιση κουμπιού επαναφοράς 10 δευτερολέπτων (rewind)"
         },
         {
-          "label": "Να μην επιτρέπεται η παράκαμψη ενός τμήματος του βίντεο",
-          "description": "Η ενεργοποίηση αυτής της επιλογής θα απενεργοποιήσει την πλοήγηση του χρήστη στο βίντεο μέσω των προεπιλεγμένων κουμπιών."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Απενεργοποίηση ήχου",
@@ -375,6 +386,10 @@
         {
           "label": "Κείμενο για απενεργοποιημένη πλοήγηση",
           "default": "Η πλοήγηση είναι απενεργοποιημένη"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "Κείμενο για απενεργοποιημένο ήχο",

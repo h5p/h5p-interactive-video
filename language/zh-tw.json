@@ -288,8 +288,19 @@
           "label": "顯示倒退10秒功能鈕"
         },
         {
-          "label": "影像中不能點擊跳過",
-          "description": "啟用此選項時，使用者將不能任意跳換."
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "關閉聲音",
@@ -375,6 +386,10 @@
         {
           "label": "停用快捷功能名稱",
           "default": "停用快捷功能"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
         },
         {
           "label": "停用聲音名稱",

@@ -298,6 +298,29 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
           };
         }
         finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.25.
+       *
+       * Change data structure to increase skip prevention granularity
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+       25: function (parameters, finished) {
+        if (parameters && parameters.override) {
+          if (parameters.override.preventSkipping === true) {
+            parameters.override.preventSkippingMode = 'both';
+          }
+          else {
+            parameters.override.preventSkippingMode = 'none';
+          }
+          delete parameters.override.preventSkipping;
+        }
+
+        finished(null, parameters);
       }
     }
   };
