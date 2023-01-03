@@ -300,8 +300,11 @@ function InteractiveVideo(params, id, contentData) {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
-      self.seek(startAt);
-      self.updateCurrentTime(startAt);
+
+      if (typeof startAt === 'number' && startAt !== 0) {
+        self.seek(startAt);
+        self.updateCurrentTime(startAt);
+      }
     });
 
     // Video may change size on canplay, so we must react by resizing
