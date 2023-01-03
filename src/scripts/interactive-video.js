@@ -3816,6 +3816,15 @@ InteractiveVideo.prototype.getCopyrights = function () {
     }
   }
 
+  // Adding copyrights for the subtitle tracks
+  if (self.options.video.textTracks.videoTrack && self.options.video.textTracks.videoTrack.length > 0) {
+    self.options.video.textTracks.videoTrack.forEach((subtitle) => {
+      if (subtitle.track && subtitle.track.copyright) {
+        info.addMedia(new H5P.MediaCopyright(subtitle.track.copyright));
+      }
+    });
+  }
+
   return info;
 };
 
