@@ -304,7 +304,7 @@
         },
         {
           "label": "Desactivar son",
-          "description": "Esta opción desactiva o son do vídeo e impide que se poda activar."
+          "description": "Esta opción desactiva o son do vídeo e impide que se poida activar."
         }
       ]
     },
@@ -495,8 +495,8 @@
           "default": "Respondiches a @question que apareceu despois de @minutes minutos e @seconds segundos."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Barra de progreso do vídeo",
+          "default": "Progreso do vídeo"
         }
       ]
     }

@@ -71,8 +71,8 @@
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Domyślna ścieżka tekstowa",
+                  "description": "Jeśli pozostanie pusta lub nie pasuje do żadnej ze ścieżek tekstowych, jako domyślna zostanie użyta pierwsza ścieżka tekstowa."
                 }
               ]
             }
@@ -126,7 +126,7 @@
                             "description": "Wpisz kod czasowy w formacie M:SS"
                           },
                           {
-                            "label": "Pozwój widzowi anulować przeskok i kontynuować"
+                            "label": "Pozwól widzowi anulować przeskok i kontynuować"
                           },
                           {
                             "label": "Komentarz"
@@ -144,7 +144,7 @@
                             "description": "Wpisz kod czasowy w formacie M:SS"
                           },
                           {
-                            "label": "Pozwój widzowi anulować przeskok i kontynuować"
+                            "label": "Pozwól widzowi anulować przeskok i kontynuować"
                           },
                           {
                             "label": "Komentarz"
@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -325,7 +323,7 @@
         },
         {
           "label": "Przycisk wyciszenia",
-          "default": "Mute, currently unmuted"
+          "default": "Wycisz, obecnie nie wyciszony"
         },
         {
           "label": "Przycisk odgłaśniania",
@@ -449,9 +447,9 @@
           "description": "@answered zostanie zamienione na liczbę rozwiązanych zadań."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Prześlij informacje na ekranie",
+          "default": "Udzieliłeś/aś odpowiedzi na @answered pytań.",
+          "description": "@answered zostanie zastąpiona liczbą pytań, na które udzielono odpowiedzi."
         },
         {
           "label": "Ekran wyników: podsumowanie",
@@ -487,16 +485,16 @@
           "default": "zaliczone"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Prześlij podsumowanie wiersza ekranu, w tym wynik (dla czytników tekstu)",
+          "default": "Otrzymujesz @score z @total points dla @question które pojawiło się po @minutes minut i @seconds sekund."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Prześlij ekran podsumowania wiersza bez wyniku (dla czytników tekstu)",
+          "default": "Odpowiedziałeś/aś na @question, które pojawiło się po @minutes minutes i @seconds seconds."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Pasek postępu wideo",
+          "default": "Postęp wideo"
         }
       ]
     }

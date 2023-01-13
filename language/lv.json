@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -495,7 +493,7 @@
           "default": "Tu esi atbildējis uz @question, kas parādījās pēc @minutes minūtēm un @seconds sekundēm."
         },
         {
-          "label": "Video Progressbar",
+          "label": "Video progresa josla",
           "default": "Video progress"
         }
       ]

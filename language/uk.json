@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -325,7 +323,7 @@
         },
         {
           "label": "Заголовок для вимкнення звуку",
-          "default": "Mute, currently unmuted"
+          "default": "Вимкнено, наразі звук увімкнено"
         },
         {
           "label": "Заголовок для увімкнення звуку",
@@ -451,7 +449,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "Якщо answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered буде замінено на кількість запитань із відповідями."
         },
         {
           "label": "Надіслати інформацію на екран",

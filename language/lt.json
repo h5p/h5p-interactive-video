@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Uređivač interaktivnog videa",
+      "label": "Interaktyvus video redaktorius",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "Įkelti/įterpti video",
           "fields": [
             {
-              "label": "Dodaj video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "Pridėti video",
+              "description": "Paspauskite, kad pridėtumėte video, kurį naudosite. Galite pridėti video nuorodą arba įkelti failą. Galima pridėti kelis ir įvairios kokybės video. Kad užtikrinti kokybę naršyklėje, pridėkite webm ir mp4 formatais."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Pradžios ekrano nuostatos (nepalaikomos „YouTube“ vaizdo įrašams)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interaktivni video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "Interaktyvaus video pavadinimas",
+                  "default": "Interaktyvus video",
+                  "description": "Naudojama apžvalgai, statistikai ir kt."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Paslėpti video pavadinimą pradžios ekrane"
                 },
                 {
-                  "label": "Kratki opis (opcionalno)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "Trumpas aprašymas (Nebūtina)",
+                  "description": "Nebūtina. Rodyti trumpą aprašymą video pradžios ekrane. Netaikoma YouTube video."
                 },
                 {
-                  "label": "Poster slika",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Iškabos paveikslėlis",
+                  "description": "Paveiksliukas rodomas prieš vartotojui paleidžiant vaizdo įrašą. Neveikia „YouTube“ vaizdo įrašams."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Teksto takeliai (nepalaikoma YouTube video)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Galimi teksto takeliai",
+                  "entity": "Takelis",
                   "field": {
-                    "label": "Track",
+                    "label": "Takelis",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "Takelio etiketė",
+                        "description": "Naudojama, jei siūlote kelis takelius ir naudotojas turi pasirinkti takelį. Pavyzdžiui, „ispaniški subtitrai“ gali būti ispaniško subtitrų takelio etiketė.",
+                        "default": "Subtitrai"
                       },
                       {
-                        "label": "Vrsta pratećeg teksta",
+                        "label": "Teksto takelio tipas",
                         "options": [
                           {
-                            "label": "Titlovi"
+                            "label": "Subtitrai"
                           },
                           {
-                            "label": "Natpisi"
+                            "label": "Antraštės"
                           },
                           {
-                            "label": "Opisi"
+                            "label": "Aprašymai"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Originalo kalba turi būti apibrėžta subtitrams",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Takelio šaltinis (WebVTT failas)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Numatytasis teksto takelis",
+                  "description": "Jei paliksite tuščią arba neatitiks nė vieno teksto takelio, pirmasis teksto takelis bus naudojamas kaip numatytasis."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Dodaj interakcije",
+          "label": "Pridėti sąveikų",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Prikaži vrijeme"
+                    "label": "Rodymo laikas"
                   },
                   {
-                    "label": "Pauziraj video"
+                    "label": "Pristabdyti vaizdo įrašą"
                   },
                   {
-                    "label": "Prikaži kao",
-                    "description": "<b>Gumb</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "Rodyti kaip",
+                    "description": "<b>Mygtukas</b> yra sutraukta sąveika, kurią naudotojas turi paspausti, kad atidarytų. <b>Plakatas</b> yra išplėsta sąveika, rodoma tiesiai vaizdo įrašo viršuje",
                     "options": [
                       {
-                        "label": "Gumb"
+                        "label": "Mygtukas"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Plakatas"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Mažuose ekranuose paversti mygtuku"
                   },
                   {
-                    "label": "Oznaka",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Etiketė",
+                    "description": "Etiketė rodoma šalia sąveikos piktogramos."
                   },
                   {},
                   {},
@@ -116,20 +116,20 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Prisitaikymas",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Veiksmas, kai viskas teisinga",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Siekti",
+                            "description": "Įveskite laiko kodą M:SS formatu"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Leisti naudotojui atsisakyti ir tęsti"
                           },
                           {
-                            "label": "Poruka"
+                            "label": "Žinutė"
                           },
                           {
                             "label": "Label for seek button"
@@ -137,17 +137,17 @@
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Veiksmas, kai klaidinga",
                         "fields": [
                           {
                             "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "description": "Įveskite laiko kodą formatu M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "Leisti naudotojui atsisakyti ir tęsti"
                           },
                           {
-                            "label": "Poruka"
+                            "label": "Žinutė"
                           },
                           {
                             "label": "Label for seek button"
@@ -156,20 +156,20 @@
                       },
                       {
                         "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description": "Siekiant geriausio funkcionalumo, ši parinktis turėtų būti naudojama kartu su Interaktyvaus vaizdo įrašo parinktimi „Neleisti peršokti į priekį vaizdo įraše“."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Vaizdai",
                     "fields": [
                       {
-                        "label": "Boja pozadine",
+                        "label": "Fono spalva",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Dėžutės šešėlis",
+                        "description": "Prideda subtilų šešėlį aplink sąveiką. Galbūt norėsite tai išjungti, kad sąveika būtų visiškai skaidri"
                       }
                     ]
                   },
@@ -177,25 +177,25 @@
                     "label": "Go to on click",
                     "fields": [
                       {
-                        "label": "Vrsta",
+                        "label": "Tipas",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Laiko kodas"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Kitas puslapis (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Eiti į",
+                        "description": "Tikslinis laikas, į kurį naudotojas pereis paspaudęs aktyviąją sritį. Įveskite laiko kodą formatu M:SS."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protokol",
+                            "label": "Protokolas",
                             "options": [
                               {
                                 "label": "http://"
@@ -204,10 +204,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(šakninis reliatyvus)"
                               },
                               {
-                                "label": "ostalo"
+                                "label": "kitas"
                               }
                             ]
                           },
@@ -217,7 +217,7 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
+                        "label": "Vizualizuoti",
                         "description": "Show that interaction can be clicked by adding a border and an icon"
                       }
                     ]
@@ -228,129 +228,118 @@
           ]
         },
         {
-          "label": "Sažetak zadatka",
+          "label": "Summary task",
           "fields": [
             {},
             {
               "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "description": "Sekundžių skaičius iki vaizdo įrašo pabaigos."
             }
           ]
         }
       ]
     },
     {
-      "label": "Postavke ponašanja",
+      "label": "Elgsenos parametrai",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Pradėti vaizdo įrašą nuo",
+          "description": "Įveskite laiko kodą formatu M:SS"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Automatinis vaizdo įrašo paleidimas",
+          "description": "Pradėti leisti vaizdo įrašą automatiškai"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Kartoti vaizdo įrašą",
+          "description": "Pažymėkite jei vaizdo įrašas turi būti rodomas ciklo būdu"
         },
         {
-          "label": "Override \"Show Solution\" button",
+          "label": "Keisti mygtuką „Rodyti sprendimą“",
           "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
-              "label": "Omogućeno"
+              "label": "Įjungtas"
             },
             {
-              "label": "Onemogućeno"
+              "label": "Išjungtas"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
+          "label": "Keisti mygtuką „Bandyti dar kartą“",
           "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
           "options": [
             {
-              "label": "Omogućeno"
+              "label": "Įjungtas"
             },
             {
-              "label": "Onemogućeno"
+              "label": "Išjungtas"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
+          "label": "Pradėkite atidarę žymių meniu",
           "description": "This function is not available on iPad when using YouTube as video source."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Rodyti mygtuką atsukti 10 sekundžių"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
-          "options": [
-            {
-              "label": "None"
-            },
-            {
-              "label": "Forward"
-            },
-            {
-              "label": "Forward and backward"
-            }
-          ]
+          "label": "Neleiskite peršokti į priekį vaizdo įraše",
+          "description": "Enabling this options will disable user video navigation through default controls."
         },
         {
-          "label": "Deactivate sound",
+          "label": "Išjungti garsą",
           "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
         }
       ]
     },
     {
-      "label": "Lokaliziraj",
+      "label": "Lokalizuoti",
       "fields": [
         {
-          "label": "Naslov",
-          "default": "Interaction"
+          "label": "Sąveikos pavadinimas",
+          "default": "Sąveika"
         },
         {
-          "label": "Play title",
-          "default": "Pokreni"
+          "label": "Paleisti pavadinimas",
+          "default": "Leisti"
         },
         {
-          "label": "Pause title",
-          "default": "Pauza"
+          "label": "Pristabdyti pavadinimas",
+          "default": "Pristabdyti"
         },
         {
-          "label": "Mute title",
+          "label": "Nutildyti pavadinimas",
           "default": "Mute, currently unmuted"
         },
         {
-          "label": "Unmute title",
+          "label": "Atšaukti nutildymą pavadinimas",
           "default": "Unmute, currently muted"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Vaizdo įrašo kokybė pavadinimas",
+          "default": "Vaizdo įrašo kokybė"
         },
         {
-          "label": "Video captions title",
-          "default": "Titlovi"
+          "label": "Vaizdo įrašo antraštės pavadinimas",
+          "default": "Antraštės"
         },
         {
-          "label": "Close button text",
-          "default": "Zatvori"
+          "label": "Mygtuko „Uždaryti“ tekstas",
+          "default": "Uždaryti"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Viso ekrano pavadinimas",
+          "default": "Visas ekranas"
         },
         {
           "label": "Exit fullscreen title",
           "default": "Exit Fullscreen"
         },
         {
-          "label": "Naslov sažetka",
+          "label": "Summary title",
           "default": "Open summary dialog"
         },
         {
@@ -363,7 +352,7 @@
         },
         {
           "label": "Default label for adaptivity seek button",
-          "default": "Nastavi"
+          "default": "Tęsti"
         },
         {
           "label": "Default label for continue video button",
@@ -371,75 +360,71 @@
         },
         {
           "label": "Default label for more player options",
-          "default": "More player options"
+          "default": "Daugiau grotuvo parinkčių"
         },
         {
           "label": "Set playback rate",
           "default": "Playback Rate"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Atsukti 10 sekundžių atgal",
+          "default": "Atsukti 10 sekundžių atgal"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "„Navigacija išjungta“ tekstas",
+          "default": "Navigacija išjungta"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "„Garsas išjungtas“ tekstas",
+          "default": "Garsas išjungtas"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Įspėjimas, kad prieš tęsdamas naudotojas turi teisingai atsakyti į klausimą",
+          "default": "Prieš tęsdami, turite teisingai atsakyti į visus klausimus."
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
-        },
-        {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Atgal mygtukas",
+          "default": "Atgal"
         },
         {
           "label": "Passed time hours",
-          "default": "Sati"
+          "default": "Valandos"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minute"
+          "label": "Praėjo laikas minutėmis",
+          "default": "Minutės"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Sekunde"
+          "label": "Praėjo laikas sekundėmis",
+          "default": "Sekundės"
         },
         {
-          "label": "Label for current time",
-          "default": "Trenutno vrijeme:"
+          "label": "Etiketė dabartiniam laikui",
+          "default": "Dabartinis laikas:"
         },
         {
           "label": "Label for total time",
-          "default": "Total time:"
+          "default": "Bendras laikas:"
         },
         {
           "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "default": "Atsirado sąveika:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
+          "label": "Tekstas, paaiškinantis, kad buvo matomos kelios sąveikos",
           "default": "Multiple interactions appeared."
         },
         {
           "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "default": "Vaizdo įrašas pristabdytas"
         },
         {
-          "label": "Oznaka sadržaja",
-          "default": "Sadržaj"
+          "label": "Content label",
+          "default": "Turinys"
         },
         {
           "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "default": "@answered atsakyta"
         },
         {
           "label": "Submit screen title",
@@ -448,17 +433,17 @@
         },
         {
           "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "default": "Atsakėte į @answered klausimus, spustelėkite toliau, kad pateiktumėte atsakymus.",
+          "description": "@answered bus pakeista atsakytų klausimų skaičiumi."
         },
         {
           "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
+          "default": "Jūs atsakėte į @answered klausimus.",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "default": "Jūs neatsakėte į jokius klausimus."
         },
         {
           "label": "Submit screen information for answer needed",
