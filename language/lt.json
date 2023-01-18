@@ -287,7 +287,18 @@
         },
         {
           "label": "Neleiskite peršokti į priekį vaizdo įraše",
-          "description": "Enabling this options will disable user video navigation through default controls."
+          "description": "Enabling this options will disable user video navigation through default controls.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
         },
         {
           "label": "Išjungti garsą",
@@ -443,7 +454,8 @@
         },
         {
           "label": "Submit screen information for missing answers",
-          "default": "Jūs neatsakėte į jokius klausimus."
+          "default": "Jūs neatsakėte į jokius klausimus.",
+          "description": "@answered will be replaced by the number of answered questions."
         },
         {
           "label": "Submit screen information for answer needed",
@@ -476,6 +488,10 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
         },
         {
           "label": "Video Progressbar",
