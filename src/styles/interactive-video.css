@@ -1877,7 +1877,7 @@
 .h5p-interactive-video .h5p-control:not(.h5p-no-tooltip):hover > .h5p-interactive-video-tooltip {
   visibility: visible;
 }
-.h5p-multi-media-choice-option-list{
+.h5p-multi-media-choice-option-list {
   margin-bottom: 0;
   margin-top: 0;
-  }
+}
