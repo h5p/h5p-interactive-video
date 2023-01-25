@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -495,8 +493,8 @@
           "default": "Du hast die @question beantwortet, die bei @minutes Minuten und @seconds Sekunden erschienen ist."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Video-Fortschrittsbalken",
+          "default": "Video-Fortschritt"
         }
       ]
     }

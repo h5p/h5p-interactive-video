@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -288,17 +286,17 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Evitar saltos",
+          "description": "Habilitar esta opción deshabilitará la navegación de video del usuario como está especificada.",
           "options": [
             {
-              "label": "None"
+              "label": "Ninguno"
             },
             {
-              "label": "Forward"
+              "label": "Adelante"
             },
             {
-              "label": "Forward and backward"
+              "label": "Adelante y atrás"
             }
           ]
         },
@@ -388,8 +386,8 @@
           "default": "La navegación está deshabilitada"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Texto la navegación hacia adelante está deshabilitada",
+          "default": "La navegación hacia adelante está deshabilitada"
         },
         {
           "label": "Texto para El sonido está deshabilitado",

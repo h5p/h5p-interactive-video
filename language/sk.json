@@ -72,7 +72,7 @@
                 },
                 {
                   "label": "Predvolená textová stopa",
-                  "description": "Ak zostane prázdne alebo sa nezhoduje so žiadnou z textových stôp, ako predvolená sa použije prvá textová stopa."
+                  "description": "Ak zostane prázdne, alebo sa nezhoduje so žiadnou z textových stôp, ako predvolená sa použije prvá textová stopa."
                 }
               ]
             }
@@ -224,13 +224,11 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Súhrnná úloha",
           "fields": [
             {},
             {
@@ -288,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Zabrániť preskakovaniu",
+          "description": "Povolenie tejto možnosti zakáže používateľskú videonavigáciu podľa špecifikácie.",
           "options": [
             {
               "label": "None"
@@ -388,111 +386,111 @@
           "default": "Navigation is disabled"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Navigáciou dopredu je zakázaný text",
+          "default": "Navigácia dopredu je zakázaná"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "Zvukom je vypnutý text",
+          "default": "Zvuk je vypnutý"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Upozornenie, že používateľ musí pred pokračovaním správne odpovedať na otázku",
+          "default": "Pred pokračovaním musíte správne odpovedať na všetky otázky."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Tlačidlo späť",
+          "default": "Späť"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Uplynutý čas (hodiny)",
+          "default": "Hodiny"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Uplynutý čas (minúty)",
+          "default": "Minúty"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Uplynutý čas (sekundy)",
+          "default": "Sekundy"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Značka pre aktuálny čas",
+          "default": "Aktuálny čas:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Značka pre celkový čas",
+          "default": "Celkový čas:"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Text oznamujúci, že sa objavila jediná interakcia s názvom",
+          "default": "Interakcia sa objavila:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Text oznamujúci, že sa objavili viaceré interakcie",
+          "default": "Objavili sa viaceré interakcie."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "Oznámenie o pozastavení videa",
+          "default": "Video je pozastavené"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Označenie obsahu",
+          "default": "Obsah"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Odpovedaná správa (@zodpovedané bude nahradené počtom zodpovedaných otázok)",
+          "default": "@answered odpovedí"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
+          "label": "Odoslať názov obrazovky",
+          "default": "@answered otázok bolo zodpovedaných",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
+          "label": "Odoslať informácie o obrazovke",
+          "default": "Odpovedali ste na @answered otázky/otázok, kliknutím nižšie odošlite svoje odpovede.",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
+          "label": "Odoslať informácie o obrazovke, keď je vypnuté tlačidlo Odoslať",
+          "default": "Odpovedali ste na @answered otázky/otázok.",
           "description": "@answered will be replaced by the number of answered questions."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Pre chýbajúce odpovede odošlite informácie o obrazovke",
+          "default": "Neodpovedali ste na žiadne otázky."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Pre požadovanú odpoveď odošlite informácie o obrazovke",
+          "default": "Pred odoslaním odpovedí musíte odpovedať aspoň na jednu otázku."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Tlačidlo odoslať obrazovku",
+          "default": "Odoslať odpovede"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Odoslať správu na odoslanie obrazovky",
+          "default": "Vaše odpovede boli odoslané!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Odoslať názov riadku tabuľky obrazovky: Zodpovedané otázky",
+          "default": "Zodpovedané otázky"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Odoslať názov riadku tabuľky obrazovky: Skóre",
+          "default": "Skóre"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Obrazovka na odoslanie skóre odpovedí",
+          "default": "zodpovedané"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Odoslať súhrn riadkov na obrazovke vrátane skóre (pre čitateľov)",
+          "default": "Získali ste @score z počtu @total bodov za otázku @question, ktorá sa objavila po @minutes minút a @seconds sekúnd."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Odoslať súhrn riadkov obrazovky bez skóre (pre čitateľov)",
+          "default": "Odpovedali ste na @question otázku, ktorá sa objavila v čase @minutes minút a @seconds sekúnd."
         },
         {
           "label": "Video Progressbar",
