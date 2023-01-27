@@ -307,7 +307,7 @@
       ]
     },
     {
-      "label": "Localizar",
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Título de la interacción",
@@ -390,7 +390,7 @@
           "default": "La navegación hacia adelante está deshabilitada"
         },
         {
-          "label": "Texto para El sonido está deshabilitado",
+          "label": "Texto para cuando sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {
