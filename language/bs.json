@@ -282,7 +282,7 @@
         },
         {
           "label": "Započni sa otvorenim menijem za favorite",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "description": "This function is not available on iPad (before Safari 13) when using YouTube as video source."
         },
         {
           "label": "Prikaži dugme za premotavanje od 10 sekundi"

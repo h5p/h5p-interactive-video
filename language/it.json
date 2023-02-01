@@ -282,7 +282,7 @@
         },
         {
           "label": "Inizia con il menu dei segnalibri aperto",
-          "description": "Questa funzione non è disponibile su iPad quando si utilizza YouTube come sorgente video"
+          "description": "Questa funzione non è disponibile su iPad (before Safari 13) quando si utilizza YouTube come sorgente video"
         },
         {
           "label": "Visualizza il pulsante per riavvolgere di 10 secondi"

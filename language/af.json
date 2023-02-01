@@ -282,7 +282,7 @@
         },
         {
           "label": "Begin met oop boekmerkmenu",
-          "description": "Hierdie funksie is nie beskikbaar op iPad wanneer YouTube as videobron gebruik word nie."
+          "description": "Hierdie funksie is nie beskikbaar op iPad (before Safari 13) wanneer YouTube as videobron gebruik word nie."
         },
         {
           "label": "Wys 10 sekondes terugspeelknoppie"

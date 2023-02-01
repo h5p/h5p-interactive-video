@@ -282,7 +282,7 @@
         },
         {
           "label": "開啟書籤時開始播放",
-          "description": "運行於YouTube影片時，此功能無法於iPad上運行."
+          "description": "運行於YouTube影片時，此功能無法於iPad(before Safari 13)上運行."
         },
         {
           "label": "顯示倒退10秒功能鈕"

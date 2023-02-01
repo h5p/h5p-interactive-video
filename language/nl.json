@@ -282,7 +282,7 @@
         },
         {
           "label": "Start met snelkoppelingsmenu open",
-          "description": "Deze functie is niet beschikbaar op iPad wanneer een YouTube-video als bron wordt gebruikt."
+          "description": "Deze functie is niet beschikbaar op iPad (before Safari 13) wanneer een YouTube-video als bron wordt gebruikt."
         },
         {
           "label": "Toon knop om 10 seconden terug te spoelen"

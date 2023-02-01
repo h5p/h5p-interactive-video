@@ -282,7 +282,7 @@
         },
         {
           "label": "Começar com o menu de marcações aberto",
-          "description": "Esta função não está disponível no iPad quando se está usando vídeos do YouTube como fonte."
+          "description": "Esta função não está disponível no iPad (before Safari 13) quando se está usando vídeos do YouTube como fonte."
         },
         {
           "label": "Mostrar o botão para voltar 10 segundos"

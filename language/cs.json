@@ -282,7 +282,7 @@
         },
         {
           "label": "Začít otevřením nabídky záložek",
-          "description": "Tato funkce není na iPadu dostupná, pokud používáte YouTube jako zdroj videa."
+          "description": "Tato funkce není na iPadu (before Safari 13) dostupná, pokud používáte YouTube jako zdroj videa."
         },
         {
           "label": "Zobrazit tlačítko pro přetočení zpět o 10 sekund"

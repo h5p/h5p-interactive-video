@@ -282,7 +282,7 @@
         },
         {
           "label": "Alusta avatud järjehoidjamenüüga",
-          "description": "See valik ei toimi iPad-iga, kui alusvideo asub Youtubes."
+          "description": "See valik ei toimi iPad-iga (before Safari 13), kui alusvideo asub Youtubes."
         },
         {
           "label": "Näita nuppu 10 sekundi tagasikerimiseks"

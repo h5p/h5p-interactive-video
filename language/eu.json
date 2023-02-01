@@ -280,7 +280,7 @@
         },
         {
           "label": "Hasi lasterbideen menua irekita dagoela",
-          "description": "Funtzio hau ezin da erabili iPadean Youtube iturriko bideoekin."
+          "description": "Funtzio hau ezin da erabili iPadean (before Safari 13) Youtube iturriko bideoekin."
         },
         {
           "label": "Erakutsi 10 segundo atzera eramateko botoia"

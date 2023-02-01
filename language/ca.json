@@ -282,7 +282,7 @@
         },
         {
           "label": "Inicia amb el menú de marcadors obert",
-          "description": "Aquesta funció no està disponible a l’iPad quan s’utilitza YouTube com a font de vídeo."
+          "description": "Aquesta funció no està disponible a l’iPad (before Safari 13) quan s’utilitza YouTube com a font de vídeo."
         },
         {
           "label": "Mostra el botó per rebobinar 10 segons"

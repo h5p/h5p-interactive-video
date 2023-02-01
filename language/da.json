@@ -282,7 +282,7 @@
         },
         {
           "label": "Begynd med bogmærkemenu åben",
-          "description": "Denne funktion er ikke tilgængelig på iPad når YouTube-kilde er brugt."
+          "description": "Denne funktion er ikke tilgængelig på iPad (before Safari 13) når YouTube-kilde er brugt."
         },
         {
           "label": "Vis knap til at spole 10 sekunder tilbage"

@@ -282,7 +282,7 @@
         },
         {
           "label": "播放時開啟書籤選單",
-          "description": "當使用的是 YouTube 影片時，在 iPad 上這個功能無效。"
+          "description": "當使用的是 YouTube 影片時，在 iPad (before Safari 13) 上這個功能無效。"
         },
         {
           "label": "顯示倒退 10 秒按鈕"

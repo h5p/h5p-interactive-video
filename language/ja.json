@@ -282,7 +282,7 @@
         },
         {
           "label": "10秒巻き戻すボタンを表示",
-          "description": "ビデオソースとしてYouTubeを使用している場合、この機能はiPadでは使用できません"
+          "description": "ビデオソースとしてYouTubeを使用している場合、この機能はiPad (before Safari 13) では使用できません"
         },
         {
           "label": "Show button for rewinding 10 seconds"

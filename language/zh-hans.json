@@ -282,7 +282,7 @@
         },
         {
           "label": "播放时间启用书签选单",
-          "description": "当使用的是 YouTube 影片时，在 iPad 上这个功能无效。"
+          "description": "当使用的是 YouTube 影片时，在 iPad (before Safari 13) 上这个功能无效。"
         },
         {
           "label": "显示倒退 10 秒按钮"
