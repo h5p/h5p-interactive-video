@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Lugha chanzi, lazima ifafanuliwe kwa manukuu",
-                        "default": "kiingereza",
                         "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe."
                       },
                       {
@@ -164,8 +163,7 @@
                     "label": "Vielelezo",
                     "fields": [
                       {
-                        "label": "Rangi ya Mandharinyuma",
-                        "default": "kiteua rangi cha rangi nyekundu, kijani na bluu (255, 255, 255)"
+                        "label": "Rangi ya Mandharinyuma"
                       },
                       {
                         "label": "Kivuli cha kisanduku",
@@ -224,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -386,6 +386,10 @@
           "default": "Uelekezaji umezimwa"
         },
         {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
+        },
+        {
           "label": "Maandishi ya sauti imezimwa",
           "default": "Sauti imezimwa"
         },
@@ -453,9 +457,8 @@
           "description": "@answered itabadilishwa na idadi ya maswali yaliyojibiwa."
         },
         {
-          "label": "Wasilisha maelezo ya skrini kwa majibu yaliyokosekana",
-          "default": "Hujajibu maswali yoyote.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
         },
         {
           "label": "Wasilisha maelezo ya skrini kwa jibu linalohitajika",
@@ -492,10 +495,6 @@
         {
           "label": "Video Progressbar",
           "default": "Video progress"
-        },
-        {
-          "default": "Video progress",
-          "label": "Video Progressbar"
         }
       ]
     }

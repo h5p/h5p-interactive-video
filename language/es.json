@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        "default": "en",
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -164,8 +163,7 @@
                     "label": "Efectos visuales",
                     "fields": [
                       {
-                        "label": "Color del fondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Color del fondo"
                       },
                       {
                         "label": "Sombra de caja",
@@ -224,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

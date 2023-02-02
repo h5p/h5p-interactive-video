@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Originalo kalba turi būti apibrėžta subtitrams",
-                        "default": "en",
                         "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
@@ -164,8 +163,7 @@
                     "label": "Vaizdai",
                     "fields": [
                       {
-                        "label": "Fono spalva",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Fono spalva"
                       },
                       {
                         "label": "Dėžutės šešėlis",
@@ -224,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -386,6 +386,10 @@
           "default": "Navigacija išjungta"
         },
         {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
+        },
+        {
           "label": "„Garsas išjungtas“ tekstas",
           "default": "Garsas išjungtas"
         },
@@ -454,8 +458,7 @@
         },
         {
           "label": "Submit screen information for missing answers",
-          "default": "Jūs neatsakėte į jokius klausimus.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "default": "Jūs neatsakėte į jokius klausimus."
         },
         {
           "label": "Submit screen information for answer needed",
@@ -488,10 +491,6 @@
         {
           "label": "Submit screen row summary for no score (for readspeakers)",
           "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
-        },
-        {
-          "label": "Video Progressbar",
-          "default": "Video progress"
         },
         {
           "label": "Video Progressbar",
