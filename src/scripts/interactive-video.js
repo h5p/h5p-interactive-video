@@ -1904,7 +1904,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
   if (self.preventSkippingMode === 'both') {
-    self.setDisabled($slider);
+    self.setDisabled(self.$sliderContainer);
   }
 
   // Keep track of all controls
