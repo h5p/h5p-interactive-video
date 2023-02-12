@@ -1571,6 +1571,34 @@ InteractiveVideo.prototype.showPreventSkippingMessage = function (offset = {}, m
     });
   }
 
+  // Limit message width to current video width
+  const messagePaddingX = self.$preventSkippingMessage.innerWidth() -
+    self.$preventSkippingMessage.width();
+
+  self.$preventSkippingMessage.css(
+    'max-width', `${self.$videoWrapper.width() - messagePaddingX}px`
+  );
+
+  // Correct x offset if element overflows content container
+  const messageTranslateX = parseFloat(
+    self.$preventSkippingMessage.css('transform').split(',')[4] ?? 0
+  );
+
+  const sliderOffset = self.$sliderContainer.get(0).offsetLeft +
+    self.controls.$slider.get(0).offsetLeft +
+    offset.x +
+    messageTranslateX;
+
+  const messageOuterRightCornerX = sliderOffset +
+    self.$preventSkippingMessage.outerWidth()
+
+  const overflow = Math.max(
+    0, messageOuterRightCornerX - self.$container.width()
+  );
+  offset.x -= overflow;
+
+  // Prevent message pointing to slider position, because message is displaced
+  self.$preventSkippingMessage.toggleClass('h5p-overflow', overflow > 0);
 
   // Move element to offset position
   self.$preventSkippingMessage.css('left', offset.x);
@@ -1863,7 +1891,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // The controls consist of four different sections:
   var $left = $('<div/>', {'class': 'h5p-controls-left', appendTo: $wrapper});
-  var $slider = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
+  self.$sliderContainer = $('<div/>', {'class': 'h5p-control h5p-slider', appendTo: $wrapper});
   // True will be replaced by boolean variable, e.g. endScreenAvailable
 
   if (self.hasStar) {
@@ -1876,7 +1904,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   var $right = $('<div/>', {'class': 'h5p-controls-right', appendTo: $wrapper});
 
   if (self.preventSkippingMode === 'both') {
-    self.setDisabled($slider);
+    self.setDisabled(self.$sliderContainer);
   }
 
   // Keep track of all controls
@@ -2318,19 +2346,19 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   self.controls.$bookmarksContainer = $('<div/>', {
     'class': 'h5p-bookmarks-container',
-    appendTo: $slider
+    appendTo: self.$sliderContainer
   });
 
   self.controls.$endscreensContainer = $('<div/>', {
     'class': 'h5p-endscreens-container',
-    appendTo: $slider
+    appendTo: self.$sliderContainer
   });
 
   // Add seekbar/timeline
   self.hasPlayPromise = false;
   self.hasQueuedPause = false;
   self.delayed = false;
-  self.controls.$slider = $('<div/>', {appendTo: $slider}).slider({
+  self.controls.$slider = $('<div/>', {appendTo: self.$sliderContainer}).slider({
     value: 0,
     step: 0.01,
     orientation: 'horizontal',
@@ -2501,7 +2529,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   });
 
   // Append after ui slider
-  self.controls.$interactionsContainer.appendTo($slider);
+  self.controls.$interactionsContainer.appendTo(self.$sliderContainer);
 
   // Disable slider
   if (self.preventSkippingMode === 'both') {
