@@ -5,12 +5,10 @@
   "contentType": "Media",
   "majorVersion": 1,
   "minorVersion": 26,
-  "patchVersion": 2,
+  "patchVersion": 3,
   "machineName": "H5P.InteractiveVideo",
   "author": "Joubel",
-  "embedTypes": [
-    "iframe"
-  ],
+  "embedTypes": ["iframe"],
   "runnable": 1,
   "fullscreen": 1,
   "coreApi": {
