@@ -16,7 +16,7 @@
                 {
                   "label": "Titel des interaktiven Videos",
                   "default": "Interaktives Video",
-                  "description": "Wird in Zusammenfassungen, Statistiken usw. benutzt"
+                  "description": "Wird in Zusammenfassungen, Statistiken usw. benutzt."
                 },
                 {
                   "label": "Titel auf Startbildschirm ausblenden"
@@ -106,7 +106,7 @@
                   },
                   {
                     "label": "Beschriftung",
-                    "description": "Beschriftung neben dem Icon der Interaktion"
+                    "description": "Beschriftung neben dem Icon der Interaktion."
                   },
                   {},
                   {},
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -233,7 +231,7 @@
             {},
             {
               "label": "Anzeigen bei",
-              "description": "Anzahl der Sekunden vor Ende des Videos"
+              "description": "Anzahl der Sekunden vor Ende des Videos."
             }
           ]
         }
@@ -286,17 +284,17 @@
           "label": "Button zeigen, um 10 Sekunden zurück zu springen"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Springen im Video unterbinden",
+          "description": "Wenn diese Option aktiv ist, wird die Navigation in der jeweiligen Richtung unterbunden.",
           "options": [
             {
-              "label": "None"
+              "label": "Keine Einschränkung"
             },
             {
-              "label": "Forward"
+              "label": "Vorwärts"
             },
             {
-              "label": "Forward and backward"
+              "label": "Vorwärts und rückwärts"
             }
           ]
         },
@@ -370,8 +368,8 @@
           "default": "Video fortsetzen"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Standard-Beschriftung des \\\"Mehr Abspieloptionen\\\"-Buttons",
+          "default": "Mehr Abspieloptionen"
         },
         {
           "label": "Abspielgeschwindigkeit festlegen",
@@ -386,8 +384,8 @@
           "default": "Vor- und Zurückspulen ist deaktiviert"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Text für \\\"Navigation vorwärts ist deaktiviert\\\"-Meldung",
+          "default": "Navigation vorwärts ist deaktiviert"
         },
         {
           "label": "Hinweis auf deaktivierten Ton",
