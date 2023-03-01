@@ -286,8 +286,8 @@
           "label": "১০ সেকেন্ড আগে যাওয়ার জন্য বাটন দেখাও"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

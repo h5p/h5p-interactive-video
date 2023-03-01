@@ -309,7 +309,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-       25: function (parameters, finished) {
+       26: function (parameters, finished) {
         if (parameters && parameters.override) {
           if (parameters.override.preventSkipping === true) {
             parameters.override.preventSkippingMode = 'both';

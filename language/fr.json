@@ -286,8 +286,8 @@
           "label": "Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

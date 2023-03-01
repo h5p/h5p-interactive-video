@@ -286,8 +286,8 @@
           "label": "Näytä 10 sekuntia taaksepäin kelaava painike"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
