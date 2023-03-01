@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "RPřed pokračováním vyžadovat úplné splnění úkolu",
-                        "description": "Pro nejlepší funkčnost by měla být tato volba použita ve spojení s možností \"Zabránit přeskakování vpřed ve videu \" u interaktivního videa."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

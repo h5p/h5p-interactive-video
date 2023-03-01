@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "繼續前需要完成任務的分數",
-                        "description": "為獲得最佳效果，此選像應與選項─影像中不能點擊跳過結合使用."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

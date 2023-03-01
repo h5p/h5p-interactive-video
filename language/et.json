@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Nõua jätkamiseks täispunktisummat",
-                        "description": "Parimaks toimimiseks tuleks seda valikut kasutada koos interaktiivse video \"Keela videos edasikerimine\" valikuga."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

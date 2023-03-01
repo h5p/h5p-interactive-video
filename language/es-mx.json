@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntaje máximo para el trabajo antes de seguir",
-                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un video\" del Video Interactivo."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Evitar saltos",
-          "description": "Habilitar esta opción deshabilitará la navegación de video del usuario como está especificada.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "Ninguno"

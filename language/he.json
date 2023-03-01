@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "דרוש ציון מלא עבור המשימה לפני שממשיכים",
-                        "description": "לפונקציונליות מיטבית יש להשתמש באפשרות זו בשילוב עם האפשרות \"מנעו דילוג קדימה בסרטון\" של סרטון אינטראקטיבי."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

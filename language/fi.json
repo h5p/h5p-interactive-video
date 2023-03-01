@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Vaadi täydet pisteet tehtävästä ennen jatkamista",
-                        "description": "Parhaimman toiminnan varmistamiseksi tätä toimintoa on suositeltavaa käyttää vuorovaikutteisen videon \"Estä videossa eteenpäin hyppiminen\" toiminnon kanssa"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

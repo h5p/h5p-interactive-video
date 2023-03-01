@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "সামনে যাওয়ার জন্য পুরো নম্বর পেতে হবে",
-                        "description": "সবচেয়ে ভালো ফল পাওয়ার জন্য \"ভিডিওতে সামনে উল্লম্ফন বন্ধ করুন\" অপশনের সাথে যুক্তভাবে ব্যবহার করতে হবে।"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

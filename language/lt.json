@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Require full score for task before proceeding",
-                        "description": "Siekiant geriausio funkcionalumo, ši parinktis turėtų būti naudojama kartu su Interaktyvaus vaizdo įrašo parinktimi „Neleisti peršokti į priekį vaizdo įraše“."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Rodyti mygtuką atsukti 10 sekundžių"
         },
         {
-          "label": "Neleiskite peršokti į priekį vaizdo įraše",
-          "description": "Enabling this options will disable user video navigation through default controls.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

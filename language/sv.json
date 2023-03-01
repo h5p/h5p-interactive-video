@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Kräv full poäng på uppgift innan användaren kan fortsätta",
-                        "description": "För att uppnå bästa funktionalitet bör denna inställning användas ihop med inställningen \"Förhindra att spola framåt i video\" i Interaktiv video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

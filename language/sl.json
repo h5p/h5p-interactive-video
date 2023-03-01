@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Za nadaljevanje aktivnosti so zahtevane vse točke",
-                        "description": "Nastavitev je smiselno uporabiti v kombinaciji z nastavitvijo \"Prepreči preskok naprej\"."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

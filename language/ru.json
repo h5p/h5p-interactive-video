@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Требуется полная оценка для задачи, прежде чем продолжить",
-                        "description": "Для лучшей функциональности этот параметр следует использовать вместе с параметром \"Запретить переход вперед в видео\" в интерактивном видео."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

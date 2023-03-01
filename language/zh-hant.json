@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "繼續前需要全部答對",
-                        "description": "注意若要此功能正常運作，請為互動影片啟用「防止跳播影片」的設定項。"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

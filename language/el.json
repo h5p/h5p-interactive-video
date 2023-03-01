@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Απαιτείται να έχει ολοκληρώσει ο χρήστης την άσκηση προτού συνεχίσει",
-                        "description": "Για βέλτιστη λειτουργικότητα αυτή η επιλογή πρέπει να χρησιμοποιηθεί σε συνδυασμό με την επιλογή \"Να μην επιτρέπεται η παράκαμψη ενός τμήματος του βίντεο\"."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

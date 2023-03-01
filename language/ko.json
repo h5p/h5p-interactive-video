@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "진행하기 전에 과제에 대한 만점 점수 필요",
-                        "description": "최상의 기능을 위해 이 옵션을 대화형 비디오에서 \"Disable navigation forward in a video\"(앞으로 건너뛰기 방지) 옵션과 함께 사용해야 한다."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Exiger la complétude de la tâche avant d'avancer",
-                        "description": "Pour un meilleur fonctionnement cette option doit être utilisée avec \"Empêcher de sauter en avant dans la vidéo\"."
+                        "description": "Pour un meilleur fonctionnement cette option doit être utilisée avec l'option \"Désactiver le saut en avant dans la vidéo\" de la vidéo intéractive."
                       }
                     ]
                   },

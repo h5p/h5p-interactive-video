@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Wymagaj w pełni poprawnie wykonanego zadania przed kontynuacją",
-                        "description": "Najlepszy efekt uzyskasz używając tej opcji razem z opcją 'Zapobiegaj przeskakiwaniu do przodu'."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

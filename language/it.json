@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Richiede un punteggio pieno nell'attività prima di procedere",
-                        "description": "Per una migliore funzionalità, questa opzione deve essere usata in combinazione con l'opzione di Video interattivo 'Impedisci di saltare avanti in un video'"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

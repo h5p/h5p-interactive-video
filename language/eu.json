@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Ekin aurretik eskatu puntuazio osoa",
-                        "description": "Bere funtzionalitatea hobetzeko aukera hau erabili beharko zen Bideo interaktiboko \"Galerazi bideoko aurrerako jauziak\" aukerarekin batera."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

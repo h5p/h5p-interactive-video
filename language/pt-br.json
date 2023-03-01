@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Exigir pontuação completa para a tarefa antes de prosseguir",
-                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção de vídeo interativo \"Evitar pular para frente em um vídeo\" ."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

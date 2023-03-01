@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Потрібна повна оцінка для завдання, перш ніж продовжити",
-                        "description": "Для кращої функціональності цей параметр слід використовувати разом із параметром \"Заборонити перехід вперед у відео\" в інтерактивному відео."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },

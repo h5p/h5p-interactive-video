@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Үргэлжлүүлэхийн тулд асуултын бүтэн оноог шаардах",
-                        "description": "Энэ сонголтыг интерактив бичлэгийн \"Видео бичлэг дээр урагш алгасахаас сэргийл\" сонголттой хослуулан ашиглах нь хамгийн сайн үйл ажиллагаа юм."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
