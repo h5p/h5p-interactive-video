@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntuación completa na tarefa antes de continuar",
-                        "description": "Para conseguir a mellor funcionalidade, deberíase usar esta opción xunto coa opción \"Impedir saltar cara adiante no vídeo\" do Vídeo Interactivo."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Amosar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Evita saltar",
-          "description": "Ao activar estas opcións, desactivarase a navegación de vídeo do usuario tal e como se especifica.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "Ningún"

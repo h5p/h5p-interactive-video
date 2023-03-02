@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requereix que la tasca tingui la màxima puntuació per poder continuar",
-                        "description": "Perquè aquesta opció funcioni millor, es recomana utilitzar-la juntament amb l’opció \"Impedeix avançar el vídeo\" del vídeo interactiu."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Mostra el botó per rebobinar 10 segons"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

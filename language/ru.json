@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Требуется полная оценка для задачи, прежде чем продолжить",
-                        "description": "Для лучшей функциональности этот параметр следует использовать вместе с параметром \"Запретить переход вперед в видео\" в интерактивном видео."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Показать кнопку для перемотки на 10 секунд"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

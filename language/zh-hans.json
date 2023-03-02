@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "继续前需要全部答对",
-                        "description": "注意若要此功能正常运作，请为互动影片启用「防止跳播影片」的设定项。"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "显示倒退 10 秒按钮"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

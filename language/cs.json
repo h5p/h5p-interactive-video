@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "RPřed pokračováním vyžadovat úplné splnění úkolu",
-                        "description": "Pro nejlepší funkčnost by měla být tato volba použita ve spojení s možností \"Zabránit přeskakování vpřed ve videu \" u interaktivního videa."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Zobrazit tlačítko pro přetočení zpět o 10 sekund"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
