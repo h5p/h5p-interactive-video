@@ -148,7 +148,8 @@ function InteractiveVideo(params, id, contentData) {
     videoPausedAnnouncement: 'Video was paused',
     content: 'Content',
     answered: '@answered answered!',
-    videoProgressBar: 'Video progress'
+    videoProgressBar: 'Video progress',
+    howToCreateInteractions: 'Play the video to start creating interactions'
   }, params.l10n);
 
   // Add shortcut key to label
@@ -2927,6 +2928,8 @@ InteractiveVideo.prototype.resize = function () {
     this.editor.dnb.dnr.setContainerEm(this.scaledFontSize);
   }
 
+  this.showInteractionsAssistance();
+
   if (this.bubbleScore) {
     this.bubbleScore.update();
     this.bubbleEndscreen.update();
@@ -4042,7 +4045,7 @@ InteractiveVideo.prototype.getXAPIData = function () {
  * Get context data.
  * Contract used for confusion report.
  */
- InteractiveVideo.prototype.getContext = function () {
+InteractiveVideo.prototype.getContext = function () {
   var self = this;
 
   // Get time and make it readable for users
@@ -4055,6 +4058,38 @@ InteractiveVideo.prototype.getXAPIData = function () {
     type: 'time',
     value: duration
   };
+};
+
+/**
+ * Show instruction assistance if needed
+ */
+InteractiveVideo.prototype.showInteractionsAssistance = function () {
+  const self = this;
+  // User is in editor > On Add Interaction tab > Couldn't see the interaction selectors
+  if (self.editor && !self.controls && self.editor.currentTabIndex === 1 && self.video.isLoaded()) {
+    self.$videoWrapper.addClass('heart-beat');
+    if (!self.$videoInfo) {
+      self.$videoInfo = $('<div>', {
+        'class': 'h5p-video-info',
+        text: self.l10n.howToCreateInteractions
+      }).appendTo(self.$videoWrapper);
+    }
+
+    // For Vimeo video add additional button in center
+    if (self.video.getHandlerName() === 'VimeoPlayer' && !self.$videoPlaybutton) {
+      self.$videoPlaybutton = $('<div>', {
+        'class': 'h5p-play-button'
+      }).appendTo(self.$videoWrapper);
+    }
+    self.$videoInfo.show();
+    self.$videoPlaybutton && self.$videoPlaybutton.show();
+  } 
+  else {
+    self.$videoWrapper.removeClass('heart-beat info-text');
+    self.$videoInfo && self.$videoInfo.hide();
+    self.$videoPlaybutton && self.$videoPlaybutton.hide();
+    self.editor.startGuidedTour();
+  }
 };
 
 /**
