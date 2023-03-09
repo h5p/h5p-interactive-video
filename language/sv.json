@@ -290,13 +290,13 @@
           "description": "These options will disable user video navigation as specified.",
           "options": [
             {
-              "label": "None"
+              "label": "Inget"
             },
             {
-              "label": "Forward"
+              "label": "Framåt"
             },
             {
-              "label": "Forward and backward"
+              "label": "Framåt och bakåt"
             }
           ]
         },
