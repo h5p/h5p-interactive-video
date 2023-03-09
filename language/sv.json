@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Kräv full poäng på uppgift innan användaren kan fortsätta",
-                        "description": "För att uppnå bästa funktionalitet bör denna inställning användas ihop med inställningen \"Förhindra att spola framåt i video\" i Interaktiv video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Visa knapp för att spola tillbaka 10 sekunder"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "Inget"

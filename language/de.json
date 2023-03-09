@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Video kann nur bei voller Punktzahl fortgesetzt werden",
-                        "description": "Diese Option sollte in Verbindung mit \"Springen deaktivieren\" eingesetzt werden, um den gewünschten Effekt zu erreichen."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
