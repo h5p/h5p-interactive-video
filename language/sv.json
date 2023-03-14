@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        "default": "en",
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Kräv full poäng på uppgift innan användaren kan fortsätta",
-                        "description": "För att uppnå bästa funktionalitet bör denna inställning användas ihop med inställningen \"Förhindra att spola framåt i video\" i Interaktiv video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuella effekter",
                     "fields": [
                       {
-                        "label": "Bakgrundsfärg",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Bakgrundsfärg"
                       },
                       {
                         "label": "Skugga",
@@ -288,17 +286,17 @@
           "label": "Visa knapp för att spola tillbaka 10 sekunder"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
-              "label": "None"
+              "label": "Inget"
             },
             {
-              "label": "Forward"
+              "label": "Framåt"
             },
             {
-              "label": "Forward and backward"
+              "label": "Framåt och bakåt"
             }
           ]
         },
@@ -495,8 +493,8 @@
           "default": "Du har svarat på @question som visades efter @minutes minuter och @seconds sekunder."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Framstegsindikator för video",
+          "default": "Framsteg i video"
         }
       ]
     }

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Язык должен быть определен для субтитров",
-                        "default": "en",
                         "description": "Должен быть действительным языковым тегом BCP 47. Если «Субтитры» - это тип выбранной текстовой дорожки, необходимо определить язык дорожки."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Требуется полная оценка для задачи, прежде чем продолжить",
-                        "description": "Для лучшей функциональности этот параметр следует использовать вместе с параметром \"Запретить переход вперед в видео\" в интерактивном видео."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Оформление",
                     "fields": [
                       {
-                        "label": "Фоновый цвет",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Фоновый цвет"
                       },
                       {
                         "label": "Тень блока",
@@ -288,8 +286,8 @@
           "label": "Показать кнопку для перемотки на 10 секунд"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

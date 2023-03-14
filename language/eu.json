@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
-                        "default": "en",
                         "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Ekin aurretik eskatu puntuazio osoa",
-                        "description": "Bere funtzionalitatea hobetzeko aukera hau erabili beharko zen Bideo interaktiboko \"Galerazi bideoko aurrerako jauziak\" aukerarekin batera."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Ikusizkoak",
                     "fields": [
                       {
-                        "label": "Atzeko planoaren kolorea",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Atzeko planoaren kolorea"
                       },
                       {
                         "label": "Kutxaren itzala",
@@ -224,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -288,17 +284,17 @@
           "label": "Erakutsi 10 segundo atzera eramateko botoia"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Saihestu saltatzea",
+          "description": "Aukera hauek gaituz gero, erabiltzailearen bideo-nabigazioa desgaituko da zehaztutako moduan.",
           "options": [
             {
-              "label": "None"
+              "label": "Bat ere ez"
             },
             {
-              "label": "Forward"
+              "label": "Aurrera"
             },
             {
-              "label": "Forward and backward"
+              "label": "Aurrera eta atzera"
             }
           ]
         },
@@ -372,8 +368,8 @@
           "default": "Jarraitu bideoa"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Erreprodukzio-aukera gehiagorako etiketa lehenetsia",
+          "default": "Erreprodukzio-aukera gehiago"
         },
         {
           "label": "Ezarri erreprodukzio abiadura",
@@ -388,8 +384,8 @@
           "default": "Nabigazioa desgaituta dago"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Aurrera nabigatzeko testua desgaituta dago",
+          "default": "Aurrera nabigatzea desgaituta dago"
         },
         {
           "label": "Soinua desgaituta dago testua",
@@ -441,7 +437,7 @@
         },
         {
           "label": "Erantzun emana (@answered aldagaian erantzunen kopurua agertuko da)",
-          "default": "@answered erantzun emana"
+          "default": "@answered erantzun dira"
         },
         {
           "label": "Bidali pantailaren titulua",
@@ -495,8 +491,8 @@
           "default": "@minutes minutu eta @seconds segundo ondoren agertu den @question galdera erantzun duzu."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Bideoaren Aurrerapen-barra",
+          "default": "Bideoaren aurrerapena"
         }
       ]
     }

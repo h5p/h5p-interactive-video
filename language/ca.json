@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma d’origen; cal definir-lo per als subtítols",
-                        "default": "en",
                         "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Requereix que la tasca tingui la màxima puntuació per poder continuar",
-                        "description": "Perquè aquesta opció funcioni millor, es recomana utilitzar-la juntament amb l’opció \"Impedeix avançar el vídeo\" del vídeo interactiu."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Elements visuals",
                     "fields": [
                       {
-                        "label": "Color de fons",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Color de fons"
                       },
                       {
                         "label": "Ombra de quadre",
@@ -288,8 +286,8 @@
           "label": "Mostra el botó per rebobinar 10 segons"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

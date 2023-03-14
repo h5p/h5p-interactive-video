@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Brontaal, moet vasgestel word vir byskrifte",
-                        "default": "en",
                         "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Vereis volpunte vir taak voordat verder gegaan word",
-                        "description": "Vir die beste funksionaliteit moet hierdie opsie in kombinasie met die opsie \"Voorkom dat jy in 'n video vorentoe spring\" van Interaktiewe Video gebruik word."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Beeldmateriaal",
                     "fields": [
                       {
-                        "label": "Agtergrondkleur",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Agtergrondkleur"
                       },
                       {
                         "label": "Boks skaduwee",
@@ -288,8 +286,8 @@
           "label": "Wys 10 sekondes terugspeelknoppie"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

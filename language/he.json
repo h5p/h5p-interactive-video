@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "שפת המקור, חייבים להגדיר עבור כתוביות",
-                        "default": "en",
                         "description": "חייבת להיות תווית שפה BCP 47 תקפה. שם \"כתוביות\" זה סוג רצועת הטקסט הנבחר, יש להגדיר את שפת המקור של הרצועה."
                       },
                       {
@@ -116,23 +115,23 @@
                   {},
                   {},
                   {
-                    "label": "Action on all correct",
+                    "label": "הסתגלות",
                     "fields": [
                       {
                         "label": "פעולה כשכל התשובות נכונות",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "מעבר אל",
+                            "description": "הזנת קוד זמן בתסדיר M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "מתן אפשרות למשתמש שלא להסכים ולהמשיך"
                           },
                           {
                             "label": "הודעה"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "תווית לכפתור מעבר אל"
                           }
                         ]
                       },
@@ -140,32 +139,31 @@
                         "label": "פעולה על תשובה שגויה",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "מעבר אל",
+                            "description": "הזנת קוד זמן בתסדיר M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "מתן אפשרות למשתמש שלא להסכים ולהמשיך"
                           },
                           {
                             "label": "הודעה"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "תווית לכפתור מעבר אל"
                           }
                         ]
                       },
                       {
                         "label": "דרוש ציון מלא עבור המשימה לפני שממשיכים",
-                        "description": "לפונקציונליות מיטבית יש להשתמש באפשרות זו בשילוב עם האפשרות \"מנעו דילוג קדימה בסרטון\" של סרטון אינטראקטיבי."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "חזותיים",
                     "fields": [
                       {
-                        "label": "צבע רקע",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "צבע רקע"
                       },
                       {
                         "label": "Box shadow",
@@ -174,13 +172,13 @@
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "מעבר על בקליק",
                     "fields": [
                       {
                         "label": "סוג",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "תסדיר תצוגת זמן"
                           },
                           {
                             "label": "עמוד נוסף (URL)"
@@ -188,7 +186,7 @@
                         ]
                       },
                       {
-                        "label": "Go To",
+                        "label": "מעבר אל",
                         "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
                       },
                       {
@@ -204,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(יחסית להתחלה)"
                               },
                               {
                                 "label": "other"
@@ -217,16 +215,14 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
+                        "label": "תצוגה חזותית",
                         "description": "הראו שניתן ללחוץ על אינטראקציה על ידי הוספת גבול ואייקון"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -246,7 +242,7 @@
       "fields": [
         {
           "label": "התחילו סרטון ב-",
-          "description": "Enter timecode in the format M:SS"
+          "description": "הזנת קוד זמן בתסדיר M:SS"
         },
         {
           "label": "סרטון מופעל אוטומטית",
@@ -261,10 +257,10 @@
           "description": "אפשרות זו קובעת האם כפתור \"הצגת פתרון\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "פעיל"
             },
             {
-              "label": "Disabled"
+              "label": "כבוי"
             }
           ]
         },
@@ -273,10 +269,10 @@
           "description": "אפשרות זו קובעת האם כפתור \"ניסיון חוזר\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "פעיל"
             },
             {
-              "label": "Disabled"
+              "label": "כבוי"
             }
           ]
         },
@@ -288,17 +284,17 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
-              "label": "None"
+              "label": "אף אחד"
             },
             {
-              "label": "Forward"
+              "label": "קדימה"
             },
             {
-              "label": "Forward and backward"
+              "label": "קדימה ואחורה"
             }
           ]
         },
@@ -353,7 +349,7 @@
         },
         {
           "label": "כותרת סיכום",
-          "default": "Open summary dialog"
+          "default": "פתיחת חלונית סיכום"
         },
         {
           "label": "כותרת סימניות",
@@ -373,11 +369,11 @@
         },
         {
           "label": "Default label for more player options",
-          "default": "More player options"
+          "default": "אפשרויות נגן נוספות"
         },
         {
-          "label": "הגדרת מהירות ניגון הסרטון",
-          "default": "מהירות ניגון סרטון"
+          "label": "הגדרת מהירות הצגת הסרטון",
+          "default": "מהירות הצגת סרטון"
         },
         {
           "label": "חזרה אחורה 10 שניות",
@@ -385,7 +381,7 @@
         },
         {
           "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "default": "ניווט אינו זמין"
         },
         {
           "label": "Navigating forward is disabled text",
@@ -404,15 +400,15 @@
           "default": "הקודם"
         },
         {
-          "label": "זמן שעבר: שעות",
+          "label": "זמן שעבר בשעות",
           "default": "שעות"
         },
         {
-          "label": "זמן שעבר: דקות",
+          "label": "זמן שעבר בדקות",
           "default": "דקות"
         },
         {
-          "label": "זמן שעבר: שניות",
+          "label": "זמן שעבר בשניות",
           "default": "שניות"
         },
         {
@@ -429,11 +425,11 @@
         },
         {
           "label": "תוכן שמסביר שמספר אינטראקציות הופיעו",
-          "default": "מספר איטראקציות הופיעו."
+          "default": "מספר אינטראקציות הופיעו."
         },
         {
           "label": "הודעת הסרטון בהשהייה",
-          "default": "הסרטון בהשהייה"
+          "default": "תצוגת הסרטון מושהית"
         },
         {
           "label": "תווית תוכן",
@@ -449,14 +445,14 @@
           "description": "@answered יוחלף במספר השאלות שענו עליהן."
         },
         {
-          "label": "מידע מסך הגשה",
+          "label": "מידע מסכם של מסך הגשה",
           "default": "עניתם על @answered שאלות, לחצו למטה כדי להזין את התשובות.",
           "description": "@answered יוחלף במספר השאלות שענו עליהן."
         },
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered תשובות יוחלפו במספר התשובות שנענו."
         },
         {
           "label": "מידע של מסך הזנה על תשובות חסרות",
@@ -467,24 +463,24 @@
           "default": "יש לענות לפחות כל שאלה אחת לפני שאפשר להזין תשובות."
         },
         {
-          "label": "כפתור הזנה השל מסך ההזנה",
-          "default": "שליחת תשובות"
+          "label": "כפתור הגשה של מסך הגשות",
+          "default": "הגשת תשובות"
         },
         {
-          "label": "הודעת הזנה של מסך ההזנה",
-          "default": "התשובות שלך הוזנו!"
+          "label": "הודעת הגשות של מסך הגשות",
+          "default": "התשובות הוגשו!"
         },
         {
-          "label": "כותרת שורת טבלה במסך הזנה: תשובות עם מענה",
+          "label": "כותרת שורת טבלה במסך הגשה: תשובות עם מענה",
           "default": "תשובות עם מענה"
         },
         {
           "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "default": "ציון"
         },
         {
           "label": "Submit screen answered score",
-          "default": "answered"
+          "default": "נענו"
         },
         {
           "label": "Submit screen row summary including score (for readspeakers)",
@@ -495,8 +491,8 @@
           "default": "עניתם על ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "סרגל ציר-זמן של הוידאו",
+          "default": "התקדמות הסרטון"
         }
       ]
     }

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Эх хэл, дэд нэр томъёог тодорхойлох ёстой",
-                        "default": "анг",
                         "description": "BCP 47 хэлний хүчинтэй тэмдэг байх ёстой. Хэрэв 'Subtitles' нь сонгосон текстийн гүйлгээний төрөл бол тухайн мөрийн эх хэлийг тодорхойлох ёстой."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Үргэлжлүүлэхийн тулд асуултын бүтэн оноог шаардах",
-                        "description": "Энэ сонголтыг интерактив бичлэгийн \"Видео бичлэг дээр урагш алгасахаас сэргийл\" сонголттой хослуулан ашиглах нь хамгийн сайн үйл ажиллагаа юм."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "үзүүлэн",
                     "fields": [
                       {
-                        "label": "Дэвсгэр өнгө",
-                        "default": "унц(255, 255, 255)"
+                        "label": "Дэвсгэр өнгө"
                       },
                       {
                         "label": "Сүүдэр",
@@ -288,8 +286,8 @@
           "label": "10 секундаар ухраах товчийг харуулах"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

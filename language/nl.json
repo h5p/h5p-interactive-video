@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
-                        "default": "en",
                         "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Volledige score voor de taak is vereist voordat je verder kan gaan",
-                        "description": "Voor de beste functionaliteit moet deze keuze worden gebruikt in combinatie met de optie \"Voorkom voorwaarts navigeren in video\" van de Interactieve Video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuele effecten",
                     "fields": [
                       {
-                        "label": "Achtergrondkleur",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Achtergrondkleur"
                       },
                       {
                         "label": "Box schaduw",
@@ -288,8 +286,8 @@
           "label": "Toon knop om 10 seconden terug te spoelen"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

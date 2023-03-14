@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "উৎস ভাষা, সাবটাইটেলের জন্য অবশ্যই বলে দিতে হবে",
-                        "default": "en",
                         "description": "অবশ্যই সঠিক BCP ৪৭টি ভাষার ট্যাগ হতে হবে। টেক্সট্ ট্র্যাকের ধরন হিসেবে 'সাবটাইটেল' নির্বাচন করা হলে উৎস ভাষা অবশ্যই নির্ধারণ করে দিতে হবে।"
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "সামনে যাওয়ার জন্য পুরো নম্বর পেতে হবে",
-                        "description": "সবচেয়ে ভালো ফল পাওয়ার জন্য \"ভিডিওতে সামনে উল্লম্ফন বন্ধ করুন\" অপশনের সাথে যুক্তভাবে ব্যবহার করতে হবে।"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "প্রাদর্শনিক",
                     "fields": [
                       {
-                        "label": "পটভূমির রঙ",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "পটভূমির রঙ"
                       },
                       {
                         "label": "বাক্সের ছায়া",
@@ -288,8 +286,8 @@
           "label": "১০ সেকেন্ড আগে যাওয়ার জন্য বাটন দেখাও"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

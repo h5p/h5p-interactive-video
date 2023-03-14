@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Забон барои субтитрҳо бояд муайян карда шавад",
-                        "default": "en",
                         "description": "Бояд теги дурусти забони BCP 47 бошад. Агар -Субтитрҳо- навъи суруди интихобшуда бошад, забони трек бояд муайян карда шавад."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Пеш аз идома додани кор баҳои пурраро талаб мекунад",
-                        "description": "Барои беҳтарин кор, ин танзимот бояд дар якҷоягӣ бо танзимоти \"Хомӯш кардани гузариш ба пеш видео\" дар видеои интерактивӣ истифода шавад."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Ороиш",
                     "fields": [
                       {
-                        "label": "Ранги заминавӣ",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Ранги заминавӣ"
                       },
                       {
                         "label": "Сояи блок",
@@ -288,8 +286,8 @@
           "label": "Намоиш додани тугма барои 10 сония ба ақиб"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

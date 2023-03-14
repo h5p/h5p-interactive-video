@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Lähdekieli, pakollinen tekstityksille",
-                        "default": "en",
                         "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Vaadi täydet pisteet tehtävästä ennen jatkamista",
-                        "description": "Parhaimman toiminnan varmistamiseksi tätä toimintoa on suositeltavaa käyttää vuorovaikutteisen videon \"Estä videossa eteenpäin hyppiminen\" toiminnon kanssa"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Ulkoasu",
                     "fields": [
                       {
-                        "label": "Taustaväri",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Taustaväri"
                       },
                       {
                         "label": "Varjostus",
@@ -288,8 +286,8 @@
           "label": "Näytä 10 sekuntia taaksepäin kelaava painike"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "字幕のソース言語を定義する必要があります。",
-                        "default": "en",
                         "description": "有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "続行する前にタスクの満点が必要",
-                        "description": "最高の機能性を得るには、このオプションをインタラクティブビデオの「ビデオ内でのスキップするのを防ぐ」オプションと併用する必要があります。"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "クリックしてください",
                     "fields": [
                       {
-                        "label": "背景色",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "背景色"
                       },
                       {
                         "label": "ボックスシャドウ",
@@ -288,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

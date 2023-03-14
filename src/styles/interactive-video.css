@@ -1019,11 +1019,15 @@
   background: rgba(44, 44, 44, 0.8);
   opacity: 0;
   visibility: hidden;
-  max-width: 300px;
   -webkit-transition: visibility 0s 0.2s, opacity 0.2s;
   -moz-transition: visibility 0s 0.2s, opacity 0.2s;
   transition: visibility 0s 0.2s, opacity 0.2s;
   z-index: 10;
+}
+
+.h5p-interactive-video .h5p-bookmark-label,
+.h5p-interactive-video .h5p-endscreen-label {
+  max-width: 300px;
 }
 
 .h5p-interactive-video .h5p-prevent-skipping-message {
@@ -1032,16 +1036,11 @@
 }
 
 .h5p-interactive-video .h5p-prevent-skipping-message-text {
-  max-width: 17.5em;
   line-height: 30px;
 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.h5p-interactive-video.h5p-minimal .h5p-prevent-skipping-message-text {
-  max-width: 9.5em;
 }
 
 .h5p-interactive-video.h5p-fullscreen .h5p-prevent-skipping-message,
@@ -1075,6 +1074,10 @@
   border-top-color: rgba(44, 44, 44, 0.8);
   border-bottom: 0;
   top: 100%;
+}
+
+.h5p-interactive-video .h5p-prevent-skipping-message.h5p-overflow:after {
+  opacity: 0;
 }
 
 .h5p-interactive-video.h5p-fullscreen .h5p-prevent-skipping-message:after,
@@ -1223,7 +1226,7 @@
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.h5p-interactive-video .h5p-dialog-close, 
+.h5p-interactive-video .h5p-dialog-close,
 .h5p-interactive-video .h5p-dialog[data-lib="H5P.SingleChoiceSet"] .h5p-dialog-titlebar .h5p-sc-sound-control {
   position: absolute;
   top: 0.25em;

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        "default": "en",
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Pirms turpināt, pieprasīt pilnu punktu skaitu par uzdevumu",
-                        "description": "Lai nodrošinātu vislabāko funkcionalitāti, šī opcija ir jāizmanto kopā ar interaktīvā video opciju “Novērst pārlēkšanu uz priekšu videoklipā”."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Noformējums",
                     "fields": [
                       {
-                        "label": "Fona krāsa",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Fona krāsa"
                       },
                       {
                         "label": "Rāmīša ēnojums",
@@ -288,8 +286,8 @@
           "label": "Rādīt pogu attīšanai par 10 sekundēm"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
@@ -495,7 +493,7 @@
           "default": "Tu esi atbildējis uz @question, kas parādījās pēc @minutes minūtēm un @seconds sekundēm."
         },
         {
-          "label": "Video Progressbar",
+          "label": "Video progresa josla",
           "default": "Video progress"
         }
       ]

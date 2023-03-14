@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
-                        "default": "en",
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Boja pozadine",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Boja pozadine"
                       },
                       {
                         "label": "Box shadow",
@@ -242,7 +240,7 @@
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Postavke ponašanja",
       "fields": [
         {
           "label": "Start video at",
@@ -288,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

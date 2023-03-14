@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
-                        "default": "en",
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "Background color",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Background color"
                       },
                       {
                         "label": "Box shadow",
@@ -288,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
@@ -451,12 +449,12 @@
         {
           "label": "Submit screen information",
           "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answer سيتم استبدالها بعدد الأسئلة التي تمت الإجابة عليها."
         },
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answer سيتم استبدالها بعدد الأسئلة التي تمت الإجابة عليها."
         },
         {
           "label": "Submit screen information for missing answers",
@@ -491,8 +489,8 @@
           "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "ملخص الصف غير متضمن الدرجة بشاشة الإرسال (برنامج ReadSpeaker)",
+          "default": "لقد أجبت على@questionالذي ظهر بعد@minutes دقائق و @seconds ثوان."
         },
         {
           "label": "Video Progressbar",

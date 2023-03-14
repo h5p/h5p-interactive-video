@@ -369,7 +369,7 @@
                       "name": "requireCompletion",
                       "type": "boolean",
                       "label": "Require full score for task before proceeding",
-                      "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                      "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                     }
                   ]
                 },
@@ -718,9 +718,9 @@
       {
         "name": "preventSkippingMode",
         "type": "select",
-        "label": "Prevent skipping",
+        "label": "Disable navigation",
         "importance": "low",
-        "description": "Enabling this options will disable user video navigation as specified.",
+        "description": "These options will disable user video navigation as specified.",
         "optional": true,
         "options": [
           {

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        "default": "en",
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntaje máximo para el trabajo antes de seguir",
-                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un video\" del Video Interactivo."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Efectos visuales",
                     "fields": [
                       {
-                        "label": "Color del fondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Color del fondo"
                       },
                       {
                         "label": "Sombra de caja",
@@ -288,17 +286,17 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
-              "label": "None"
+              "label": "Ninguno"
             },
             {
-              "label": "Forward"
+              "label": "Adelante"
             },
             {
-              "label": "Forward and backward"
+              "label": "Adelante y atrás"
             }
           ]
         },
@@ -309,7 +307,7 @@
       ]
     },
     {
-      "label": "Localizar",
+      "label": "Adaptación local",
       "fields": [
         {
           "label": "Título de la interacción",
@@ -388,11 +386,11 @@
           "default": "La navegación está deshabilitada"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Texto la navegación hacia adelante está deshabilitada",
+          "default": "La navegación hacia adelante está deshabilitada"
         },
         {
-          "label": "Texto para El sonido está deshabilitado",
+          "label": "Texto para cuando sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {

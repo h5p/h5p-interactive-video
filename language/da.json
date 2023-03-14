@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
-                        "default": "en",
                         "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Kræv at alle opgaver er rigtige før der kan fortsættes",
-                        "description": "For at opnå den bedste funktionalitet bør denne indstilling bruges sammen med indstillingen \"Undgå at spole frem i en video\" af den interaktive video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuelle effekter",
                     "fields": [
                       {
-                        "label": "Baggrundsfarve",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Baggrundsfarve"
                       },
                       {
                         "label": "Skygge på afkrydsningsfelt",
@@ -288,8 +286,8 @@
           "label": "Vis knap til at spole 10 sekunder tilbage"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

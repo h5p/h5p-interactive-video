@@ -1,0 +1,502 @@
+{
+  "semantics": [
+    {
+      "label": "Kihariri cha Video shirikishi",
+      "fields": [
+        {
+          "label": "Pakia/pachika video",
+          "fields": [
+            {
+              "label": "Ongeza video",
+              "description": "Bofya hapa chini ili kuongeza video unayotaka kutumia katika video yako ya maingilianoi. Unaweza kuongeza kiungo cha video au kupakia faili za video. Inawezekana kuongeza matoleo kadhaa ya video na sifa tofauti. Ili kuhakikisha usaidizi wa juu zaidi katika vivinjari angalau ongeza toleo katika umbizo la webm na mp4."
+            },
+            {
+              "label": "Chaguo za skrini ya kuanza (hazitumiki kwa video za YouTube)",
+              "fields": [
+                {
+                  "label": "Mada ya hii video ya maingiliano",
+                  "default": "Video ya Maingiliano",
+                  "description": "Inatumika katika muhtasari, takwimu na kadhalika."
+                },
+                {
+                  "label": "Ficha mada kwenye skrini ya kuanza video"
+                },
+                {
+                  "label": "Maelezo mafupi (Hiari)",
+                  "description": "Ya hiari. Onyesha maandishi ya maelezo mafupi kwenye skrini ya kuanza ya video. Haifanyi kazi kwa video za YouTube."
+                },
+                {
+                  "label": "Picha ya bango",
+                  "description": "Picha inayoonyeshwa kabla ya mtumiaji kuzindua video. Haifanyi kazi kwa Video za YouTube."
+                }
+              ]
+            },
+            {
+              "label": "Nyimbo za maandishi (hazitumiki kwa video za YouTube)",
+              "fields": [
+                {
+                  "label": "Nyimbo za maandishi zinazopatikana",
+                  "entity": "Wimbo",
+                  "field": {
+                    "label": "Wimbo",
+                    "fields": [
+                      {
+                        "label": "Lebo ya wimbo",
+                        "description": "Inatumika ikiwa unatoa nyimbo nyingi na mtumiaji lazima achague wimbo. Kwa mfano 'manukuu ya Kihispania' yanaweza kuwa lebo ya wimbo wa manukuu ya Kihispania.",
+                        "default": "Manukuu"
+                      },
+                      {
+                        "label": "Aina ya wimbo wa maandishi",
+                        "options": [
+                          {
+                            "label": "Manukuu"
+                          },
+                          {
+                            "label": "Manukuu"
+                          },
+                          {
+                            "label": "Maelezo"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Lugha chanzi, lazima ifafanuliwe kwa manukuu",
+                        "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe."
+                      },
+                      {
+                        "label": "Chanzo cha wimbo (faili ya WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Wimbo chaguo msingi wa maandishi",
+                  "description": "Ikiachwa tupu au hailingani na wimbo wowote wa maandishi, wimbo wa kwanza wa maandishi utatumika kama chaguo-msingi."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Ongeza mwingiliano",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Muda wa kuonyesha"
+                  },
+                  {
+                    "label": "Sitisha video"
+                  },
+                  {
+                    "label": "Onyesha kama",
+                    "description": "<b>Kitufe</b> ni mwingiliano uliokunjwa ambao mtumiaji lazima abonyeze ili kufungua. <b>Bango</b> ni mwingiliano uliopanuliwa unaoonyeshwa moja kwa moja juu ya video",
+                    "options": [
+                      {
+                        "label": "Kitufe"
+                      },
+                      {
+                        "label": "Bango"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Geuza kuwa kitufe kwenye skrini ndogo"
+                  },
+                  {
+                    "label": "Lebo",
+                    "description": "Lebo inaonyeshwa kando ya ikoni ya mwingiliano."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Kubadilika",
+                    "fields": [
+                      {
+                        "label": "Hatua kwa wote sahihi",
+                        "fields": [
+                          {
+                            "label": "Tafuta kwa",
+                            "description": "Weka msimbo wa saa katika umbizo la M:SS"
+                          },
+                          {
+                            "label": "Ruhusu mtumiaji kuchagua kutoka na kuendelea"
+                          },
+                          {
+                            "label": "Ujumbe"
+                          },
+                          {
+                            "label": "Weka lebo ya kitufe cha kutafuta"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Hatua dhidi ya makosa",
+                        "fields": [
+                          {
+                            "label": "Tafuta kwa",
+                            "description": "Weka msimbo wa saa katika umbizo la M:SS"
+                          },
+                          {
+                            "label": "Ruhusu mtumiaji kuchagua kutoka na kuendelea"
+                          },
+                          {
+                            "label": "Ujumbe"
+                          },
+                          {
+                            "label": "Weka lebo ya kitufe cha kutafuta"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Inahitaji alama kamili kwa kazi kabla ya kuendelea",
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Vielelezo",
+                    "fields": [
+                      {
+                        "label": "Rangi ya Mandharinyuma"
+                      },
+                      {
+                        "label": "Kivuli cha kisanduku",
+                        "description": "Huongeza kivuli kidogo karibu na mwingiliano. Unaweza kutaka kuzima hii kwa mwingiliano wa uwazi kabisa"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Nenda kwa kubofya",
+                    "fields": [
+                      {
+                        "label": "Aina",
+                        "options": [
+                          {
+                            "label": "Msimbo wa muda"
+                          },
+                          {
+                            "label": "Ukurasa mwingine (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Nenda Kwa",
+                        "description": "Muda unaolengwa ambao mtumiaji atachukuliwa akibofya eneo lenye mtandao. Weka msimbo wa saa katika umbizo la M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Itifaki",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(jamaa wa mizizi)"
+                              },
+                              {
+                                "label": "nyingine"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Taswira",
+                        "description": "Onyesha kwamba mwingiliano unaweza kubofya kwa kuongeza mpaka na ikoni"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Jukumu la muhtasari",
+          "fields": [
+            {},
+            {
+              "label": "Onyesha kwa",
+              "description": "Idadi ya sekunde kabla ya video kuisha."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Mipangilio ya tabia",
+      "fields": [
+        {
+          "label": "Anzisha video saa",
+          "description": "Weka msimbo wa saa katika umbizo la M:SS"
+        },
+        {
+          "label": "Cheza video kiotomatiki",
+          "description": "Anza kucheza video kiotomatiki"
+        },
+        {
+          "label": "Pindua video",
+          "description": "Chagua ikiwa video inapaswa kuendeshwa kwa kitanzi"
+        },
+        {
+          "label": "Batilisha kitufe cha Onyesha Suluhisho",
+          "description": "Chaguo hili huamua ikiwa kitufe cha \"Onyesha Suluhisho\" kitaonyeshwa kwa maswali yote, kimezimwa kwa yote au kusanidiwa kwa kila swali kivyake.",
+          "options": [
+            {
+              "label": "Imewashwa"
+            },
+            {
+              "label": "Imezimwa"
+            }
+          ]
+        },
+        {
+          "label": "Batilisha kitufe cha Jaribu tena",
+          "description": "Chaguo hili huamua ikiwa kitufe cha \"Jaribu tena\" kitaonyeshwa kwa maswali yote, kimezimwa kwa yote au kusanidiwa kwa kila swali kivyake.",
+          "options": [
+            {
+              "label": "Imewashwa"
+            },
+            {
+              "label": "Imezimwa"
+            }
+          ]
+        },
+        {
+          "label": "Anza kwa kufungua menyu ya alamisho",
+          "description": "Kitendaji hiki hakipatikani kwenye Adapta ya Itifaki ya Mtandao."
+        },
+        {
+          "label": "Onyesha kitufe cha kurejesha nyuma kwa sekunde 10"
+        },
+        {
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
+          "options": [
+            {
+              "label": "None"
+            },
+            {
+              "label": "Forward"
+            },
+            {
+              "label": "Forward and backward"
+            }
+          ]
+        },
+        {
+          "label": "Zima sauti",
+          "description": "Kuwasha chaguo hili kutazima sauti ya video na kuizuia kuwashwa."
+        }
+      ]
+    },
+    {
+      "label": "Janibisha",
+      "fields": [
+        {
+          "label": "Mada ya mwingiliano",
+          "default": "Mwingiliano"
+        },
+        {
+          "label": "Mada ya Cheza",
+          "default": "Cheza"
+        },
+        {
+          "label": "Mada ya Sitisha",
+          "default": "Sitisha"
+        },
+        {
+          "label": "Nyamazisha mada",
+          "default": "Nyamazisha, imerejeshwa kwa sasa"
+        },
+        {
+          "label": "Rejesha sauti ya mada",
+          "default": "Rejesha, imenyamazishwa kwa sasa"
+        },
+        {
+          "label": "Mada ya ubora wa video",
+          "default": "Ubora wa Video"
+        },
+        {
+          "label": "Mada ya manukuu ya video",
+          "default": "Manukuu"
+        },
+        {
+          "label": "Funga maandishi ya kitufe",
+          "default": "Funga"
+        },
+        {
+          "label": "Mada ya skrini nzima",
+          "default": "Skrini nzima"
+        },
+        {
+          "label": "Mada ya ondoka kwenye skrini nzima",
+          "default": "Ondoka kwenye skrini nzima"
+        },
+        {
+          "label": "Mada ya muhtasari",
+          "default": "Fungua mazungumzo ya muhtasari"
+        },
+        {
+          "label": "Mada ya vialamisho",
+          "default": "Alamisho"
+        },
+        {
+          "label": "Mada ya wasilisha skrini",
+          "default": "Wasilisha skrini"
+        },
+        {
+          "label": "Kitufe chaguo-msingi cha kutafuta urekebishaji",
+          "default": "Endelea"
+        },
+        {
+          "label": "Lebo chaguo msingi ya kitufe cha endelea cha video",
+          "default": "Endelea na video"
+        },
+        {
+          "label": "Lebo chaguo-msingi kwa chaguo zaidi za wachezaji",
+          "default": "Chaguo zaidi za wachezaji"
+        },
+        {
+          "label": "Weka kiwango cha uchezaji",
+          "default": "Kiwango cha Uchezaji"
+        },
+        {
+          "label": "Rudisha nyuma Sekunde 10",
+          "default": "Rudisha nyuma Sekunde 10"
+        },
+        {
+          "label": "Maandishi ya Uelekezaji umezimwa",
+          "default": "Uelekezaji umezimwa"
+        },
+        {
+          "label": "Navigating forward is disabled text",
+          "default": "Navigating forward is disabled"
+        },
+        {
+          "label": "Maandishi ya sauti imezimwa",
+          "default": "Sauti imezimwa"
+        },
+        {
+          "label": "Onyo kwamba mtumiaji lazima ajibu swali kwa usahihi kabla ya kuendelea",
+          "default": "Unahitaji kujibu maswali yote kwa usahihi kabla ya kuendelea."
+        },
+        {
+          "label": "Kitufe cha nyuma",
+          "default": "Nyuma"
+        },
+        {
+          "label": "Saa za muda uliopita",
+          "default": "Saa"
+        },
+        {
+          "label": "Dakika za muda uliopita",
+          "default": "Dakika"
+        },
+        {
+          "label": "Sekunde za muda uliopita",
+          "default": "Sekunde"
+        },
+        {
+          "label": "Weka lebo ya wakati wa sasa",
+          "default": "Wakati wa sasa:"
+        },
+        {
+          "label": "Weka lebo ya jumla ya muda",
+          "default": "Jumla ya muda:"
+        },
+        {
+          "label": "Maandishi yanayoeleza kuwa mwingiliano mmoja na jina umeonekana",
+          "default": "Mwingiliano ulionekana:"
+        },
+        {
+          "label": "Maandishi ya kueleza kwamba maingiliano mengi yameonekana",
+          "default": "Maingiliano mengi yalionekana."
+        },
+        {
+          "label": "Tangazo la video limesitishwa",
+          "default": "Video imesitishwa"
+        },
+        {
+          "label": "Lebo ya maudhui",
+          "default": "Maudhui"
+        },
+        {
+          "label": "Ujumbe uliojibiwa (@answer ed itabadilishwa na idadi ya maswali yaliyojibiwa)",
+          "default": "@answered alijibu"
+        },
+        {
+          "label": "Mada ya wasilisha skrini",
+          "default": "@answered Maswali yamejibiwa",
+          "description": "@answered itabadilishwa na idadi ya maswali yaliyojibiwa."
+        },
+        {
+          "label": "Wasilisha maelezo ya skrini",
+          "default": "Umejibu @answered maswali, bofya hapa chini kuwasilisha majibu yako.",
+          "description": "@answered itabadilishwa na idadi ya maswali yaliyojibiwa."
+        },
+        {
+          "label": "Wasilisha maelezo ya skrini wakati kitufe cha kuwasilisha kimezimwa",
+          "default": "Umejibu maswali @answered.",
+          "description": "@answered itabadilishwa na idadi ya maswali yaliyojibiwa."
+        },
+        {
+          "label": "Submit screen information for missing answers",
+          "default": "You have not answered any questions."
+        },
+        {
+          "label": "Wasilisha maelezo ya skrini kwa jibu linalohitajika",
+          "default": "Lazima ujibu angalau swali moja kabla ya kuwasilisha majibu yako."
+        },
+        {
+          "label": "Wasilisha kitufe cha kuwasilisha skrini",
+          "default": "Wasilisha Majibu"
+        },
+        {
+          "label": "Wasilisha ujumbe wakuwasilisha skrini",
+          "default": "Majibu yako yamewasilishwa!"
+        },
+        {
+          "label": "Wasilisha mada ya safu mlalo ya jedwali la skrini: Alijibu maswali",
+          "default": "Alijibu maswali"
+        },
+        {
+          "label": "Wasilisha mada ya safu mlalo ya jedwali la skrini: Alama",
+          "default": "Alama"
+        },
+        {
+          "label": "Wasilisha alama iliyojibiwa ya skrini",
+          "default": "alijibu"
+        },
+        {
+          "label": "Wasilisha muhtasari wa safu mlalo ya skrini ikijumuisha alama (kwa visoma maandishi)",
+          "default": "Umepata @score kati ya @total pointi kwa @question ile iliyoonekana baada ya @minutes dakika na @seconds sekunde."
+        },
+        {
+          "label": "Wasilisha muhtasari wa safu mlalo ya skrini kwa hakuna alama (kwa visoma maandishi)",
+          "default": "Umejibu @questionambalo lililoonekana baada ya @minutesdakika na @secondssekunde."
+        },
+        {
+          "label": "Video Progressbar",
+          "default": "Video progress"
+        }
+      ]
+    }
+  ]
+}

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Langue de source, à renseigner obligatoirement pour les sous-titres",
-                        "default": "en",
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Exiger la complétude de la tâche avant d'avancer",
-                        "description": "Pour un meilleur fonctionnement cette option doit être utilisée avec \"Empêcher de sauter en avant dans la vidéo\"."
+                        "description": "Pour un meilleur fonctionnement cette option doit être utilisée avec l'option \"Désactiver le saut en avant dans la vidéo\" de la vidéo intéractive."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Images",
                     "fields": [
                       {
-                        "label": "Couleur d'arrière-plan",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Couleur d'arrière-plan"
                       },
                       {
                         "label": "Ombrage",
@@ -288,8 +286,8 @@
           "label": "Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        "default": "en",
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntuación completa na tarefa antes de continuar",
-                        "description": "Para conseguir a mellor funcionalidade, deberíase usar esta opción xunto coa opción \"Impedir saltar cara adiante no vídeo\" do Vídeo Interactivo."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Cor de fondo"
                       },
                       {
                         "label": "Sombreado da caixa",
@@ -288,23 +286,23 @@
           "label": "Amosar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
-              "label": "None"
+              "label": "Ningún"
             },
             {
-              "label": "Forward"
+              "label": "Adiante"
             },
             {
-              "label": "Forward and backward"
+              "label": "Adiante e cara atrás"
             }
           ]
         },
         {
           "label": "Desactivar son",
-          "description": "Esta opción desactiva o son do vídeo e impide que se poda activar."
+          "description": "Esta opción desactiva o son do vídeo e impide que se poida activar."
         }
       ]
     },
@@ -388,8 +386,8 @@
           "default": "A navegación está desactivada"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Texto para cando a navegación cara adiante está desactivada",
+          "default": "A navegación cara adiante está desactivada"
         },
         {
           "label": "Texto para son desactivado",
@@ -495,8 +493,8 @@
           "default": "Respondiches a @question que apareceu despois de @minutes minutos e @seconds segundos."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Barra de progreso do vídeo",
+          "default": "Progreso do vídeo"
         }
       ]
     }

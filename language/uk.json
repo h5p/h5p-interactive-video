@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Мова має бути визначена для субтитрів",
-                        "default": "en",
                         "description": "Мовний тег BCP 47 має бути дійсним. Якщо субтитри - це тип вибраної текстової доріжки, необхідно визначити мову доріжки."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Потрібна повна оцінка для завдання, перш ніж продовжити",
-                        "description": "Для кращої функціональності цей параметр слід використовувати разом із параметром \"Заборонити перехід вперед у відео\" в інтерактивному відео."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Оформлення",
                     "fields": [
                       {
-                        "label": "Фоновий колір",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Фоновий колір"
                       },
                       {
                         "label": "Тінь блоку",
@@ -288,8 +286,8 @@
           "label": "Показати кнопку для перемотування на 10 секунд"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
@@ -325,7 +323,7 @@
         },
         {
           "label": "Заголовок для вимкнення звуку",
-          "default": "Mute, currently unmuted"
+          "default": "Вимкнено, наразі звук увімкнено"
         },
         {
           "label": "Заголовок для увімкнення звуку",
@@ -451,7 +449,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "Якщо answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered буде замінено на кількість запитань із відповідями."
         },
         {
           "label": "Надіслати інформацію на екран",

@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
-                        "default": "en",
                         "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Devam etmeden önce görev için tam puan gerekir",
-                        "description": "Bu seçeneğin iyi bir şekilde çalışması için; \" Videoda ileri atlamayı önle\" seçeneğiyle birlikte kullanılmalıdır"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Görsellik",
                     "fields": [
                       {
-                        "label": "Arkaplan rengi",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Arkaplan rengi"
                       },
                       {
                         "label": "Kutu gölgesi",
@@ -288,8 +286,8 @@
           "label": "10 saniye geri sar butonunu göster"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

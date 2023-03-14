@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
-                        "default": "en",
                         "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Richiede un punteggio pieno nell'attività prima di procedere",
-                        "description": "Per una migliore funzionalità, questa opzione deve essere usata in combinazione con l'opzione di Video interattivo 'Impedisci di saltare avanti in un video'"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Effetti visivi",
                     "fields": [
                       {
-                        "label": "Colore di sfondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Colore di sfondo"
                       },
                       {
                         "label": "Ombreggiatura a forma di casella",
@@ -288,8 +286,8 @@
           "label": "Visualizza il pulsante per riavvolgere di 10 secondi"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

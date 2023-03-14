@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "زبان مبدأ، باید برای زیرنویس تعریف شود",
-                        "default": "en",
                         "description": "باید یک تگ زبان BCP 47 تأیید شده باشد. اگر نوع مسیر انتخاب شده «زیرنویس» باشد، زبان مبدأ مسیر باید تعریف شود."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "الزام به دریافت نمره کامل برای تکلیف پیش از ادامه",
-                        "description": "برای بهترین عملکرد این گزینه باید همزمان با گزینه «جلوگیری از پرش به جلو در ویدئو» در ویدئو تعاملی استفاده شود."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuals",
                     "fields": [
                       {
-                        "label": "رنگ پس‌زمینه",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "رنگ پس‌زمینه"
                       },
                       {
                         "label": "سایه کادر",
@@ -288,8 +286,8 @@
           "label": "نمایش دکمه ۱۰ ثانیه برگشت به عقب"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

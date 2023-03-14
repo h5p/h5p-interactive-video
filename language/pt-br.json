@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
-                        "default": "en",
                         "description": "Deve ser uma tag de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Exigir pontuação completa para a tarefa antes de prosseguir",
-                        "description": "Para melhor funcionalidade, esta opção deve ser usada em conjunto com a opção de vídeo interativo \"Evitar pular para frente em um vídeo\" ."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fundo",
-                        "default": "rgb(255,255,255)"
+                        "label": "Cor de fundo"
                       },
                       {
                         "label": "Sombra da caixa",
@@ -288,8 +286,8 @@
           "label": "Mostrar o botão para voltar 10 segundos"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

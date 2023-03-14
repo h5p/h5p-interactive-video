@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Езиковият източник трябва да бъде уточнен за субтитрите",
-                        "default": "en",
                         "description": "Трябва да бъде валиден BCP 47 езиков таг. Ако (Субтитри) е избраната текстова добавка, езиковият източник трябва да бъде уточнен."
                       },
                       {
@@ -156,7 +155,7 @@
                       },
                       {
                         "label": "Изисква пълна оценка за задачата, преди да продължите",
-                        "description": "Тази опция трябва да се използва във връзка с опцията (Предотвратяване на прескачането във видеоклип)."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -164,8 +163,7 @@
                     "label": "Визуализации",
                     "fields": [
                       {
-                        "label": "Фонов цвят",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Фонов цвят"
                       },
                       {
                         "label": "Box shadow",
@@ -288,8 +286,8 @@
           "label": "Покажи бутона за нагласяване 10 секунди"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"
