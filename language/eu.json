@@ -286,17 +286,17 @@
           "label": "Erakutsi 10 segundo atzera eramateko botoia"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Saihestu saltatzea",
+          "description": "Aukera hauek gaituz gero, erabiltzailearen bideo-nabigazioa desgaituko da zehaztutako moduan.",
           "options": [
             {
-              "label": "None"
+              "label": "Bat ere ez"
             },
             {
-              "label": "Forward"
+              "label": "Aurrera"
             },
             {
-              "label": "Forward and backward"
+              "label": "Aurrera eta atzera"
             }
           ]
         },
@@ -370,8 +370,8 @@
           "default": "Jarraitu bideoa"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Erreprodukzio-aukera gehiagorako etiketa lehenetsia",
+          "default": "Erreprodukzio-aukera gehiago"
         },
         {
           "label": "Ezarri erreprodukzio abiadura",
@@ -386,8 +386,8 @@
           "default": "Nabigazioa desgaituta dago"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Aurrera nabigatzeko testua desgaituta dago",
+          "default": "Aurrera nabigatzea desgaituta dago"
         },
         {
           "label": "Soinua desgaituta dago testua",
