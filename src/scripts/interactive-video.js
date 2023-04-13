@@ -4064,9 +4064,14 @@ InteractiveVideo.prototype.getContext = function () {
  * Show instruction assistance if needed
  */
 InteractiveVideo.prototype.showInteractionsAssistance = function () {
+  // Only applicable while editing
+  if (!self.editor) {
+    return;
+  }
+
   const self = this;
   // User is in editor > On Add Interaction tab > Couldn't see the interaction selectors
-  if (self.editor && !self.controls && self.editor.currentTabIndex === 1 && self.video.isLoaded()) {
+  if (!self.controls && self.editor.currentTabIndex === 1 && self.video.isLoaded()) {
     self.$videoWrapper.addClass('heart-beat');
     if (!self.$videoInfo) {
       self.$videoInfo = $('<div>', {
@@ -4083,7 +4088,7 @@ InteractiveVideo.prototype.showInteractionsAssistance = function () {
     }
     self.$videoInfo.show();
     self.$videoPlaybutton && self.$videoPlaybutton.show();
-  } 
+  }
   else {
     self.$videoWrapper.removeClass('heart-beat info-text');
     self.$videoInfo && self.$videoInfo.hide();
