@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntuación completa na tarefa antes de continuar",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Para obter unha mellor funcionalidade, esta opción debe usarse xunto coa opción \"Desactivar a navegación cara adiante nun vídeo\" de Vídeo interactivo."
                       }
                     ]
                   },
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -286,8 +284,8 @@
           "label": "Amosar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Desactivar a navegación",
+          "description": "Estas opcións desactivarán a navegación de vídeo do usuario tal e como se especifica.",
           "options": [
             {
               "label": "Ningún"
