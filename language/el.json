@@ -286,17 +286,17 @@
           "label": "Εμφάνιση κουμπιού επαναφοράς 10 δευτερολέπτων (rewind)"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Αποτροπή της παράλειψης",
+          "description": "Η ενεργοποίηση αυτών των επιλογών θα απενεργοποιήσει την πλοήγηση στο βίντεο του χρήστη όπως έχει καθοριστεί.",
           "options": [
             {
-              "label": "None"
+              "label": "Κανένα"
             },
             {
-              "label": "Forward"
+              "label": "Μπροστά"
             },
             {
-              "label": "Forward and backward"
+              "label": "Μπροστά και πίσω"
             }
           ]
         },
@@ -370,8 +370,8 @@
           "default": "Συνέχεια του βίντεο"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Προεπιλεγμένη ετικέτα για περισσότερες επιλογές αναπαραγωγής",
+          "default": "Περισσότερες επιλογές αναπαραγωγής"
         },
         {
           "label": "Καθορισμός ρυθμού αναπαραγωγής",
@@ -386,8 +386,8 @@
           "default": "Η πλοήγηση είναι απενεργοποιημένη"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Κείμενο για απενεργοποιημένη πλοήγηση προς τα εμπρός",
+          "default": "Η πλοήγηση προς τα εμπρός είναι απενεργοποιημένη"
         },
         {
           "label": "Κείμενο για απενεργοποιημένο ήχο",
@@ -493,8 +493,8 @@
           "default": "Απάντησες την @question που εμφανίστηκε μετά από @minutes λεπτά και @seconds δευτερόλεπτα."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Γραμμή προόδου αναπαραγωγής βίντεο",
+          "default": "Πρόοδος αναπαραγωγής βίντεο"
         }
       ]
     }
