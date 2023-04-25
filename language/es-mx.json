@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntaje máximo para el trabajo antes de seguir",
-                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un video\" del Video Interactivo."
+                        "description": "Para mejor funcionalidad, esta opción debería ser usada en conjunto con la opción de \"Deshabilitar navegación adelantada en un video\" del Video interactivo."
                       }
                     ]
                   },
@@ -222,9 +222,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -286,8 +284,8 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Evitar saltos",
-          "description": "Habilitar esta opción deshabilitará la navegación de video del usuario como está especificada.",
+          "label": "Deshabilitar navegación",
+          "description": "Estas opciones deshabilitarán la navegación del video del usuario como están especificadas.",
           "options": [
             {
               "label": "Ninguno"
@@ -370,8 +368,8 @@
           "default": "Continuar con el video"
         },
         {
-          "label": "Etiqueta predeterminada para más opciones del jugador",
-          "default": "Más opciones del jugador"
+          "label": "Etiqueta predeterminada para más opciones del reproductor",
+          "default": "Más opciones del reproductor"
         },
         {
           "label": "Establecer la velocidad de reproducción",

@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Pred pokračovaním sa vyžaduje plné skóre za otázku",
-                        "description": "Pre najlepšiu funkčnosť by sa táto možnosť mala používať v spojení s možnosťou „Zabrániť preskakovaniu dopredu vo videu“ v interaktívnom videu."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Zabrániť preskakovaniu",
-          "description": "Povolenie tejto možnosti zakáže používateľskú videonavigáciu podľa špecifikácie.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

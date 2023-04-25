@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Za nadaljevanje aktivnosti so zahtevane vse točke",
-                        "description": "Nastavitev je smiselno uporabiti v kombinaciji z nastavitvijo \"Prepreči preskok naprej\"."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Prevrti videoposnetek za 10 sekund nazaj"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

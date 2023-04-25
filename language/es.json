@@ -4,7 +4,7 @@
       "label": "Editor de Vídeo Interactivo",
       "fields": [
         {
-          "label": "Subir/Insertar vídeo",
+          "label": "Subir/incrustar video",
           "fields": [
             {
               "label": "Añadir un vídeo",
@@ -154,8 +154,8 @@
                         ]
                       },
                       {
-                        "label": "Requerir puntuación máxima para la tarea antes de seguir",
-                        "description": "Para una mejor funcionalidad, esta opción debe utilizarse junto con la opción \"Evitar saltar hacia adelante en un vídeo\" del vídeo Interactivo."
+                        "label": "Requerir puntaje máximo para el trabajo antes de seguir",
+                        "description": "Para mejor funcionalidad, esta opción debería ser usada en conjunto con la opción de \"Deshabilitar navegación adelantada en un video\" del Video interactivo."
                       }
                     ]
                   },
@@ -222,13 +222,11 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Tarea de resumen",
+          "label": "Resumen del trabajo",
           "fields": [
             {},
             {
@@ -240,11 +238,11 @@
       ]
     },
     {
-      "label": "Configuración del comportamiento",
+      "label": "Configuraciones del comportamiento",
       "fields": [
         {
           "label": "Iniciar vídeo en",
-          "description": "Introduce el código de tiempo en formato M:SS"
+          "description": "Introduzca el código de tiempo en el formato M:SS"
         },
         {
           "label": "Auto-reproducir vídeo",
@@ -286,8 +284,8 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Evitar saltos",
-          "description": "Habilitar esta opción deshabilitará la navegación de video del usuario como está especificada.",
+          "label": "Deshabilitar navegación",
+          "description": "Estas opciones deshabilitarán la navegación del video del usuario como están especificadas.",
           "options": [
             {
               "label": "Ninguno"
@@ -314,23 +312,23 @@
           "default": "Interacción"
         },
         {
-          "label": "Título para reproducción",
+          "label": "Reproducir título",
           "default": "Reproducir"
         },
         {
-          "label": "Título para pausa",
+          "label": "Pausar título",
           "default": "Pausa"
         },
         {
-          "label": "Título para silenciar",
-          "default": "Silenciar, sonido activo en este momento"
+          "label": "Silenciar título",
+          "default": "Enmudecer, actualmente sonoro"
         },
         {
-          "label": "Título para Activar sonido",
+          "label": "Activar sonido del título",
           "default": "Activar sonido, actualmente silenciado"
         },
         {
-          "label": "Título para la calidad de vídeo",
+          "label": "Título de la calidad de vídeo",
           "default": "Calidad del Vídeo"
         },
         {
@@ -382,7 +380,7 @@
           "default": "Retroceder 10 segundos"
         },
         {
-          "label": "Texto para La navegación está deshabilitada",
+          "label": "Texto para Navegación está deshabilitada",
           "default": "La navegación está deshabilitada"
         },
         {
@@ -390,7 +388,7 @@
           "default": "La navegación hacia adelante está deshabilitada"
         },
         {
-          "label": "Texto para El sonido está deshabilitado",
+          "label": "Texto para cuando sonido está deshabilitado",
           "default": "El sonido está deshabilitado"
         },
         {
@@ -457,7 +455,7 @@
           "description": "@answered se substituirá por el número de preguntas contestadas."
         },
         {
-          "label": "Información de pantalla de envío para respuestas ausentes",
+          "label": "Información de pantalla de envío para respuestas faltantes",
           "default": "No has respondido ninguna pregunta."
         },
         {
@@ -477,19 +475,19 @@
           "default": "Preguntas respondidas"
         },
         {
-          "label": "Título de fila de tabla de pantalla de envío: Puntuación",
-          "default": "Puntuación"
+          "label": "Título de fila de tabla de pantalla de envío: Puntaje",
+          "default": "Puntaje"
         },
         {
-          "label": "Puntuación de preguntas respondidas en pantalla de envío",
+          "label": "Puntaje de preguntas respondidas en pantalla de envío",
           "default": "respondidas"
         },
         {
-          "label": "Resumen de fila de pantalla de envío incluyendo puntuación (para lectores de pantalla)",
+          "label": "Resumen de fila de pantalla de envío incluyendo punaje (para lectores de pantalla)",
           "default": "Has obtenido @score de un total de @total puntos para la @question que apareció después de @minutes minutos y @seconds segundos."
         },
         {
-          "label": "Resumen de fila de pantalla de envío para sin puntuación (para lectores de pantalla)",
+          "label": "Resumen de fila de pantalla de envío para sin puntaje (para lectores de pantalla)",
           "default": "Has contestado contestado la @question que apareció después de @minutes minutos y @seconds segundos."
         },
         {

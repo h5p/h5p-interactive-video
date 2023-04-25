@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Изисква пълна оценка за задачата, преди да продължите",
-                        "description": "Тази опция трябва да се използва във връзка с опцията (Предотвратяване на прескачането във видеоклип)."
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Покажи бутона за нагласяване 10 секунди"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Devam etmeden önce görev için tam puan gerekir",
-                        "description": "Bu seçeneğin iyi bir şekilde çalışması için; \" Videoda ileri atlamayı önle\" seçeneğiyle birlikte kullanılmalıdır"
+                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "10 saniye geri sar butonunu göster"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Disable navigation",
+          "description": "These options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

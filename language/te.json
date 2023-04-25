@@ -1,61 +1,61 @@
 {
   "semantics": [
     {
-      "label": "Interaktív videó szerkesztő",
+      "label": "ఇంటరాక్టివ్ వీడియో ఎడిటర్",
       "fields": [
         {
-          "label": "Feltöltés/beágyazás videó",
+          "label": "వీడియో అప్‌లోడ్ /ఎంబెడ్",
           "fields": [
             {
-              "label": "Videó hozzáadása",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "వీడియోని జోడించండి",
+              "description": "మీరు మీ ఇంటరాక్టివ్ వీడియోలో ఉపయోగించాలనుకుంటున్న వీడియోను జోడించడానికి దిగువ క్లిక్ చేయండి. మీరు వీడియో లింక్‌ను జోడించవచ్చు లేదా వీడియో ఫైల్‌లను అప్‌లోడ్ చేయవచ్చు. విభిన్న లక్షణాలతో వీడియో యొక్క అనేక వెర్షన్‌లను జోడించడం సాధ్యమవుతుంది. బ్రౌజర్‌లలో గరిష్ట మద్దతుని నిర్ధారించడానికి కనీసం webm మరియు mp4 ఫార్మాట్‌లలో సంస్కరణను జోడించండి."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "ప్రారంభ స్క్రీన్ ఎంపికలు (YouTube వీడియోలకు మద్దతు లేదు)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interaktív videó",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "ఈ ఇంటరాక్టివ్ వీడియో యొక్క శీర్షిక",
+                  "default": "ఇంటరాక్టివ్ వీడియో",
+                  "description": "సమ్మరీ , గణాంకాలలో వాడబడుతుంది."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "వీడియో ప్రారంభ స్క్రీన్‌లో శీర్షికను దాచి ఉంచండి"
                 },
                 {
-                  "label": "Rövid leírás (nem kötelező)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "సంక్షిప్త వివరణ (ఆప్షనల్)",
+                  "description": "ఆప్షనల్. వీడియో ప్రారంభ స్క్రీన్‌లో చిన్న వివరణ టెక్స్ట్ ను ప్రదర్శించండి. YouTube వీడియోలకు పని చేయదు."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "పోస్టర్ చిత్రం",
+                  "description": "యూజరు వీడియోను ప్రారంభించే ముందు చిత్రం ప్రదర్శించబడుతుంది. YouTube వీడియోల కోసం పని చేయదు."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "టెక్స్ట్ ట్రాక్‌లు (YouTube వీడియోలకు మద్దతు లేదు)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "అందుబాటులో ఉన్న టెక్స్ట్ ట్రాక్‌లు",
+                  "entity": "ట్రాక్ చేయండి",
                   "field": {
-                    "label": "Track",
+                    "label": "ట్రాక్ చేయండి",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Feliratok"
+                        "label": "ట్రాక్ లేబుల్",
+                        "description": "మీరు బహుళ ట్రాక్‌లను అందిస్తే ఉపయోగించబడుతుంది మరియు యూజరు ట్రాక్‌ని ఎంచుకోవలసి ఉంటుంది. ఉదాహరణకు 'స్పానిష్ ఉపశీర్షికలు' అనేది స్పానిష్ సబ్‌టైటిల్ ట్రాక్ యొక్క లేబుల్ కావచ్చు.",
+                        "default": "సబ్ టైటిల్స్"
                       },
                       {
                         "label": "Type of text track",
                         "options": [
                           {
-                            "label": "Feliratok"
+                            "label": "Subtitles"
                           },
                           {
                             "label": "Captions"
                           },
                           {
-                            "label": "Leírás"
+                            "label": "Descriptions"
                           }
                         ]
                       },
@@ -90,7 +90,7 @@
                     "label": "Pause video"
                   },
                   {
-                    "label": "Megjelenítés mint",
+                    "label": "Display as",
                     "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
                     "options": [
                       {
@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Show button for rewinding 10 seconds"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Prevent skipping",
+          "description": "Enabling this options will disable user video navigation as specified.",
           "options": [
             {
               "label": "None"

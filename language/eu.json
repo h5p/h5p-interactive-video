@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Ekin aurretik eskatu puntuazio osoa",
-                        "description": "Bere funtzionalitatea hobetzeko aukera hau erabili beharko zen Bideo interaktiboko \"Galerazi bideoko aurrerako jauziak\" aukerarekin batera."
+                        "description": "Funtzionalitate onena lortzeko aukera hau Bideo Interaktiboaren \"Desgaitu nabigazioa aurrera egiteko bideoan\" aukerarekin batera erabili behar da."
                       }
                     ]
                   },
@@ -222,13 +222,11 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Aurkibea ataza",
+          "label": "Laburpen ataza",
           "fields": [
             {},
             {
@@ -286,17 +284,17 @@
           "label": "Erakutsi 10 segundo atzera eramateko botoia"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Desgaitu nabigazioa",
+          "description": "Aukera hauek erabiltzailearen bideo-nabigazioa desgaituko dute zehaztutako moduan.",
           "options": [
             {
-              "label": "None"
+              "label": "Bat ere ez"
             },
             {
-              "label": "Forward"
+              "label": "Aurrera"
             },
             {
-              "label": "Forward and backward"
+              "label": "Aurrera eta atzera"
             }
           ]
         },
@@ -370,8 +368,8 @@
           "default": "Jarraitu bideoa"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Erreprodukzio-aukera gehiagorako etiketa lehenetsia",
+          "default": "Erreprodukzio-aukera gehiago"
         },
         {
           "label": "Ezarri erreprodukzio abiadura",
@@ -386,8 +384,8 @@
           "default": "Nabigazioa desgaituta dago"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Aurrera nabigatzeko testua desgaituta dago",
+          "default": "Aurrera nabigatzea desgaituta dago"
         },
         {
           "label": "Soinua desgaituta dago testua",

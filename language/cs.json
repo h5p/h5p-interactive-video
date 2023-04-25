@@ -154,7 +154,7 @@
                         ]
                       },
                       {
-                        "label": "RPřed pokračováním vyžadovat úplné splnění úkolu",
+                        "label": "Před pokračováním vyžadovat úplné splnění úkolu",
                         "description": "Pro nejlepší funkčnost by měla být tato volba použita ve spojení s možností \"Zabránit přeskakování vpřed ve videu \" u interaktivního videa."
                       }
                     ]
@@ -286,17 +286,17 @@
           "label": "Zobrazit tlačítko pro přetočení zpět o 10 sekund"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "Zabránit přeskakování",
+          "description": "Povolením této možnosti zakážete uživatelskou navigaci videa, jak je uvedeno.",
           "options": [
             {
-              "label": "None"
+              "label": "Žádný"
             },
             {
-              "label": "Forward"
+              "label": "Vpřed"
             },
             {
-              "label": "Forward and backward"
+              "label": "Vpřed a vzad"
             }
           ]
         },
@@ -323,11 +323,11 @@
         },
         {
           "label": "Nadpis ztlumit",
-          "default": "Mute, currently unmuted"
+          "default": "Ztlumeno, momentálně vypnuto"
         },
         {
           "label": "Nadpis nahlas",
-          "default": "Unmute, currently muted"
+          "default": "Zapnout zvuk, momentálně ztlumeno"
         },
         {
           "label": "Nadpis kvality videa",
@@ -370,8 +370,8 @@
           "default": "Pokračovat s videem"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Výchozí popisek pro další možnosti přehrávače",
+          "default": "Další možnosti přehrávače"
         },
         {
           "label": "Nastavit rychlost přehrávání",
@@ -382,12 +382,12 @@
           "default": "Převinout zpět o 10 vteřin"
         },
         {
-          "label": "Text Navigace je zakázána",
-          "default": "Navigace je zakázána"
+          "label": "Text Navigace je deaktivována",
+          "default": "Navigace je deaktivována"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Pohyb vpřed je deaktivovaný text",
+          "default": "Navigace vpřed je deaktivována"
         },
         {
           "label": "Text Zvuk je deaktivován",
@@ -402,15 +402,15 @@
           "default": "Zpět"
         },
         {
-          "label": "Uplynulý čas v hodinách",
+          "label": "Strávený čas v hodinách",
           "default": "Hodiny"
         },
         {
-          "label": "Uplynulý čas v minutách",
+          "label": "Strávený čas v minutách",
           "default": "Minuty"
         },
         {
-          "label": "Uplynulý čas ve vteřinách",
+          "label": "Strávený čas ve vteřinách",
           "default": "Vteřiny"
         },
         {
@@ -418,7 +418,7 @@
           "default": "Aktuální čas:"
         },
         {
-          "label": "Nadpis pro celkový čas",
+          "label": "Popisek pro celkový čas",
           "default": "Celkový čas:"
         },
         {
@@ -434,7 +434,7 @@
           "default": "Video je pozastaveno"
         },
         {
-          "label": "Nadpis obsah",
+          "label": "Popisek obsahu",
           "default": "Obsah"
         },
         {
@@ -447,21 +447,21 @@
           "description": "@answered bude nahrazeno počtem zodpovězených otázek."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Informace obrazovky odpovědí",
+          "default": "Odpověděli jste na @odpověděné otázky, kliknutím níže odešlete své odpovědi.",
+          "description": "@answered bude nahrazeno počtem zodpovězených otázek."
         },
         {
-          "label": "Informace obrazovky odpovědí",
-          "default": "Odpověděl jste na @answered otázek, odpovědi odešlete kliknutím níže.",
+          "label": "Odeslat informace o obrazovce, když je deaktivováno tlačítko Odeslat",
+          "default": "Odpověděl jste na @answered otázek.",
           "description": "@answeredbude nahrazeno počtem zodpovězených otázek."
         },
         {
-          "label": "Informace obrazovky odpovědí pro chybějící odpovědi",
+          "label": "Odeslat informace obrazovky odpovědí pro chybějící odpovědi",
           "default": "Neodpověděli jste žádné otázky."
         },
         {
-          "label": "Informace obrazovky odpovědí pro nutné odpovědi",
+          "label": "Pro potřebnou odpověď odešlete informace o obrazovce",
           "default": "Před odesláním odpovědí musíte odpovědět alespoň na jednu otázku."
         },
         {
@@ -493,8 +493,8 @@
           "default": "Odpověděli jste na @question , který se objevil po @minutes minutách a @seconds vteřinách."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Ukazatel průběhu videa",
+          "default": "Průběh videa"
         }
       ]
     }
