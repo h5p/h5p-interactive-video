@@ -495,6 +495,10 @@
         {
           "label": "Barra de progreso del vídeo",
           "default": "Progreso del video"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }
