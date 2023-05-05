@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "Requerir puntaje máximo para el trabajo antes de seguir",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Para mejor funcionalidad, esta opción debería ser usada en conjunto con la opción de \"Deshabilitar navegación adelantada en un video\" del Video interactivo."
                       }
                     ]
                   },
@@ -286,8 +286,8 @@
           "label": "Mostrar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Deshabilitar navegación",
+          "description": "Estas opciones deshabilitarán la navegación del video del usuario como están especificadas.",
           "options": [
             {
               "label": "Ninguno"
@@ -370,8 +370,8 @@
           "default": "Continuar con el video"
         },
         {
-          "label": "Etiqueta predeterminada para más opciones del jugador",
-          "default": "Más opciones del jugador"
+          "label": "Etiqueta predeterminada para más opciones del reproductor",
+          "default": "Más opciones del reproductor"
         },
         {
           "label": "Establecer la velocidad de reproducción",

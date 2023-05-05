@@ -155,7 +155,7 @@
                       },
                       {
                         "label": "דרוש ציון מלא עבור המשימה לפני שממשיכים",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "לקבלת הפונקציונליות הטובה ביותר יש להשתמש באפשרות זו בשילוב עם האפשרות ״השבת ניווט קדימה בסרטון״ של וידאו אינטראקטיבי."
                       }
                     ]
                   },
@@ -166,8 +166,8 @@
                         "label": "צבע רקע"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "צל מסגרת",
+                        "description": "מוסיף צל עדין סביב האינטראקציה. ייתכן שתרצה להשבית זאת עבור אינטראקציות שקופות לחלוטין"
                       }
                     ]
                   },
@@ -187,7 +187,7 @@
                       },
                       {
                         "label": "מעבר אל",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "description": "זמן היעד אליו יועברו המשתמש בלחיצה על הנקודה החמה. הזן קוד זמן בפורמט M:SS."
                       },
                       {
                         "label": "URL",
@@ -283,11 +283,11 @@
           "description": "פונקציה זו לא קיימת ב-iPad כאשר משתמשים ב-YouTube בסרטון המקור."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "הצגת כפתור מעבר לאחור של 10 שניות"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "ביטול ניווט",
+          "description": "אפשרויות אלה יבטלו את ניווט הווידאו של המשתמש כפי שצוין.",
           "options": [
             {
               "label": "אף אחד"
@@ -302,7 +302,7 @@
         },
         {
           "label": "כיבוי שמע",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "description": "הפעלת אפשרות זו לבטל את צליל הסרטון ותמנע את הפעלתו."
         }
       ]
     },
@@ -323,11 +323,11 @@
         },
         {
           "label": "השתקת כותרת",
-          "default": "Mute, currently unmuted"
+          "default": "השתקה, כרגע שמע פעיל"
         },
         {
           "label": "הפעלת כותרת",
-          "default": "Unmute, currently muted"
+          "default": "בטל השתקה, מושתק כרגע"
         },
         {
           "label": "כותרת איכות סרטון",
@@ -362,7 +362,7 @@
           "default": "מסך הגשה"
         },
         {
-          "label": "Default label for adaptivity seek button",
+          "label": "תווית ברירת מחדל עבור לחצן חיפוש מותאם",
           "default": "המשך"
         },
         {
@@ -370,7 +370,7 @@
           "default": "המשך סרטון"
         },
         {
-          "label": "Default label for more player options",
+          "label": "תווית ברירת מחדל לאפשרויות נגן נוספות",
           "default": "אפשרויות נגן נוספות"
         },
         {
@@ -382,16 +382,16 @@
           "default": "חזרה אחורה 10 שניות"
         },
         {
-          "label": "Navigation is disabled text",
+          "label": "תווית ניווט אינו זמין",
           "default": "ניווט אינו זמין"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "תווית ניווט קדימה לא זמין",
+          "default": "ניווט קדימה לא זמין"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "תווית קול מושתק",
+          "default": "קול מושתק"
         },
         {
           "label": "אזהרה שהמשתמש מוכרח לענות על השאלה נכון לפני שממשיך",
@@ -438,7 +438,7 @@
           "default": "תוכן"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
+          "label": "הודעה שנענה (@answered יוחלף במספר השאלות שנענה)",
           "default": "@answered נענו"
         },
         {
@@ -452,8 +452,8 @@
           "description": "@answered יוחלף במספר השאלות שענו עליהן."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
+          "label": "שמירת נתוני מסך כאשר כפתור השליחה מושבת",
+          "default": "ענית על @answered שאלות.",
           "description": "@answered תשובות יוחלפו במספר התשובות שנענו."
         },
         {
@@ -477,15 +477,15 @@
           "default": "תשובות עם מענה"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "שמירת כותרת שורת טבלת :title ציון",
           "default": "ציון"
         },
         {
-          "label": "Submit screen answered score",
+          "label": "שמירת ציוני עמוד מענים",
           "default": "נענו"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
+          "label": "שלח סיכום של שורת המסך כולל ניקוד (לדוברי קריאה)",
           "default": "קיבלתם @score מתוך @total נקודות עבור ה@question שהופיעה אחרי @minutes דקות ו-@seconds שניות."
         },
         {
