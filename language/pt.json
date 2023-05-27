@@ -61,7 +61,8 @@
                       },
                       {
                         "label": "Idioma original, deve ser definido para legendas",
-                        "description": "Deve ser uma etiqueta de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto selecionado, o idioma original da faixa de texto deve ser definido."
+                        "description": "Deve ser uma etiqueta de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto selecionado, o idioma original da faixa de texto deve ser definido.",
+                        "default": "en"
                       },
                       {
                         "label": "Origem da faixa (ficheiro WebVTT)"
@@ -163,7 +164,8 @@
                     "label": "Efeitos visuais",
                     "fields": [
                       {
-                        "label": "Cor de fundo"
+                        "label": "Cor de fundo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombra da caixa",
@@ -222,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
