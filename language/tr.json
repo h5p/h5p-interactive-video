@@ -61,7 +61,8 @@
                       },
                       {
                         "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
-                        "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
+                        "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır.",
+                        "default": "en"
                       },
                       {
                         "label": "Takip kaynağı (WebVTT dosyası)"
@@ -163,7 +164,8 @@
                     "label": "Görsellik",
                     "fields": [
                       {
-                        "label": "Arkaplan rengi"
+                        "label": "Arkaplan rengi",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Kutu gölgesi",
@@ -222,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
