@@ -61,7 +61,8 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined.",
+                        "default": "en"
                       },
                       {
                         "label": "Track source (WebVTT file)"
@@ -163,7 +164,8 @@
                     "label": "Visuelt",
                     "fields": [
                       {
-                        "label": "Bakgrunnsfarge"
+                        "label": "Bakgrunnsfarge",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -222,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {

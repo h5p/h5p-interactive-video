@@ -61,7 +61,8 @@
                       },
                       {
                         "label": "Lugha chanzi, lazima ifafanuliwe kwa manukuu",
-                        "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe."
+                        "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe.",
+                        "default": "en"
                       },
                       {
                         "label": "Chanzo cha wimbo (faili ya WebVTT)"
@@ -163,7 +164,8 @@
                     "label": "Vielelezo",
                     "fields": [
                       {
-                        "label": "Rangi ya Mandharinyuma"
+                        "label": "Rangi ya Mandharinyuma",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Kivuli cha kisanduku",
@@ -222,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
