@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
+                        "default": "en",
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -155,7 +156,7 @@
                       },
                       {
                         "label": "Requerir puntuación completa na tarefa antes de continuar",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Para obter unha mellor funcionalidade, esta opción debe usarse xunto coa opción \"Desactivar a navegación cara adiante nun vídeo\" de Vídeo interactivo."
                       }
                     ]
                   },
@@ -163,7 +164,8 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fondo"
+                        "label": "Cor de fondo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Sombreado da caixa",
@@ -286,8 +288,8 @@
           "label": "Amosar botón para rebobinar 10 segundos"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Desactivar a navegación",
+          "description": "Estas opcións desactivarán a navegación de vídeo do usuario tal e como se especifica.",
           "options": [
             {
               "label": "Ningún"
@@ -495,6 +497,10 @@
         {
           "label": "Barra de progreso do vídeo",
           "default": "Progreso do vídeo"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

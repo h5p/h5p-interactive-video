@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Originalo kalba turi būti apibrėžta subtitrams",
+                        "default": "en",
                         "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Vaizdai",
                     "fields": [
                       {
-                        "label": "Fono spalva"
+                        "label": "Fono spalva",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Dėžutės šešėlis",
@@ -286,8 +288,8 @@
           "label": "Rodyti mygtuką atsukti 10 sekundžių"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Išjungti navigaciją",
+          "description": "Šios parinktys išjungs naudotojo vaizdo įrašų naršymą, kaip nurodyta.",
           "options": [
             {
               "label": "None"
@@ -386,8 +388,8 @@
           "default": "Navigacija išjungta"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "„Naršymas pirmyn išjungtas“ tekstas",
+          "default": "Naršymas pirmyn išjungtas"
         },
         {
           "label": "„Garsas išjungtas“ tekstas",
@@ -398,7 +400,7 @@
           "default": "Prieš tęsdami, turite teisingai atsakyti į visus klausimus."
         },
         {
-          "label": "Atgal mygtukas",
+          "label": "Mygtukas „ Atgal“",
           "default": "Atgal"
         },
         {
@@ -406,15 +408,15 @@
           "default": "Valandos"
         },
         {
-          "label": "Praėjo laikas minutėmis",
+          "label": "Praėjo laiko minutėmis",
           "default": "Minutės"
         },
         {
-          "label": "Praėjo laikas sekundėmis",
+          "label": "Praėjo laiko sekundėmis",
           "default": "Sekundės"
         },
         {
-          "label": "Etiketė dabartiniam laikui",
+          "label": "Pavadinimas dabartiniam laikui",
           "default": "Dabartinis laikas:"
         },
         {
@@ -434,7 +436,7 @@
           "default": "Vaizdo įrašas pristabdytas"
         },
         {
-          "label": "Content label",
+          "label": "Turinio pavadinimas",
           "default": "Turinys"
         },
         {
@@ -478,11 +480,11 @@
         },
         {
           "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "default": "Balas"
         },
         {
           "label": "Submit screen answered score",
-          "default": "answered"
+          "default": "atsakyta"
         },
         {
           "label": "Submit screen row summary including score (for readspeakers)",
@@ -495,6 +497,10 @@
         {
           "label": "Video Progressbar",
           "default": "Video progress"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

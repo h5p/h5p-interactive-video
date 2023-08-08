@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Эх хэл, дэд нэр томъёог тодорхойлох ёстой",
+                        "default": "en",
                         "description": "BCP 47 хэлний хүчинтэй тэмдэг байх ёстой. Хэрэв 'Subtitles' нь сонгосон текстийн гүйлгээний төрөл бол тухайн мөрийн эх хэлийг тодорхойлох ёстой."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "үзүүлэн",
                     "fields": [
                       {
-                        "label": "Дэвсгэр өнгө"
+                        "label": "Дэвсгэр өнгө",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Сүүдэр",
@@ -495,6 +497,10 @@
         {
           "label": "Видео явцын самбар",
           "default": "Видео явцын самбар"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

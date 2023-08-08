@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
+                        "default": "en",
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Noformējums",
                     "fields": [
                       {
-                        "label": "Fona krāsa"
+                        "label": "Fona krāsa",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Rāmīša ēnojums",
@@ -495,6 +497,10 @@
         {
           "label": "Video progresa josla",
           "default": "Video progress"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

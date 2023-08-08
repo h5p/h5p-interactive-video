@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Езиковият източник трябва да бъде уточнен за субтитрите",
+                        "default": "en",
                         "description": "Трябва да бъде валиден BCP 47 езиков таг. Ако (Субтитри) е избраната текстова добавка, езиковият източник трябва да бъде уточнен."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Визуализации",
                     "fields": [
                       {
-                        "label": "Фонов цвят"
+                        "label": "Фонов цвят",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Box shadow",
@@ -495,6 +497,10 @@
         {
           "label": "Video Progressbar",
           "default": "Video progress"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

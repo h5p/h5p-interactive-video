@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
+                        "default": "en",
                         "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Effetti visivi",
                     "fields": [
                       {
-                        "label": "Colore di sfondo"
+                        "label": "Colore di sfondo",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Ombreggiatura a forma di casella",
@@ -495,6 +497,10 @@
         {
           "label": "Video Progressbar",
           "default": "Video progress"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }

@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
+                        "default": "en",
                         "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
                       },
                       {
@@ -155,7 +156,7 @@
                       },
                       {
                         "label": "Ekin aurretik eskatu puntuazio osoa",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Funtzionalitate onena lortzeko aukera hau Bideo Interaktiboaren \"Desgaitu nabigazioa aurrera egiteko bideoan\" aukerarekin batera erabili behar da."
                       }
                     ]
                   },
@@ -163,7 +164,8 @@
                     "label": "Ikusizkoak",
                     "fields": [
                       {
-                        "label": "Atzeko planoaren kolorea"
+                        "label": "Atzeko planoaren kolorea",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Kutxaren itzala",
@@ -228,7 +230,7 @@
           ]
         },
         {
-          "label": "Aurkibea ataza",
+          "label": "Laburpen ataza",
           "fields": [
             {},
             {
@@ -286,8 +288,8 @@
           "label": "Erakutsi 10 segundo atzera eramateko botoia"
         },
         {
-          "label": "Saihestu saltatzea",
-          "description": "Aukera hauek gaituz gero, erabiltzailearen bideo-nabigazioa desgaituko da zehaztutako moduan.",
+          "label": "Desgaitu nabigazioa",
+          "description": "Aukera hauek erabiltzailearen bideo-nabigazioa desgaituko dute zehaztutako moduan.",
           "options": [
             {
               "label": "Bat ere ez"
@@ -495,6 +497,10 @@
         {
           "label": "Bideoaren Aurrerapen-barra",
           "default": "Bideoaren aurrerapena"
+        },
+        {
+          "label": "Text for how to create interactions",
+          "default": "Play the video to start creating interactions"
         }
       ]
     }
