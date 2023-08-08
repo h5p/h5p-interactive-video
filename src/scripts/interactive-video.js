@@ -4072,7 +4072,7 @@ InteractiveVideo.prototype.showInteractionsAssistance = function () {
   }
 
   // User is in editor > On Add Interaction tab > Couldn't see the interaction selectors
-  if (!self.controls && self.editor.currentTabIndex === 1 && self.currentState === InteractiveVideo.LOADED) {
+  if (!self.controls && self.editor.currentTabIndex === 1 && self.video.isLoaded()) {
     self.$videoWrapper.addClass('heart-beat');
     if (!self.$videoInfo) {
       self.$videoInfo = $('<div>', {
