@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Langue de source, à renseigner obligatoirement pour les sous-titres",
-                        "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
                         "label": "Source de texte (fichier WebVTT)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
                         "label": "Orixe da fonte (ficheiro WebVTT)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

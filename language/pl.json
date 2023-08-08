@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Język – musi być określony dla tłumaczenia",
-                        "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język."
                       },
                       {
                         "label": "Plik z napisami (w formacie WebVTT)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

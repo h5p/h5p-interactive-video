@@ -1126,6 +1126,14 @@
         "importance": "low",
         "default": "Video progress",
         "optional": true
+      },
+      {
+        "name": "howToCreateInteractions",
+        "type": "text",
+        "label": "Information on how to start creating interactions",
+        "importance": "low",
+        "default": "Play the video to start creating interactions",
+        "optional": true
       }
     ]
   }

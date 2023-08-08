@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
-                        "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
                         "label": "Bron van het spoor (WebVTT bestand)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
