@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
                         "label": "Celiņa avots (WebVTT fails)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

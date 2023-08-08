@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
-                        "description": "Veljavne so oznake jezikov po BCP 47.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
                         "label": "Datoteka za sled (WebVTT)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

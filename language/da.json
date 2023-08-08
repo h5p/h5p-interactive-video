@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
-                        "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
                         "label": "Sporkilde (WebVTT-fil)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

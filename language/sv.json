@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
                         "label": "Spårkälla (WebVTT-fil)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

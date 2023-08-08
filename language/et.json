@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Algkeel, subtiitrite jaoks peab olema määratud",
-                        "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
                         "label": "Tekstiraja allikas (WebVTT fail)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

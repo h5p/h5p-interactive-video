@@ -61,8 +61,8 @@
                       },
                       {
                         "label": "Lähdekieli, pakollinen tekstityksille",
-                        "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä.",
-                        "default": "en"
+                        "default": "en",
+                        "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
                         "label": "Raidan lähde (WebVTT tiedosto)"
@@ -224,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
