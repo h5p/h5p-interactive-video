@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Interactive Video Editor",
+      "label": "ინტერაქტიული ვიდეო რედაქტორი",
       "fields": [
         {
-          "label": "Upload/embed video",
+          "label": "ვიდეოს ატვირთვა/ჩაშენება",
           "fields": [
             {
-              "label": "Add a video",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "label": "დაამატეთ ვიდეო",
+              "description": "დააწკაპუნეთ ქვემოთ, რომ დაამატოთ ვიდეო, რომლის გამოყენებაც გსურთ თქვენს ინტერაქტიულ ვიდეოში. შეგიძლიათ დაამატოთ ვიდეო ბმული ან ატვირთოთ ვიდეო ფაილები. შესაძლებელია სხვადასხვა ხარისხის ვიდეოს რამდენიმე ვერსიის დამატება. ბრაუზერებში მაქსიმალური მხარდაჭერის უზრუნველსაყოფად, მინიმუმ დაამატეთ ვერსია webm და mp4 ფორმატებში."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "საწყისი ეკრანის ვარიანტები (არ არის მხარდაჭერილი YouTube ვიდეოებისთვის)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
-                  "default": "Interactive Video",
-                  "description": "Used in summaries, statistics etc."
+                  "label": "ინტერაქტიული ვიდეოს სათაური",
+                  "default": "ინტერაქტიული ვიდეო",
+                  "description": "გამოიყენება შეჯამებებში, სტატისტიკაში და ა.შ."
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "დამალე სათაური ვიდეოს საწყის ეკრანზე"
                 },
                 {
-                  "label": "Short description (Optional)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "label": "მოკლე აღწერა (არასავალდებულო)",
+                  "description": "მოკლე აღწერილობის ტექსტის ჩვენება ვიდეოს დაწყების ეკრანზე. არ მუშაობს YouTube ვიდეოებზე."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "პლაკატის სურათი",
+                  "description": "გამოსახულების ჩვენება მომხმარებლის მიერ ვიდეოს გაშვებამდე. არ მუშაობს YouTube ვიდეოებისთვის."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "ტექსტური ჩანაწერები (მხარდაუჭერელია YouTube ვიდეოებისთვის)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "ხელმისაწვდომი ტექსტური ჩანაწერები",
+                  "entity": "ბილიკი",
                   "field": {
-                    "label": "Track",
+                    "label": "ბილიკი",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
-                        "default": "Subtitles"
+                        "label": "ბილიკის ლეიბლი",
+                        "description": "გამოიყენება, თუ გთავაზობთ რამდენიმე ბილიკს და მომხმარებელმა უნდა აირჩიოს ერთ-ერთი. მაგალითად, „ესპანური სუბტიტრები“ შეიძლება იყოს ესპანური სუბტიტრების ლეიბლი.",
+                        "default": "სუბტიტრები"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "ტექსტური ჩანაწერის ტიპი",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "სუბტიტრები"
                           },
                           {
-                            "label": "Captions"
+                            "label": "წარწერები"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "აღწერილობები"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "საწყისი ენა უნდა იყოს განსაზღვრული სუბტიტრებისთვის",
                         "default": "en",
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "უნდა იყოს მოქმედი BCP 47 ენის ტეგი. თუ „სუბტიტრები“ არის არჩეული ტექსტური ჩანაწერის ტიპი, უნდა განისაზღვროს ტრეკის საწყისი ენა."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "ჩანაწერის წყარო (WebVTT ფაილი)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "ნაგულისხმევი ტექსტური ჩანაწერი",
+                  "description": "თუ ცარიელი დარჩა ან არ ემთხვევა რომელიმე ტექსტურ ჩანაწერს, პირველი ტექსტური ჩანაწერი გამოყენებული იქნება ნაგულისხმევად."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "დაამატე ინტერაქცია",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "ჩვენების დრო"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "ვიდეოს პაუზა"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "ჩვენება როგორც",
+                    "description": "<b>ღილაკი</b> არის ჩაკეცილი ინტერაქცია, რომელსაც მომხმარებელმა უნდა დააჭიროს გასახსნელად. <b>პოსტერი</b> არის გაფართოებული ინტერაქცია, რომელიც ნაჩვენებია პირდაპირ ვიდეოს თავზე",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "ღილაკი"
                       },
                       {
-                        "label": "Poster"
+                        "label": "პოსტერი"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "დააწექი ღილაკს ეკრანის დასაპატარავებლად"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "წარწერა",
+                    "description": "ინტერაქციის ღილაკის გვერდით წარწერა."
                   },
                   {},
                   {},
@@ -116,86 +116,86 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "ადაპტურობა",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "ქმედება ყველა სწორზე",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "გადადი",
+                            "description": "შეიყვანე დროის კოდი ფორმატში M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "ნება მიეცით მომხმარებელს უარი თქვას და განაგრძოს"
                           },
                           {
-                            "label": "Message"
+                            "label": "შეტყობინება"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "გადასვლის ღილაკის წარწერა"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "ქმედება არასწორზე",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "გადადი",
+                            "description": "შეიყვანე დროის კოდი ფორმატში M:SS"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "ნება მიეცით მომხმარებელს უარი თქვას და განაგრძოს"
                           },
                           {
-                            "label": "Message"
+                            "label": "შეტყობინება"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "წარწერა გადასვლის ღილაკისთვის"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "label": "მოითხოვე სრული ქულა დავალებისთვის, სანამ გაგრძელდება",
+                        "description": "საუკეთესო ფუნქციონირებისთვის, ეს პარამეტრი უნდა იყოს გამოყენებული ინტერაქტიული ვიდეოს \"ნავიგაციის გათიშვა ვიდეოში\" პარამეტრთან ერთად."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "გარეგნული მხარე",
                     "fields": [
                       {
-                        "label": "Background color",
+                        "label": "ფონური ფერი",
                         "default": "rgb(255, 255, 255)"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "ყუთის ჩრდილი",
+                        "description": "ამატებს დახვეწილ ჩრდილს ურთიერთქმედების გარშემო. თქვენ შეგიძლიათ გამორთოთ ეს სრულიად გამჭვირვალე ურთიერთქმედებისთვის"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "გადადი დაწკაპუნებაზე",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "ტიპი",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "დროის კოდი"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "სხვა გვერდი (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "გადადი",
+                        "description": "სამიზნე დრო, რომელზეც მომხმარებელი გადავა hotspot-ზე დაჭერისას. შეიყვანე დროის კოდი ფორმატში M:SS."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "პროტოკოლი",
                             "options": [
                               {
                                 "label": "http://"
@@ -207,7 +207,7 @@
                                 "label": "(root relative)"
                               },
                               {
-                                "label": "other"
+                                "label": "სხვა"
                               }
                             ]
                           },
@@ -217,290 +217,288 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "ვიზუალიზირება",
+                        "description": "აჩვენეთ, რომ ურთიერთქმედების დაწკაპუნება შესაძლებელია საზღვრისა და ღილაკის დამატებით"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Summary task",
+          "label": "შემაჯამებელი დავალება",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "გამოაჩინე",
+              "description": "წამების რაოდენობა ვიდეოს დასრულებამდე."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "ქცევის პარამეტრები",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "დაიწყე ვიდეო",
+          "description": "შეიყვანე დროის კოდი ფორმატში M:SS"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "ვიდეოს ავტომატური ჩართვა",
+          "description": "ავტომატურად ჩართე ვიდეო"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "ვიდეოს უწყვეტობა",
+          "description": "დააჭირეთ, თუ ვიდეო უნდა იყოს ჩართული უწყვეტად"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "გადააწერე \"პასუხის ჩვენების\" ღილაკს",
+          "description": "ამ პარამეტრით განისაზღვრება \"აჩვენე ამოხსნის\" ღილაკის ჩვენება ყველა შეკითხვისთვის.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "გააქტიურებული"
             },
             {
-              "label": "Disabled"
+              "label": "გამორთული"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "გადააწერე \"თავიდან ცდის\" ღილაკს",
+          "description": "ეს პარამეტრი განსაზღვრავს \"თავიდან ცდის\" ღილაკის ჩვენებას ყველა შეკითხვისთვის.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "გააქტიურებული"
             },
             {
-              "label": "Disabled"
+              "label": "გამორთული"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "დაიწყეთ სანიშნეების მენიუს გახსნით",
+          "description": "ეს ფუნქცია მიუწვდომელია iPad-ზე YouTube-ის ვიდეო წყაროდ გამოყენებისას."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "ღილაკის ჩვენება 10 წამის უკან გადახვევისთვის"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "ნავიგაციის გამორთვა",
+          "description": "ეს პარამეტრები გათიშავს მომხმარებლის ვიდეო ნავიგაციას, როგორც მითითებულია.",
           "options": [
             {
-              "label": "None"
+              "label": "არცერთი"
             },
             {
-              "label": "Forward"
+              "label": "წინ"
             },
             {
-              "label": "Forward and backward"
+              "label": "წინ და უკან"
             }
           ]
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "ხმის გამორთვა",
+          "description": "ამ პარამეტრის ჩართვა გააუქმებს ვიდეოს ხმას და ხელს შეუშლის მის ჩართვას."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "ლოკალიზება",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "ურთიერთქმედების სათაური",
+          "default": "ურთიერთქმედება"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "ჩართვის სათაური",
+          "default": "ჩართე"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "დაპაუზების სათაური",
+          "default": "დაპაუზება"
         },
         {
-          "label": "Mute title",
-          "default": "Mute, currently unmuted"
+          "label": "გაჩუმების სათაური",
+          "default": "ხმის გამორთვა, ახლა ხმა ჩართულია"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute, currently muted"
+          "label": "ხმის ჩართვის სათაური",
+          "default": "ხმის ჩართვა, ახლა ხმა გამორთულია"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "ვიდეოს ხარისხის სათაური",
+          "default": "ვიდეოს ხარისხი"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "ვიდეოს სუბტიტრების სათაური",
+          "default": "სუბტიტრები"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "დახურვის ღილაკის ტექსტი",
+          "default": "დახურვა"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "სრული ეკრანის სათაური",
+          "default": "სრული ეკრანი"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "სრული ეკრანის გამორთვის სათაური",
+          "default": "სრული ეკრანიდან გამოსვლა"
         },
         {
-          "label": "Summary title",
-          "default": "Open summary dialog"
+          "label": "შემაჯამებელი სათაური",
+          "default": "შემაჯამებელი დიალოგის გახსნა"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "სანიშნეების სათაური",
+          "default": "სანიშნეები"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "გაგზავნის გვერდის სათაური",
+          "default": "გაგზავნის გვერდი"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "ადაპტაციის ძიების ღილაკის სტანდარტული წარწერა",
+          "default": "გაგრძელება"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "ვიდეოს გაგრძელების ღილაკის სტანდარტული წარწერა",
+          "default": "გააგრძელეთ ვიდეო"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "სტანდარტული წარწერა გამშვების მეტი პარამეტრისთვის",
+          "default": "გამშვების მეტი პარამეტრი"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "დააყენე დაკვრის სიჩქარე",
+          "default": "დაკვრის სიჩქარე"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "გადახვევა 10 წამით",
+          "default": "გადახვევა 10 წამით"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "ნავიგაცია გამორთულია ტექსტი",
+          "default": "ნავიგაცია გამორთულია"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "წინ ნავიგაცია არის გამორთულის ტექსტი",
+          "default": "წინ ნავიგაცია არის გამორთული"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "ხმა გამორთულია ტექსტი",
+          "default": "ხმა გამორთულია"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "გაფრთხილება, რომ მომხმარებელმა სწორად უნდა უპასუხოს კითხვას გაგრძელებამდე",
+          "default": "სანამ გააგრძელებთ ყველა კითხვას სწორად უნდა უპასუხოთ."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "უკან წასვლის ღილაკი",
+          "default": "უკან"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "გავლილი დრო საათები",
+          "default": "საათები"
         },
         {
-          "label": "Passed time minutes",
+          "label": "გავლილი დრო წუთები",
           "default": "Minutes"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "გავლილი დრო წამები",
+          "default": "წამი"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "წარწერა მიმდინარე დროისთვის",
+          "default": "მიმდინარე დრო:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "მთლიანი დროის წარწერა",
+          "default": "სულ დრო:"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "ტექსტი, რომელიც განმარტავს, რომ ერთიანი ურთიერთქმედება სახელთან გამოჩნდა",
+          "default": "ურთიერთქმედება გამოჩნდა:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "ტექსტი იმის ასახსნელად, რომ მრავალი ურთიერთქმედება გამოჩნდა",
+          "default": "გამოჩნდა მრავალი ურთიერთქმედება."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "ვიდეო შეჩერებულიას განცხადება",
+          "default": "ვიდეო შეჩერებულია"
         },
         {
           "label": "Content label",
           "default": "Content"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "პასუხგაცემული შეტყობინება (@answered შეიცვლება პასუხგაცემული კითხვების რაოდენობით)",
+          "default": "@answered პასუხგაცემული"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "გაგზავნის გვერდის სათაური",
+          "default": "@answered კითხვა(ებ)ს უპასუხა",
+          "description": "@answered შეიცვლება პასუხგაცემული კითხვების რაოდენობით."
         },
         {
           "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "default": "თქვენ უპასუხეთ @answered კითხვას, დააწკაპუნეთ ქვემოთ თქვენი პასუხების გასაგზავნად.",
+          "description": "@answered შეიცვლება პასუხგაცემული კითხვების რაოდენობით."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "გაგზავნის გვერდის ინფორმაცია, როცა გაგზავნის ღილაკი გამორთულია",
+          "default": "თქვენ უპასუხეთ @answered შეკითხვას.",
+          "description": "@answered შეიცვლება პასუხგაცემული კითხვების რაოდენობით."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "გაგზავნის გვერდის ინფორმაცია გამოტოვებული პასუხებისთვის",
+          "default": "თქვენ არ გიპასუხიათ არცერთ შეკითხვაზე."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "გაგზავნის გვერდის ინფორმაცია პასუხი საჭიროასთვის",
+          "default": "თქვენ უნდა უპასუხოთ მინიმუმ ერთ კითხვას, სანამ შეძლებთ პასუხების გაგზავნას."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "გაგზავნის გვერდის გაგზავნის ღილაკი",
+          "default": "გაგზავნეთ პასუხები"
         },
         {
           "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "default": "თქვენი პასუხები წარმოდგენილია!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "გაგზავნის გვერდის ცხრილის მწკრივის სათაური: პასუხგაცემული შეკითხვები",
+          "default": "პასუხგაცემული შეკითხვები"
         },
         {
-          "label": "Submit screen table row title: Score",
+          "label": "გაგზავნის გვერდის ცხრილის მწკრივის სათაური: ქულა",
           "default": "Score"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "გაგზავნის გვერდის პასუხგაცემული ქულა",
+          "default": "პასუხი"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "გაგზავნის გვერდის მწკრივის შეჯამება ქულების ჩათვლით (ტექსტის გამხმოვანებლებისთვის)",
+          "default": "თქვენ მიიღეთ @score @total ქულიდან შეკითხვისთვის @question რომელიც გამოჩნდა @minutes წუთის და @seconds წამის შემდეგ."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "გაგზავნის გვერდის მკრივის შეჯამება ქულის გარეშესთვის (ტექსტის გამხმოვანებლებისთვის)",
+          "default": "თქვენ უპასუხეთ @question -ს რომელიც გამოჩნდა @minutes წუთის და @seconds წამის შემდეგ."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "ვიდეო პროგრესის პანელი",
+          "default": "ვიდეო პროგრესი"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "ტექსტი, თუ როგორ უნდა შექმნათ ურთიერთქმედება",
+          "default": "ჩართეთ ვიდეო, რომ დაიწყოთ ურთიერთქმედების შექმნა"
         }
       ]
     }
