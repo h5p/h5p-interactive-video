@@ -156,7 +156,7 @@
                       },
                       {
                         "label": "Kräv full poäng på uppgift innan användaren kan fortsätta",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Det är rekommenderat att använda denna inställning tillsammans med inställningen \"Inaktivera navigering framåt\" i Interactive Video."
                       }
                     ]
                   },
@@ -288,8 +288,8 @@
           "label": "Visa knapp för att spola tillbaka 10 sekunder"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Inaktivera navigation",
+          "description": "Dessa inställningar kommer inaktivera användares navigering på önskat sätt.",
           "options": [
             {
               "label": "Inget"
@@ -325,11 +325,11 @@
         },
         {
           "label": "Titel för ljud av",
-          "default": "Mute, currently unmuted"
+          "default": "Stäng av ljud"
         },
         {
           "label": "Titel för ljud på",
-          "default": "Unmute, currently muted"
+          "default": "Sätt på ljud"
         },
         {
           "label": "Titel för videokvalitet",
@@ -372,8 +372,8 @@
           "default": "Fortsätt med video"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Förvald etikett för fler spelar-inställningar",
+          "default": "Fler spelar-inställningar"
         },
         {
           "label": "Ange uppspelningshastighet",
@@ -388,8 +388,8 @@
           "default": "Navigation är inaktiverad"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Text för att navigering framåt är inaktiverad",
+          "default": "Navigering framåt är inaktiverad"
         },
         {
           "label": "Text för ljud är inaktiverat",
@@ -451,7 +451,7 @@
         {
           "label": "Submit screen information when submit button is disabled",
           "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered kommer att ersättas med antalet obesvarade frågor."
         },
         {
           "label": "Information på inlämningssida",
@@ -499,8 +499,8 @@
           "default": "Framsteg i video"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Text som beskriver hur interaktioner skapas",
+          "default": "Spela videon för att börja skapa interaktioner"
         }
       ]
     }
