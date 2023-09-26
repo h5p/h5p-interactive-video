@@ -3763,7 +3763,7 @@ InteractiveVideo.prototype.resetTask = function () {
     // Do not seek to 0 if the video hasn't been started
     var time = this.video.getCurrentTime();
     if (time > 0) {
-      this.seek(0); // Rewind
+      this.seek(startAt || 0);
     }
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
