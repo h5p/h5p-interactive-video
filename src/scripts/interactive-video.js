@@ -47,6 +47,7 @@ function InteractiveVideo(params, id, contentData) {
   // Keep track of content ID
   self.contentId = id;
   self.contentData = contentData;
+  self.params = params;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
@@ -3763,7 +3764,7 @@ InteractiveVideo.prototype.resetTask = function () {
     // Do not seek to 0 if the video hasn't been started
     var time = this.video.getCurrentTime();
     if (time > 0) {
-      this.seek(startAt || 0);
+      this.seek(this.params?.override?.startVideoAt || 0);
     }
     this.timeUpdate(-1);
     this.controls.$slider.slider('option', 'value', 0);
