@@ -38,7 +38,7 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  var startAt;
+  var startAt = 0;
   var loopVideo;
 
   // Inheritance
@@ -47,6 +47,7 @@ function InteractiveVideo(params, id, contentData) {
   // Keep track of content ID
   self.contentId = id;
   self.contentData = contentData;
+  self.params = params;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
@@ -305,6 +306,7 @@ function InteractiveVideo(params, id, contentData) {
       if (typeof startAt === 'number' && startAt !== 0) {
         self.seek(startAt);
         self.updateCurrentTime(startAt);
+        self.setSliderPosition(startAt);
       }
     });
 
@@ -3762,11 +3764,13 @@ InteractiveVideo.prototype.resetTask = function () {
 
     // Do not seek to 0 if the video hasn't been started
     var time = this.video.getCurrentTime();
+    const startTime = this.params?.override?.startVideoAt || 0;
     if (time > 0) {
-      this.seek(0); // Rewind
+      this.seek(startTime);
     }
-    this.timeUpdate(-1);
-    this.controls.$slider.slider('option', 'value', 0);
+    this.updateCurrentTime(startTime);
+    this.setSliderPosition(startTime);
+    this.timeUpdate(startTime);
   }
 
   this.maxTimeReached = 0;
