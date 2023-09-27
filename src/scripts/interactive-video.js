@@ -38,7 +38,7 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  self.startAt = 0;
+  var startAt = 0;
   var loopVideo;
 
   // Inheritance
@@ -182,9 +182,9 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  self.startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-  if (self.startAt === 0 && params.override && !!params.override.startVideoAt) {
-    self.startAt = params.override.startVideoAt;
+  startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+  if (startAt === 0 && params.override && !!params.override.startVideoAt) {
+    startAt = params.override.startVideoAt;
   }
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
@@ -273,7 +273,7 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt: self.startAt,
+        startAt: startAt,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
@@ -303,9 +303,10 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      if (typeof self.startAt === 'number' && self.startAt !== 0) {
-        self.seek(self.startAt);
-        self.updateCurrentTime(self.startAt);
+      if (typeof startAt === 'number' && startAt !== 0) {
+        self.seek(startAt);
+        self.updateCurrentTime(startAt);
+        self.setSliderPosition(startAt);
       }
     });
 
@@ -930,7 +931,6 @@ InteractiveVideo.prototype.addControls = function () {
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
-  this.setSliderPosition(this.startAt);
 
   // Add keyboard controls for Bookmarks
   this.bookmarkMenuKeyboardControls = new Controls([new UIKeyboard()]);
@@ -3767,8 +3767,10 @@ InteractiveVideo.prototype.resetTask = function () {
     if (time > 0) {
       this.seek(this.params?.override?.startVideoAt || 0);
     }
-    this.timeUpdate(-1);
-    this.controls.$slider.slider('option', 'value', 0);
+    const currentTime = this.video.getCurrentTime();
+    this.updateCurrentTime(currentTime);
+    this.setSliderPosition(currentTime);
+    this.timeUpdate(currentTime);
   }
 
   this.maxTimeReached = 0;
