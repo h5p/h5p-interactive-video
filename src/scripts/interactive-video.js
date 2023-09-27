@@ -38,7 +38,7 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  var startAt;
+  self.startAt = 0;
   var loopVideo;
 
   // Inheritance
@@ -182,9 +182,9 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-  if (startAt === 0 && params.override && !!params.override.startVideoAt) {
-    startAt = params.override.startVideoAt;
+  self.startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
+  if (self.startAt === 0 && params.override && !!params.override.startVideoAt) {
+    self.startAt = params.override.startVideoAt;
   }
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
@@ -273,7 +273,7 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt: startAt,
+        startAt: self.startAt,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
@@ -303,9 +303,9 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      if (typeof startAt === 'number' && startAt !== 0) {
-        self.seek(startAt);
-        self.updateCurrentTime(startAt);
+      if (typeof self.startAt === 'number' && self.startAt !== 0) {
+        self.seek(self.startAt);
+        self.updateCurrentTime(self.startAt);
       }
     });
 
@@ -930,6 +930,7 @@ InteractiveVideo.prototype.addControls = function () {
   this.controls.$totalTime.find('.human-time').html(humanTime);
   this.controls.$totalTime.find('.hidden-but-read').html(`${self.l10n.totalTime} ${a11yTime}`);
   this.controls.$slider.slider('option', 'max', duration);
+  this.setSliderPosition(this.startAt);
 
   // Add keyboard controls for Bookmarks
   this.bookmarkMenuKeyboardControls = new Controls([new UIKeyboard()]);
