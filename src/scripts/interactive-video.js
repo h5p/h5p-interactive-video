@@ -3764,13 +3764,13 @@ InteractiveVideo.prototype.resetTask = function () {
 
     // Do not seek to 0 if the video hasn't been started
     var time = this.video.getCurrentTime();
+    const startTime = this.params?.override?.startVideoAt || 0;
     if (time > 0) {
-      this.seek(this.params?.override?.startVideoAt || 0);
+      this.seek(startTime);
     }
-    const currentTime = this.video.getCurrentTime();
-    this.updateCurrentTime(currentTime);
-    this.setSliderPosition(currentTime);
-    this.timeUpdate(currentTime);
+    this.updateCurrentTime(startTime);
+    this.setSliderPosition(startTime);
+    this.timeUpdate(startTime);
   }
 
   this.maxTimeReached = 0;
