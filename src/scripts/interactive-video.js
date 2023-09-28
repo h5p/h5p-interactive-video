@@ -678,6 +678,11 @@ InteractiveVideo.prototype.getCurrentState = function () {
     }
   }
 
+  // If the user hasn't played the video or answered any questions, return.
+  if (H5P.isEmpty(state.answers) && ((!self.params.override.startVideoAt && parseInt(state.progress) === 0) || self.params.override.startVideoAt === parseInt(state.progress))) {
+    return;
+  }
+
   if (state.progress) {
     return state;
   }
