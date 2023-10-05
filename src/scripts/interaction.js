@@ -1789,7 +1789,7 @@ function Interaction(parameters, player, previousState) {
     delete self.score;
     delete self.maxScore;
 
-    if (typeof self.getInstance().resetTask === 'function') {
+    if (typeof self.getInstance()?.resetTask === 'function') {
       self.getInstance().resetTask();
     }
 
