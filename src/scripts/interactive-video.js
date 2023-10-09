@@ -274,6 +274,7 @@ function InteractiveVideo(params, id, contentData) {
           disableRemotePlayback: true
         },
         startAt: startAt,
+        originalStartTime: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
@@ -303,7 +304,9 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      if (typeof startAt === 'number' && startAt !== 0) {
+      // check if the time should be set to specific value
+      let startTime = params.override?.startVideoAt || 0;
+      if (typeof startAt === 'number' && startAt !== 0 && self.maxTimeReached !== startTime){
         self.seek(startAt);
         self.updateCurrentTime(startAt);
         self.setSliderPosition(startAt);
@@ -3776,8 +3779,10 @@ InteractiveVideo.prototype.resetTask = function () {
     this.updateCurrentTime(startTime);
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
+    this.video.resetTask();
   }
 
+  this.previousState = {}
   this.maxTimeReached = 0;
 };
 
