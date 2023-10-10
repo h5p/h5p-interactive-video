@@ -3777,7 +3777,7 @@ InteractiveVideo.prototype.resetTask = function () {
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
   }
-
+  this.interactions = [];
   this.maxTimeReached = 0;
 };
 
