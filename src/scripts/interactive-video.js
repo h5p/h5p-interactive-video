@@ -683,12 +683,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
     return;
   }
 
-  if (state.progress) {
-    return state;
-  }
-  else if (self.previousState && self.previousState.progress) {
-    return self.previousState;
-  }
+  return state;
 };
 
 /**
