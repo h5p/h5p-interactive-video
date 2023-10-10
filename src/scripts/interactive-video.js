@@ -38,7 +38,6 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  var startAt = 0;
   var loopVideo;
 
   // Inheritance
@@ -181,11 +180,6 @@ function InteractiveVideo(params, id, contentData) {
     self.justVideo = iOSMatches[2] < 10;
   }
 
-  // set start time
-  if (params.override && !!params.override.startVideoAt) {
-    startAt = params.override.startVideoAt;
-  }
-
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
     0;
@@ -272,7 +266,7 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt: startAt,
+        startAt: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
@@ -3748,6 +3742,7 @@ InteractiveVideo.prototype.pause = function () {
  * Reset all interaction progress and answers
  */
 InteractiveVideo.prototype.resetTask = function () {
+  this.video?.resetTask();
   // Reset progress
   this.interactionsProgress = [];
 
