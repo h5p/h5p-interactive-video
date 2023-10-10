@@ -182,8 +182,7 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-  if (startAt === 0 && params.override && !!params.override.startVideoAt) {
+  if (params.override && !!params.override.startVideoAt) {
     startAt = params.override.startVideoAt;
   }
 
@@ -302,11 +301,11 @@ function InteractiveVideo(params, id, contentData) {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
-
-      if (typeof startAt === 'number' && startAt !== 0) {
-        self.seek(startAt);
-        self.updateCurrentTime(startAt);
-        self.setSliderPosition(startAt);
+      const seekAt = params.override?.startVideoAt || self.previousState?.progress || 0;
+      if (typeof seekAt === 'number' && seekAt !== 0) {
+        self.seek(seekAt);
+        self.updateCurrentTime(seekAt);
+        self.setSliderPosition(seekAt);
       }
     });
 
@@ -3749,7 +3748,6 @@ InteractiveVideo.prototype.pause = function () {
  * Reset all interaction progress and answers
  */
 InteractiveVideo.prototype.resetTask = function () {
-
   // Reset progress
   this.interactionsProgress = [];
 
@@ -3776,6 +3774,9 @@ InteractiveVideo.prototype.resetTask = function () {
     this.updateCurrentTime(startTime);
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
+    if (!this.params.override?.autoplay) {
+      this.pause();
+    }
   }
 
   this.maxTimeReached = 0;
