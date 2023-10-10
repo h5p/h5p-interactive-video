@@ -301,7 +301,7 @@ function InteractiveVideo(params, id, contentData) {
       isLoaded = true;
       // Update IV player UI
       self.loaded();
-      const seekAt = params.override?.startVideoAt || self.previousState?.progress || 0;
+      const seekAt = self.previousState?.progress || params.override?.startVideoAt || 0;
       if (typeof seekAt === 'number' && seekAt !== 0) {
         self.seek(seekAt);
         self.updateCurrentTime(seekAt);
