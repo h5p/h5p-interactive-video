@@ -683,12 +683,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
     return;
   }
 
-  if (state.progress) {
-    return state;
-  }
-  else if (self.previousState && self.previousState.progress) {
-    return self.previousState;
-  }
+  return state;
 };
 
 /**
@@ -3780,7 +3775,7 @@ InteractiveVideo.prototype.resetTask = function () {
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
   }
-
+  this.interactions = [];
   this.maxTimeReached = 0;
 };
 
