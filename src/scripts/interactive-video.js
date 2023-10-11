@@ -3756,6 +3756,7 @@ InteractiveVideo.prototype.resetTask = function () {
   // Hide end-screen if visible
   if (this.bubbleEndscreen !== undefined) {
     this.bubbleEndscreen.toggle(false, false);
+    this.controls.$endscreensButton.toggleClass('h5p-star-active', false);
   }
 
   if (this.controls !== undefined) {
@@ -3772,7 +3773,6 @@ InteractiveVideo.prototype.resetTask = function () {
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
   }
-  this.interactions = [];
   this.maxTimeReached = 0;
 };
 
