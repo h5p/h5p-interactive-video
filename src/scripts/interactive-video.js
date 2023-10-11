@@ -3751,6 +3751,9 @@ InteractiveVideo.prototype.resetTask = function () {
   // Reset tasks
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
+    if (this.interactions[i].isVisible()) {
+      document.getElementsByClassName('h5p-dialog-close')[0]?.click();
+    }
   }
 
   // Hide end-screen if visible
