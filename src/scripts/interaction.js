@@ -1791,7 +1791,6 @@ function Interaction(parameters, player, previousState) {
 
     if (typeof self.getInstance().resetTask === 'function') {
       self.getInstance().resetTask();
-      closeInteraction();
     }
 
     self.reCreate();
