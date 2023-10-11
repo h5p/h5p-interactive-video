@@ -273,8 +273,7 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt: startAt,
-        originalStartTime: params.override?.startVideoAt || 0,
+        startAt:  params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
@@ -306,10 +305,11 @@ function InteractiveVideo(params, id, contentData) {
 
       // check if the time should be set to specific value
       let startTime = params.override?.startVideoAt || 0;
-      if (typeof startAt === 'number' && startAt !== 0 && self.maxTimeReached !== startTime){
-        self.seek(startAt);
-        self.updateCurrentTime(startAt);
-        self.setSliderPosition(startAt);
+      if (typeof startAt === 'number' && startAt !== 0 && self.maxTimeReached !== startTime && self.previousState?.progress){
+        self.seek(self.previousState?.progress);
+        self.updateCurrentTime(self.previousState?.progress);
+        self.setSliderPosition(self.previousState?.progress);
+        // self.pause();
       }
     });
 
@@ -3782,7 +3782,7 @@ InteractiveVideo.prototype.resetTask = function () {
     this.video.resetTask();
   }
 
-  this.previousState = {}
+  this.previousState = {};
   this.maxTimeReached = 0;
 };
 
