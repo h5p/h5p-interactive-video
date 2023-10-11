@@ -686,12 +686,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
     return;
   }
 
-  if (state.progress) {
-    return state;
-  }
-  else if (self.previousState && self.previousState.progress) {
-    return self.previousState;
-  }
+  return state;
 };
 
 /**
@@ -3759,11 +3754,15 @@ InteractiveVideo.prototype.resetTask = function () {
   // Reset tasks
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
+    if (this.interactions[i].isVisible()) {
+      document.getElementsByClassName('h5p-dialog-close')[0]?.click();
+    }
   }
 
   // Hide end-screen if visible
   if (this.bubbleEndscreen !== undefined) {
     this.bubbleEndscreen.toggle(false, false);
+    this.controls.$endscreensButton.toggleClass('h5p-star-active', false);
   }
 
   if (this.controls !== undefined) {
