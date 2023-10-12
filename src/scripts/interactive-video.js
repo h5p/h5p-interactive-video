@@ -666,7 +666,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
 
   var state = {
     progress: self.video.getCurrentTime(),
-    maxTimeReached: this.maxTimeReached,
+    maxTimeReached: this.maxTimeReached || null,
     answers: [],
     interactionsProgress: self.interactions
       .slice()
