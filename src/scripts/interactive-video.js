@@ -182,7 +182,7 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = params.override.startVideoAt || 0;
+  startAt = params.override?.startVideoAt || 0;
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
