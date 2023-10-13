@@ -300,9 +300,11 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      self.seek(self.previousState?.progress || startAt);
-      self.updateCurrentTime(self.previousState?.progress || startAt);
-      self.setSliderPosition(self.previousState?.progress || startAt);
+      // if previousState.progress exists, update time to that, else use startAt defined in params or 0
+      let time = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : startAt);
+      self.seek(time);
+      self.updateCurrentTime(time);
+      self.setSliderPosition(time);
     });
 
     // Video may change size on canplay, so we must react by resizing
