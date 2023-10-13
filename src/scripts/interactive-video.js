@@ -182,10 +182,7 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-  if (startAt === 0 && params.override && !!params.override.startVideoAt) {
-    startAt = params.override.startVideoAt;
-  }
+  startAt = params.override.startVideoAt || 0;
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
@@ -303,14 +300,9 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      // check if the time should be set to specific value
-      let startTime = params.override?.startVideoAt || 0;
-      if (typeof startAt === 'number' && startAt !== 0 && self.maxTimeReached !== startTime && self.previousState?.progress){
-        self.seek(self.previousState?.progress);
-        self.updateCurrentTime(self.previousState?.progress);
-        self.setSliderPosition(self.previousState?.progress);
-        // self.pause();
-      }
+      self.seek(self.previousState?.progress || startAt);
+      self.updateCurrentTime(self.previousState?.progress || startAt);
+      self.setSliderPosition(self.previousState?.progress || startAt);
     });
 
     // Video may change size on canplay, so we must react by resizing
