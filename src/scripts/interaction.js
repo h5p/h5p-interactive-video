@@ -583,7 +583,9 @@ function Interaction(parameters, player, previousState) {
       }
 
       if ($interaction) {
-        $interaction.focus();
+        if (!player.dnb.calledFromResetTask) {
+          $interaction.focus();
+        }
         $interaction.attr('aria-expanded', 'false');
       }
 
