@@ -3748,7 +3748,9 @@ InteractiveVideo.prototype.resetTask = function () {
   this.interactionsProgress = [];
 
   // Reset tasks
-  this.dnb.calledFromResetTask = true;
+  if (this.dnb) {
+    this.dnb.calledFromResetTask = true;
+  }
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
     if (this.interactions[i].isVisible()) {
@@ -3778,7 +3780,9 @@ InteractiveVideo.prototype.resetTask = function () {
     this.video.resetTask();
   }
 
-  this.dnb.calledFromResetTask = false;
+  if (this.dnb) {
+    this.dnb.calledFromResetTask = false;
+  }
   this.previousState = {};
   this.maxTimeReached = 0;
 };
