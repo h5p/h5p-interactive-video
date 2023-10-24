@@ -302,7 +302,11 @@ function InteractiveVideo(params, id, contentData) {
 
       // if previousState.progress exists, update time to that, else use startAt defined in params or 0
       let time = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : startAt);
-      self.seek(time);
+
+      // If poster is set for the video, seek video when played.
+      if (self.options.video.startScreenOptions.poster === undefined) {
+        self.seek(time);
+      }
       self.updateCurrentTime(time);
       self.setSliderPosition(time);
     });
@@ -359,6 +363,15 @@ function InteractiveVideo(params, id, contentData) {
         }
         case H5P.Video.PLAYING:
           if (firstPlay) {
+
+            // If poster is defined for video, seek when played.
+            // Use previous known state or startAt unless user interacts with slider.
+            if (self.options.video.startScreenOptions.poster !== undefined) {
+              let time = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : startAt);
+              let sliderInteractedWith = self.video.getCurrentState().time;
+              self.seek(sliderInteractedWith === undefined ? time : self.video.getCurrentTime());
+            }
+
             // Qualities might not be available until after play.
             self.addQualityChooser();
 
