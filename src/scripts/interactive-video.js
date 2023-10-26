@@ -276,7 +276,7 @@ function InteractiveVideo(params, id, contentData) {
           autoplay: params.override && !!params.override.autoplay
         }
       }
-    }, self.contentId, undefined, undefined, {parent: self});
+    }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress} } );
 
     // Listen for video events
     if (self.justVideo) {
@@ -302,7 +302,6 @@ function InteractiveVideo(params, id, contentData) {
 
       // if previousState.progress exists, update time to that, else use startAt defined in params or 0
       let time = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : startAt);
-      self.seek(time);
       self.updateCurrentTime(time);
       self.setSliderPosition(time);
     });
