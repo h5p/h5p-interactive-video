@@ -675,7 +675,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   // If the user hasn't played the video or answered any questions, return.
-  if (H5P.isEmpty(state.answers) && parseInt(state.progress) === self.params.override.startVideoAt) {
+  if (H5P.isEmpty(state.answers) && parseInt(state.progress) === (self.params.override.startVideoAt || 0)) {
     return;
   }
 
