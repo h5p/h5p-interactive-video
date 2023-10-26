@@ -270,13 +270,13 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt:  params.override?.startVideoAt || 0,
+        startAt: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
         }
       }
-    }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress} } );
+    }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress } } );
 
     // Listen for video events
     if (self.justVideo) {
@@ -657,8 +657,15 @@ InteractiveVideo.prototype.getCurrentState = function () {
     return; // Missing video
   }
 
+  let videoCurrentTime = Math.floor(this.video.getCurrentTime());
+  let progress = videoCurrentTime > 0 ? videoCurrentTime : self.previousState?.progress;
+
+  if (videoCurrentTime === 0 && this.maxTimeReached > 0 && this.maxTimeReached !== self.params.override.startVideoAt) {
+    progress = videoCurrentTime;
+  }
+
   var state = {
-    progress: self.video.getCurrentTime(),
+    progress: progress,
     maxTimeReached: this.maxTimeReached || null,
     answers: [],
     interactionsProgress: self.interactions
@@ -675,7 +682,16 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   // If the user hasn't played the video or answered any questions, return.
-  if (H5P.isEmpty(state.answers) && ((!self.params.override.startVideoAt && parseInt(state.progress) === 0) || self.params.override.startVideoAt === parseInt(state.progress))) {
+  if (H5P.isEmpty(state.answers)
+      && (
+        (
+          !self.params.override.startVideoAt
+          && parseInt(state.progress) === 0
+        )
+      || self.params.override.startVideoAt === parseInt(state.progress)
+      || parseInt(state.progress) === 0 && self.maxTimeReached === state.progress
+      )
+    ) {
     return;
   }
 
