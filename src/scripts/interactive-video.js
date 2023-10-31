@@ -38,7 +38,6 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  var startAt = 0;
   var loopVideo;
 
   // Inheritance
@@ -182,7 +181,8 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = params.override?.startVideoAt || 0;
+  // if previousState.progress exists, update time to that, else use startAt defined in params or 0
+  self.currentTime = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : (params.override?.startVideoAt || 0));
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
@@ -270,13 +270,13 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt:  params.override?.startVideoAt || 0,
+        startAt: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay
         }
       }
-    }, self.contentId, undefined, undefined, {parent: self});
+    }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress } } );
 
     // Listen for video events
     if (self.justVideo) {
@@ -300,11 +300,8 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
-      // if previousState.progress exists, update time to that, else use startAt defined in params or 0
-      let time = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : startAt);
-      self.seek(time);
-      self.updateCurrentTime(time);
-      self.setSliderPosition(time);
+      self.updateCurrentTime(self.currentTime);
+      self.setSliderPosition(self.currentTime);
     });
 
     // Video may change size on canplay, so we must react by resizing
@@ -659,7 +656,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   var state = {
-    progress: self.video.getCurrentTime(),
+    progress: self.currentTime,
     maxTimeReached: this.maxTimeReached || null,
     answers: [],
     interactionsProgress: self.interactions
@@ -676,7 +673,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   // If the user hasn't played the video or answered any questions, return.
-  if (H5P.isEmpty(state.answers) && ((!self.params.override.startVideoAt && parseInt(state.progress) === 0) || self.params.override.startVideoAt === parseInt(state.progress))) {
+  if (H5P.isEmpty(state.answers) && parseInt(state.progress) === (self.params.override.startVideoAt || 0)) {
     return;
   }
 
@@ -3159,6 +3156,9 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   var self = this;
 
+  // keep track of current time in IV
+  self.currentTime = time;
+
   // Scroll slider
   if (time >= 0) {
     this.maxTimeReached = Math.max(this.maxTimeReached, time);
@@ -3764,19 +3764,21 @@ InteractiveVideo.prototype.resetTask = function () {
     this.controls.$endscreensButton.toggleClass('h5p-star-active', false);
   }
 
+  const startTime = this.params?.override?.startVideoAt || 0;
+
   if (this.controls !== undefined) {
     // Recreate slider interactions
     this.addSliderInteractions();
 
-    // Do not seek to 0 if the video hasn't been started
-    var time = this.video.getCurrentTime();
-    const startTime = this.params?.override?.startVideoAt || 0;
-    if (time > 0) {
-      this.seek(startTime);
-    }
     this.updateCurrentTime(startTime);
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
+  }
+
+  this.currentTime = startTime;
+
+  if (this.video) {
+    // takes care of seeking the actual video back
     this.video.resetTask();
   }
 
