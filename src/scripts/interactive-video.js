@@ -3770,12 +3770,6 @@ InteractiveVideo.prototype.resetTask = function () {
     // Recreate slider interactions
     this.addSliderInteractions();
 
-    // Do not seek to 0 if the video hasn't been started
-    var time = this.video.getCurrentTime();
-
-    if (time > 0) {
-      this.seek(startTime);
-    }
     this.updateCurrentTime(startTime);
     this.setSliderPosition(startTime);
     this.timeUpdate(startTime);
@@ -3784,6 +3778,7 @@ InteractiveVideo.prototype.resetTask = function () {
   this.currentTime = startTime;
 
   if (this.video) {
+    // takes care of seeking the actual video back
     this.video.resetTask();
   }
 
