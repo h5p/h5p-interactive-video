@@ -3766,6 +3766,11 @@ InteractiveVideo.prototype.resetTask = function () {
 
   const startTime = this.params?.override?.startVideoAt || 0;
 
+  if (this.video) {
+    // takes care of seeking the actual video back
+    this.video.resetTask();
+  }
+
   if (this.controls !== undefined) {
     // Recreate slider interactions
     this.addSliderInteractions();
@@ -3776,11 +3781,6 @@ InteractiveVideo.prototype.resetTask = function () {
   }
 
   this.currentTime = startTime;
-
-  if (this.video) {
-    // takes care of seeking the actual video back
-    this.video.resetTask();
-  }
 
   if (this.dnb) {
     this.dnb.calledFromResetTask = false;
