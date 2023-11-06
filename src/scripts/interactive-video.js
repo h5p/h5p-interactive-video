@@ -273,7 +273,8 @@ function InteractiveVideo(params, id, contentData) {
         startAt: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
-          autoplay: params.override && !!params.override.autoplay
+          autoplay: params.override && !!params.override.autoplay,
+          deactivateSound: self.deactivateSound
         }
       }
     }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress } } );
