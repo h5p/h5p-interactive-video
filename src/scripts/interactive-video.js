@@ -303,6 +303,12 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (typeof startAt === 'number' && startAt !== 0) {
+        if (!self.controls) {
+          // Make sure that controls are added before setting time 
+          self.addControls();
+          self.trigger('resize');
+        }
+
         self.seek(startAt);
         self.updateCurrentTime(startAt);
       }
