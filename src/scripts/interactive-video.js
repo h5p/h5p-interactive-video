@@ -319,6 +319,12 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
+      if (!self.controls) {
+        // Make sure that controls are added before setting time 
+        self.addControls();
+        self.trigger('resize');
+      }
+
       self.updateCurrentTime(self.currentTime);
       self.setSliderPosition(self.currentTime);
     });
