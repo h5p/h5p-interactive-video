@@ -183,6 +183,7 @@ function InteractiveVideo(params, id, contentData) {
   // set start time
   // if previousState.progress exists, update time to that, else use startAt defined in params or 0
   self.currentTime = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : (params.override?.startVideoAt || 0));
+  self.lastxAPITime = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : (params.override?.startVideoAt || 0));
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
@@ -254,6 +255,23 @@ function InteractiveVideo(params, id, contentData) {
     self.on('resize', function () {
       self.resize();
     });
+
+    // Add H5P xAPI Verbs
+    if(H5P.jQuery.inArray("viewed", H5P.XAPIEvent.allowedXAPIVerbs) === -1)
+    {
+      H5P.XAPIEvent.allowedXAPIVerbs.push("viewed")
+    }
+
+    if(H5P.jQuery.inArray("play", H5P.XAPIEvent.allowedXAPIVerbs) === -1)
+    {
+      H5P.XAPIEvent.allowedXAPIVerbs.push("play")
+    }
+
+    if(H5P.jQuery.inArray("pause", H5P.XAPIEvent.allowedXAPIVerbs) === -1)
+    {
+      H5P.XAPIEvent.allowedXAPIVerbs.push("pause")
+    }
+
 
     // In the editor, no captions will be shown
     const textTracks = this.editor ? [] :
@@ -383,6 +401,7 @@ function InteractiveVideo(params, id, contentData) {
                 self.trigger('resize');
               }, 400);
             }
+            self.triggerXAPI('play');
           }
 
           self.currentState = H5P.Video.PLAYING;
@@ -413,6 +432,7 @@ function InteractiveVideo(params, id, contentData) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
+          self.triggerXAPI('pause');
 
           self.timeUpdate(self.video.getCurrentTime());
           break;
@@ -3157,6 +3177,12 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   var self = this;
 
+  if(Math.abs(self.lastxAPITime - time) > 1)
+  {
+    self.lastxAPITime = time;
+    self.triggerXAPI('viewed');
+  }
+  
   // keep track of current time in IV
   self.currentTime = time;
 
@@ -3181,6 +3207,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
       self.timeUpdate(self.video.getCurrentTime());
     }
   }, 40); // 25 fps
+
 };
 
 /**
