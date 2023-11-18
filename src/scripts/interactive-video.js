@@ -3180,7 +3180,10 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   if(Math.abs(self.lastxAPITime - time) > 1)
   {
     self.lastxAPITime = time;
-    self.triggerXAPI('viewed',{"viewed_time": time});
+    let statement = self.createXAPIEventTemplate('viewed');
+    let object =  statement.getVerifiedStatementValue(["object"]);
+    H5P.jQuery.extend(object, {viewedTime : time});
+    self.trigger(statement);
   }
   
   // keep track of current time in IV 
