@@ -3180,10 +3180,10 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   if(Math.abs(self.lastxAPITime - time) > 1)
   {
     self.lastxAPITime = time;
-    self.triggerXAPI('viewed');
+    self.triggerXAPI('viewed',{"viewed_time": time});
   }
   
-  // keep track of current time in IV
+  // keep track of current time in IV 
   self.currentTime = time;
 
   // Scroll slider
