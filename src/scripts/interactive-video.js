@@ -38,7 +38,6 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  */
 function InteractiveVideo(params, id, contentData) {
   var self = this;
-  var startAt;
   var loopVideo;
 
   // Inheritance
@@ -47,6 +46,7 @@ function InteractiveVideo(params, id, contentData) {
   // Keep track of content ID
   self.contentId = id;
   self.contentData = contentData;
+  self.params = params;
   self.instanceIndex = getAndIncrementGlobalCounter();
 
   // Check that the submit button is enabled
@@ -181,10 +181,8 @@ function InteractiveVideo(params, id, contentData) {
   }
 
   // set start time
-  startAt = (self.previousState && self.previousState.progress) ? Math.floor(self.previousState.progress) : 0;
-  if (startAt === 0 && params.override && !!params.override.startVideoAt) {
-    startAt = params.override.startVideoAt;
-  }
+  // if previousState.progress exists, update time to that, else use startAt defined in params or 0
+  self.currentTime = Math.floor((self.previousState?.progress !== undefined && self.previousState?.progress !== null) ? self.previousState.progress : (params.override?.startVideoAt || 0));
 
   this.maxTimeReached = (self.previousState && self.previousState.maxTimeReached) ?
     self.previousState.maxTimeReached :
@@ -272,13 +270,14 @@ function InteractiveVideo(params, id, contentData) {
           fit: false,
           disableRemotePlayback: true
         },
-        startAt: startAt,
+        startAt: params.override?.startVideoAt || 0,
         a11y: textTracks,
         playback: {
-          autoplay: params.override && !!params.override.autoplay
+          autoplay: params.override && !!params.override.autoplay,
+          deactivateSound: self.deactivateSound
         }
       }
-    }, self.contentId, undefined, undefined, {parent: self});
+    }, self.contentId, undefined, undefined, {parent: self, previousState: { time: self.previousState?.progress } } );
 
     // Listen for video events
     if (self.justVideo) {
@@ -302,6 +301,7 @@ function InteractiveVideo(params, id, contentData) {
       // Update IV player UI
       self.loaded();
 
+<<<<<<< HEAD
       if (typeof startAt === 'number' && startAt !== 0) {
         if (!self.controls) {
           // Make sure that controls are added before setting time 
@@ -312,6 +312,10 @@ function InteractiveVideo(params, id, contentData) {
         self.seek(startAt);
         self.updateCurrentTime(startAt);
       }
+=======
+      self.updateCurrentTime(self.currentTime);
+      self.setSliderPosition(self.currentTime);
+>>>>>>> master
     });
 
     // Video may change size on canplay, so we must react by resizing
@@ -666,8 +670,8 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   var state = {
-    progress: self.video.getCurrentTime(),
-    maxTimeReached: this.maxTimeReached,
+    progress: self.currentTime,
+    maxTimeReached: this.maxTimeReached || null,
     answers: [],
     interactionsProgress: self.interactions
       .slice()
@@ -682,12 +686,12 @@ InteractiveVideo.prototype.getCurrentState = function () {
     }
   }
 
-  if (state.progress) {
-    return state;
+  // If the user hasn't played the video or answered any questions, return.
+  if (H5P.isEmpty(state.answers) && parseInt(state.progress) === (self.params.override.startVideoAt || 0)) {
+    return;
   }
-  else if (self.previousState && self.previousState.progress) {
-    return self.previousState;
-  }
+
+  return state;
 };
 
 /**
@@ -3166,6 +3170,9 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   var self = this;
 
+  // keep track of current time in IV
+  self.currentTime = time;
+
   // Scroll slider
   if (time >= 0) {
     this.maxTimeReached = Math.max(this.maxTimeReached, time);
@@ -3635,9 +3642,11 @@ InteractiveVideo.prototype.findNextInteractionToShow = function (time, index) {
 InteractiveVideo.prototype.findNextInteractionToHide = function (time) {
   let candidate;
   for (var i = 0; i < this.visibleInteractions.length; i++) {
-    const duration = this.interactions[this.visibleInteractions[i]].getDuration();
-    if (candidate === undefined || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
-      candidate = i;
+    if (this.interactions[this.visibleInteractions[i]]) {
+      const duration = this.interactions[this.visibleInteractions[i]].getDuration();
+      if (candidate === undefined || duration.to < this.interactions[this.visibleInteractions[candidate]].getDuration().to) {
+        candidate = i;
+      }
     }
   }
   return candidate;
@@ -3753,28 +3762,44 @@ InteractiveVideo.prototype.resetTask = function () {
   this.interactionsProgress = [];
 
   // Reset tasks
+  if (this.dnb) {
+    this.dnb.calledFromResetTask = true;
+  }
   for (var i = 0; i < this.interactions.length; i++) {
     this.interactions[i].resetTask();
+    if (this.interactions[i].isVisible()) {
+      document.getElementsByClassName('h5p-dialog-close')[0]?.click();
+    }
   }
 
   // Hide end-screen if visible
   if (this.bubbleEndscreen !== undefined) {
     this.bubbleEndscreen.toggle(false, false);
+    this.controls.$endscreensButton.toggleClass('h5p-star-active', false);
+  }
+
+  const startTime = this.params?.override?.startVideoAt || 0;
+
+  if (this.video) {
+    // takes care of seeking the actual video back
+    this.video.resetTask();
   }
 
   if (this.controls !== undefined) {
     // Recreate slider interactions
     this.addSliderInteractions();
 
-    // Do not seek to 0 if the video hasn't been started
-    var time = this.video.getCurrentTime();
-    if (time > 0) {
-      this.seek(0); // Rewind
-    }
-    this.timeUpdate(-1);
-    this.controls.$slider.slider('option', 'value', 0);
+    this.updateCurrentTime(startTime);
+    this.setSliderPosition(startTime);
+    this.timeUpdate(startTime);
   }
 
+  this.currentTime = startTime;
+
+  if (this.dnb) {
+    this.dnb.calledFromResetTask = false;
+  }
+  this.previousState = {};
   this.maxTimeReached = 0;
 };
 

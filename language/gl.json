@@ -224,9 +224,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -499,8 +497,8 @@
           "default": "Progreso do vídeo"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Texto sobre como crear interaccións",
+          "default": "Reproduce o vídeo para comezar a crear interaccións"
         }
       ]
     }

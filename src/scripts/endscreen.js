@@ -242,6 +242,9 @@ class Endscreen extends H5P.EventDispatcher {
       .filter(interaction => interaction.getProgress() !== undefined)
       .sort((a, b) => a.getDuration().from - b.getDuration().from);
 
+    if (this.isSubmitButtonEnabled) {
+      this.$submitButtonContainer?.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
+    }
     this.$endscreenBottomTable.empty();
 
     // No chaining because we need the variable later

@@ -499,8 +499,8 @@
           "default": "Bideoaren aurrerapena"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Interakzioak sortzeko azalpen testua",
+          "default": "Erreproduzitu bideoa elkarrekintzak sortzen hasteko"
         }
       ]
     }

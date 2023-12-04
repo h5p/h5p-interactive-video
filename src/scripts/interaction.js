@@ -583,7 +583,9 @@ function Interaction(parameters, player, previousState) {
       }
 
       if ($interaction) {
-        $interaction.focus();
+        if (!player.dnb.calledFromResetTask) {
+          $interaction.focus();
+        }
         $interaction.attr('aria-expanded', 'false');
       }
 
@@ -1788,6 +1790,11 @@ function Interaction(parameters, player, previousState) {
     }
     delete self.score;
     delete self.maxScore;
+    delete self.progress;
+
+    if (typeof self.getInstance()?.resetTask === 'function') {
+      self.getInstance().resetTask();
+    }
 
     self.reCreate();
   };
