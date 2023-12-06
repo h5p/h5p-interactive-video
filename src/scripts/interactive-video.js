@@ -407,7 +407,10 @@ function InteractiveVideo(params, id, contentData) {
                 self.trigger('resize');
               }, 400);
             }
-            self.triggerXAPI('play');
+            let statement = self.createXAPIEventTemplate('play');
+            let extensions =  statement.getVerifiedStatementValue(["object","definition","extensions"]);
+            extensions = Object.assign(extensions,{ videoTime : self.video.getCurrentTime() });         
+            self.trigger(statement);
           }
 
           self.currentState = H5P.Video.PLAYING;
@@ -438,7 +441,11 @@ function InteractiveVideo(params, id, contentData) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
-          self.triggerXAPI('pause');
+
+          let statement = self.createXAPIEventTemplate('pause');
+          let extensions =  statement.getVerifiedStatementValue(["object","definition","extensions"]);
+          extensions = Object.assign(extensions,{ videoTime : self.video.getCurrentTime() });         
+          self.trigger(statement);
 
           self.timeUpdate(self.video.getCurrentTime());
           break;
@@ -3186,9 +3193,10 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   if(Math.abs(self.lastxAPITime - time) > 1)
   {
     self.lastxAPITime = time;
+    
     let statement = self.createXAPIEventTemplate('viewed');
-    let object =  statement.getVerifiedStatementValue(["object"]);
-    H5P.jQuery.extend(object, {viewedTime : time});
+    let extensions =  statement.getVerifiedStatementValue(["object","definition","extensions"]);
+    extensions = Object.assign(extensions,{ videoTime : self.video.getCurrentTime() });         
     self.trigger(statement);
   }
   
