@@ -659,7 +659,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
 InteractiveVideo.prototype.getCurrentState = function () {
   var self = this;
   if (!self.video || !self.video.play) {
-    return; // Missing video
+    return this.contentData?.previousState; // Missing video or not yet initialized
   }
 
   var state = {
