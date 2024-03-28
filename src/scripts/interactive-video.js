@@ -305,7 +305,7 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (!self.controls) {
-        // Make sure that controls are added before setting time 
+        // Make sure that controls are added before setting time
         self.addControls();
         self.trigger('resize');
       }
