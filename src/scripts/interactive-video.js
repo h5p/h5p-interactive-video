@@ -1380,7 +1380,16 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {in
 
     // Do not focus element on initial load and showBookmarksmenuOnLoad is enabled
     if (!this.showBookmarksmenuOnLoad || !params.initialLoad) {
-      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+      /*
+       * On Safari, immediately focusing the first element in the bookmarks
+       * chooser causes the video to jump, because the element is still
+       * outside the viewport. Therefore wait for transition to finish.
+       */
+      this.controls.$bookmarksChooser[0].addEventListener(
+        'transitionend', () => {
+          this.controls.$bookmarksChooser
+          .find('[tabindex="0"]').first().focus();
+        }, {once: true});
     }
 
     if (this.editor) {
