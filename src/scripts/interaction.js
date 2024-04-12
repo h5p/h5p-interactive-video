@@ -182,7 +182,7 @@ function Interaction(parameters, player, previousState) {
       'tabindex': 0,
       'role': 'button',
       'class': 'h5p-interaction ' + classes + hiddenClass,
-      'aria-popup': 'true',
+      'aria-haspopup': 'dialog',
       'aria-expanded': 'false',
       'aria-label': title,
       css: {
