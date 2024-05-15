@@ -302,7 +302,7 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (!self.controls) {
-        // Make sure that controls are added before setting time 
+        // Make sure that controls are added before setting time
         self.addControls();
         self.trigger('resize');
       }
@@ -2513,6 +2513,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
               self.video.pause();
             }, 50);
           }
+          else {
+            self.timeUpdate(targetTime);
+          }
         }
       }
       else {
@@ -3189,7 +3192,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   }
 
   // TODO: We should probably use 'ontimeupdate' if supported by source
-  setTimeout(function () {
+  this.timeUpdateTimeout = window.setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
       (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
     ) {
