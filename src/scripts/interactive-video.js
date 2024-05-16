@@ -2517,6 +2517,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
               self.video.pause();
             }, 50);
           }
+          else {
+            self.timeUpdate(targetTime);
+          }
         }
       }
       else {
@@ -3193,7 +3196,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   }
 
   // TODO: We should probably use 'ontimeupdate' if supported by source
-  setTimeout(function () {
+  this.timeUpdateTimeout = window.setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
       (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
     ) {
