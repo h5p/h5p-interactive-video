@@ -302,7 +302,7 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (!self.controls) {
-        // Make sure that controls are added before setting time 
+        // Make sure that controls are added before setting time
         self.addControls();
         self.trigger('resize');
       }
@@ -1380,7 +1380,16 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {in
 
     // Do not focus element on initial load and showBookmarksmenuOnLoad is enabled
     if (!this.showBookmarksmenuOnLoad || !params.initialLoad) {
-      this.controls.$bookmarksChooser.find('[tabindex="0"]').first().focus();
+      /*
+       * On Safari, immediately focusing the first element in the bookmarks
+       * chooser causes the video to jump, because the element is still
+       * outside the viewport. Therefore wait for transition to finish.
+       */
+      this.controls.$bookmarksChooser[0].addEventListener(
+        'transitionend', () => {
+          this.controls.$bookmarksChooser
+          .find('[tabindex="0"]').first().focus();
+        }, {once: true});
     }
 
     if (this.editor) {
@@ -2504,6 +2513,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
               self.video.pause();
             }, 50);
           }
+          else {
+            self.timeUpdate(targetTime);
+          }
         }
       }
       else {
@@ -3180,7 +3192,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   }
 
   // TODO: We should probably use 'ontimeupdate' if supported by source
-  setTimeout(function () {
+  this.timeUpdateTimeout = window.setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
       (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
     ) {
