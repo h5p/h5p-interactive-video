@@ -2387,7 +2387,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
         .attr('aria-valuenow', '0')
         .attr('aria-label', self.l10n.videoProgressBar)
-        .attr('tabindex', '-1');
+        .attr('tabindex', '0');
 
       if (self.preventSkippingMode === 'both') {
         self.setDisabled($handle).attr('aria-hidden', 'true');
