@@ -1364,7 +1364,7 @@ InteractiveVideo.prototype.addBubbles = function () {
  * @param {boolean} [params.initialLoad] On page load flag.
  */
 InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {initialLoad: false, keepStopped: false, firstPlay: false}) {
-  if (this.controls.$bookmarksButton) {
+  if (this.controls?.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
@@ -2664,7 +2664,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   }
 
   self.qualities = this.video.getQualities();
-  if (!self.qualities || this.controls.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
+  if (!self.qualities || this.controls?.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
     return;
   }
 
@@ -2750,7 +2750,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
     return;
   }
 
-  if (!playbackRates || this.controls.$playbackRateButton === undefined ||
+  if (!playbackRates || this.controls?.$playbackRateButton === undefined ||
     !(self.isDisabled(this.controls.$playbackRateButton))) {
     return;
   }
