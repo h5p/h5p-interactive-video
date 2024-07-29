@@ -395,12 +395,12 @@ function InteractiveVideo(params, id, contentData) {
           }
 
           self.currentState = H5P.Video.PLAYING;
-          self.controls.$play
+          self.controls?.$play
             .removeClass('h5p-pause')
             .attr('aria-label', self.l10n.pause);
 
           // refocus for re-read button title by screen reader
-          if (self.controls.$play.is(":focus")) {
+          if (self.controls?.$play.is(":focus")) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
@@ -1514,7 +1514,10 @@ InteractiveVideo.prototype.resumeVideo = function (override) {
  * @param {boolean} show - If true will show, if false will hide, toggle otherwise
  */
 InteractiveVideo.prototype.toggleEndscreen = function (show) {
-  if (this.editor || !this.hasStar || show === this.bubbleEndscreen.isActive()) {
+  if (
+    this.editor || !this.hasStar || show === this.bubbleEndscreen?.isActive() ||
+    !this.controls?.$endscreensButton
+  ) {
     return;
   }
 
@@ -3268,6 +3271,10 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
  * @param  {number} seconds seconds
  */
 InteractiveVideo.prototype.updateCurrentTime = function (seconds) {
+  if (!this.controls?.$currentTime) {
+    return;
+  }
+
   var self = this;
 
   seconds = Math.max(seconds, 0);
