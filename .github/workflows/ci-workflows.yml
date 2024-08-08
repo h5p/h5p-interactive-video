@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - master
+    types: [opened, synchronize]  # Triggers on PR open and commits to PR
+
+jobs:
+  ci:
+    uses: h5p/h5p-ci-workflows/.github/workflows/h5p-ci-workflow.yml@master
+    with:
+      run-translations: true
