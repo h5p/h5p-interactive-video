@@ -463,6 +463,7 @@ function Interaction(parameters, player, previousState) {
   var openDialog = function (checkScore) {
     const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
     const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
+    $dialogWrapper.find('.h5p-dialog').attr('sub-content-id', self.getSubcontentId());
 
     if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
       instance.setActivityStarted();
