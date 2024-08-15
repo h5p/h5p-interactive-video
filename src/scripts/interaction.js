@@ -816,7 +816,7 @@ function Interaction(parameters, player, previousState) {
     $interaction = $('<div/>', {
       'aria-label': player.l10n.interaction,
       'tabindex': '-1',
-      'sub-content-id': getSubcontentId(),
+      'sub-content-id': self.getSubcontentId(),
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
       css: {
         left: parameters.x + '%',
