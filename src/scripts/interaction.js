@@ -463,7 +463,7 @@ function Interaction(parameters, player, previousState) {
   var openDialog = function (checkScore) {
     const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
     const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
-    $dialogWrapper.find('.h5p-dialog').attr('sub-content-id', self.getSubcontentId());
+    $dialogWrapper.find('.h5p-dialog').attr('data-sub-content-id', self.getSubcontentId());
 
     if (typeof instance.setActivityStarted === 'function' && typeof instance.getScore === 'function') {
       instance.setActivityStarted();
@@ -817,7 +817,7 @@ function Interaction(parameters, player, previousState) {
     $interaction = $('<div/>', {
       'aria-label': player.l10n.interaction,
       'tabindex': '-1',
-      'sub-content-id': self.getSubcontentId(),
+      'data-sub-content-id': self.getSubcontentId(),
       'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
       css: {
         left: parameters.x + '%',
