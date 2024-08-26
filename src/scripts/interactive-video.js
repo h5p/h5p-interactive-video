@@ -194,6 +194,9 @@ function InteractiveVideo(params, id, contentData) {
     self.interactionsProgress = self.previousState.interactionsProgress;
   }
 
+  // Keep track of user submitted state
+  this.setUserSubmitted(this.previousState?.submitted);
+
   // determine if video should be looped
   loopVideo = params.override && !!params.override.loop;
 
@@ -302,7 +305,7 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (!self.controls) {
-        // Make sure that controls are added before setting time 
+        // Make sure that controls are added before setting time
         self.addControls();
         self.trigger('resize');
       }
@@ -663,6 +666,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   var state = {
+    submitted: this.userSubmitted,
     progress: self.currentTime,
     maxTimeReached: this.maxTimeReached || null,
     answers: [],
@@ -3608,10 +3612,39 @@ InteractiveVideo.prototype.getVisibleInteractionsAt = function (second) {
 };
 
 /**
+ * Register that user has submitted the IV task.
+ * @param {boolean} state True to set submitted, false to unset.
+ */
+InteractiveVideo.prototype.setUserSubmitted = function (state) {
+  if (typeof state !== 'boolean') {
+    return;
+  }
+
+  this.userSubmitted = state;
+};
+
+/**
  * Implements showSolutions from the question type contract
  */
 InteractiveVideo.prototype.showSolutions = function () {
   // Intentionally left empty. Function makes IV pop up in CP summary
+};
+
+/**
+ * Determine whether the task was answered already.
+ * @returns {boolean} True if answer was given by user, else false.
+ * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
+ */
+InteractiveVideo.prototype.getAnswerGiven = function () {
+  /*
+   * Cannot rely on the instances' getAnswerGiven state alone, as IV is only
+   * considered answered if the user has submitted the task.
+   */
+  if (!this.userSubmitted) {
+    return false;
+  }
+
+  return this.interactions.some(interaction => interaction.getInstance().getAnswerGiven?.());
 };
 
 /**
@@ -3813,6 +3846,8 @@ InteractiveVideo.prototype.resetTask = function () {
   }
   this.previousState = {};
   this.maxTimeReached = 0;
+
+  this.setUserSubmitted(false);
 };
 
 /**
