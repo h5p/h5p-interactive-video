@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
-                        "default": "en",
+                        
                         "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Vizualna podoba",
                     "fields": [
                       {
-                        "label": "Barva ozadja",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Barva ozadja"
                       },
                       {
                         "label": "Senca",

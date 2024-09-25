@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
-                        "default": "en",
+                        
                         "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Ikusizkoak",
                     "fields": [
                       {
-                        "label": "Atzeko planoaren kolorea",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Atzeko planoaren kolorea"
                       },
                       {
                         "label": "Kutxaren itzala",

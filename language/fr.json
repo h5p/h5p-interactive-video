@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Langue de source, à renseigner obligatoirement pour les sous-titres",
-                        "default": "en",
+                        
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Images",
                     "fields": [
                       {
-                        "label": "Couleur d'arrière-plan",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Couleur d'arrière-plan"
                       },
                       {
                         "label": "Ombrage",

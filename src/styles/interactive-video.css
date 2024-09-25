@@ -1343,15 +1343,11 @@
 .h5p-interactive-video .h5p-table {
   font-size: 0.875em;
   border-collapse: collapse;
-}
-.h5p-interactive-video .h5p-table th {
-  border-bottom: 2px solid #191919;
-}
-.h5p-interactive-video .h5p-table td {
-  border-bottom: 1px solid #595959;
-}
-.h5p-interactive-video .h5p-table tr:last-child td {
-  border-bottom: 0;
+
+  /* Necessary for backwards compatibility */
+  table {
+    font-size: 0.875em;
+  }
 }
 
 .h5p-interactive-video .h5p-nil-interaction > .h5p-interaction-button {

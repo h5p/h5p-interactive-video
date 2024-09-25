@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lähdekieli, pakollinen tekstityksille",
-                        "default": "en",
+                        
                         "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Ulkoasu",
                     "fields": [
                       {
-                        "label": "Taustaväri",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Taustaväri"
                       },
                       {
                         "label": "Varjostus",
