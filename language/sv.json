@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        "default": "en",
+                        
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Visuella effekter",
                     "fields": [
                       {
-                        "label": "Bakgrundsfärg",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Bakgrundsfärg"
                       },
                       {
                         "label": "Skugga",

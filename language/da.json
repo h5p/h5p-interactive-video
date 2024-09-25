@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
-                        "default": "en",
+                        
                         "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Visuelle effekter",
                     "fields": [
                       {
-                        "label": "Baggrundsfarve",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Baggrundsfarve"
                       },
                       {
                         "label": "Skygge på afkrydsningsfelt",

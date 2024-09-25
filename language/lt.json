@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Originalo kalba turi būti apibrėžta subtitrams",
-                        "default": "en",
+                        
                         "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Vaizdai",
                     "fields": [
                       {
-                        "label": "Fono spalva",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Fono spalva"
                       },
                       {
                         "label": "Dėžutės šešėlis",

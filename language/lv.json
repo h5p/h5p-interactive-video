@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        "default": "en",
+                        
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Noformējums",
                     "fields": [
                       {
-                        "label": "Fona krāsa",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Fona krāsa"
                       },
                       {
                         "label": "Rāmīša ēnojums",

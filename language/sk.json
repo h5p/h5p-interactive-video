@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
-                        "default": "en",
+                        
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Vzhľady",
                     "fields": [
                       {
-                        "label": "Farba pozadia",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Farba pozadia"
                       },
                       {
                         "label": "Tieňovanie oblasti",

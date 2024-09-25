@@ -61,8 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí být definován pro titulky",
-                        "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy \"Titulky\", musí být definován zdrojový jazyk stopy.",
-                        "default": "en"
+                        "description": "Musí to být platná jazyková značka BCP 47. Je-li zvolen typ textové stopy \"Titulky\", musí být definován zdrojový jazyk stopy."
                       },
                       {
                         "label": "Sledovat zdroj (soubor WebVTT)"
@@ -164,8 +163,7 @@
                     "label": "Vizuál",
                     "fields": [
                       {
-                        "label": "Barva pozadí",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Barva pozadí"
                       },
                       {
                         "label": "Stín pole",
@@ -224,7 +222,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

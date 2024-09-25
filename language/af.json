@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet vasgestel word vir byskrifte",
-                        "default": "en",
+                        
                         "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Beeldmateriaal",
                     "fields": [
                       {
-                        "label": "Agtergrondkleur",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Agtergrondkleur"
                       },
                       {
                         "label": "Boks skaduwee",

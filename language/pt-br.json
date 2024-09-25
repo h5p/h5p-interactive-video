@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
-                        "default": "en",
+                        
                         "description": "Deve ser uma tag de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fundo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Cor de fundo"
                       },
                       {
                         "label": "Sombra da caixa",
