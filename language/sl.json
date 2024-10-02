@@ -11,7 +11,7 @@
               "description": "S klikom na okvir se odpre okno za dodajanje videoposnetka. Na voljo je pretok datoteke iz računalnika ali dodajanje spletne povezave posnetka (npr. iz YouTube). Za povečanje združljivosti z brskalniki, se lahko posnetek doda tudi v več različnih datotekah/formatih (npr. mp4, webm) ali različnih kakovostih (npr. HD, za mobilne naprave)."
             },
             {
-              "label": "Nastavitve začetnega zaslona (nepodprto za posnetke iz YouTuba)",
+              "label": "Nastavitve začetnega zaslona (YouTube posnetki niso podprti)",
               "fields": [
                 {
                   "label": "Naslov interaktivnega videoposnetka",
@@ -32,7 +32,7 @@
               ]
             },
             {
-              "label": "Sledi z besedilom (nepodprto za posnetke iz YouTuba)",
+              "label": "Sledi z besedilom (YouTube posnetki niso podprti)",
               "fields": [
                 {
                   "label": "Dosegljive sledi",
@@ -156,7 +156,7 @@
                       },
                       {
                         "label": "Za nadaljevanje aktivnosti so zahtevane vse točke",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Nastavitev je priporočeno uporabljati v povezavi z možnostjo \"Onemogoči navigacijo\" naprej."
                       }
                     ]
                   },
@@ -287,17 +287,17 @@
           "label": "Prevrti videoposnetek za 10 sekund nazaj"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Onemogoči navigacijo",
+          "description": "Nastavitev določa navigacijo uporabnika po interaktivnem videoposnetku.",
           "options": [
             {
-              "label": "None"
+              "label": "Brez omejitev"
             },
             {
-              "label": "Forward"
+              "label": "Naprej"
             },
             {
-              "label": "Forward and backward"
+              "label": "Naprej in nazaj"
             }
           ]
         },
@@ -343,11 +343,11 @@
           "default": "Zapri"
         },
         {
-          "label": "Besedilo za celozaslonski način",
+          "label": "Besedilo za celozaslonski način ogleda",
           "default": "Celozaslonski način"
         },
         {
-          "label": "Besedilo za zaključek celozaslonskega načina",
+          "label": "Besedilo za zaključek celozaslonskega načina ogleda",
           "default": "Zapusti celozaslonski način"
         },
         {
@@ -383,15 +383,15 @@
           "default": "Prevrti 10 sekund nazaj"
         },
         {
-          "label": "Besedilo za onemogočanje navigacije",
+          "label": "Besedilo za onemogočeno navigacijo",
           "default": "Navigacija je onemogočena"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Besedilo za onemogočeno navigacijo naprej",
+          "default": "Navigacija naprej je onemogočena"
         },
         {
-          "label": "Besedilo za onemogočanje zvoka",
+          "label": "Besedilo za onemogočen zvok",
           "default": "Zvok je onemogočen"
         },
         {
@@ -494,12 +494,12 @@
           "default": "Sprejet je odgovor na vprašanje @question, ki se je pojavilo po @minutes minutah in @seconds sekundah."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Časovna os videoposnetka",
+          "default": "Časovna os videoposnetka"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Besedilo o načinu dodajanja interaktivnih elementov",
+          "default": "Za dodajanje interakcij je treba predvajati videoposnetek"
         }
       ]
     }
