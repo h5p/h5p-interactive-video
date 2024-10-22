@@ -11,7 +11,7 @@
               "description": "Cliquez ci-dessous pour ajouter une vidéo que vous souhaitez utiliser dans votre vidéo interactive. Vous pouvez ajouter un lien vidéo ou téléverser des fichiers vidéo. Il est possible de téléverser plusieurs versions de la vidéo avec des qualités différentes. Pour assurer un support maximal dans les navigateurs, ajoutez au moins une version aux formats webm et mp4."
             },
             {
-              "label": "Options de l'écran de démarrage (ne fonctionne pas pour les vidéos YouTube)",
+              "label": "Options de l'écran de démarrage (Cette option n'est pas disponible pour les vidéos YouTube)",
               "fields": [
                 {
                   "label": "Titre de la vidéo interactive",
@@ -23,11 +23,11 @@
                 },
                 {
                   "label": "Courte description",
-                  "description": "Optionnel. Afficher une courte description sur l'écran de lancement de la vidéo. Ne fonctionne pas pour les vidéos Youtube"
+                  "description": "Optionnel. Afficher une courte description sur l'écran de lancement de la vidéo. Cette option n'est pas disponible pour les vidéos YouTube."
                 },
                 {
                   "label": "Image à la une",
-                  "description": "Optionnel. Cette image est affichée avant que l'utilisateur ne lance la vidéo. Ne fonctionne pas pour les vidéos YouTube."
+                  "description": "Optionnel. Cette image est affichée avant que l'utilisateur ne lance la vidéo. Cette option n'est pas disponible pour les vidéos YouTube."
                 }
               ]
             },
@@ -60,9 +60,9 @@
                         ]
                       },
                       {
-                        "label": "Langue de source, à renseigner obligatoirement pour les sous-titres",
+                        "label": "Langue source, obligatoire pour les sous-titres",
                         
-                        "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte séléctionné, il est indispensable d'indiquer sa langue d'origine."
+                        "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte sélectionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
                         "label": "Source de texte (fichier WebVTT)"
