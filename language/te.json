@@ -46,68 +46,68 @@
                         "default": "సబ్ టైటిల్స్"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "టెక్స్ట్ ట్రాక్ రకం",
                         "options": [
                           {
-                            "label": "Subtitles"
+                            "label": "ఉపశీర్షికలు"
                           },
                           {
-                            "label": "Captions"
+                            "label": "శీర్షికలు"
                           },
                           {
-                            "label": "Descriptions"
+                            "label": "వివరణలు"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
-                        
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+
+                        "label": "ఉపశీర్షికల కోసం మూల భాష తప్పనిసరిగా నిర్వచించబడాలి",
+                        "description": "తప్పనిసరిగా చెల్లుబాటు అయ్యే BCP 47 భాషా ట్యాగ్ అయి ఉండాలి. 'సబ్‌టైటిల్స్' అనేది ఎంచుకున్న టెక్స్ట్ ట్రాక్ రకం అయితే, ట్రాక్ యొక్క మూల భాషను తప్పనిసరిగా నిర్వచించాలి."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "ట్రాక్ మూలం (WebVTT file)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "డిఫాల్ట్ టెక్స్ట్ ట్రాక్",
+                  "description": "ఖాళీగా వదిలేస్తే లేదా ఏదైనా టెక్స్ట్ ట్రాక్‌లతో సరిపోలకపోతే మొదటి టెక్స్ట్ ట్రాక్ డిఫాల్ట్‌గా ఉపయోగించబడుతుంది."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "ఇంటరాక్షన్స్లను జోడించండి",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "డిస్ ప్లే సమయం"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "వీడియోను పాజ్ చేయండి"
                   },
                   {
-                    "label": "Display as",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "label": "ఇలా డిస్ ప్లే చెయ్యి",
+                    "description": "<b>బటన్</b> దీనిని తెరవడానికి యూజరు తప్పనిసరిగా నొక్కి ఓపెన్ చెయ్యాల్సిన కుదించబడిన ఇంటరాక్షన్. <b>పోస్టర్</b> అనేది నేరుగా వీడియో పైన ప్రదర్శించబడే విస్తరించిన ఇంటరాక్షన్",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "బటన్"
                       },
                       {
-                        "label": "Poster"
+                        "label": "పోస్టర్"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "చిన్న స్క్రీన్‌లపై బటన్‌గా మార్చు"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "లేబుల్",
+                    "description": "ఇంటరాక్షన్ ఐకన్ పక్కనే ప్రదర్శించబడే లేబుల్."
                   },
                   {},
                   {},
@@ -116,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "అడాప్టివిటీ",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "అన్ని సరైనవైతే తీసుకోవాల్సిన యాక్షన్",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "సీక్ టు",
+                            "description": "M:SS ఫార్మాట్‌లో టైమ్‌కోడ్‌ని నమోదు చెయ్యి"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "యూజర్ ను ముందుకు కొనసాగించడానికి అనుమతించండి"
                           },
                           {
-                            "label": "Message"
+                            "label": "సందేశం"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "సీక్ బటన్ కై లేబుల్"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "తప్పైతే తీసుకోవాల్సిన చర్య",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "సీక్ టు",
+                            "description": "M:SS ఫార్మాట్‌లో టైమ్‌కోడ్‌ని నమోదు చెయ్యి"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "యూజర్ ను ముందుకు కొనసాగించడానికి అనుమతించండి"
                           },
                           {
-                            "label": "Message"
+                            "label": "సందేశం"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "సీక్ బటన్ కై లేబుల్"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Prevent skipping forward in a video\" option of Interactive Video."
+                        "label": "ముందుకు కొనసాగడానికి పూర్తి స్కోర్ అవసరం",
+                        "description": "ఈ ఎంపికను ఉత్తమ కార్యాచరణ కోసం ఇంటరాక్టివ్ వీడియో యొక్క \"వీడియోలో ముందుకు నావిగేషన్‌ని నిలిపివేయి\" ఎంపికతో కలిపి ఉపయోగించాలి."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "విజువల్స్",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "నేపథ్య రంగు"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "పెట్టె నీడ",
+                        "description": "ఇంటరాక్షన్ చుట్టూ సూక్ష్మమైన నీడను జోడిస్తుంది. పూర్తిగా పారదర్శకమైన ఇంటరాక్షన్స్ కోసం మీరు దీన్ని డిజేబుల్ చేయాలనుకోవచ్చు"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "ఆన్ క్లిక్‌కి వెళ్లండి",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "రకం",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "టైమ్‌కోడ్"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "మరొక పేజీ (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "ఇక్కడికి వెళ్ళు",
+                        "description": "హాట్‌స్పాట్‌ను నొక్కిన తర్వాత యూజరు లక్ష్య సమయానికి తీసుకెళ్లబడతారు. టైమ్‌కోడ్‌ని M:SS ఫార్మాట్‌లో నమోదు చేయండి."
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "ప్రోటోకాల్",
                             "options": [
                               {
                                 "label": "http://"
@@ -203,10 +203,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(రూట్ రిలేటివ్)"
                               },
                               {
-                                "label": "other"
+                                "label": "మరొక/ఇతర"
                               }
                             ]
                           },
@@ -216,290 +216,288 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "దృశ్యపరంగా ఊహించు",
+                        "description": "బోర్డర్ మరియు చిహ్నం ను జోడించడం ద్వారా ఇంటరాక్షన్ ను క్లిక్ చేయవచ్చని చూపించు"
                       }
                     ]
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
-          "label": "Summary task",
+          "label": "సమ్మరీ టాస్క్",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "ప్రదర్శించు",
+              "description": "వీడియో ముగియడానికి ముందున్న సెకన్ల సంఖ్య."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "బిహేవియరల్ సెట్టింగ్స్",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "వద్ద వీడియోను ప్రారంభించు",
+          "description": "టైమ్‌కోడ్‌ని M:SS ఫార్మాట్‌లో నమోదు చెయ్యి"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "స్వీయ-ప్లే వీడియో",
+          "description": "స్వయంచాలకంగా వీడియోను ప్లే చేయడం ప్రారంభించు"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "వీడియోను లూప్ చెయ్యి",
+          "description": "వీడియో లూప్‌లో నడవాలో లేదో తనిఖీ చెయ్యి"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"పరిష్కారం చూపు\" బటన్‌ను ఓవర్ రైడ్ చెయ్యి",
+          "description": "\"పరిష్కారం చూపు\" బటన్ అన్ని ప్రశ్నలకు చూపబడుతుందా, అన్నింటికీ నిలిపివేయబడుతుందా లేదా ప్రతి ప్రశ్నకు ఒక్కొక్కటిగా కాన్ఫిగర్ చేయబడిందా అనేది ఈ ఎంపిక నిర్ణయిస్తుంది.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "ప్రారంభించబడింది"
             },
             {
-              "label": "Disabled"
+              "label": "డిసేబుల్డ్"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"మళ్లీ ప్రయత్నించు\" బటన్‌ను ఓవర్ రైడ్ చెయ్యి",
+          "description": "\"పునః ప్రయత్నించు\" బటన్ అన్ని ప్రశ్నలకు చూపబడుతుందా, అన్నింటికీ నిలిపివేయబడుతుందా లేదా ప్రతి ప్రశ్నకు ఒక్కొక్కటిగా కాన్ఫిగర్ చేయబడిందా అనేది ఈ ఎంపిక నిర్ణయిస్తుంది.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "ప్రారంభించబడింది"
             },
             {
-              "label": "Disabled"
+              "label": "డిసేబుల్డ్"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "బుక్‌మార్క్‌ల మెను తెరవడంతో ప్రారంభించు",
+          "description": "వీడియో సోర్స్‌గా YouTubeని ఉపయోగిస్తున్నప్పుడు ఈ ఫంక్షన్ iPadలో అందుబాటులో ఉండదు."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "10 సెకన్లు రివైండ్ చేయడానికి బటన్‌ను చూపించు"
         },
         {
-          "label": "Prevent skipping",
-          "description": "Enabling this options will disable user video navigation as specified.",
+          "label": "నావిగేషన్‌ను నిలిపివెయ్యి",
+          "description": "ఈ ఎంపికలు పేర్కొన్న విధంగా యూజరు వీడియో నావిగేషన్‌ను నిలిపివేస్తాయి.",
           "options": [
             {
-              "label": "None"
+              "label": "ఏదీ లేదు /ఏవీ కావు"
             },
             {
-              "label": "Forward"
+              "label": "ముందుకు"
             },
             {
-              "label": "Forward and backward"
+              "label": "ముందుకు , వెనుకకు"
             }
           ]
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "ధ్వనిని నిష్క్రియం చెయ్యి",
+          "description": "ఈ ఎంపికను ఎనేబుల్ చేయడం వలన వీడియో సౌండ్ నిష్క్రియం చేయబడుతుంది మరియు స్విచ్ ఆన్ చేయకుండా నిరోధించబడుతుంది."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "స్థానికీకరించు",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "ఇంటరాక్షన్ శీర్షిక",
+          "default": "ఇంటరాక్షన్"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "టైటిల్ ప్లే చెయ్యి",
+          "default": "ప్లే"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "పాజ్ టైటిల్",
+          "default": "తాత్కాలిక విరామం"
         },
         {
-          "label": "Mute title",
-          "default": "Mute, currently unmuted"
+          "label": "శీర్షికను మ్యూట్ చెయ్యి",
+          "default": "మ్యూట్, ప్రస్తుతం అన్‌మ్యూట్ చేయబడింది"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute, currently muted"
+          "label": "టైటిల్ అన్‌మ్యూట్ చెయ్యి",
+          "default": "అన్‌మ్యూట్, ప్రస్తుతం మ్యూట్ చేయబడింది"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "వీడియో నాణ్యత శీర్షిక",
+          "default": "వీడియో నాణ్యత"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "వీడియో కాప్షన్ ల శీర్షిక",
+          "default": "కాప్షన్లు"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "క్లోజ్ బటన్ టెక్స్ట్",
+          "default": "క్లోజ్"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "పూర్తి స్క్రీన్ టైటిల్",
+          "default": "ఫుల్ స్క్రీన్"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "ఫుల్ స్క్రీన్ టైటిల్ నుంచి నిష్క్రమించు",
+          "default": "ఫుల్ స్క్రీన్ నుంచి నిష్క్రమించు"
         },
         {
-          "label": "Summary title",
-          "default": "Open summary dialog"
+          "label": "సారాంశం శీర్షిక",
+          "default": "సారాంశ డైలాగ్‌ని ఓపెన్ చెయ్యి"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "బుక్‌మార్క్‌ల శీర్షిక",
+          "default": "బుక్‌మార్క్‌లు"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "సబ్ మిట్ స్క్రీన్ టైటిల్",
+          "default": "సబ్ మిట్ స్క్రీన్"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "అడాప్టివిటీ సీక్ బటన్ కై డిఫాల్ట్ లేబుల్",
+          "default": "కొనసాగించు /కంటిన్యూ"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "కొనసాగించు వీడియో బటన్ కై డిఫాల్ట్ లేబుల్",
+          "default": "వీడియోతో కొనసాగించు"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "మరిన్ని ప్లేయర్ ఎంపికల కోసం డిఫాల్ట్ లేబుల్",
+          "default": "మరిన్ని ప్లేయర్ ల ఎంపికలు"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "ప్లేబ్యాక్ రేటును సెట్ చెయ్యి",
+          "default": "ప్లేబ్యాక్ రేటు"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "10 సెకన్లు రివైండ్ చెయ్యి",
+          "default": "10 సెకన్లు రివైండ్ చెయ్యి"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "నావిగేషన్ డిసేబుల్డ్ టెక్స్ట్",
+          "default": "నావిగేషన్ నిలిపివేయబడింది"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "ముందుకు నావిగేట్ చేయడం నిలిపివేయబడిన టెక్స్ట్",
+          "default": "ముందుకు నావిగేట్ చేయడం నిలిపివేయబడింది"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "సౌండ్ డిసేబుల్ టెక్స్ట్",
+          "default": "ధ్వని నిలిపివేయబడింది"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "కొనసాగే ముందు యూజరు ప్రశ్నకు తప్పని సరిగా సమాధానమివ్వాలని హెచ్చరిక",
+          "default": "కొనసాగడానికి ముందు మీరు అన్ని ప్రశ్నలకు సరిగ్గా సమాధానం ఇవ్వాలి."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "వెనుకకు వెళ్ళే బటన్",
+          "default": "వెనుకకు"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "గడిచిన సమయం గంటలు",
+          "default": "గంటలు"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "గడిచిన సమయం నిమిషాలు",
+          "default": "నిమిషాలు"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "గడిచిన సమయం సెకన్లు",
+          "default": "సెకన్లు"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "ప్రస్తుత సమయానికి లేబుల్",
+          "default": "ప్రస్తుత సమయం:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "మొత్తం సమయం కోసం లేబుల్",
+          "default": "మొత్తం సమయం:"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "పేరుతో ఒక ఇంటరాక్షన్ వీక్షణలోకి వచ్చిందని వివరించే టెక్స్ట్",
+          "default": "కనిపించిన ఇంటరాక్షన్:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "కొన్ని ఇంటరాక్షన్స్ వీక్షణలోకి వచ్చాయని వివరించే టెక్స్ట్",
+          "default": "పలు ఇంటరాక్షన్స్ కనిపించాయి."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "వీడియో ప్రకటనను పాజ్ చేసింది",
+          "default": "వీడియో పాజ్ చేయబడింది"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "కంటెంట్ లేబుల్",
+          "default": "కంటెంట్"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "సమాధానమిచ్చిన సందేశం (@సమాధానం సమాధానమిచ్చిన ప్రశ్నల సంఖ్యతో భర్తీ చేయబడుతుంది)",
+          "default": "@సమాధానం ఇచ్చారు"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "సబ్ మిట్ స్క్రీన్ టైటిల్",
+          "default": "@సమాధానం ఇవ్వబడిన ప్రశ్న(లు) సమాధానం ఇవ్వబడింది",
+          "description": "@సమాధానం సమాధానమిచ్చిన ప్రశ్నల సంఖ్యతో భర్తీ చేయబడుతుంది."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "సబ్ మిట్ స్క్రీన్ సమాచారం",
+          "default": "మీరు @సమాధానం పొందిన ప్రశ్నలకు సమాధానమిచ్చారు, మీ సమాధానాలను సమర్పించడానికి దిగువ క్లిక్ చేయండి.",
+          "description": "@సమాధానం సమాధానమిచ్చిన ప్రశ్నల సంఖ్యతో భర్తీ చేయబడుతుంది."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "సబ్ మిట్ బటన్ నిలిపివేయబడినప్పుడు కనిపించే సబ్ మిట్ స్క్రీన్ సమాచారం",
+          "default": "మీరు @సమాధానం పొందిన ప్రశ్నలకు సమాధానమిచ్చారు.",
+          "description": "@సమాధానం సమాధానమిచ్చిన ప్రశ్నల సంఖ్యతో భర్తీ చేయబడుతుంది."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "సమాధానాలు లేనివాటికై సబ్ మిట్ స్క్రీన్ సమాచారం",
+          "default": "మీరు ఏ ప్రశ్నలకు సమాధానం ఇవ్వలేదు."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "అవసరమైన సమాధానాలకై సబ్ మిట్ స్క్రీన్ సమాచారం",
+          "default": "మీరు మీ సమాధానాలను సమర్పించే ముందు కనీసం ఒక ప్రశ్నకు సమాధానం ఇవ్వాలి."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "సబ్‌మిట్ స్క్రీన్ సబ్‌మిట్ బటన్",
+          "default": "సమాధానాలను సమర్పించండి"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "సబ్‌మిట్ స్క్రీన్ సబ్‌మిట్ మెసేజ్",
+          "default": "మీ సమాధానాలు సమర్పించబడ్డాయి!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "సబ్ మిట్ స్క్రీన్ పట్టిక వరుస శీర్షిక: సమాధానమిచ్చిన ప్రశ్నలు",
+          "default": "సమాధానం ఇచ్చిన ప్రశ్నలు"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "సబ్ మిట్ స్క్రీన్ పట్టిక వరుస శీర్షిక: స్కోర్",
+          "default": "స్కోర్"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "సబ్ మిట్ స్క్రీన్ ఆన్సర్ చేసిన స్కోర్‌",
+          "default": "సమాధానం ఇచ్చినవి"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "స్కోర్‌తో సహా సబ్ మిట్ స్క్రీన్ వరుస సారాంశం (రీడ్‌స్పీకర్‌ల కోసం)",
+          "default": "మీరు @నిమిషాల నిమిషాలు మరియు @సెకన్ల సెకన్ల తర్వాత కనిపించిన @ప్రశ్న కోసం @మొత్తం పాయింట్లలో @స్కోరు పొందారు."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "స్కోర్‌ లేని వాటికై సబ్ మిట్ స్క్రీన్ వరుస సారాంశం (రీడ్‌స్పీకర్‌ల కోసం)",
+          "default": "@నిమిషాల నిమిషాలు మరియు @సెకన్ల సెకన్ల తర్వాత కనిపించిన @ప్రశ్నకు మీరు సమాధానం ఇచ్చారు."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "వీడియో ప్రోగ్రెస్‌బార్",
+          "default": "వీడియో ప్రోగ్రెస్‌"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "ఇంటరాక్షన్ లను ఎలా సృష్టించాలో తెలిపే టెక్స్ట్",
+          "default": "ఇంటరాక్షన్ లను సృష్టించడం ప్రారంభించడానికి వీడియోను ప్లే చేయండి"
         }
       ]
     }

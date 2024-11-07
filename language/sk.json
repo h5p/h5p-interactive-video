@@ -156,7 +156,7 @@
                       },
                       {
                         "label": "Pred pokračovaním sa vyžaduje plné skóre za otázku",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "description": "Pre najlepšiu funkčnosť by sa táto možnosť mala používať v spojení s možnosťou „Zakázať navigáciu dopredu vo videu“ v rámci interaktívneho videa."
                       }
                     ]
                   },
@@ -223,9 +223,7 @@
                   }
                 ]
               }
-            },
-            {},
-            {}
+            }
           ]
         },
         {
@@ -252,139 +250,139 @@
           "description": "Spustiť prehrávanie videa automaticky"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Prehrajte si video",
+          "description": "Označte, či sa má video spúšťať v slučke"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Prepísať tlačidlo „Zobraziť riešenie“",
+          "description": "Táto možnosť určuje, či sa tlačidlo „Zobraziť riešenie“ zobrazí pre všetky otázky, či bude pre všetky zakázané, alebo či bude nakonfigurované pre každú otázku jednotlivo.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Povolené"
             },
             {
-              "label": "Disabled"
+              "label": "Zakázané"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "Prepísať tlačidlo „Zopakovať“",
+          "description": "Táto možnosť určuje, či sa tlačidlo „Zopakovať“ zobrazí pre všetky otázky, či bude pre všetky otázky deaktivované, alebo bude nakonfigurované pre každú otázku jednotlivo.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Povolené"
             },
             {
-              "label": "Disabled"
+              "label": "Zakázané"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Začať s otvorenou ponukou záložiek",
+          "description": "Táto funkcia nie je dostupná na iPade, keď ako zdroj videa používate YouTube."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "Zobraziť tlačidlo na previnutie o 10 sekúnd dozadu"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Zakázať navigáciu",
+          "description": "Tieto možnosti deaktivujú používateľskú videonavigáciu presne podľa špecifikácie.",
           "options": [
             {
-              "label": "None"
+              "label": "Nič"
             },
             {
-              "label": "Forward"
+              "label": "Vpred"
             },
             {
-              "label": "Forward and backward"
+              "label": "Vpred a vzad"
             }
           ]
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Deaktivovať zvuk",
+          "description": "Povolenie tejto možnosti deaktivuje zvuk videa a zabráni jeho zapnutiu."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Lokalizovať",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Názov interakcie",
+          "default": "Interakcia"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Prehrať titul",
+          "default": "Prehrať"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "Pozastaviť titul",
+          "default": "Pozastaviť"
         },
         {
-          "label": "Mute title",
-          "default": "Mute, currently unmuted"
+          "label": "Ignorovať názov",
+          "default": "Stlmiť, momentálne nie je stlmené"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute, currently muted"
+          "label": "Zapnúť zvuk titulu",
+          "default": "Zapnúť zvuk, momentálne je vypnutý"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Názov pre Kvalitu videa",
+          "default": "Kvalita videa"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Názov pre Titulky videa",
+          "default": "Titulky"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Text tlačidla Zavrieť",
+          "default": "Zavrieť"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Názov - Na celú obrazovku",
+          "default": "Na celú obrazovku"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Názov pre Opustiť režim na celú obrazovku",
+          "default": "Opustiť režim na celú obrazovku"
         },
         {
-          "label": "Summary title",
-          "default": "Open summary dialog"
+          "label": "Názov pre Súhrnný popis",
+          "default": "Otvoriť formulár pre súhrnný popis"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Názov pre Záložky",
+          "default": "Záložky"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Názov pre Odoslať obrazovku",
+          "default": "Odoslať obrazovku"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Predvolené označenie pre tlačidlo Prispôsobivé vyhľadávanie",
+          "default": "Pokračovať"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "Predvolené označenie pre tlačidlo Pokračovať vo videu",
+          "default": "Pokračovať vo videu"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "Predvolené označenie pre Viac nastavení prehrávača",
+          "default": "Viac nastavení prehrávača"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Nastavte rýchlosť prehrávania",
+          "default": "Rýchlosť prehrávania"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Pretočiť späť o 10 sekúnd",
+          "default": "Pretočiť späť o 10 sekúnd"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "Text pre Navigácia je zakázaná",
+          "default": "Navigácia je zakázaná"
         },
         {
           "label": "Navigáciou dopredu je zakázaný text",
@@ -439,23 +437,23 @@
           "default": "Obsah"
         },
         {
-          "label": "Odpovedaná správa (@zodpovedané bude nahradené počtom zodpovedaných otázok)",
+          "label": "Správa o odpovediach (@answered bude nahradené počtom zodpovedaných otázok)",
           "default": "@answered odpovedí"
         },
         {
           "label": "Odoslať názov obrazovky",
           "default": "@answered otázok bolo zodpovedaných",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered bude nahradený počtom zodpovedaných otázok."
         },
         {
           "label": "Odoslať informácie o obrazovke",
           "default": "Odpovedali ste na @answered otázky/otázok, kliknutím nižšie odošlite svoje odpovede.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered bude nahradený počtom zodpovedaných otázok."
         },
         {
           "label": "Odoslať informácie o obrazovke, keď je vypnuté tlačidlo Odoslať",
           "default": "Odpovedali ste na @answered otázky/otázok.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "description": "@answered bude nahradený počtom zodpovedaných otázok."
         },
         {
           "label": "Pre chýbajúce odpovede odošlite informácie o obrazovke",
@@ -494,12 +492,12 @@
           "default": "Odpovedali ste na @question otázku, ktorá sa objavila v čase @minutes minút a @seconds sekúnd."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Indikátor priebehu videa",
+          "default": "Priebeh videa"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Text pre Ako vytvárať interakcie",
+          "default": "Prehrajte si video a začnite vytvárať interakcie"
         }
       ]
     }
