@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Algkeel, subtiitrite jaoks peab olema määratud",
-                        "default": "en",
+                        
                         "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Visuaalid",
                     "fields": [
                       {
-                        "label": "Taustavärv",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Taustavärv"
                       },
                       {
                         "label": "Kasti vari",

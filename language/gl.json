@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        "default": "en",
+                        
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -164,8 +164,7 @@
                     "label": "Visuais",
                     "fields": [
                       {
-                        "label": "Cor de fondo",
-                        "default": "rgb(255, 255, 255)"
+                        "label": "Cor de fondo"
                       },
                       {
                         "label": "Sombreado da caixa",

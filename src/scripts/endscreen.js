@@ -134,6 +134,8 @@ class Endscreen extends H5P.EventDispatcher {
     if (this.$submitButtonContainer.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
       return;
     }
+    this.parent.setUserSubmitted(true);
+
     this.$submitButtonContainer.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
     this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-introduction-text-submitted">${this.l10n.submitMessage}</div>`);
 

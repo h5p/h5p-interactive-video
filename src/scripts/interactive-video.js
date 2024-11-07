@@ -194,6 +194,9 @@ function InteractiveVideo(params, id, contentData) {
     self.interactionsProgress = self.previousState.interactionsProgress;
   }
 
+  // Keep track of user submitted state
+  this.setUserSubmitted(this.previousState?.submitted);
+
   // determine if video should be looped
   loopVideo = params.override && !!params.override.loop;
 
@@ -302,7 +305,7 @@ function InteractiveVideo(params, id, contentData) {
       self.loaded();
 
       if (!self.controls) {
-        // Make sure that controls are added before setting time 
+        // Make sure that controls are added before setting time
         self.addControls();
         self.trigger('resize');
       }
@@ -392,12 +395,12 @@ function InteractiveVideo(params, id, contentData) {
           }
 
           self.currentState = H5P.Video.PLAYING;
-          self.controls.$play
+          self.controls?.$play
             .removeClass('h5p-pause')
             .attr('aria-label', self.l10n.pause);
 
           // refocus for re-read button title by screen reader
-          if (self.controls.$play.is(":focus")) {
+          if (self.controls?.$play.is(":focus")) {
             self.controls.$play.blur();
             self.controls.$play.focus();
           }
@@ -663,6 +666,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
   }
 
   var state = {
+    submitted: this.userSubmitted,
     progress: self.currentTime,
     maxTimeReached: this.maxTimeReached || null,
     answers: [],
@@ -1360,7 +1364,7 @@ InteractiveVideo.prototype.addBubbles = function () {
  * @param {boolean} [params.initialLoad] On page load flag.
  */
 InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {initialLoad: false, keepStopped: false, firstPlay: false}) {
-  if (this.controls.$bookmarksButton) {
+  if (this.controls?.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
     var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
@@ -1510,7 +1514,10 @@ InteractiveVideo.prototype.resumeVideo = function (override) {
  * @param {boolean} show - If true will show, if false will hide, toggle otherwise
  */
 InteractiveVideo.prototype.toggleEndscreen = function (show) {
-  if (this.editor || !this.hasStar || show === this.bubbleEndscreen.isActive()) {
+  if (
+    this.editor || !this.hasStar || show === this.bubbleEndscreen?.isActive() ||
+    !this.controls?.$endscreensButton
+  ) {
     return;
   }
 
@@ -2387,7 +2394,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         .attr('aria-valuetext', InteractiveVideo.formatTimeForA11y(0, self.l10n))
         .attr('aria-valuenow', '0')
         .attr('aria-label', self.l10n.videoProgressBar)
-        .attr('tabindex', '-1');
+        .attr('tabindex', '0');
 
       if (self.preventSkippingMode === 'both') {
         self.setDisabled($handle).attr('aria-hidden', 'true');
@@ -2512,6 +2519,9 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
             setTimeout(function () {
               self.video.pause();
             }, 50);
+          }
+          else {
+            self.timeUpdate(targetTime);
           }
         }
       }
@@ -2660,7 +2670,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
   }
 
   self.qualities = this.video.getQualities();
-  if (!self.qualities || this.controls.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
+  if (!self.qualities || this.controls?.$qualityButton === undefined || !(self.isDisabled(self.controls.$qualityButton))) {
     return;
   }
 
@@ -2746,7 +2756,7 @@ InteractiveVideo.prototype.addPlaybackRateChooser = function () {
     return;
   }
 
-  if (!playbackRates || this.controls.$playbackRateButton === undefined ||
+  if (!playbackRates || this.controls?.$playbackRateButton === undefined ||
     !(self.isDisabled(this.controls.$playbackRateButton))) {
     return;
   }
@@ -3189,7 +3199,7 @@ InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   }
 
   // TODO: We should probably use 'ontimeupdate' if supported by source
-  setTimeout(function () {
+  this.timeUpdateTimeout = window.setTimeout(function () {
     if (self.currentState === H5P.Video.PLAYING ||
       (self.currentState === H5P.Video.BUFFERING && self.lastState === H5P.Video.PLAYING)
     ) {
@@ -3264,6 +3274,10 @@ InteractiveVideo.prototype.updateInteractions = function (time) {
  * @param  {number} seconds seconds
  */
 InteractiveVideo.prototype.updateCurrentTime = function (seconds) {
+  if (!this.controls?.$currentTime) {
+    return;
+  }
+
   var self = this;
 
   seconds = Math.max(seconds, 0);
@@ -3598,10 +3612,39 @@ InteractiveVideo.prototype.getVisibleInteractionsAt = function (second) {
 };
 
 /**
+ * Register that user has submitted the IV task.
+ * @param {boolean} state True to set submitted, false to unset.
+ */
+InteractiveVideo.prototype.setUserSubmitted = function (state) {
+  if (typeof state !== 'boolean') {
+    return;
+  }
+
+  this.userSubmitted = state;
+};
+
+/**
  * Implements showSolutions from the question type contract
  */
 InteractiveVideo.prototype.showSolutions = function () {
   // Intentionally left empty. Function makes IV pop up in CP summary
+};
+
+/**
+ * Determine whether the task was answered already.
+ * @returns {boolean} True if answer was given by user, else false.
+ * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-1}
+ */
+InteractiveVideo.prototype.getAnswerGiven = function () {
+  /*
+   * Cannot rely on the instances' getAnswerGiven state alone, as IV is only
+   * considered answered if the user has submitted the task.
+   */
+  if (!this.userSubmitted) {
+    return false;
+  }
+
+  return this.interactions.some(interaction => interaction.getInstance().getAnswerGiven?.());
 };
 
 /**
@@ -3803,6 +3846,8 @@ InteractiveVideo.prototype.resetTask = function () {
   }
   this.previousState = {};
   this.maxTimeReached = 0;
+
+  this.setUserSubmitted(false);
 };
 
 /**
