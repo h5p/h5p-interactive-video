@@ -11,7 +11,7 @@
               "description": "Cliquez ci-dessous pour ajouter une vidéo que vous souhaitez utiliser dans votre vidéo interactive. Vous pouvez ajouter un lien vidéo ou téléverser des fichiers vidéo. Il est possible de téléverser plusieurs versions de la vidéo avec des qualités différentes. Pour assurer un support maximal dans les navigateurs, ajoutez au moins une version aux formats webm et mp4."
             },
             {
-              "label": "Options de l'écran de démarrage (Cette option n'est pas disponible pour les vidéos YouTube)",
+              "label": "Options de l'écran de démarrage (cette option n'est pas disponible pour les vidéos YouTube)",
               "fields": [
                 {
                   "label": "Titre de la vidéo interactive",
@@ -32,7 +32,7 @@
               ]
             },
             {
-              "label": "Pistes de textes (Ne fonctionne pas avec les vidéos YouTube)",
+              "label": "Pistes de textes (ne fonctionne pas avec les vidéos YouTube)",
               "fields": [
                 {
                   "label": "Pistes de textes disponibles",
@@ -287,17 +287,17 @@
           "label": "Afficher le bouton pour revenir en arrière de 10 secondes"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Désactiver la navigation",
+          "description": "Cette option désactive la navigation de l’utilisateur dans la vidéo.",
           "options": [
             {
-              "label": "None"
+              "label": "Aucune"
             },
             {
-              "label": "Forward"
+              "label": "Vers l'avant"
             },
             {
-              "label": "Forward and backward"
+              "label": "Vers l’avant et l'arrière"
             }
           ]
         },
@@ -363,15 +363,15 @@
           "default": "Continuer"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Intitulé par défaut pour le bouton de recherche d’adaptabilité",
+          "default": "Continuer"
         },
         {
           "label": "Intitulé par défaut du bouton de reprise",
           "default": "Reprendre la lecture"
         },
         {
-          "label": "Default label for more player options",
+          "label": "Intitulé par défaut pour plus d'options de lecteur",
           "default": "More player options"
         },
         {
@@ -387,8 +387,8 @@
           "default": "La navigation est désactivée"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Message pour la navigation vers l'avant désactivée",
+          "default": "La navigation vers l'avant est désactivée"
         },
         {
           "label": "Message pour le son est désactivé",
@@ -494,12 +494,12 @@
           "default": "Vous avez répondu aux @question qui sont apparues après @minutes minutes et @seconds secondes."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Barre de progression vidéo",
+          "default": "Progression de la vidéo"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Texte pour savoir comment créer des interactions",
+          "default": "Lire la vidéo pour commencer à créer des interactions"
         }
       ]
     }
