@@ -46,7 +46,7 @@
                         "default": "Feliratok"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Szövegsáv típusa",
                         "options": [
                           {
                             "label": "Feliratok"
@@ -60,7 +60,7 @@
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Forrásnyelv, meg kell határozni a feliratokhoz",
                         
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
@@ -71,7 +71,7 @@
                   }
                 },
                 {
-                  "label": "Default text track",
+                  "label": "Alapértelmezett szövegsáv",
                   "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
                 }
               ]
