@@ -138,6 +138,7 @@
                 "name": "defaultTrackLabel",
                 "type": "text",
                 "label": "Default text track",
+                "default": "Off",
                 "description": "If left empty or not matching any of the text tracks the first text track will be used as the default.",
                 "importance": "low",
                 "optional": true
