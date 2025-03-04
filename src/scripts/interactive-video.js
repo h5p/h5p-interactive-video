@@ -741,6 +741,7 @@ InteractiveVideo.prototype.attach = function ($container) {
 
   // Video with interactions
   this.attachVideo(this.$videoWrapper);
+  this.attachClickToTogglePlayPause(this.$videoWrapper[0]);
 
   if (this.justVideo) {
     this.$videoWrapper.find('video').css('minHeight', '200px');
@@ -847,6 +848,25 @@ InteractiveVideo.prototype.attachVideo = function ($wrapper) {
   if (!this.justVideo) {
     this.$overlay = $('<div class="h5p-overlay h5p-ie-transparent-background"></div>').appendTo($wrapper);
   }
+};
+
+/**
+ * Attach listener for click events on video, not interactions, and use to toggle play/pause.
+ * @param {HTMLElement} wrapper Wrapper element for video.
+ */
+InteractiveVideo.prototype.attachClickToTogglePlayPause = function (wrapper) {
+  if (this.isEditor || this.video.getHandlerName() !== 'Html5') {
+    return; // We can't do anything to the other handlers that shield the video in an iframe with remote content.
+  }
+
+  wrapper.addEventListener('click', (event) => {
+    const isClickOnInteraction = event.target !== wrapper && event.target.parentElement !== wrapper;
+    if (isClickOnInteraction) {
+      return;
+    }
+
+    this.togglePlayPause();
+  });
 };
 
 /**
