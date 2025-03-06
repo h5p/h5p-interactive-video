@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Үндсэн текст шалгагч",
                   "description": "Хэрэв хоосон орхигдсон эсвэл текстийн аль нэг тохирохгүй бол эхний бичвэрийн замыг стандарт болгон ашиглах болно."
                 }

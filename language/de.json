@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Standard-Textspur",
                   "description": "Wenn das Feld leer gelassen wird oder keiner Spurbeschriftung entspricht, wird die erste Textspur verwendet."
                 }

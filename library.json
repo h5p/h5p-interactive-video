@@ -64,6 +64,11 @@
       "machineName": "H5PEditor.InteractiveVideo",
       "majorVersion": 1,
       "minorVersion": 25
+    },
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
     }
   ]
 }

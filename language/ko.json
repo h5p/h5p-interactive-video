@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "텍스트 트랙 기본값",
                   "description": "빈 텍스트 트랙으로 두거나 텍스트 트랙과 일치하지 않을 경우 첫 번째 텍스트 트랙이 기본값으로 사용됨."
                 }

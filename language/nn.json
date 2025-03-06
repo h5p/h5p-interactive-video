@@ -70,6 +70,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Standard tekstspor",
                   "description": "Dersom dette feltet står tomt eller ikkje samsvarer med eit tilgjengeleg tekstspor, blir det første tekstsporet brukt."
                 }

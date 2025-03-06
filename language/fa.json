@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "مسیر متن پیش‌فرض",
                   "description": "اگر خالی گذاشته شود یا با هیچ کدام از مسیرهای متن تطابق نداشته باشد، مسیر متن اول به عنوان پیش‌فرض مورد استفاده قرار می‌گیرد."
                 }

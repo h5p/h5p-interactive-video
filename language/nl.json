@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Standaardtekst spoor",
                   "description": "Indien leeg gelaten of niet overeenkomend met één van de tekstsporen, wordt het eerste tekstspoor als standaard gebruikt."
                 }

@@ -135,12 +135,42 @@
                 }
               },
               {
+                "name": "selectDefaultTrackMode",
+                "type": "select",
+                "label": "Select default text track mode",
+                "importance": "low",
+                "options": [
+                  {
+                    "value": "none",
+                    "label": "None"
+                  },
+                  {
+                    "value": "automatic",
+                    "label": "Automatic"
+                  },
+                  {
+                    "value": "custom",
+                    "label": "Custom"
+                  }
+                ],
+                "default": "none"
+              },
+              {
                 "name": "defaultTrackLabel",
                 "type": "text",
                 "label": "Default text track",
                 "description": "If left empty or not matching any of the text tracks the first text track will be used as the default.",
                 "importance": "low",
-                "optional": true
+                "optional": true,
+                "widget": "showWhen",
+                "showWhen": {
+                  "rules": [
+                    {
+                      "field": "selectDefaultTrackMode",
+                      "equals": "custom"
+                    }
+                  ]
+                }
               }
             ]
           }

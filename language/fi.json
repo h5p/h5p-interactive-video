@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Oletus tekstitysraita",
                   "description": "Jos tämä jätetään tyhjäksi tai se ei vastaa tekstitysraitaa niin ensimmäistä tekstitysraitaa käytetään oletuksena."
                 }

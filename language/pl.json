@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Domyślna ścieżka tekstowa",
                   "description": "Jeśli pozostanie pusta lub nie pasuje do żadnej ze ścieżek tekstowych, jako domyślna zostanie użyta pierwsza ścieżka tekstowa."
                 }

@@ -70,6 +70,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "默认文本轨道",
                   "description": "如果为空或不匹配任何文本轨道，则将使用第一个文本轨道作为默认值。"
                 }

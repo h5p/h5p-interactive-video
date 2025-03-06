@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Fonte de texto por defecto",
                   "description": "Se se deixa en branco ou non coincide con ningunha fonte, usarase a primeira fonte como fonte por defecto."
                 }

@@ -70,6 +70,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Výchozí textová stopa",
                   "description": "Pokud zůstane prázdné nebo neodpovídá žádné z textových stop, první textová stopa bude použita jako výchozí."
                 }

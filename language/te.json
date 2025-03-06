@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "డిఫాల్ట్ టెక్స్ట్ ట్రాక్",
                   "description": "ఖాళీగా వదిలేస్తే లేదా ఏదైనా టెక్స్ట్ ట్రాక్‌లతో సరిపోలకపోతే మొదటి టెక్స్ట్ ట్రాక్ డిఫాల్ట్‌గా ఉపయోగించబడుతుంది."
                 }

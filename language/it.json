@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Traccia di testo predefinita",
                   "description": "Se lasciato vuoto o non corrispondente a nessuna delle tracce di testo, la prima di esse sarà utilizzata come predefinita"
                 }

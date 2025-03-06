@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Varsayılan yazı yolu",
                   "description": "Eğer herhangi bir yazı yolu boş bırakılırsa ilk yazı yolu varsıylan olarak kullanılacktır."
                 }

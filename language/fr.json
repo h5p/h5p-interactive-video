@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Texte par défaut de la première piste",
                   "description": "Si elle est vide ou qu'elle ne correspond à aucune piste de texte existante, cette première piste sera utilisée."
                 }

@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Faixa de texto predefinida",
                   "description": "Se deixar em branco ou não corresponder a nenhuma faixa de texto, será usada a primeira faixa de texto como predefinição."
                 }

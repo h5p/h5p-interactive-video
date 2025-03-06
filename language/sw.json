@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Wimbo chaguo msingi wa maandishi",
                   "description": "Ikiachwa tupu au hailingani na wimbo wowote wa maandishi, wimbo wa kwanza wa maandishi utatumika kama chaguo-msingi."
                 }

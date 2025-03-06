@@ -71,6 +71,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Privzeta sled z besedilom",
                   "description": "V primeru praznega polja ali neujemanja z drugimi sledmi, bo kot privzeta uporabljena prva sled z besedilom."
                 }
