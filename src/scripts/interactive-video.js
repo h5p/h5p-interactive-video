@@ -799,7 +799,12 @@ InteractiveVideo.prototype.attach = function ($container) {
   const ignoreEventForShortcutKey = (event, buttonName) => {
     const $button = (that.controls && that.controls[buttonName]) ? that.controls[buttonName] : undefined;
     const tabable = $button !== undefined && $button.attr('tabindex') !== '-1';
-    return (!tabable || event.target.nodeName === 'INPUT');
+    const isTextInputField =
+      event.target.nodeName === 'INPUT' ||
+      event.target.nodeName === 'TEXTAREA' ||
+      event.target.className.includes('ck');
+
+    return !tabable || isTextInputField;
   };
 
   // Toggle mute/unmute on 'M'
