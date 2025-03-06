@@ -499,6 +499,10 @@
         {
           "label": "Tekst som beskriver hvordan du oppretter interaktive elementer",
           "default": "Spill av video for å begynne å lage interaktive elementer"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

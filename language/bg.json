@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Езиковият източник трябва да бъде уточнен за субтитрите",
-                        
+
                         "description": "Трябва да бъде валиден BCP 47 езиков таг. Ако (Субтитри) е избраната текстова добавка, езиковият източник трябва да бъде уточнен."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

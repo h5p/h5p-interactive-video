@@ -499,6 +499,10 @@
         {
           "label": "关于如何创建交互的文本",
           "default": "播放视频，开始创建互动"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

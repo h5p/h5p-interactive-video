@@ -499,6 +499,10 @@
         {
           "label": "Information on how to start creating interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

@@ -499,6 +499,10 @@
         {
           "label": "Text o tom, jak vytvářet interakce",
           "default": "Přehrajte si video a začněte vytvářet interakce"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

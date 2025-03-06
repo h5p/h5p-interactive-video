@@ -1134,6 +1134,13 @@
         "importance": "low",
         "default": "Play the video to start creating interactions",
         "optional": true
+      },
+      {
+        "name": "off",
+        "type": "text",
+        "label": "Label for captions turned off",
+        "importance": "low",
+        "default": "Off"
       }
     ]
   }

@@ -149,7 +149,8 @@ function InteractiveVideo(params, id, contentData) {
     content: 'Content',
     answered: '@answered answered!',
     videoProgressBar: 'Video progress',
-    howToCreateInteractions: 'Play the video to start creating interactions'
+    howToCreateInteractions: 'Play the video to start creating interactions',
+    off: 'Off'
   }, params.l10n);
 
   // Add shortcut key to label
@@ -598,7 +599,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   var self = this;
 
   // Add option to turn off captions
-  tracks.unshift(new H5P.Video.LabelValue('Off', 'off'));
+  tracks.unshift(new H5P.Video.LabelValue(this.l10n.off, 'off'));
 
   if (self.captionsTrackSelector) {
     // Captions track selector already exists, simply update with new options

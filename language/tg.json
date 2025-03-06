@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Забон барои субтитрҳо бояд муайян карда шавад",
-                        
+
                         "description": "Бояд теги дурусти забони BCP 47 бошад. Агар -Субтитрҳо- навъи суруди интихобшуда бошад, забони трек бояд муайян карда шавад."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

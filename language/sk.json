@@ -499,6 +499,10 @@
         {
           "label": "Text pre Ako vytvárať interakcie",
           "default": "Prehrajte si video a začnite vytvárať interakcie"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

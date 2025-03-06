@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        
+
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Texto para como crear interacciones",
           "default": "Reproducir el video para comenzar a crear interacciones"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

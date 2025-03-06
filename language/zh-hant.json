@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "語言代碼",
-                        
+
                         "description": "若字軌是字幕的話，必須要定義。需符合 BCP 47 的語言標記，例如 en 為英文、zh 為中文。"
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

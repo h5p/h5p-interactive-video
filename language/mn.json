@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Эх хэл, дэд нэр томъёог тодорхойлох ёстой",
-                        
+
                         "description": "BCP 47 хэлний хүчинтэй тэмдэг байх ёстой. Хэрэв 'Subtitles' нь сонгосон текстийн гүйлгээний төрөл бол тухайн мөрийн эх хэлийг тодорхойлох ёстой."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

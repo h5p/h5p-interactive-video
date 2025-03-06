@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "زبان مبدأ، باید برای زیرنویس تعریف شود",
-                        
+
                         "description": "باید یک تگ زبان BCP 47 تأیید شده باشد. اگر نوع مسیر انتخاب شده «زیرنویس» باشد، زبان مبدأ مسیر باید تعریف شود."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

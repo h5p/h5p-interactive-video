@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "שפת המקור, חייבים להגדיר עבור כתוביות",
-                        
+
                         "description": "חייבת להיות תווית שפה BCP 47 תקפה. שם \"כתוביות\" זה סוג רצועת הטקסט הנבחר, יש להגדיר את שפת המקור של הרצועה."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

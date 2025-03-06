@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Langue source, obligatoire pour les sous-titres",
-                        
+
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte sélectionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -500,6 +500,10 @@
         {
           "label": "Texte pour savoir comment créer des interactions",
           "default": "Lire la vidéo pour commencer à créer des interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }
