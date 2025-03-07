@@ -648,14 +648,25 @@ InteractiveVideo.prototype.getTrackIndexByLanguage = function (bcp, videoTracks)
     return 0; // 0 is "off" track added by setCaptionTracks
   }
 
-  const index = videoTracks.findIndex(track => track.srcLang?.toLowerCase() === bcp.toLowerCase());
-  if (index !== -1) {
-    return index + 1;
+  bcp = bcp.toLowerCase();
+  const availableLanguages = videoTracks.map(track => track.srcLang?.toLowerCase());
+
+  // Try to match most specific language first, then work towards more general ones
+  let parts = bcp.split('-');
+  while (parts.length) {
+    let currentLanguage = parts.join('-');
+    let index = availableLanguages.indexOf(currentLanguage);
+    if (index !== -1) {
+      return index + 1;
+    }
+    parts.pop();
   }
 
-  // Try less specific language codes (e.g. 'en-US' -> 'en')
-  if (bcp.includes('-')) {
-    return getTrackIndexByLanguage(bcp.split('-').slice(0, -1).join('-'), videoTracks);
+  // If no exact match, find closest variant (e.g., 'en-US' -> 'en-GB')
+  const baseLanguage = bcp.split('-')[0];
+  const variantIndex = availableLanguages.findIndex(lang => lang.startsWith(`${baseLanguage}-`));
+  if (variantIndex !== -1) {
+    return variantIndex + 1;
   }
 
   return 0;
