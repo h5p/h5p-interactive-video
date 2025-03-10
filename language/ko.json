@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "소스 언어, 자막에 대해 정의되어야 함",
-                        
+
                         "description": "유효한 BCP 47 언어 태그여야 함. '자막'이 선택한 텍스트 트랙의 유형인 경우 트랙의 소스 언어를 정의해야 함."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "텍스트 트랙 기본값",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

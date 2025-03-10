@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Język – musi być określony dla tłumaczenia",
-                        
+
                         "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Domyślna ścieżka tekstowa",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

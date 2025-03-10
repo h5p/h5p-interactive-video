@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet vasgestel word vir byskrifte",
-                        
+
                         "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Verstek teks-snit",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

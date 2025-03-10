@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Мова має бути визначена для субтитрів",
-                        
+
                         "description": "Мовний тег BCP 47 має бути дійсним. Якщо субтитри - це тип вибраної текстової доріжки, необхідно визначити мову доріжки."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Текстова доріжка за замовчуванням",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

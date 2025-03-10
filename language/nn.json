@@ -70,6 +70,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Standard tekstspor",
                   "description": "Dersom dette feltet står tomt eller ikkje samsvarer med eit tilgjengeleg tekstspor, blir det første tekstsporet brukt."
                 }
@@ -222,7 +236,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -497,6 +513,10 @@
         {
           "label": "Tekst som beskriv korleis du opprettar interaktive element",
           "default": "Spel av video for å begynne å lage interaktive element"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

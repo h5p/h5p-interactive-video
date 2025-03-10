@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
-                        
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
@@ -69,6 +68,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Predvolená textová stopa",
@@ -223,7 +236,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -498,6 +513,10 @@
         {
           "label": "Text pre Ako vytvárať interakcie",
           "default": "Prehrajte si video a začnite vytvárať interakcie"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

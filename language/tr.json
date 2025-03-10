@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
-                        
+
                         "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Varsayılan yazı yolu",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

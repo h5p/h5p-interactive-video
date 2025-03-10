@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        
+
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Standard textspår",
@@ -500,6 +514,10 @@
         {
           "label": "Text som beskriver hur interaktioner skapas",
           "default": "Spela videon för att börja skapa interaktioner"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

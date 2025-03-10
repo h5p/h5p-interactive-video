@@ -149,7 +149,8 @@ function InteractiveVideo(params, id, contentData) {
     content: 'Content',
     answered: '@answered answered!',
     videoProgressBar: 'Video progress',
-    howToCreateInteractions: 'Play the video to start creating interactions'
+    howToCreateInteractions: 'Play the video to start creating interactions',
+    off: 'Off'
   }, params.l10n);
 
   // Add shortcut key to label
@@ -590,6 +591,88 @@ InteractiveVideo.prototype = Object.create(H5P.EventDispatcher.prototype);
 InteractiveVideo.prototype.constructor = InteractiveVideo;
 
 /**
+ * Get default track according to author default track selection mode.
+ * @param {object} textTracksParams Video tracks defined in semantics.json.
+ * @param {H5P.Video.LabelValue[]} labelValues Available caption labels.
+ * @returns {object} Track label value to be used.
+ */
+InteractiveVideo.prototype.getDefaultTrackLabelValue = function (textTracksParams, labelValues) {
+  if (this.editor) {
+    return labelValues[0];
+  }
+
+  const { selectDefaultTrackMode: mode, defaultTrackLabel, videoTrack } = textTracksParams;
+
+  if (mode === 'custom') {
+    return labelValues.find(({ label }) => label === defaultTrackLabel) || labelValues[0];
+  }
+
+  if (mode === 'automatic') {
+    return labelValues[this.findTrackIndexForBrowserLanguageSettings(videoTrack)];
+  }
+
+  return labelValues[0];
+};
+
+/**
+ * Find track index for given browser language or other preferred languages of user.
+ * @param {object[]} videoTracks Video tracks defined in semantics.json.
+ * @returns {number} Index of track to be selected.
+ */
+InteractiveVideo.prototype.findTrackIndexForBrowserLanguageSettings = function (videoTracks) {
+  const language = navigator.language || navigator.userLanguage;
+
+  const trackIndex = this.getTrackIndexByLanguage(language, videoTracks);
+
+  if (trackIndex !== 0) {
+    return trackIndex;
+  }
+
+  return navigator.languages
+    .filter(lang => lang !== language)
+    .reduce((result, current) => {
+      return (result === 0) ?
+        this.getTrackIndexByLanguage(current, videoTracks) :
+        result;
+    }, 0);
+};
+
+/**
+ * Get track index by language.
+ * @param {string} bcp Language code in BCP 47 format.
+ * @param {object[]} videoTracks Video tracks defined in semantics.json.
+ * @returns {number} Index of track to be selected.
+ */
+InteractiveVideo.prototype.getTrackIndexByLanguage = function (bcp, videoTracks) {
+  if (typeof bcp !== 'string' || !Array.isArray(videoTracks)) {
+    return 0; // 0 is "off" track added by setCaptionTracks
+  }
+
+  bcp = bcp.toLowerCase();
+  const availableLanguages = videoTracks.map(track => track.srcLang?.toLowerCase());
+
+  // Try to match most specific language first, then work towards more general ones
+  let parts = bcp.split('-');
+  while (parts.length) {
+    let currentLanguage = parts.join('-');
+    let index = availableLanguages.indexOf(currentLanguage);
+    if (index !== -1) {
+      return index + 1;
+    }
+    parts.pop();
+  }
+
+  // If no exact match, find closest variant (e.g., 'en-US' -> 'en-GB')
+  const baseLanguage = bcp.split('-')[0];
+  const variantIndex = availableLanguages.findIndex(lang => lang.startsWith(`${baseLanguage}-`));
+  if (variantIndex !== -1) {
+    return variantIndex + 1;
+  }
+
+  return 0;
+};
+
+/**
  * Set caption tracks for current interactive video
  *
  * @param {H5P.Video.LabelValue[]} tracks
@@ -598,7 +681,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   var self = this;
 
   // Add option to turn off captions
-  tracks.unshift(new H5P.Video.LabelValue('Off', 'off'));
+  tracks.unshift(new H5P.Video.LabelValue(this.l10n.off, 'off'));
 
   if (self.captionsTrackSelector) {
     // Captions track selector already exists, simply update with new options
@@ -606,22 +689,11 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     return;
   }
 
-  // Use default track if selected in editor
-  const defaultTrackLabel = this.editor ? undefined : self.options.video.textTracks.defaultTrackLabel;
-  const defaultTrack = tracks.reduce((result, current) => {
-    return (result === undefined && defaultTrackLabel && current.label === defaultTrackLabel) ? current : result;
-  }, undefined);
-
-  // Determine current captions track
-  let currentTrack = defaultTrack || self.video.getCaptionsTrack();
-
-  if (!currentTrack) {
-    // Set default off when no track is selected
-    currentTrack = tracks[0];
-  }
+  const currentTrack = this.getDefaultTrackLabelValue(self.options.video.textTracks, tracks);
 
   // Create new track selector
   self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n, self.contentId);
+  self.video.setCaptionsTrack(currentTrack.value === 'off' ? null : currentTrack);
 
   // Insert popup and button
   self.controls.$captionsButton = $(self.captionsTrackSelector.control);
