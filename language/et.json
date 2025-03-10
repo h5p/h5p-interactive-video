@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Algkeel, subtiitrite jaoks peab olema määratud",
-                        
+
                         "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Videokordus",
           "description": "Märgi, kui video peaks mängima korduses"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "\"Näita lahendust\" nupu olek",

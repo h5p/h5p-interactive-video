@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Sprache der Spur",
-                        
+
                         "description": "Muss ein gültiger BCP 47 Sprach-Tag sein. Wenn die Spurart auf \"Untertitel (subtitles)\" gestellt ist, muss die Sprache definiert werden."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Video als Schleife spielen",
           "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
+        },
+        {
+          "label": "Automatisches Pausieren deaktivieren",
+          "description": "Verhindert, dass das Video automatisch pausiert, wenn es aus dem Sichtfeld verschwindet."
         },
         {
           "label": "Überschreiben der Anzeigeoptionen des \"Lösungen anzeigen\"-Buttons",

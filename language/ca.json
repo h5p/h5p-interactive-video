@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma d’origen; cal definir-lo per als subtítols",
-                        
+
                         "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Repeteix el vídeo",
           "description": "Marqueu aquesta opció si el vídeo s’ha de reproduir en bucle"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Substitueix el botó \"Mostra la solució\"",

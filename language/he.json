@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "שפת המקור, חייבים להגדיר עבור כתוביות",
-                        
+
                         "description": "חייבת להיות תווית שפה BCP 47 תקפה. שם \"כתוביות\" זה סוג רצועת הטקסט הנבחר, יש להגדיר את שפת המקור של הרצועה."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "הריצו את הסרטון בלולאה",
           "description": "בדקו האם הסרטון אמור לרוץ בלולאה"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "דריסת כפתור \"הצגת פתרון\"",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
-                        
+
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
@@ -223,7 +223,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {
@@ -252,6 +254,10 @@
         {
           "label": "Prehrajte si video",
           "description": "Označte, či sa má video spúšťať v slučke"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Prepísať tlačidlo „Zobraziť riešenie“",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Langue source, obligatoire pour les sous-titres",
-                        
+
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte sélectionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Vidéo en boucle",
           "description": "Cochez cette case pour que la vidéo tourne en boucle"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Cacher le bouton \"Voir la solution\"",

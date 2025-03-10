@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "字幕のソース言語を定義する必要があります。",
-                        
+
                         "description": "有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Loop the video",
           "description": "Check if video should run in a loop"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "「解を表示」ボタンを上書き",

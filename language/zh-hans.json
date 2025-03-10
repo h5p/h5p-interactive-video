@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "语言代码",
-                        
+
                         "description": "若字轨是字幕的話，必须要定义。需符合 BCP 47 的语言标记，例如 en 为英文、zh 为中文。"
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "影片循环播放",
           "description": "在影片播放完后会重新播放"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "覆写「显示正解」按钮",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lugha chanzi, lazima ifafanuliwe kwa manukuu",
-                        
+
                         "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Pindua video",
           "description": "Chagua ikiwa video inapaswa kuendeshwa kwa kitanzi"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Batilisha kitufe cha Onyesha Suluhisho",

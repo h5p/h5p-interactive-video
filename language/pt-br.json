@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
-                        
+
                         "description": "Deve ser uma tag de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Repetir o Vídeo (loop)",
           "description": "Marque se o vídeo deve ser executado com repetição (loop)"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Sobrepor o botão \"Mostrar Solução\"",

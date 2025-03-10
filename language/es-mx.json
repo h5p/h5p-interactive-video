@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        
+
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Bucle de video",
           "description": "Activar si el video debería correr en un bucle"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Anular botón \"Mostrar Solución\"",

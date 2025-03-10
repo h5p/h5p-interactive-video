@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
-                        
+
                         "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Kør video i loop",
           "description": "Aktiver at video skal køre i loop"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Overskriv \"Vi svar\"-knap",

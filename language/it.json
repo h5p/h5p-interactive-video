@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
-                        
+
                         "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Riproduci ciclicamente il video",
           "description": "Verifica se il video debba eseguire un ciclo"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Sovrascrivi il pulsante Mostra soluzione",
