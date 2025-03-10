@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
-                        
+
                         "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Video opnieuw afspelen",
           "description": "Controleer of de video opnieuw moet worden afgespeeld"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Overschrijf \"Toon oplossing\"-knop",

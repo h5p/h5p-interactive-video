@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet vasgestel word vir byskrifte",
-                        
+
                         "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Lusloop die video",
           "description": "Kyk of video in 'n lusloop gewys moet word"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Oorskry \"Wys oplossing\" knoppie",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
-                        
+
                         "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Bideoaren begizta",
           "description": "Egiaztatzen du bideoa begizta moduan erreproduzitzen dela"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Baliogabetu \"Erakutsi emaitza\" botoia",

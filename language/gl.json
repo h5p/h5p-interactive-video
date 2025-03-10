@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        
+
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Repodución continua",
           "description": "Marcar para que o vídeo se reproduza continuamente"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Anular o botón \"Amosar Solución\"",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Originalo kalba turi būti apibrėžta subtitrams",
-                        
+
                         "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Kartoti vaizdo įrašą",
           "description": "Pažymėkite jei vaizdo įrašas turi būti rodomas ciklo būdu"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Keisti mygtuką „Rodyti sprendimą“",

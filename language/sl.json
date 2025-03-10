@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
-                        
+
                         "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Predvajaj v zanki",
           "description": "Predlagan je premislek o smiselnosti predvajanja posnetka v zanki."
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Določi prikaz gumba \"Prikaži rešitev\"",

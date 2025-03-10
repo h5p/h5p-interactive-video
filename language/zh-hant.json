@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "語言代碼",
-                        
+
                         "description": "若字軌是字幕的話，必須要定義。需符合 BCP 47 的語言標記，例如 en 為英文、zh 為中文。"
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "影片循環播放",
           "description": "在影片播放完後會重新播放"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "覆寫「顯示正解」按鈕",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Język – musi być określony dla tłumaczenia",
-                        
+
                         "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Pętla",
           "description": "Odtwarzaj wideo w pętli: gdy dojdzie do końca, zacznie się znów od początku"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Przycisk 'Pokaż rozwiązanie' (globalny)",

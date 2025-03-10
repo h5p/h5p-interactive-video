@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        
+
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Automātiski atkārtot videoklipu",
           "description": "Atzīmējiet, ja videoklipam jādarbojas ciklā"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "Ignorēt pogu \"Rādīt risinājumu\"",

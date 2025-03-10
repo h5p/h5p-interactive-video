@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
-                        
+
                         "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
@@ -254,6 +254,10 @@
         {
           "label": "Video sürekli dönsün",
           "description": "Video sürekli başa dönecekse işaretleyin"
+        },
+        {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
         },
         {
           "label": "\"Çözümü göster\" butonunu geçersiz kıl",
