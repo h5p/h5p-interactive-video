@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Język – musi być określony dla tłumaczenia",
-                        
+
                         "description": "Wpisz poprawny kod języka w standarcie BCP 47. Jeśli ścieżka zawiera tłumaczenie, należy określić język."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Dodaj interakcje",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

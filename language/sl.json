@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
-                        
+
                         "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Dodajanje interakcij",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

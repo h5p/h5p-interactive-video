@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "语言代码",
-                        
+
                         "description": "若字轨是字幕的話，必须要定义。需符合 BCP 47 的语言标记，例如 en 为英文、zh 为中文。"
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "添加互动元件",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

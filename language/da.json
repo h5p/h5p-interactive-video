@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kildesprog, skal være defineret for undertekster",
-                        
+
                         "description": "Skal være en gyldig BCP 47 sprogtag. Hvis \"Undertekster\" er det valgte tekstspor skal kildesproget til sporet defineres."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Tilføj interaktioner",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Langue source, obligatoire pour les sous-titres",
-                        
+
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte sélectionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Ajouter des activités",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {
