@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        
+
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Engadir interaccións",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

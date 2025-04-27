@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        
+
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Pievienot mijiedarbības",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

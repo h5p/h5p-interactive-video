@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma d’origen; cal definir-lo per als subtítols",
-                        
+
                         "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Afegeix interaccions",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

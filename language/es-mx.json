@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        
+
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Agregar interacciones",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

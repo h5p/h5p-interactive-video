@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Sprache der Spur",
-                        
+
                         "description": "Muss ein gültiger BCP 47 Sprach-Tag sein. Wenn die Spurart auf \"Untertitel (subtitles)\" gestellt ist, muss die Sprache definiert werden."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Interaktionen hinzufügen",
           "fields": [
             {
+              "entity": "Interaktion",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "Lesezeichen"
+            },
+            {
+              "entity": "Endbildschirm"
+            }
           ]
         },
         {

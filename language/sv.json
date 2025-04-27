@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        
+
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Lägg till interaktioner",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

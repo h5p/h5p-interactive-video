@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "소스 언어, 자막에 대해 정의되어야 함",
-                        
+
                         "description": "유효한 BCP 47 언어 태그여야 함. '자막'이 선택한 텍스트 트랙의 유형인 경우 트랙의 소스 언어를 정의해야 함."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "상호작용 추가",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

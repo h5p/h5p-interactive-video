@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
-                        
+
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Pridať interakcie",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -223,6 +224,12 @@
                   }
                 ]
               }
+            },
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
             }
           ]
         },

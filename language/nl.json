@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
-                        
+
                         "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Interacties toevoegen",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

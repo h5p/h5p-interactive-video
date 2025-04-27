@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lugha chanzi, lazima ifafanuliwe kwa manukuu",
-                        
+
                         "description": "Lazima iwe ni lebo halali ya lugha ya BCP 47. Ikiwa 'Manukuu' ni aina ya wimbo uliochaguliwa, lugha chanzo ya wimbo lazima ifafanuliwe."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Ongeza mwingiliano",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

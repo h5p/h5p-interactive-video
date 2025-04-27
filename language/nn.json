@@ -81,6 +81,7 @@
           "label": "Legg til interaktive element",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -222,6 +223,12 @@
                   }
                 ]
               }
+            },
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
             }
           ]
         },

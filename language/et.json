@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Algkeel, subtiitrite jaoks peab olema määratud",
-                        
+
                         "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
@@ -82,6 +82,7 @@
           "label": "Lisa interaktsioonid",
           "fields": [
             {
+              "entity": "interaction",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "bookmark"
+            },
+            {
+              "entity": "end screen"
+            }
           ]
         },
         {

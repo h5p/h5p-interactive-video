@@ -158,6 +158,7 @@
           {
             "name": "interactions",
             "type": "list",
+            "entity": "interaction",
             "field": {
               "name": "interaction",
               "type": "group",
@@ -569,6 +570,7 @@
             "name": "bookmarks",
             "importance": "low",
             "type": "list",
+            "entity": "bookmark",
             "field": {
               "name": "bookmark",
               "type": "group",
@@ -588,6 +590,7 @@
             "name": "endscreens",
             "importance": "low",
             "type": "list",
+            "entity": "end screen",
             "field": {
               "name": "endscreen",
               "type": "group",
