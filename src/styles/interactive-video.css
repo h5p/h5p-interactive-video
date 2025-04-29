@@ -20,7 +20,22 @@
   font-weight: normal;
   font-style: normal;
 }
-
+/*
+.h5p-container.h5p-interactive-video {
+  --h5p-theme-scale: 0.8;
+  --h5p-theme-spacing-xl: calc(3em*var(--h5p-theme-scale));
+  --h5p-theme-spacing-l: calc(2em*var(--h5p-theme-scale));
+  --h5p-theme-spacing-m: calc(1.5em*var(--h5p-theme-scale));
+  --h5p-theme-spacing-s: calc(1em*var(--h5p-theme-scale));
+  --h5p-theme-spacing-xs: calc(0.65em*var(--h5p-theme-scale));
+  --h5p-theme-spacing-xxs: calc(0.5em*var(--h5p-theme-scale));
+  --h5p-theme-font-size-xxl: calc(1.5em*var(--h5p-theme-scale));
+  --h5p-theme-font-size-xl: calc(1.25em*var(--h5p-theme-scale));
+  --h5p-theme-font-size-l: calc(1.125em*var(--h5p-theme-scale));
+  --h5p-theme-font-size-m: calc(1em*var(--h5p-theme-scale));
+  --h5p-theme-font-size-s: calc(0.85em*var(--h5p-theme-scale));
+}
+*/
 .h5p-interactive-video {
   position: relative;
   background: #000;
@@ -281,7 +296,7 @@
 
 /* Timecode links are green  */
 .h5p-interactive-video .h5p-goto-timecode > .h5p-interaction-button {
-  background-color: #018d82;
+  background-color: var(--h5p-theme-main-cta-base);
 }
 .h5p-interactive-video .h5p-goto-timecode:hover > .h5p-interaction-button {
   background-color: #007b71;
@@ -383,6 +398,7 @@
   height: 100%;
   width: 100%;
   overflow-y: auto;
+  background-color: var(--h5p-theme-ui-base);
 }
 
 .h5p-interactive-video .h5p-interaction-inner,
@@ -1343,6 +1359,8 @@
 .h5p-interactive-video .h5p-table {
   font-size: 0.875em;
   border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
 
   /* Necessary for backwards compatibility */
   table {
@@ -1560,14 +1578,14 @@
 
 .h5p-interactive-video .h5p-question .h5p-question-iv-adaptivity-correct:before,
 .h5p-interactive-video .h5p-question .h5p-question-iv-adaptivity-wrong:before {
-  content: "\f051";
+  /*content: "\f051"; overriden with a theme > icon "*/ 
 }
 
 .h5p-interactive-video .h5p-question .h5p-question-iv-continue {
   float: right;
 }
 .h5p-interactive-video .h5p-question-iv-continue:before {
-  content: "\f04b";
+  /*content: "\f04b"; overriden with a theme > icon "*/ 
 }
 
 /* mobile view */
@@ -1648,7 +1666,7 @@
 }
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner {
-  border-color: #018d82;
+  border-color: var(--h5p-theme-main-cta-base);
 }
 
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner {
@@ -1751,7 +1769,7 @@
 }
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus:after,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus:after {
-  color: #018d82;
+  color: var(--h5p-theme-main-cta-base);
 }
 .h5p-interactive-video .h5p-dialog.h5p-big.goto-clickable-visualize[data-lib="H5P.Image"] .h5p-dialog-inner:after {
   top: 0.25em;

@@ -928,7 +928,11 @@ function Interaction(parameters, player, previousState) {
           instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
             closeInteraction();
             continueWithVideo();
-          });
+          },
+            true,
+            {},
+            { classes: ['h5p-theme-primary-cta h5p-theme-continue'] }
+          );                  
         }
 
         // show or hide the continue-button, based on requiring completion
@@ -937,6 +941,7 @@ function Interaction(parameters, player, previousState) {
 
       return;
     }
+    
 
     // Stop playback
     player.pause();
@@ -967,8 +972,12 @@ function Interaction(parameters, player, previousState) {
         }
 
         self.remove();
-        continueWithVideo(adaptivity.seekTo);
-      })
+        continueWithVideo(adaptivity.seekTo);  
+        },
+        true,
+        {},
+        { classes: ['h5p-theme-primary-cta h5p-theme-go-to-start'] }
+      )
       .showButton('iv-adaptivity-' + adaptivityId, 1)
       .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
       .hideButton('check-answer', 1)
