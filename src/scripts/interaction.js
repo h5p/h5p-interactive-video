@@ -931,7 +931,7 @@ function Interaction(parameters, player, previousState) {
           },
             true,
             {},
-            { classes: ['h5p-theme-primary-cta h5p-theme-continue'] }
+            { icon: 'continue' }
           );                  
         }
 
@@ -975,7 +975,7 @@ function Interaction(parameters, player, previousState) {
         },
         true,
         {},
-        { classes: ['h5p-theme-primary-cta h5p-theme-go-to-start'] }
+        { icon: 'go-to-start' }
       )
       .showButton('iv-adaptivity-' + adaptivityId, 1)
       .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
