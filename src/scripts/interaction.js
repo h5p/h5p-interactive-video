@@ -941,7 +941,6 @@ function Interaction(parameters, player, previousState) {
 
       return;
     }
-    
 
     // Stop playback
     player.pause();
