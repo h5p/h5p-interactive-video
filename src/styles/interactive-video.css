@@ -743,7 +743,7 @@
   margin: 0;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"] {
-  padding: 10px 0 10px 0;
+  padding: 10px;
   color: #fbfbfb;
   font-size: 14px;
   border-radius: var(--h5p-theme-border-radius-medium);
