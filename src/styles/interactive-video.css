@@ -1943,3 +1943,23 @@
   cursor: pointer;
   pointer-events: none;
 }
+
+/* Styling override for primary button mixed with secondary buttons that needs to collapse at same container width */
+@container (max-width: 350px) {
+  .h5p-theme .h5p-theme-primary-cta.h5p-theme-continue {
+    justify-content: center;
+    padding: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-s);
+    text-indent: 0;
+
+    &::before {
+      opacity: 1;
+      position: unset;
+      text-indent: 0;
+      transform: translate(0, 0);
+    }
+
+    .h5p-theme-label {
+      display: none;
+    }
+  }
+}
