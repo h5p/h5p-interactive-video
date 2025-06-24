@@ -1,9 +1,6 @@
-import {onClick} from 'h5p-lib-controls/src/scripts/ui/input';
-
 const $ = H5P.jQuery;
 
 const ENDSCREEN_STYLE_BASE = 'h5p-interactive-video-endscreen';
-const ENDSCREEN_STYLE_BUTTON_HIDDEN = 'h5p-interactive-video-endscreen-submit-button-hidden';
 
 const isset = function (value) {
   return value !== undefined && value !== null;
@@ -38,8 +35,9 @@ class Endscreen extends H5P.EventDispatcher {
       informationMustHaveAnswer: 'You have to answer at least one question before you can submit your answers.',
       submitButton: 'Submit Answers',
       submitMessage: 'Your answers have been submitted!',
-      tableRowAnswered: 'Answered questions',
-      tableRowScore: 'Score',
+      tableRowAnswered: 'Answered questions', // TODO: Remove incl. upgrade script for related l10n variable
+      tableRowScore: 'Score', // TODO: Remove incl. upgrade script for related l10n variable
+      question: 'Question', // Add in upgrade script
       answeredScore: 'answered',
       tableRowSummaryWithScore: 'You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.',
       tableRowSummaryWithoutScore: 'You have answered the @question that appeared after @minutes minutes and @seconds seconds.',
@@ -51,76 +49,12 @@ class Endscreen extends H5P.EventDispatcher {
     this.buildDOM();
   }
 
-  /**
-   * Build the DOM elements for the endscreen.
-   */
   buildDOM() {
-    // Title Bar with text and close button
-    this.$endscreenIntroductionTitleText = $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-introduction-title-text`,
-      'id': `${ENDSCREEN_STYLE_BASE}-introduction-title-text`
-    });
-
-    this.$closeButton = $('<div>', {
-      'role': 'button',
-      'class': `${ENDSCREEN_STYLE_BASE}-close-button`,
-      'tabindex': '0',
-      'aria-label': this.parent.l10n.close
-    });
-
-    // This is a little bit like Minsky's useless machine, but necessary because of the dual use of the bubble class.
-    onClick(this.$closeButton, () => this.parent.toggleEndscreen(false));
-
-    const $endscreenIntroductionTitle = $('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction-title`})
-      .append([this.$endscreenIntroductionTitleText, this.$closeButton]);
-
-    // Description
-    this.$endscreenIntroductionText = $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-introduction-text`,
-      'id': `${ENDSCREEN_STYLE_BASE}-introduction-text`
-    });
-
-    if (this.isSubmitButtonEnabled) {
-      // Submit button
-      this.$submitButtonContainer = $('<div/>', {
-        'class': `${ENDSCREEN_STYLE_BASE}-submit-button-container ${ENDSCREEN_STYLE_BUTTON_HIDDEN}`
-      });
-
-      this.$submitButton = H5P.JoubelUI.createButton({
-        'class': `${ENDSCREEN_STYLE_BASE}-submit-button`,
-        html: this.l10n.submitButton,
-        appendTo: this.$submitButtonContainer,
-        click: () => this.handleSubmit()
-      });
-    }
-
-    // Title row for the table at the bottom
-    this.$endscreenOverviewTitle = $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-title`
-    }).append($('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-title-answered-questions`,
-      'html': this.l10n.tableRowAnswered
-    })).append($('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-title-score`,
-      'html': this.l10n.tableRowScore
-    }));
-
-    // Table for answered interactions
-    this.$endscreenBottomTable = $('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-overview-table`});
-
-    // Endscreen DOM root
-    this.$endscreen = $('<div/>', {
-      'class': ENDSCREEN_STYLE_BASE,
-      role: 'dialog',
-      'aria-labelledby': `${ENDSCREEN_STYLE_BASE}-introduction-title-text`,
-      'aria-describedby': `${ENDSCREEN_STYLE_BASE}-introduction-text`
-    }).append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction`})
-        .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-star-symbol`}))
-        .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-introduction-container`})
-          .append([$endscreenIntroductionTitle, this.$endscreenIntroductionText, this.$submitButtonContainer])))
-      .append($('<div/>', {'class': `${ENDSCREEN_STYLE_BASE}-overview`})
-        .append(this.$endscreenOverviewTitle)
-        .append(this.$endscreenBottomTable));
+    this.endscreenDOM = document.createElement('div');
+    this.endscreenDOM.className = ENDSCREEN_STYLE_BASE;
+    this.endscreenDOM.setAttribute('role', 'dialog');
+    this.endscreenDOM.setAttribute('aria-labelledby', `${ENDSCREEN_STYLE_BASE}-introduction-title-text`);
+    this.endscreenDOM.setAttribute('aria-describedby', `${ENDSCREEN_STYLE_BASE}-introduction-text`);
   }
 
   /**
@@ -131,15 +65,17 @@ class Endscreen extends H5P.EventDispatcher {
    * a 'completed' xAPI statement for parent (IV) each time.
    */
   handleSubmit() {
-    if (this.$submitButtonContainer.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
+    if (!this.isSubmitButtonEnabled) {
       return;
     }
     this.parent.setUserSubmitted(true);
 
-    this.$submitButtonContainer.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
-    this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-introduction-text-submitted">${this.l10n.submitMessage}</div>`);
+    this.submitButton.remove();
 
-    this.answered.forEach(interaction => {
+    this.infoTextDOM.innerHTML = this.l10n.submitMessage;
+    this.infoTextDOM.classList.add(`${ENDSCREEN_STYLE_BASE}-information-text-submitted`);
+
+    this.answeredInteractions.forEach(interaction => {
       /*
        * We only need to fire an xAPI answered statement if the user
        * interacted with the content and the content has not sent it so far
@@ -167,58 +103,7 @@ class Endscreen extends H5P.EventDispatcher {
    * @return {jQuery} DOM of the endscreen.
    */
   getDOM() {
-    return this.$endscreen;
-  }
-
-  /**
-   * Build one row of a table for the endscreen.
-   *
-   * @param {number} time - Popup time of an interaction in seconds.
-   * @param {string} title - Title of the interaction.
-   * @param {number} score
-   * @param {number} maxScore
-   * @return {jQuery} DOM element for the table row.
-   */
-  buildTableRow(time, title, score, maxScore) {
-    const hasScore = isset(score) && isset(maxScore);
-    const ariaLabel = hasScore ?
-      this.l10n.tableRowSummaryWithScore : this.l10n.tableRowSummaryWithoutScore;
-    const noLink = (this.parent.isSkippingProhibited(time)) ? ` ${ENDSCREEN_STYLE_BASE}-no-link` : '';
-    const $row = $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row${noLink}`,
-      role: 'row',
-      tabIndex: 0,
-      'aria-label': ariaLabel.replace('@score', score)
-        .replace('@total', maxScore)
-        .replace('@question', title)
-        .replace('@minutes', Math.floor(time / 60))
-        .replace('@seconds', time % 60)
-    });
-
-    onClick($row, () => this.jump(time));
-
-    $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`,
-      html: H5P.InteractiveVideo.humanizeTime(time),
-      appendTo: $row,
-      'aria-hidden': true
-    });
-
-    $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`,
-      html: title,
-      appendTo: $row,
-      'aria-hidden': true
-    });
-
-    $('<div/>', {
-      'class': `${ENDSCREEN_STYLE_BASE}-overview-table-row-score`,
-      html: hasScore ? `${score} / ${maxScore}` : this.l10n.answeredScore,
-      appendTo: $row,
-      'aria-hidden': true
-    });
-
-    return $row;
+    return this.endscreenDOM;
   }
 
   /**
@@ -233,51 +118,151 @@ class Endscreen extends H5P.EventDispatcher {
     }
   }
 
-  /**
-   * Update the endscreen.
-   *
-   * @param {H5P.Interaction[]} [interactions] - Interactions from IV.
-   */
   update(interactions = []) {
-    // Filter for interactions that have been answered and sort chronologically
-    this.answered = interactions
-      .filter(interaction => interaction.getProgress() !== undefined)
+    this.endscreenDOM.innerHTML = '';
+
+    this.answeredInteractions = interactions
+      .filter((interaction) => interaction.getProgress() !== undefined)
       .sort((a, b) => a.getDuration().from - b.getDuration().from);
 
-    if (this.isSubmitButtonEnabled) {
-      this.$submitButtonContainer?.addClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
-    }
-    this.$endscreenBottomTable.empty();
-
-    // No chaining because we need the variable later
-    this.answered.forEach(interaction => {
-      const time = interaction.getDuration().from;
-      const title = this.getDescription(interaction);
+    const questions = this.answeredInteractions.map((interaction) => {
       const instance = interaction.getInstance();
-      const score = instance.getScore ? instance.getScore() : undefined;
-      const maxScore = instance.getMaxScore ? instance.getMaxScore() : undefined;
-      this.$endscreenBottomTable.append(this.buildTableRow(time, title, score, maxScore));
+      const time = interaction.getDuration().from;
+      const score = instance?.getScore();
+      const maxScore = instance?.getMaxScore();
+
+      const formattedTitle = this.buildQuestionTitleHTML(
+        H5P.InteractiveVideo.humanizeTime(time),
+        this.getDescription(interaction)
+      );
+      const points = (isset(score) && isset(maxScore))
+        ? `${score}/${maxScore}`
+        : this.l10n.answeredScore;
+
+      return {
+        title: formattedTitle,
+        points: points
+      };
     });
 
-    const number = this.answered.length;
+    const numberOfCharsForTime = this.answeredInteractions.reduce((max, interaction) => {
+      const humanizedTime = H5P.InteractiveVideo.humanizeTime(interaction.getDuration().from);
+      return Math.max(max, humanizedTime.length);
+    }, 0)
+    this.endscreenDOM.style.setProperty('--h5p-theme-endscreen-time-width', `${numberOfCharsForTime}ch`);
 
-    this.$endscreenIntroductionTitleText.html(this.l10n.title.replace('@answered', number));
+    this.endscreenDOM.append(H5P.Components.ResultScreen({
+      header: this.l10n.title.replace('@answered', questions.length),
+      scoreHeader: '', // Needs to be a close button.
+      questionGroups: [{
+        listHeaders: [this.l10n.question, this.l10n.tableRowScore],
+        questions: questions
+      }]
+    }));
 
-    if (number === 0) {
-      this.$endscreenIntroductionText.html(`<div class="${ENDSCREEN_STYLE_BASE}-bold-text">${this.l10n.informationNoAnswers}</div>
-      ${this.isSubmitButtonEnabled ? `<div>${this.l10n.informationMustHaveAnswer}<div>` : ``}`);
+    // Inject close button
+    this.closeButton = new H5P.Components.Button({
+      label: '',
+      'aria-label': this.parent.l10n.close,
+      styleType: 'secondary',
+      icon: 'close',
+      onClick: () => this.parent.toggleEndscreen(false)
+    });
+
+    const buttonContainer = document.querySelector('.h5p-theme-results-banner');
+    if (buttonContainer) {
+      const resultsScore = document.querySelector('.h5p-theme-results-score');
+      resultsScore?.remove();
+      buttonContainer.append(this.closeButton);
+    }
+
+    // Make questions clickable to jump to the question in the video
+    const questionListItems = this.endscreenDOM.querySelectorAll(`.h5p-theme-results-list-item`);
+    questionListItems?.forEach((listItem, index) => {
+      const interaction = this.answeredInteractions[index];
+      const hasScore = isset(interaction.instance?.getScore()) && isset(interaction.instance?.maxScore());
+
+      let ariaLabel = hasScore ? this.l10n.tableRowSummaryWithScore : this.l10n.tableRowSummaryWithoutScore;
+      ariaLabel = ariaLabel.replace('@score', interaction.instance?.getScore() || '0');
+      ariaLabel = ariaLabel.replace('@total', interaction.instance?.getMaxScore() || '0');
+      ariaLabel = ariaLabel.replace('@question', this.getDescription(interaction));
+      ariaLabel = ariaLabel.replace('@minutes', Math.floor(interaction.getDuration().from / 60));
+      ariaLabel = ariaLabel.replace('@seconds', interaction.getDuration().from % 60);
+
+      listItem.classList.add(`is-jump-button`);
+      if (this.parent.isSkippingProhibited(interaction.getDuration().from)) {
+        listItem.classList.add('is-skipping-prevented');
+      }
+      listItem.setAttribute('tabindex', '0');
+      listItem.setAttribute('role', 'button');
+      listItem.setAttribute('aria-label', ariaLabel);
+      listItem.addEventListener('click', (event) => {
+        this.handleClickOnQuestion(event, index);
+      });
+      listItem.addEventListener('keydown', (event) => {
+        this.handleClickOnQuestion(event, index);
+      });
+    });
+
+    const additionalInfoDOM = document.createElement('div');
+    additionalInfoDOM.className = `${ENDSCREEN_STYLE_BASE}-information`;
+    this.endscreenDOM.append(additionalInfoDOM);
+
+    this.infoTextDOM = document.createElement('div');
+    this.infoTextDOM.className = `${ENDSCREEN_STYLE_BASE}-information-text`;
+
+    if (questions.length === 0) {
+      let text = `<div class='${ENDSCREEN_STYLE_BASE}-bold-text'>${this.l10n.informationNoAnswers}</div>`;
+      if (this.isSubmitButtonEnabled) {
+        text = `${text}<div>${this.l10n.informationMustHaveAnswer}</div>`;
+      }
+      this.infoTextDOM.innerHTML = text;
+    }
+    else if (this.isSubmitButtonEnabled) {
+      this.infoTextDOM.innerHTML = this.l10n.information.replace('@answered', questions.length);
     }
     else {
-      this.$endscreenIntroductionText.html(
-        this.isSubmitButtonEnabled
-          ? this.l10n.information.replace('@answered', number)
-          : this.l10n.informationOnSubmitButtonDisabled.replace('@answered', number));
+      this.infoTextDOM.innerHTML = this.l10n.informationOnSubmitButtonDisabled.replace('@answered', questions.length);
+    }
+    additionalInfoDOM.append(this.infoTextDOM);
+
+    if (this.isSubmitButtonEnabled && questions.length > 0) {
+      this.submitButton = new H5P.Components.Button({
+        label: this.l10n.submitButton,
+        styleType: 'secondary',
+        onClick: () => this.handleSubmit(),
+        icon: 'check',
+      });
+
+      additionalInfoDOM.append(this.submitButton);
+    }
+  }
+
+  handleClickOnQuestion(event, index) {
+    if ((event instanceof KeyboardEvent) && event.key !== 'Enter' && event.key !== ' ') {
+      return;
     }
 
-    // Only show submit button (again) if there are answered interactions
-    if (this.isSubmitButtonEnabled && number > 0) {
-      this.$submitButtonContainer.removeClass(ENDSCREEN_STYLE_BUTTON_HIDDEN);
+    event.preventDefault();
+
+    const interaction = this.answeredInteractions[index];
+    if (interaction) {
+      this.jump(interaction.time);
     }
+  }
+
+  buildQuestionTitleHTML(humanizedTime, title) {
+    const timeSpan = document.createElement('span');
+    timeSpan.className = `${ENDSCREEN_STYLE_BASE}-overview-table-row-time`;
+    timeSpan.setAttribute('aria-hidden', true);
+    timeSpan.textContent = humanizedTime;
+
+    const titleSpan = document.createElement('span');
+    titleSpan.className = `${ENDSCREEN_STYLE_BASE}-overview-table-row-title`;
+    titleSpan.setAttribute('aria-hidden', true);
+    titleSpan.textContent = title;
+
+    return `${timeSpan.outerHTML}${titleSpan.outerHTML}`;
   }
 
   /**
@@ -296,11 +281,11 @@ class Endscreen extends H5P.EventDispatcher {
    * Set focus on the close button
    */
   focus() {
-    if (!this.isSubmitButtonEnabled || this.$submitButtonContainer.hasClass(ENDSCREEN_STYLE_BUTTON_HIDDEN)) {
-      this.$closeButton.focus();
+    if (!this.isSubmitButtonEnabled || !this.submitButton) {
+      this.closeButton?.focus();
     }
     else {
-      this.$submitButton.focus();
+      this.submitButton.focus();
     }
   }
 }
