@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma de origen, debe estar definido para los subtítulos",
-                        
+
                         "description": "Debe ser una etiqueta de idioma válida BCP 47. Si 'Subtítulos' es el tipo de pista de texto seleccionado, se debe definir el idioma de origen de la pista."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "¡Sus respuestas han sido enviadas!"
         },
         {
-          "label": "Título de fila de tabla en pantalla de envío: Preguntas respondidas",
-          "default": "Preguntas respondidas"
-        },
-        {
-          "label": "Título de fila de tabla de pantalla de envío: Puntaje",
-          "default": "Puntaje"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Puntaje de respondidas de pantalla de envío",

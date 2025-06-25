@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lingua di origine. Deve essere definita per i sottotitoli",
-                        
+
                         "description": "Deve essere un tag valido di lingua BCP 47. Se 'Sottotitoli' è il tipo di traccia di testo selezionata, la lingua di origine della traccia deve essere definita"
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Le tue risposte sono state inviate!"
         },
         {
-          "label": "Invia il titolo della riga della tabella della schermata: domande con risposta",
-          "default": "Domande con risposta"
-        },
-        {
-          "label": "Invia il titolo della riga della tabella della schermata: punteggio",
-          "default": "Punteggio"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Invia la schermata con il punteggio delle risposte",

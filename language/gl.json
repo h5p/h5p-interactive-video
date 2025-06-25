@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Débese especificar o idioma da fonte no caso dos subtítulos",
-                        
+
                         "description": "Debe ser unha etiqueta BCP 47 válida. Se se selecciona 'Subtítulos' como fonte de texto, débese definir o idioma de orixe da fonte."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Enviáronse as túas respostas!"
         },
         {
-          "label": "Título da fila da táboa da pantalla de envío: Preguntas respondidas",
-          "default": "Preguntas respondidas"
-        },
-        {
-          "label": "Título da fila da táboa da pantalla de envío: Puntuación",
-          "default": "Puntuación"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Puntuación de preguntas respondidas na pantalla de envío",

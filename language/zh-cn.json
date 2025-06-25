@@ -473,12 +473,8 @@
           "default": "已提交你的答案！"
         },
         {
-          "label": "提交屏幕表行标题:回答的问题",
-          "default": "已回答的问题"
-        },
-        {
-          "label": "提交屏幕表行标题:分数",
-          "default": "分数"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "提交屏幕回答分数",

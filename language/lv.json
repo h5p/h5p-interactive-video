@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Subtitriem jānorāda avota valoda",
-                        
+
                         "description": "Jābūt derīgai BCP 47 valodas birkai. Ja atlasītā teksta celiņa veids ir 'Subtitri', jādefinē celiņa avota valoda."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Jūsu atbildes ir iesniegtas!"
         },
         {
-          "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Atbildētie jautājumi",
-          "default": "Atbildētie jautājumi"
-        },
-        {
-          "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Rezultāts",
-          "default": "Rezultāts"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Iesniegšanas ekrāna atbilžu skaits",

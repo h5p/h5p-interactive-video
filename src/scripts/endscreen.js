@@ -39,9 +39,7 @@ class Endscreen extends H5P.EventDispatcher {
       informationMustHaveAnswer: 'You have to answer at least one question before you can submit your answers.',
       submitButton: 'Submit Answers',
       submitMessage: 'Your answers have been submitted!',
-      tableRowAnswered: 'Answered questions', // TODO: Remove incl. upgrade script for related l10n variable
-      tableRowScore: 'Score', // TODO: Remove incl. upgrade script for related l10n variable
-      question: 'Question', // Add in upgrade script
+      question: 'Question',
       answeredScore: 'answered',
       tableRowSummaryWithScore: 'You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.',
       tableRowSummaryWithoutScore: 'You have answered the @question that appeared after @minutes minutes and @seconds seconds.',

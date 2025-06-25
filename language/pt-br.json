@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma fonte, deve ser definida para legendas",
-                        
+
                         "description": "Deve ser uma tag de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto seleciondo, a linguagem fonte da faixa de texto deve ser definida."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Suas respostas foram enviadas!"
         },
         {
-          "label": "Enviar título da linha da tabela da tela: Questões respondidas",
-          "default": "Questões respondidas"
-        },
-        {
-          "label": "Enviar título da linha da tabela da tela: Pontuação",
-          "default": "Pontuação"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Enviar pontuação respondida na tela",

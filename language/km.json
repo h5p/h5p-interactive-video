@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Source language, must be defined for subtitles",
-                        
+
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "ចម្លើយរបស់អ្នកត្រូវបានប្រគល់ដោយជោគជ័យ!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "សំណួរដែលបានឆ្លើយ"
-        },
-        {
-          "label": "Submit screen table row title: Score",
-          "default": "ពិន្ទុ"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Submit screen answered score",

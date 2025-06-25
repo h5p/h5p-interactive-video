@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "소스 언어, 자막에 대해 정의되어야 함",
-                        
+
                         "description": "유효한 BCP 47 언어 태그여야 함. '자막'이 선택한 텍스트 트랙의 유형인 경우 트랙의 소스 언어를 정의해야 함."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "답이 제출되었습니다!"
         },
         {
-          "label": "제출 화면 테이블 행 제목: 답변된 질문",
-          "default": "답변된 질문"
-        },
-        {
-          "label": "제출 화면 테이블 행 제목: 점수",
-          "default": "점수"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "제출 화면의 답변 문제 점수",

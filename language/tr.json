@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Kaynak dil, altyazılar için tanımlanmak zorundadır",
-                        
+
                         "description": "Geçerli bir BCP 47 dil etiketine sahip olmalı. Eğer 'Altyazılar' metinden takip türü olarak seçilmişse, metinden takibin kaynak dili tanımlanmalıdır."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Cevaplarınız gönderildi!"
         },
         {
-          "label": "Cevapları gönderme ekranında tablo satır başlığı: Cevaplanan sorular",
-          "default": "Cevaplanan sorular"
-        },
-        {
-          "label": "Cevapları gönderme ekranında tablo satır başlığı: Puan",
-          "default": "Puan"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Cevapları gönderme ekranında cevaplama puanı",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma d’origen; cal definir-lo per als subtítols",
-                        
+
                         "description": "Ha de ser una etiqueta d’idioma BCP 47 vàlida. Si \"Subtítols\" és el tipus de pista de text seleccionat, cal definir l’idioma d’origen de la pista."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "S’han enviat les respostes!"
         },
         {
-          "label": "Títol per a la fila de la taula de la pantalla d’enviament: Preguntes respostes",
-          "default": "Preguntes respostes"
-        },
-        {
-          "label": "Títol per a la fila de la taula de la pantalla d’enviament: Puntuació",
-          "default": "Puntuació"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Puntuació de les respostes a la pantalla d’enviament",

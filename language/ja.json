@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "字幕のソース言語を定義する必要があります。",
-                        
+
                         "description": "有効な BCP 47 言語タグでなければなりません。もしテキストトラックのタイプとして「字幕」 が選択されたの場合は、トラックのソース言語が定義されなければなりません。"
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Your answers have been submitted!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
-        },
-        {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Submit screen answered score",

@@ -473,12 +473,8 @@
           "default": "Vaše odpovědi byly odeslány!"
         },
         {
-          "label": "Nadpis řádku tabulky obrazovky: Zodpovězené otázky",
-          "default": "Zodpovězené otázky"
-        },
-        {
-          "label": "Nadpis řádku tabulky obrazovky: Skóre",
-          "default": "Skóre"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Obrazovka odpovědí skóre odpovědí",

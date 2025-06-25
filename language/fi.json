@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Lähdekieli, pakollinen tekstityksille",
-                        
+
                         "description": "Täytyy olla BCP 47 -muotoinen, esimerkiksi en,fi,es,sv... Jos Tekstitykset on valittu tekstiraidan tyypiksi, on lähdekieli määriteltävä."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Vastauksesi on nyt palautettu!"
         },
         {
-          "label": "Yhteenvetonäkymän 'vastattuja kysymyksiä' -otsikko",
-          "default": "Vastattuja kysymyksiä"
-        },
-        {
-          "label": "Yhteenvetonäkymän teksti Pistettä",
-          "default": "Pistettä"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Yhteenvetonäkymän vastattujen summa",

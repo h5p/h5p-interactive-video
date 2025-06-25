@@ -321,6 +321,25 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         }
 
         finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.28.
+       *
+       * Add "Question" string to localization strings
+       * Remove obsolete localization strings
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      28: function (parameters, finished) {
+        if (parameters?.l10n && typeof parameters.l10n === 'object' && parameters.l10n !== null) {
+          // Keeping "Answered questions" in the respective language is better than overwriting it with "Question"
+          parameters.l10n.endcardQuestion = parameters.l10n.endcardTableRowAnsweredQuestions ?? 'Question';
+          delete parameters.l10n.endcardTableRowAnsweredQuestions;
+          delete parameters.l10n.endcardTableRowScore;
+        }
       }
     }
   };

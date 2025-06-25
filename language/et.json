@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Algkeel, subtiitrite jaoks peab olema määratud",
-                        
+
                         "description": "Peab olema BCP 47 keelesilt. Kui tekstiraja tüübiks on valitud 'Subtiitrid', siis peab raja algkeel olema määratud."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Sinu vastused on esitatud!"
         },
         {
-          "label": "Esita kuva tabelirea pealkiri: Vastatud küsimused",
-          "default": "Vastatud küsimused"
-        },
-        {
-          "label": "Esita kuva tabelirea pealkiri: Punktisumma",
-          "default": "Punktisumma"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Esita kuva vastatud punktisumma",

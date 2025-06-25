@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Langue source, obligatoire pour les sous-titres",
-                        
+
                         "description": "Doit correspondre à la balise de langue BCP 47. Si \"Sous-titres\" est un type de texte sélectionné, il est indispensable d'indiquer sa langue d'origine."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Vos réponses ont été remises !"
         },
         {
-          "label": "Titre de rangée du tableau de l'écran de remise : Questions avec réponses",
-          "default": "Questions auxquelles vous avez répondu"
-        },
-        {
-          "label": "Titre de rangée du tableau de l'écran de remise : Score",
-          "default": "Score"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Score de la réponse sur l'écran de remise",

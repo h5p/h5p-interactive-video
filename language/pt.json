@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Idioma original, deve ser definido para legendas",
-                        
+
                         "description": "Deve ser uma etiqueta de linguagem BCP 47 válido. Se 'Legendas' é o tipo de faixa de texto selecionado, o idioma original da faixa de texto deve ser definido."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "As suas respostas foram submetidas!"
         },
         {
-          "label": "Título da linha da tabela do ecrã de submissão: Perguntas respondidas",
-          "default": "Perguntas respondidas"
-        },
-        {
-          "label": "Título da linha da tabela do ecrã de submissão: Pontuação",
-          "default": "Pontuação"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Pontuação das perguntas respondidas no ecrã de submissão",
