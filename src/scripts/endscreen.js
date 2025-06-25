@@ -254,7 +254,7 @@ class Endscreen extends H5P.EventDispatcher {
       return;
     }
 
-    this.jump(interaction.time);
+    this.jump(interaction.getDuration().from);
   }
 
   /**
