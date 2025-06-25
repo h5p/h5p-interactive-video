@@ -340,6 +340,8 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
           delete parameters.l10n.endcardTableRowAnsweredQuestions;
           delete parameters.l10n.endcardTableRowScore;
         }
+
+        finished(null, parameters);
       }
     }
   };
