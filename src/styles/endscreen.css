@@ -7,6 +7,7 @@
 }
 
 .h5p-interactive-video .h5p-interactive-video-endscreen {
+  font-size: 1rem; /* H5P.Components uses em and IV uses a dynamic font size */
   overflow-y: auto;
 }
 
