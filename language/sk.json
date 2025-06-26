@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Zdrojový jazyk, musí byť definovaný pre titulky",
-                        
+
                         "description": "Musí to byť platná značka jazyka BCP 47. Ak je vybratý typ textovej stopy 'Titulky', musí byť definovaný zdrojový jazyk stopy."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Vaše odpovede boli odoslané!"
         },
         {
-          "label": "Odoslať názov riadku tabuľky obrazovky: Zodpovedané otázky",
-          "default": "Zodpovedané otázky"
-        },
-        {
-          "label": "Odoslať názov riadku tabuľky obrazovky: Skóre",
-          "default": "Skóre"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Obrazovka na odoslanie skóre odpovedí",

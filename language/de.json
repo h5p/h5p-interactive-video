@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Sprache der Spur",
-                        
+
                         "description": "Muss ein gültiger BCP 47 Sprach-Tag sein. Wenn die Spurart auf \"Untertitel (subtitles)\" gestellt ist, muss die Sprache definiert werden."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Deine Antworten wurden abgeschickt!"
         },
         {
-          "label": "Einsendebildschirm, Spaltentitel: Beantwortete Fragen",
-          "default": "Beantwortete Fragen"
-        },
-        {
-          "label": "Einsendebildschirm, Spaltentitel: Punkte",
-          "default": "Punkte"
+          "label": "Einsendebildschirt, Spaltentitel: Frage",
+          "default": "Frage"
         },
         {
           "label": "Einsendebildschirm: Text für Aufgaben ohne Punkte",

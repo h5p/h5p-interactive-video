@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet worden gedefinieerd voor ondertitels",
-                        
+
                         "description": "Moet een geldige BCP 47 taal tag zijn. Indien het spoortype 'Ondertitels' is geselecteerd, moet de brontaal van het spoor bepaald worden."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Je antwoorden zijn verzonden!"
         },
         {
-          "label": "Tabelrijtitel van verzendscherm: Beantwoorde vragen",
-          "default": "Beantwoorde vragen"
-        },
-        {
-          "label": "Tabelrijtitel van verzendscherm: Score",
-          "default": "Score"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Verzendscherm: Beantwoorde score",

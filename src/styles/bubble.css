@@ -112,21 +112,20 @@
 }
 
 .h5p-interactive-video-bubble-endscreen-inner {
-  background: #000000;
-  /* box-shadow: 0 0 0.5em #2c2c2c; */
-  border-radius: 0.25em;
+  background: var(--h5p-theme-ui-base);
   text-align: center;
   position: relative;
   word-wrap: break-word; /* Long words have to break */
   height: 100%;
 }
+
 .h5p-interactive-video-bubble-endscreen-inner-tail,
 .h5p-interactive-video-bubble-endscreen-tail {
   position: absolute;
   /* Setting these in pixels is intentional. We use it when calculating placement of bubble */
   width: 12px;
   height: 12px;
-  background: #000000;
+  background: var(--h5p-theme-ui-base);
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

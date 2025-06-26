@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Brontaal, moet vasgestel word vir byskrifte",
-                        
+
                         "description": "Moet 'n geldige BCP 47 merker wees. As 'Byskrifte' die tipe tekssnit is wat gekies word, moet die brontaal van die snit gedefinieer word."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Jou antwoorde is ingedien!"
         },
         {
-          "label": "Indienskerm tabelrytitel: Beantwoorde vrae",
-          "default": "Beantwoorde vrae"
-        },
-        {
-          "label": "Indienskerm tabelrytitel: Telling",
-          "default": "Telling"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Indienskerm beantwoorde telling",

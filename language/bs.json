@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Za prijevod se mora navesti izvorni jezik",
-                        
+
                         "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Vaši odgovori su poslati!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Odgovorena pitanja"
-        },
-        {
-          "label": "Submit screen table row title: Score",
-          "default": "Rezultat"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Submit screen answered score",

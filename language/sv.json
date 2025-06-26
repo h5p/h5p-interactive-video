@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Källspråk, måste definieras för undertexter",
-                        
+
                         "description": "Måste vara en giltig BCP 47 språktagg. Om 'Undertexter' är vald textspårtyp, så ska källspråket för spåret definieras."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Dina svar har lämnats in!"
         },
         {
-          "label": "Titel för tabell på inlämingssida: Besvarade frågor",
-          "default": "Besvarade frågor"
-        },
-        {
-          "label": "Titel för tabelll på inlämningssida: Poäng",
-          "default": "Poäng"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Inlämningssida svarspoäng",

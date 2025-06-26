@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Originalo kalba turi būti apibrėžta subtitrams",
-                        
+
                         "description": "Turi būti galiojanti BCP 47 kalbos žyma. Jei pasirinktas teksto takelio tipas yra „Subtitrai“, turi būti nustatyta takelio šaltinio kalba."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Your answers have been submitted!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
-        },
-        {
-          "label": "Submit screen table row title: Score",
-          "default": "Balas"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Submit screen answered score",

@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Iturburuaren hizkuntza, azpitituluentzat definitu behar da",
-                        
+
                         "description": "Baliozko BCP 47 hizkuntza etiketa izan behar du. Aukeratutako testu-pista 'Azpitituluak' bada, pistaren iturburuko hizkuntza definitu behar da."
                       },
                       {
@@ -474,12 +474,8 @@
           "default": "Zure erantzunak bidali dira!"
         },
         {
-          "label": "Bidali pantaila taularen lerroaren titulua: Erantzundako galdera kopurua",
-          "default": "Erantzundako galdera kopurua"
-        },
-        {
-          "label": "Bidali pantaila taularen lerroaren titulua: Puntuazioa",
-          "default": "Puntuazioa"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Bidali erantzunen puntuazioaren pantaila",
