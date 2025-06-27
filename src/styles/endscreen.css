@@ -56,7 +56,7 @@ button.h5p-theme-close:before {
 
 .h5p-interactive-video-endscreen-information-text {
   color: var(--h5p-theme-text-third);
-  font-size: var(--h5p-theme-font-size-m);
+  font-size: var(--h5p-theme-font-size-s);
   text-align: center;
 }
 
