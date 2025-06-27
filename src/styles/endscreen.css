@@ -74,5 +74,5 @@ button.h5p-theme-close:before {
 }
 
 .h5p-theme-result-screen.no-questions-answered .h5p-theme-results-banner {
-  margin-bottom: var(--h5p-theme-spacing-l);
+  margin-bottom: var(--h5p-theme-spacing-m);
 }
