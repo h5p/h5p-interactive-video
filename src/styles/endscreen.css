@@ -68,3 +68,11 @@ button.h5p-theme-close:before {
 .h5p-theme-results-list-item.is-jump-button:focus {
   background-color: var(--h5p-theme-contrast-cta-light);
 }
+
+.h5p-theme-result-screen.no-questions-answered .h5p-theme-results-list-container {
+  display: none;
+}
+
+.h5p-theme-result-screen.no-questions-answered .h5p-theme-results-banner {
+  margin-bottom: var(--h5p-theme-spacing-l);
+}
