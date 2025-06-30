@@ -151,9 +151,24 @@ class Endscreen extends H5P.EventDispatcher {
    * Customize the end screen.
    */
   customizeEndscreen() {
+    this.hideThemeResultsListContainer();
     this.setNumberOfCharsForTime();
     this.injectCloseButton();
     this.makeListInteractive();
+  }
+
+  /**
+   * Hide the theme results list container if no questions have been answered.
+   */
+  hideThemeResultsListContainer() {
+    const themeResultScreen = this.endscreenDOM.querySelector('.h5p-theme-result-screen');
+    if (!themeResultScreen) {
+      return;
+    }
+
+    if (this.answeredInteractions.length === 0) {
+      themeResultScreen.classList.add('no-questions-answered');
+    }
   }
 
   /**
