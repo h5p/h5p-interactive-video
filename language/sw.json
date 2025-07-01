@@ -474,6 +474,10 @@
           "default": "Majibu yako yamewasilishwa!"
         },
         {
+          "label": "Wasilisha mada ya safu mlalo ya jedwali la skrini: Alama",
+          "default": "Alama"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

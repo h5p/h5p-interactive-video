@@ -1080,6 +1080,14 @@
         "optional": true
       },
       {
+        "name": "endcardTableRowScore",
+        "type": "text",
+        "label": "Submit screen table row title: Score",
+        "importance": "low",
+        "default": "Score",
+        "optional": true
+      },
+      {
         "name": "endcardQuestion",
         "type": "text",
         "label": "Submit screen question label",

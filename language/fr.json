@@ -474,6 +474,10 @@
           "default": "Vos réponses ont été remises !"
         },
         {
+          "label": "Titre de rangée du tableau de l'écran de remise : Score",
+          "default": "Score"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

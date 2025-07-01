@@ -474,6 +474,10 @@
           "default": "¡Se han enviado tus respuestas!"
         },
         {
+          "label": "Título de fila de tabla de pantalla de envío: Puntaje",
+          "default": "Puntaje"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

@@ -474,6 +474,10 @@
           "default": "Aktivnosti so potrjene!"
         },
         {
+          "label": "Naslov tabele Zaslona za potrditev odgovorov, stolpec: Točke",
+          "default": "Točke"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

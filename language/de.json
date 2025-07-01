@@ -474,7 +474,11 @@
           "default": "Deine Antworten wurden abgeschickt!"
         },
         {
-          "label": "Einsendebildschirt, Spaltentitel: Frage",
+          "label": "Einsendebildschirm, Spaltentitel: Punkte",
+          "default": "Punkte"
+        },
+        {
+          "label": "Einsendebildschirm, Spaltentitel: Frage",
           "default": "Frage"
         },
         {

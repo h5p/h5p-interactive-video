@@ -474,6 +474,10 @@
           "default": "Ҷавобҳои шумо фиристода шуданд!"
         },
         {
+          "label": "Нишони сатри ҷадвал дар экран: Ҳисоб",
+          "default": "Ҳисоб"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

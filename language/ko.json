@@ -474,6 +474,10 @@
           "default": "답이 제출되었습니다!"
         },
         {
+          "label": "제출 화면 테이블 행 제목: 점수",
+          "default": "점수"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

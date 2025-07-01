@@ -474,6 +474,10 @@
           "default": "Din besvarelse er sendt!"
         },
         {
+          "label": "Submit screen table row title: Score",
+          "default": "Point"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

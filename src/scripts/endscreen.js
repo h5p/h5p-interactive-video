@@ -39,6 +39,7 @@ class Endscreen extends H5P.EventDispatcher {
       informationMustHaveAnswer: 'You have to answer at least one question before you can submit your answers.',
       submitButton: 'Submit Answers',
       submitMessage: 'Your answers have been submitted!',
+      tableRowScore: 'Score',
       question: 'Question',
       answeredScore: 'answered',
       tableRowSummaryWithScore: 'You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds.',

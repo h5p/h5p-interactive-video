@@ -474,6 +474,10 @@
           "default": "S’han enviat les respostes!"
         },
         {
+          "label": "Títol per a la fila de la taula de la pantalla d’enviament: Puntuació",
+          "default": "Puntuació"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

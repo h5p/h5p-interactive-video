@@ -473,6 +473,10 @@
           "default": "Svara dine er sendt inn!"
         },
         {
+          "label": "Tittel for tabellrad på innsendingssida: Poengsum",
+          "default": "Poengsum"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

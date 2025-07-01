@@ -474,6 +474,10 @@
           "default": "Jou antwoorde is ingedien!"
         },
         {
+          "label": "Indienskerm tabelry titel: Telling",
+          "default": "Telling"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

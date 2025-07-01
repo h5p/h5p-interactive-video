@@ -474,6 +474,10 @@
           "default": "Le tue risposte sono state inviate!"
         },
         {
+          "label": "Invia il titolo della riga della tabella della schermata: punteggio",
+          "default": "Punteggio"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

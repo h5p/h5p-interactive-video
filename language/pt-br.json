@@ -474,6 +474,10 @@
           "default": "Suas respostas foram enviadas!"
         },
         {
+          "label": "Enviar título da linha da tabela da tela: Pontuação",
+          "default": "Pontuação"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

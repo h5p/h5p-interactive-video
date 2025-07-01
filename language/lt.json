@@ -474,6 +474,10 @@
           "default": "Your answers have been submitted!"
         },
         {
+          "label": "Submit screen table row title: Score",
+          "default": "Balas"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

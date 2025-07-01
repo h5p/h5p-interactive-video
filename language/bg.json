@@ -474,6 +474,10 @@
           "default": "Вашите въпроси бяха изпратени!"
         },
         {
+          "label": "Наименование на екрана за резултат: Резултатe",
+          "default": "Резултат"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

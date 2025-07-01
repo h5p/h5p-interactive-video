@@ -474,6 +474,10 @@
           "default": "Έγινε υποβολή των απαντήσεών σου!"
         },
         {
+          "label": "Οθόνη υποβολής - Τίτλος γραμμής πίνακα: Βαθμολογία",
+          "default": "Βαθμολογία" 
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },
