@@ -31,6 +31,10 @@ button.h5p-theme-close:before {
   z-index: 0;
 }
 
+.h5p-interactive-video-endscreen .h5p-interactive-video-endscreen-information button.h5p-theme-check::before {
+  content: "\e90a";
+}
+
 .h5p-interactive-video-endscreen-overview-table-row-time {
   color: var(--h5p-theme-main-cta-base);
   display: inline-block;
