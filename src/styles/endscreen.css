@@ -1,6 +1,18 @@
 @CHARSET "UTF-8";
 
 .h5p-interactive-video-endscreen {
+  --h5p-theme-spacing-xl: var(--original-h5p-theme-spacing-xl);
+  --h5p-theme-spacing-l: var(--original-h5p-theme-spacing-l);
+  --h5p-theme-spacing-m: var(--original-h5p-theme-spacing-m);
+  --h5p-theme-spacing-s: var(--original-h5p-theme-spacing-s);
+  --h5p-theme-spacing-xs: var(--original-h5p-theme-spacing-xs);
+  --h5p-theme-spacing-xxs: var(--original-h5p-theme-spacing-xxs);
+  --h5p-theme-font-size-xxl: var(--original-h5p-theme-font-size-xxl);
+  --h5p-theme-font-size-xl: var(--original-h5p-theme-font-size-xl);
+  --h5p-theme-font-size-l: var(--original-h5p-theme-font-size-l);
+  --h5p-theme-font-size-m: var(--original-h5p-theme-font-size-m);
+  --h5p-theme-font-size-s: var(--original-h5p-theme-font-size-s);
+
   max-height: 100%;
   /* Special treatment for iOS devices */
   -webkit-text-size-adjust: none;

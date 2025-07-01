@@ -21,6 +21,21 @@
   font-style: normal;
 }
 
+.h5p-content {
+  /* Ugly hack to store the original values that will be overridden in .h5p-container.h5p-interactive-video but needed in .h5p-interactive-video-endscreen */
+  --original-h5p-theme-spacing-xl: var(--h5p-theme-spacing-xl);
+  --original-h5p-theme-spacing-l: var(--h5p-theme-spacing-l);
+  --original-h5p-theme-spacing-m: var(--h5p-theme-spacing-m);
+  --original-h5p-theme-spacing-s: var(--h5p-theme-spacing-s);
+  --original-h5p-theme-spacing-xs: var(--h5p-theme-spacing-xs);
+  --original-h5p-theme-spacing-xxs: var(--h5p-theme-spacing-xxs);
+  --original-h5p-theme-font-size-xxl: var(--h5p-theme-font-size-xxl);
+  --original-h5p-theme-font-size-xl: var(--h5p-theme-font-size-xl);
+  --original-h5p-theme-font-size-l: var(--h5p-theme-font-size-l);
+  --original-h5p-theme-font-size-m: var(--h5p-theme-font-size-m);
+  --original-h5p-theme-font-size-s: var(--h5p-theme-font-size-s);
+}
+
 .h5p-container.h5p-interactive-video {
   --h5p-theme-scale: 0.8;
   --h5p-theme-spacing-xl: calc(3em*var(--h5p-theme-scale));
