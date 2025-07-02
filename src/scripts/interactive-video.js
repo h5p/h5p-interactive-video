@@ -1752,8 +1752,7 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 
   // Creat list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$bookmarksList === undefined) {
-    self.controls.$bookmarksList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$bookmarksChooser.find('h2'));
+    self.controls.$bookmarksList = $('<ul role="menu"></ul>').appendTo(self.controls.$bookmarksChooser);
   }
 
   // Create list element for bookmark
@@ -2031,24 +2030,31 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
       'class': 'h5p-chooser h5p-bookmarks',
       'role': 'dialog',
-      html: `<h2 id="${self.bookmarksMenuId}">${self.l10n.bookmarks}</h2>`,
     });
     self.popupMenuChoosers.push(self.controls.$bookmarksChooser);
 
-    // Adding close button to bookmarks-menu
-    self.controls.$bookmarksChooser.append($('<span>', {
-      'role': 'button',
-      'class': 'h5p-chooser-close-button',
-      'tabindex': '0',
-      'aria-label': self.l10n.close,
-      click: () => self.toggleBookmarksChooser(),
-      keydown: event => {
-        if (isSpaceOrEnterKey(event)) {
-          self.toggleBookmarksChooser();
-          event.preventDefault();
-        }
+    const bookmarkChooserHeader = document.createElement('h2');
+    bookmarkChooserHeader.id = self.bookmarksMenuId;
+    bookmarkChooserHeader.textContent = self.l10n.bookmarks;
+
+    const bookmarkChooserCloseButton = document.createElement('span');
+    bookmarkChooserCloseButton.setAttribute('role', 'button');
+    bookmarkChooserCloseButton.className = 'h5p-chooser-close-button';
+    bookmarkChooserCloseButton.setAttribute('tabindex', '0');
+    bookmarkChooserCloseButton.setAttribute('aria-label', self.l10n.close);
+    bookmarkChooserCloseButton.addEventListener('click', () => self.toggleBookmarksChooser());
+    bookmarkChooserCloseButton.addEventListener('keydown', event => {
+      if (isSpaceOrEnterKey(event)) {
+        self.toggleBookmarksChooser();
+        event.preventDefault();
       }
-    }));
+    });
+;
+    const bookmarkChooserTitle = document.createElement('div');
+    bookmarkChooserTitle.className = 'h5p-chooser-title';
+    bookmarkChooserTitle.append(bookmarkChooserHeader);
+    bookmarkChooserTitle.append(bookmarkChooserCloseButton);
+    self.controls.$bookmarksChooser.append(bookmarkChooserTitle);
 
     if (self.showRewind10) {
       self.controls.$bookmarksChooser.addClass('h5p-rewind-displacement');
