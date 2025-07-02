@@ -1357,21 +1357,26 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Only recreate existing interactions
-    if ($interaction) {
-      if (instance) {
-        instance.trigger('hide');
-      }
-      self.trigger('hide', $interaction);
-      $interaction.detach();
-      if (self.isStandaloneLabel()) {
-        createStandaloneLabel();
-      }
-      else if (self.isButton()) {
-        createButton(true);
-      }
-      else {
-        createPoster();
-      }
+    if (!$interaction) {
+      return;
+    }
+
+    const scrollTop = $outer[0].scrollTop;
+
+    if (instance) {
+      instance.trigger('hide');
+    }
+    self.trigger('hide', $interaction);
+    $interaction.detach();
+    if (self.isStandaloneLabel()) {
+      createStandaloneLabel();
+    }
+    else if (self.isButton()) {
+      createButton(true);
+    }
+    else {
+      createPoster();
+      $outer[0].scrollTop = scrollTop;
     }
   };
 
