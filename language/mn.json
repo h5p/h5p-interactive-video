@@ -474,6 +474,10 @@
           "default": "Таны үр дүн хянагдахаар илгээгдлээ!"
         },
         {
+          "label": "Үр дүн илгээх: Оноо",
+          "default": "Оноо"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

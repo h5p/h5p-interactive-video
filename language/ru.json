@@ -474,6 +474,10 @@
           "default": "Ваши ответы были отправлены!"
         },
         {
+          "label": "Показать на экране заголовок строки таблицы: Счет",
+          "default": "Счет"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

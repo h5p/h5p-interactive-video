@@ -474,6 +474,10 @@
           "default": "თქვენი პასუხები წარმოდგენილია!"
         },
         {
+          "label": "გაგზავნის გვერდის ცხრილის მწკრივის სათაური: ქულა",
+          "default": "Score"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

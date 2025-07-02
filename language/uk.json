@@ -474,6 +474,10 @@
           "default": "Ваші відповіді були надіслані!"
         },
         {
+          "label": "Показати на екрані заголовок рядка таблиці: Рахунок",
+          "default": "Рахунок"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

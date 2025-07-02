@@ -474,6 +474,10 @@
           "default": "మీ సమాధానాలు సమర్పించబడ్డాయి!"
         },
         {
+          "label": "సబ్ మిట్ స్క్రీన్ పట్టిక వరుస శీర్షిక: స్కోర్",
+          "default": "స్కోర్"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

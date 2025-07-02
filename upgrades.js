@@ -338,7 +338,6 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
           // Keeping "Answered questions" in the respective language is better than overwriting it with "Question"
           parameters.l10n.endcardQuestion = parameters.l10n.endcardTableRowAnsweredQuestions ?? 'Question';
           delete parameters.l10n.endcardTableRowAnsweredQuestions;
-          delete parameters.l10n.endcardTableRowScore;
         }
 
         finished(null, parameters);

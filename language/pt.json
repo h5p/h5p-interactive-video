@@ -474,6 +474,10 @@
           "default": "As suas respostas foram submetidas!"
         },
         {
+          "label": "Título da linha da tabela do ecrã de submissão: Pontuação",
+          "default": "Pontuação"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

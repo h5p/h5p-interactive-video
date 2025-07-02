@@ -473,6 +473,10 @@
           "default": "Vaše odpovědi byly odeslány!"
         },
         {
+          "label": "Nadpis řádku tabulky obrazovky: Skóre",
+          "default": "Skóre"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

@@ -474,6 +474,10 @@
           "default": "আপনার উত্তরসমূহ দাখিল করা হয়েছে!"
         },
         {
+          "label": "দাখিল স্ক্রিনের টেবিলের সারির শিরোনাম: নম্বর",
+          "default": "নম্বর"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

@@ -474,6 +474,10 @@
           "default": "Dina svar har lämnats in!"
         },
         {
+          "label": "Titel för tabelll på inlämningssida: Poäng",
+          "default": "Poäng"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

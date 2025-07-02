@@ -473,6 +473,10 @@
           "default": "Your answers have been submitted!"
         },
         {
+          "label": "Submit screen table row title: Score",
+          "default": "Score"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

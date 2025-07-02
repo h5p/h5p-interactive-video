@@ -474,6 +474,10 @@
           "default": "Vaši odgovori su poslati!"
         },
         {
+          "label": "Submit screen table row title: Score",
+          "default": "Rezultat"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

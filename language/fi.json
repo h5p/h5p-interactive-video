@@ -474,6 +474,10 @@
           "default": "Vastauksesi on nyt palautettu!"
         },
         {
+          "label": "Yhteenvetonäkymän teksti Pistettä",
+          "default": "Pistettä"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

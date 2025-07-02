@@ -474,6 +474,10 @@
           "default": "Sinu vastused on esitatud!"
         },
         {
+          "label": "Esita kuva tabelirea pealkiri: Punktisumma",
+          "default": "Punktisumma"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

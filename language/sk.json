@@ -474,6 +474,10 @@
           "default": "Vaše odpovede boli odoslané!"
         },
         {
+          "label": "Odoslať názov riadku tabuľky obrazovky: Skóre",
+          "default": "Skóre"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },

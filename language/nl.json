@@ -474,6 +474,10 @@
           "default": "Je antwoorden zijn verzonden!"
         },
         {
+          "label": "Tabelrijtitel van verzendscherm: Score",
+          "default": "Score"
+        },
+        {
           "label": "Submit screen question label",
           "default": "Question"
         },
