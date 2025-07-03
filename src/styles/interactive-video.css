@@ -663,6 +663,9 @@
 }
 
 .h5p-interactive-video .h5p-chooser {
+  --padding: var(--h5p-theme-spacing-s);
+  --margin: var(--h5p-theme-spacing-s);
+
   font-size: 17px;
   position: absolute;
   z-index: 10;
@@ -674,14 +677,14 @@
   opacity: 0;
   visibility: hidden;
   bottom: 72px;
-  padding: 1rem;
+  padding: var(--padding);
   -webkit-transition: visibility 0s linear 0.1s, opacity 0.1s linear, bottom 0.1s linear;
   -moz-transition: visibility 0s linear 0.1s, opacity 0.1s linear, bottom 0.1s linear;
   transition: visibility 0s linear 0.1s, opacity 0.1s linear, bottom 0.1s linear;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: var(--h5p-theme-border-radius-large);
-  margin: 10px;
+  margin: var(--margin);
 }
 
 .h5p-interactive-video.h5p-fullscreen .h5p-chooser,
@@ -746,11 +749,20 @@
 .h5p-interactive-video .h5p-chooser.h5p-endscreens.h5p-show * {
   visibility: visible;
 }
-.h5p-interactive-video .h5p-chooser > h2 {
+.h5p-interactive-video .h5p-chooser .h5p-chooser-title {
+  align-items: center;
+  color: #fbfbfb;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: var(--h5p-theme-spacing-xs);
+}
+.h5p-interactive-video .h5p-chooser > h2,
+.h5p-interactive-video .h5p-chooser .h5p-chooser-title > h2 {
   font-size: 16px;
   font-weight: 600;
   color: #fbfbfb;
-  margin-top: 0px;
+  margin: 0px;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] {
   list-style: none;
@@ -792,21 +804,18 @@
   left: 7px;
 }
 .h5p-interactive-video .h5p-chooser-close-button {
+  background: transparent;
+  border: none;
+  color: #fbfbfb;
   cursor: pointer;
-  position: absolute;
-  top: .1em;
-  right: .1em;
-  width: 1em;
-  height: 1em;
-  text-align: center;
+  height: 1.5em;
   line-height: 1;
-}
-.h5p-interactive-video.h5p-minimal .h5p-chooser-close-button {
-  top: .3em;
-  right: .3em;
-  font-size: 130%;
+  padding: 0;
+  text-align: center;
+  width: 1.5em;
 }
 .h5p-interactive-video .h5p-chooser-close-button:after {
+  font-size: 1.5em;
   font-family: 'H5PFontAwesome4';
   content: "\f00d";
 }

@@ -53,12 +53,16 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     self.trigger('close');
   };
 
-
   /**
    * Toggle show/hide popup
    * @private
    */
   var toggle = function () {
+    const isDisabled = self.control.getAttribute('aria-disabled') === 'true';
+    if (isDisabled) {
+      return;
+    }
+
     var isExpanded = self.control.getAttribute('aria-expanded') === 'true';
     isExpanded ? hide() : show();
   };
@@ -150,13 +154,35 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     self.popup.appendChild(list);
   };
 
+  /**
+   * Enable or disable the control
+   * @param {boolean} shouldBeEnabled If true, the control will be enabled, otherwise it will be disabled.
+   */
+  self.toggleEnabled = (shouldBeEnabled) => {
+    const isEnabled = (typeof shouldBeEnabled === 'boolean') ?
+      shouldBeEnabled :
+      this.control.getAttribute('aria-disabled') !== 'true';
+
+    this.control.setAttribute('aria-disabled', (!isEnabled).toString());
+  };
+
   // Create the popup which will contain the list of options
-  self.popup = element('h5p-chooser h5p-' + name, `<h2 id="${id}">${l10n[name]}</h2>`);
+  self.popup = document.createElement('div');
+  self.popup.className = `h5p-chooser h5p-${name}`;
   self.popup.setAttribute('role', 'dialog');
 
+  const title = document.createElement('div');
+  title.className = 'h5p-chooser-title';
+  self.popup.append(title);
+
+  const header = document.createElement('h2');
+  header.id = id;
+  header.textContent = l10n[name];
+  title.append(header);
+
   // Add a close button inside the popup
-  var closeButton = button('h5p-chooser-close-button', ButtonType.ICON, l10n.close, toggle, 'div', 'button');
-  self.popup.appendChild(closeButton);
+  const closeButton = button('h5p-chooser-close-button', undefined, l10n.close, toggle, 'button', 'button');
+  title.appendChild(closeButton);
 
   // Create button for toggling the popup
   self.control = button('h5p-control h5p-' + name, ButtonType.ICON, l10n[name], toggle, 'div', 'button');
