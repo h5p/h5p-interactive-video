@@ -833,7 +833,7 @@
   width: 100%;
   height: 100%;
   left: 0;
-  max-width: none;
+  max-width: calc(100% - 2 * var(--padding) - 2 * var(--margin));
 }
 .h5p-interactive-video.h5p-minimal .h5p-chooser > h2 {
   border-bottom-color: #8e8e8e;

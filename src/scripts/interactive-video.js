@@ -2863,7 +2863,6 @@ InteractiveVideo.prototype.resize = function () {
   this.controlsCss = {
     bottom: '',
     maxHeight: `calc(${popupControlsHeight}px - 2 * var(--padding) - 2 * var(--margin))`,
-    maxWidth: `calc(100% - 2 * var(--padding) - 2 * var(--margin))`
   };
 
   if (fullscreenOn) {
@@ -2879,6 +2878,8 @@ InteractiveVideo.prototype.resize = function () {
   }
 
   if (this.controls && this.controls.$minimalOverlay) {
+    console.log(this.controlsCss);
+
     this.controls.$minimalOverlay.css(this.controlsCss);
   }
   this.$container.find('.h5p-chooser').css({
