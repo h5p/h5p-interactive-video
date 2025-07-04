@@ -1374,7 +1374,6 @@ InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {in
     this.bookmarksSelector.control.setAttribute('aria-expanded', show ? 'true' : 'false');
     this.controls.$more.attr('aria-expanded', show ? 'true' : 'false');
     this.controls.$bookmarksChooser
-      // .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
       .toggleClass('h5p-show', show)
       .toggleClass('h5p-transitioning', show || hiding);
   }
@@ -2878,8 +2877,6 @@ InteractiveVideo.prototype.resize = function () {
   }
 
   if (this.controls && this.controls.$minimalOverlay) {
-    console.log(this.controlsCss);
-
     this.controls.$minimalOverlay.css(this.controlsCss);
   }
   this.$container.find('.h5p-chooser').css({
