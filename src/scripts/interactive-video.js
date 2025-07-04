@@ -1366,14 +1366,14 @@ InteractiveVideo.prototype.addBubbles = function () {
 InteractiveVideo.prototype.toggleBookmarksChooser = function (show, params = {initialLoad: false, keepStopped: false, firstPlay: false}) {
   if (this.controls?.$bookmarksButton) {
     show = (show === undefined ? !this.controls.$bookmarksChooser.hasClass('h5p-show') : show);
-    var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
 
+    var hiding = this.controls.$bookmarksChooser.hasClass('h5p-show');
     this.controls.$minimalOverlay.toggleClass('h5p-show', show);
     this.controls.$minimalOverlay.find('.h5p-minimal-button').toggleClass('h5p-hide', show);
     this.controls.$bookmarksButton.attr('aria-expanded', show ? 'true' : false);
+    this.bookmarksSelector.control.setAttribute('aria-expanded', show ? 'true' : 'false');
     this.controls.$more.attr('aria-expanded', show ? 'true' : 'false');
     this.controls.$bookmarksChooser
-      .css({maxHeight: show ? this.controlsCss.maxHeight : '32px'})
       .toggleClass('h5p-show', show)
       .toggleClass('h5p-transitioning', show || hiding);
   }
@@ -1446,6 +1446,7 @@ InteractiveVideo.prototype.toggleEndscreensChooser = function (show, params = {k
   if (show) {
     // Close other popups
     this.closePopupMenus(this.controls.$endscreensButton);
+    this.endscreensChooser.control.setAttribute('aria-expanded', 'true');
 
     if (this.editor) {
       this.interruptVideo();
@@ -1854,7 +1855,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$endscreensList === undefined) {
     self.controls.$endscreensList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$endscreensChooser.find('h2'));
+      .insertAfter(self.controls.$endscreensChooser.find('h5p-chooser-title'));
   }
 
   // Create list element for endscreen
@@ -1973,7 +1974,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
    *
    * @return {function}
    */
-  var createPopupMenuHandler = function (button, menu) {
+  var createPopupMenuHandler = function (button, menu, selectorControl) {
     return function () {
       var $button = self.controls[button];
       var $menu = self.controls[menu];
@@ -2006,6 +2007,8 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
         // Close all open popup menus (except this one)
         self.closePopupMenus($button);
       }
+
+      selectorControl?.control.click();
     };
   };
 
@@ -2026,35 +2029,12 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // Add bookmark controls
   if (bookmarksEnabled) {
-    // Popup dialog for choosing bookmarks
-    self.controls.$bookmarksChooser = H5P.jQuery('<div/>', {
-      'class': 'h5p-chooser h5p-bookmarks',
-      'role': 'dialog',
+    self.bookmarksSelector = new SelectorControl('bookmarks', [], undefined, 'menuitemradio', self.l10n, self.contentId);
+    self.bookmarksSelector.on('close', () => {
+      self.toggleBookmarksChooser(false);
     });
+    self.controls.$bookmarksChooser = H5P.jQuery(self.bookmarksSelector.popup);
     self.popupMenuChoosers.push(self.controls.$bookmarksChooser);
-
-    const bookmarkChooserHeader = document.createElement('h2');
-    bookmarkChooserHeader.id = self.bookmarksMenuId;
-    bookmarkChooserHeader.textContent = self.l10n.bookmarks;
-
-    const bookmarkChooserCloseButton = document.createElement('span');
-    bookmarkChooserCloseButton.setAttribute('role', 'button');
-    bookmarkChooserCloseButton.className = 'h5p-chooser-close-button';
-    bookmarkChooserCloseButton.setAttribute('tabindex', '0');
-    bookmarkChooserCloseButton.setAttribute('aria-label', self.l10n.close);
-    bookmarkChooserCloseButton.addEventListener('click', () => self.toggleBookmarksChooser());
-    bookmarkChooserCloseButton.addEventListener('keydown', event => {
-      if (isSpaceOrEnterKey(event)) {
-        self.toggleBookmarksChooser();
-        event.preventDefault();
-      }
-    });
-;
-    const bookmarkChooserTitle = document.createElement('div');
-    bookmarkChooserTitle.className = 'h5p-chooser-title';
-    bookmarkChooserTitle.append(bookmarkChooserHeader);
-    bookmarkChooserTitle.append(bookmarkChooserCloseButton);
-    self.controls.$bookmarksChooser.append(bookmarkChooserTitle);
 
     if (self.showRewind10) {
       self.controls.$bookmarksChooser.addClass('h5p-rewind-displacement');
@@ -2088,27 +2068,12 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
   // Add endscreen controls
   if (self.editor) {
     // Popup dialog for choosing endscreens
-    self.controls.$endscreensChooser = H5P.jQuery('<div/>', {
-      'class': 'h5p-chooser h5p-endscreens',
-      'role': 'dialog',
-      html: `<h2 id="${self.endscreensMenuId}">${self.l10n.endscreens}</h2>`,
+    self.endscreensChooser = new SelectorControl('endscreens', [], undefined, 'menuitemradio', self.l10n, self.contentId);
+    self.endscreensChooser.on('close', () => {
+      self.controls.$endscreensButton[0].setAttribute('aria-expanded', 'false');
     });
+    self.controls.$endscreensChooser = H5P.jQuery(self.endscreensChooser.popup);
     self.popupMenuChoosers.push(self.controls.$endscreensChooser);
-
-    // Adding close button to endscreens-menu
-    self.controls.$endscreensChooser.append($('<span>', {
-      'role': 'button',
-      'class': 'h5p-chooser-close-button',
-      'tabindex': '0',
-      'aria-label': self.l10n.close,
-      click: () => self.toggleEndscreensChooser(),
-      keydown: event => {
-        if (isSpaceOrEnterKey(event)) {
-          self.toggleEndscreensChooser();
-          event.preventDefault();
-        }
-      }
-    }));
 
     // Amend button for opening endscreen popup
     if (self.hasStar) {
@@ -2187,41 +2152,24 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.closePopupMenus();
   });
 
-  // Add popup for selecting playback rate
-  self.controls.$playbackRateChooser = H5P.jQuery('<div/>', {
-    'class': 'h5p-chooser h5p-playbackRate',
-    'role': 'dialog',
-    html: `<h2 id="${self.playbackRateMenuId}">${self.l10n.playbackRate}</h2>`,
+  self.playbackRateChooser = new SelectorControl('playbackRate', [], undefined, 'menuitemradio', self.l10n, self.contentId);
+  self.playbackRateChooser.on('open', () => {
+    self.controls.$playbackRateButton[0].setAttribute('aria-expanded', 'true');
+    self.closePopupMenus(self.controls.$playbackRateButton);
   });
+  self.playbackRateChooser.on('close', () => {
+    self.controls.$playbackRateButton[0].setAttribute('aria-expanded', 'false');
+    self.controls.$playbackRateButton[0].focus();
+    closeMoreMenuIfExpanded();
+    self.resumeVideo();
+  });
+  self.controls.$playbackRateChooser = H5P.jQuery(self.playbackRateChooser.popup);
   self.popupMenuChoosers.push(self.controls.$playbackRateChooser);
 
-  const closePlaybackRateMenu = () => {
-    if (self.isMinimal) {
-      self.controls.$more.click();
-    }
-    else {
-      self.controls.$playbackRateButton.click();
-    }
-    self.resumeVideo();
-  };
-
-  // Adding close button to playback rate-menu
-  self.controls.$playbackRateChooser.append($('<span>', {
-    'role': 'button',
-    'class': 'h5p-chooser-close-button',
-    'tabindex': '0',
-    'aria-label': self.l10n.close,
-    click: () => closePlaybackRateMenu(),
-    keydown: event => {
-      if (isSpaceOrEnterKey(event)) {
-        closePlaybackRateMenu();
-        event.preventDefault();
-      }
-    }
-  }));
-
   // Button for opening video playback rate selection dialog
-  self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, createPopupMenuHandler('$playbackRateButton', '$playbackRateChooser'));
+  self.controls.$playbackRateButton = self.createButton('playbackRate', 'h5p-control', $right, () => {
+    self.playbackRateChooser.control.click();
+  });
   self.popupMenuButtons.push(self.controls.$playbackRateButton);
   self.setDisabled(self.controls.$playbackRateButton);
   self.controls.$playbackRateButton.attr('aria-haspopup', 'true');
@@ -2254,42 +2202,30 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
 
   // TODO: Do not add until qualities are present?
   // Add popup for selecting video quality
-  self.controls.$qualityChooser = H5P.jQuery('<div/>', {
-    'class': 'h5p-chooser h5p-quality',
-    'role': 'dialog',
-    html: `<h2 id="${self.qualityMenuId}">${self.l10n.quality}</h2>`,
+  self.qualityChooser = new SelectorControl('quality', [], undefined, 'menuitemradio', self.l10n, self.contentId);
+  self.qualityChooser.on('open', () => {
+    self.controls.$qualityButton[0].setAttribute('aria-expanded', 'true');
+    self.closePopupMenus(self.controls.$qualityButton);
   });
-  self.popupMenuChoosers.push(self.controls.$qualityChooser);
-
-  const closeQualityMenu = () => {
+  self.qualityChooser.on('close', () => {
     if (self.isMinimal) {
       self.controls.$more.click();
     }
-    else {
-      self.controls.$qualityButton.click();
-    }
+    self.controls.$qualityButton[0].setAttribute('aria-expanded', 'false');
+    self.controls.$qualityButton[0].focus();
+    closeMoreMenuIfExpanded();
     self.resumeVideo();
-  };
-
-  // Adding close button to quality-menu
-  self.controls.$qualityChooser.append($('<span>', {
-    'role': 'button',
-    'class': 'h5p-chooser-close-button',
-    'tabindex': '0',
-    'aria-label': self.l10n.close,
-    click: () => closeQualityMenu(),
-    keydown: event => {
-      if (isSpaceOrEnterKey(event)) {
-        closeQualityMenu();
-        event.preventDefault();
-      }
-    }
-  }));
+  });
+  self.controls.$qualityChooser = H5P.jQuery(self.qualityChooser.popup);
+  self.popupMenuChoosers.push(self.controls.$qualityChooser);
 
   // Button for opening video quality selection dialog
-  self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, createPopupMenuHandler('$qualityButton', '$qualityChooser'));
+  self.controls.$qualityButton = self.createButton('quality', 'h5p-control', $right, () => {
+    self.qualityChooser.control.click();
+  });
   self.popupMenuButtons.push(self.controls.$qualityButton);
   self.setDisabled(self.controls.$qualityButton);
+  self.qualityChooser.toggleEnabled(false);
   self.controls.$qualityButton.attr('aria-haspopup', 'true');
   self.controls.$qualityButton.attr('aria-expanded', 'false');
   self.controls.$qualityChooser.insertAfter(self.controls.$qualityButton);
@@ -2925,7 +2861,7 @@ InteractiveVideo.prototype.resize = function () {
   var popupControlsHeight = this.$videoWrapper.height();
   this.controlsCss = {
     bottom: '',
-    maxHeight: popupControlsHeight + 'px'
+    maxHeight: `calc(${popupControlsHeight}px - 2 * var(--padding) - 2 * var(--margin))`,
   };
 
   if (fullscreenOn) {
@@ -2943,7 +2879,10 @@ InteractiveVideo.prototype.resize = function () {
   if (this.controls && this.controls.$minimalOverlay) {
     this.controls.$minimalOverlay.css(this.controlsCss);
   }
-  this.$container.find('.h5p-chooser').css(this.controlsCss);
+  this.$container.find('.h5p-chooser').css({
+    bottom: this.controlsCss.bottom,
+    maxHeight: this.controlsCss.maxHeight,
+  });
 
   // Resize start screen
   if (!this.editor) {
