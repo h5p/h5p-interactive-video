@@ -36,6 +36,7 @@
 
 .h5p-theme button.h5p-theme-secondary-cta.h5p-theme-close {
   background-color: transparent;
+  border-color: transparent;
   margin-right: calc(-1 * var(--h5p-theme-spacing-s));
   margin-top: calc(-1 * var(--h5p-theme-spacing-xs));
 }
