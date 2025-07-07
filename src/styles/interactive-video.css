@@ -763,6 +763,7 @@
   font-weight: 600;
   color: #fbfbfb;
   margin: 0px;
+  padding-inline-start: 10px;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] {
   list-style: none;
