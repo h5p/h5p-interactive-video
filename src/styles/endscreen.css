@@ -18,6 +18,10 @@
   -webkit-text-size-adjust: none;
 }
 
+.h5p-interactive-video-endscreen .h5p-theme-results-question {
+  display: flex;
+}
+
 .h5p-interactive-video .h5p-interactive-video-endscreen {
   overflow-y: auto;
 }
