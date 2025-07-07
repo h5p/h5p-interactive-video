@@ -1361,7 +1361,7 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
-    const scrollTop = $outer[0].scrollTop;
+    const scrollTop = $outer?.[0].scrollTop;
 
     if (instance) {
       instance.trigger('hide');
@@ -1376,7 +1376,9 @@ function Interaction(parameters, player, previousState) {
     }
     else {
       createPoster();
-      $outer[0].scrollTop = scrollTop;
+      if (typeof scrollTop === 'number') {
+        $outer[0].scrollTop = scrollTop;
+      }
     }
   };
 
