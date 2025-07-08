@@ -97,3 +97,7 @@ button.h5p-theme-close:before {
 .h5p-theme-result-screen.no-questions-answered .h5p-theme-results-banner {
   margin-bottom: var(--h5p-theme-spacing-m);
 }
+
+.h5p-interactive-video-endscreen .h5p-theme-result-screen .h5p-theme-results-list {
+  overflow-y: hidden;
+}
