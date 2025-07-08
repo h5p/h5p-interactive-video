@@ -18,6 +18,10 @@
   -webkit-text-size-adjust: none;
 }
 
+.h5p-interactive-video-endscreen .h5p-theme-results-question {
+  display: flex;
+}
+
 .h5p-interactive-video .h5p-interactive-video-endscreen {
   overflow-y: auto;
 }
@@ -32,6 +36,7 @@
 
 .h5p-theme button.h5p-theme-secondary-cta.h5p-theme-close {
   background-color: transparent;
+  border-color: transparent;
   margin-right: calc(-1 * var(--h5p-theme-spacing-s));
   margin-top: calc(-1 * var(--h5p-theme-spacing-xs));
 }

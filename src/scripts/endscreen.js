@@ -188,7 +188,7 @@ class Endscreen extends H5P.EventDispatcher {
    * Inject a close button into the result screen.
    */
   injectCloseButton() {
-      this.closeButton = new H5P.Components.Button({
+    this.closeButton = new H5P.Components.Button({
       label: '',
       'aria-label': this.parent.l10n.close,
       styleType: 'secondary',
@@ -196,7 +196,7 @@ class Endscreen extends H5P.EventDispatcher {
       onClick: () => this.parent.toggleEndscreen(false)
     });
 
-    const buttonContainer = document.querySelector('.h5p-theme-results-banner');
+    const buttonContainer = this.endscreenDOM.querySelector('.h5p-theme-results-banner');
     if (!buttonContainer) {
       return;
     }
