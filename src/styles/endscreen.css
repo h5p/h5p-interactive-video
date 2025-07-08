@@ -106,6 +106,10 @@ button.h5p-theme-close:before {
   text-align: center;
 }
 
+.h5p-theme-results-list-item {
+  padding-right: var(--h5p-theme-spacing-xs);
+}
+
 .h5p-theme-results-list-item.is-jump-button:not(.is-skipping-prevented) {
   cursor: pointer;
 }
