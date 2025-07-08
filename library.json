@@ -20,17 +20,11 @@
   "preloadedJs": [
     {
       "path": "dist/h5p-interactive-video.js"
-    },
-    {
-      "path": "@legacy/dist/h5p-interactive-video.js"
     }
   ],
   "preloadedCss": [
     {
       "path": "dist/h5p-interactive-video.css"
-    },
-    {
-      "path": "@legacy/dist/h5p-interactive-video.css"
     }
   ],
   "preloadedDependencies": [
