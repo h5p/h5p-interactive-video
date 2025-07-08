@@ -18,6 +18,31 @@
   -webkit-text-size-adjust: none;
 }
 
+/* Custom scrollbar */
+.h5p-interactive-video-endscreen::-webkit-scrollbar {
+  background-color: var(--h5p-theme-ui-base);
+  width: min(0.5em, 6px);
+  border-radius: 1em;
+}
+
+.h5p-interactive-video-endscreen::-webkit-scrollbar-thumb {
+  background-color: var(--h5p-theme-text-primary);
+  background-size: 24px 100%;
+  border-radius: 0;
+}
+
+.h5p-interactive-video-endscreen::-webkit-scrollbar-button:vertical {
+  background-size: 20px 20px;
+  background-position-x: -4px;
+  background-position-y: -3px;
+  background-repeat: no-repeat;
+}
+
+.h5p-interactive-video-endscreen::-webkit-scrollbar-button:vertical:decrement,
+.h5p-interactive-video-endscreen::-webkit-scrollbar-button:vertical:increment {
+  display: none;
+}
+
 .h5p-interactive-video-endscreen .h5p-theme-results-question {
   display: flex;
 }
