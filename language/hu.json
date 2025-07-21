@@ -46,7 +46,7 @@
                         "default": "Feliratok"
                       },
                       {
-                        "label": "Feliratsáv típusa",
+                        "label": "Szövegsáv típusa",
                         "options": [
                           {
                             "label": "Feliratok"
@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Forrásnyelv, meg kell adni a feliratokhoz",
-                        
                         "description": "Érvényes BCP 47 nyelvi címkének kell lennie. Ha a kiválasztott feliratsáv típusa „Feliratok”, meg kell adni a sáv forrásnyelvét."
                       },
                       {
