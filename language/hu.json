@@ -1,113 +1,113 @@
 {
   "semantics": [
     {
-      "label": "Interaktív videó szerkesztő",
+      "label": "Interaktívvideó-szerkesztő",
       "fields": [
         {
-          "label": "Feltöltés/beágyazás videó",
+          "label": "Videó feltöltése/beágyazása",
           "fields": [
             {
               "label": "Videó hozzáadása",
-              "description": "Click below to add a video you wish to use in your interactive video. You can add a video link or upload video files. It is possible to add several versions of the video with different qualities. To ensure maximum support in browsers at least add a version in webm and mp4 formats."
+              "description": "Kattintson az alábbi elemre a használni kívánt videó hozzáadásához. Hozzáadhat videó hivatkozást, vagy videofájlokat tölthet fel. Lehetőség van a videó több verziójának hozzáadására, különböző minőségben. A böngészők maximális támogatásának biztosítása érdekében legalább webm és mp4 formátumban adjon hozzá egy-egy verziót."
             },
             {
-              "label": "Start screen options (unsupported for YouTube videos)",
+              "label": "Kezdőképernyő beállításai (YouTube videók esetében nem támogatott)",
               "fields": [
                 {
-                  "label": "The title of this interactive video",
+                  "label": "Az interaktív videó címe",
                   "default": "Interaktív videó",
-                  "description": "Used in summaries, statistics etc."
+                  "description": "Összefoglalókban, statisztikákban stb. használva"
                 },
                 {
-                  "label": "Hide title on video start screen"
+                  "label": "Cím elrejtése a videó kezdőképernyőjén"
                 },
                 {
                   "label": "Rövid leírás (nem kötelező)",
-                  "description": "Optional. Display a short description text on the video start screen. Does not work for YouTube videos."
+                  "description": "Opcionális. Egy rövid leírás megjelenítése a videó kezdőképernyőjén. YouTube videók esetében nem működik."
                 },
                 {
-                  "label": "Poster image",
-                  "description": "Image displayed before the user launches the video. Does not work for YouTube Videos."
+                  "label": "Fedőkép",
+                  "description": "A kép azelőtt jelenik meg, hogy a felhasználó elindítaná a videót. YouTube videók esetében nem működik."
                 }
               ]
             },
             {
-              "label": "Text tracks (unsupported for YouTube videos)",
+              "label": "Feliratsávok (YouTube videók esetében nem támogatott)",
               "fields": [
                 {
-                  "label": "Available text tracks",
-                  "entity": "Track",
+                  "label": "Elérhető feliratsávok",
+                  "entity": "Sáv",
                   "field": {
-                    "label": "Track",
+                    "label": "Sáv",
                     "fields": [
                       {
-                        "label": "Track label",
-                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "label": "Sáv neve",
+                        "description": "Több elérhető feliratsáv esetén használatos, a felhasználónak ki kell választania egy feliratsávot. Például a „spanyol feliratok” egy spanyol feliratsáv neve lehet.",
                         "default": "Feliratok"
                       },
                       {
-                        "label": "Type of text track",
+                        "label": "Feliratsáv típusa",
                         "options": [
                           {
                             "label": "Feliratok"
                           },
                           {
-                            "label": "Captions"
+                            "label": "Bővített feliratok"
                           },
                           {
-                            "label": "Leírás"
+                            "label": "Leírások"
                           }
                         ]
                       },
                       {
-                        "label": "Source language, must be defined for subtitles",
+                        "label": "Forrásnyelv, meg kell adni a feliratokhoz",
                         
-                        "description": "Must be a valid BCP 47 language tag. If 'Subtitles' is the type of text track selected, the source language of the track must be defined."
+                        "description": "Érvényes BCP 47 nyelvi címkének kell lennie. Ha a kiválasztott feliratsáv típusa „Feliratok”, meg kell adni a sáv forrásnyelvét."
                       },
                       {
-                        "label": "Track source (WebVTT file)"
+                        "label": "Sáv forrása (WebVTT fájl)"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "Alapértelmezett feliratsáv",
+                  "description": "Ha üresen marad, vagy nem egyezik a feliratsávok egyikével sem, az első feliratsáv lesz az alapértelmezett."
                 }
               ]
             }
           ]
         },
         {
-          "label": "Add interactions",
+          "label": "Interakciók hozzáadása",
           "fields": [
             {
               "field": {
                 "fields": [
                   {
-                    "label": "Display time"
+                    "label": "Idő megjelenítése"
                   },
                   {
-                    "label": "Pause video"
+                    "label": "Videó szüneteltetése"
                   },
                   {
                     "label": "Megjelenítés mint",
-                    "description": "<b>Button</b> is a collapsed interaction the user must press to open. <b>Poster</b> is an expanded interaction displayed directly on top of the video",
+                    "description": "A <b>Gomb</b> egy összecsukott interakciós elem, amelyet a felhasználónak meg kell nyomnia a megnyitáshoz. A <b>Fedőkép</b> egy kinyitott interakciós elem, amely közvetlenül a videó fölött jelenik meg",
                     "options": [
                       {
-                        "label": "Button"
+                        "label": "Gomb"
                       },
                       {
-                        "label": "Poster"
+                        "label": "Fedőkép"
                       }
                     ]
                   },
                   {
-                    "label": "Turn into button on small screens"
+                    "label": "Legyen gombot a kisméretű képernyőkön"
                   },
                   {
-                    "label": "Label",
-                    "description": "Label displayed next to interaction icon."
+                    "label": "Címke",
+                    "description": "Az interakció ikonja mellett megjelenő címke."
                   },
                   {},
                   {},
@@ -116,85 +116,85 @@
                   {},
                   {},
                   {
-                    "label": "Adaptivity",
+                    "label": "Alkalmazkodás",
                     "fields": [
                       {
-                        "label": "Action on all correct",
+                        "label": "Művelet, ha az összes válasz helyes",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Lépés adott időre",
+                            "description": "Adjon meg egy időkódot p:mp formátumban"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "A felhasználó elutasíthatja, az adott ponttól folytatva"
                           },
                           {
-                            "label": "Message"
+                            "label": "Üzenet"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Felirat az ellépés gombhoz"
                           }
                         ]
                       },
                       {
-                        "label": "Action on wrong",
+                        "label": "Művelet, ha a válasz helytelen",
                         "fields": [
                           {
-                            "label": "Seek to",
-                            "description": "Enter timecode in the format M:SS"
+                            "label": "Lépés adott időre",
+                            "description": "Adjon meg egy időkódot p:mp formátumban"
                           },
                           {
-                            "label": "Allow the user to opt out and continue"
+                            "label": "A felhasználó elutasíthatja, az adott ponttól folytatva"
                           },
                           {
-                            "label": "Message"
+                            "label": "Üzenet"
                           },
                           {
-                            "label": "Label for seek button"
+                            "label": "Felirat az ellépés gombhoz"
                           }
                         ]
                       },
                       {
-                        "label": "Require full score for task before proceeding",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "label": "Maximális pontszám megkövetelése a feladatnál a továbblépéshez",
+                        "description": "A legjobb működéshez ezt a beállítást az Interaktív Videó „Előrelépés tiltása a videóban” beállítással együtt érdemes használni."
                       }
                     ]
                   },
                   {
-                    "label": "Visuals",
+                    "label": "Képi megjelenítés",
                     "fields": [
                       {
-                        "label": "Background color"
+                        "label": "Háttérszín"
                       },
                       {
-                        "label": "Box shadow",
-                        "description": "Adds a subtle shadow around the interaction. You might want to disable this for completely transparent interactions"
+                        "label": "Vetett árnyék",
+                        "description": "Finom árnyékot jelenít meg az interakciós elem körül. Érdemes lehet ezt kikapcsolni teljesen átlátható interakcióknál"
                       }
                     ]
                   },
                   {
-                    "label": "Go to on click",
+                    "label": "Ugrás kattintásra",
                     "fields": [
                       {
-                        "label": "Type",
+                        "label": "Típus",
                         "options": [
                           {
-                            "label": "Timecode"
+                            "label": "Időkód"
                           },
                           {
-                            "label": "Another page (URL)"
+                            "label": "Másik oldal (URL)"
                           }
                         ]
                       },
                       {
-                        "label": "Go To",
-                        "description": "The target time the user will be taken to upon pressing the hotspot. Enter timecode in the format M:SS."
+                        "label": "Ugrás ide",
+                        "description": "A kívánt idő, ahova a felhasználó ugrani fog a videóban a gomb megnyomásakor. Adjon meg egy időkódot p:mp formátumban"
                       },
                       {
                         "label": "URL",
                         "fields": [
                           {
-                            "label": "Protocol",
+                            "label": "Protokoll",
                             "options": [
                               {
                                 "label": "http://"
@@ -203,10 +203,10 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "(root relative)"
+                                "label": "(gyökérkönyvtárhoz viszonyítva)"
                               },
                               {
-                                "label": "other"
+                                "label": "egyéb"
                               }
                             ]
                           },
@@ -216,8 +216,8 @@
                         ]
                       },
                       {
-                        "label": "Visualize",
-                        "description": "Show that interaction can be clicked by adding a border and an icon"
+                        "label": "Megjelenítés",
+                        "description": "Az interakciós elem kattinthatóságának jelzése egy szegély és egy ikon hozzáadásával"
                       }
                     ]
                   }
@@ -229,277 +229,277 @@
           ]
         },
         {
-          "label": "Summary task",
+          "label": "Összefoglalás feladat",
           "fields": [
             {},
             {
-              "label": "Display at",
-              "description": "Number of seconds before the video ends."
+              "label": "Megjelenítés ekkor",
+              "description": "A videó vége előtti másodpercek száma."
             }
           ]
         }
       ]
     },
     {
-      "label": "Behavioural settings",
+      "label": "Viselkedési beállítások",
       "fields": [
         {
-          "label": "Start video at",
-          "description": "Enter timecode in the format M:SS"
+          "label": "Videó indítása innen",
+          "description": "Adjon meg egy időkódot p:mp formátumban"
         },
         {
-          "label": "Auto-play video",
-          "description": "Start playing the video automatically"
+          "label": "Videó automatikus indítása",
+          "description": "A videó lejátszása induljon el automatikusan"
         },
         {
-          "label": "Loop the video",
-          "description": "Check if video should run in a loop"
+          "label": "Videó ismétlése",
+          "description": "Bekapcsolása esetén a videó újra és újra elindul"
         },
         {
-          "label": "Override \"Show Solution\" button",
-          "description": "This option determines if the \"Show Solution\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Megoldás mutatása\" gomb felülírása",
+          "description": "Ez a beállítás megadja, hogy a \"Megoldás mutatása\" gomb minden kérdésnél egyformán látható, rejtett, avagy ez kérdésenként állítható.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Bekapcsolva"
             },
             {
-              "label": "Disabled"
+              "label": "Kikapcsolva"
             }
           ]
         },
         {
-          "label": "Override \"Retry\" button",
-          "description": "This option determines if the \"Retry\" button will be shown for all questions, disabled for all or configured for each question individually.",
+          "label": "\"Újra\" gomb felülírása",
+          "description": "Ez a beállítás megadja, hogy az \"Újra\" gomb minden kérdésnél egyformán látható, rejtett, avagy ez kérdésenként állítható.",
           "options": [
             {
-              "label": "Enabled"
+              "label": "Bekapcsolva"
             },
             {
-              "label": "Disabled"
+              "label": "Kikapcsolva"
             }
           ]
         },
         {
-          "label": "Start with bookmarks menu open",
-          "description": "This function is not available on iPad when using YouTube as video source."
+          "label": "Kezdés nyitott könyvjelzők menüvel",
+          "description": "Ez a funkció nem érhető el iPad-en, ha a videó forrása a YouTube."
         },
         {
-          "label": "Show button for rewinding 10 seconds"
+          "label": "10 másodperces visszatekerés gomb mutatása"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "Navigáció letiltása",
+          "description": "Az itt megadott navigáció a videónál tiltva lesz.",
           "options": [
             {
-              "label": "None"
+              "label": "Nincs korlátozás"
             },
             {
-              "label": "Forward"
+              "label": "Előrelépés"
             },
             {
-              "label": "Forward and backward"
+              "label": "Előre- és visszalépés"
             }
           ]
         },
         {
-          "label": "Deactivate sound",
-          "description": "Enabling this option will deactivate the video's sound and prevent it from being switched on."
+          "label": "Hang kikapcsolása",
+          "description": "Bekapcsolása esetén letiltja a videó hangját, és megakadályozza annak bekapcsolását."
         }
       ]
     },
     {
-      "label": "Localize",
+      "label": "Lokalizáció",
       "fields": [
         {
-          "label": "Interaction title",
-          "default": "Interaction"
+          "label": "Interakciós elem felirata",
+          "default": "Interakció"
         },
         {
-          "label": "Play title",
-          "default": "Play"
+          "label": "Lejátszás felirata",
+          "default": "Lejátszás"
         },
         {
-          "label": "Pause title",
-          "default": "Pause"
+          "label": "Szünet felirata",
+          "default": "Szünet"
         },
         {
-          "label": "Mute title",
-          "default": "Mute, currently unmuted"
+          "label": "Elnémítás felirata",
+          "default": "Elnémítás, jelenleg hanggal"
         },
         {
-          "label": "Unmute title",
-          "default": "Unmute, currently muted"
+          "label": "Visszahangosítás felirata",
+          "default": "Visszahangosítás, jelenleg elnémítva"
         },
         {
-          "label": "Video quality title",
-          "default": "Video Quality"
+          "label": "Videó minőségének felirata",
+          "default": "Videó minősége"
         },
         {
-          "label": "Video captions title",
-          "default": "Captions"
+          "label": "Videó feliratok felirata",
+          "default": "Feliratok"
         },
         {
-          "label": "Close button text",
-          "default": "Close"
+          "label": "Bezárás gomb felirata",
+          "default": "Bezárás"
         },
         {
-          "label": "Fullscreen title",
-          "default": "Fullscreen"
+          "label": "Teljes képernyő felirata",
+          "default": "Teljes képernyő"
         },
         {
-          "label": "Exit fullscreen title",
-          "default": "Exit Fullscreen"
+          "label": "Kilépés a teljes képernyőből felirata",
+          "default": "Kilépés a teljes képernyőből"
         },
         {
-          "label": "Summary title",
-          "default": "Open summary dialog"
+          "label": "Összefoglalás felirata",
+          "default": "Összefoglaló ablak megnyitása"
         },
         {
-          "label": "Bookmarks title",
-          "default": "Bookmarks"
+          "label": "Könyvjelzők felirata",
+          "default": "Könyvjelzők"
         },
         {
-          "label": "Submit screen title",
-          "default": "Submit screen"
+          "label": "Leadás képernyő felirata",
+          "default": "Leadási képernyő"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "Az alkalmazkodó funkció ellépés gombjának alapértelmezett felirata",
+          "default": "Tovább"
         },
         {
-          "label": "Default label for continue video button",
-          "default": "Continue with video"
+          "label": "A videó folytatása gomb alapértelmezett felirata",
+          "default": "Videó folytatása"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "A lejátszó további beállításai gomb alapértelmezett felirata",
+          "default": "A lejátszó további beállításai"
         },
         {
-          "label": "Set playback rate",
-          "default": "Playback Rate"
+          "label": "Lejátszási sebesség beállítása",
+          "default": "Lejátszás sebessége"
         },
         {
-          "label": "Rewind 10 Seconds",
-          "default": "Rewind 10 Seconds"
+          "label": "Visszalépés 10 másodperccel",
+          "default": "Visszalépés 10 másodperccel"
         },
         {
-          "label": "Navigation is disabled text",
-          "default": "Navigation is disabled"
+          "label": "A navigáció nincs engedélyezve szöveg",
+          "default": "A navigáció nincs engedélyezve"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "Az előrelépés nincs engedélyezve szöveg",
+          "default": "Az előrelépés nincs engedélyezve"
         },
         {
-          "label": "Sound is disabled text",
-          "default": "Sound is disabled"
+          "label": "A hang nincs engedélyezve szöveg",
+          "default": "A hang nincs engedélyezve"
         },
         {
-          "label": "Warning that the user must answer the question correctly before continuing",
-          "default": "You need to answer all the questions correctly before continuing."
+          "label": "Figyelmeztetés, hogy a felhasználónak a folytatás előtt helyesen kell válaszolnia a kérdésre",
+          "default": "A folytatás előtt minden kérdésre helyesen kell válaszolnia."
         },
         {
-          "label": "Back button",
-          "default": "Back"
+          "label": "Vissza gomb",
+          "default": "Vissza"
         },
         {
-          "label": "Passed time hours",
-          "default": "Hours"
+          "label": "Eltelt idő, órák",
+          "default": "Órák"
         },
         {
-          "label": "Passed time minutes",
-          "default": "Minutes"
+          "label": "Eltelt idő, perc",
+          "default": "Perc"
         },
         {
-          "label": "Passed time seconds",
-          "default": "Seconds"
+          "label": "Eltelt idő, másodperc",
+          "default": "Másodperc"
         },
         {
-          "label": "Label for current time",
-          "default": "Current time:"
+          "label": "Felirat a jelenlegi időponthoz",
+          "default": "Jelenlegi időpont:"
         },
         {
-          "label": "Label for total time",
-          "default": "Total time:"
+          "label": "Felirat a teljes időhöz",
+          "default": "Teljes idő:"
         },
         {
-          "label": "Text explaining that a single interaction with a name has come into view",
-          "default": "Interaction appeared:"
+          "label": "Szöveg, amely elmagyarázza, hogy megjelent egy elnevezett interakció",
+          "default": "Interakció jelent meg:"
         },
         {
-          "label": "Text for explaining that multiple interactions have come into view",
-          "default": "Multiple interactions appeared."
+          "label": "Szöveg, amely elmagyarázza, hogy több interakció jelent meg",
+          "default": "Több interakció jelent meg."
         },
         {
-          "label": "Video is paused announcement",
-          "default": "Video is paused"
+          "label": "A videó szüneteltetve van közlése",
+          "default": "A videó szüneteltetve van"
         },
         {
-          "label": "Content label",
-          "default": "Content"
+          "label": "Tartalom felirata",
+          "default": "Tartalom"
         },
         {
-          "label": "Answered message (@answered will be replaced with the number of answered questions)",
-          "default": "@answered answered"
+          "label": "Megválaszolva üzenet (@answered helyébe a megválaszolt kérdések száma kerül)",
+          "default": "@answered megválaszolva"
         },
         {
-          "label": "Submit screen title",
-          "default": "@answered Question(s) answered",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Leadás képernyő felirata",
+          "default": "@answered kérdés megválaszolva",
+          "description": "Az @answered helyébe a megválaszolt kérdések száma kerül."
         },
         {
-          "label": "Submit screen information",
-          "default": "You have answered @answered questions, click below to submit your answers.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Leadás képernyő tájékoztatója",
+          "default": "Megválaszolt @answered kérdést, lent kattintson a válaszai leadásához.",
+          "description": "Az @answered helyébe a megválaszolt kérdések száma kerül."
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "Leadás képernyő tájékoztatója, ha a leadás gomb nem elérhető",
+          "default": "Megválaszolt @answered kérdést.",
+          "description": "Az @answered helyébe a megválaszolt kérdések száma kerül."
         },
         {
-          "label": "Submit screen information for missing answers",
-          "default": "You have not answered any questions."
+          "label": "Leadás képernyő tájékoztatója hiányzó válaszoknál",
+          "default": "Nem válaszolt egyetlen kérdésre sem."
         },
         {
-          "label": "Submit screen information for answer needed",
-          "default": "You have to answer at least one question before you can submit your answers."
+          "label": "Leadás képernyő tájékoztatója hiányzó válaszról",
+          "default": "Válaszai beküldése előtt legalább egy kérdésre válaszolnia kell."
         },
         {
-          "label": "Submit screen submit button",
-          "default": "Submit Answers"
+          "label": "Leadás képernyő leadás gombja",
+          "default": "Válaszok leadása"
         },
         {
-          "label": "Submit screen submit message",
-          "default": "Your answers have been submitted!"
+          "label": "Leadás képernyő leadás üzenete",
+          "default": "A válaszai beérkeztek!"
         },
         {
-          "label": "Submit screen table row title: Answered questions",
-          "default": "Answered questions"
+          "label": "Leadás képernyő táblázatának felirata: Megválaszolt kérdések",
+          "default": "Megválaszolt kérdések"
         },
         {
-          "label": "Submit screen table row title: Score",
-          "default": "Score"
+          "label": "Leadás képernyő táblázatának felirata: Pontszám",
+          "default": "Pontszám"
         },
         {
-          "label": "Submit screen answered score",
-          "default": "answered"
+          "label": "Leadás képernyő megválaszolt pontszáma",
+          "default": "megválaszolt"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Leadás képernyő sor összefoglaló pontszámmal együtt (szövegfelolvasók számára)",
+          "default": "Ön @score pontot kapott az elérhető @total pontból a @minutes perc @seconds másodpercnél feltett @question kérdésre."
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "Leadás képernyő sor összefoglaló pontszám nélkül (szövegfelolvasók számára)",
+          "default": "Ön válaszolt a(z) @minutes perc @seconds másodpercnél feltett @question kérdésre."
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "Videó előrehaladási sávja",
+          "default": "Videó előrehaladás"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "Felirat az interakciók létrehozásához",
+          "default": "Az interakciók létrehozásához indítsa el a videó lejátszását"
         }
       ]
     }
