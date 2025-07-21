@@ -1,0 +1,506 @@
+{
+  "semantics": [
+    {
+      "label": "Editor Video Interactiv",
+      "fields": [
+        {
+          "label": "Încarcă/încorporează video",
+          "fields": [
+            {
+              "label": "Adaugă un videoclip",
+              "description": "Apasă mai jos pentru a adăuga un videoclip pe care dorești să-l folosești în videoclipul tău interactiv. Poți adăuga un link video sau poți încărca fișiere video. Este posibil să adaugi mai multe versiuni ale videoclipului cu calități diferite. Pentru a asigura suport maxim în browsere, adaugă cel puțin o versiune în formatele webm și mp4."
+            },
+            {
+              "label": "Opțiuni ecran de pornire (nesuportate pentru videoclipurile YouTube)",
+              "fields": [
+                {
+                  "label": "Titlul acestui videoclip interactiv",
+                  "default": "Video Interactiv",
+                  "description": "Folosit în rezumate, statistici etc."
+                },
+                {
+                  "label": "Ascunde titlul pe ecranul de pornire al videoclipului"
+                },
+                {
+                  "label": "Descriere scurtă (Opțional)",
+                  "description": "Opțional. Afișează un text scurt descriptiv pe ecranul de pornire al videoclipului. Nu funcționează pentru videoclipurile YouTube."
+                },
+                {
+                  "label": "Imagine poster",
+                  "description": "Imagine afișată înainte ca utilizatorul să pornească videoclipul. Nu funcționează pentru videoclipurile YouTube."
+                }
+              ]
+            },
+            {
+              "label": "Piste de text (nesuportate pentru videoclipurile YouTube)",
+              "fields": [
+                {
+                  "label": "Piste de text disponibile",
+                  "entity": "Pistă",
+                  "field": {
+                    "label": "Pistă",
+                    "fields": [
+                      {
+                        "label": "Etichetă pistă",
+                        "description": "Folosit dacă oferi mai multe piste și utilizatorul trebuie să aleagă o pistă. De exemplu, 'Subtitrări în spaniolă' ar putea fi eticheta unei piste de subtitrări în spaniolă.",
+                        "default": "Subtitrări"
+                      },
+                      {
+                        "label": "Tip de pistă de text",
+                        "options": [
+                          {
+                            "label": "Subtitrări"
+                          },
+                          {
+                            "label": "Legende"
+                          },
+                          {
+                            "label": "Descrieri"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Limba sursă, trebuie definită pentru subtitrări",
+                        "description": "Trebuie să fie o etichetă de limbă BCP 47 validă. Dacă 'Subtitrări' este tipul de pistă de text selectat, limba sursă a pistei trebuie definită."
+                      },
+                      {
+                        "label": "Sursă pistă (fișier WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Pistă de text implicită",
+                  "description": "Dacă este lăsată goală sau nu se potrivește cu nicio pistă de text, prima pistă de text va fi folosită ca implicită."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Adaugă interacțiuni",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Timp de afișare"
+                  },
+                  {
+                    "label": "Pauză video"
+                  },
+                  {
+                    "label": "Afișează ca",
+                    "description": "<b>Buton</b> este o interacțiune restrânsă pe care utilizatorul trebuie să o apese pentru a o deschide. <b>Poster</b> este o interacțiune extinsă afișată direct peste videoclip",
+                    "options": [
+                      {
+                        "label": "Buton"
+                      },
+                      {
+                        "label": "Poster"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Transformă în buton pe ecrane mici"
+                  },
+                  {
+                    "label": "Etichetă",
+                    "description": "Etichetă afișată lângă pictograma interacțiunii."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Adaptabilitate",
+                    "fields": [
+                      {
+                        "label": "Acțiune la toate corecte",
+                        "fields": [
+                          {
+                            "label": "Salt la",
+                            "description": "Introduceți codul de timp în formatul M:SS"
+                          },
+                          {
+                            "label": "Permite utilizatorului să renunțe și să continue"
+                          },
+                          {
+                            "label": "Mesaj"
+                          },
+                          {
+                            "label": "Etichetă pentru butonul de salt"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Acțiune la greșit",
+                        "fields": [
+                          {
+                            "label": "Salt la",
+                            "description": "Introduceți codul de timp în formatul M:SS"
+                          },
+                          {
+                            "label": "Permite utilizatorului să renunțe și să continue"
+                          },
+                          {
+                            "label": "Mesaj"
+                          },
+                          {
+                            "label": "Etichetă pentru butonul de salt"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Necesită punctaj complet pentru sarcină înainte de a continua",
+                        "description": "Pentru o funcționalitate optimă, această opțiune ar trebui utilizată împreună cu opțiunea „Dezactivează navigarea înainte într-un videoclip” a Videoclipului Interactiv."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Vizualuri",
+                    "fields": [
+                      {
+                        "label": "Culoare de fundal"
+                      },
+                      {
+                        "label": "Umbră casetă",
+                        "description": "Adaugă o umbră subtilă în jurul interacțiunii. S-ar putea să doriți să dezactivați acest lucru pentru interacțiuni complet transparente"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Mergi la la click",
+                    "fields": [
+                      {
+                        "label": "Tip",
+                        "options": [
+                          {
+                            "label": "Cod de timp"
+                          },
+                          {
+                            "label": "Altă pagină (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Mergi la",
+                        "description": "Momentul țintă la care va fi dus utilizatorul după apăsarea punctului activ. Introduceți codul de timp în formatul M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Protocol",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(relativ la rădăcină)"
+                              },
+                              {
+                                "label": "altul"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Vizualizează",
+                        "description": "Arată că interacțiunea poate fi apăsată adăugând o margine și o pictogramă"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Sarcină de rezumat",
+          "fields": [
+            {},
+            {
+              "label": "Afișează la",
+              "description": "Numărul de secunde înainte de terminarea videoclipului."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Setări de comportament",
+      "fields": [
+        {
+          "label": "Pornește videoclipul la",
+          "description": "Introduceți codul de timp în formatul M:SS"
+        },
+        {
+          "label": "Redare automată video",
+          "description": "Pornește redarea videoclipului automat"
+        },
+        {
+          "label": "Rulează videoclipul în buclă",
+          "description": "Bifează dacă videoclipul ar trebui să ruleze în buclă"
+        },
+        {
+          "label": "Suprascrie butonul „Arată soluția”",
+          "description": "Această opțiune determină dacă butonul „Arată soluția” va fi afișat pentru toate întrebările, dezactivat pentru toate sau configurat individual pentru fiecare întrebare.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Dezactivat"
+            }
+          ]
+        },
+        {
+          "label": "Suprascrie butonul „Reîncearcă”",
+          "description": "Această opțiune determină dacă butonul „Reîncearcă” va fi afișat pentru toate întrebările, dezactivat pentru toate sau configurat individual pentru fiecare întrebare.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Dezactivat"
+            }
+          ]
+        },
+        {
+          "label": "Pornește cu meniul de marcaje deschis",
+          "description": "Această funcție nu este disponibilă pe iPad când se utilizează YouTube ca sursă video."
+        },
+        {
+          "label": "Afișează butonul pentru derulare înapoi cu 10 secunde"
+        },
+        {
+          "label": "Dezactivează navigarea",
+          "description": "Aceste opțiuni vor dezactiva navigarea video a utilizatorului conform specificațiilor.",
+          "options": [
+            {
+              "label": "Niciuna"
+            },
+            {
+              "label": "Înainte"
+            },
+            {
+              "label": "Înainte și înapoi"
+            }
+          ]
+        },
+        {
+          "label": "Dezactivează sunetul",
+          "description": "Activarea acestei opțiuni va dezactiva sunetul videoclipului și va împiedica activarea acestuia."
+        }
+      ]
+    },
+    {
+      "label": "Localizare",
+      "fields": [
+        {
+          "label": "Titlu interacțiune",
+          "default": "Interacțiune"
+        },
+        {
+          "label": "Titlu Redare",
+          "default": "Redare"
+        },
+        {
+          "label": "Titlu Pauză",
+          "default": "Pauză"
+        },
+        {
+          "label": "Titlu Oprește sunetul",
+          "default": "Oprește sunetul, în prezent activat"
+        },
+        {
+          "label": "Titlu Pornește sunetul",
+          "default": "Pornește sunetul, în prezent oprit"
+        },
+        {
+          "label": "Titlu Calitate video",
+          "default": "Calitate Video"
+        },
+        {
+          "label": "Titlu Legende video",
+          "default": "Legende"
+        },
+        {
+          "label": "Text buton Închide",
+          "default": "Închide"
+        },
+        {
+          "label": "Titlu Ecran complet",
+          "default": "Ecran complet"
+        },
+        {
+          "label": "Titlu Ieșire din ecran complet",
+          "default": "Ieșire din Ecran Complet"
+        },
+        {
+          "label": "Titlu Rezumat",
+          "default": "Deschide dialogul de rezumat"
+        },
+        {
+          "label": "Titlu Marcaje",
+          "default": "Marcaje"
+        },
+        {
+          "label": "Titlu ecran de trimitere",
+          "default": "Ecran de trimitere"
+        },
+        {
+          "label": "Etichetă implicită pentru butonul de salt de adaptabilitate",
+          "default": "Continuă"
+        },
+        {
+          "label": "Etichetă implicită pentru butonul de continuare a videoclipului",
+          "default": "Continuă cu videoclipul"
+        },
+        {
+          "label": "Etichetă implicită pentru mai multe opțiuni ale playerului",
+          "default": "Mai multe opțiuni ale playerului"
+        },
+        {
+          "label": "Setează viteza de redare",
+          "default": "Viteză de Redare"
+        },
+        {
+          "label": "Derulează înapoi cu 10 secunde",
+          "default": "Derulează înapoi cu 10 secunde"
+        },
+        {
+          "label": "Text navigare dezactivată",
+          "default": "Navigarea este dezactivată"
+        },
+        {
+          "label": "Text navigare înainte dezactivată",
+          "default": "Navigarea înainte este dezactivată"
+        },
+        {
+          "label": "Text sunet dezactivat",
+          "default": "Sunetul este dezactivat"
+        },
+        {
+          "label": "Avertisment că utilizatorul trebuie să răspundă corect la întrebare înainte de a continua",
+          "default": "Trebuie să răspundeți corect la toate întrebările înainte de a continua."
+        },
+        {
+          "label": "Buton Înapoi",
+          "default": "Înapoi"
+        },
+        {
+          "label": "Ore timp scurs",
+          "default": "Ore"
+        },
+        {
+          "label": "Minute timp scurs",
+          "default": "Minute"
+        },
+        {
+          "label": "Secunde timp scurs",
+          "default": "Secunde"
+        },
+        {
+          "label": "Etichetă pentru timpul curent",
+          "default": "Timp curent:"
+        },
+        {
+          "label": "Etichetă pentru timpul total",
+          "default": "Timp total:"
+        },
+        {
+          "label": "Text care explică faptul că o singură interacțiune cu un nume a apărut",
+          "default": "A apărut interacțiunea:"
+        },
+        {
+          "label": "Text care explică faptul că mai multe interacțiuni au apărut",
+          "default": "Au apărut mai multe interacțiuni."
+        },
+        {
+          "label": "Anunț videoclip în pauză",
+          "default": "Videoclipul este în pauză"
+        },
+        {
+          "label": "Etichetă conținut",
+          "default": "Conținut"
+        },
+        {
+          "label": "Mesaj răspuns (@answered va fi înlocuit cu numărul de întrebări la care s-a răspuns)",
+          "default": "@answered răspuns"
+        },
+        {
+          "label": "Titlu ecran de trimitere",
+          "default": "@answered Întrebare(i) răspunsă(e)",
+          "description": "@answered va fi înlocuit cu numărul de întrebări la care s-a răspuns."
+        },
+        {
+          "label": "Informații ecran de trimitere",
+          "default": "Ați răspuns la @answered întrebări, apăsați mai jos pentru a trimite răspunsurile.",
+          "description": "@answered va fi înlocuit cu numărul de întrebări la care s-a răspuns."
+        },
+        {
+          "label": "Informații ecran de trimitere când butonul de trimitere este dezactivat",
+          "default": "Ați răspuns la @answered întrebări.",
+          "description": "@answered va fi înlocuit cu numărul de întrebări la care s-a răspuns."
+        },
+        {
+          "label": "Informații ecran de trimitere pentru răspunsuri lipsă",
+          "default": "Nu ați răspuns la nicio întrebare."
+        },
+        {
+          "label": "Informații ecran de trimitere pentru răspuns necesar",
+          "default": "Trebuie să răspundeți la cel puțin o întrebare înainte de a putea trimite răspunsurile."
+        },
+        {
+          "label": "Buton trimitere ecran de trimitere",
+          "default": "Trimite Răspunsurile"
+        },
+        {
+          "label": "Mesaj trimitere ecran de trimitere",
+          "default": "Răspunsurile dumneavoastră au fost trimise!"
+        },
+        {
+          "label": "Titlu rând tabel ecran de trimitere: Întrebări la care s-a răspuns",
+          "default": "Întrebări la care s-a răspuns"
+        },
+        {
+          "label": "Titlu rând tabel ecran de trimitere: Punctaj",
+          "default": "Punctaj"
+        },
+        {
+          "label": "Punctaj răspuns ecran de trimitere",
+          "default": "răspuns"
+        },
+        {
+          "label": "Rezumat rând ecran de trimitere, inclusiv punctajul (pentru cititoarele de ecran)",
+          "default": "Ați obținut @score din @total puncte pentru @question care a apărut după @minutes minute și @seconds secunde."
+        },
+        {
+          "label": "Rezumat rând ecran de trimitere pentru niciun punctaj (pentru cititoarele de ecran)",
+          "default": "Ați răspuns la @question care a apărut după @minutes minute și @seconds secunde."
+        },
+        {
+          "label": "Bară de progres video",
+          "default": "Progres video"
+        },
+        {
+          "label": "Informații despre cum să începeți crearea interacțiunilor",
+          "default": "Redați videoclipul pentru a începe crearea interacțiunilor"
+        }
+      ]
+    }
+  ]
+}
