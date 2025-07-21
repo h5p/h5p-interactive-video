@@ -719,7 +719,7 @@ InteractiveVideo.prototype.attach = function ($container) {
     this.setActivityStarted();
   }
 
-  $container.addClass('h5p-interactive-video').html('');
+  $container.addClass('h5p-interactive-video h5p-theme').html('');
   this.$videoWrapper.appendTo($container);
   this.$controls.appendTo($container);
 

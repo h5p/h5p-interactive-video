@@ -61,6 +61,7 @@
                       },
                       {
                         "label": "Kildespråk",
+                        "default": "en",
                         "description": "Må være en gyldig BCP 47-språktagg. Hvis \"Undertekster\" er valgt, må du definere språket i tekstsporet."
                       },
                       {
@@ -163,7 +164,8 @@
                     "label": "Visuelle effekter",
                     "fields": [
                       {
-                        "label": "Bakgrunnsfarge"
+                        "label": "Bakgrunnsfarge",
+                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Skygge",
@@ -222,7 +224,9 @@
                   }
                 ]
               }
-            }
+            },
+            {},
+            {}
           ]
         },
         {

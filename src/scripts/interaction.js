@@ -928,7 +928,11 @@ function Interaction(parameters, player, previousState) {
           instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
             closeInteraction();
             continueWithVideo();
-          });
+          },
+            true,
+            {},
+            { icon: 'continue' }
+          );                  
         }
 
         // show or hide the continue-button, based on requiring completion
@@ -967,8 +971,12 @@ function Interaction(parameters, player, previousState) {
         }
 
         self.remove();
-        continueWithVideo(adaptivity.seekTo);
-      })
+        continueWithVideo(adaptivity.seekTo);  
+        },
+        true,
+        {},
+        { icon: 'go-to-start' }
+      )
       .showButton('iv-adaptivity-' + adaptivityId, 1)
       .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
       .hideButton('check-answer', 1)
