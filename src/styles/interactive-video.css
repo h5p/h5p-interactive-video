@@ -1364,7 +1364,7 @@
 
   /* Necessary for backwards compatibility */
   table {
-    font-size: 0.875em;
+    font-size: 0.765625em;
   }
 }
 .h5p-interactive-video .h5p-table figure.table {
