@@ -442,7 +442,6 @@
 }
 
 .h5p-interactive-video .h5p-interaction-inner.h5p-questionnaire-wrapper,
-.h5p-interactive-video .h5p-interaction-inner.h5p-single-choice-set,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
   height: 100%;
 }
@@ -1365,7 +1364,7 @@
 
   /* Necessary for backwards compatibility */
   table {
-    font-size: 0.875em;
+    font-size: 0.765625em;
   }
 }
 .h5p-interactive-video .h5p-table figure.table {
