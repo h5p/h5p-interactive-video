@@ -1,85 +1,84 @@
 {
   "semantics": [
     {
-      "label": "互动影片编辑器",
+      "label": "交互式视频编辑器",
       "fields": [
         {
-          "label": "上传/嵌入影片",
+          "label": "上传/嵌入视频",
           "fields": [
             {
-              "label": "添加一个影片",
-              "description": "点击下方的加号图示以加入一个你想要的影片。你可以上传一个影片档案，或是输入影片的连接网址。如果是上传，你可以考虑为同一部影片上传多个不同画质的版本，也建议你上传 webm 或是 mp4 格式的影片，以确保不同装置、不同浏览器都能且播放流畅。"
+              "label": "添加视频",
+              "description": "点击下方添加您希望在交互视频中使用的视频。您可以添加视频链接或上传视频文件。可添加多个不同质量版本的视频。为了最大程度的浏览器兼容性，请至少添加 webm 和 mp4 格式的版本。"
             },
             {
-              "label": "初始画面设置（不支持 YouTube）",
+              "label": "启动画面选项（不支持 YouTube 视频）",
               "fields": [
                 {
-                  "label": "互动影片的标题",
-                  "default": "互动影片",
-                  "description": "用在摘要、统计…等地方。"
+                  "label": "此交互视频的标题",
+                  "default": "交互式视频",
+                  "description": "用于摘要、统计等。"
                 },
                 {
-                  "label": "初始画面上不显示标题"
+                  "label": "视频开始画面隐藏标题"
                 },
                 {
-                  "label": "简单描述（非必要项）",
-                  "description": "在影片的初始画面上显示关于影片的简短叙述。"
+                  "label": "简短描述（可选）",
+                  "description": "可选。在视频开始画面显示简短描述文本。不适用于 YouTube 视频。"
                 },
                 {
-                  "label": "影片缩图",
-                  "description": "用来连接影片的图片，通常是影片的截图，也可以是其它代表图片。"
+                  "label": "封面图片",
+                  "description": "在用户启动视频前显示的图片。不适用于 YouTube 视频。"
                 }
               ]
             },
             {
-              "label": "文字字轨（不支持 YouTube）",
+              "label": "文本轨道（不支持 YouTube 视频）",
               "fields": [
                 {
-                  "label": "影片播放时可显示的文字",
-                  "entity": "字轨",
+                  "label": "可用的文本轨道",
+                  "entity": "轨道",
                   "field": {
-                    "label": "字轨",
+                    "label": "轨道",
                     "fields": [
                       {
-                        "label": "字轨的显示文字",
-                        "description": "如果提供的多个可选的字轨，可给予显示文字以让用戶识别，例如英文、繁体中文、简体中文。",
-                        "default": "繁体中文"
+                        "label": "轨道标签",
+                        "description": "当提供多个轨道并要求用户选择时使用。例如，‘西班牙语字幕’可作为某字幕轨道的标签。",
+                        "default": "字幕"
                       },
                       {
-                        "label": "字轨的形式（样式）",
+                        "label": "文本轨道类型",
                         "options": [
                           {
                             "label": "字幕"
                           },
                           {
-                            "label": "标题"
+                            "label": "听障字幕"
                           },
                           {
-                            "label": "说明"
+                            "label": "音频描述"
                           }
                         ]
                       },
                       {
-                        "label": "语言代码",
-                        
-                        "description": "若字轨是字幕的話，必须要定义。需符合 BCP 47 的语言标记，例如 en 为英文、zh 为中文。"
+                        "label": "源语言（字幕类型必须定义）",
+                        "description": "必须是有效的 BCP 47 语言标记。如果所选文本轨道类型为‘字幕’，则必须定义其源语言。"
                       },
                       {
-                        "label": "字轨来源（格式为 WebVTT）"
+                        "label": "轨道源（WebVTT 文件）"
                       }
                     ]
                   }
                 },
                 {
-                  "label": "Default text track",
-                  "description": "If left empty or not matching any of the text tracks the first text track will be used as the default."
+                  "label": "默认文本轨道",
+                  "description": "如果留空或与任何轨道不匹配，则默认使用第一个文本轨道。"
                 }
               ]
             }
           ]
         },
         {
-          "label": "添加互动元件",
+          "label": "添加交互内容",
           "fields": [
             {
               "field": {
@@ -88,11 +87,11 @@
                     "label": "显示时间"
                   },
                   {
-                    "label": "暂停影片"
+                    "label": "暂停视频"
                   },
                   {
-                    "label": "显示样式",
-                    "description": "<b>按钮</b>在用戶点击后才会打开。<b>海报</b>则是在一开始就在影片上直接展开。",
+                    "label": "显示方式",
+                    "description": "<b>按钮</b> 是折叠的交互内容，用户必须点击才能打开。<b>海报</b> 是直接叠加在视频上的展开交互内容。",
                     "options": [
                       {
                         "label": "按钮"
@@ -103,11 +102,11 @@
                     ]
                   },
                   {
-                    "label": "在小屏幕上转成按钮样式"
+                    "label": "小屏幕上转换为按钮"
                   },
                   {
-                    "label": "说明文字",
-                    "description": "在互动图示的旁边显示的文字。"
+                    "label": "标签",
+                    "description": "显示在交互图标旁的标签。"
                   },
                   {},
                   {},
@@ -116,85 +115,85 @@
                   {},
                   {},
                   {
-                    "label": "适应设定",
+                    "label": "自适应",
                     "fields": [
                       {
-                        "label": "全对时的执行动作",
+                        "label": "全部正确时的动作",
                         "fields": [
                           {
-                            "label": "查看",
-                            "description": "输入时间点，格式为 M:SS"
+                            "label": "跳转至",
+                            "description": "以 M:SS 格式输入时间码"
                           },
                           {
-                            "label": "允许用戶退出后还能接续"
+                            "label": "允许用户跳过并继续"
                           },
                           {
-                            "label": "讯息"
+                            "label": "提示信息"
                           },
                           {
-                            "label": "查看按钮上显示的文字"
+                            "label": "跳转按钮标签"
                           }
                         ]
                       },
                       {
-                        "label": "有错时的执行动作",
+                        "label": "答错时的动作",
                         "fields": [
                           {
-                            "label": "查看",
-                            "description": "输入时间点，格式为 M:SS"
+                            "label": "跳转至",
+                            "description": "以 M:SS 格式输入时间码"
                           },
                           {
-                            "label": "允许用戶退出后还能接续"
+                            "label": "允许用户跳过并继续"
                           },
                           {
-                            "label": "讯息"
+                            "label": "提示信息"
                           },
                           {
-                            "label": "查看按钮上显示的文字"
+                            "label": "跳转按钮标签"
                           }
                         ]
                       },
                       {
-                        "label": "继续前需要全部答对",
-                        "description": "For best functionality this option should be used in conjunction with the \"Disable navigation forward in a video\" option of Interactive Video."
+                        "label": "在继续前要求满分",
+                        "description": "为获得最佳效果，应与“禁用视频中快进”选项搭配使用。"
                       }
                     ]
                   },
                   {
-                    "label": "外观",
+                    "label": "视觉效果",
                     "fields": [
                       {
                         "label": "背景颜色"
                       },
                       {
-                        "label": "盒式阴影",
-                        "description": "在互动元件周围加上阴影以造成立体效果。"
+                        "label": "盒子阴影",
+                        "description": "为交互内容添加微妙的阴影。若为完全透明的交互内容，建议关闭此选项。"
                       }
                     ]
                   },
                   {
-                    "label": "移至按钮",
+                    "label": "点击后跳转",
                     "fields": [
                       {
-                        "label": "类别",
+                        "label": "类型",
                         "options": [
                           {
-                            "label": "时间代码"
+                            "label": "时间码"
                           },
                           {
-                            "label": "网页（站台页面）"
+                            "label": "其他页面（URL）"
                           }
                         ]
                       },
                       {
-                        "label": "移至",
-                        "description": "在点击触发点后，用户会被带到什么时间点上，时间代码的格式为 M:SS。"
+                        "label": "跳转目标",
+                        "description": "用户点击热点后将跳转的目标时间，以 M:SS 格式输入时间码。"
                       },
                       {
-                        "label": "网址",
+                        "label": "URL",
                         "fields": [
                           {
-                            "label": "通讯协定",
+                            "label": "协议",
                             "options": [
                               {
                                 "label": "http://"
@@ -203,7 +202,7 @@
                                 "label": "https://"
                               },
                               {
-                                "label": "相对位置"
+                                "label": "（相对根路径）"
                               },
                               {
                                 "label": "其他"
@@ -211,13 +210,13 @@
                             ]
                           },
                           {
-                            "label": "网路位址"
+                            "label": "URL"
                           }
                         ]
                       },
                       {
-                        "label": "视觉化",
-                        "description": "透过添加框线和图示来显示可被点击的互动元件。"
+                        "label": "可视化",
+                        "description": "通过添加边框和图标显示该交互是可点击的"
                       }
                     ]
                   }
@@ -229,12 +228,12 @@
           ]
         },
         {
-          "label": "任务摘要",
+          "label": "总结任务",
           "fields": [
             {},
             {
-              "label": "显示于",
-              "description": "影片结束前几秒。"
+              "label": "显示时间",
+              "description": "距离视频结束的秒数。"
             }
           ]
         }
@@ -244,66 +243,66 @@
       "label": "行为设置",
       "fields": [
         {
-          "label": "影片的开始时间",
-          "description": "输入开始的时间点，格式为 M:SS"
+          "label": "视频开始时间",
+          "description": "以 M:SS 格式输入时间码"
         },
         {
-          "label": "影片自动播放",
-          "description": "在连接影片后自动播放"
+          "label": "自动播放视频",
+          "description": "自动开始播放视频"
         },
         {
-          "label": "影片循环播放",
-          "description": "在影片播放完后会重新播放"
+          "label": "循环播放视频",
+          "description": "勾选此项则视频将循环播放"
         },
         {
-          "label": "覆写「显示正解」按钮",
-          "description": "如果所有问题都设定了「显示正解」按钮，会个别单独显示这些按钮。启用后，则可以统一一次显示。",
+          "label": "覆盖“显示答案”按钮",
+          "description": "此选项决定是否在所有问题中显示“显示答案”按钮，或全部禁用，或单独设置。",
           "options": [
             {
               "label": "启用"
             },
             {
-              "label": "停用"
+              "label": "禁用"
             }
           ]
         },
         {
-          "label": "覆写「再试一次」按钮",
-          "description": "如果所有问题都设定了「再试一次」按钮，会个别单独显示这些按钮。启用后，则可以统一一次显示。",
+          "label": "覆盖“重试”按钮",
+          "description": "此选项决定是否在所有问题中显示“重试”按钮，或全部禁用，或单独设置。",
           "options": [
             {
               "label": "启用"
             },
             {
-              "label": "停用"
+              "label": "禁用"
             }
           ]
         },
         {
-          "label": "播放时间启用书签选单",
-          "description": "当使用的是 YouTube 影片时，在 iPad 上这个功能无效。"
+          "label": "启动时打开书签菜单",
+          "description": "使用 YouTube 作为视频来源时在 iPad 上无法使用此功能。"
         },
         {
           "label": "显示倒退 10 秒按钮"
         },
         {
-          "label": "Disable navigation",
-          "description": "These options will disable user video navigation as specified.",
+          "label": "禁用导航",
+          "description": "这些选项将根据设置禁用用户的视频导航。",
           "options": [
             {
-              "label": "None"
+              "label": "无"
             },
             {
-              "label": "Forward"
+              "label": "前进"
             },
             {
-              "label": "Forward and backward"
+              "label": "前进和后退"
             }
           ]
         },
         {
-          "label": "关闭影片音量",
-          "description": "勾选后，会关闭影片的声音。用戶就不能在播放时间启用影片声音。"
+          "label": "禁用声音",
+          "description": "启用此选项将关闭视频声音，并防止其被开启。"
         }
       ]
     },
@@ -311,195 +310,195 @@
       "label": "本地化",
       "fields": [
         {
-          "label": "互动的显示文字",
-          "default": "互动"
+          "label": "交互标题",
+          "default": "交互内容"
         },
         {
-          "label": "播放的显示文字",
+          "label": "播放标题",
           "default": "播放"
         },
         {
-          "label": "暂停的显示文字",
+          "label": "暂停标题",
           "default": "暂停"
         },
         {
-          "label": "静音的显示文字",
-          "default": "Mute, currently unmuted"
+          "label": "静音标题",
+          "default": "静音，当前为非静音"
         },
         {
-          "label": "取消静音的显示文字",
-          "default": "Unmute, currently muted"
+          "label": "取消静音标题",
+          "default": "取消静音，当前为静音"
         },
         {
-          "label": "影片品质的显示文字",
-          "default": "影片品质"
+          "label": "视频质量标题",
+          "default": "视频质量"
         },
         {
-          "label": "字轨的显示文字",
-          "default": "字轨"
+          "label": "字幕标题",
+          "default": "字幕"
         },
         {
-          "label": "关闭的显示文字",
+          "label": "关闭按钮文本",
           "default": "关闭"
         },
         {
-          "label": "全屏的显示文字",
+          "label": "全屏标题",
           "default": "全屏"
         },
         {
-          "label": "取消全屏的显示文字",
-          "default": "取消全屏"
+          "label": "退出全屏标题",
+          "default": "退出全屏"
         },
         {
-          "label": "摘要的显示文字",
-          "default": "摘要"
+          "label": "总结标题",
+          "default": "打开总结对话框"
         },
         {
-          "label": "书签的显示文字",
+          "label": "书签标题",
           "default": "书签"
         },
         {
-          "label": "提交画面的显示文字",
-          "default": "提交画面"
+          "label": "提交画面标题",
+          "default": "提交界面"
         },
         {
-          "label": "Default label for adaptivity seek button",
-          "default": "Continue"
+          "label": "适应性跳转按钮默认标签",
+          "default": "继续"
         },
         {
-          "label": "继续播放的显示文字",
-          "default": "继续播放"
+          "label": "继续视频按钮默认标签",
+          "default": "继续观看视频"
         },
         {
-          "label": "Default label for more player options",
-          "default": "More player options"
+          "label": "播放器更多选项默认标签",
+          "default": "更多播放器选项"
         },
         {
-          "label": "播放速度的显示文字",
-          "default": "播放速度"
+          "label": "设置播放速率",
+          "default": "播放速率"
         },
         {
-          "label": "倒退 10 秒的显示文字",
+          "label": "倒退 10 秒",
           "default": "倒退 10 秒"
         },
         {
-          "label": "巡览功能已停用的显示文字",
-          "default": "巡览功能已停用"
+          "label": "导航已禁用文本",
+          "default": "导航已被禁用"
         },
         {
-          "label": "Navigating forward is disabled text",
-          "default": "Navigating forward is disabled"
+          "label": "前进导航已禁用文本",
+          "default": "前进导航已被禁用"
         },
         {
-          "label": "声音功能已关闭的显示文字",
-          "default": "声音功能已关闭"
+          "label": "声音已禁用文本",
+          "default": "声音已被禁用"
         },
         {
-          "label": "需回答正确才能继续的显示文字",
-          "default": "需回答正确才能继续！"
+          "label": "警告：需正确回答后才能继续",
+          "default": "您需要正确回答所有问题后才能继续。"
         },
         {
-          "label": "返回的显示文字",
+          "label": "返回按钮",
           "default": "返回"
         },
         {
-          "label": "经过时间（时）的显示文字",
-          "default": "时"
+          "label": "已过小时",
+          "default": "小时"
         },
         {
-          "label": "经过时间（分）的显示文字",
-          "default": "分"
+          "label": "已过分钟",
+          "default": "分钟"
         },
         {
-          "label": "经过时间（秒）的显示文字",
+          "label": "已过秒数",
           "default": "秒"
         },
         {
-          "label": "当前时间的显示文字",
+          "label": "当前时间标签",
           "default": "当前时间："
         },
         {
-          "label": "总共时间的显示文字",
-          "default": "总共时间："
+          "label": "总时间标签",
+          "default": "总时长："
         },
         {
-          "label": "单个互动项目出现的显示文字（含项目名称）",
-          "default": "出现一个互动项目："
+          "label": "某个命名交互内容出现说明",
+          "default": "交互内容已出现："
         },
         {
-          "label": "多个互动项目出现的显示文字",
-          "default": "出现多个互动项目！"
+          "label": "多个交互内容出现说明",
+          "default": "多个交互内容已出现。"
         },
         {
-          "label": "影片暂停的显示文字",
-          "default": "影片暂停"
+          "label": "视频已暂停提示",
+          "default": "视频已暂停"
         },
         {
-          "label": "內容的显示文字",
+          "label": "内容标签",
           "default": "内容"
         },
         {
-          "label": "已回答题数的显示文字（@answered 为已回答数)",
-          "default": "已回答 @answered 题"
+          "label": "已答题数提示（@answered 会被替换）",
+          "default": "@answered 已回答"
         },
         {
-          "label": "提交画面中的标题文字",
+          "label": "提交界面标题",
           "default": "@answered 个问题已回答",
-          "description": "@answered 为已回答数"
+          "description": "@answered 会被替换为已回答问题数量。"
         },
         {
-          "label": "Submit screen information when submit button is disabled",
-          "default": "You have answered @answered questions.",
-          "description": "@answered will be replaced by the number of answered questions."
+          "label": "提交界面信息",
+          "default": "您已回答 @answered 个问题，请点击下方提交答案。",
+          "description": "@answered 会被替换为已回答问题数量。"
         },
         {
-          "label": "提交画面中的已回答讯息文字",
-          "default": "你已回答了 @answered 个问题，点击下方按钮提交你的答案。",
-          "description": "@answered 为已回答数"
+          "label": "提交按钮被禁用时的提示",
+          "default": "您已回答 @answered 个问题。",
+          "description": "@answered 会被替换为已回答问题数量。"
         },
         {
-          "label": "提交画面中的未回答讯息文字",
-          "default": "你没有回答任何问题。"
+          "label": "未回答任何问题时的提示",
+          "default": "您尚未回答任何问题。"
         },
         {
-          "label": "提交画面中的需回答讯息文字",
-          "default": "至少要回答一个题目才能提交答案。"
+          "label": "至少回答一个问题的提示",
+          "default": "您需要至少回答一个问题才能提交答案。"
         },
         {
-          "label": "提交画面中的提交按钮文字",
+          "label": "提交按钮文本",
           "default": "提交答案"
         },
         {
-          "label": "提交画面中的已提交讯息",
-          "default": "已提交你的答案！"
+          "label": "提交成功提示",
+          "default": "您的答案已提交！"
         },
         {
-          "label": "提交画面表单中已回答题数的标题",
-          "default": "已回答题数"
+          "label": "已答题数行标题",
+          "default": "已回答问题"
         },
         {
-          "label": "提交画面表单中总分的标题",
-          "default": "总分"
-        },
-        {
-          "label": "提交画面表单中得分的标题",
+          "label": "得分行标题",
           "default": "得分"
         },
         {
-          "label": "Submit screen row summary including score (for readspeakers)",
-          "default": "You got @score out of @total points for the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "已回答得分",
+          "default": "已回答"
         },
         {
-          "label": "Submit screen row summary for no score (for readspeakers)",
-          "default": "You have answered the @question that appeared after @minutes minutes and @seconds seconds."
+          "label": "包含得分的摘要行（语音阅读器用）",
+          "default": "您在 @minutes 分 @seconds 秒后出现的 @question 中得到了 @score / @total 分。"
         },
         {
-          "label": "Video Progressbar",
-          "default": "Video progress"
+          "label": "无得分的摘要行（语音阅读器用）",
+          "default": "您已回答 @minutes 分 @seconds 秒后出现的 @question。"
         },
         {
-          "label": "Text for how to create interactions",
-          "default": "Play the video to start creating interactions"
+          "label": "视频进度条",
+          "default": "视频进度"
+        },
+        {
+          "label": "开始创建交互提示",
+          "default": "播放视频以开始创建交互内容"
         }
       ]
     }
