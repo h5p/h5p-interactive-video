@@ -1263,6 +1263,10 @@
   padding: 0.25em 0.5em;
 }
 
+.h5p-interactive-video .h5p-interaction.h5p-singlechoiceset-interaction .h5p-sc-set:has(.h5p-sc-set-results.h5p-sc-current-slide) {
+  margin-inline: 0;
+}
+
 .h5p-interactive-video .h5p-dialog-close:focus {
   outline: 2px solid #179fff;
 }
