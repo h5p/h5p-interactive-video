@@ -318,7 +318,7 @@ class Endscreen extends H5P.EventDispatcher {
     if (this.isSubmitButtonEnabled && questions.length > 0) {
       this.submitButton = new H5P.Components.Button({
         label: this.l10n.submitButton,
-        styleType: 'secondary',
+        styleType: 'primary',
         onClick: () => this.handleSubmit(),
         icon: 'check',
       });
