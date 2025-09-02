@@ -1972,10 +1972,11 @@
 }
 
 /* Styling override for primary button mixed with secondary buttons that needs to collapse at same container width */
-@container (max-width: 360px) {
-  .h5p-theme .h5p-theme-primary-cta.h5p-theme-continue,
-  .h5p-theme .h5p-theme-secondary-cta.h5p-theme-retry,
-  .h5p-theme .h5p-theme-secondary-cta.h5p-theme-show-results {
+/* Buttons collapse if container width is below 420px and continue button is present*/
+@container (max-width: 420px) {
+  .h5p-question-buttons:has(.h5p-theme-secondary-cta.h5p-theme-retry) .h5p-theme-primary-cta.h5p-theme-continue,
+  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-retry,
+  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-show-results {
     justify-content: center;
     padding: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-s);
     text-indent: 0;
