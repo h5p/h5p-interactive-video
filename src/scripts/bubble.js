@@ -75,6 +75,11 @@ class Bubble {
       });
     }
 
+    const rect = this.$bubble[0]?.getBoundingClientRect();
+    if (rect) {
+      this.$bubble[0].style.setProperty('--bubble-height', `${rect.height}px`);
+    }
+
     /*
      * The DOM needs some time to keep up with the positining of the reference object (star in IV)
      * Smoothened with CSS transition ease-out when resizing

@@ -294,7 +294,10 @@ class Endscreen extends H5P.EventDispatcher {
   addInfoDOM(questions) {
     const additionalInfoDOM = document.createElement('div');
     additionalInfoDOM.className = `${ENDSCREEN_STYLE_BASE}-information`;
-    this.endscreenDOM.append(additionalInfoDOM);
+
+    // Ensure additional info is part of the result screen component dom
+    const themeResultScreen = this.endscreenDOM.querySelector('.h5p-theme-result-screen');
+    themeResultScreen?.append(additionalInfoDOM);
 
     this.infoTextDOM = document.createElement('div');
     this.infoTextDOM.className = `${ENDSCREEN_STYLE_BASE}-information-text`;
