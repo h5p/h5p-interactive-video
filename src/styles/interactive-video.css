@@ -1992,4 +1992,17 @@
       display: none;
     }
   }
+  
+}
+
+.h5p-theme .h5p-question-evaluation-container.evaluation-mode {
+  grid-template-columns: repeat(auto-fit, minmax(100px, 500px));
+}
+
+.h5p-theme .h5p-question-evaluation-container.evaluation-mode .h5p-question-buttons {
+  max-width: 500px;
+}
+
+.h5p-theme .h5p-question-scorebar.h5p-question-visible {
+      margin-bottom: var(--h5p-theme-spacing-s);
 }
