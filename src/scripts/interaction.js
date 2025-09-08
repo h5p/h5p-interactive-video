@@ -924,17 +924,32 @@ function Interaction(parameters, player, previousState) {
       // Add continue button if no adaptivity
       if (instance.hasButton !== undefined) {
         if (!instance.hasButton('iv-continue')) {
-          // Register continue button
-          instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-            closeInteraction();
-            continueWithVideo();
-          },
-            true,
-            {},
-            { icon: 'continue' }
-          );                  
+          // Using timeout to ensure that the container that will hold the button exists
+          // due to some animations inside H5P.Summary
+          if (library === "H5P.Summary"){
+            setTimeout(function() {
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
+              closeInteraction();
+              continueWithVideo();
+            },
+              true,
+              {},
+              { icon: 'continue' }
+            );
+            }, 700);
+          }
+          // Register continue button for all other content types
+          else {
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
+              closeInteraction();
+              continueWithVideo();
+            },
+              true,
+              {},
+              { icon: 'continue' }
+            );
+          }
         }
-
         // show or hide the continue-button, based on requiring completion
         instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
       }
