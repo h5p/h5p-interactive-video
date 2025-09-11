@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Sprache der Spur",
-                        
+
                         "description": "Muss ein gültiger BCP 47 Sprach-Tag sein. Wenn die Spurart auf \"Untertitel (subtitles)\" gestellt ist, muss die Sprache definiert werden."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Standard-Textspur",
@@ -500,6 +514,10 @@
         {
           "label": "Beschreibung, wie man Interaktionen erstellt",
           "default": "Spiele das Video ab, um mit dem Erstellen von Interaktionen zu beginnen"
+        },
+        {
+          "label": "Beschriftung für deaktivierte Untertitel",
+          "default": "Aus"
         }
       ]
     }

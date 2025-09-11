@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Za podnapise mora biti določen jezik vira",
-                        
+
                         "description": "Veljavne so oznake jezikov po BCP 47."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Privzeta sled z besedilom",
@@ -500,6 +514,10 @@
         {
           "label": "Besedilo o načinu dodajanja interaktivnih elementov",
           "default": "Za dodajanje interakcij je treba predvajati videoposnetek"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

@@ -321,6 +321,38 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         }
 
         finished(null, parameters);
+      },
+
+      /**
+       * Asynchronous content upgrade hook.
+       * Upgrades content parameters to support IV 1.28.
+       *
+       * Migrate to new textTracks structure.
+       *
+       * @params {Object} parameters
+       * @params {function} finished
+       */
+      28: function (parameters, finished) {
+        const textTracks = parameters?.interactiveVideo?.video?.textTracks;
+
+        if (textTracks && typeof textTracks === 'object' && textTracks !== null) {
+          textTracks.selectDefaultTrackMode = 'custom';
+
+          if (!textTracks.defaultTrackLabel) {
+            // Old behavior was to use the first track as default, now identified it by label
+            const firstLabel = textTracks.videoTrack?.[0]?.label;
+
+            if (firstLabel !== undefined) {
+              textTracks.defaultTrackLabel = firstLabel;
+            }
+            else {
+              // User had not set any tracks with the label
+              textTracks.selectDefaultTrackMode = 'none';
+            }
+          }
+        }
+
+        finished(null, parameters);
       }
     }
   };

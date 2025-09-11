@@ -61,7 +61,7 @@
                       },
                       {
                         "label": "Язык должен быть определен для субтитров",
-                        
+
                         "description": "Должен быть действительным языковым тегом BCP 47. Если «Субтитры» - это тип выбранной текстовой дорожки, необходимо определить язык дорожки."
                       },
                       {
@@ -69,6 +69,20 @@
                       }
                     ]
                   }
+                },
+                {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
                 },
                 {
                   "label": "Текстовая дорожка по умолчанию",
@@ -500,6 +514,10 @@
         {
           "label": "Text for how to create interactions",
           "default": "Play the video to start creating interactions"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }

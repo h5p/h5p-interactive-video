@@ -70,6 +70,20 @@
                   }
                 },
                 {
+                  "label": "Select default text track mode",
+                  "options": [
+                    {
+                      "label": "None"
+                    },
+                    {
+                      "label": "Automatic"
+                    },
+                    {
+                      "label": "Custom"
+                    }
+                  ]
+                },
+                {
                   "label": "Alapértelmezett feliratsáv",
                   "description": "Ha üresen marad, vagy nem egyezik a feliratsávok egyikével sem, az első feliratsáv lesz az alapértelmezett."
                 }
@@ -499,6 +513,10 @@
         {
           "label": "Felirat az interakciók létrehozásához",
           "default": "Az interakciók létrehozásához indítsa el a videó lejátszását"
+        },
+        {
+          "label": "Label for captions turned off",
+          "default": "Off"
         }
       ]
     }
