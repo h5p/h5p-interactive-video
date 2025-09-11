@@ -70,7 +70,6 @@
   top: 0.5em;
   bottom: 0;
   left: 0.5em;
-  transition: top ease-out 0.25s, font ease-out 0.3s;
 }
 .h5p-interactive-video-bubble-endscreen p {
   margin: 0.75em 0;

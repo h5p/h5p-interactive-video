@@ -132,6 +132,19 @@ class Bubble {
   }
 
   /**
+   * Set the base font size of the bubble.
+   *
+   * @param {number} size - Font size in pixels.
+   */
+  setBaseFontSize(size) {
+    if (typeof size !== 'number' || size <= 0) {
+      return;
+    }
+
+    this.$bubble[0].style.fontSize = `${size}px`;
+  }
+
+  /**
    * Determine whether the bubble is active
    *
    * @return {boolean} True, if bubble is active
