@@ -320,7 +320,7 @@ class Endscreen extends H5P.EventDispatcher {
         label: this.l10n.submitButton,
         styleType: 'primary',
         onClick: () => this.handleSubmit(),
-        icon: 'check',
+        icon: 'show-results',
       });
 
       additionalInfoDOM.append(this.submitButton);
