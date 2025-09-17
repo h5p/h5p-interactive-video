@@ -398,6 +398,8 @@
   height: 100%;
   width: 100%;
   overflow-y: auto;
+  container-type: inline-size;
+  container-name: interactive_container;
 }
 
 .h5p-interactive-video .h5p-interaction-inner,
@@ -1256,9 +1258,8 @@
   outline: 2px solid #179fff;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
-  font-family: 'H5PFontAwesome4';
-  content: "\f057";
-  color: #757575;
+  font-family: 'h5p-theme';
+  content: "\e910";
 }
 .h5p-interactive-video .h5p-dialog-close:hover:before,
 .h5p-interactive-video .h5p-dialog-close:focus:before {
@@ -1958,8 +1959,10 @@
 }
 
 /* Styling override for primary button mixed with secondary buttons that needs to collapse at same container width */
-@container (max-width: 350px) {
-  .h5p-theme .h5p-theme-primary-cta.h5p-theme-continue {
+@container (max-width: 400px) {
+  .h5p-question-buttons:has(.h5p-theme-secondary-cta.h5p-theme-retry) .h5p-theme-primary-cta.h5p-theme-continue,
+  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-retry,
+  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-show-results {
     justify-content: center;
     padding: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-s);
     text-indent: 0;
@@ -1974,5 +1977,16 @@
     .h5p-theme-label {
       display: none;
     }
+  }
+  
+}
+
+@container interactive_container (max-width: 400px) {
+  .h5p-theme .h5p-question-evaluation-container.evaluation-mode {
+      grid-template-columns: 1fr;
+  }
+  .h5p-theme .h5p-question-evaluation-container.evaluation-mode .h5p-question-buttons {
+    margin-top: var(--h5p-theme-spacing-s);
+    justify-content: center;
   }
 }
