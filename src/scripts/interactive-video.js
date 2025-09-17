@@ -2842,6 +2842,10 @@ InteractiveVideo.prototype.resize = function () {
   this.scaledFontSize = (width > this.width) ? (this.fontSize * (width / this.width)) : this.fontSize;
   this.$container.css('fontSize', this.scaledFontSize + 'px');
 
+  // Allow font size on endscreen to go below main size to match summary screen behavior in CoursePresentation
+  const endscreenFontSize = Math.min(this.scaledFontSize, this.scaledFontSize * width / this.width);
+  this.bubbleEndscreen?.setBaseFontSize(endscreenFontSize);
+
   if (!this.editor) {
     if (width < this.width) {
       if (!this.$container.hasClass('h5p-minimal')) {

@@ -75,6 +75,11 @@ class Bubble {
       });
     }
 
+    const rect = this.$bubble[0]?.getBoundingClientRect();
+    if (rect) {
+      this.$bubble[0].style.setProperty('--bubble-height', `${rect.height}px`);
+    }
+
     /*
      * The DOM needs some time to keep up with the positining of the reference object (star in IV)
      * Smoothened with CSS transition ease-out when resizing
@@ -124,6 +129,19 @@ class Bubble {
    */
   getContent() {
     return this.$content.get(0).outerHTML;
+  }
+
+  /**
+   * Set the base font size of the bubble.
+   *
+   * @param {number} size - Font size in pixels.
+   */
+  setBaseFontSize(size) {
+    if (typeof size !== 'number' || size <= 0) {
+      return;
+    }
+
+    this.$bubble[0].style.fontSize = `${size}px`;
   }
 
   /**

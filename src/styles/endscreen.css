@@ -1,21 +1,29 @@
 @CHARSET "UTF-8";
 
 .h5p-interactive-video-endscreen {
-  --h5p-theme-spacing-xl: var(--original-h5p-theme-spacing-xl);
-  --h5p-theme-spacing-l: var(--original-h5p-theme-spacing-l);
-  --h5p-theme-spacing-m: var(--original-h5p-theme-spacing-m);
-  --h5p-theme-spacing-s: var(--original-h5p-theme-spacing-s);
-  --h5p-theme-spacing-xs: var(--original-h5p-theme-spacing-xs);
-  --h5p-theme-spacing-xxs: var(--original-h5p-theme-spacing-xxs);
-  --h5p-theme-font-size-xxl: var(--original-h5p-theme-font-size-xxl);
-  --h5p-theme-font-size-xl: var(--original-h5p-theme-font-size-xl);
-  --h5p-theme-font-size-l: var(--original-h5p-theme-font-size-l);
-  --h5p-theme-font-size-m: var(--original-h5p-theme-font-size-m);
-  --h5p-theme-font-size-s: var(--original-h5p-theme-font-size-s);
+  --h5p-theme-scale: 0.6;
+  --h5p-theme-spacing-xl: calc(3em * var(--h5p-theme-scale));
+  --h5p-theme-spacing-l: calc(2em * var(--h5p-theme-scale));
+  --h5p-theme-spacing-m: calc(1.5em * var(--h5p-theme-scale));
+  --h5p-theme-spacing-s: calc(1em * var(--h5p-theme-scale));
+  --h5p-theme-spacing-xs: calc(0.65em * var(--h5p-theme-scale));
+  --h5p-theme-spacing-xxs: calc(0.5em * var(--h5p-theme-scale));
+  --h5p-theme-font-size-xxl: 1.5em;
+  --h5p-theme-font-size-xl: 1.25em;
+  --h5p-theme-font-size-l: 1.125em;
+  --h5p-theme-font-size-m: 1em;
+  --h5p-theme-font-size-s: 0.85em;
+
+  font-size: .75em;
 
   max-height: 100%;
   /* Special treatment for iOS devices */
   -webkit-text-size-adjust: none;
+}
+
+.h5p-interactive-video-endscreen .h5p-theme-result-screen .h5p-theme-results-list-item,
+.h5p-interactive-video-endscreen .h5p-theme-result-screen .h5p-theme-results-list-heading {
+  line-height: 1.5em;
 }
 
 .h5p-interactive-video-endscreen .h5p-theme-results-question {
@@ -23,7 +31,13 @@
 }
 
 .h5p-interactive-video .h5p-interactive-video-endscreen {
-  overflow-y: auto;
+  overflow-y: hidden;
+}
+
+.h5p-interactive-video-endscreen .h5p-theme-result-screen {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: var(--bubble-height);
 }
 
 .h5p-interactive-video-endscreen.h5p-interactive-video-endscreen-active {
@@ -74,6 +88,7 @@ button.h5p-theme-close:before {
 .h5p-interactive-video-endscreen-information-text {
   color: var(--h5p-theme-text-third);
   font-size: var(--h5p-theme-font-size-s);
+  line-height: 1.5em;
   text-align: center;
 }
 
