@@ -1970,6 +1970,7 @@
     &::before {
       opacity: 1;
       position: unset;
+      margin-right: unset;
       text-indent: 0;
       transform: translate(0, 0);
     }
