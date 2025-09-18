@@ -107,12 +107,12 @@
   outline: none;
 }
 
-.h5p-interactive-video .h5p-interaction .h5p-image:focus,
-.h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus {
+.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible,
+.h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus-visible {
   outline: 2px solid #179fff;
 }
 
-.h5p-interactive-video .h5p-interaction .h5p-image:focus {
+.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible{
   outline-offset: 8px;
 }
 
@@ -185,7 +185,7 @@
   cursor: auto;
 }
 
-.h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone:focus {
+.h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone:focus-visible {
   outline: 1px solid #0099ff;
   outline-offset: 0;
 }
@@ -241,7 +241,7 @@
 .h5p-interactive-video div:hover > .h5p-interaction-button {
   background-color: #661366;
 }
-.h5p-interactive-video div:focus > .h5p-interaction-button {
+.h5p-interactive-video div:focus-visible > .h5p-interaction-button {
   /* Default focus effect - purple */
   top: -0.167em;
   left: -0.167em;
@@ -272,10 +272,10 @@
 .h5p-interactive-video .h5p-image-interaction:hover > .h5p-interaction-button {
   background-color: #003fdf;
 }
-.h5p-interactive-video .h5p-text-interaction:focus > .h5p-interaction-button,
-.h5p-interactive-video .h5p-table-interaction:focus > .h5p-interaction-button,
-.h5p-interactive-video .h5p-link-interaction:focus > .h5p-interaction-button,
-.h5p-interactive-video .h5p-image-interaction:focus > .h5p-interaction-button {
+.h5p-interactive-video .h5p-text-interaction:focus-visible > .h5p-interaction-button,
+.h5p-interactive-video .h5p-table-interaction:focus-visible > .h5p-interaction-button,
+.h5p-interactive-video .h5p-link-interaction:focus-visible > .h5p-interaction-button,
+.h5p-interactive-video .h5p-image-interaction:focus-visible > .h5p-interaction-button {
   border-color: #70b0ff;
 }
 .h5p-interactive-video .h5p-text-interaction:active > .h5p-interaction-button,
@@ -301,7 +301,7 @@
 .h5p-interactive-video .h5p-goto-timecode:hover > .h5p-interaction-button {
   background-color: #007b71;
 }
-.h5p-interactive-video .h5p-goto-timecode:focus > .h5p-interaction-button {
+.h5p-interactive-video .h5p-goto-timecode:focus-visible > .h5p-interaction-button {
   border-color: #53d5c9;
 }
 .h5p-interactive-video .h5p-goto-timecode:active > .h5p-interaction-button {
@@ -330,7 +330,7 @@
 }
 
 .h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:hover,
-.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:focus {
+.h5p-interactive-video .h5p-interaction.h5p-poster.h5p-link-interaction:focus-visible {
   background-color: rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.2);
 }
@@ -423,8 +423,8 @@
 .h5p-interactive-video .h5p-interaction-inner.h5p-text {
   width: auto;
 }
-.h5p-interactive-video .h5p-text:focus,
-.h5p-interactive-video .h5p-table:focus {
+.h5p-interactive-video .h5p-text:focus-visible,
+.h5p-interactive-video .h5p-table:focus-visible {
   outline: 0;
 }
 
@@ -465,14 +465,14 @@
   cursor: pointer;
   transition: box-shadow 0.1s ease-out 0.3s;
 }
-.h5p-interactive-video .h5p-control:focus {
+.h5p-interactive-video .h5p-control:focus-visible {
   outline: 2px solid #179fff;
   outline-offset: -4px;
 }
 .h5p-interactive-video .h5p-control:hover {
   text-decoration: none;
 }
-.h5p-interactive-video .h5p-control:focus {
+.h5p-interactive-video .h5p-control:focus-visible {
   outline: 2px solid #179fff;
   outline-offset: -4px;
 }
@@ -545,7 +545,7 @@
 .h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:hover {
   color: #dbd7d1;
 }
-.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:focus {
+.h5p-interactive-video .h5p-minimal-overlay .h5p-minimal-button:focus-visible {
   outline: 2px solid #179fff;
   outline-offset: 5px;
 }
@@ -766,7 +766,7 @@
   cursor: pointer;
   background-color: #0f0f0f;
 }
-.h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"]:focus {
+.h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"]:focus-visible {
   outline: 2px solid #179fff;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] > [role^="menuitem"]:before {
@@ -810,7 +810,7 @@
   color: #dbd7d1;
 }
 
-.h5p-interactive-video .h5p-chooser-close-button:focus {
+.h5p-interactive-video .h5p-chooser-close-button:focus-visible {
   outline: 2px solid #179fff;
 }
 
@@ -900,7 +900,7 @@
   background: var(--h5p-theme-contrast-cta-white);
 }
 
-.h5p-interactive-video .h5p-slider .ui-slider-handle:focus {
+.h5p-interactive-video .h5p-slider .ui-slider-handle:focus-visible {
   outline: 2px solid #179fff;
   outline-offset: 4px;
 }
@@ -985,7 +985,7 @@
   font-size: 9px;
 }
 
-.h5p-interactive-video .h5p-seekbar-interaction:focus {
+.h5p-interactive-video .h5p-seekbar-interaction:focus-visible {
   outline: 2px solid #179fff;
   outline-offset: 2px;
 }
@@ -1254,7 +1254,7 @@
   margin-inline: 0;
 }
 
-.h5p-interactive-video .h5p-dialog-close:focus {
+.h5p-interactive-video .h5p-dialog-close:focus-visible {
   outline: 2px solid #179fff;
 }
 .h5p-interactive-video .h5p-dialog-close:before {
@@ -1262,7 +1262,7 @@
   content: "\e910";
 }
 .h5p-interactive-video .h5p-dialog-close:hover:before,
-.h5p-interactive-video .h5p-dialog-close:focus:before {
+.h5p-interactive-video .h5p-dialog-close:focus-visible:before {
   color: #555555;
 }
 .h5p-interactive-video .h5p-dialog-close:active:before {
@@ -1295,9 +1295,9 @@
   background: #aaa;
 }
 .h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:active,
-.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:focus,
+.h5p-interactive-video .h5p-poster.h5p-interaction .h5p-interaction-outer::-webkit-scrollbar-thumb:focus-visible,
 .h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:active,
-.h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:focus {
+.h5p-interactive-video .h5p-dialog-inner::-webkit-scrollbar-thumb:focus-visible {
   background: #888;
 }
 
@@ -1462,12 +1462,12 @@
 }
 
 /* Hover and focus effects */
-.h5p-interactive-video .h5p-splash:focus,
+.h5p-interactive-video .h5p-splash:focus-visible,
 .h5p-interactive-video .h5p-splash:hover {
   background: rgba(0, 0, 0, 0.85);
 }
 
-.h5p-interactive-video .h5p-splash:focus {
+.h5p-interactive-video .h5p-splash:focus-visible {
   outline: 1px solid lightskyblue;
 }
 
@@ -1722,10 +1722,10 @@
   border-top-color: #027e74;
 }
 
-.h5p-interactive-video .h5p-poster.goto-clickable-visualize .goto-clickable:focus:before,
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize .goto-clickable:focus-visible:before,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:focus:before,
-.h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus:before,
-.h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus:before {
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus-visible:before,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus-visible:before {
   border-top-color: transparent;
 }
 
@@ -1756,13 +1756,13 @@
   content: "\f064";
   transform: rotate(24deg) translateX(-2px);
 }
-.h5p-interactive-video .h5p-poster.goto-clickable-visualize .goto-clickable:focus:after,
-.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:focus:after {
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize .goto-clickable:focus-visible:after,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize .h5p-dialog-inner:focus-visible:after {
   color: #1d5cff;
 }
-.h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus:after,
-.h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus:after {
-  color: var(--h5p-theme-main-cta-base);
+.h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:focus-visible:after,
+.h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:focus-visible:after {
+  color: var(--h5p-theme-contrast-cta-white);
 }
 .h5p-interactive-video .h5p-dialog.h5p-big.goto-clickable-visualize[data-lib="H5P.Image"] .h5p-dialog-inner:after {
   top: 0.25em;
