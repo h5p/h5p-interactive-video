@@ -1970,6 +1970,7 @@
     &::before {
       opacity: 1;
       position: unset;
+      margin-right: unset;
       text-indent: 0;
       transform: translate(0, 0);
     }
@@ -1981,7 +1982,7 @@
   
 }
 
-@container interactive_container (max-width: 400px) {
+@container interactive_container (max-width: 450px) {
   .h5p-theme .h5p-question-evaluation-container.evaluation-mode {
       grid-template-columns: 1fr;
   }
@@ -1989,4 +1990,9 @@
     margin-top: var(--h5p-theme-spacing-s);
     justify-content: center;
   }
+}
+
+.h5p-interaction-outer .h5p-theme-primary-cta.h5p-theme-continue {
+  height: unset;
+  min-width: unset;
 }
