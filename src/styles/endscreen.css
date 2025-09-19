@@ -28,6 +28,7 @@
 
 .h5p-interactive-video-endscreen .h5p-theme-results-question {
   display: flex;
+  gap: var(--h5p-theme-spacing-s);
 }
 
 .h5p-interactive-video .h5p-interactive-video-endscreen {
@@ -66,8 +67,6 @@ button.h5p-theme-close:before {
   color: var(--h5p-theme-contrast-cta-white);
   display: inline-block;
   font-size: var(--h5p-theme-font-size-m);
-  margin-right: var(--h5p-theme-spacing-s);
-  text-align: right;
   width: var(--h5p-theme-endscreen-time-width, 7ch); /* fallback sufficent for h:mm:ss */
 }
 
@@ -90,6 +89,10 @@ button.h5p-theme-close:before {
   font-size: var(--h5p-theme-font-size-s);
   line-height: 1.5em;
   text-align: center;
+}
+
+.h5p-theme-results-list-item {
+  padding-inline: var(--h5p-theme-spacing-m);
 }
 
 .h5p-theme-results-list-item.is-jump-button:not(.is-skipping-prevented) {
