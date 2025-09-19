@@ -97,7 +97,7 @@ button.h5p-theme-close:before {
 }
 
 .h5p-theme-results-list-item.is-jump-button:not(.is-skipping-prevented):hover,
-.h5p-theme-results-list-item.is-jump-button:focus {
+.h5p-theme-results-list-item.is-jump-button:focus-visible {
   background-color: var(--h5p-theme-contrast-cta-light);
 }
 
