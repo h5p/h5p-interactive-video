@@ -1962,7 +1962,7 @@
 @container (max-width: 400px) {
   .h5p-question-buttons:has(.h5p-theme-secondary-cta.h5p-theme-retry) .h5p-theme-primary-cta.h5p-theme-continue,
   .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-retry,
-  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-show-results {
+  .h5p-question-buttons:has(.h5p-theme-primary-cta.h5p-theme-continue) .h5p-theme-secondary-cta.h5p-theme-show-solutions {
     justify-content: center;
     padding: var(--h5p-theme-spacing-xs) var(--h5p-theme-spacing-s);
     text-indent: 0;
