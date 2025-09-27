@@ -398,6 +398,9 @@
   height: 100%;
   width: 100%;
   overflow-y: auto;
+}
+
+.h5p-interactive-video .h5p-interaction.h5p-poster:not(.h5p-link-interaction) .h5p-interaction-outer {
   container-type: inline-size;
   container-name: interactive_container;
 }
