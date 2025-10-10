@@ -1258,18 +1258,12 @@
 }
 
 .h5p-interactive-video .h5p-dialog-close:focus-visible {
-  outline: 2px solid #179fff;
+  outline: 2px solid var(--h5p-theme-contrast-cta-white);
 }
 .h5p-interactive-video .h5p-dialog-close:before {
+  color: var(--h5p-theme-contrast-cta-white);
   font-family: 'h5p-theme';
   content: "\e910";
-}
-.h5p-interactive-video .h5p-dialog-close:hover:before,
-.h5p-interactive-video .h5p-dialog-close:focus-visible:before {
-  color: #555555;
-}
-.h5p-interactive-video .h5p-dialog-close:active:before {
-  color: #454545;
 }
 .h5p-interactive-video .h5p-dialog .h5p-dialog-inner {
   height: 100%;
