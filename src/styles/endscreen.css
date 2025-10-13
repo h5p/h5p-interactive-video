@@ -57,7 +57,7 @@
 }
 
 .h5p-interactive-video-endscreen button.h5p-theme-close:before {
-  color: var(--h5p-theme-contrast-cta-white);
+  color: var(--h5p-theme-contrast-cta);
   content: "\e910"; /* cross icon */
   margin: 0;
   z-index: 0;
