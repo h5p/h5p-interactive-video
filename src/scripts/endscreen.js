@@ -106,11 +106,8 @@ class Endscreen extends H5P.EventDispatcher {
     return interactions.map((interaction) => {
       const instance = interaction.getInstance();
       const time = interaction.getDuration().from;
-      let score, maxScore;
-      if (typeof instance?.getScore === 'function') {
-        score = instance?.getScore();
-        maxScore = instance?.getMaxScore();
-      }
+      const score = instance?.getScore?.();
+      const maxScore = instance?.getMaxScore?.();
 
       return {
         title: this.buildQuestionTitleHTML(H5P.InteractiveVideo.humanizeTime(time), this.getDescription(interaction)),
