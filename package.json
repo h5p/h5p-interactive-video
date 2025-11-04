@@ -28,7 +28,7 @@
     "babel-loader": "^9.1.3",
     "cross-env": "^7.0.3",
     "css-loader": "^6.10.0",
-    "h5p-lib-controls": "0.0.15",
+    "h5p-lib-controls": "github:h5p/h5p-lib-controls#0.0.17",
     "h5p-parent": "0.0.2",
     "mini-css-extract-plugin": "^2.8.1",
     "regenerator-runtime": "^0.14.1",
