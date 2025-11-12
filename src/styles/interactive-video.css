@@ -292,6 +292,9 @@
 .h5p-interactive-video .h5p-dialog-interaction {
   font-size: 0.875em; /* 14px */
 }
+.h5p-dialog-interaction a:focus-visible {
+  outline: 2px solid var(--h5p-theme-contrast-cta-white);
+}
 .h5p-interactive-video .h5p-dialog-interaction.h5p-blanks .h5p-blanks-footer {
   min-height: 5em;
 }
