@@ -88,7 +88,8 @@ const isScrollableLibrary = function (library) {
  * @property {number} duration.to Time-code when interaction will be hidden
  * @property {boolean} pause True if video should be paused when interaction is displayed
  * @property {string} displayType The way the interaction will be displayed, e.g. "button".
- * @property {boolean} mainSummary True if this interaction is the built-in summary of Interactive Video.
+ * @property {boolean} mainSummary
+ * True if this interaction is the built-in summary of Interactive Video.
  * @property {string} libraryTitle Clear text name of the library used in the interaction
  */
 
@@ -700,7 +701,7 @@ function Interaction(parameters, player, previousState) {
    * @param {Object} size width,height in px
    * @param {Boolean} positionDialog position dialog if true
    */
-  var resizeImage = function ($img, max, size, positionDialog) {
+  const resizeImage = function ($img, max, size, positionDialog) {
     const fontSize = 16;
     size.width /= fontSize;
     size.height /= fontSize;
@@ -733,7 +734,7 @@ function Interaction(parameters, player, previousState) {
    * @param {Object} event
    * @param {number} event.data
    */
-  var goto = function (event) {
+  const goto = function (event) {
     if (self.isButton()) {
       // Close dialog
       player.dnb.dialog.close();
@@ -1283,14 +1284,16 @@ function Interaction(parameters, player, previousState) {
    * @return {boolean}
    */
   self.visibleAt = function (time) {
-    return !(time < parameters.duration.from || time >= parameters.duration.to + 1); // Make sure that all interactions display at least one second to be consistent with the old behaviour
+    return !(time < parameters.duration.from || time >= parameters.duration.to + 1);
+    // Make sure to display interactions at least one second to be consistent with the old behaviour
   };
 
   /**
    * Display or remove the interaction depending on the video time.
    *
    * @param {number} time The current video time
-   * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
+   * @param {boolean} [preventAnimation]
+   * Prevent animation when re-creating interactions after editing
    * @returns {H5P.jQuery|undefined} interaction button or container
    */
   self.toggle = function (time, preventAnimation) {
