@@ -167,10 +167,8 @@
   left: auto;
   right: 0.875em;
   padding: 0 1.375em 0 0.875em;
-  border-top-left-radius: 1em;
-  border-bottom-left-radius: 1em;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 1em 0 0 1em;
+
 }
 
 .h5p-interactive-video .h5p-interaction-label.h5p-interaction-label-standalone  {
