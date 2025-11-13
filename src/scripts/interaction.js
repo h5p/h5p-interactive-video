@@ -173,7 +173,8 @@ function Interaction(parameters, player, previousState) {
   /**
    * Display the current interaction as a button on top of the video.
    *
-   * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
+   * @param {boolean} [preventAnimation]
+   * Prevent animation when re-creating interactions after editing
    * @private
    */
   const createButton = function (preventAnimation) {
@@ -199,7 +200,8 @@ function Interaction(parameters, player, previousState) {
           }
         },
         keydown(event) {
-          if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
+          if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) {
+            // Space or Enter
             openDialog();
             $interaction.attr('aria-expanded', 'true');
             event.preventDefault();
@@ -454,7 +456,7 @@ function Interaction(parameters, player, previousState) {
    * @private
    * @param {boolean} [checkScore] Check score before showing dialog
    */
-  var openDialog = function (checkScore) {
+  const openDialog = function (checkScore) {
     const $dialogWrapper = player.$container.find('.h5p-dialog-wrapper');
     const $titleBar = $dialogWrapper.find('.h5p-dialog-titlebar');
 
@@ -780,7 +782,7 @@ function Interaction(parameters, player, previousState) {
    *
    * @param $interaction
    */
-  var showOverlayMask = function ($interaction) {
+  const showOverlayMask = function ($interaction) {
     $interaction.css('zIndex', 52);
     player.showOverlayMask();
   };
@@ -789,7 +791,7 @@ function Interaction(parameters, player, previousState) {
    * Hides the mask behind the interaction
    * @param $interaction
    */
-  var hideOverlayMask = function ($interaction) {
+  const hideOverlayMask = function ($interaction) {
     if ($interaction) {
       $interaction.css('zIndex', '');
     }
@@ -1022,7 +1024,7 @@ function Interaction(parameters, player, previousState) {
    * Continue with video unless a interaction intercepts this.
    * @param {number} [seekTo] Where the video should continue from
    */
-  var continueWithVideo = function (seekTo) {
+  const continueWithVideo = function (seekTo) {
     let needsAnswer = getInteractionsThatNeedsAnswer();
 
     // Make user answer posters first
@@ -1068,7 +1070,7 @@ function Interaction(parameters, player, previousState) {
    * @return {Array.<H5P.InteractiveVideoInteraction>}
    *    Interactions that needs answer
    */
-  var getInteractionsThatNeedsAnswer = function () {
+  const getInteractionsThatNeedsAnswer = function () {
     return player.getVisibleInteractions()
       .filter((interaction) => interaction !== self)
       .filter((interaction) => interaction.getRequiresCompletion() && !interaction.hasFullScore());
@@ -1330,6 +1332,7 @@ function Interaction(parameters, player, previousState) {
       createPoster();
     }
     if (player.editor === undefined) {
+      // eslint-disable-next-line max-len
       dnbElement = player.dnb.add($interaction, undefined, { dnbElement, disableContextMenu: true });
     }
     else {
@@ -1554,7 +1557,7 @@ function Interaction(parameters, player, previousState) {
    * @param obj Object to check
    * @returns {boolean} If the object has getScore and getMaxScore
    */
-  var hasScoreData = function (obj) {
+  const hasScoreData = function (obj) {
     return (
       (typeof obj !== typeof undefined)
       && (typeof obj.getScore === 'function')

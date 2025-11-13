@@ -436,6 +436,8 @@ function InteractiveVideo(params, id, contentData) {
           self.startUpdatingBufferBar();
 
           break;
+        default:
+          break;
       }
     });
 
@@ -1077,10 +1079,7 @@ InteractiveVideo.prototype.initInteraction = function (index) {
     H5P.jQuery.extend(parameters.action.params.behaviour, self.override, compatibilityLayer);
   }
 
-  let previousState;
-  if (self.previousState !== undefined && self.previousState.answers !== undefined && self.previousState.answers[index] !== null) {
-    previousState = self.previousState.answers[index];
-  }
+  const previousState = self.previousState?.answers?.[index];
 
   const interaction = new Interaction(parameters, self, previousState);
   // handle display event
