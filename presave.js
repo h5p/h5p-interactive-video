@@ -1,7 +1,6 @@
 var H5PPresave = H5PPresave || {};
 var H5PEditor = H5PEditor || {};
 
-
 /**
  * Function to go through all elements of a Course Presentation and perform the separate calculations before returning a aggregated result
  *
@@ -10,32 +9,28 @@ var H5PEditor = H5PEditor || {};
  * @constructor
  */
 H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
-  var presave = H5PEditor.Presave;
+  const presave = H5PEditor.Presave;
 
   if (isContentInvalid()) {
     throw new presave.exceptions.InvalidContentSemanticsException('Invalid Interactive Video Error');
   }
 
-  var librariesToCheck = [].concat(content.interactiveVideo.assets.interactions);
+  const librariesToCheck = [].concat(content.interactiveVideo.assets.interactions);
 
   if (hasSummary()) {
-    librariesToCheck.push({action: content.interactiveVideo.summary.task});
+    librariesToCheck.push({ action: content.interactiveVideo.summary.task });
   }
 
-  var score = librariesToCheck
-    .map(function (element) {
+  const score = librariesToCheck
+    .map((element) => {
       if (element.hasOwnProperty('action')) {
         return element.action;
       }
       return {};
     })
-    .filter(function (action) {
-      return action.hasOwnProperty('library') && action.hasOwnProperty('params');
-    })
-    .map(function (action) {
-      return (new presave).process(action.library, action.params).maxScore;
-    })
-    .reduce(function (currentScore, scoreToAdd) {
+    .filter((action) => action.hasOwnProperty('library') && action.hasOwnProperty('params'))
+    .map((action) => (new presave()).process(action.library, action.params).maxScore)
+    .reduce((currentScore, scoreToAdd) => {
       if (presave.isInt(scoreToAdd)) {
         currentScore += scoreToAdd;
       }
@@ -44,7 +39,7 @@ H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
 
   presave.validateScore(score);
 
-  finished({maxScore: score});
+  finished({ maxScore: score });
 
   /**
    * Check if required parameters is present
@@ -61,5 +56,4 @@ H5PPresave['H5P.InteractiveVideo'] = function (content, finished) {
   function hasSummary() {
     return presave.checkNestedRequirements(content, 'content.interactiveVideo.summary.task.library') && presave.checkNestedRequirements(content, 'content.interactiveVideo.summary.task.params');
   }
-
 };

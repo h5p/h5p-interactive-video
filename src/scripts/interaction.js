@@ -6,7 +6,7 @@ const $ = H5P.jQuery;
  * @param {string} text
  * @returns {boolean}
  */
-const nonEmptyString = text => ((text !== undefined) && (typeof text === 'string') && (text.length > 0));
+const nonEmptyString = (text) => ((text !== undefined) && (typeof text === 'string') && (text.length > 0));
 
 /**
  * Strip away html tags
@@ -14,14 +14,14 @@ const nonEmptyString = text => ((text !== undefined) && (typeof text === 'string
  * @param {string} str
  * @returns {string}
  */
-const stripTags = str => nonEmptyString(str) ? $(`<div>${str}</div>`).text() : undefined;
+const stripTags = (str) => (nonEmptyString(str) ? $(`<div>${str}</div>`).text() : undefined);
 
 /**
  * @enum {string}
  */
 const gotoType = {
   TIME_CODE: 'timecode',
-  URL: 'url'
+  URL: 'url',
 };
 
 /**
@@ -109,53 +109,53 @@ const isScrollableLibrary = function (library) {
  * @param {Object} previousState
  */
 function Interaction(parameters, player, previousState) {
-  var self = this;
+  const self = this;
 
   // Initialize event inheritance
   H5P.EventDispatcher.call(self);
 
-  var $interaction, $label, $inner, $outer;
-  var action = parameters.action;
+  let $interaction; let $label; let $inner; let
+    $outer;
+  const { action } = parameters;
   if (previousState) {
     action.userDatas = {
-      state: previousState
+      state: previousState,
     };
   }
 
   // Find library name and title
-  var library = action.library.split(' ')[0];
+  const library = action.library.split(' ')[0];
 
-  var libraryTypeLabel = player.l10n[isStaticLibrary(library, parameters) ? 'content' : 'interaction'];
+  const libraryTypeLabel = player.l10n[isStaticLibrary(library, parameters) ? 'content' : 'interaction'];
 
-
-  var isLabelRelevant = (library !== 'H5P.Nil' && parameters.displayType === 'button');
-  var title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', library === 'H5P.Link' && action.params.title !== undefined  ? action.params.title : parameters.libraryTitle]
+  const isLabelRelevant = (library !== 'H5P.Nil' && parameters.displayType === 'button');
+  let title = [action.params.contentName, isLabelRelevant ? stripTags(parameters.label) : '', library === 'H5P.Link' && action.params.title !== undefined ? action.params.title : parameters.libraryTitle]
     .filter(nonEmptyString)[0];
 
   // Detect custom html class for interaction.
-  var classes;
+  let classes;
 
   // Keep track of content instance
-  var instance;
+  let instance;
 
   // Store last xAPI statement verb that was triggered
-  var lastXAPIVerb;
+  let lastXAPIVerb;
 
   // Keep track of DragNBarElement and related dialog/form
-  var dnbElement;
+  let dnbElement;
 
   // Keep track of tooltip state
-  var isHovered = false;
+  let isHovered = false;
 
   // Changes if interaction has moved from original position
-  var isRepositioned = false;
+  let isRepositioned = false;
 
-  var isVisible = false;
+  let isVisible = false;
 
   // Metadata that might be used by forms
-  var metadata = parameters.action.metadata;
+  const { metadata } = parameters.action;
 
-  this.on('open-dialog', function () {
+  this.on('open-dialog', () => {
     openDialog();
   });
 
@@ -163,10 +163,10 @@ function Interaction(parameters, player, previousState) {
     showOverlayMask(this.getElement());
   });
 
-  var getVisuals = function () {
+  const getVisuals = function () {
     return $.extend({}, {
       backgroundColor: 'rgb(255,255,255)',
-      boxShadow: true
+      boxShadow: true,
     }, parameters.visuals);
   };
 
@@ -176,79 +176,76 @@ function Interaction(parameters, player, previousState) {
    * @param {boolean} [preventAnimation] Prevent animation when re-creating interactions after editing
    * @private
    */
-  var createButton = function (preventAnimation) {
-    var hiddenClass = preventAnimation ? '' : ' h5p-hidden';
+  const createButton = function (preventAnimation) {
+    const hiddenClass = preventAnimation ? '' : ' h5p-hidden';
     $interaction = $('<div/>', {
-      'tabindex': 0,
-      'role': 'button',
-      'class': 'h5p-interaction ' + classes + hiddenClass,
+      tabindex: 0,
+      role: 'button',
+      class: `h5p-interaction ${classes}${hiddenClass}`,
       'aria-haspopup': 'dialog',
       'aria-expanded': 'false',
       'aria-label': title,
       css: {
-        left: parameters.x + '%',
-        top: parameters.y + '%',
+        left: `${parameters.x}%`,
+        top: `${parameters.y}%`,
         width: '',
-        height: ''
+        height: '',
       },
       on: {
-        click: function () {
+        click() {
           if (!self.dialogDisabled) {
             openDialog();
             $interaction.attr('aria-expanded', 'true');
           }
         },
-        keydown: function (event) {
+        keydown(event) {
           if ((event.which === 13 || event.which === 32) && !self.dialogDisabled) { // Space or Enter
             openDialog();
             $interaction.attr('aria-expanded', 'true');
             event.preventDefault();
           }
-        }
-      }
+        },
+      },
     });
 
     // if requires completion -> open dialog right away
-    if (self.getRequiresCompletion() &&
-        player.editor === undefined &&
-        player.currentState !== H5P.InteractiveVideo.SEEKING) {
+    if (self.getRequiresCompletion()
+        && player.editor === undefined
+        && player.currentState !== H5P.InteractiveVideo.SEEKING) {
       openDialog(true);
     }
 
     // Touch area for button
     $('<div/>', {
-      'class': 'h5p-touch-area'
+      class: 'h5p-touch-area',
     }).appendTo($interaction);
 
     $('<div/>', {
-      'class': 'h5p-interaction-button'
+      class: 'h5p-interaction-button',
     }).appendTo($interaction);
 
     // Show label in editor on hover
     if (player.editor) {
-      $interaction.hover(function () {
-        if ((!$interaction.is('.focused') && !$interaction.is(':focus')) &&
-            (!player.dnb || (player.dnb && !player.dnb.newElement))) {
+      $interaction.hover(() => {
+        if ((!$interaction.is('.focused') && !$interaction.is(':focus'))
+            && (!player.dnb || (player.dnb && !player.dnb.newElement))) {
           player.editor.showInteractionTitle(title, $interaction);
           isHovered = true;
         }
         else {
-
           // Hide if interaction is focused, because of coordinates picker
           player.editor.hideInteractionTitle();
           isHovered = false;
         }
-      }, function () {
-
+      }, () => {
         // Hide on hover out
         player.editor.hideInteractionTitle();
         isHovered = false;
-      }).focus(function () {
-
+      }).focus(() => {
         // Hide on focus, because of coord picker
         player.editor.hideInteractionTitle();
         isHovered = false;
-      }).click(function () {
+      }).click(() => {
         player.editor.hideInteractionTitle();
       });
     }
@@ -260,7 +257,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     self.trigger('display', $interaction);
-    setTimeout(function () {
+    setTimeout(() => {
       if ($interaction) {
         // Transition in
         $interaction.removeClass('h5p-hidden');
@@ -275,12 +272,10 @@ function Interaction(parameters, player, previousState) {
    * @param {string} classes
    * @return {H5P.jQuery}
    */
-  const createLabel = (label, classes = '') => {
-    return $('<div/>', {
-      'class': `h5p-interaction-label ${classes}`,
-      'html': `<div class="h5p-interaction-label-text">${label}</div>`
-    });
-  };
+  const createLabel = (label, classes = '') => $('<div/>', {
+    class: `h5p-interaction-label ${classes}`,
+    html: `<div class="h5p-interaction-label-text">${label}</div>`,
+  });
 
   /**
    * Creates a standalone Label interaction element
@@ -293,7 +288,7 @@ function Interaction(parameters, player, previousState) {
       left: `${parameters.x}%`,
       top: `${parameters.y}%`,
       width: '',
-      height: 'initial'
+      height: 'initial',
     });
     self.trigger('display', $interaction);
     setTimeout(() => {
@@ -313,28 +308,28 @@ function Interaction(parameters, player, previousState) {
    * @param {jQuery} $anchor Anchor element
    * @return {JQuery} Anchor element with click functionality
    */
-  var makeInteractionGotoClickable = function ($anchor) {
+  const makeInteractionGotoClickable = function ($anchor) {
     if (parameters.goto.type === 'timecode') {
-      $anchor.click(function (event) {
+      $anchor.click((event) => {
         if (event.which === 1) {
-          goto({data: parameters.goto.time});
+          goto({ data: parameters.goto.time });
         }
-      }).keypress(function (event) {
+      }).keypress((event) => {
         if (event.which === 32) {
-          goto({data: parameters.goto.time});
+          goto({ data: parameters.goto.time });
         }
       }).attr('href', '#')
         .attr('tabindex', '0');
     }
     else { // URL
-      var url = parameters.goto.url;
+      const { url } = parameters.goto;
       $anchor.keypress(function (event) {
         if (event.which === 32) {
           this.click();
         }
       }).attr({
         href: (url.protocol !== 'other' ? url.protocol : '') + url.url,
-        target: '_blank'
+        target: '_blank',
       });
     }
 
@@ -347,8 +342,8 @@ function Interaction(parameters, player, previousState) {
    *
    * @private
    */
-  var closeInteraction = function (seekTo) {
-    var closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
+  const closeInteraction = function (seekTo) {
+    const closeDialog = !player.hasUncompletedRequiredInteractions(seekTo);
 
     if (instance) {
       instance.trigger('hide');
@@ -386,11 +381,11 @@ function Interaction(parameters, player, previousState) {
    * @private
    * @return {Element}
    */
-  var createContinueVideoButton = function () {
-    var button = document.createElement('button');
+  const createContinueVideoButton = function () {
+    const button = document.createElement('button');
     button.innerHTML = player.l10n.continueWithVideo;
     button.className = 'h5p-interaction-continue-button';
-    button.addEventListener('click', function () {
+    button.addEventListener('click', () => {
       closeInteraction();
       player.play();
     });
@@ -404,28 +399,27 @@ function Interaction(parameters, player, previousState) {
    * @private
    * @param {jQuery} $parent
    */
-  var addContinueButton = function ($parent) {
+  const addContinueButton = function ($parent) {
     if (library === 'H5P.Questionnaire') {
-
       // Check if button already exists
       if ($parent.find('.h5p-interaction-continue-button').length) {
         return;
       }
 
-      var button = createContinueVideoButton();
-      var $successScreen = $parent.find('.h5p-questionnaire-success-center');
+      const button = createContinueVideoButton();
+      const $successScreen = $parent.find('.h5p-questionnaire-success-center');
       if ($successScreen.length) {
         $successScreen.get(0).appendChild(button);
       }
 
-      instance.on('noSuccessScreen', function () {
+      instance.on('noSuccessScreen', () => {
         closeInteraction();
         player.play();
       });
     }
 
     if (library === 'H5P.FreeTextQuestion') {
-      instance.on('continue', function () {
+      instance.on('continue', () => {
         closeInteraction();
         player.play();
       });
@@ -439,7 +433,7 @@ function Interaction(parameters, player, previousState) {
    * @param {KeyboardEvent} event
    */
   const preventTabbingOutOfElementList = ($elementList, event) => {
-    const isCurrent = $element => event.target === $element.get(0);
+    const isCurrent = ($element) => event.target === $element.get(0);
     const tabKeyPressed = event.which === 9;
     const $first = $elementList.first();
     const $last = $elementList.last();
@@ -468,13 +462,13 @@ function Interaction(parameters, player, previousState) {
       instance.setActivityStarted();
     }
 
-    var isGotoClickable = self.isGotoClickable();
+    const isGotoClickable = self.isGotoClickable();
 
     const tabbableElements = $dialogWrapper.find('[tabindex]');
 
     // Create wrapper for dialog content
-    var $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-dialog-interaction h5p-frame'
+    const $dialogContent = $(isGotoClickable ? '<a>' : '<div>', {
+      class: 'h5p-dialog-interaction h5p-frame',
     });
 
     if (!isGotoClickable && isScrollableLibrary(library)) {
@@ -491,7 +485,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     if (self.getRequiresCompletion()) {
-      $dialogWrapper.keydown(event => {
+      $dialogWrapper.keydown((event) => {
         const $elements = $dialogWrapper
           .find('[tabindex="0"], button, input')
           .filter(':visible');
@@ -501,7 +495,7 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Attach instance to dialog and open
-    var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
+    const $instanceParent = isGotoClickable ? makeInteractionGotoClickable($dialogContent) : $dialogContent;
     instance.attach($instanceParent);
     addContinueButton($instanceParent);
 
@@ -529,7 +523,7 @@ function Interaction(parameters, player, previousState) {
       player.dnb.dialog.disableOverlay = true;
 
       // selects the overlay, and adds warning on click
-      $dialogWrapper.click(function () {
+      $dialogWrapper.click(() => {
         if (!self.hasFullScore()) {
           const $mask = player.showWarningMask();
 
@@ -557,23 +551,23 @@ function Interaction(parameters, player, previousState) {
      * Handle dialog closing once.
      * @private
      */
-    var dialogCloseHandler = function () {
+    const dialogCloseHandler = function () {
       // Reset the image size to a percentage of the container instead of hardcoded values
-      player.dnb.$dialogContainer.one('transitionend', function () {
+      player.dnb.$dialogContainer.one('transitionend', () => {
         if ($dialogContent.is('.h5p-image')) {
-          var $img = $dialogContent.find('img');
+          const $img = $dialogContent.find('img');
           $img.css({
             width: '',
-            height: ''
+            height: '',
           });
         }
       });
 
       // Try to pause any media when closing dialog
       try {
-        if (instance.pause !== undefined &&
-          (instance.pause instanceof Function ||
-          typeof instance.pause === 'function')) {
+        if (instance.pause !== undefined
+          && (instance.pause instanceof Function
+          || typeof instance.pause === 'function')) {
           instance.pause();
         }
       }
@@ -610,7 +604,7 @@ function Interaction(parameters, player, previousState) {
      * Set dialog width of interaction and unregister dialog close listener
      * @private
      */
-    var setDialogWidth = function () {
+    const setDialogWidth = function () {
       self.dialogWidth = player.dnb.dialog.getDialogWidth();
       player.dnb.dialog.off('close', setDialogWidth);
     };
@@ -620,14 +614,14 @@ function Interaction(parameters, player, previousState) {
 
     if (library === 'H5P.Image') {
       // Special case for fitting images
-      var max = player.dnb.dialog.getMaxSize($interaction);
+      const max = player.dnb.dialog.getMaxSize($interaction);
 
-      var $img = $dialogContent.find('img');
+      const $img = $dialogContent.find('img');
       if (action.params.file.width && action.params.file.height) {
         // Use the image size info that is stored
         resizeImage($img, max, {
           width: action.params.file.width,
-          height: action.params.file.height
+          height: action.params.file.height,
         }, !player.isMobileView);
       }
       else {
@@ -636,7 +630,7 @@ function Interaction(parameters, player, previousState) {
           if ($img.is(':visible')) {
             resizeImage($img, max, {
               width: this.width,
-              height: this.height
+              height: this.height,
             }, !player.isMobileView);
           }
         });
@@ -655,17 +649,17 @@ function Interaction(parameters, player, previousState) {
         else if (!(library === 'H5P.Text' || library === 'H5P.Table')) {
           dialogSize = 'medium';
         }
-        player.dnb.dialog.position($interaction, {width: self.dialogWidth / 16}, dialogSize);
+        player.dnb.dialog.position($interaction, { width: self.dialogWidth / 16 }, dialogSize);
       }
     }
 
     if (library === 'H5P.Summary') {
       // Scroll summary to bottom if the task changes size
-      var lastHeight = 0;
-      H5P.on(instance, 'resize', function () {
-        var height = $dialogContent.height();
-        if (lastHeight > height + 10 || lastHeight < height - 10)  {
-          setTimeout(function () {
+      let lastHeight = 0;
+      H5P.on(instance, 'resize', () => {
+        const height = $dialogContent.height();
+        if (lastHeight > height + 10 || lastHeight < height - 10) {
+          setTimeout(() => {
             player.dnb.dialog.scroll(height, 300);
           }, 500);
         }
@@ -684,13 +678,13 @@ function Interaction(parameters, player, previousState) {
         // multiply 4 time means 2 times button size then two times paddings
         const rightPos = ((parseFloat($close.css('right')) * 2) + (parseFloat($close.css('padding-right')) * 2));
         $sound.css({
-          right: rightPos + 'px'
+          right: `${rightPos}px`,
         });
       }
       $titleBar.append($sound);
     }
 
-    setTimeout(function () {
+    setTimeout(() => {
       H5P.trigger(instance, 'resize');
     }, 0);
   };
@@ -705,7 +699,7 @@ function Interaction(parameters, player, previousState) {
    * @param {Boolean} positionDialog position dialog if true
    */
   var resizeImage = function ($img, max, size, positionDialog) {
-    var fontSize = 16;
+    const fontSize = 16;
     size.width /= fontSize;
     size.height /= fontSize;
 
@@ -718,10 +712,10 @@ function Interaction(parameters, player, previousState) {
       size.width = max.width;
     }
 
-    var fontSizeRatio = 16 / Number($img.css('fontSize').replace('px',''));
+    const fontSizeRatio = 16 / Number($img.css('fontSize').replace('px', ''));
     $img.css({
-      width: (size.width * fontSizeRatio) + 'em',
-      height: (size.height * fontSizeRatio) + 'em'
+      width: `${size.width * fontSizeRatio}em`,
+      height: `${size.height * fontSizeRatio}em`,
     });
 
     if (positionDialog) {
@@ -742,8 +736,8 @@ function Interaction(parameters, player, previousState) {
       // Close dialog
       player.dnb.dialog.close();
     }
-    if (player.currentState === H5P.Video.PAUSED ||
-      player.currentState === H5P.Video.ENDED) {
+    if (player.currentState === H5P.Video.PAUSED
+      || player.currentState === H5P.Video.ENDED) {
       // Start playing again
       player.play();
     }
@@ -766,18 +760,18 @@ function Interaction(parameters, player, previousState) {
    * @method getDimensions
    * @return {Object}
    */
-  var getDimensions = function () {
-    var height = parameters.height || 10;
-    var width = parameters.width || 10;
+  const getDimensions = function () {
+    const height = parameters.height || 10;
+    const width = parameters.width || 10;
 
     // Get original ratio of wrapper to font size of IV (default 40 x 22,5)
     // We can not rely on measuring font size.
-    var widthRatio = player.width / player.fontSize;
-    var heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
+    const widthRatio = player.width / player.fontSize;
+    const heightRatio = widthRatio / (player.$videoWrapper.width() / player.$videoWrapper.height());
 
     return {
-      height: ((height / heightRatio) * 100) + '%',
-      width: ((width / widthRatio) * 100) + '%'
+      height: `${(height / heightRatio) * 100}%`,
+      width: `${(width / widthRatio) * 100}%`,
     };
   };
 
@@ -790,7 +784,6 @@ function Interaction(parameters, player, previousState) {
     $interaction.css('zIndex', 52);
     player.showOverlayMask();
   };
-
 
   /**
    * Hides the mask behind the interaction
@@ -808,21 +801,21 @@ function Interaction(parameters, player, previousState) {
    *
    * @private
    */
-  var createPoster = function () {
-    var isGotoClickable = self.isGotoClickable();
-    var dimensions = getDimensions();
-    var visuals = getVisuals();
+  const createPoster = function () {
+    const isGotoClickable = self.isGotoClickable();
+    const dimensions = getDimensions();
+    const visuals = getVisuals();
 
     $interaction = $('<div/>', {
       'aria-label': player.l10n.interaction,
-      'tabindex': '-1',
-      'class': 'h5p-interaction h5p-poster ' + classes + (isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''),
+      tabindex: '-1',
+      class: `h5p-interaction h5p-poster ${classes}${isGotoClickable && parameters.goto.visualize ? ' goto-clickable-visualize' : ''}`,
       css: {
-        left: parameters.x + '%',
-        top: parameters.y + '%',
+        left: `${parameters.x}%`,
+        top: `${parameters.y}%`,
         width: dimensions.width,
-        height: dimensions.height
-      }
+        height: dimensions.height,
+      },
     });
 
     if (library !== 'H5P.IVHotspot') {
@@ -830,9 +823,9 @@ function Interaction(parameters, player, previousState) {
       $interaction.css('background', visuals.backgroundColor);
 
       // Add transparency css
-      var backgroundColors = visuals.backgroundColor.split(',');
+      const backgroundColors = visuals.backgroundColor.split(',');
       if (backgroundColors[3]) {
-        var opacity = parseFloat(backgroundColors[3].replace(')', ''));
+        const opacity = parseFloat(backgroundColors[3].replace(')', ''));
         if (opacity === 0) {
           $interaction.addClass('h5p-transparent-interaction');
         }
@@ -850,7 +843,7 @@ function Interaction(parameters, player, previousState) {
 
       // Set link functionality on whole button
       if (player.editor === undefined) {
-        $interaction.click(function () {
+        $interaction.click(() => {
           window.open(instance.getUrl());
           player.pause();
           return false;
@@ -859,11 +852,11 @@ function Interaction(parameters, player, previousState) {
     }
 
     $outer = $('<div>', {
-      'class': 'h5p-interaction-outer'
+      class: 'h5p-interaction-outer',
     }).appendTo($interaction);
 
     $inner = $(isGotoClickable ? '<a>' : '<div>', {
-      'class': 'h5p-interaction-inner h5p-frame'
+      class: 'h5p-interaction-inner h5p-frame',
     }).appendTo($outer);
 
     if (!isGotoClickable && isScrollableLibrary(library)) {
@@ -874,22 +867,22 @@ function Interaction(parameters, player, previousState) {
       instance.disableAutoPlay();
     }
 
-    var $instanceParent = isGotoClickable ? makeInteractionGotoClickable($inner) : $inner;
+    const $instanceParent = isGotoClickable ? makeInteractionGotoClickable($inner) : $inner;
     instance.attach($instanceParent);
     addContinueButton($instanceParent);
 
     // Trigger event listeners
     self.trigger('display', $interaction);
 
-    if (self.getRequiresCompletion() &&
-        player.currentState !== H5P.InteractiveVideo.SEEKING &&
-        player.editor === undefined &&
-        !self.hasFullScore()) {
+    if (self.getRequiresCompletion()
+        && player.currentState !== H5P.InteractiveVideo.SEEKING
+        && player.editor === undefined
+        && !self.hasFullScore()) {
       showOverlayMask($interaction);
       $interaction.focus();
     }
 
-    setTimeout(function () {
+    setTimeout(() => {
       H5P.trigger(instance, 'resize');
     }, 0);
 
@@ -904,8 +897,9 @@ function Interaction(parameters, player, previousState) {
    *
    * @private
    */
-  var adaptivity = function () {
-    var adaptivity, fullScore, showContinueButton = true;
+  const adaptivity = function () {
+    let adaptivity; let fullScore; let
+      showContinueButton = true;
     if (parameters.adaptivity) {
       fullScore = self.hasFullScore();
       showContinueButton = !self.getRequiresCompletion() || fullScore;
@@ -926,27 +920,33 @@ function Interaction(parameters, player, previousState) {
         if (!instance.hasButton('iv-continue')) {
           // Using timeout to ensure that the container that will hold the button exists
           // due to some animations inside H5P.Summary
-          if (library === "H5P.Summary"){
-            setTimeout(function() {
-            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-              closeInteraction();
-              continueWithVideo();
-            },
-              true,
-              {},
-              { icon: 'continue' }
-            );
+          if (library === 'H5P.Summary') {
+            setTimeout(() => {
+              instance.addButton(
+                'iv-continue',
+                player.l10n.defaultAdaptivitySeekLabel,
+                () => {
+                  closeInteraction();
+                  continueWithVideo();
+                },
+                true,
+                {},
+                { icon: 'continue' },
+              );
             }, 700);
           }
           // Register continue button for all other content types
           else {
-            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-              closeInteraction();
-              continueWithVideo();
-            },
+            instance.addButton(
+              'iv-continue',
+              player.l10n.defaultAdaptivitySeekLabel,
+              () => {
+                closeInteraction();
+                continueWithVideo();
+              },
               true,
               {},
-              { icon: 'continue' }
+              { icon: 'continue' },
             );
           }
         }
@@ -971,42 +971,45 @@ function Interaction(parameters, player, previousState) {
       }
     }
 
-    var adaptivityId = (fullScore ? 'correct' : 'wrong');
-    var adaptivityLabel = adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel;
+    const adaptivityId = (fullScore ? 'correct' : 'wrong');
+    const adaptivityLabel = adaptivity.seekLabel ? adaptivity.seekLabel : player.l10n.defaultAdaptivitySeekLabel;
 
     // add and show adaptivity button, hide continue button
     instance.hideButton('iv-continue')
-      .addButton('iv-adaptivity-' + adaptivityId, adaptivityLabel, function () {
-        closeInteraction(adaptivity.seekTo);
+      .addButton(
+        `iv-adaptivity-${adaptivityId}`,
+        adaptivityLabel,
+        () => {
+          closeInteraction(adaptivity.seekTo);
 
-        // Reset interaction
-        if (!fullScore && instance.resetTask) {
-          instance.resetTask();
-          instance.hideButton('iv-adaptivity-' + adaptivityId);
-        }
+          // Reset interaction
+          if (!fullScore && instance.resetTask) {
+            instance.resetTask();
+            instance.hideButton(`iv-adaptivity-${adaptivityId}`);
+          }
 
-        self.remove();
-        continueWithVideo(adaptivity.seekTo);  
+          self.remove();
+          continueWithVideo(adaptivity.seekTo);
         },
         true,
         {},
-        { icon: 'go-to-start' }
+        { icon: 'go-to-start' },
       )
-      .showButton('iv-adaptivity-' + adaptivityId, 1)
-      .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
+      .showButton(`iv-adaptivity-${adaptivityId}`, 1)
+      .hideButton(`iv-adaptivity-${fullScore ? 'wrong' : 'correct'}`, 1)
       .hideButton('check-answer', 1)
       .hideButton('show-solution', 1)
       .hideButton('try-again', 1);
 
     // Disable any input
-    if (instance.disableInput !== undefined &&
-        (instance.disableInput instanceof Function ||
-         typeof instance.disableInput === 'function')) {
+    if (instance.disableInput !== undefined
+        && (instance.disableInput instanceof Function
+         || typeof instance.disableInput === 'function')) {
       instance.disableInput();
     }
 
     // Wait for any modifications Question does to feedback and buttons
-    setTimeout(function () {
+    setTimeout(() => {
       // Strip adaptivity message of p tags
       const message = adaptivity.message.replace('<p>', '').replace('</p>', '');
       // Set adaptivity message and hide interaction flow controls
@@ -1020,12 +1023,10 @@ function Interaction(parameters, player, previousState) {
    * @param {number} [seekTo] Where the video should continue from
    */
   var continueWithVideo = function (seekTo) {
-    var needsAnswer = getInteractionsThatNeedsAnswer();
+    let needsAnswer = getInteractionsThatNeedsAnswer();
 
     // Make user answer posters first
-    var posters = needsAnswer.filter(function (interaction) {
-      return !interaction.isButton();
-    });
+    const posters = needsAnswer.filter((interaction) => !interaction.isButton());
     if (posters.length) {
       needsAnswer = posters;
     }
@@ -1037,7 +1038,7 @@ function Interaction(parameters, player, previousState) {
 
     // Open first of interactions that needs answer
     if (needsAnswer.length) {
-      var nextInteraction = needsAnswer[0];
+      const nextInteraction = needsAnswer[0];
 
       if (nextInteraction.isButton()) {
         // if requires completion -> open dialog right away
@@ -1069,24 +1070,20 @@ function Interaction(parameters, player, previousState) {
    */
   var getInteractionsThatNeedsAnswer = function () {
     return player.getVisibleInteractions()
-      .filter(function (interaction) {
-        return interaction !== self;
-      })
-      .filter(function (interaction) {
-        return interaction.getRequiresCompletion() && !interaction.hasFullScore();
-      });
+      .filter((interaction) => interaction !== self)
+      .filter((interaction) => interaction.getRequiresCompletion() && !interaction.hasFullScore());
   };
 
   /**
    * Determine css classes for interaction
    * @return {string} Css classes string separated by space
    */
-  var determineClasses = function () {
-    var classes = parameters.className;
+  const determineClasses = function () {
+    let classes = parameters.className;
 
     if (classes === undefined) {
-      var classParts = action.library.split(' ')[0].toLowerCase().split('.');
-      classes = classParts[0] + '-' + classParts[1] + '-interaction';
+      const classParts = action.library.split(' ')[0].toLowerCase().split('.');
+      classes = `${classParts[0]}-${classParts[1]}-interaction`;
     }
 
     if (parameters.goto && parameters.goto.type === 'timecode') {
@@ -1111,8 +1108,8 @@ function Interaction(parameters, player, previousState) {
    * @returns {Object}
    */
   self.getCurrentState = function () {
-    if (instance && (instance.getCurrentState instanceof Function ||
-                     typeof instance.getCurrentState === 'function')) {
+    if (instance && (instance.getCurrentState instanceof Function
+                     || typeof instance.getCurrentState === 'function')) {
       return instance.getCurrentState();
     }
   };
@@ -1124,7 +1121,7 @@ function Interaction(parameters, player, previousState) {
   self.getDuration = function () {
     return {
       from: parameters.duration.from,
-      to: parameters.duration.to + 1 // Make sure that all interactions display at least one second to be consistent with the old behaviour
+      to: parameters.duration.to + 1, // Make sure that all interactions display at least one second to be consistent with the old behaviour
     };
   };
 
@@ -1155,7 +1152,7 @@ function Interaction(parameters, player, previousState) {
     if (parameters.displayType === 'button') {
       return true;
     }
-    else if (player.isMobileView && library !== 'H5P.IVHotspot') {
+    if (player.isMobileView && library !== 'H5P.IVHotspot') {
       if (library === 'H5P.Image' && parameters.buttonOnMobile === false) {
         return false;
       }
@@ -1187,11 +1184,11 @@ function Interaction(parameters, player, previousState) {
     if (player.isSkippingProhibited(parameters.duration.from)) {
       player.showPreventSkippingMessage(
         {
-          x: parameters.duration.from / player.video.getDuration() *
-            player.controls.$slider.get(0).offsetWidth,
-          y: -13
+          x: parameters.duration.from / player.video.getDuration()
+            * player.controls.$slider.get(0).offsetWidth,
+          y: -13,
         },
-        player.l10n.navForwardDisabled
+        player.l10n.navForwardDisabled,
       );
       return;
     }
@@ -1233,29 +1230,29 @@ function Interaction(parameters, player, previousState) {
   self.addDot = function () {
     if (library === 'H5P.Nil') {
       // Empty menuitem for title, but not undefined
-      return $('<div/>', {'class': seekbarClasses});
+      return $('<div/>', { class: seekbarClasses });
     }
 
-    var seekbarClasses = 'h5p-seekbar-interaction ' + classes;
+    var seekbarClasses = `h5p-seekbar-interaction ${classes}`;
 
     // One could also set width using ((parameters.duration.to - parameters.duration.from + 1) * player.oneSecondInPercentage)
     const $menuitem = $('<div/>', {
-      'role': 'menuitem',
-      'class': seekbarClasses,
+      role: 'menuitem',
+      class: seekbarClasses,
       'aria-label': `${libraryTypeLabel}. ${title}`,
-      title: title,
+      title,
       css: {
-        left: (parameters.duration.from * player.oneSecondInPercentage) + '%'
+        left: `${parameters.duration.from * player.oneSecondInPercentage}%`,
       },
       on: {
         click: self.selectDot,
-        keydown: event => {
+        keydown: (event) => {
           if (event.which === 13 || event.which === 32) {
             self.selectDot();
             return false;
           }
-        }
-      }
+        },
+      },
     });
 
     if (player.preventSkipping) {
@@ -1333,10 +1330,9 @@ function Interaction(parameters, player, previousState) {
       createPoster();
     }
     if (player.editor === undefined) {
-      dnbElement = player.dnb.add($interaction, undefined, {dnbElement: dnbElement, disableContextMenu: true});
+      dnbElement = player.dnb.add($interaction, undefined, { dnbElement, disableContextMenu: true });
     }
     else {
-
       if (self.fit) {
         // Make sure player is inside video container
         player.editor.fit($interaction, parameters);
@@ -1344,7 +1340,7 @@ function Interaction(parameters, player, previousState) {
       }
 
       // Pause video when interaction is focused
-      $interaction.focus(function () {
+      $interaction.focus(() => {
         player.pause();
       });
     }
@@ -1432,8 +1428,8 @@ function Interaction(parameters, player, previousState) {
     parameters.x = x;
     parameters.y = y;
     $interaction.css({
-      'left': x + '%',
-      'top': y + '%'
+      left: `${x}%`,
+      top: `${y}%`,
     });
   };
 
@@ -1461,9 +1457,9 @@ function Interaction(parameters, player, previousState) {
     if ($interaction) {
       // Let others react to the hiding of this interaction
       self.trigger('domHidden', {
-        '$dom': $interaction,
-        'key': 'videoProgressedPast'
-      }, {'bubbles': true, 'external': true});
+        $dom: $interaction,
+        key: 'videoProgressedPast',
+      }, { bubbles: true, external: true });
       if (instance) {
         instance.trigger('hide');
       }
@@ -1482,7 +1478,7 @@ function Interaction(parameters, player, previousState) {
     if (!self.isStandaloneLabel()) {
       action.params = action.params || {};
 
-      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, {parent: player, editing: player.editor !== undefined});
+      instance = H5P.newRunnable(action, player.contentId, undefined, undefined, { parent: player, editing: player.editor !== undefined });
       if (self.maxScore === undefined && instance.getMaxScore) {
         self.maxScore = instance.getMaxScore();
       }
@@ -1501,15 +1497,12 @@ function Interaction(parameters, player, previousState) {
 
       // Set adaptivity if question is finished on attach
       if (instance.on) {
-
         // Handle question/task finished
-        instance.on('xAPI', function (event) {
-          var parents = event.getVerifiedStatementValue(['context', 'contextActivities', 'parent']) || [];
-          var interactiveVideoId = event.getContentXAPIId(player);
-          var isCompletedOrAnswered = event.getVerb() === 'completed' || event.getVerb() === 'answered';
-          var isInteractiveVideoParent = parents.some(function (parent) {
-            return parent.id === interactiveVideoId;
-          });
+        instance.on('xAPI', (event) => {
+          const parents = event.getVerifiedStatementValue(['context', 'contextActivities', 'parent']) || [];
+          const interactiveVideoId = event.getContentXAPIId(player);
+          const isCompletedOrAnswered = event.getVerb() === 'completed' || event.getVerb() === 'answered';
+          const isInteractiveVideoParent = parents.some((parent) => parent.id === interactiveVideoId);
 
           // Update scores on any action, overwrite with event score if it exists
           if (instance.getScore) {
@@ -1533,11 +1526,11 @@ function Interaction(parameters, player, previousState) {
           self.trigger(event);
         });
 
-        instance.on('question-finished', function () {
+        instance.on('question-finished', () => {
           adaptivity();
         });
 
-        instance.on('resize', function () {
+        instance.on('resize', () => {
           // Forget the static dialog width on resize
           delete self.dialogWidth;
           if (player && player.dnb) {
@@ -1555,7 +1548,6 @@ function Interaction(parameters, player, previousState) {
     }
   };
 
-
   /**
    * Returns true if the object passed in has the getScore and getMaxScore
    *
@@ -1564,9 +1556,9 @@ function Interaction(parameters, player, previousState) {
    */
   var hasScoreData = function (obj) {
     return (
-      (typeof obj !== typeof undefined) &&
-      (typeof obj.getScore === 'function') &&
-      (typeof obj.getMaxScore === 'function')
+      (typeof obj !== typeof undefined)
+      && (typeof obj.getScore === 'function')
+      && (typeof obj.getMaxScore === 'function')
     );
   };
 
@@ -1629,7 +1621,6 @@ function Interaction(parameters, player, previousState) {
     return staticLibraryTitles.indexOf(self.getLibraryName()) === -1 && !self.isStandaloneLabel();
   };
 
-
   /**
    * Set state of interaction.
    *
@@ -1687,7 +1678,7 @@ function Interaction(parameters, player, previousState) {
       if (instance !== undefined) {
         const interactionCopyrights = new H5P.ContentCopyrights();
         interactionCopyrights.addContent(H5P.getCopyrights(instance, parameters, player.contentId));
-        interactionCopyrights.setLabel(title + ' ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.from) + ' - ' + H5P.InteractiveVideo.humanizeTime(parameters.duration.to));
+        interactionCopyrights.setLabel(`${title} ${H5P.InteractiveVideo.humanizeTime(parameters.duration.from)} - ${H5P.InteractiveVideo.humanizeTime(parameters.duration.to)}`);
 
         return interactionCopyrights;
       }
@@ -1702,8 +1693,8 @@ function Interaction(parameters, player, previousState) {
    * @returns {Object} xAPI Data
    */
   self.getXAPIData = function () {
-    if (instance && (instance.getXAPIData instanceof Function ||
-                     typeof instance.getXAPIData === 'function')) {
+    if (instance && (instance.getXAPIData instanceof Function
+                     || typeof instance.getXAPIData === 'function')) {
       return instance.getXAPIData();
     }
   };
@@ -1732,7 +1723,7 @@ function Interaction(parameters, player, previousState) {
       return;
     }
 
-    var $tabbables = $($interaction.get(0)).find('[tabindex]');
+    const $tabbables = $($interaction.get(0)).find('[tabindex]');
     if ($tabbables && $tabbables.length) {
       $tabbables.get(0).focus();
     }
@@ -1763,19 +1754,18 @@ function Interaction(parameters, player, previousState) {
    * @param {H5P.jQuery} $wrapper
    */
   self.repositionToWrapper = function ($wrapper) {
-
     if ($interaction && library !== 'H5P.IVHotspot' && library !== 'H5P.FreeTextQuestion') {
       // Reset positions
       if (isRepositioned) {
         $interaction.css({
-          'top': parameters.y + '%',
-          'left': parameters.x + '%'
+          top: `${parameters.y}%`,
+          left: `${parameters.x}%`,
         });
 
         $interaction.css(self.isButton() ? {
           // Reset dimensions
           height: '',
-          width: ''
+          width: '',
         } : getDimensions()); // Posters reset to standard dimensions
 
         isRepositioned = false;
@@ -1783,29 +1773,29 @@ function Interaction(parameters, player, previousState) {
 
       // Check if button overflows parent
       if ($interaction.position().top + $interaction.height() > $wrapper.height()) {
-        var newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
+        let newTop = (($wrapper.height() - $interaction.height()) / $wrapper.height()) * 100;
 
         // We must reduce interaction height
         if (newTop < 0) {
           newTop = 0;
-          var newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
-          $interaction.css('height', newHeight + 'em');
+          const newHeight = $wrapper.height() / parseFloat($interaction.css('font-size'));
+          $interaction.css('height', `${newHeight}em`);
         }
-        $interaction.css('top', newTop + '%');
+        $interaction.css('top', `${newTop}%`);
         isRepositioned = true;
       }
 
       if ($interaction.position().left + $interaction.width() > $wrapper.width()) {
-        var newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
+        let newLeft = (($wrapper.width() - $interaction.width()) / $wrapper.width()) * 100;
 
         // We must reduce interaction width
         if (newLeft < 0) {
           newLeft = 0;
-          var newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
-          $interaction.css('width', newWidth + 'em');
+          const newWidth = $wrapper.width() / parseFloat($interaction.css('font-size'));
+          $interaction.css('width', `${newWidth}em`);
         }
 
-        $interaction.css('left', newLeft + '%');
+        $interaction.css('left', `${newLeft}%`);
         isRepositioned = true;
       }
     }
@@ -1843,7 +1833,7 @@ function Interaction(parameters, player, previousState) {
 }
 
 // Extends the event dispatcher
-Interaction.prototype = Object.create( H5P.EventDispatcher.prototype);
+Interaction.prototype = Object.create(H5P.EventDispatcher.prototype);
 Interaction.prototype.constructor = Interaction;
 
 /** @constant {Number} */

@@ -18,7 +18,6 @@ const NO_ANNOUNCEMENT = '';
  * Makes it easier to manage accessibility
  */
 export default class Accessibility {
-
   /**
    * Translations for assistive technologies
    *
@@ -77,12 +76,11 @@ export default class Accessibility {
     if (newInteractionCount === 0) {
       return NO_ANNOUNCEMENT;
     }
-    else if (newInteractionCount === 1) {
+    if (newInteractionCount === 1) {
       return this.l10n.singleInteractionAnnouncement;
     }
-    else {
-      return this.l10n.multipleInteractionsAnnouncement;
-    }
+
+    return this.l10n.multipleInteractionsAnnouncement;
   }
 
   /**
@@ -93,7 +91,7 @@ export default class Accessibility {
    * @return {string}
    */
   getTitleAnnouncement(newInteractionCount, interaction) {
-    return  (newInteractionCount === 1) ? interaction.getTitle() : NO_ANNOUNCEMENT;
+    return (newInteractionCount === 1) ? interaction.getTitle() : NO_ANNOUNCEMENT;
   }
 
   /**
@@ -103,6 +101,6 @@ export default class Accessibility {
    * @return {string}
    */
   getPauseAnnouncement(interactions) {
-    return interactions.some(i => i.pause()) ? `. ${this.l10n.videoPausedAnnouncement}` : NO_ANNOUNCEMENT;
+    return interactions.some((i) => i.pause()) ? `. ${this.l10n.videoPausedAnnouncement}` : NO_ANNOUNCEMENT;
   }
 }

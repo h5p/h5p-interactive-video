@@ -9,7 +9,7 @@ import Keyboard from 'h5p-lib-controls/src/scripts/ui/keyboard';
  */
 const ButtonType = {
   ICON: 0,
-  TEXT: 1
+  TEXT: 1,
 };
 
 /**
@@ -37,7 +37,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   H5P.EventDispatcher.call(self);
 
   // Presents the available options
-  var list;
+  let list;
 
   const show = () => {
     self.control.setAttribute('aria-expanded', 'true');
@@ -57,13 +57,13 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
    * Toggle show/hide popup
    * @private
    */
-  var toggle = function () {
+  const toggle = function () {
     const isDisabled = self.control.getAttribute('aria-disabled') === 'true';
     if (isDisabled) {
       return;
     }
 
-    var isExpanded = self.control.getAttribute('aria-expanded') === 'true';
+    const isExpanded = self.control.getAttribute('aria-expanded') === 'true';
     isExpanded ? hide() : show();
   };
 
@@ -87,12 +87,12 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
    * @param {Element} element
    * @param {Event} option
    */
-  var handleSelect = function (element, option) {
+  const handleSelect = function (element, option) {
     // New option selected
     selectedOption = option;
     const elements = list.querySelectorAll('[aria-checked="true"]');
 
-    forEach(elements, element => element.setAttribute('aria-checked', 'false'), this);
+    forEach(elements, (element) => element.setAttribute('aria-checked', 'false'), this);
 
     element.setAttribute('aria-checked', 'true');
     hide();
@@ -104,16 +104,16 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
    * @param {H5P.Video.LabelValue} option
    * @return {Element} li button
    */
-  var createOption = function (option) {
-    var isSelected = option.value === selectedOption.value;
+  const createOption = function (option) {
+    const isSelected = option.value === selectedOption.value;
 
-    var element = button(null, ButtonType.TEXT, option.label, function () {
+    const element = button(null, ButtonType.TEXT, option.label, function () {
       handleSelect(this, option);
     }, 'li', menuItemType);
 
     allItems.push({
-      option: option,
-      element: element
+      option,
+      element,
     });
 
     element.setAttribute('aria-checked', isSelected.toString());
@@ -146,7 +146,7 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
     list.setAttribute('role', 'menu');
 
     // Create options and add to new list
-    for (var i = 0; i < newOptions.length; i++) {
+    for (let i = 0; i < newOptions.length; i++) {
       list.appendChild(createOption(newOptions[i]));
     }
 
@@ -159,9 +159,9 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
    * @param {boolean} shouldBeEnabled If true, the control will be enabled, otherwise it will be disabled.
    */
   self.toggleEnabled = (shouldBeEnabled) => {
-    const isEnabled = (typeof shouldBeEnabled === 'boolean') ?
-      shouldBeEnabled :
-      this.control.getAttribute('aria-disabled') !== 'true';
+    const isEnabled = (typeof shouldBeEnabled === 'boolean')
+      ? shouldBeEnabled
+      : this.control.getAttribute('aria-disabled') !== 'true';
 
     this.control.setAttribute('aria-disabled', (!isEnabled).toString());
   };
@@ -185,11 +185,11 @@ const SelectorControl = function (name, options, selectedOption, menuItemType, l
   title.appendChild(closeButton);
 
   // Create button for toggling the popup
-  self.control = button('h5p-control h5p-' + name, ButtonType.ICON, l10n[name], toggle, 'div', 'button');
+  self.control = button(`h5p-control h5p-${name}`, ButtonType.ICON, l10n[name], toggle, 'div', 'button');
   self.control.setAttribute('aria-haspopup', 'true');
 
   // Create button for overlay controls
-  self.overlayControl = button('h5p-minimal-button h5p-' + name, ButtonType.TEXT, l10n[name], toggle, 'div', 'menuitem');
+  self.overlayControl = button(`h5p-minimal-button h5p-${name}`, ButtonType.TEXT, l10n[name], toggle, 'div', 'menuitem');
   self.overlayControl.tabIndex = '-1';
 
   // Generate initial options
@@ -209,7 +209,7 @@ SelectorControl.prototype.constructor = SelectorControl;
  * @return {Element}
  */
 var element = function (className, innerHTML, tag) {
-  var element = document.createElement(tag || 'div');
+  const element = document.createElement(tag || 'div');
   if (className) {
     element.className = className;
   }
@@ -232,16 +232,16 @@ var element = function (className, innerHTML, tag) {
  * @return {Element} button
  */
 var button = function (className, type, label, handler, tag, role) {
-  var button = element(className, (type === ButtonType.TEXT ? label : ''), tag);
+  const button = element(className, (type === ButtonType.TEXT ? label : ''), tag);
   button.tabIndex = 0;
   button.setAttribute('role', role);
   if (type === ButtonType.ICON) {
     button.title = label;
   }
-  button.addEventListener('click', function (event) {
+  button.addEventListener('click', (event) => {
     handler.call(button, event);
   }, false);
-  button.addEventListener('keydown', function (event) {
+  button.addEventListener('keydown', (event) => {
     if (event.which === 32 || event.which === 13) {
       event.preventDefault();
       handler.call(button, event);

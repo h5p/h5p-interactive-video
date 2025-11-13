@@ -4,11 +4,10 @@ const ENDSCREEN_STYLE_BASE = 'h5p-interactive-video-endscreen';
 
 const isset = function (value) {
   return value !== undefined && value !== null;
-}
+};
 
 /** Class representing an endscreen. */
 class Endscreen extends H5P.EventDispatcher {
-
   /**
    * Create a new end screen.
    *
@@ -89,8 +88,8 @@ class Endscreen extends H5P.EventDispatcher {
       header: this.l10n.title.replace('@answered', questions.length),
       questionGroups: [{
         listHeaders: [this.l10n.question, this.l10n.tableRowScore],
-        questions: questions
-      }]
+        questions,
+      }],
     }));
 
     this.customizeEndscreen();
@@ -111,7 +110,7 @@ class Endscreen extends H5P.EventDispatcher {
 
       return {
         title: this.buildQuestionTitleHTML(H5P.InteractiveVideo.humanizeTime(time), this.getDescription(interaction)),
-        points: (isset(score) && isset(maxScore)) ? `${score}/${maxScore}` : this.l10n.answeredScore
+        points: (isset(score) && isset(maxScore)) ? `${score}/${maxScore}` : this.l10n.answeredScore,
       };
     });
   }
@@ -193,7 +192,7 @@ class Endscreen extends H5P.EventDispatcher {
       'aria-label': this.parent.l10n.close,
       styleType: 'secondary',
       icon: 'close',
-      onClick: () => this.parent.toggleEndscreen(false)
+      onClick: () => this.parent.toggleEndscreen(false),
     });
 
     const buttonContainer = this.endscreenDOM.querySelector('.h5p-theme-results-banner');
@@ -210,7 +209,7 @@ class Endscreen extends H5P.EventDispatcher {
    * Make the question list interactive to allow jumping to the questions in the video.
    */
   makeListInteractive() {
-    const questionListItems = this.endscreenDOM.querySelectorAll(`.h5p-theme-results-list-item`);
+    const questionListItems = this.endscreenDOM.querySelectorAll('.h5p-theme-results-list-item');
     if (!questionListItems) {
       return;
     }
@@ -219,7 +218,7 @@ class Endscreen extends H5P.EventDispatcher {
       const interaction = this.answeredInteractions[index];
       const ariaLabel = this.buildQuestionAriaLabel(interaction);
 
-      listItem.classList.add(`is-jump-button`);
+      listItem.classList.add('is-jump-button');
       if (this.parent.isSkippingProhibited(interaction.getDuration().from)) {
         listItem.classList.add('is-skipping-prevented');
       }
@@ -358,7 +357,7 @@ class Endscreen extends H5P.EventDispatcher {
     this.submitButton.remove();
     this.setInfoText(this.l10n.submitMessage);
 
-    this.answeredInteractions.forEach(interaction => {
+    this.answeredInteractions.forEach((interaction) => {
       /*
        * We only need to fire an xAPI answered statement if the user
        * interacted with the content and the content has not sent it so far

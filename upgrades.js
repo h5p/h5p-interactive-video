@@ -14,12 +14,11 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      1: function (parameters, finished) {
-
+      1(parameters, finished) {
         // Move interactions into assets container
         parameters.interactiveVideo.assets = {
           interactions: parameters.interactiveVideo.interactions,
-          bookmarks: []
+          bookmarks: [],
         };
         delete parameters.interactiveVideo.interactions;
 
@@ -37,12 +36,11 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      3: function (parameters, finished) {
-
+      3(parameters, finished) {
         // Move summary task into container
         parameters.interactiveVideo.summary = {
           task: parameters.interactiveVideo.summary,
-          displayAt: 3
+          displayAt: 3,
         };
 
         // Done
@@ -58,15 +56,16 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      5: function (parameters, finished) {
+      5(parameters, finished) {
         if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
-          var interactions = parameters.interactiveVideo.assets.interactions;
-          for (var i = 0; i < interactions.length; i++) {
+          const { interactions } = parameters.interactiveVideo.assets;
+          for (let i = 0; i < interactions.length; i++) {
             if (interactions[i].action && interactions[i].action.subContentId === undefined) {
               // NOTE: We avoid using H5P.createUUID since this is an upgrade script and H5P function may change in the
               // future
-              interactions[i].action.subContentId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (char) {
-                var random = Math.random()*16|0, newChar = char === 'x' ? random : (random&0x3|0x8);
+              interactions[i].action.subContentId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+                const random = Math.random() * 16 | 0; const
+                  newChar = char === 'x' ? random : (random & 0x3 | 0x8);
                 return newChar.toString(16);
               });
             }
@@ -84,13 +83,13 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      7: function (parameters, finished) {
-        var i;
+      7(parameters, finished) {
+        let i;
         parameters.l10n = {};
 
-        var keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10'];
+        const keys = ['interaction', 'play', 'pause', 'mute', 'quality', 'unmute', 'fullscreen', 'exitFullscreen', 'summary', 'bookmarks', 'defaultAdaptivitySeekLabel', 'playbackRate', 'rewind10'];
         for (i = 0; i < keys.length; i++) {
-          var key = keys[i];
+          const key = keys[i];
           if (parameters.hasOwnProperty(key)) {
             parameters.l10n[key] = parameters[key];
             delete parameters[key];
@@ -99,9 +98,9 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
 
         /* Move displayAsButton to displayType  */
         if (parameters.interactiveVideo && parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
-          var interactions = parameters.interactiveVideo.assets.interactions;
+          const { interactions } = parameters.interactiveVideo.assets;
           for (i = 0; i < interactions.length; i++) {
-            var interaction = interactions[i];
+            const interaction = interactions[i];
             interaction.displayType = (interaction.displayAsButton === undefined || interaction.displayAsButton) ? 'button' : 'poster';
             delete interaction.displayAsButton;
 
@@ -124,14 +123,12 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      10: function (parameters, finished) {
+      10(parameters, finished) {
         if (parameters.override) {
           if (parameters.override.overrideButtons) {
             // Set new variables
-            parameters.override.showSolutionButton =
-                (parameters.override.overrideShowSolutionButton ? 'on' : 'off');
-            parameters.override.retryButton =
-                (parameters.override.overrideRetry ? 'on' : 'off');
+            parameters.override.showSolutionButton = (parameters.override.overrideShowSolutionButton ? 'on' : 'off');
+            parameters.override.retryButton = (parameters.override.overrideRetry ? 'on' : 'off');
           }
 
           // Remove old field variables
@@ -155,9 +152,9 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      11: function (parameters, finished) {
+      11(parameters, finished) {
         if (parameters.interactiveVideo) {
-          var videoParams = parameters.interactiveVideo.video;
+          const videoParams = parameters.interactiveVideo.video;
           if (videoParams) {
             videoParams.advancedSettings = {};
 
@@ -175,23 +172,23 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
           }
 
           if (parameters.interactiveVideo.assets && parameters.interactiveVideo.assets.interactions) {
-            var interactions = parameters.interactiveVideo.assets.interactions;
-            for (var i = 0; i < interactions.length; i++) {
-              var interaction = interactions[i];
+            const { interactions } = parameters.interactiveVideo.assets;
+            for (let i = 0; i < interactions.length; i++) {
+              const interaction = interactions[i];
 
               // Set white background + boxShadow for images and textual posters:
               if (interaction && interaction.displayType === 'poster' && interaction.action && interaction.action.library) {
-                var lib = interaction.action.library.split(' ')[0];
+                const lib = interaction.action.library.split(' ')[0];
                 if (['H5P.Text', 'H5P.Image', 'H5P.Table'].indexOf(lib) !== -1) {
                   interaction.visuals = {
                     backgroundColor: 'rgba(255,255,255,1)',
-                    boxShadow: true
+                    boxShadow: true,
                   };
                 }
                 else if (lib === 'H5P.Link') {
                   interaction.visuals = {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    boxShadow: true
+                    boxShadow: true,
                   };
                 }
               }
@@ -212,8 +209,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      12: function (parameters, finished) {
-
+      12(parameters, finished) {
         function moveOldStartScreenOptions(video) {
           // Rename Advanced settings
           video.startScreenOptions = video.advancedSettings;
@@ -227,11 +223,10 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
           video.startScreenOptions.shortStartDescription = video.startScreenOptions.startScreenOptions.shortStartDescription;
 
           delete video.startScreenOptions.startScreenOptions;
-
         }
 
         if (parameters.interactiveVideo && parameters.interactiveVideo.video) {
-          moveOldStartScreenOptions (parameters.interactiveVideo.video);
+          moveOldStartScreenOptions(parameters.interactiveVideo.video);
         }
 
         finished(null, parameters);
@@ -248,13 +243,12 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      17: function (parameters, finished) {
-
-        if (parameters.interactiveVideo &&
-            parameters.interactiveVideo.assets &&
-            parameters.interactiveVideo.assets.interactions) {
-          var interactions = parameters.interactiveVideo.assets.interactions;
-          for (var i = 0; i < interactions.length; i++) {
+      17(parameters, finished) {
+        if (parameters.interactiveVideo
+            && parameters.interactiveVideo.assets
+            && parameters.interactiveVideo.assets.interactions) {
+          const { interactions } = parameters.interactiveVideo.assets;
+          for (let i = 0; i < interactions.length; i++) {
             if (interactions[i].buttonOnMobile == undefined) {
               interactions[i].buttonOnMobile = true;
             }
@@ -265,8 +259,9 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         finished(null, parameters);
       },
 
-      20: function (parameters, finished, extras) {
-        var title, copyright;
+      20(parameters, finished, extras) {
+        let title; let
+          copyright;
 
         if (parameters && parameters.interactiveVideo && parameters.interactiveVideo.video && parameters.interactiveVideo.video.startScreenOptions) {
           title = parameters.interactiveVideo.video.startScreenOptions.title;
@@ -291,10 +286,10 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      21: function (parameters, finished) {
+      21(parameters, finished) {
         if (parameters && parameters.interactiveVideo && parameters.interactiveVideo.video && parameters.interactiveVideo.video.textTracks) {
           parameters.interactiveVideo.video.textTracks = {
-            videoTrack: parameters.interactiveVideo.video.textTracks
+            videoTrack: parameters.interactiveVideo.video.textTracks,
           };
         }
         finished(null, parameters);
@@ -309,7 +304,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-       25: function (parameters, finished) {
+      25(parameters, finished) {
         if (parameters && parameters.override) {
           if (parameters.override.preventSkipping === true) {
             parameters.override.preventSkippingMode = 'both';
@@ -333,7 +328,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
        * @params {Object} parameters
        * @params {function} finished
        */
-      28: function (parameters, finished) {
+      28(parameters, finished) {
         if (parameters?.l10n && typeof parameters.l10n === 'object' && parameters.l10n !== null) {
           // Keeping "Answered questions" in the respective language is better than overwriting it with "Question"
           parameters.l10n.endcardQuestion = parameters.l10n.endcardTableRowAnsweredQuestions ?? 'Question';
@@ -341,7 +336,7 @@ H5PUpgrades['H5P.InteractiveVideo'] = (function () {
         }
 
         finished(null, parameters);
-      }
-    }
+      },
+    },
   };
-})();
+}());
