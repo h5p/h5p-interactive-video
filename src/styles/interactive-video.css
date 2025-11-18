@@ -107,12 +107,11 @@
   outline: none;
 }
 
-.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible,
-.h5p-interactive-video .h5p-interaction.h5p-link-interaction a:focus-visible {
+.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible {
   outline: 2px solid #179fff;
 }
 
-.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible{
+.h5p-interactive-video .h5p-interaction .h5p-image:focus-visible {
   outline-offset: 8px;
 }
 
