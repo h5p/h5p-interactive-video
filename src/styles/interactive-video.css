@@ -380,11 +380,6 @@
   overflow-y: auto;
 }
 
-.h5p-interactive-video .h5p-interaction.h5p-poster:not(.h5p-link-interaction) .h5p-interaction-outer {
-  container-type: inline-size;
-  container-name: interactive_container;
-}
-
 .h5p-interactive-video .h5p-interaction-inner,
 .h5p-interactive-video .h5p-interaction-inner.h5p-image {
   display: block;
@@ -1897,19 +1892,4 @@
     }
   }
   
-}
-
-@container interactive_container (max-width: 450px) {
-  .h5p-theme .h5p-question-evaluation-container.evaluation-mode {
-      grid-template-columns: 1fr;
-  }
-  .h5p-theme .h5p-question-evaluation-container.evaluation-mode .h5p-question-buttons {
-    margin-top: var(--h5p-theme-spacing-s);
-    justify-content: center;
-  }
-}
-
-.h5p-interaction-outer .h5p-theme-primary-cta.h5p-theme-continue {
-  height: unset;
-  min-width: unset;
 }
