@@ -2658,6 +2658,7 @@ InteractiveVideo.prototype.addQualityChooser = function () {
 
   // Enable quality chooser button
   self.removeDisabled(this.controls.$qualityButton.add(this.controls.$qualityButtonMinimal));
+  self.qualityChooser.toggleEnabled(true);
 };
 
 
