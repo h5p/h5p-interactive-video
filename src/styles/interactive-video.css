@@ -502,7 +502,7 @@
   font-size: 4em;
   line-height: 1em;
   position: absolute;
-  font-family: 'H5PFontAwesome4';
+  font-family: 'h5p-theme';
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -558,7 +558,7 @@
 }
 .h5p-interactive-video .h5p-control.h5p-playbackRate:before,
 .h5p-interactive-video .h5p-minimal-overlay .h5p-playbackRate:before {
-  content: "\e93c"; /* fa-tachometer */
+  content: "\e93c";
 }
 .h5p-interactive-video .h5p-fullscreen:before {
   content: "\e93a";
@@ -573,6 +573,7 @@
   content: "\e941";
 }
 .h5p-interactive-video .h5p-more:before {
+  font-family: 'H5PFontAwesome4';
   content: "\f142";
 }
 
@@ -741,9 +742,11 @@
   padding-right: 10px;
 }
 .h5p-interactive-video .h5p-chooser > [role="menu"] > li[aria-checked="true"]:before {
+  font-family: 'H5PFontAwesome4';
   content: "\f058";
 }
 .h5p-interactive-video .h5p-chooser.h5p-bookmarks > [role="menu"] > li:before {
+  font-family: 'H5PFontAwesome4';
   content: "\f02e";
 }
 .h5p-interactive-video .h5p-chooser.h5p-endscreens > [role="menu"] > li:before {
@@ -1065,7 +1068,7 @@
 }
 
 .h5p-interactive-video .h5p-bookmark-text:before {
-  font-family: H5PFontAwesome4;
+  font-family: 'H5PFontAwesome4';
   content: "\f02e";
   margin-right: 8px;
 }
@@ -1123,6 +1126,7 @@
 }
 
 .h5p-button-back:before {
+  font-family: 'H5PFontAwesome4';
   content: "\f060";
 }
 
@@ -1673,6 +1677,7 @@
 }
 .h5p-interactive-video .h5p-poster.goto-clickable-visualize.h5p-goto-timecode .goto-clickable:after,
 .h5p-interactive-video .h5p-dialog.goto-clickable-visualize.h5p-goto-timecode .h5p-dialog-inner:after {
+  font-family: 'H5PFontAwesome4';
   content: "\f064";
   transform: rotate(24deg) translateX(-2px);
 }
