@@ -650,6 +650,15 @@
         "description": "Enter timecode in the format M:SS"
       },
       {
+        "name": "stopVideoAt",
+        "type": "number",
+        "widget": "timecode",
+        "label": "Stop video at",
+        "importance": "low",
+        "optional": true,
+        "description": "Enter timecode in the format M:SS"
+      },
+      {
         "name": "autoplay",
         "type": "boolean",
         "label": "Auto-play video",

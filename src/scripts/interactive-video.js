@@ -18,6 +18,7 @@ const KEYBOARD_STEP_LENGTH_SECONDS = 5;
  * @property {Object} interactiveVideo View parameters
  * @property {Object} override Override settings
  * @property {number} startVideoAt Time-code to start video
+ * @property {number} [stopVideoAt] Time-code to stop video
  */
 /**
  * @typedef {object} Time
@@ -3181,6 +3182,12 @@ InteractiveVideo.prototype.toggleFullScreen = function () {
  */
 InteractiveVideo.prototype.timeUpdate = function (time, skipNextTimeUpdate) {
   var self = this;
+
+  if (self.params.override && self.params.override.stopVideoAt &&
+      time >= self.params.override.stopVideoAt &&
+      self.currentState === H5P.Video.PLAYING) {
+    self.video.pause();
+  }
 
   // keep track of current time in IV
   self.currentTime = time;
