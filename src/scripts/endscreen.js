@@ -242,15 +242,24 @@ class Endscreen extends H5P.EventDispatcher {
    * @return {string} The aria label for the question.
    */
   buildQuestionAriaLabel(interaction) {
-    const hasScore = isset(interaction.instance?.getScore()) && isset(interaction.instance?.maxScore());
+    const instance = interaction.getInstance?.() || interaction.instance;
+    const time = Number(interaction.getDuration?.().from ?? 0);
+
+    const score = instance?.getScore?.();
+    const maxScore = instance?.getMaxScore?.();
+
+    const hasScore = isset(score) && isset(maxScore);
     const template = hasScore ? this.l10n.tableRowSummaryWithScore : this.l10n.tableRowSummaryWithoutScore;
 
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60); // fix to not count millions milli seconds
+
     return template
-      .replace('@score', interaction.instance?.getScore() || '0')
-      .replace('@total', interaction.instance?.getMaxScore() || '0')
+      .replace('@score', hasScore ? String(score) : '0')
+      .replace('@total', hasScore ? String(maxScore) : '0')
       .replace('@question', this.getDescription(interaction))
-      .replace('@minutes', Math.floor(interaction.getDuration().from / 60))
-      .replace('@seconds', interaction.getDuration().from % 60);
+      .replace('@minutes', String(minutes))
+      .replace('@seconds', String(seconds));
   }
 
   /**
