@@ -61,7 +61,6 @@
                       },
                       {
                         "label": "Kjeldespråk",
-                        "default": "en",
                         "description": "Må vere ein gyldig BCP 47-språktagg. Dersom \"Undertekstar\" er valt, må du definere språket i tekstsporet."
                       },
                       {
@@ -165,7 +164,6 @@
                     "fields": [
                       {
                         "label": "Bakgrunnsfarge",
-                        "default": "rgb(255, 255, 255)"
                       },
                       {
                         "label": "Skygge",
