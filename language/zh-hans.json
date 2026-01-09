@@ -474,10 +474,6 @@
           "default": "您的答案已提交！"
         },
         {
-          "label": "提交画面表单中总分的标题",
-          "default": "总分"
-        },
-        {
           "label": "Submit screen question label",
           "default": "Question"
         },
