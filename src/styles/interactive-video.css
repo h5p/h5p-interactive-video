@@ -1197,6 +1197,10 @@
   margin-inline: 0;
 }
 
+.h5p-interactive-video .h5p-dialog-close:hover {
+  background-color: var(--h5p-theme-alternative-base);
+  color: var(--h5p-theme-text-primary);
+}
 .h5p-interactive-video .h5p-dialog-close:focus-visible {
   outline: 2px solid var(--h5p-theme-contrast-cta-white);
 }
