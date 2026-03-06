@@ -478,12 +478,12 @@
           "default": "답이 제출되었습니다!"
         },
         {
-          "label": "제출 화면 테이블 행 제목: 답변된 질문",
-          "default": "답변된 질문"
-        },
-        {
           "label": "제출 화면 테이블 행 제목: 점수",
           "default": "점수"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "제출 화면의 답변 문제 점수",

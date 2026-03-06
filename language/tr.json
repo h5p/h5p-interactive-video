@@ -478,12 +478,12 @@
           "default": "Cevaplarınız gönderildi!"
         },
         {
-          "label": "Cevapları gönderme ekranında tablo satır başlığı: Cevaplanan sorular",
-          "default": "Cevaplanan sorular"
-        },
-        {
           "label": "Cevapları gönderme ekranında tablo satır başlığı: Puan",
           "default": "Puan"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Cevapları gönderme ekranında cevaplama puanı",

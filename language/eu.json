@@ -478,12 +478,12 @@
           "default": "Zure erantzunak bidali dira!"
         },
         {
-          "label": "Bidali pantaila taularen lerroaren titulua: Erantzundako galdera kopurua",
-          "default": "Erantzundako galdera kopurua"
-        },
-        {
           "label": "Bidali pantaila taularen lerroaren titulua: Puntuazioa",
           "default": "Puntuazioa"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Bidali erantzunen puntuazioaren pantaila",

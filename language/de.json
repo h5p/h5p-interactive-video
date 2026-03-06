@@ -478,12 +478,12 @@
           "default": "Deine Antworten wurden abgeschickt!"
         },
         {
-          "label": "Einsendebildschirm, Spaltentitel: Beantwortete Fragen",
-          "default": "Beantwortete Fragen"
-        },
-        {
           "label": "Einsendebildschirm, Spaltentitel: Punkte",
           "default": "Punkte"
+        },
+        {
+          "label": "Einsendebildschirm, Spaltentitel: Frage",
+          "default": "Frage"
         },
         {
           "label": "Einsendebildschirm: Text für Aufgaben ohne Punkte",

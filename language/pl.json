@@ -478,12 +478,12 @@
           "default": "Twoje wyniki zostały wysłane!"
         },
         {
-          "label": "Ekran wyników: tytuł wiersza tabeli – odpowiedzi",
-          "default": "Zaliczone zadania"
-        },
-        {
           "label": "Ekran wyników: tytuł wiersza tabeli – wynik",
           "default": "Wynik"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Ekran wyników: wynik zadania",

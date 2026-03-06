@@ -478,12 +478,12 @@
           "default": "Jūsu atbildes ir iesniegtas!"
         },
         {
-          "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Atbildētie jautājumi",
-          "default": "Atbildētie jautājumi"
-        },
-        {
           "label": "Iesniegšanas ekrāna tabulas rindas nosaukums: Rezultāts",
           "default": "Rezultāts"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Iesniegšanas ekrāna atbilžu skaits",
