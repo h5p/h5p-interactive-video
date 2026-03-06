@@ -256,6 +256,10 @@
           "description": "Check if video should run in a loop"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Poništi dugme \"Prikaži rješenje\"",
           "description": "Ova opcija podešava prikazivanje dugmeta \"Prikaži rješenje\" za sva pitanja ili da bude za svako posebno pitanje konfigurirano.",
           "options": [

@@ -256,6 +256,10 @@
           "description": "בדקו האם הסרטון אמור לרוץ בלולאה"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "דריסת כפתור \"הצגת פתרון\"",
           "description": "אפשרות זו קובעת האם כפתור \"הצגת פתרון\" יוצג עבור כל השאלות, ינוטרל עבור כולן או יוגדר עבור כל שאלה בנפרד.",
           "options": [

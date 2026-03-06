@@ -255,6 +255,10 @@
           "description": "Bifează dacă videoclipul ar trebui să ruleze în buclă"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Suprascrie butonul „Arată soluția”",
           "description": "Această opțiune determină dacă butonul „Arată soluția” va fi afișat pentru toate întrebările, dezactivat pentru toate sau configurat individual pentru fiecare întrebare.",
           "options": [

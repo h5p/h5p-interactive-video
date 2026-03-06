@@ -256,6 +256,10 @@
           "description": "Atzīmējiet, ja videoklipam jādarbojas ciklā"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Ignorēt pogu \"Rādīt risinājumu\"",
           "description": "Šī opcija nosaka, vai poga \"Rādīt risinājumu\" tiks rādīta visiem jautājumiem, atspējota visiem vai konfigurēta katram jautājumam atsevišķi.",
           "options": [

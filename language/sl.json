@@ -256,6 +256,10 @@
           "description": "Predlagan je premislek o smiselnosti predvajanja posnetka v zanki."
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Določi prikaz gumba \"Prikaži rešitev\"",
           "description": "Nastavitev vpliva na prikaz rešitve v vseh vprašanjih (npr. onemogočeno povsod, omogočeno individualno).",
           "options": [

@@ -256,6 +256,10 @@
           "description": "在影片播放完後會重新播放"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "覆寫「顯示正解」按鈕",
           "description": "如果所有問題都設定了「顯示正解」按鈕，會個別單獨顯示這些按鈕。啟用後，則可以統一一次顯示。",
           "options": [

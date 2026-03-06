@@ -256,6 +256,10 @@
           "description": "Bekapcsolása esetén a videó újra és újra elindul"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"Megoldás mutatása\" gomb felülírása",
           "description": "Ez a beállítás megadja, hogy a \"Megoldás mutatása\" gomb minden kérdésnél egyformán látható, rejtett, avagy ez kérdésenként állítható.",
           "options": [

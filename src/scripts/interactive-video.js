@@ -277,6 +277,7 @@ function InteractiveVideo(params, id, contentData) {
         a11y: textTracks,
         playback: {
           autoplay: params.override && !!params.override.autoplay,
+          hasNoAutoPause: params.override?.hasNoAutoPause,
           deactivateSound: self.deactivateSound
         }
       }

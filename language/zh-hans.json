@@ -256,6 +256,10 @@
           "description": "勾选此项则视频将循环播放"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "覆盖“显示答案”按钮",
           "description": "此选项决定是否在所有问题中显示“显示答案”按钮，或全部禁用，或单独设置。",
           "options": [

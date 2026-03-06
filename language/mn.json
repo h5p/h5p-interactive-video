@@ -256,6 +256,10 @@
           "description": "Видео нь давтагдах хэрэгтэй эсэхийг шалгана уу"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"Хариулт харуулах\" товчийг дарна уу",
           "description": "Энэ сонголт нь \"Хариулт харуулах\" товчийг бүх асуултад харуулах, бүгдийг нь идэвхгүй болгох эсвэл асуулт тус бүрээр тохируулах эсэхийг тодорхойлно.",
           "options": [

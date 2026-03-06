@@ -666,6 +666,14 @@
         "description": "Check if video should run in a loop"
       },
       {
+        "name": "hasNoAutoPause",
+        "type": "boolean",
+        "label": "Deactivate auto-pause",
+        "importance": "low",
+        "default": false,
+        "description": "Prevents video from pausing automatically if video gets hidden."
+      },
+      {
         "name": "showSolutionButton",
         "type": "select",
         "label": "Override \"Show Solution\" button",

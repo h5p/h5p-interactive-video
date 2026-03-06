@@ -256,6 +256,10 @@
           "description": "Check if video should run in a loop"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "「解を表示」ボタンを上書き",
           "description": "このオプションは、すべての設問に対して「解を表示」ボタンが表示されるか、すべての設問に対して無効になるか、各設問ごとに個別に設定されるかを決定します。",
           "options": [

@@ -256,6 +256,10 @@
           "description": "تیک بزن، اگر ویدئو باید در یک حلقه تکرار شود"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "حذف تنظیم اختصاصی و ایجاد تنظیم سراسری دکمه نمایش پاسخ صحیح",
           "description": "این گزینه تعیین می‌کند که دکمه «نمایش پاسخ صحیح» برای همه سؤالات نشان داده خواهد شد، غیر فعال خواهد شد یا برای هر سؤال به صورت منفرد تنظیم خواهد شد.",
           "options": [

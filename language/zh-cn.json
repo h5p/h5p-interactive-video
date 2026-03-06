@@ -255,6 +255,10 @@
           "description": "检查视频是否应该循环播放"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "覆写「显示答案」按钮",
           "description": "此选项决定“显示答案”按钮是对所有问题显示，对所有问题禁用还是为每个问题单独配置。",
           "options": [

@@ -256,6 +256,10 @@
           "description": "Odtwarzaj wideo w pętli: gdy dojdzie do końca, zacznie się znów od początku"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Przycisk 'Pokaż rozwiązanie' (globalny)",
           "description": "Wybierz, czy przycisk 'Pokaż rozwiązanie' ma być dostępny we wszystkich zadaniach, niedostępny we wszystkich zadaniach, czy dostępny lub niedostępny zależnie od ustawień każdego zadania.",
           "options": [

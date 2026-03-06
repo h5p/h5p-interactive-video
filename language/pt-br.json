@@ -256,6 +256,10 @@
           "description": "Marque se o vídeo deve ser executado com repetição (loop)"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Sobrepor o botão \"Mostrar Solução\"",
           "description": "Esta opção determina se o botão \"Mostrar Solução\" será mostrado para todas as questões, se estará desativado para todas ou configurado individualmente para cada questão.",
           "options": [
