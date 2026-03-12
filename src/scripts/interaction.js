@@ -924,13 +924,32 @@ function Interaction(parameters, player, previousState) {
       // Add continue button if no adaptivity
       if (instance.hasButton !== undefined) {
         if (!instance.hasButton('iv-continue')) {
-          // Register continue button
-          instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
-            closeInteraction();
-            continueWithVideo();
-          });
+          // Using timeout to ensure that the container that will hold the button exists
+          // due to some animations inside H5P.Summary
+          if (library === "H5P.Summary"){
+            setTimeout(function() {
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
+              closeInteraction();
+              continueWithVideo();
+            },
+              true,
+              {},
+              { icon: 'continue' }
+            );
+            }, 700);
+          }
+          // Register continue button for all other content types
+          else {
+            instance.addButton('iv-continue', player.l10n.defaultAdaptivitySeekLabel, function () {
+              closeInteraction();
+              continueWithVideo();
+            },
+              true,
+              {},
+              { icon: 'continue' }
+            );
+          }
         }
-
         // show or hide the continue-button, based on requiring completion
         instance[showContinueButton ? 'showButton' : 'hideButton']('iv-continue');
       }
@@ -967,8 +986,12 @@ function Interaction(parameters, player, previousState) {
         }
 
         self.remove();
-        continueWithVideo(adaptivity.seekTo);
-      })
+        continueWithVideo(adaptivity.seekTo);  
+        },
+        true,
+        {},
+        { icon: 'go-to-start' }
+      )
       .showButton('iv-adaptivity-' + adaptivityId, 1)
       .hideButton('iv-adaptivity-' + (fullScore ? 'wrong' : 'correct'), 1)
       .hideButton('check-answer', 1)
@@ -1349,20 +1372,27 @@ function Interaction(parameters, player, previousState) {
     }
 
     // Only recreate existing interactions
-    if ($interaction) {
-      if (instance) {
-        instance.trigger('hide');
-      }
-      self.trigger('hide', $interaction);
-      $interaction.detach();
-      if (self.isStandaloneLabel()) {
-        createStandaloneLabel();
-      }
-      else if (self.isButton()) {
-        createButton(true);
-      }
-      else {
-        createPoster();
+    if (!$interaction) {
+      return;
+    }
+
+    const scrollTop = $outer?.[0].scrollTop;
+
+    if (instance) {
+      instance.trigger('hide');
+    }
+    self.trigger('hide', $interaction);
+    $interaction.detach();
+    if (self.isStandaloneLabel()) {
+      createStandaloneLabel();
+    }
+    else if (self.isButton()) {
+      createButton(true);
+    }
+    else {
+      createPoster();
+      if (typeof scrollTop === 'number') {
+        $outer[0].scrollTop = scrollTop;
       }
     }
   };
