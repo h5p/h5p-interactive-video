@@ -478,12 +478,12 @@
           "default": "Jou antwoorde is ingedien!"
         },
         {
-          "label": "Indienskerm tabelrytitel: Beantwoorde vrae",
-          "default": "Beantwoorde vrae"
+          "label": "Indienskerm tabelry titel: Telling",
+          "default": "Telling"
         },
         {
-          "label": "Indienskerm tabelrytitel: Telling",
-          "default": "Telling"
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Indienskerm beantwoorde telling",

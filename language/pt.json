@@ -478,12 +478,12 @@
           "default": "As suas respostas foram submetidas!"
         },
         {
-          "label": "Título da linha da tabela do ecrã de submissão: Perguntas respondidas",
-          "default": "Perguntas respondidas"
-        },
-        {
           "label": "Título da linha da tabela do ecrã de submissão: Pontuação",
           "default": "Pontuação"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Pontuação das perguntas respondidas no ecrã de submissão",

@@ -478,12 +478,12 @@
           "default": "Je antwoorden zijn verzonden!"
         },
         {
-          "label": "Tabelrijtitel van verzendscherm: Beantwoorde vragen",
-          "default": "Beantwoorde vragen"
-        },
-        {
           "label": "Tabelrijtitel van verzendscherm: Score",
           "default": "Score"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Verzendscherm: Beantwoorde score",

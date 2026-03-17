@@ -478,12 +478,12 @@
           "default": "已提交你的答案！"
         },
         {
-          "label": "提交畫面表單中已回答題數的標題",
-          "default": "已回答題數"
-        },
-        {
           "label": "提交畫面表單中總分的標題",
           "default": "總分"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "提交畫面表單中得分的標題",

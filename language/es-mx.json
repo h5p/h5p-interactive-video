@@ -478,12 +478,12 @@
           "default": "¡Sus respuestas han sido enviadas!"
         },
         {
-          "label": "Título de fila de tabla en pantalla de envío: Preguntas respondidas",
-          "default": "Preguntas respondidas"
-        },
-        {
           "label": "Título de fila de tabla de pantalla de envío: Puntaje",
           "default": "Puntaje"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Puntaje de respondidas de pantalla de envío",

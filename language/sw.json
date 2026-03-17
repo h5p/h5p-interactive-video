@@ -478,12 +478,12 @@
           "default": "Majibu yako yamewasilishwa!"
         },
         {
-          "label": "Wasilisha mada ya safu mlalo ya jedwali la skrini: Alijibu maswali",
-          "default": "Alijibu maswali"
-        },
-        {
           "label": "Wasilisha mada ya safu mlalo ya jedwali la skrini: Alama",
           "default": "Alama"
+        },
+        {
+          "label": "Submit screen question label",
+          "default": "Question"
         },
         {
           "label": "Wasilisha alama iliyojibiwa ya skrini",
