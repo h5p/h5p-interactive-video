@@ -256,6 +256,10 @@
           "description": "Activar si el video debería correr en un bucle"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Anular botón \"Mostrar Solución\"",
           "description": "Esta opción determina si el botón \"Mostrar Solución\" se mostrará para todas las preguntas, se desactivará para todas o se configurará para cada pregunta individualmente.",
           "options": [

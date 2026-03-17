@@ -256,6 +256,10 @@
           "description": "Позначте, якщо відео має запускатися в циклі"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Перевизначити кнопку \"Показати рішення\"",
           "description": "Цей параметр визначає, чи буде кнопка \"Показати рішення\" відображатися для всіх питань, вимкнена для всіх або налаштована для кожного питання окремо.",
           "options": [

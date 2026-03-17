@@ -256,6 +256,10 @@
           "description": "Aktiver at video skal køre i loop"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Overskriv \"Vi svar\"-knap",
           "description": "Dette valg afgør om \"Vis svar\"-knappen skal vises på alle spørgsmål, skjules for alle eller konfigureres individuelt til hvert spørgsmål.",
           "options": [

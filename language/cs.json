@@ -255,6 +255,10 @@
           "description": "Zkontrolujte, zda by se video nemělo spustit ve smyčce"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Přepis \"Zobrazit řešení\" tlačítka",
           "description": "Tato volba určuje, zda se u všech otázek zobrazí tlačítko \" Zobrazit řešení \" , zakázáno pro všechny nebo nakonfigurováno pro každou otázku samostatně.",
           "options": [

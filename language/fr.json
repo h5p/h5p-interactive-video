@@ -256,6 +256,10 @@
           "description": "Cochez cette case pour que la vidéo tourne en boucle"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Cacher le bouton \"Voir la solution\"",
           "description": "Cette option détermine si le bouton \"Voir la solution\" sera affiché ou masqué pour toutes les questions, ou configurable pour chaque question individuellement.",
           "options": [

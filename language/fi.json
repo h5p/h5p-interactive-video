@@ -256,6 +256,10 @@
           "description": "Valitse toistaaksesi videota loputtomasti"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"Näytä vastaus\"-painike",
           "description": "Ota käyttöön kaikissa kysymyksissä, ei yhdessäkään, tai jätä tyhjäksi käyttääksesi tehtäväkohtaisia asetuksia",
           "options": [

@@ -256,6 +256,10 @@
           "description": "Märgi, kui video peaks mängima korduses"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"Näita lahendust\" nupu olek",
           "description": "Selle valikuga määratakse, kas \"Näita lahendust\" nuppu näidatakse kõikidele küsimustele, keelatakse kõigil küsimustel või seadistatakse igale küsimusele eraldi.",
           "options": [

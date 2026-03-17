@@ -256,6 +256,10 @@
           "description": "Označte, či sa má video spúšťať v slučke"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Prepísať tlačidlo „Zobraziť riešenie“",
           "description": "Táto možnosť určuje, či sa tlačidlo „Zobraziť riešenie“ zobrazí pre všetky otázky, či bude pre všetky zakázané, alebo či bude nakonfigurované pre každú otázku jednotlivo.",
           "options": [

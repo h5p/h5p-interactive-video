@@ -256,6 +256,10 @@
           "description": "Verifica se il video debba eseguire un ciclo"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Sovrascrivi il pulsante Mostra soluzione",
           "description": "Questa opzione stabilisce se il pulsante \"Mostra soluzione\" sarà visualizzato o disabilitato per tutte le domande o se sarà configurato di volta in volta per ognuna",
           "options": [

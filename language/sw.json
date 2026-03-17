@@ -256,6 +256,10 @@
           "description": "Chagua ikiwa video inapaswa kuendeshwa kwa kitanzi"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Batilisha kitufe cha Onyesha Suluhisho",
           "description": "Chaguo hili huamua ikiwa kitufe cha \"Onyesha Suluhisho\" kitaonyeshwa kwa maswali yote, kimezimwa kwa yote au kusanidiwa kwa kila swali kivyake.",
           "options": [

@@ -255,6 +255,10 @@
           "description": "Slå på for å køyre videoen i loop."
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Overstyr \"Vis svar\"-knapp",
           "description": "Dette valet avgjer om \"Vis svar\"-knappen skal visast for alle oppgåvene, skjulast for alle oppgåvene eller konfigurerast individuelt for kvar oppgåve.",
           "options": [

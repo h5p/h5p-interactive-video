@@ -256,6 +256,10 @@
           "description": "Aktivieren, wenn das Video in einer Schleife abgespielt werden soll"
         },
         {
+          "label": "Automatisches Pausieren deaktivieren",
+          "description": "Verhindert, dass das Video automatisch pausiert, wenn es aus dem Sichtfeld verschwindet."
+        },
+        {
           "label": "Überschreiben der Anzeigeoptionen des \"Lösungen anzeigen\"-Buttons",
           "description": "Diese Option gibt an, ob der \"Lösung anzeigen\"-Button für alle Fragen angezeigt, ausgeblendet oder für jede Frage individuell konfiguriert wird.",
           "options": [

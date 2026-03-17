@@ -256,6 +256,10 @@
           "description": "Aktivera för att visa video i lopp"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Ersätt knapp \"Visa rätt svar\"",
           "description": "Denna inställning avgör om knappen \"Visa rätt svar\" ska visas för alla frågor, döljas på alla frågor eller konfigureras individuellt på varje fråga.",
           "options": [

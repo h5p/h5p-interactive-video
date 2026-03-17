@@ -256,6 +256,10 @@
           "description": "ভিডিওটা লুপ আকারে বারবার চলবে"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"সমাধান দেখাও\" বাটনকে ওভাররাইড করো",
           "description": "এই অপশনের মাধ্যমে নির্ধারণ করে দেয়া হয় যে সকল প্রশ্নের জন্য \"সমাধান দেখাও\" বাটন প্রদর্শিত হবে, নিষ্ক্রিয় থাকবে, নাকি প্রতিটা প্রশ্নের জন্য তা ভিন্নভাবে কনফিগার করে দিতে হবে।",
           "options": [

@@ -256,6 +256,10 @@
           "description": "Controleer of de video opnieuw moet worden afgespeeld"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "Overschrijf \"Toon oplossing\"-knop",
           "description": "Deze optie bepaalt of de \"Toon oplossing\"-knop voor alle vragen wordt getoond, uitgeschakeld of voor iedere vraag afzonderlijk wordt geconfigureerd.",
           "options": [

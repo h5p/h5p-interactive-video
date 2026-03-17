@@ -256,6 +256,10 @@
           "description": "確認影像是否應循環播放"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "“查看解法”功能鈕",
           "description": "設定所有問題是否顯示”查看解法”功能鈕,全部啟用或是禁用.",
           "options": [

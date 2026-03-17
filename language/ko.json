@@ -256,6 +256,10 @@
           "description": "비디오가 반복해서 재생되어야 하는지 확인"
         },
         {
+          "label": "Deactivate auto-pause",
+          "description": "Prevents video from pausing automatically if video gets hidden."
+        },
+        {
           "label": "\"Sow Solution\" (해답보이기) 버튼 재정의",
           "description": "이 옵션은 모든 질문에 대해 \"Show Solution\" 버튼을 표시할지 또는 각 질문에 대해 개별적으로 구성할지 결정함",
           "options": [
