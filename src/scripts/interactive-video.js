@@ -2219,7 +2219,7 @@ InteractiveVideo.prototype.attachControls = function ($wrapper) {
     self.video.mute();
   }
 
-  if (self.video.isMuted()) {
+  if (self.video.isMuted() && self.controls.$volume) {
     // Toggle initial mute button state
     self.controls.$volume
       .addClass('h5p-muted')
