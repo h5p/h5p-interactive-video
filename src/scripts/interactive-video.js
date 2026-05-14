@@ -614,15 +614,17 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   }, undefined);
 
   // Determine current captions track
-  let currentTrack = defaultTrack || self.video.getCaptionsTrack();
+  let currentTrack = self.previousState?.captionTrack || defaultTrack || self.video.getCaptionsTrack();
 
-  if (!currentTrack) {
-    // Set default off when no track is selected
-    currentTrack = tracks[0];
+  function setCurrentTrack(track) {
+    self.currentCaptionTrack = track;
+    self.video.setCaptionsTrack(track.value === 'off' ? null : track);
   }
+  // Set default off when no track is selected
+  setCurrentTrack(currentTrack || tracks[0]);
 
   // Create new track selector
-  self.captionsTrackSelector = new SelectorControl('captions', tracks, currentTrack, 'menuitemradio', self.l10n, self.contentId);
+  self.captionsTrackSelector = new SelectorControl('captions', tracks, self.currentCaptionTrack, 'menuitemradio', self.l10n, self.contentId);
 
   // Insert popup and button
   self.controls.$captionsButton = $(self.captionsTrackSelector.control);
@@ -638,7 +640,7 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   self.controls.$overlayButtons = self.controls.$overlayButtons.add(self.captionsTrackSelector.overlayControl);
 
   self.captionsTrackSelector.on('select', function (event) {
-    self.video.setCaptionsTrack(event.data.value === 'off' ? null : event.data);
+    setCurrentTrack(event.data);
   });
   self.captionsTrackSelector.on('close', function () {
     self.controls.$overlayButtons.removeClass('h5p-hide');
@@ -671,6 +673,7 @@ InteractiveVideo.prototype.getCurrentState = function () {
     progress: self.currentTime,
     maxTimeReached: this.maxTimeReached || null,
     answers: [],
+    captionTrack: self.currentCaptionTrack,
     interactionsProgress: self.interactions
       .slice()
       .sort((a, b) => a.getDuration().from - b.getDuration().from)
