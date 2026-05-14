@@ -613,15 +613,14 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
     return (result === undefined && defaultTrackLabel && current.label === defaultTrackLabel) ? current : result;
   }, undefined);
 
-  // Determine current captions track
-  let currentTrack = self.previousState?.captionTrack || defaultTrack || self.video.getCaptionsTrack();
+  // Determine current captions track.  If none saved and none default, start disabled
+  let currentTrack = self.previousState?.captionTrack || defaultTrack || tracks[0];
 
   function setCurrentTrack(track) {
     self.currentCaptionTrack = track;
     self.video.setCaptionsTrack(track.value === 'off' ? null : track);
   }
-  // Set default off when no track is selected
-  setCurrentTrack(currentTrack || tracks[0]);
+  setCurrentTrack(currentTrack);
 
   // Create new track selector
   self.captionsTrackSelector = new SelectorControl('captions', tracks, self.currentCaptionTrack, 'menuitemradio', self.l10n, self.contentId);
