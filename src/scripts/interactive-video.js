@@ -12,6 +12,7 @@ const $ = H5P.jQuery;
 const SECONDS_IN_MINUTE = 60;
 const MINUTES_IN_HOUR = 60;
 const KEYBOARD_STEP_LENGTH_SECONDS = 5;
+const LS_CAPTION_KEY = 'h5p.interactivevideo.captiontrack'
 
 /**
  * @typedef {Object} InteractiveVideoParameters
@@ -614,10 +615,20 @@ InteractiveVideo.prototype.setCaptionTracks = function (tracks) {
   }, undefined);
 
   // Determine current captions track.  If none saved and none default, start disabled
-  let currentTrack = self.previousState?.captionTrack || defaultTrack || tracks[0];
+  let savedTrack = null;
+  try {
+    savedTrack = JSON.parse(localStorage.getItem(LS_CAPTION_KEY));
+  } catch(error) {
+    console.log('Failed to load caption track preference.');
+  }
+  if (!(savedTrack && tracks.some(t => t.label === savedTrack.label && t.value === savedTrack.value))) {
+    savedTrack = null;
+  }
+  let currentTrack = self.previousState?.captionTrack || savedTrack || defaultTrack || tracks[0];
 
   function setCurrentTrack(track) {
     self.currentCaptionTrack = track;
+    localStorage.setItem(LS_CAPTION_KEY, JSON.stringify(track));
     self.video.setCaptionsTrack(track.value === 'off' ? null : track);
   }
   setCurrentTrack(currentTrack);
