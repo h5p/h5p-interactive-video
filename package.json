@@ -20,7 +20,7 @@
   "author": "Joubel",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.24.1",
+    "@babel/cli": "^8.0.4",
     "@babel/core": "^7.24.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
     "@babel/plugin-transform-object-assign": "^7.24.1",
