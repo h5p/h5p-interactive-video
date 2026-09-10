@@ -1,3 +1,5 @@
+import { isInstanceTask } from './util.js';
+
 const $ = H5P.jQuery;
 
 /**
@@ -986,7 +988,7 @@ function Interaction(parameters, player, previousState) {
         }
 
         self.remove();
-        continueWithVideo(adaptivity.seekTo);  
+        continueWithVideo(adaptivity.seekTo);
         },
         true,
         {},
@@ -1494,9 +1496,7 @@ function Interaction(parameters, player, previousState) {
 
       if (!player.isTask && player.options.assets.endscreens !== undefined) {
         // IV is not a task by default, but it will be if one of the elements is a task or have a solution + there is a submit screen
-        if (instance.isTask || (instance.isTask === undefined && instance.showSolutions !== undefined)) {
-          player.isTask = true; // (checking for showSolutions will not work for compound content types, which is why we added isTask instead.)
-        }
+        player.isTask = isInstanceTask(instance);
       }
 
       // Set adaptivity if question is finished on attach
