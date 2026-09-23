@@ -481,8 +481,8 @@
           "default": "Poengsum"
         },
         {
-          "label": "Submit screen question label",
-          "default": "Question"
+          "label": "Etikett for spørsmål på innsendingsskjerm",
+          "default": "Spørsmål"
         },
         {
           "label": "Innsendingsside: Poengsum for svara brukar har gitt",
