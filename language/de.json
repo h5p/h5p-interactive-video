@@ -82,6 +82,7 @@
           "label": "Interaktionen hinzufügen",
           "fields": [
             {
+              "entity": "Interaktion",
               "field": {
                 "fields": [
                   {
@@ -224,8 +225,12 @@
                 ]
               }
             },
-            {},
-            {}
+            {
+              "entity": "Lesezeichen"
+            },
+            {
+              "entity": "Endbildschirm"
+            }
           ]
         },
         {
