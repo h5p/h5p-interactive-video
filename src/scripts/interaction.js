@@ -1494,8 +1494,14 @@ function Interaction(parameters, player, previousState) {
 
       if (!player.isTask && player.options.assets.endscreens !== undefined) {
         // IV is not a task by default, but it will be if one of the elements is a task or have a solution + there is a submit screen
-        if (instance.isTask || (instance.isTask === undefined && instance.showSolutions !== undefined)) {
-          player.isTask = true; // (checking for showSolutions will not work for compound content types, which is why we added isTask instead.)
+        if (instance.isTask || (instance.isTask === undefined && (
+          instance.showSolutions !== undefined || (
+            typeof instance.getScore === 'function' &&
+            typeof instance.getMaxScore === 'function' &&
+            instance.getMaxScore() > 0
+          )
+        ))) {
+          player.isTask = true;
         }
       }
 
