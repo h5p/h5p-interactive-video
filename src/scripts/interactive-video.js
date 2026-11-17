@@ -1875,7 +1875,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$endscreensList === undefined) {
     self.controls.$endscreensList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$endscreensChooser.find('h5p-chooser-title'));
+      .insertAfter(self.controls.$endscreensChooser.find('.h5p-chooser-title'));
   }
 
   // Create list element for endscreen
