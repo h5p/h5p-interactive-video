@@ -883,13 +883,21 @@
   background: #555564;
 }
 
-.h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-bookmarks-container,
-.h5p-interactive-video .h5p-interactions-container, .h5p-interactive-video .h5p-endscreens-container {
+.h5p-interactive-video .h5p-interactions-container,
+.h5p-interactive-video .h5p-bookmarks-container,
+.h5p-interactive-video .h5p-endscreens-container {
   position: absolute;
   height: 100%;
   top: 0;
   left: 8px;
   right: 8px;
+  pointer-events: none;
+}
+
+.h5p-interactive-video .h5p-interactions-container > *,
+.h5p-interactive-video .h5p-bookmarks-container > *,
+.h5p-interactive-video .h5p-endscreens-container > * {
+  pointer-events: auto;
 }
 
 .h5p-interactive-video .h5p-seekbar-interaction {
