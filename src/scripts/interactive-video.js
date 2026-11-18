@@ -1350,6 +1350,7 @@ InteractiveVideo.prototype.addBubbles = function () {
         informationMustHaveAnswer: this.l10n.endcardInformationMustHaveAnswer,
         submitButton: this.l10n.endcardSubmitButton,
         submitMessage: this.l10n.endcardSubmitMessage,
+        question: this.l10n.endcardQuestion,
         tableRowAnswered: this.l10n.endcardTableRowAnswered,
         tableRowScore: this.l10n.endcardTableRowScore,
         answeredScore: this.l10n.endcardAnsweredScore,
