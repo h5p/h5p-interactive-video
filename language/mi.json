@@ -1,0 +1,506 @@
+{
+  "semantics": [
+    {
+      "label": "Whakatika Ataata Pāhekoheko",
+      "fields": [
+        {
+          "label": "Tukuatu/whakauru ataata",
+          "fields": [
+            {
+              "label": "Tāpirihia he ataata",
+              "description": "Pāwhiri ki raro nei ki te tāpiri i tētahi ataata mō tō ataata pāhekoheko. Ka taea te whakauru hononga ataata, te tukuatu kōnae ataata rānei. Ka taea hoki te tuku i ētahi tukunga anō o te ataata, he rerekē kounga. Kia pai ai mō ngā pūtirotiro whānui, tukuna he kōnae webm, he kōnae mp4 hoki."
+            },
+            {
+              "label": "Ngā kōwhiringa mata tīmatanga (kāore e tautokona mō ngā ataata YouTube])",
+              "fields": [
+                {
+                  "label": "Te taitara mō tēnei ataata pāhekoheko",
+                  "default": "Ataata Pāhekoheko",
+                  "description": "Ka whakamahia i ngā whakamārama, tauanga me ētahi atu horopaki."
+                },
+                {
+                  "label": "Hunaia te taitara ki te mata tīmatanga"
+                },
+                {
+                  "label": "Whakamārama poto (Kōwhiringa)",
+                  "description": "Kōwhiringa. Whakaaturia he whakamārama poto ki te mata tīmatanga o te ataata. Kāore e taea tēnei mō ngā ataata YouTube."
+                },
+                {
+                  "label": "Pānui whakaahua",
+                  "description": "He ata ka whakaaturia ki mua o te tīmatanga o te ataata. Kāore e taea tēnei mō ngā ataata YouTube."
+                }
+              ]
+            },
+            {
+              "label": "Ara whakapūaho (kāore e taea tēnei mō ngā ataata YouTube)",
+              "fields": [
+                {
+                  "label": "Ngā arahono whakapūaho ka taea",
+                  "entity": "Arahono",
+                  "field": {
+                    "label": "Arahono",
+                    "fields": [
+                      {
+                        "label": "Tapanga Arahono",
+                        "description": "Used if you offer multiple tracks and the user has to choose a track. For instance 'Spanish subtitles' could be the label of a Spanish subtitle track.",
+                        "default": "Kupu Hauraro"
+                      },
+                      {
+                        "label": "Momo Arahono",
+                        "options": [
+                          {
+                            "label": "Kupu Hauraro"
+                          },
+                          {
+                            "label": "Whakapūaho"
+                          },
+                          {
+                            "label": "Kupu Whakamārama"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Reo pūtake, me whakarite mō ngā kupu hauraro.",
+                        "description": "Ka herea ki ngā tūtohu reo BCP 47 anake. Mehemea 'Whakapūaho' te momo arahono kua kōwhiritia, me tautuhi te reo pūtake."
+                      },
+                      {
+                        "label": "Pūtake arahono (kōnae WebVTT)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "label": "Arahono taunoa",
+                  "description": "Ki te wātea tēnei, ki te kore e hāngai ki tētahi o ngā arahono kuputohu te ara taunoa, ko te arahono tuatahi te arahono taunoa."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Tāpirihia he pāhekoheko",
+          "fields": [
+            {
+              "field": {
+                "fields": [
+                  {
+                    "label": "Whakaaturia te wā"
+                  },
+                  {
+                    "label": "Pupuri te ataata"
+                  },
+                  {
+                    "label": "Whakaaturia hei",
+                    "description": "<b>Pātene</b> he pāhekoheko kua whakapakutia, kia huakina, mā te pāwhiri a te  kaiwhakamahi e huakina. <b>Pānui whakaahua</b> he pāhekoheko, kua whakarahia, ka whakaaturia ki runga i te ataata",
+                    "options": [
+                      {
+                        "label": "Pātene"
+                      },
+                      {
+                        "label": "Pānui whakaahua"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ka huri hei pātene i ngā mata iti"
+                  },
+                  {
+                    "label": "Tapanga",
+                    "description": "He tapanga ka whakaaturia ki te taha o te ata pāhekoheko."
+                  },
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {
+                    "label": "Te Urutau",
+                    "fields": [
+                      {
+                        "label": "Te mahi ina tika katoa",
+                        "fields": [
+                          {
+                            "label": "Nuku ki",
+                            "description": "Whakaurua te wā i te hōputu: M:SS"
+                          },
+                          {
+                            "label": "Tukuna mā te kaiwhakamahi e puta, e haere tonu rānei"
+                          },
+                          {
+                            "label": "Karere"
+                          },
+                          {
+                            "label": "Tapanga mō te pātene nuku"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Te mahi ina kei te hē",
+                        "fields": [
+                          {
+                            "label": "Nuku ki",
+                            "description": "Whakaurua te wā i te hōputu: M:SS"
+                          },
+                          {
+                            "label": "Tukuna mā te kaiwhakamahi e puta, e haere tonu rānei"
+                          },
+                          {
+                            "label": "Karere"
+                          },
+                          {
+                            "label": "Tapanga mō te pātene nuku"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Kia riro ngā piro katoa mō tēnei ngohe i mua i te panuku",
+                        "description": "Kia pai ai ngā whakahaere, me haere ngātahi tēnei kōwhiringa me te kōwhiringa \"Monoa te panuku ki mua o te ataata\" mō ngā Ataata Pāhekoheko."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Whakaaturanga",
+                    "fields": [
+                      {
+                        "label": "Tae papamuri"
+                      },
+                      {
+                        "label": "Atarau pouaka",
+                        "description": "Ka tāpiri i tētahi atarau hātea huri noa i te pāhekoheko. Tērā pea ka kōwhiri koe kia monoa tēnei mō ngā pāhekoheko e pūataata ana."
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Ina pāwhiritia ka haere ki",
+                    "fields": [
+                      {
+                        "label": "Momo",
+                        "options": [
+                          {
+                            "label": "Tūtohu wā"
+                          },
+                          {
+                            "label": "Whārangi (URL)"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Haere ki",
+                        "description": "Te tūnga wā, ka kawea ai te kaiwhakamahi i tōna pāwhiri i te . Whakaurua te wā i te hōputu: M:SS."
+                      },
+                      {
+                        "label": "URL",
+                        "fields": [
+                          {
+                            "label": "Kawa whakawhiti",
+                            "options": [
+                              {
+                                "label": "http://"
+                              },
+                              {
+                                "label": "https://"
+                              },
+                              {
+                                "label": "(mai i te pūtake)"
+                              },
+                              {
+                                "label": "kē atu"
+                              }
+                            ]
+                          },
+                          {
+                            "label": "URL"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Tūramatia",
+                        "description": "Whakaaturia te āheinga pāwhiri, mā te tāpiri i tētahi taitapa me tētahi ata hoki"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {},
+            {}
+          ]
+        },
+        {
+          "label": "Ngohe whakakapi",
+          "fields": [
+            {},
+            {
+              "label": "Whakaaturia kei",
+              "description": "Te kaute o ngā hēkona ki mua i te mutunga o te ataata."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Kōwhiringa whanonga",
+      "fields": [
+        {
+          "label": "Ka tīmata te ataata i te wā",
+          "description": "Whakaurua te wā i te hōputu: M:SS"
+        },
+        {
+          "label": "Purei-aunoa te ataata",
+          "description": "Ka tīmata aunoa purei o te ataata"
+        },
+        {
+          "label": "Toaitia te ataata",
+          "description": "Ina e hiahiatia ana kia toaitia te ataata, kōwhirita tēnei"
+        },
+        {
+          "label": "Aukatingia te pātene \"Whakaatu Otinga\"",
+          "description": "Mā tēnei kōwhiringa e whakatau mehemea e whakaaturia te pātene \"Whakaatu Otinga\"  mō ngā pātai katoa, ka monoa mō ngā pātai katoa, ka taea te kōwhiri rānei mō ia pātai motuhake.",
+          "options": [
+            {
+              "label": "Whakakāngia"
+            },
+            {
+              "label": "Monoa"
+            }
+          ]
+        },
+        {
+          "label": "Aukatingia te pātene \"Whakamātau anō\"button",
+          "description": "Mā tēnei kōwhiringa e whakatau mehemea e whakaaturia te pātene \"Whakamātau anō\" mō ngā pātai katoa, ka monoa mō ngā pātai katoa, ka taea te kōwhiri rānei mō ia pātai motuhake.",
+          "options": [
+            {
+              "label": "Whakakāngia"
+            },
+            {
+              "label": "Monoa"
+            }
+          ]
+        },
+        {
+          "label": "Kia tūwhera te tahua tohuwāhi i te tīmatanga",
+          "description": "Kāore e taea tēnei taumahi mō ngā īPapa e whakamahi ana te YouTube hei pūtake ataata."
+        },
+        {
+          "label": "Whakaaturia te pātene rere whakamuri mō ngā hēkona 10"
+        },
+        {
+          "label": "Monoa te panuku",
+          "description": "Mā ēnei kōwhiringa e aukati i te whakatere a te kaiwhakamahi, i runga i ngā tautuhinga.",
+          "options": [
+            {
+              "label": "Kore"
+            },
+            {
+              "label": "ki Mua"
+            },
+            {
+              "label": "ki Mua, ki Muri hoki"
+            }
+          ]
+        },
+        {
+          "label": "Aukatingia te puoro",
+          "description": "Ki te kā tēnei kōwhiringa, ka aukatingia te oro ataata, ka aukati hoki i te whakakā puoro mō te ataata."
+        }
+      ]
+    },
+    {
+      "label": "Whakatangata Whenua",
+      "fields": [
+        {
+          "label": "Taitara pāhekoheko",
+          "default": "Pāhekoheko"
+        },
+        {
+          "label": "Tapanga purei",
+          "default": "Purei"
+        },
+        {
+          "label": "Tapanga pupuri",
+          "default": "Pupuri"
+        },
+        {
+          "label": "Tapanga Whakangū",
+          "default": "Whakangū, ināianei kei te kā"
+        },
+        {
+          "label": "Tapanga Wetengū",
+          "default": "Wetengū, ināianei kei te ngū"
+        },
+        {
+          "label": "Tapanga kounga whakaaturanga",
+          "default": "Te kounga whakaaturanga"
+        },
+        {
+          "label": "Tapanga Whakapūaho",
+          "default": "Whakapūaho"
+        },
+        {
+          "label": "Tapanga Pātene Kati",
+          "default": "Katia"
+        },
+        {
+          "label": "Tapanga Matawhārahi",
+          "default": "Matawhārahi"
+        },
+        {
+          "label": "Tapanga Puta i te Matawhārahi",
+          "default": "Puta i te matawhārahi"
+        },
+        {
+          "label": "Tapanga Whakataki",
+          "default": "Huakina pouaka whakataki"
+        },
+        {
+          "label": "Tapanga tohu whārangi",
+          "default": "Ngā tohu whārangi"
+        },
+        {
+          "label": "Tapanga Mata Tāpae",
+          "default": "Mata Tāpae"
+        },
+        {
+          "label": "Tapanga taunoa mō te pātene rapunga urutau",
+          "default": "Haere Tonu"
+        },
+        {
+          "label": "Tapanga taunoa mō te pātene  for continue video button",
+          "default": "Purei tonu"
+        },
+        {
+          "label": "Tapanga taunoa mō te pātene kōwhiringa mātakitaki",
+          "default": "He kōwhiringa mātakitaki anō"
+        },
+        {
+          "label": "Whakatauria te tere o te ataata",
+          "default": "Te tere o te ataata"
+        },
+        {
+          "label": "Hoki kia 10 hēkona",
+          "default": "Hoki kia 10 hēkona"
+        },
+        {
+          "label": "Tapanga, kua mono te whakatere",
+          "default": "Kua mono te whakatere"
+        },
+        {
+          "label": "Tapanga, mono te whakatere ki mua",
+          "default": "Kua mono te whakatere ki mua"
+        },
+        {
+          "label": "Tapanga, kua mono te pūoro",
+          "default": "Kua mono te pūoro"
+        },
+        {
+          "label": "Warning that the user must answer the question correctly before continuing",
+          "default": "You need to answer all the questions correctly before continuing."
+        },
+        {
+          "label": "Pātene hoki whakamuri",
+          "default": "Hoki"
+        },
+        {
+          "label": "Te wā kua haere, hāora",
+          "default": "Hours"
+        },
+        {
+          "label": "Te wā kua haere, meneti",
+          "default": "Meneti"
+        },
+        {
+          "label": "Te wā kua haere, hēkona",
+          "default": "Hēkona"
+        },
+        {
+          "label": "Tapanga mō te wā ināianei",
+          "default": "Ināianei:"
+        },
+        {
+          "label": "Tapanga mō te wā katoa",
+          "default": "Wā katoa:"
+        },
+        {
+          "label": "Te tapanga e kī ana kua puta tētahi pāhekoheko",
+          "default": "Kua puta tētahi pāhekoheko:"
+        },
+        {
+          "label": "Te tapanga e kī ana kua puta ētahi pāhekoheko",
+          "default": "Kua puta ētahi pāhekoheko"
+        },
+        {
+          "label": "Pānuitanga, kua pupuri te ataata",
+          "default": "Kua pupuri te ataata"
+        },
+        {
+          "label": "Tapanga Ihirangi",
+          "default": "Ihirangi"
+        },
+        {
+          "label": "Karere mō ngā pātai kua whakautua (ka kuhuna te kaute o ngā pātai kua whakautua ki @answered)",
+          "default": "@answered kua whakautua"
+        },
+        {
+          "label": "Taitara Mata Whakauru",
+          "default": "@answered (te/ngā) pātai kua whakautua",
+          "description": "Ka kuhuna te kaute o ngā pātai kua whakautua ki @answered."
+        },
+        {
+          "label": "Pārongo mō te mata whakauru",
+          "default": "Kua whakautu koe i ngā pātai (e) @answered, pāwhiri ki raro ki te tuku i ō whakautu.",
+          "description": "Ka kuhuna te kaute o ngā pātai kua whakautua ki @answered."
+        },
+        {
+          "label": "Pārongo mō te mata whakauru ina monoa te pātene whakauru",
+          "default": "Kua whakautu koe i ngā pātai (e) @answered.",
+          "description": "Ka kuhuna te kaute o ngā pātai kua whakautua ki @answered."
+        },
+        {
+          "label": "Pārongo mata whakauru mō ngā whakautu kāore i oti",
+          "default": "Kāore anō koe kia whakautu i tētahi pātai."
+        },
+        {
+          "label": "Pārongo mata whakauru mō ngā pātai me whakautu",
+          "default": "Me utu te pātai kotahi neke atu rānei kia taea ai te tuku i ō whakautu."
+        },
+        {
+          "label": "Mata whakauru pātene tuku",
+          "default": "Tukuna ngā Whakautu"
+        },
+        {
+          "label": "Mata whakauru karere mō te tukunga",
+          "default": "Kua tukuna ō whakautu!"
+        },
+        {
+          "label": "Mata whakauru, taitara kapa tūtohi: Ngā pātai kua whakautua",
+          "default": "Ngā pātai kua whakautua"
+        },
+        {
+          "label": "Mata whakauru, taitara kapa tūtohi: Ngā Piro",
+          "default": "Ngā Piro"
+        },
+        {
+          "label": "Mata whakauru, piro mō ngā pātai kua whakautua",
+          "default": "whakautua"
+        },
+        {
+          "label": "Mata whakauru rārangi whakarāpopoto me ngā piro (mō ngā taupānga pānui mata)",
+          "default": "I whiwhi koe @score o ngā piro @total mō te @question i puta ā muri i te @minutes miniti, @seconds hēkona."
+        },
+        {
+          "label": "Mata whakauru rārangi whakarāpopoto kore piro (mō ngā taupānga pānui mata)",
+          "default": "Kua whakautu koe i te @question i puta i te @minutes miniti, @seconds hēkona."
+        },
+        {
+          "label": "Te pae kokenga ataata",
+          "default": "Te kokenga ataata"
+        },
+        {
+          "label": "He pārongo, me pēhea te tīmata i ngā pāhekoheko",
+          "default": "Mātakitaki i te kiriata ki te tīmata i ngā pāhekoheko"
+        }
+      ]
+    }
+  ]
+}
