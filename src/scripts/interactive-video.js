@@ -1773,7 +1773,15 @@ InteractiveVideo.prototype.addBookmark = function (id, tenth) {
 
   // Creat list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$bookmarksList === undefined) {
-    self.controls.$bookmarksList = $('<ul role="menu"></ul>').appendTo(self.controls.$bookmarksChooser);
+    self.controls.$bookmarksList = $('<ul role="menu"></ul>');
+    const $addButton = self.controls.$bookmarksChooser.children('.h5p-add-bookmark');
+    // If we initialize IV with an empty bookmark list, the add-bookmark button will be placed
+    // over the list. So let's just check if the button exists and then we place the list before it.
+    if ($addButton.length) {
+      self.controls.$bookmarksList.insertBefore($addButton);
+    } else {
+      self.controls.$bookmarksList.appendTo(self.controls.$bookmarksChooser);
+    }
   }
 
   // Create list element for bookmark
@@ -1875,7 +1883,7 @@ InteractiveVideo.prototype.addEndscreen = function (id, tenth) {
   // Create list if non-existent (note that it isn't allowed to have empty lists in HTML)
   if (self.controls.$endscreensList === undefined) {
     self.controls.$endscreensList = $('<ul role="menu"></ul>')
-      .insertAfter(self.controls.$endscreensChooser.find('h5p-chooser-title'));
+      .insertAfter(self.controls.$endscreensChooser.find('.h5p-chooser-title'));
   }
 
   // Create list element for endscreen
